@@ -28,12 +28,14 @@ $headingMargin: 0 0 20px 0;
 /*-- scss:rules --*/
 
 // ── Self-hosted fonts (avoids network fetch on every embed-resources render) ──
+// Quarto compiles this SCSS to site_libs/revealjs/dist/theme/dark.css,
+// so font paths must be relative to that location (4 levels up to project root).
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 300 700;
   font-display: swap;
-  src: url('fonts/inter-latin.woff2') format('woff2');
+  src: url('../../../../theme/fonts/inter-latin.woff2') format('woff2');
 }
 
 @font-face {
@@ -41,7 +43,7 @@ $headingMargin: 0 0 20px 0;
   font-style: normal;
   font-weight: 400 500;
   font-display: swap;
-  src: url('fonts/jetbrains-mono-latin.woff2') format('woff2');
+  src: url('../../../../theme/fonts/jetbrains-mono-latin.woff2') format('woff2');
 }
 
 @font-face {
@@ -49,7 +51,7 @@ $headingMargin: 0 0 20px 0;
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url('fonts/jetbrains-mono-latin-italic.woff2') format('woff2');
+  src: url('../../../../theme/fonts/jetbrains-mono-latin-italic.woff2') format('woff2');
 }
 
 
@@ -252,6 +254,18 @@ $headingMargin: 0 0 20px 0;
 }
 
 
+// ── Logo (bottom right) ───────────────────────────────────────────────────────
+.reveal .slide-logo {
+  position: fixed;
+  bottom: 12px;
+  right: 20px;
+  width: 110px;
+  height: auto;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+
 // ── Slide number ──────────────────────────────────────────────────────────────
 .reveal .slide-number {
   font-family: 'Inter', sans-serif;
@@ -259,7 +273,8 @@ $headingMargin: 0 0 20px 0;
   font-weight: 400;
   color: #6b7280;
   background: transparent;
-  bottom: 16px;
+  top: 16px;
+  bottom: auto;
   right: 20px;
 }
 
