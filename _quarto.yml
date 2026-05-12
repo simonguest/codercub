@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: dist
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!LICENSE.md"
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+  revealjs:
+    theme: [default, theme/dark.scss]
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+execute:
+  freeze: true
+website:
+  title: "Codercub Summer of Code 2026"
+  page-navigation: true
+  sidebar:
+    logo: theme/codercub.png
+    style: "docked"
+    collapse-level: 2
+    search: true
+    contents:
+      - text: "Summer of Code 2026"
+        href: index.qmd
+      - text: "---"
+      - section: "Day 1"
+        contents:
+          - text: "Slides"
+            href: days/01/slides.qmd
+            target: blank

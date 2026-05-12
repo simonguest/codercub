@@ -1,0 +1,5 @@
+# Codercub Summer of Code 2026
+
+## About
+
+This site contains a collection of slides, code, and other resources for Codercub's Summer of Code 2026

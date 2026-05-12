@@ -1,0 +1,14 @@
+---
+title: "Day 1: Welcome!"
+author: "Simon Guest"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+
+---
+
+## TBD
+
+- TBD
