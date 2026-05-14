@@ -29,3 +29,48 @@ website:
           - text: "Slides"
             href: labs/01/slides.qmd
             target: blank
+      - section: "Day 2"
+        contents:
+          - text: "Slides"
+            href: labs/02/slides.qmd
+            target: blank
+      - section: "Day 3"
+        contents:
+          - text: "Slides"
+            href: labs/03/slides.qmd
+            target: blank
+      - section: "Day 4"
+        contents:
+          - text: "Slides"
+            href: labs/04/slides.qmd
+            target: blank
+      - section: "Day 5"
+        contents:
+          - text: "Slides"
+            href: labs/05/slides.qmd
+            target: blank
+      - section: "Day 6"
+        contents:
+          - text: "Slides"
+            href: labs/06/slides.qmd
+            target: blank
+      - section: "Day 7"
+        contents:
+          - text: "Slides"
+            href: labs/07/slides.qmd
+            target: blank
+      - section: "Day 8"
+        contents:
+          - text: "Slides"
+            href: labs/08/slides.qmd
+            target: blank
+      - section: "Day 9"
+        contents:
+          - text: "Slides"
+            href: labs/09/slides.qmd
+            target: blank
+      - section: "Day 10"
+        contents:
+          - text: "Slides"
+            href: labs/10/slides.qmd
+            target: blank

@@ -1,0 +1,7 @@
+[project]
+name = "06"
+version = "0.1.0"
+description = "Lab 6 Demo Code"
+requires-python = ">=3.13"
+dependencies = [
+]
