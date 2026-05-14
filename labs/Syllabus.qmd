@@ -1,0 +1,329 @@
+# Summer of Code 2026
+
+## Curriculum Plan
+
+## At a Glance
+
+| Days | Module | Focus |
+|------|--------|-------|
+| Week 1, Day 1 | Intro | AI concepts survey, types of AI, setting the stage |
+| Week 1, Days 2–3 | Module 1: Working with Data | pandas, matplotlib, scikit-learn, Mongolian datasets |
+| Week 1, Days 4–5 | Module 2: Physical Computing | micro:bit V2, CreateAI, gesture ML models, MakeCode |
+| Week 2, Day 6 | Module 3: Computer Vision | CNNs, TF.js, MediaPipe, CV mini-projects |
+| Week 2, Day 7 | CV → GenAI Bridge | VLMs, tokens, embeddings, transformer overview |
+| Week 2, Days 8–9 | Module 4: Generative AI | Prompt engineering, chatbots, diffusion, image gen |
+| Week 2, Day 10 | Capstone Showcase | Final project presentations, reflection, celebration |
+
+---
+
+## Day 1 — Week 1 — Intro
+
+### Welcome to AI: Where It Comes From & Where It's Going
+
+#### Learning Objectives
+
+- Articulate what AI is and name 3+ real-world examples they interact with daily
+- Distinguish between supervised ML, computer vision, and generative AI
+- Preview all four modules and understand how the two weeks connect
+- Feel comfortable and curious — this is a safe space to experiment and be wrong
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| Warm-Up (15 min) | "AI Around You" brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard. | 0:00–0:15 | Icebreaker energy |
+| Direct Instruction (20 min) | Instructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action. | 0:15–0:35 | Keep slides visual |
+| "Is It AI?" Activity (20 min) | Groups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class. | 0:35–0:55 | Physical or Jamboard cards |
+| Mini-Project (35 min) | "My AI Map": students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed. | 0:55–1:30 | Paper or slides |
+| Share & Preview (20 min) | 3–4 volunteers share maps. Instructor reveals the 10-day journey — the "syllabus reveal." Preview tomorrow's data deep-dive. | 1:30–1:50 | |
+| Exit Ticket (10 min) | One thing I knew · one thing I learned · one question I have. Collect for planning. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- Miro
+- "Is it AI?" card set (printable or digital)
+- Short video clips from Code.org (~2 min)
+
+---
+
+## Day 2 — Week 1 — Module 1: Working with Data
+
+### The Air Mystery: What Impacts Ulaanbaatar's Air the Most?
+
+#### Learning Objectives
+
+- Open a Colab notebook, run cells, and load a CSV with pandas
+- Use `.head()`, `.describe()`, `.value_counts()`, and filtering to investigate a real question
+- Produce at least one meaningful matplotlib visualization that supports a finding
+- Explain why data quality and selection matter for AI — using today's dataset as evidence
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| The Hook: A Mystery (10 min) | Instructor opens with a single striking fact: in January, Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit — worse than Beijing, worse than Delhi. Show a before/after satellite photo of the city in summer vs. winter smog. 'Your job today: figure out why, using data.' Introduce the detective framing: the dataset is your crime scene. | 0:00–0:10 | Show satellite comparison image |
+| Setup & Tools (15 min) | Walk through Google Colab. Every student runs: `print('Investigation begins!')`. Quick pandas demo: DataFrames, `.head()`, `.info()`, `.describe()` — framed as 'reading the crime scene.' | 0:10–0:25 | Pair struggling students |
+| Investigation Sprint (40 min) | Groups of 3 dig into the Ulaanbaatar AQI dataset with guided question cards (not open-ended — each card is a specific clue to chase). E.g., 'Which month has the worst PM2.5? Which has the best?', 'Is there a pattern by day of week?', 'Does temperature predict pollution level?' Groups record findings in a shared doc. | 0:25–1:05 | Question cards pre-prepared |
+| Visualize Your Evidence (25 min) | Each group turns their strongest finding into one chart using matplotlib templates. Frame: 'A detective doesn't just tell the jury — they show the evidence.' | 1:05–1:30 | Templates in notebook |
+| AI Training Data Lens (20 min) | Pivot: 'Now imagine you're an AI company and this is your training data for a pollution prediction model. Would it be good enough? What's missing? What would your model get wrong?' Small group discussion, then share out. | 1:30–1:50 | Connects directly to Week 2 |
+| Wrap-Up (10 min) | Each group posts their one-sentence finding to a class board. Preview: tomorrow you get an AI assistant to help with a harder dataset — and you'll decide if it's trustworthy. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- Google Colab (browser, no install)
+- Ulaanbaatar historical AQI dataset (PM2.5, PM10, temperature, season — CSV, pre-cleaned from aqicn.org or IQAir historical download)
+- Starter notebook with scaffolded cells + matplotlib templates
+- Investigation question cards (printed, one set per group — 6–8 clues to chase)
+- Shared class findings doc (Google Doc or Jamboard)
+- Satellite comparison images: Ulaanbaatar summer vs. winter smog (freely available)
+
+---
+
+## Day 3 — Week 1 — Module 1: Working with Data
+
+### AI as Co-Pilot: Can We Predict a Livestock Disaster?
+
+#### Learning Objectives
+
+- Use a Claude-powered data assistant to query a dataset in plain English
+- Critically evaluate AI-generated interpretations against actual data
+- Train a simple linear regression model and interpret its predictions
+- Articulate the direct conceptual link between regression modeling and the micro:bit ML training in Module 2
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| The Hook: Dzud (10 min) | Instructor introduces the dzud — Mongolia's winter livestock disaster. Show the stat: in 2010, 20 million animals died in a single winter. In 2024, 7.4 million in just four months. 'Herders knew a bad summer meant a bad winter. Can a machine learn that relationship from data?' Introduce today's dataset: aimag-level livestock mortality, summer drought index, and winter temperature, 1990–2013. | 0:00–0:10 | Map of Mongolia's 21 aimags on screen |
+| Introduce the AI Co-Pilot (15 min) | Instructor demo: a Claude-powered chat interface loaded with the dzud dataset context. Ask it: 'Which aimag suffered the most in 2010?' Then ask something it gets wrong or oversimplifies. 'Your job: use this tool as a starting point, then verify everything in code.' | 0:10–0:25 | Claude.ai Project or Colab widget |
+| Investigation: Human + AI (35 min) | Groups explore the dataset with the AI co-pilot. Workflow: ask the assistant a question → verify in pandas → document where it's right, wrong, or uncertain. Each group must catch the AI making at least 2 errors or oversimplifications before they present. | 0:25–1:00 | Encourage skepticism explicitly |
+| Linear Regression: Predict the Disaster (25 min) | Instructor-led walkthrough: train a linear regression model to predict livestock mortality from summer drought index and winter temperature. Students run it step-by-step. Key question: 'This model sees the summer data — can it warn a herder before winter arrives?' | 1:00–1:25 | Heavily scaffolded notebook |
+| The Bridge Moment (5 min) | Instructor draws the explicit connection: 'Yesterday we looked for patterns in pollution data. Today we trained a model to predict disasters from patterns in climate data. On Thursday, you'll do the exact same thing — but the data will be your own body movement, and the micro:bit will be the device that learns.' Plant the seed. | 1:25–1:30 | Key conceptual moment — don't rush |
+| Data Story Presentations (20 min) | Each group: 3 min presentation — the question, the evidence, one thing the AI got wrong, one limitation of the dataset. | 1:30–1:50 | Rubric: story, evidence, AI critique, limitation |
+| Wrap-Up (10 min) | Class vote: whose finding was most surprising? 'What does it feel like to catch an AI being wrong?' Preview: micro:bits arrive tomorrow. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- Claude-powered data assistant (Claude.ai Project with dataset summary as context, or a lightweight Colab widget using the Anthropic API)
+- Dzud dataset: aimag-level livestock mortality + summer drought index + winter temperature, 1990–2013 (sourced from Mongolian NSO / Rao et al. 2015 supplementary data)
+- Colab notebook with linear regression walkthrough + visualization templates
+- Map of Mongolia's 21 aimags (printed or on-screen)
+- Presentation rubric (story, evidence, AI critique, limitation — 1 page)
+- Optional: class leaderboard for 'best AI catch of the day'
+
+---
+
+## Day 4 — Week 1 — Module 2: Physical Computing
+
+### Computers in the Physical World: micro:bit & CreateAI
+
+#### Learning Objectives
+
+- Connect a micro:bit to CreateAI and view live accelerometer data in real time
+- Train a gesture model with at least 3 classes and explain what 'confidence threshold' means
+- Understand that ML models learn from examples, not explicit rules
+- Write a MakeCode program that responds meaningfully to detected gestures
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| Hardware Orientation (15 min) | Distribute micro:bits (groups of 2–3). Connect via USB, open createai.microbit.org. Instructor demo: accelerometer graph while shaking vs. still. | 0:00–0:15 | V2 required for on-device ML |
+| First Model: Walk vs. Still (25 min) | Guided: everyone trains the same model — 'walking' vs. 'still' vs. 'other'. Collect 20 samples per class. Train and test on each other. | 0:15–0:40 | Use CreateAI guided tour |
+| Iterate & Improve (20 min) | Why does it fail on someone else's wrist? Collect more diverse samples. Compare accuracy before/after. | 0:40–1:00 | Key insight: data quality matters |
+| MakeCode Response (30 min) | Export model to MakeCode. Program: walking → scroll message on LED; still → show symbol; other → show '?'. | 1:00–1:30 | Templates provided |
+| Design Challenge (20 min) | Groups sketch their own gesture-based device concept for tomorrow: what 3–4 gestures? What human need does it serve? | 1:30–1:50 | Design brief template |
+| Wrap-Up (10 min) | Discussion: How is this similar to scikit-learn? How is it different? Preview tomorrow's build. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- BBC micro:bit V2 (1 per 2–3 students) + USB cables + Chrome browser
+- createai.microbit.org + makecode.microbit.org
+- CreateAI getting started guide (microbit.org/createai)
+- Design brief template (1-pager)
+
+---
+
+## Day 5 — Week 1 — Module 2: Physical Computing
+
+### Build Your Activity Detector: Physical AI Project
+
+#### Learning Objectives
+
+- Design and train a multi-class gesture model for a purposeful application
+- Write a program that takes meaningful action on detected gestures
+- Debug and iterate on model quality (test on different people, orientations)
+- Articulate the human role in AI: labeling, choosing classes, and testing
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| Design Review (10 min) | Groups share their sketch from Day 4. Quick peer feedback: is the human need clear? | 0:00–0:10 | |
+| Build & Train (60 min) | Groups collect data, train, test, iterate. Prompt: 'Does it still work on someone else's arm? In a different room?' Aim for 2–3 iteration cycles. | 0:10–1:10 | Iterate deliberately |
+| Code the Response (35 min) | Write the MakeCode or Python program. Micro:bit responds with LED, sound, or serial output. Push toward a complete, working demo. | 1:10–1:45 | |
+| Demo Gallery (15 min) | Informal 2-min demo per group. Peers act as testers. Celebrate creative use of gestures. | 1:45–2:00 | Fun, low-stakes |
+
+#### Resources & Tools
+
+- micro:bits from Day 4
+- createai.microbit.org + MakeCode
+- Optional: buzzer accessories for audio feedback
+
+> **Instructor Notes:** Module 2 capstone. Accuracy matters less than purposeful design — celebrate a 70% accurate exercise counter more than a 95% accurate wave detector with no clear use. Great transition line: 'Next week we'll teach computers to see, not just move.'
+
+---
+
+## Day 6 — Week 2 — Module 3: Computer Vision
+
+### How Computers See: CV Foundations + Mini-Project
+
+#### Learning Objectives
+
+- Explain how a CNN classifies images at a conceptual level (pixels → features → predictions)
+- Run pre-trained classification, pose detection, and object detection models in the browser
+- Build a working CV application combining a pre-trained model with custom Python logic
+- Identify at least one ethical concern in computer vision technology
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| Hook (10 min) | Show 10 images pixelated at varying levels. Students classify. 'Computers start from pixels just like this bottom row.' | 0:00–0:10 | |
+| CV Concepts (20 min) | Instructor overview: pixels → CNN layers → predictions. Demo MobileNet on webcam in browser — confidence scores live. Show 3 task types: classification, pose detection, object detection. | 0:10–0:30 | TF.js demos, no GPU |
+| Exploration Stations (25 min) | Sequential or parallel: (1) Image classification with MobileNet, (2) Pose detection with MoveNet, (3) Object detection with COCO-SSD. Students screenshot one result from each. | 0:30–0:55 | Pre-built browser demos |
+| Ethics Discussion (15 min) | Case study: CV in surveillance, facial recognition bias. Small groups: 'Should CV be used to monitor students in school?' 2-min debrief. | 0:55–1:10 | Socratic format |
+| Mini-Project Build (40 min) | Groups choose a project track: (A) Pose Counter — count reps when keypoint crosses threshold. (B) Object Zone Game — detect object entering a screen zone. (C) Virtual Background — segmentation + canvas overlay. (D) Expression Mirror — MediaPipe Face Mesh reactions. | 1:10–1:50 | Template notebooks per track |
+| Wrap-Up (10 min) | Quick share: one unexpected CV challenge you hit. Preview: tomorrow we add language to vision. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- TensorFlow.js browser demos (tensorflow.org/js/demos)
+- MediaPipe (mediapipe.dev) for pose/face
+- Project template notebooks (one per track)
+- Colab with webcam access (JS bridge) or pre-recorded video fallback
+
+---
+
+## Day 7 — Week 2 — Module 3: CV → Module 4: Generative AI
+
+### Vision Language Models + How Generative AI Works
+
+#### Learning Objectives
+
+- Describe what a VLM does and how it differs from a classifier
+- Explain tokenization with a hands-on example
+- Describe word embeddings as 'coordinates for meaning' in vector space
+- Explain the transformer architecture at a high level and connect it to VLMs
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| VLM Demo & Discussion (20 min) | Instructor shows a VLM describing images — impressive case, then a failure case. 'How is this different from MobileNet?' Discussion: it produces language, not just a label. Show the two-component model: visual encoder + language model. | 0:00–0:20 | Claude API, GPT-4V, or HuggingFace Spaces (free) |
+| VLM Exploration (25 min) | Students query a VLM with their CV project screenshots + Mongolia/Naadam photos. Task: find one impressive result and one failure. Share findings. | 0:20–0:45 | No API key needed via HuggingFace |
+| Bridge: From Vision to Language (5 min) | Quick pivot: 'VLMs describe images. What if AI could generate language from scratch — or generate images?' Introduce Module 4. | 0:45–0:50 | |
+| Tokenization Activity (20 min) | Students use platform.openai.com/tokenizer on Mongolian words, code, emoji, and their own name. Questions: how many tokens? Why does it matter for cost and context? | 0:50–1:10 | Physical token cards as backup |
+| Embeddings Demo (20 min) | Word2vec/semantic similarity: 'King − Man + Woman ≈ Queen.' Students try analogies in a Colab notebook. Instructor explains: these are the coordinates transformers learn from data. | 1:10–1:30 | Colab + gensim |
+| Transformer Overview (20 min) | Visual walkthrough of attention using 'The bank by the river' example. No math — diagrams only. Connect: 'The LLM is doing this for every token, millions of times, trained on the same kind of data you used in Week 1.' | 1:30–1:50 | Jay Alammar visuals |
+| Wrap-Up (10 min) | Exit ticket: draw the path from 'user types a message' → 'LLM responds.' Preview tomorrow's chatbot build. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- VLM access: HuggingFace Spaces (free LLaVA demo), Claude API, or GPT-4V
+- platform.openai.com/tokenizer (free, no login)
+- Colab notebook: gensim word embeddings
+- Jay Alammar 'Illustrated Transformer' diagrams (jalammar.github.io)
+
+---
+
+## Day 8 — Week 2 — Module 4: Generative AI
+
+### Prompt Engineering & Building Your Chatbot
+
+#### Learning Objectives
+
+- Apply 4+ prompt engineering techniques: persona, few-shot, chain-of-thought, constraints
+- Use Code.org's AI Chat Lab to design and build a custom chatbot with a system prompt
+- Evaluate a chatbot's responses critically and iterate on the design
+- Explain how system prompts shape model behavior
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| Prompt Warm-Up (15 min) | Instructor shows the same question with 3 different prompts → very different outputs. Students guess which prompt produced which. Introduce: persona, few-shot, CoT, constraints. | 0:00–0:15 | |
+| Prompt Engineering Practice (25 min) | Students experiment with a live LLM: explain photosynthesis to a 5-year-old vs. a PhD; add a constraint ('no jargon'); try chain-of-thought for a logic problem. | 0:15–0:40 | Claude.ai or Code.org AI Chat Lab |
+| Chatbot Design Intro (10 min) | Introduce Code.org's Exploring Generative AI curriculum and AI Chat Lab. Walk through system prompt anatomy. Show a pre-built 'Cat Expert' chatbot. | 0:40–0:50 | code.org — free, grades 8–12 |
+| Build Your Chatbot (60 min) | Groups of 2 design and build a chatbot on a topic they care about. Requirements: clear persona, 3 topic focus areas, 1 'do not discuss' boundary, tested with 5+ different questions. | 0:50–1:50 | |
+| Wrap-Up (10 min) | Share chatbot name + one surprising thing it did. Preview: tomorrow you'll add knowledge and show it off — plus explore image generation. | 1:50–2:00 | |
+
+#### Resources & Tools
+
+- Code.org AI Chat Lab (code.org/en-US/curriculum/exploring-generative-artificial-intelligence)
+- Prompt engineering reference card (1-pager: 4 techniques with examples)
+- Example system prompts to study and remix
+- Claude.ai or similar LLM for free-form practice
+
+---
+
+## Day 9 — Week 2 — Module 4: Generative AI
+
+### Chatbot Showcase + Image Generation
+
+#### Learning Objectives
+
+- Deliver a polished chatbot demo including a system prompt, knowledge grounding, and graceful failure
+- Explain how diffusion models generate images at a conceptual level
+- Craft effective image generation prompts using a structured scaffold
+- Engage with IP and ethics questions around AI-generated art
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| RAG & Knowledge Grounding (15 min) | Quick demo: same chatbot with and without a knowledge document. What changed? Why? Conceptual explanation of retrieval-augmented generation — no code required. | 0:00–0:15 | |
+| Polish Your Chatbot (25 min) | Groups add a knowledge document (or expanded system prompt with facts) and evaluate using a peer rubric: helpfulness, accuracy, personality, graceful failure. | 0:15–0:40 | Printed rubric |
+| Chatbot Showcase (20 min) | Each group demos in 2 minutes: what it does, a successful exchange, something it won't do. Peer votes: Most Creative, Most Useful, Best Personality. | 0:40–1:00 | Celebration atmosphere |
+| Diffusion Model Concepts (15 min) | How AI generates images: noise → denoise → image, latent space, text encoder. Visual only — no math. 'This is the visual twin of what the LLM does with tokens.' | 1:00–1:15 | Show denoising animation |
+| Image Generation Workshop (30 min) | Students generate images on Replicate (or Adobe Firefly / Canva AI). Prompt scaffold: [subject] + [style] + [lighting] + [mood]. Theme: inspired by Mongolia or Naadam. Iterate 3 times. | 1:15–1:45 | Replicate.com or free alternatives |
+| Ethics: Art & AI (10 min) | Quick discussion: Who owns AI-generated art? Should models be trained on artists' work without consent? 2-min think-pair-share. | 1:45–1:55 | |
+| Preview Final Day (5 min) | Explain tomorrow's capstone structure. Remind groups to choose their showcase project. | 1:55–2:00 | |
+
+#### Resources & Tools
+
+- Code.org AI Chat Lab
+- Peer chatbot evaluation rubric (4 dimensions, 1 page)
+- Replicate.com (hosted image models) or Adobe Firefly / Canva AI (free)
+- Diffusion explainer clip (Computerphile or 3Blue1Brown, ~5 min)
+- Prompt scaffold template (printable)
+
+---
+
+## Day 10 — Week 2 — Capstone
+
+### AI Showcase: Putting It All Together
+
+#### Learning Objectives
+
+- Synthesize learning across all four modules in a final project presentation
+- Demonstrate genuine understanding of at least one AI concept to peers
+- Articulate one societal implication of AI in a domain they care about
+- Leave feeling capable, curious, and inspired to keep building
+
+#### Session Schedule (2 hours)
+
+| Segment | Details | Time | Notes |
+|---------|---------|------|-------|
+| Setup & Last-Mile Polish (20 min) | Groups do final prep on their capstone project. Instructor confirms running order. | 0:00–0:20 | |
+| Final Project Presentations (60 min) | Each group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types. | 0:20–1:20 | All groups present |
+| Letter to Myself (15 min) | Each student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about. | 1:20–1:35 | Private or share optionally |
+| Panel Reflection (10 min) | Student-led open Q&A: What surprised you most? What do you wish AI could do that it can't? What worries you? | 1:35–1:45 | |
+| Celebration & Certificates (15 min) | Award recognition in all categories. Share 'What's Next' resource card. Group photo. | 1:45–2:00 | Certificates printed in advance |
+
+#### Resources & Tools
+
+- Cross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)
+- Certificate template
+- "What to Explore Next" card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses
+- Optional: highlight reel compiled from Days 1–9

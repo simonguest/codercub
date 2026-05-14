@@ -24,6 +24,8 @@ website:
       - text: "Future Intelligence Lab"
         href: index.qmd
       - text: "---"
+      - text: "Syllabus"
+        href: labs/Syllabus.qmd
       - section: "Day 1"
         contents:
           - text: "Slides"
