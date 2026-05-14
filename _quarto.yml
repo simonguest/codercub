@@ -21,11 +21,11 @@ website:
     collapse-level: 2
     search: true
     contents:
-      - text: "Summer of Code 2026"
+      - text: "Future Intelligence Lab"
         href: index.qmd
       - text: "---"
       - section: "Day 1"
         contents:
           - text: "Slides"
-            href: days/01/slides.qmd
+            href: labs/01/slides.qmd
             target: blank
