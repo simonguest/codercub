@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>syllabus – Codercub Summer of Code 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../labs/01/slides.html" rel="next">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3ad90e773abef1aa9a82c742e48c330c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-445dfdb14adf75860bb34027ac48af8e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-3ad90e773abef1aa9a82c742e48c330c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/Syllabus.html">Syllabus</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../theme/codercub.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../theme/codercub.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Future Intelligence Lab</span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/Syllabus.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 1</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 3</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 4</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 5</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 6</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 7</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 8</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 9</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/09/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Day 10</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/10/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+ <span class="menu-text">Slides</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+
+<section id="summer-of-code-2026" class="level1">
+<h1>Summer of Code 2026</h1>
+<section id="curriculum-plan" class="level2">
+<h2 class="anchored" data-anchor-id="curriculum-plan">Curriculum Plan</h2>
+</section>
+<section id="at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="at-a-glance">At a Glance</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 38%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Days</th>
+<th>Module</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Week 1, Day 1</td>
+<td>Intro</td>
+<td>AI concepts survey, types of AI, setting the stage</td>
+</tr>
+<tr class="even">
+<td>Week 1, Days 2–3</td>
+<td>Module 1: Working with Data</td>
+<td>pandas, matplotlib, scikit-learn, Mongolian datasets</td>
+</tr>
+<tr class="odd">
+<td>Week 1, Days 4–5</td>
+<td>Module 2: Physical Computing</td>
+<td>micro:bit V2, CreateAI, gesture ML models, MakeCode</td>
+</tr>
+<tr class="even">
+<td>Week 2, Day 6</td>
+<td>Module 3: Computer Vision</td>
+<td>CNNs, TF.js, MediaPipe, CV mini-projects</td>
+</tr>
+<tr class="odd">
+<td>Week 2, Day 7</td>
+<td>CV → GenAI Bridge</td>
+<td>VLMs, tokens, embeddings, transformer overview</td>
+</tr>
+<tr class="even">
+<td>Week 2, Days 8–9</td>
+<td>Module 4: Generative AI</td>
+<td>Prompt engineering, chatbots, diffusion, image gen</td>
+</tr>
+<tr class="odd">
+<td>Week 2, Day 10</td>
+<td>Capstone Showcase</td>
+<td>Final project presentations, reflection, celebration</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="day-1-week-1-intro" class="level2">
+<h2 class="anchored" data-anchor-id="day-1-week-1-intro">Day 1 — Week 1 — Intro</h2>
+<section id="welcome-to-ai-where-it-comes-from-where-its-going" class="level3">
+<h3 class="anchored" data-anchor-id="welcome-to-ai-where-it-comes-from-where-its-going">Welcome to AI: Where It Comes From &amp; Where It’s Going</h3>
+<section id="learning-objectives" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h4>
+<ul>
+<li>Articulate what AI is and name 3+ real-world examples they interact with daily</li>
+<li>Distinguish between supervised ML, computer vision, and generative AI</li>
+<li>Preview all four modules and understand how the two weeks connect</li>
+<li>Feel comfortable and curious — this is a safe space to experiment and be wrong</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Warm-Up (15 min)</td>
+<td>“AI Around You” brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard.</td>
+<td>0:00–0:15</td>
+<td>Icebreaker energy</td>
+</tr>
+<tr class="even">
+<td>Direct Instruction (20 min)</td>
+<td>Instructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action.</td>
+<td>0:15–0:35</td>
+<td>Keep slides visual</td>
+</tr>
+<tr class="odd">
+<td>“Is It AI?” Activity (20 min)</td>
+<td>Groups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class.</td>
+<td>0:35–0:55</td>
+<td>Physical or Jamboard cards</td>
+</tr>
+<tr class="even">
+<td>Mini-Project (35 min)</td>
+<td>“My AI Map”: students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed.</td>
+<td>0:55–1:30</td>
+<td>Paper or slides</td>
+</tr>
+<tr class="odd">
+<td>Share &amp; Preview (20 min)</td>
+<td>3–4 volunteers share maps. Instructor reveals the 10-day journey — the “syllabus reveal.” Preview tomorrow’s data deep-dive.</td>
+<td>1:30–1:50</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Exit Ticket (10 min)</td>
+<td>One thing I knew · one thing I learned · one question I have. Collect for planning.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools">Resources &amp; Tools</h4>
+<ul>
+<li>Miro</li>
+<li>“Is it AI?” card set (printable or digital)</li>
+<li>Short video clips from Code.org (~2 min)</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-2-week-1-module-1-working-with-data" class="level2">
+<h2 class="anchored" data-anchor-id="day-2-week-1-module-1-working-with-data">Day 2 — Week 1 — Module 1: Working with Data</h2>
+<section id="the-air-mystery-what-impacts-ulaanbaatars-air-the-most" class="level3">
+<h3 class="anchored" data-anchor-id="the-air-mystery-what-impacts-ulaanbaatars-air-the-most">The Air Mystery: What Impacts Ulaanbaatar’s Air the Most?</h3>
+<section id="learning-objectives-1" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-1">Learning Objectives</h4>
+<ul>
+<li>Open a Colab notebook, run cells, and load a CSV with pandas</li>
+<li>Use <code>.head()</code>, <code>.describe()</code>, <code>.value_counts()</code>, and filtering to investigate a real question</li>
+<li>Produce at least one meaningful matplotlib visualization that supports a finding</li>
+<li>Explain why data quality and selection matter for AI — using today’s dataset as evidence</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-1" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-1">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The Hook: A Mystery (10 min)</td>
+<td>Instructor opens with a single striking fact: in January, Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit — worse than Beijing, worse than Delhi. Show a before/after satellite photo of the city in summer vs.&nbsp;winter smog. ‘Your job today: figure out why, using data.’ Introduce the detective framing: the dataset is your crime scene.</td>
+<td>0:00–0:10</td>
+<td>Show satellite comparison image</td>
+</tr>
+<tr class="even">
+<td>Setup &amp; Tools (15 min)</td>
+<td>Walk through Google Colab. Every student runs: <code>print('Investigation begins!')</code>. Quick pandas demo: DataFrames, <code>.head()</code>, <code>.info()</code>, <code>.describe()</code> — framed as ‘reading the crime scene.’</td>
+<td>0:10–0:25</td>
+<td>Pair struggling students</td>
+</tr>
+<tr class="odd">
+<td>Investigation Sprint (40 min)</td>
+<td>Groups of 3 dig into the Ulaanbaatar AQI dataset with guided question cards (not open-ended — each card is a specific clue to chase). E.g., ‘Which month has the worst PM2.5? Which has the best?’, ‘Is there a pattern by day of week?’, ‘Does temperature predict pollution level?’ Groups record findings in a shared doc.</td>
+<td>0:25–1:05</td>
+<td>Question cards pre-prepared</td>
+</tr>
+<tr class="even">
+<td>Visualize Your Evidence (25 min)</td>
+<td>Each group turns their strongest finding into one chart using matplotlib templates. Frame: ‘A detective doesn’t just tell the jury — they show the evidence.’</td>
+<td>1:05–1:30</td>
+<td>Templates in notebook</td>
+</tr>
+<tr class="odd">
+<td>AI Training Data Lens (20 min)</td>
+<td>Pivot: ‘Now imagine you’re an AI company and this is your training data for a pollution prediction model. Would it be good enough? What’s missing? What would your model get wrong?’ Small group discussion, then share out.</td>
+<td>1:30–1:50</td>
+<td>Connects directly to Week 2</td>
+</tr>
+<tr class="even">
+<td>Wrap-Up (10 min)</td>
+<td>Each group posts their one-sentence finding to a class board. Preview: tomorrow you get an AI assistant to help with a harder dataset — and you’ll decide if it’s trustworthy.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-1" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-1">Resources &amp; Tools</h4>
+<ul>
+<li>Google Colab (browser, no install)</li>
+<li>Ulaanbaatar historical AQI dataset (PM2.5, PM10, temperature, season — CSV, pre-cleaned from aqicn.org or IQAir historical download)</li>
+<li>Starter notebook with scaffolded cells + matplotlib templates</li>
+<li>Investigation question cards (printed, one set per group — 6–8 clues to chase)</li>
+<li>Shared class findings doc (Google Doc or Jamboard)</li>
+<li>Satellite comparison images: Ulaanbaatar summer vs.&nbsp;winter smog (freely available)</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-3-week-1-module-1-working-with-data" class="level2">
+<h2 class="anchored" data-anchor-id="day-3-week-1-module-1-working-with-data">Day 3 — Week 1 — Module 1: Working with Data</h2>
+<section id="ai-as-co-pilot-can-we-predict-a-livestock-disaster" class="level3">
+<h3 class="anchored" data-anchor-id="ai-as-co-pilot-can-we-predict-a-livestock-disaster">AI as Co-Pilot: Can We Predict a Livestock Disaster?</h3>
+<section id="learning-objectives-2" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-2">Learning Objectives</h4>
+<ul>
+<li>Use a Claude-powered data assistant to query a dataset in plain English</li>
+<li>Critically evaluate AI-generated interpretations against actual data</li>
+<li>Train a simple linear regression model and interpret its predictions</li>
+<li>Articulate the direct conceptual link between regression modeling and the micro:bit ML training in Module 2</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-2" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-2">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The Hook: Dzud (10 min)</td>
+<td>Instructor introduces the dzud — Mongolia’s winter livestock disaster. Show the stat: in 2010, 20 million animals died in a single winter. In 2024, 7.4 million in just four months. ‘Herders knew a bad summer meant a bad winter. Can a machine learn that relationship from data?’ Introduce today’s dataset: aimag-level livestock mortality, summer drought index, and winter temperature, 1990–2013.</td>
+<td>0:00–0:10</td>
+<td>Map of Mongolia’s 21 aimags on screen</td>
+</tr>
+<tr class="even">
+<td>Introduce the AI Co-Pilot (15 min)</td>
+<td>Instructor demo: a Claude-powered chat interface loaded with the dzud dataset context. Ask it: ‘Which aimag suffered the most in 2010?’ Then ask something it gets wrong or oversimplifies. ‘Your job: use this tool as a starting point, then verify everything in code.’</td>
+<td>0:10–0:25</td>
+<td>Claude.ai Project or Colab widget</td>
+</tr>
+<tr class="odd">
+<td>Investigation: Human + AI (35 min)</td>
+<td>Groups explore the dataset with the AI co-pilot. Workflow: ask the assistant a question → verify in pandas → document where it’s right, wrong, or uncertain. Each group must catch the AI making at least 2 errors or oversimplifications before they present.</td>
+<td>0:25–1:00</td>
+<td>Encourage skepticism explicitly</td>
+</tr>
+<tr class="even">
+<td>Linear Regression: Predict the Disaster (25 min)</td>
+<td>Instructor-led walkthrough: train a linear regression model to predict livestock mortality from summer drought index and winter temperature. Students run it step-by-step. Key question: ‘This model sees the summer data — can it warn a herder before winter arrives?’</td>
+<td>1:00–1:25</td>
+<td>Heavily scaffolded notebook</td>
+</tr>
+<tr class="odd">
+<td>The Bridge Moment (5 min)</td>
+<td>Instructor draws the explicit connection: ‘Yesterday we looked for patterns in pollution data. Today we trained a model to predict disasters from patterns in climate data. On Thursday, you’ll do the exact same thing — but the data will be your own body movement, and the micro:bit will be the device that learns.’ Plant the seed.</td>
+<td>1:25–1:30</td>
+<td>Key conceptual moment — don’t rush</td>
+</tr>
+<tr class="even">
+<td>Data Story Presentations (20 min)</td>
+<td>Each group: 3 min presentation — the question, the evidence, one thing the AI got wrong, one limitation of the dataset.</td>
+<td>1:30–1:50</td>
+<td>Rubric: story, evidence, AI critique, limitation</td>
+</tr>
+<tr class="odd">
+<td>Wrap-Up (10 min)</td>
+<td>Class vote: whose finding was most surprising? ‘What does it feel like to catch an AI being wrong?’ Preview: micro:bits arrive tomorrow.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-2" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-2">Resources &amp; Tools</h4>
+<ul>
+<li>Claude-powered data assistant (Claude.ai Project with dataset summary as context, or a lightweight Colab widget using the Anthropic API)</li>
+<li>Dzud dataset: aimag-level livestock mortality + summer drought index + winter temperature, 1990–2013 (sourced from Mongolian NSO / Rao et al.&nbsp;2015 supplementary data)</li>
+<li>Colab notebook with linear regression walkthrough + visualization templates</li>
+<li>Map of Mongolia’s 21 aimags (printed or on-screen)</li>
+<li>Presentation rubric (story, evidence, AI critique, limitation — 1 page)</li>
+<li>Optional: class leaderboard for ‘best AI catch of the day’</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-4-week-1-module-2-physical-computing" class="level2">
+<h2 class="anchored" data-anchor-id="day-4-week-1-module-2-physical-computing">Day 4 — Week 1 — Module 2: Physical Computing</h2>
+<section id="computers-in-the-physical-world-microbit-createai" class="level3">
+<h3 class="anchored" data-anchor-id="computers-in-the-physical-world-microbit-createai">Computers in the Physical World: micro:bit &amp; CreateAI</h3>
+<section id="learning-objectives-3" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-3">Learning Objectives</h4>
+<ul>
+<li>Connect a micro:bit to CreateAI and view live accelerometer data in real time</li>
+<li>Train a gesture model with at least 3 classes and explain what ‘confidence threshold’ means</li>
+<li>Understand that ML models learn from examples, not explicit rules</li>
+<li>Write a MakeCode program that responds meaningfully to detected gestures</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-3" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-3">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hardware Orientation (15 min)</td>
+<td>Distribute micro:bits (groups of 2–3). Connect via USB, open createai.microbit.org. Instructor demo: accelerometer graph while shaking vs.&nbsp;still.</td>
+<td>0:00–0:15</td>
+<td>V2 required for on-device ML</td>
+</tr>
+<tr class="even">
+<td>First Model: Walk vs.&nbsp;Still (25 min)</td>
+<td>Guided: everyone trains the same model — ‘walking’ vs.&nbsp;‘still’ vs.&nbsp;‘other’. Collect 20 samples per class. Train and test on each other.</td>
+<td>0:15–0:40</td>
+<td>Use CreateAI guided tour</td>
+</tr>
+<tr class="odd">
+<td>Iterate &amp; Improve (20 min)</td>
+<td>Why does it fail on someone else’s wrist? Collect more diverse samples. Compare accuracy before/after.</td>
+<td>0:40–1:00</td>
+<td>Key insight: data quality matters</td>
+</tr>
+<tr class="even">
+<td>MakeCode Response (30 min)</td>
+<td>Export model to MakeCode. Program: walking → scroll message on LED; still → show symbol; other → show ‘?’.</td>
+<td>1:00–1:30</td>
+<td>Templates provided</td>
+</tr>
+<tr class="odd">
+<td>Design Challenge (20 min)</td>
+<td>Groups sketch their own gesture-based device concept for tomorrow: what 3–4 gestures? What human need does it serve?</td>
+<td>1:30–1:50</td>
+<td>Design brief template</td>
+</tr>
+<tr class="even">
+<td>Wrap-Up (10 min)</td>
+<td>Discussion: How is this similar to scikit-learn? How is it different? Preview tomorrow’s build.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-3" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-3">Resources &amp; Tools</h4>
+<ul>
+<li>BBC micro:bit V2 (1 per 2–3 students) + USB cables + Chrome browser</li>
+<li>createai.microbit.org + makecode.microbit.org</li>
+<li>CreateAI getting started guide (microbit.org/createai)</li>
+<li>Design brief template (1-pager)</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-5-week-1-module-2-physical-computing" class="level2">
+<h2 class="anchored" data-anchor-id="day-5-week-1-module-2-physical-computing">Day 5 — Week 1 — Module 2: Physical Computing</h2>
+<section id="build-your-activity-detector-physical-ai-project" class="level3">
+<h3 class="anchored" data-anchor-id="build-your-activity-detector-physical-ai-project">Build Your Activity Detector: Physical AI Project</h3>
+<section id="learning-objectives-4" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-4">Learning Objectives</h4>
+<ul>
+<li>Design and train a multi-class gesture model for a purposeful application</li>
+<li>Write a program that takes meaningful action on detected gestures</li>
+<li>Debug and iterate on model quality (test on different people, orientations)</li>
+<li>Articulate the human role in AI: labeling, choosing classes, and testing</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-4" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-4">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Design Review (10 min)</td>
+<td>Groups share their sketch from Day 4. Quick peer feedback: is the human need clear?</td>
+<td>0:00–0:10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Build &amp; Train (60 min)</td>
+<td>Groups collect data, train, test, iterate. Prompt: ‘Does it still work on someone else’s arm? In a different room?’ Aim for 2–3 iteration cycles.</td>
+<td>0:10–1:10</td>
+<td>Iterate deliberately</td>
+</tr>
+<tr class="odd">
+<td>Code the Response (35 min)</td>
+<td>Write the MakeCode or Python program. Micro:bit responds with LED, sound, or serial output. Push toward a complete, working demo.</td>
+<td>1:10–1:45</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Demo Gallery (15 min)</td>
+<td>Informal 2-min demo per group. Peers act as testers. Celebrate creative use of gestures.</td>
+<td>1:45–2:00</td>
+<td>Fun, low-stakes</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-4" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-4">Resources &amp; Tools</h4>
+<ul>
+<li>micro:bits from Day 4</li>
+<li>createai.microbit.org + MakeCode</li>
+<li>Optional: buzzer accessories for audio feedback</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Instructor Notes:</strong> Module 2 capstone. Accuracy matters less than purposeful design — celebrate a 70% accurate exercise counter more than a 95% accurate wave detector with no clear use. Great transition line: ‘Next week we’ll teach computers to see, not just move.’</p>
+</blockquote>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-6-week-2-module-3-computer-vision" class="level2">
+<h2 class="anchored" data-anchor-id="day-6-week-2-module-3-computer-vision">Day 6 — Week 2 — Module 3: Computer Vision</h2>
+<section id="how-computers-see-cv-foundations-mini-project" class="level3">
+<h3 class="anchored" data-anchor-id="how-computers-see-cv-foundations-mini-project">How Computers See: CV Foundations + Mini-Project</h3>
+<section id="learning-objectives-5" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-5">Learning Objectives</h4>
+<ul>
+<li>Explain how a CNN classifies images at a conceptual level (pixels → features → predictions)</li>
+<li>Run pre-trained classification, pose detection, and object detection models in the browser</li>
+<li>Build a working CV application combining a pre-trained model with custom Python logic</li>
+<li>Identify at least one ethical concern in computer vision technology</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-5" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-5">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Hook (10 min)</td>
+<td>Show 10 images pixelated at varying levels. Students classify. ‘Computers start from pixels just like this bottom row.’</td>
+<td>0:00–0:10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>CV Concepts (20 min)</td>
+<td>Instructor overview: pixels → CNN layers → predictions. Demo MobileNet on webcam in browser — confidence scores live. Show 3 task types: classification, pose detection, object detection.</td>
+<td>0:10–0:30</td>
+<td>TF.js demos, no GPU</td>
+</tr>
+<tr class="odd">
+<td>Exploration Stations (25 min)</td>
+<td>Sequential or parallel: (1) Image classification with MobileNet, (2) Pose detection with MoveNet, (3) Object detection with COCO-SSD. Students screenshot one result from each.</td>
+<td>0:30–0:55</td>
+<td>Pre-built browser demos</td>
+</tr>
+<tr class="even">
+<td>Ethics Discussion (15 min)</td>
+<td>Case study: CV in surveillance, facial recognition bias. Small groups: ‘Should CV be used to monitor students in school?’ 2-min debrief.</td>
+<td>0:55–1:10</td>
+<td>Socratic format</td>
+</tr>
+<tr class="odd">
+<td>Mini-Project Build (40 min)</td>
+<td>Groups choose a project track: (A) Pose Counter — count reps when keypoint crosses threshold. (B) Object Zone Game — detect object entering a screen zone. (C) Virtual Background — segmentation + canvas overlay. (D) Expression Mirror — MediaPipe Face Mesh reactions.</td>
+<td>1:10–1:50</td>
+<td>Template notebooks per track</td>
+</tr>
+<tr class="even">
+<td>Wrap-Up (10 min)</td>
+<td>Quick share: one unexpected CV challenge you hit. Preview: tomorrow we add language to vision.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-5" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-5">Resources &amp; Tools</h4>
+<ul>
+<li>TensorFlow.js browser demos (tensorflow.org/js/demos)</li>
+<li>MediaPipe (mediapipe.dev) for pose/face</li>
+<li>Project template notebooks (one per track)</li>
+<li>Colab with webcam access (JS bridge) or pre-recorded video fallback</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-7-week-2-module-3-cv-module-4-generative-ai" class="level2">
+<h2 class="anchored" data-anchor-id="day-7-week-2-module-3-cv-module-4-generative-ai">Day 7 — Week 2 — Module 3: CV → Module 4: Generative AI</h2>
+<section id="vision-language-models-how-generative-ai-works" class="level3">
+<h3 class="anchored" data-anchor-id="vision-language-models-how-generative-ai-works">Vision Language Models + How Generative AI Works</h3>
+<section id="learning-objectives-6" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-6">Learning Objectives</h4>
+<ul>
+<li>Describe what a VLM does and how it differs from a classifier</li>
+<li>Explain tokenization with a hands-on example</li>
+<li>Describe word embeddings as ‘coordinates for meaning’ in vector space</li>
+<li>Explain the transformer architecture at a high level and connect it to VLMs</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-6" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-6">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VLM Demo &amp; Discussion (20 min)</td>
+<td>Instructor shows a VLM describing images — impressive case, then a failure case. ‘How is this different from MobileNet?’ Discussion: it produces language, not just a label. Show the two-component model: visual encoder + language model.</td>
+<td>0:00–0:20</td>
+<td>Claude API, GPT-4V, or HuggingFace Spaces (free)</td>
+</tr>
+<tr class="even">
+<td>VLM Exploration (25 min)</td>
+<td>Students query a VLM with their CV project screenshots + Mongolia/Naadam photos. Task: find one impressive result and one failure. Share findings.</td>
+<td>0:20–0:45</td>
+<td>No API key needed via HuggingFace</td>
+</tr>
+<tr class="odd">
+<td>Bridge: From Vision to Language (5 min)</td>
+<td>Quick pivot: ‘VLMs describe images. What if AI could generate language from scratch — or generate images?’ Introduce Module 4.</td>
+<td>0:45–0:50</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Tokenization Activity (20 min)</td>
+<td>Students use platform.openai.com/tokenizer on Mongolian words, code, emoji, and their own name. Questions: how many tokens? Why does it matter for cost and context?</td>
+<td>0:50–1:10</td>
+<td>Physical token cards as backup</td>
+</tr>
+<tr class="odd">
+<td>Embeddings Demo (20 min)</td>
+<td>Word2vec/semantic similarity: ‘King − Man + Woman ≈ Queen.’ Students try analogies in a Colab notebook. Instructor explains: these are the coordinates transformers learn from data.</td>
+<td>1:10–1:30</td>
+<td>Colab + gensim</td>
+</tr>
+<tr class="even">
+<td>Transformer Overview (20 min)</td>
+<td>Visual walkthrough of attention using ‘The bank by the river’ example. No math — diagrams only. Connect: ‘The LLM is doing this for every token, millions of times, trained on the same kind of data you used in Week 1.’</td>
+<td>1:30–1:50</td>
+<td>Jay Alammar visuals</td>
+</tr>
+<tr class="odd">
+<td>Wrap-Up (10 min)</td>
+<td>Exit ticket: draw the path from ‘user types a message’ → ‘LLM responds.’ Preview tomorrow’s chatbot build.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-6" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-6">Resources &amp; Tools</h4>
+<ul>
+<li>VLM access: HuggingFace Spaces (free LLaVA demo), Claude API, or GPT-4V</li>
+<li>platform.openai.com/tokenizer (free, no login)</li>
+<li>Colab notebook: gensim word embeddings</li>
+<li>Jay Alammar ‘Illustrated Transformer’ diagrams (jalammar.github.io)</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-8-week-2-module-4-generative-ai" class="level2">
+<h2 class="anchored" data-anchor-id="day-8-week-2-module-4-generative-ai">Day 8 — Week 2 — Module 4: Generative AI</h2>
+<section id="prompt-engineering-building-your-chatbot" class="level3">
+<h3 class="anchored" data-anchor-id="prompt-engineering-building-your-chatbot">Prompt Engineering &amp; Building Your Chatbot</h3>
+<section id="learning-objectives-7" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-7">Learning Objectives</h4>
+<ul>
+<li>Apply 4+ prompt engineering techniques: persona, few-shot, chain-of-thought, constraints</li>
+<li>Use Code.org’s AI Chat Lab to design and build a custom chatbot with a system prompt</li>
+<li>Evaluate a chatbot’s responses critically and iterate on the design</li>
+<li>Explain how system prompts shape model behavior</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-7" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-7">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Prompt Warm-Up (15 min)</td>
+<td>Instructor shows the same question with 3 different prompts → very different outputs. Students guess which prompt produced which. Introduce: persona, few-shot, CoT, constraints.</td>
+<td>0:00–0:15</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Prompt Engineering Practice (25 min)</td>
+<td>Students experiment with a live LLM: explain photosynthesis to a 5-year-old vs.&nbsp;a PhD; add a constraint (‘no jargon’); try chain-of-thought for a logic problem.</td>
+<td>0:15–0:40</td>
+<td>Claude.ai or Code.org AI Chat Lab</td>
+</tr>
+<tr class="odd">
+<td>Chatbot Design Intro (10 min)</td>
+<td>Introduce Code.org’s Exploring Generative AI curriculum and AI Chat Lab. Walk through system prompt anatomy. Show a pre-built ‘Cat Expert’ chatbot.</td>
+<td>0:40–0:50</td>
+<td>code.org — free, grades 8–12</td>
+</tr>
+<tr class="even">
+<td>Build Your Chatbot (60 min)</td>
+<td>Groups of 2 design and build a chatbot on a topic they care about. Requirements: clear persona, 3 topic focus areas, 1 ‘do not discuss’ boundary, tested with 5+ different questions.</td>
+<td>0:50–1:50</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Wrap-Up (10 min)</td>
+<td>Share chatbot name + one surprising thing it did. Preview: tomorrow you’ll add knowledge and show it off — plus explore image generation.</td>
+<td>1:50–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-7" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-7">Resources &amp; Tools</h4>
+<ul>
+<li>Code.org AI Chat Lab (code.org/en-US/curriculum/exploring-generative-artificial-intelligence)</li>
+<li>Prompt engineering reference card (1-pager: 4 techniques with examples)</li>
+<li>Example system prompts to study and remix</li>
+<li>Claude.ai or similar LLM for free-form practice</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-9-week-2-module-4-generative-ai" class="level2">
+<h2 class="anchored" data-anchor-id="day-9-week-2-module-4-generative-ai">Day 9 — Week 2 — Module 4: Generative AI</h2>
+<section id="chatbot-showcase-image-generation" class="level3">
+<h3 class="anchored" data-anchor-id="chatbot-showcase-image-generation">Chatbot Showcase + Image Generation</h3>
+<section id="learning-objectives-8" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-8">Learning Objectives</h4>
+<ul>
+<li>Deliver a polished chatbot demo including a system prompt, knowledge grounding, and graceful failure</li>
+<li>Explain how diffusion models generate images at a conceptual level</li>
+<li>Craft effective image generation prompts using a structured scaffold</li>
+<li>Engage with IP and ethics questions around AI-generated art</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-8" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-8">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>RAG &amp; Knowledge Grounding (15 min)</td>
+<td>Quick demo: same chatbot with and without a knowledge document. What changed? Why? Conceptual explanation of retrieval-augmented generation — no code required.</td>
+<td>0:00–0:15</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Polish Your Chatbot (25 min)</td>
+<td>Groups add a knowledge document (or expanded system prompt with facts) and evaluate using a peer rubric: helpfulness, accuracy, personality, graceful failure.</td>
+<td>0:15–0:40</td>
+<td>Printed rubric</td>
+</tr>
+<tr class="odd">
+<td>Chatbot Showcase (20 min)</td>
+<td>Each group demos in 2 minutes: what it does, a successful exchange, something it won’t do. Peer votes: Most Creative, Most Useful, Best Personality.</td>
+<td>0:40–1:00</td>
+<td>Celebration atmosphere</td>
+</tr>
+<tr class="even">
+<td>Diffusion Model Concepts (15 min)</td>
+<td>How AI generates images: noise → denoise → image, latent space, text encoder. Visual only — no math. ‘This is the visual twin of what the LLM does with tokens.’</td>
+<td>1:00–1:15</td>
+<td>Show denoising animation</td>
+</tr>
+<tr class="odd">
+<td>Image Generation Workshop (30 min)</td>
+<td>Students generate images on Replicate (or Adobe Firefly / Canva AI). Prompt scaffold: [subject] + [style] + [lighting] + [mood]. Theme: inspired by Mongolia or Naadam. Iterate 3 times.</td>
+<td>1:15–1:45</td>
+<td>Replicate.com or free alternatives</td>
+</tr>
+<tr class="even">
+<td>Ethics: Art &amp; AI (10 min)</td>
+<td>Quick discussion: Who owns AI-generated art? Should models be trained on artists’ work without consent? 2-min think-pair-share.</td>
+<td>1:45–1:55</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Preview Final Day (5 min)</td>
+<td>Explain tomorrow’s capstone structure. Remind groups to choose their showcase project.</td>
+<td>1:55–2:00</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-8" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-8">Resources &amp; Tools</h4>
+<ul>
+<li>Code.org AI Chat Lab</li>
+<li>Peer chatbot evaluation rubric (4 dimensions, 1 page)</li>
+<li>Replicate.com (hosted image models) or Adobe Firefly / Canva AI (free)</li>
+<li>Diffusion explainer clip (Computerphile or 3Blue1Brown, ~5 min)</li>
+<li>Prompt scaffold template (printable)</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="day-10-week-2-capstone" class="level2">
+<h2 class="anchored" data-anchor-id="day-10-week-2-capstone">Day 10 — Week 2 — Capstone</h2>
+<section id="ai-showcase-putting-it-all-together" class="level3">
+<h3 class="anchored" data-anchor-id="ai-showcase-putting-it-all-together">AI Showcase: Putting It All Together</h3>
+<section id="learning-objectives-9" class="level4">
+<h4 class="anchored" data-anchor-id="learning-objectives-9">Learning Objectives</h4>
+<ul>
+<li>Synthesize learning across all four modules in a final project presentation</li>
+<li>Demonstrate genuine understanding of at least one AI concept to peers</li>
+<li>Articulate one societal implication of AI in a domain they care about</li>
+<li>Leave feeling capable, curious, and inspired to keep building</li>
+</ul>
+</section>
+<section id="session-schedule-2-hours-9" class="level4">
+<h4 class="anchored" data-anchor-id="session-schedule-2-hours-9">Session Schedule (2 hours)</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 19%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Details</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Setup &amp; Last-Mile Polish (20 min)</td>
+<td>Groups do final prep on their capstone project. Instructor confirms running order.</td>
+<td>0:00–0:20</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Final Project Presentations (60 min)</td>
+<td>Each group: 3–4 min presentation + 1 min Q&amp;A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.</td>
+<td>0:20–1:20</td>
+<td>All groups present</td>
+</tr>
+<tr class="odd">
+<td>Letter to Myself (15 min)</td>
+<td>Each student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.</td>
+<td>1:20–1:35</td>
+<td>Private or share optionally</td>
+</tr>
+<tr class="even">
+<td>Panel Reflection (10 min)</td>
+<td>Student-led open Q&amp;A: What surprised you most? What do you wish AI could do that it can’t? What worries you?</td>
+<td>1:35–1:45</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Celebration &amp; Certificates (15 min)</td>
+<td>Award recognition in all categories. Share ‘What’s Next’ resource card. Group photo.</td>
+<td>1:45–2:00</td>
+<td>Certificates printed in advance</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="resources-tools-9" class="level4">
+<h4 class="anchored" data-anchor-id="resources-tools-9">Resources &amp; Tools</h4>
+<ul>
+<li>Cross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)</li>
+<li>Certificate template</li>
+<li>“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses</li>
+<li>Optional: highlight reel compiled from Days 1–9</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/simonguest\.github\.io\/codercub\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../labs/01/slides.html" class="pagination-link" aria-label="Slides">
+        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
