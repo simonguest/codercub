@@ -1,12 +1,67 @@
 [
   {
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#tbd",
+    "href": "labs/06/slides.html#tbd",
+    "title": "Day 6",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#tbd",
+    "href": "labs/04/slides.html#tbd",
+    "title": "Day 4",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Codercub Summer of Code 2026",
     "section": "",
     "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
     "crumbs": [
-      "Summer of Code 2026"
+      "Future Intelligence Lab"
     ]
   },
   {
@@ -16,17 +71,61 @@
     "section": "",
     "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
     "crumbs": [
-      "Summer of Code 2026"
+      "Future Intelligence Lab"
     ]
   },
   {
-    "objectID": "days/01/slides.html#tbd",
-    "href": "days/01/slides.html#tbd",
+    "objectID": "labs/01/slides.html#tbd",
+    "href": "labs/01/slides.html#tbd",
     "title": "Day 1: Welcome!",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
       "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#tbd",
+    "href": "labs/03/slides.html#tbd",
+    "title": "Day 3",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#tbd",
+    "href": "labs/05/slides.html#tbd",
+    "title": "Day 5",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 9",
       "Slides"
     ]
   }
