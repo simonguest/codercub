@@ -333,6 +333,54 @@
     flex-shrink: 0;
   }
 
+  /* ── Toggle switch ── */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .toggle-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .toggle {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .toggle input { display: none; }
+
+  .toggle-track {
+    position: absolute;
+    inset: 0;
+    background: var(--border);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+
+  .toggle input:checked + .toggle-track { background: var(--accent); }
+
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.25s;
+  }
+
+  .toggle input:checked + .toggle-track::after { transform: translateX(16px); }
+
   /* ── Pulse animation on active neurons ── */
   @keyframes pulse-glow {
     0%, 100% { filter: drop-shadow(0 0 3px currentColor); }
@@ -402,6 +450,14 @@
         <div class="range-hints"><span>No</span><span>Yes</span></div>
       </div>
 
+      <div class="toggle-row">
+        <span class="toggle-label">Show Weights</span>
+        <label class="toggle">
+          <input type="checkbox" id="toggle-weights">
+          <div class="toggle-track"></div>
+        </label>
+      </div>
+
     </div>
 
     <!-- Network visualization -->
@@ -447,6 +503,8 @@
 </div>
 
 <script>
+let showWeights = false;
+
 // ── Network architecture ──────────────────────────────────────────────────
 // Layer sizes: [5 inputs, 4, 4, 3, 2 outputs]
 const LAYERS = [5, 4, 4, 3, 2];
@@ -596,6 +654,22 @@ function drawNetwork(activations) {
         line.setAttribute('stroke-width', strokeW);
         line.setAttribute('stroke-opacity', alpha);
         svg.appendChild(line);
+
+        if (showWeights) {
+          const mx = (fromLayer[fi].x + toLayer[ti].x) / 2;
+          const my = (fromLayer[fi].y + toLayer[ti].y) / 2;
+          const wtxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          wtxt.setAttribute('x', mx);
+          wtxt.setAttribute('y', my);
+          wtxt.setAttribute('text-anchor', 'middle');
+          wtxt.setAttribute('dominant-baseline', 'middle');
+          wtxt.setAttribute('font-family', 'Space Mono, monospace');
+          wtxt.setAttribute('font-size', '7');
+          wtxt.setAttribute('fill', w >= 0 ? COLORS.accent3 : COLORS.accent2);
+          wtxt.setAttribute('fill-opacity', '0.9');
+          wtxt.textContent = w.toFixed(2);
+          svg.appendChild(wtxt);
+        }
       }
     }
   }
@@ -767,6 +841,11 @@ function update() {
   if (id === 'food' || id === 'hw') {
     valEl.textContent = slider.value == 1 ? 'Yes' : 'No';
   }
+});
+
+document.getElementById('toggle-weights').addEventListener('change', e => {
+  showWeights = e.target.checked;
+  update();
 });
 
 buildLayerLabels();
