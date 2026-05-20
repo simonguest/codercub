@@ -164,9 +164,20 @@
     ]
   },
   {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/01/slides.html#tbd",
     "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome!",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
@@ -177,7 +188,7 @@
   {
     "objectID": "labs/01/slides.html#nn-demo",
     "href": "labs/01/slides.html#nn-demo",
-    "title": "Day 1: Welcome!",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "NN Demo",
     "text": "NN Demo",
     "crumbs": [
@@ -188,7 +199,7 @@
   {
     "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
     "href": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 1: Welcome!",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Will I Do Well on My Test?",
     "text": "Will I Do Well on My Test?",
     "crumbs": [
