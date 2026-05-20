@@ -20,3 +20,11 @@ format:
 ```python
 print("Hello world")
 ```
+
+## NN Demo
+
+## Will I Do Well on My Test?
+
+```{=html}
+<iframe src="../components/nn.html" allowtransparency="true" width="100%" height="600px" style="border:none; background:transparent;"></iframe>
+```
