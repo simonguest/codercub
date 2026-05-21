@@ -1,5 +1,281 @@
 [
   {
+    "objectID": "labs/02/notebooks/hello-world.html",
+    "href": "labs/02/notebooks/hello-world.html",
+    "title": "Hello World Notebook!",
+    "section": "",
+    "text": "This is an example of the Jupyter .ipynb document format\n# This is an executable cell\nprint(\"Hello World!\")\n\nHello World!\n# Setting variables in Python\nx = 42\nx\n\n42\n# Variables persist after being set in previously executed cells\nx\n\n42",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "hello-world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/hello-world.html#markdown-cells-support-rich-formatting",
+    "href": "labs/02/notebooks/hello-world.html#markdown-cells-support-rich-formatting",
+    "title": "Hello World Notebook!",
+    "section": "Markdown Cells Support Rich Formatting",
+    "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\nThe square root of 29 is 5.39\n\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "hello-world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/hello-world.html#what-happens-when-theres-an-error",
+    "href": "labs/02/notebooks/hello-world.html#what-happens-when-theres-an-error",
+    "title": "Hello World Notebook!",
+    "section": "What Happens When There’s an Error?",
+    "text": "What Happens When There’s an Error?\nRun the cell below to see how notebooks handle errors.\nThe error appears in the output, but other cells continue to work.\n\n# This will cause an error\nresult = 10 / 0\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[9], line 2\n      1 # This will cause an error\n----&gt; 2 result = 10 / 0\n\nZeroDivisionError: division by zero",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "hello-world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#tbd",
+    "href": "labs/06/slides.html#tbd",
+    "title": "Day 6",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#tbd",
+    "href": "labs/04/slides.html#tbd",
+    "title": "Day 4",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-a-notebook",
+    "href": "labs/02/slides.html#what-is-a-notebook",
+    "title": "Day 2: Working With Data",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-notebooks",
+    "href": "labs/02/slides.html#a-brief-history-of-notebooks",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#anatomy-of-a-python-notebook",
+    "href": "labs/02/slides.html#anatomy-of-a-python-notebook",
+    "title": "Day 2: Working With Data",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2: Working With Data",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-2",
+    "href": "labs/01/slides.html#types-of-ai-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD: Single slide for each type",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#tbd",
+    "href": "labs/01/slides.html#tbd",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#nn-demo",
+    "href": "labs/01/slides.html#nn-demo",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "NN Demo",
+    "text": "NN Demo",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#tbd",
+    "href": "labs/03/slides.html#tbd",
+    "title": "Day 3",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#tbd",
+    "href": "labs/05/slides.html#tbd",
+    "title": "Day 5",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/Syllabus.html",
     "href": "labs/Syllabus.html",
     "title": "Summer of Code 2026",
@@ -117,169 +393,6 @@
     "text": "Synthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
     "crumbs": [
       "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 9",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 7",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/05/slides.html#tbd",
-    "href": "labs/05/slides.html#tbd",
-    "title": "Day 5",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 5",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#tbd",
-    "href": "labs/03/slides.html#tbd",
-    "title": "Day 3",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#tbd",
-    "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#nn-demo",
-    "href": "labs/01/slides.html#nn-demo",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "NN Demo",
-    "text": "NN Demo",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
-    "title": "Day 2",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#tbd",
-    "href": "labs/04/slides.html#tbd",
-    "title": "Day 4",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#tbd",
-    "href": "labs/06/slides.html#tbd",
-    "title": "Day 6",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 8",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 10",
-      "Slides"
     ]
   }
 ]
