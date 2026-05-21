@@ -1,5 +1,5 @@
 ---
-title: "Day 2"
+title: "Day 2: Working With Data"
 author: "Simon Guest"
 format:
   revealjs:
@@ -14,6 +14,72 @@ format:
       data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
 
 ---
+
+# A Mystery
+
+## Ulaanbaatar's Air Quality
+
+- Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit
+- Worse than Beijing, worse than Delhi
+
+## Ulaanbaatar's Air Quality
+
+- TBD: Before/After satellite photos
+
+# A Mystery
+
+What causes this?
+
+Your job today is to figure out why, using data.
+
+# Introducing Notebooks
+
+## What is a Notebook?
+
+- An **interactive document** that combines:
+  - Code that can be executed
+  - Rich text explanations (markdown)
+  - Visualizations and outputs
+- Think of it as a **computational story**
+  - Tell a story with code, data, and explanations
+- Originally designed for data science and research
+- Now, a fundamental tool for working with AI
+
+## A Brief History of Notebooks
+
+- **2011**: IPython Notebook project begins
+  - Interactive Python shell → web-based notebook
+- **2014**: Renamed to **Jupyter** (Julia, Python, R)
+  - Now supports 40+ programming languages
+  - Python is most popular by far
+- **2017**: Google launches **Colab**
+  - Free cloud-based Jupyter notebooks
+  - Free access to GPUs and TPUs
+- **Today**: Industry standard for ML/AI development
+
+## Anatomy of a Python Notebook
+
+- **Cells**: Building blocks of notebooks
+  - **Code cells**: Executable Python code
+  - **Markdown cells**: Text, headings, images, equations
+- **Outputs**: Results appear directly below code cells
+  - Text, tables, plots, interactive widgets
+- **Kernel**: The computational engine running your code
+  - Maintains state between cell executions
+
+# Demo
+
+"Hello World" Jupyter Notebook on Google Colab
+
+- TBD
+
+# Hands-On
+
+Open the "Hello World" Jupyter Notebook on Google Colab
+
+Run and edit the code cells. Observe the outputs.
+
+# Initial
 
 ## TBD
 
