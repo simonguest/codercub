@@ -36,6 +36,10 @@ website:
           - text: "Slides"
             href: labs/02/slides.qmd
             target: blank
+          - section: "Notebooks"
+            contents:
+              - text: "hello-world.ipynb"
+                href: labs/02/notebooks/hello-world.ipynb
       - section: "Day 3"
         contents:
           - text: "Slides"
