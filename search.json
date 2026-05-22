@@ -424,7 +424,7 @@
     "href": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
     "title": "🌫️ Day 2: The Air Mystery",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\n\n# Load the dataset directly from the web\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\ndf = pd.read_csv(url)\n\n# Tell us what we loaded\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")\n\nLoaded 1096 rows and 12 columns\nDate range: 2019-01-01 to 2021-12-31",
     "crumbs": [
       "Day 2",
       "Notebooks",
