@@ -38,8 +38,10 @@ website:
             target: blank
           - section: "Notebooks"
             contents:
-              - text: "hello-world.ipynb"
-                href: labs/02/notebooks/hello-world.ipynb
+              - text: "hello_world.ipynb"
+                href: labs/02/notebooks/hello_world.ipynb
+              - text: "air_quality.ipynb"
+                href: labs/02/notebooks/air_quality.ipynb
       - section: "Day 3"
         contents:
           - text: "Slides"
