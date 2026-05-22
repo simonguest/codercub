@@ -1,278 +1,38 @@
 [
   {
-    "objectID": "labs/02/notebooks/hello-world.html",
-    "href": "labs/02/notebooks/hello-world.html",
+    "objectID": "labs/02/notebooks/hello_world.html",
+    "href": "labs/02/notebooks/hello_world.html",
     "title": "Hello World Notebook!",
     "section": "",
     "text": "This is an example of the Jupyter .ipynb document format\n# This is an executable cell\nprint(\"Hello World!\")\n\nHello World!\n# Setting variables in Python\nx = 42\nx\n\n42\n# Variables persist after being set in previously executed cells\nx\n\n42",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "hello-world.ipynb"
+      "hello_world.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/hello-world.html#markdown-cells-support-rich-formatting",
-    "href": "labs/02/notebooks/hello-world.html#markdown-cells-support-rich-formatting",
+    "objectID": "labs/02/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
+    "href": "labs/02/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
     "title": "Hello World Notebook!",
     "section": "Markdown Cells Support Rich Formatting",
     "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\nThe square root of 29 is 5.39\n\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "hello-world.ipynb"
+      "hello_world.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/hello-world.html#what-happens-when-theres-an-error",
-    "href": "labs/02/notebooks/hello-world.html#what-happens-when-theres-an-error",
+    "objectID": "labs/02/notebooks/hello_world.html#what-happens-when-theres-an-error",
+    "href": "labs/02/notebooks/hello_world.html#what-happens-when-theres-an-error",
     "title": "Hello World Notebook!",
     "section": "What Happens When There’s an Error?",
     "text": "What Happens When There’s an Error?\nRun the cell below to see how notebooks handle errors.\nThe error appears in the output, but other cells continue to work.\n\n# This will cause an error\nresult = 10 / 0\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[9], line 2\n      1 # This will cause an error\n----&gt; 2 result = 10 / 0\n\nZeroDivisionError: division by zero",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "hello-world.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 10",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 8",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#tbd",
-    "href": "labs/06/slides.html#tbd",
-    "title": "Day 6",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#tbd",
-    "href": "labs/04/slides.html#tbd",
-    "title": "Day 4",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-a-notebook",
-    "href": "labs/02/slides.html#what-is-a-notebook",
-    "title": "Day 2: Working With Data",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-notebooks",
-    "href": "labs/02/slides.html#a-brief-history-of-notebooks",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#anatomy-of-a-python-notebook",
-    "href": "labs/02/slides.html#anatomy-of-a-python-notebook",
-    "title": "Day 2: Working With Data",
-    "section": "Anatomy of a Python Notebook",
-    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
-    "title": "Day 2: Working With Data",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-1",
-    "href": "labs/01/slides.html#types-of-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-2",
-    "href": "labs/01/slides.html#types-of-ai-2",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD: Single slide for each type",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#tbd",
-    "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#nn-demo",
-    "href": "labs/01/slides.html#nn-demo",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "NN Demo",
-    "text": "NN Demo",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#tbd",
-    "href": "labs/03/slides.html#tbd",
-    "title": "Day 3",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/05/slides.html#tbd",
-    "href": "labs/05/slides.html#tbd",
-    "title": "Day 5",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 5",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 7",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 9",
-      "Slides"
+      "hello_world.ipynb"
     ]
   },
   {
@@ -393,6 +153,378 @@
     "text": "Synthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
     "crumbs": [
       "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#tbd",
+    "href": "labs/05/slides.html#tbd",
+    "title": "Day 5",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#tbd",
+    "href": "labs/03/slides.html#tbd",
+    "title": "Day 3",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-2",
+    "href": "labs/01/slides.html#types-of-ai-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD: Single slide for each type",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#tbd",
+    "href": "labs/01/slides.html#tbd",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#nn-demo",
+    "href": "labs/01/slides.html#nn-demo",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "NN Demo",
+    "text": "NN Demo",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-a-notebook",
+    "href": "labs/02/slides.html#what-is-a-notebook",
+    "title": "Day 2: Working With Data",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-notebooks",
+    "href": "labs/02/slides.html#a-brief-history-of-notebooks",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#anatomy-of-a-python-notebook",
+    "href": "labs/02/slides.html#anatomy-of-a-python-notebook",
+    "title": "Day 2: Working With Data",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2: Working With Data",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#tbd",
+    "href": "labs/04/slides.html#tbd",
+    "title": "Day 4",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#tbd",
+    "href": "labs/06/slides.html#tbd",
+    "title": "Day 6",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html",
+    "href": "labs/02/notebooks/air_quality.html",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "",
+    "text": "Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth — but only at certain times of year.\nIn this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern\n\nYour mission: By the end of this notebook, you should be able to answer: “When is the air dangerous — and when is it safe?”",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#what-does-a-year-of-pollution-in-ulaanbaatar-look-like",
+    "href": "labs/02/notebooks/air_quality.html#what-does-a-year-of-pollution-in-ulaanbaatar-look-like",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "",
+    "text": "Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth — but only at certain times of year.\nIn this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern\n\nYour mission: By the end of this notebook, you should be able to answer: “When is the air dangerous — and when is it safe?”",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
+    "href": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 1: Load the data",
+    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\n\n# Load the dataset directly from the web\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\ndf = pd.read_csv(url)\n\n# Tell us what we loaded\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-2-take-a-first-look",
+    "href": "labs/02/notebooks/air_quality.html#step-2-take-a-first-look",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 2: Take a first look",
+    "text": "Step 2: Take a first look\nBefore we analyse anything, let’s see what the data actually looks like.\ndf.head() shows the first 5 rows — like opening the first page of a book.\n\n# Show the first 5 rows\ndf.head()\n\nLet’s also check what columns we have and what types they are:\n\n# Column names and data types\ndf.info()\n\n🔍 Look at the columns: - date — the day of the measurement - temp_c — temperature in Celsius - pm25 — fine particulate matter (µg/m³) — the main measure of air pollution - aqi_category — a label describing how dangerous the air is that day\n\nPM2.5 refers to tiny particles smaller than 2.5 micrometres. They’re small enough to enter your lungs and bloodstream. The WHO considers anything above 15 µg/m³ unsafe for daily exposure.",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
+    "href": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 3: Quick summary statistics",
+    "text": "Step 3: Quick summary statistics\ndf.describe() gives you the min, max, average, and more for every numeric column — a fast way to get a feel for the data.\n\ndf.describe().round(1)\n\n🔍 Questions to think about: - What is the average PM2.5 across all three years? - What is the maximum PM2.5 recorded? How does that compare to the WHO limit of 15 µg/m³? - What is the coldest temperature in the dataset? The warmest?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
+    "href": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 4: Plot a full year of pollution",
+    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\n🔍 What shape do you see?\nDescribe the pattern in your own words before reading on.\nThe chart should show a clear U-shape: very high pollution at the start of the year (winter), dropping dramatically in spring, staying low through summer, then rising steeply again in autumn and winter.\nThis pattern has a specific cause — but what is it? That’s what the rest of today’s investigation is about.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-5-add-some-colour",
+    "href": "labs/02/notebooks/air_quality.html#step-5-add-some-colour",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 5: Add some colour",
+    "text": "Step 5: Add some colour\nThe line chart shows the pattern, but let’s make it easier to read by colouring each day by its AQI category — so we can immediately see which days are dangerous.\n\n# Colour map for AQI categories\naqi_colors = {\n    'Good': '#00e400',\n    'Moderate': '#ffff00',\n    'Unhealthy for Sensitive Groups': '#ff7e00',\n    'Unhealthy': '#ff0000',\n    'Very Unhealthy': '#8f3f97',\n    'Hazardous': '#7e0023'\n}\n\nfig, ax = plt.subplots(figsize=(14, 5))\n\n# Plot each day as a coloured vertical bar\nfor _, row in df_2019.iterrows():\n    color = aqi_colors.get(row['aqi_category'], 'gray')\n    ax.bar(row['date'], row['pm25'], color=color, width=1.0, alpha=0.85)\n\n# WHO limit line\nax.axhline(y=15, color='black', linestyle='--', linewidth=1.2, label='WHO safe limit (15 µg/m³)')\n\n# Legend\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=aqi_colors[cat], label=cat) for cat in aqi_colors]\nax.legend(handles=legend_elements, fontsize=8, loc='upper right')\n\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)', fontsize=14, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\n\nplt.tight_layout()\nplt.show()\n\n🔍 What do you notice now? - Which colour dominates January and February? - Are there any green or yellow days in winter? - How long does the “safe” window in summer last?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-6-your-turn-try-2020-and-2021",
+    "href": "labs/02/notebooks/air_quality.html#step-6-your-turn-try-2020-and-2021",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 6: Your turn — try 2020 and 2021",
+    "text": "Step 6: Your turn — try 2020 and 2021\nThe cells above only showed 2019. Now it’s your turn to explore the other years.\n👇 Modify the code below to plot 2020 instead of 2019. Then try 2021.\nDoes the pattern look the same? Is the pollution getting better or worse over time?\n\n# ✏️ YOUR TURN: change 2019 to 2020 or 2021 and re-run\n\ndf_your_year = df[df['year'] == 2019].copy()   # &lt;-- change this year\ndf_your_year['date'] = pd.to_datetime(df_your_year['date'])\n\nfig, ax = plt.subplots(figsize=(14, 5))\nax.plot(df_your_year['date'], df_your_year['pm25'], color='steelblue', linewidth=1.2)\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\nax.set_title(f\"Daily PM2.5 in Ulaanbaatar — {df_your_year['year'].iloc[0]}\", fontsize=14, fontweight='bold')\nax.set_xlabel('Date')\nax.set_ylabel('PM2.5 (µg/m³)')\nax.legend()\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
+    "href": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "Step 7: All three years together",
+    "text": "Step 7: All three years together\nLet’s put all three years on the same chart so it’s easy to compare.\n\ndf['date'] = pd.to_datetime(df['date'])\n\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=False, sharey=True)\nyears = [2019, 2020, 2021]\ncolors = ['steelblue', 'darkorange', 'seagreen']\n\nfor ax, year, color in zip(axes, years, colors):\n    df_year = df[df['year'] == year]\n    ax.plot(df_year['date'], df_year['pm25'], color=color, linewidth=1.0)\n    ax.axhline(y=15, color='gray', linestyle='--', linewidth=1.0)\n    ax.set_title(f'{year}', fontsize=12, fontweight='bold')\n    ax.set_ylabel('PM2.5')\n    mean_val = df_year['pm25'].mean()\n    ax.text(0.01, 0.92, f'Yearly average: {mean_val:.0f} µg/m³',\n            transform=ax.transAxes, fontsize=9, color='black',\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.7))\n\naxes[-1].set_xlabel('Date', fontsize=11)\nfig.suptitle('PM2.5 in Ulaanbaatar — 2019 to 2021', fontsize=15, fontweight='bold', y=1.01)\nplt.tight_layout()\nplt.show()\n\n🔍 Discussion questions: 1. Is the shape the same in all three years? What does that tell you about the cause? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes — days that were far worse than the surrounding days? What might cause those?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#what-youve-learned",
+    "href": "labs/02/notebooks/air_quality.html#what-youve-learned",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "What you’ve learned",
+    "text": "What you’ve learned\nIn this notebook you: - Loaded a CSV dataset from the web using pd.read_csv() - Explored its structure with .head(), .info(), and .describe() - Created a line chart and a coloured bar chart using matplotlib - Compared patterns across three years\nThe pattern you found — extreme winter pollution, clean summers — is one of the most well-documented environmental problems in Central Asia. The cause is coal heating in Ulaanbaatar’s ger districts (traditional tent communities), where hundreds of thousands of families burn coal through -30°C winters with no central heating.",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
+    "href": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
+    "title": "🌫️ Day 2: The Air Mystery",
+    "section": "🔍 Ready for the next clue?",
+    "text": "🔍 Ready for the next clue?\nIn the next investigation card, you’ll ask: does colder weather directly cause worse pollution?\nYou found the shape today. Next, you’ll find the reason.",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
     ]
   }
 ]
