@@ -49,6 +49,10 @@ website:
           - text: "Slides"
             href: labs/03/slides.qmd
             target: blank
+          - section: "Notebooks"
+            contents:
+              - text: "finding_disasters.ipynb"
+                href: labs/03/notebooks/finding_disasters.ipynb
       - section: "Day 4"
         contents:
           - text: "Slides"
