@@ -42,6 +42,8 @@ website:
                 href: labs/02/notebooks/hello_world.ipynb
               - text: "air_quality.ipynb"
                 href: labs/02/notebooks/air_quality.ipynb
+              - text: "correlation.ipynb"
+                href: labs/02/notebooks/correlation.ipynb
       - section: "Day 3"
         contents:
           - text: "Slides"
