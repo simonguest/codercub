@@ -736,69 +736,119 @@
     "href": "labs/03/notebooks/finding_cause.html",
     "title": "The Dzud — Finding the Cause",
     "section": "",
-    "text": "In the previous notebook you found the disasters. You could see clearly that 2001 and 2010 were catastrophic years, and that southern and western aimags tend to suffer more than others.\nBut knowing when and where is not the same as knowing why.\nIn this notebook you will look for the variables that explain livestock mortality. You will start with the most obvious suspect — winter temperature — and discover that it tells only part of the story. Finding the second piece of the puzzle is the core task.\nBy the end you will have a clear, evidence-backed answer to: what combination of conditions turns a harsh winter into a national disaster?"
+    "text": "In the previous notebook you found the disasters. You could see clearly that 2001 and 2010 were catastrophic years, and that southern and western aimags tend to suffer more than others.\nBut knowing when and where is not the same as knowing why.\nIn this notebook you will look for the variables that explain livestock mortality. You will start with the most obvious suspect — winter temperature — and discover that it tells only part of the story. Finding the second piece of the puzzle is the core task.\nBy the end you will have a clear, evidence-backed answer to: what combination of conditions turns a harsh winter into a national disaster?",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-1-load-the-data",
     "href": "labs/03/notebooks/finding_cause.html#step-1-load-the-data",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()"
+    "text": "Step 1: Load the data\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-2-the-primary-suspect-winter-temperature",
     "href": "labs/03/notebooks/finding_cause.html#step-2-the-primary-suspect-winter-temperature",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 2: The primary suspect — winter temperature",
-    "text": "Step 2: The primary suspect — winter temperature\nMongolia’s winters are severe by any standard. But some winters are much colder than others. The obvious hypothesis is: colder winters kill more livestock.\nLet’s test that with a scatter plot. Each point is one aimag in one year.\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    alpha=0.25,\n    s=14,\n    color=\"steelblue\"\n)\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. livestock mortality — all aimags, 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nThere should be a clear downward slope — colder winters correspond to higher mortality.\nBut look carefully at the spread of the points. At any given temperature, mortality varies considerably. Some aimags at -22°C lost 10% of their herd; others lost 30%.\nTemperature is clearly important, but it is not the whole story. What does that spread suggest to you?"
+    "text": "Step 2: The primary suspect — winter temperature\nMongolia’s winters are severe by any standard. But some winters are much colder than others. The obvious hypothesis is: colder winters kill more livestock.\nLet’s test that with a scatter plot. Each point is one aimag in one year.\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    alpha=0.25,\n    s=14,\n    color=\"steelblue\"\n)\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. livestock mortality — all aimags, 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nThere should be a clear downward slope — colder winters correspond to higher mortality.\nBut look carefully at the spread of the points. At any given temperature, mortality varies considerably. Some aimags at -22°C lost 10% of their herd; others lost 30%.\nTemperature is clearly important, but it is not the whole story. What does that spread suggest to you?",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-3-measure-the-relationship",
     "href": "labs/03/notebooks/finding_cause.html#step-3-measure-the-relationship",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 3: Measure the relationship",
-    "text": "Step 3: Measure the relationship\nIn the previous notebook you calculated a correlation coefficient for the air quality data. Let’s do the same here and compare.\n\ncorr_temp = df[\"mortality_pct\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between winter temperature and mortality: {corr_temp:.3f}\")\n\nCompare this value to the -0.85 correlation you found between temperature and PM2.5 in the air quality data.\nThe relationship here is strong, but noticeably weaker. That gap — the variation that temperature alone cannot explain — is what we are going to investigate next."
+    "text": "Step 3: Measure the relationship\nIn the previous notebook you calculated a correlation coefficient for the air quality data. Let’s do the same here and compare.\n\ncorr_temp = df[\"mortality_pct\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between winter temperature and mortality: {corr_temp:.3f}\")\n\nCompare this value to the -0.85 correlation you found between temperature and PM2.5 in the air quality data.\nThe relationship here is strong, but noticeably weaker. That gap — the variation that temperature alone cannot explain — is what we are going to investigate next.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-4-introducing-the-second-variable",
     "href": "labs/03/notebooks/finding_cause.html#step-4-introducing-the-second-variable",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 4: Introducing the second variable",
-    "text": "Step 4: Introducing the second variable\nMongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened — thinner, with smaller fat reserves, less able to withstand extreme cold.\nThe dataset includes a summer_drought_idx column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.\nLet’s check whether this variable also correlates with mortality.\n\ncorr_drought = df[\"mortality_pct\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between summer drought index and mortality: {corr_drought:.3f}\")\n\nThe drought index has a meaningful positive correlation with mortality — higher drought, higher mortality.\nIt is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.\nBefore testing that, what is your intuition? Do you think summer drought and winter temperature tend to occur together, or are they independent of each other?"
+    "text": "Step 4: Introducing the second variable\nMongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened — thinner, with smaller fat reserves, less able to withstand extreme cold.\nThe dataset includes a summer_drought_idx column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.\nLet’s check whether this variable also correlates with mortality.\n\ncorr_drought = df[\"mortality_pct\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between summer drought index and mortality: {corr_drought:.3f}\")\n\nThe drought index has a meaningful positive correlation with mortality — higher drought, higher mortality.\nIt is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.\nBefore testing that, what is your intuition? Do you think summer drought and winter temperature tend to occur together, or are they independent of each other?",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-5-are-the-two-variables-independent",
     "href": "labs/03/notebooks/finding_cause.html#step-5-are-the-two-variables-independent",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 5: Are the two variables independent?",
-    "text": "Step 5: Are the two variables independent?\nIf cold winters and droughts always happen in the same years, then drought is not adding new information — it is just another way of measuring the same thing. But if they are largely independent, then a year with both a cold winter AND a summer drought is genuinely more dangerous than a year with just one of those conditions.\nLet’s check the correlation between the two predictor variables themselves.\n\ncorr_between = df[\"winter_temp_c\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between winter temperature and summer drought: {corr_between:.3f}\")\n\nA low correlation between the two predictors means they are measuring largely independent things. Cold winters do not reliably follow dry summers — they are separate climate events that sometimes coincide.\nWhen they do coincide, the combined effect on livestock is much worse than either alone. That is the key insight that researchers took years to establish — and you just found evidence for it in a few lines of code.\nWhy does it matter that the two variables are independent rather than correlated with each other?"
+    "text": "Step 5: Are the two variables independent?\nIf cold winters and droughts always happen in the same years, then drought is not adding new information — it is just another way of measuring the same thing. But if they are largely independent, then a year with both a cold winter AND a summer drought is genuinely more dangerous than a year with just one of those conditions.\nLet’s check the correlation between the two predictor variables themselves.\n\ncorr_between = df[\"winter_temp_c\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between winter temperature and summer drought: {corr_between:.3f}\")\n\nA low correlation between the two predictors means they are measuring largely independent things. Cold winters do not reliably follow dry summers — they are separate climate events that sometimes coincide.\nWhen they do coincide, the combined effect on livestock is much worse than either alone. That is the key insight that researchers took years to establish — and you just found evidence for it in a few lines of code.\nWhy does it matter that the two variables are independent rather than correlated with each other?",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-6-colouring-the-scatter-by-drought-severity",
     "href": "labs/03/notebooks/finding_cause.html#step-6-colouring-the-scatter-by-drought-severity",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 6: Colouring the scatter by drought severity",
-    "text": "Step 6: Colouring the scatter by drought severity\nThe best way to see the combined effect is to go back to the temperature scatter plot and colour each point by its drought index. If drought is adding real information, you should see a pattern within the scatter — high-drought points clustering toward higher mortality at any given temperature.\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nscatter = ax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.55,\n    s=18,\n    edgecolors=\"none\"\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index (0 = none, 1 = severe)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. mortality, coloured by summer drought\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nLook for the pattern within the scatter.\nAt a given temperature — say, around -22°C — are the darker points (severe drought) sitting higher on the mortality axis than the lighter points (low drought)?\nIf you can see that pattern, it means drought is doing real explanatory work on top of temperature. Describe what you observe."
+    "text": "Step 6: Colouring the scatter by drought severity\nThe best way to see the combined effect is to go back to the temperature scatter plot and colour each point by its drought index. If drought is adding real information, you should see a pattern within the scatter — high-drought points clustering toward higher mortality at any given temperature.\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nscatter = ax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.55,\n    s=18,\n    edgecolors=\"none\"\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index (0 = none, 1 = severe)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. mortality, coloured by summer drought\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nLook for the pattern within the scatter.\nAt a given temperature — say, around -22°C — are the darker points (severe drought) sitting higher on the mortality axis than the lighter points (low drought)?\nIf you can see that pattern, it means drought is doing real explanatory work on top of temperature. Describe what you observe.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-7-separating-drought-years-from-non-drought-years",
     "href": "labs/03/notebooks/finding_cause.html#step-7-separating-drought-years-from-non-drought-years",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 7: Separating drought years from non-drought years",
-    "text": "Step 7: Separating drought years from non-drought years\nLet’s make that separation explicit. We will split the data into two groups — years with significant drought and years without — and plot them as separate series on the same scatter plot.\n\n# Define a drought threshold\ndrought_threshold = 0.5\n\ndf_drought    = df[df[\"summer_drought_idx\"] &gt;= drought_threshold]\ndf_no_drought = df[df[\"summer_drought_idx\"] &lt;  drought_threshold]\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nax.scatter(df_no_drought[\"winter_temp_c\"], df_no_drought[\"mortality_pct\"],\n           alpha=0.35, s=14, color=\"steelblue\", label=\"Low drought (index &lt; 0.5)\")\n\nax.scatter(df_drought[\"winter_temp_c\"], df_drought[\"mortality_pct\"],\n           alpha=0.45, s=14, color=\"firebrick\", label=\"High drought (index &gt;= 0.5)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"The combined effect: cold winters and summer drought\",\n             fontsize=13, fontweight=\"bold\")\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe red points (high drought years) should sit systematically higher on the mortality axis than the blue points at the same temperature.\nThis is the mechanism behind Mongolia’s worst dzud events. A cold winter alone is survivable for healthy livestock. A cold winter following a drought — when animals enter winter already weakened — is not.\nThe two catastrophic years in your data, 2001 and 2010, both involved an unusually cold winter preceded by significant summer drought across many aimags.\nAt this point you have done what scientists do: identified two independent variables that together explain an outcome better than either one alone. The next notebook will formalise that into a model — one that can take a winter temperature and a drought index as inputs and predict how much of the herd will be lost."
+    "text": "Step 7: Separating drought years from non-drought years\nLet’s make that separation explicit. We will split the data into two groups — years with significant drought and years without — and plot them as separate series on the same scatter plot.\n\n# Define a drought threshold\ndrought_threshold = 0.5\n\ndf_drought    = df[df[\"summer_drought_idx\"] &gt;= drought_threshold]\ndf_no_drought = df[df[\"summer_drought_idx\"] &lt;  drought_threshold]\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nax.scatter(df_no_drought[\"winter_temp_c\"], df_no_drought[\"mortality_pct\"],\n           alpha=0.35, s=14, color=\"steelblue\", label=\"Low drought (index &lt; 0.5)\")\n\nax.scatter(df_drought[\"winter_temp_c\"], df_drought[\"mortality_pct\"],\n           alpha=0.45, s=14, color=\"firebrick\", label=\"High drought (index &gt;= 0.5)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"The combined effect: cold winters and summer drought\",\n             fontsize=13, fontweight=\"bold\")\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe red points (high drought years) should sit systematically higher on the mortality axis than the blue points at the same temperature.\nThis is the mechanism behind Mongolia’s worst dzud events. A cold winter alone is survivable for healthy livestock. A cold winter following a drought — when animals enter winter already weakened — is not.\nThe two catastrophic years in your data, 2001 and 2010, both involved an unusually cold winter preceded by significant summer drought across many aimags.\nAt this point you have done what scientists do: identified two independent variables that together explain an outcome better than either one alone. The next notebook will formalise that into a model — one that can take a winter temperature and a drought index as inputs and predict how much of the herd will be lost.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#step-8-your-turn-explore-a-third-variable",
     "href": "labs/03/notebooks/finding_cause.html#step-8-your-turn-explore-a-third-variable",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 8: Your turn — explore a third variable",
-    "text": "Step 8: Your turn — explore a third variable\nThe dataset also includes snow_depth_cm. Heavy snow traps livestock and prevents them from reaching pasture, which can compound the effects of cold and drought.\nUsing the pattern from the cells above, investigate whether snow depth adds any additional explanatory power:\n\nWhat is the correlation between snow depth and mortality?\nDoes it add information beyond what temperature already captures?\nTry a scatter plot of snow depth vs. mortality, coloured by drought index.\n\nModify the cells below and record what you find.\n\n# Calculate the correlation between snow depth and mortality\ncorr_snow = df[\"mortality_pct\"].corr(df[\"snow_depth_cm\"])\nprint(f\"Correlation between snow depth and mortality: {corr_snow:.3f}\")\n\n# Also check whether snow depth and winter temperature are correlated with each other\ncorr_snow_temp = df[\"snow_depth_cm\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between snow depth and winter temperature: {corr_snow_temp:.3f}\")\n\n\n# Your scatter plot — modify as you like\nfig, ax = plt.subplots(figsize=(9, 6))\n\nscatter = ax.scatter(\n    df[\"snow_depth_cm\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.45,\n    s=14\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index\")\nax.set_xlabel(\"Snow depth (cm)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Snow depth vs. mortality\", fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nDoes snow depth appear to add useful information, or does it largely overlap with what winter temperature already tells you?\nBased on all the correlations you have now calculated, which two variables would you choose as inputs to a prediction model — and why?"
+    "text": "Step 8: Your turn — explore a third variable\nThe dataset also includes snow_depth_cm. Heavy snow traps livestock and prevents them from reaching pasture, which can compound the effects of cold and drought.\nUsing the pattern from the cells above, investigate whether snow depth adds any additional explanatory power:\n\nWhat is the correlation between snow depth and mortality?\nDoes it add information beyond what temperature already captures?\nTry a scatter plot of snow depth vs. mortality, coloured by drought index.\n\nModify the cells below and record what you find.\n\n# Calculate the correlation between snow depth and mortality\ncorr_snow = df[\"mortality_pct\"].corr(df[\"snow_depth_cm\"])\nprint(f\"Correlation between snow depth and mortality: {corr_snow:.3f}\")\n\n# Also check whether snow depth and winter temperature are correlated with each other\ncorr_snow_temp = df[\"snow_depth_cm\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between snow depth and winter temperature: {corr_snow_temp:.3f}\")\n\n\n# Your scatter plot — modify as you like\nfig, ax = plt.subplots(figsize=(9, 6))\n\nscatter = ax.scatter(\n    df[\"snow_depth_cm\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.45,\n    s=14\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index\")\nax.set_xlabel(\"Snow depth (cm)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Snow depth vs. mortality\", fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nDoes snow depth appear to add useful information, or does it largely overlap with what winter temperature already tells you?\nBased on all the correlations you have now calculated, which two variables would you choose as inputs to a prediction model — and why?",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html#what-you-have-done-in-this-notebook",
     "href": "labs/03/notebooks/finding_cause.html#what-you-have-done-in-this-notebook",
     "title": "The Dzud — Finding the Cause",
     "section": "What you have done in this notebook",
-    "text": "What you have done in this notebook\nYou tested three variables against livestock mortality, measured their correlations, checked whether they were independent of each other, and visualised the combined effect of the two strongest predictors.\nThe key findings: - Winter temperature is the strongest single predictor of mortality - Summer drought is an independent second predictor — it adds real information that temperature alone misses - The worst dzud events occur when both conditions coincide - Snow depth is correlated with temperature and adds less independent information\nIn the next notebook you will use these two variables to train a linear regression model — one that can take a winter temperature and a drought reading as inputs and output a predicted mortality percentage for any aimag."
+    "text": "What you have done in this notebook\nYou tested three variables against livestock mortality, measured their correlations, checked whether they were independent of each other, and visualised the combined effect of the two strongest predictors.\nThe key findings: - Winter temperature is the strongest single predictor of mortality - Summer drought is an independent second predictor — it adds real information that temperature alone misses - The worst dzud events occur when both conditions coincide - Snow depth is correlated with temperature and adds less independent information\nIn the next notebook you will use these two variables to train a linear regression model — one that can take a winter temperature and a drought reading as inputs and output a predicted mortality percentage for any aimag.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
   }
 ]
