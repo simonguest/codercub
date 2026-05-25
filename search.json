@@ -556,7 +556,7 @@
     "href": "labs/02/notebooks/correlation.html#step-1-load-the-data",
     "title": "Introducing Correlation",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\ndf = pd.read_csv(url)\ndf['date'] = pd.to_datetime(df['date'])\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
+    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
     "crumbs": [
       "Day 2",
       "Notebooks",
