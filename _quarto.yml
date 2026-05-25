@@ -55,6 +55,8 @@ website:
                 href: labs/03/notebooks/finding_disasters.ipynb
               - text: "finding_cause.ipynb"
                 href: labs/03/notebooks/finding_cause.ipynb
+              - text: "regression.ipynb"
+                href: labs/03/notebooks/regression.ipynb
       - section: "Day 4"
         contents:
           - text: "Slides"
