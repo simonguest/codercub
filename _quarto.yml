@@ -53,6 +53,8 @@ website:
             contents:
               - text: "finding_disasters.ipynb"
                 href: labs/03/notebooks/finding_disasters.ipynb
+              - text: "finding_cause.ipynb"
+                href: labs/03/notebooks/finding_cause.ipynb
       - section: "Day 4"
         contents:
           - text: "Slides"
