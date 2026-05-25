@@ -36,6 +36,378 @@
     ]
   },
   {
+    "objectID": "labs/02/notebooks/air_quality.html",
+    "href": "labs/02/notebooks/air_quality.html",
+    "title": "Exploring Air Quality",
+    "section": "",
+    "text": "Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth, but only at certain times of year.\nIn this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern\n\nYour mission: By the end of this notebook, you should be able to answer: “When is the air dangerous — and when is it safe?”",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#what-does-a-year-of-pollution-in-ulaanbaatar-look-like",
+    "href": "labs/02/notebooks/air_quality.html#what-does-a-year-of-pollution-in-ulaanbaatar-look-like",
+    "title": "Exploring Air Quality",
+    "section": "",
+    "text": "Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth, but only at certain times of year.\nIn this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern\n\nYour mission: By the end of this notebook, you should be able to answer: “When is the air dangerous — and when is it safe?”",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
+    "href": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
+    "title": "Exploring Air Quality",
+    "section": "Step 1: Load the data",
+    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-2-take-a-first-look",
+    "href": "labs/02/notebooks/air_quality.html#step-2-take-a-first-look",
+    "title": "Exploring Air Quality",
+    "section": "Step 2: Take a first look",
+    "text": "Step 2: Take a first look\nBefore we analyse anything, let’s see what the data actually looks like.\ndf.head() shows the first 5 rows — like opening the first page of a book.\n\n# Show the first 5 rows\ndf.head()\n\nLet’s also check what columns we have and what types they are:\n\n# Column names and data types\ndf.info()\n\n🔍 Look at the columns: - date — the day of the measurement - temp_c — temperature in Celsius - pm25 — fine particulate matter (µg/m³) — the main measure of air pollution - aqi_category — a label describing how dangerous the air is that day\n\nPM2.5 refers to tiny particles smaller than 2.5 micrometres. They’re small enough to enter your lungs and bloodstream. The WHO considers anything above 15 µg/m³ unsafe for daily exposure.",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
+    "href": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
+    "title": "Exploring Air Quality",
+    "section": "Step 3: Quick summary statistics",
+    "text": "Step 3: Quick summary statistics\ndf.describe() gives you the min, max, average, and more for every numeric column — a fast way to get a feel for the data.\n\ndf.describe().round(1)\n\nQuestions to think about: - What is the average PM2.5 across all three years? - What is the maximum PM2.5 recorded? How does that compare to the WHO limit of 15 µg/m³? - What is the coldest temperature in the dataset? The warmest?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
+    "href": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
+    "title": "Exploring Air Quality",
+    "section": "Step 4: Plot a full year of pollution",
+    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nWhat shape do you see?\nDescribe the pattern in your own words before reading on.\nThe chart should show a clear U-shape: very high pollution at the start of the year (winter), dropping dramatically in spring, staying low through summer, then rising steeply again in autumn and winter.\nThis pattern has a specific cause — but what is it? That’s what the rest of today’s investigation is about.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-5-add-some-color",
+    "href": "labs/02/notebooks/air_quality.html#step-5-add-some-color",
+    "title": "Exploring Air Quality",
+    "section": "Step 5: Add some color",
+    "text": "Step 5: Add some color\nThe line chart shows the pattern, but let’s make it easier to read by coloring each day by its AQI category — so we can immediately see which days are dangerous.\n\n# Colour map for AQI categories\naqi_colors = {\n    'Good': '#00e400',\n    'Moderate': '#ffff00',\n    'Unhealthy for Sensitive Groups': '#ff7e00',\n    'Unhealthy': '#ff0000',\n    'Very Unhealthy': '#8f3f97',\n    'Hazardous': '#7e0023'\n}\n\nfig, ax = plt.subplots(figsize=(14, 5))\n\n# Plot each day as a coloured vertical bar\nfor _, row in df_2019.iterrows():\n    color = aqi_colors.get(row['aqi_category'], 'gray')\n    ax.bar(row['date'], row['pm25'], color=color, width=1.0, alpha=0.85)\n\n# WHO limit line\nax.axhline(y=15, color='black', linestyle='--', linewidth=1.2, label='WHO safe limit (15 µg/m³)')\n\n# Legend\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=aqi_colors[cat], label=cat) for cat in aqi_colors]\nax.legend(handles=legend_elements, fontsize=8, loc='upper right')\n\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)', fontsize=14, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\n\nplt.tight_layout()\nplt.show()\n\nWhat do you notice now? - Which color dominates January and February? - Are there any green or yellow days in winter? - How long does the “safe” window in summer last?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-6-your-turn-try-2020-and-2021",
+    "href": "labs/02/notebooks/air_quality.html#step-6-your-turn-try-2020-and-2021",
+    "title": "Exploring Air Quality",
+    "section": "Step 6: Your turn — try 2020 and 2021",
+    "text": "Step 6: Your turn — try 2020 and 2021\nThe cells above only showed 2019. Now it’s your turn to explore the other years.\nModify the code below to plot 2020 instead of 2019. Then try 2021.\nDoes the pattern look the same? Is the pollution getting better or worse over time?\n\n# ✏️ YOUR TURN: change 2019 to 2020 or 2021 and re-run\n\ndf_your_year = df[df['year'] == 2019].copy()   # &lt;-- change this year\ndf_your_year['date'] = pd.to_datetime(df_your_year['date'])\n\nfig, ax = plt.subplots(figsize=(14, 5))\nax.plot(df_your_year['date'], df_your_year['pm25'], color='steelblue', linewidth=1.2)\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\nax.set_title(f\"Daily PM2.5 in Ulaanbaatar — {df_your_year['year'].iloc[0]}\", fontsize=14, fontweight='bold')\nax.set_xlabel('Date')\nax.set_ylabel('PM2.5 (µg/m³)')\nax.legend()\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
+    "href": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
+    "title": "Exploring Air Quality",
+    "section": "Step 7: All three years together",
+    "text": "Step 7: All three years together\nLet’s put all three years on the same chart so it’s easy to compare.\n\ndf['date'] = pd.to_datetime(df['date'])\n\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=False, sharey=True)\nyears = [2019, 2020, 2021]\ncolors = ['steelblue', 'darkorange', 'seagreen']\n\nfor ax, year, color in zip(axes, years, colors):\n    df_year = df[df['year'] == year]\n    ax.plot(df_year['date'], df_year['pm25'], color=color, linewidth=1.0)\n    ax.axhline(y=15, color='gray', linestyle='--', linewidth=1.0)\n    ax.set_title(f'{year}', fontsize=12, fontweight='bold')\n    ax.set_ylabel('PM2.5')\n    mean_val = df_year['pm25'].mean()\n    ax.text(0.01, 0.92, f'Yearly average: {mean_val:.0f} µg/m³',\n            transform=ax.transAxes, fontsize=9, color='black',\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.7))\n\naxes[-1].set_xlabel('Date', fontsize=11)\nfig.suptitle('PM2.5 in Ulaanbaatar — 2019 to 2021', fontsize=15, fontweight='bold', y=1.01)\nplt.tight_layout()\nplt.show()\n\nDiscussion questions: 1. Is the shape the same in all three years? What does that tell you about the cause? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes — days that were far worse than the surrounding days? What might cause those?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#what-youve-learned",
+    "href": "labs/02/notebooks/air_quality.html#what-youve-learned",
+    "title": "Exploring Air Quality",
+    "section": "What you’ve learned",
+    "text": "What you’ve learned\nIn this notebook you: - Loaded a CSV dataset from the web using pd.read_csv() - Explored its structure with .head(), .info(), and .describe() - Created a line chart and a coloured bar chart using matplotlib - Compared patterns across three years\nThe pattern you found — extreme winter pollution, clean summers — is one of the most well-documented environmental problems in Central Asia. The cause is coal heating in Ulaanbaatar’s ger districts (traditional tent communities), where hundreds of thousands of families burn coal through -30°C winters with no central heating.",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
+    "href": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
+    "title": "Exploring Air Quality",
+    "section": "Ready for the next clue?",
+    "text": "Ready for the next clue?\nIn the next investigation card, you’ll ask: does colder weather directly cause worse pollution?\nYou found the shape today. Next, you’ll find the reason.",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "air_quality.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#tbd",
+    "href": "labs/06/slides.html#tbd",
+    "title": "Day 6",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#tbd",
+    "href": "labs/04/slides.html#tbd",
+    "title": "Day 4",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-a-notebook",
+    "href": "labs/02/slides.html#what-is-a-notebook",
+    "title": "Day 2: Working With Data",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-notebooks",
+    "href": "labs/02/slides.html#a-brief-history-of-notebooks",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#anatomy-of-a-python-notebook",
+    "href": "labs/02/slides.html#anatomy-of-a-python-notebook",
+    "title": "Day 2: Working With Data",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2: Working With Data",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-2",
+    "href": "labs/01/slides.html#types-of-ai-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD: Single slide for each type",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#tbd",
+    "href": "labs/01/slides.html#tbd",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#nn-demo",
+    "href": "labs/01/slides.html#nn-demo",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "NN Demo",
+    "text": "NN Demo",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#tbd",
+    "href": "labs/03/slides.html#tbd",
+    "title": "Day 3",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#tbd",
+    "href": "labs/05/slides.html#tbd",
+    "title": "Day 5",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/Syllabus.html",
     "href": "labs/Syllabus.html",
     "title": "Summer of Code 2026",
@@ -156,375 +528,111 @@
     ]
   },
   {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 9",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 7",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/05/slides.html#tbd",
-    "href": "labs/05/slides.html#tbd",
-    "title": "Day 5",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 5",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#tbd",
-    "href": "labs/03/slides.html#tbd",
-    "title": "Day 3",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-1",
-    "href": "labs/01/slides.html#types-of-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-2",
-    "href": "labs/01/slides.html#types-of-ai-2",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD: Single slide for each type",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#tbd",
-    "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#nn-demo",
-    "href": "labs/01/slides.html#nn-demo",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "NN Demo",
-    "text": "NN Demo",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Codercub Summer of Code 2026",
+    "objectID": "labs/02/notebooks/correlation.html",
+    "href": "labs/02/notebooks/correlation.html",
+    "title": "Introducing Correlation",
     "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-a-notebook",
-    "href": "labs/02/slides.html#what-is-a-notebook",
-    "title": "Day 2: Working With Data",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-notebooks",
-    "href": "labs/02/slides.html#a-brief-history-of-notebooks",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#anatomy-of-a-python-notebook",
-    "href": "labs/02/slides.html#anatomy-of-a-python-notebook",
-    "title": "Day 2: Working With Data",
-    "section": "Anatomy of a Python Notebook",
-    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
-    "title": "Day 2: Working With Data",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#tbd",
-    "href": "labs/04/slides.html#tbd",
-    "title": "Day 4",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#tbd",
-    "href": "labs/06/slides.html#tbd",
-    "title": "Day 6",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 8",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 10",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/notebooks/air_quality.html",
-    "href": "labs/02/notebooks/air_quality.html",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "",
-    "text": "Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth — but only at certain times of year.\nIn this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern\n\nYour mission: By the end of this notebook, you should be able to answer: “When is the air dangerous — and when is it safe?”",
+    "text": "In the previous notebook you found that Ulaanbaatar’s air quality follows a striking seasonal pattern: dangerous in winter, relatively clean in summer.\nThat raises an obvious question: is temperature the cause?\nIn this notebook you will: - Build a scatter plot to look for a relationship between temperature and pollution - Colour the data points by season to see whether the pattern holds year-round - Calculate a correlation coefficient to put a number on the relationship - Test whether other variables in the dataset also play a role",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#what-does-a-year-of-pollution-in-ulaanbaatar-look-like",
-    "href": "labs/02/notebooks/air_quality.html#what-does-a-year-of-pollution-in-ulaanbaatar-look-like",
-    "title": "🌫️ Day 2: The Air Mystery",
+    "objectID": "labs/02/notebooks/correlation.html#does-colder-weather-mean-worse-air",
+    "href": "labs/02/notebooks/correlation.html#does-colder-weather-mean-worse-air",
+    "title": "Introducing Correlation",
     "section": "",
-    "text": "Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth — but only at certain times of year.\nIn this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern\n\nYour mission: By the end of this notebook, you should be able to answer: “When is the air dangerous — and when is it safe?”",
+    "text": "In the previous notebook you found that Ulaanbaatar’s air quality follows a striking seasonal pattern: dangerous in winter, relatively clean in summer.\nThat raises an obvious question: is temperature the cause?\nIn this notebook you will: - Build a scatter plot to look for a relationship between temperature and pollution - Colour the data points by season to see whether the pattern holds year-round - Calculate a correlation coefficient to put a number on the relationship - Test whether other variables in the dataset also play a role",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
-    "href": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
-    "title": "🌫️ Day 2: The Air Mystery",
+    "objectID": "labs/02/notebooks/correlation.html#step-1-load-the-data",
+    "href": "labs/02/notebooks/correlation.html#step-1-load-the-data",
+    "title": "Introducing Correlation",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")\n\nLoaded 1096 rows and 12 columns\nDate range: 2019-01-01 to 2021-12-31",
+    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\ndf = pd.read_csv(url)\ndf['date'] = pd.to_datetime(df['date'])\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-2-take-a-first-look",
-    "href": "labs/02/notebooks/air_quality.html#step-2-take-a-first-look",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "Step 2: Take a first look",
-    "text": "Step 2: Take a first look\nBefore we analyse anything, let’s see what the data actually looks like.\ndf.head() shows the first 5 rows — like opening the first page of a book.\n\n# Show the first 5 rows\ndf.head()\n\nLet’s also check what columns we have and what types they are:\n\n# Column names and data types\ndf.info()\n\n🔍 Look at the columns: - date — the day of the measurement - temp_c — temperature in Celsius - pm25 — fine particulate matter (µg/m³) — the main measure of air pollution - aqi_category — a label describing how dangerous the air is that day\n\nPM2.5 refers to tiny particles smaller than 2.5 micrometres. They’re small enough to enter your lungs and bloodstream. The WHO considers anything above 15 µg/m³ unsafe for daily exposure.",
+    "objectID": "labs/02/notebooks/correlation.html#step-2-your-first-scatter-plot",
+    "href": "labs/02/notebooks/correlation.html#step-2-your-first-scatter-plot",
+    "title": "Introducing Correlation",
+    "section": "Step 2: Your first scatter plot",
+    "text": "Step 2: Your first scatter plot\nA scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together.\nWe will put temperature on the x-axis and PM2.5 on the y-axis. Before you run the cell, make a prediction: what shape do you expect to see?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df['temp_c'],\n    df['pm25'],\n    alpha=0.3,       # transparency so overlapping points are visible\n    s=12,            # dot size\n    color='steelblue'\n)\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 — Ulaanbaatar 2019–2021', fontsize=13, fontweight='bold')\n\nplt.tight_layout()\nplt.show()\n\nLook at the overall shape of the cloud of points.\n\nDoes it slope upward, downward, or is it flat?\nAre the points tightly clustered, or spread out loosely?\nAre there any days that don’t fit the pattern?",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
-    "href": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "Step 3: Quick summary statistics",
-    "text": "Step 3: Quick summary statistics\ndf.describe() gives you the min, max, average, and more for every numeric column — a fast way to get a feel for the data.\n\ndf.describe().round(1)\n\n🔍 Questions to think about: - What is the average PM2.5 across all three years? - What is the maximum PM2.5 recorded? How does that compare to the WHO limit of 15 µg/m³? - What is the coldest temperature in the dataset? The warmest?",
+    "objectID": "labs/02/notebooks/correlation.html#step-3-colour-the-points-by-season",
+    "href": "labs/02/notebooks/correlation.html#step-3-colour-the-points-by-season",
+    "title": "Introducing Correlation",
+    "section": "Step 3: Colour the points by season",
+    "text": "Step 3: Colour the points by season\nThe scatter plot shows a clear slope, but it mixes together data from all four seasons. Let’s colour each point by season so we can see whether the pattern is consistent throughout the year, or whether one season is driving the whole relationship.\n\nseason_colors = {\n    'Winter': '#4477AA',\n    'Spring': '#66BB6A',\n    'Summer': '#FFA726',\n    'Autumn': '#AB47BC'\n}\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nfor season, color in season_colors.items():\n    subset = df[df['season'] == season]\n    ax.scatter(\n        subset['temp_c'],\n        subset['pm25'],\n        alpha=0.4,\n        s=12,\n        color=color,\n        label=season\n    )\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 by Season', fontsize=13, fontweight='bold')\nax.legend(title='Season', fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe four seasons should now appear as distinct clusters.\n\nWhere do the Winter points sit on the chart?\nWhere do the Summer points sit?\nDo Spring and Autumn overlap, or are they clearly separated?\n\nNotice that the downward slope is not caused by one unusual season pulling the average down. Each season sits in its own region of the chart, and the overall slope emerges from the progression across all four.",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
-    "href": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "Step 4: Plot a full year of pollution",
-    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\n🔍 What shape do you see?\nDescribe the pattern in your own words before reading on.\nThe chart should show a clear U-shape: very high pollution at the start of the year (winter), dropping dramatically in spring, staying low through summer, then rising steeply again in autumn and winter.\nThis pattern has a specific cause — but what is it? That’s what the rest of today’s investigation is about.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?",
+    "objectID": "labs/02/notebooks/correlation.html#step-4-putting-a-number-on-the-relationship",
+    "href": "labs/02/notebooks/correlation.html#step-4-putting-a-number-on-the-relationship",
+    "title": "Introducing Correlation",
+    "section": "Step 4: Putting a number on the relationship",
+    "text": "Step 4: Putting a number on the relationship\nThe scatter plot shows that colder temperatures tend to go with higher pollution. But how strong is that relationship exactly?\nA correlation coefficient measures the strength and direction of a relationship between two variables. It always falls between -1 and +1:\n\n-1 means a perfect inverse relationship: as one variable goes up, the other always goes down\n0 means no relationship at all\n+1 means a perfect direct relationship: both variables always move together\n\nIn pandas, you can calculate it with a single line.\n\ncorrelation = df['pm25'].corr(df['temp_c'])\nprint(f\"Correlation between temperature and PM2.5: {correlation:.2f}\")\n\nA value close to -0.85 is a strong negative correlation. In practical terms it means:\n\nThe relationship is reliable — cold days are almost always more polluted\nBut it is not perfect — temperature is not the only factor at play\nSomething else must explain the remaining variation\n\nThat “something else” is worth investigating. The dataset contains other variables that might also play a role: wind_speed_ms and pm10 for example.",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-5-add-some-colour",
-    "href": "labs/02/notebooks/air_quality.html#step-5-add-some-colour",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "Step 5: Add some colour",
-    "text": "Step 5: Add some colour\nThe line chart shows the pattern, but let’s make it easier to read by colouring each day by its AQI category — so we can immediately see which days are dangerous.\n\n# Colour map for AQI categories\naqi_colors = {\n    'Good': '#00e400',\n    'Moderate': '#ffff00',\n    'Unhealthy for Sensitive Groups': '#ff7e00',\n    'Unhealthy': '#ff0000',\n    'Very Unhealthy': '#8f3f97',\n    'Hazardous': '#7e0023'\n}\n\nfig, ax = plt.subplots(figsize=(14, 5))\n\n# Plot each day as a coloured vertical bar\nfor _, row in df_2019.iterrows():\n    color = aqi_colors.get(row['aqi_category'], 'gray')\n    ax.bar(row['date'], row['pm25'], color=color, width=1.0, alpha=0.85)\n\n# WHO limit line\nax.axhline(y=15, color='black', linestyle='--', linewidth=1.2, label='WHO safe limit (15 µg/m³)')\n\n# Legend\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=aqi_colors[cat], label=cat) for cat in aqi_colors]\nax.legend(handles=legend_elements, fontsize=8, loc='upper right')\n\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)', fontsize=14, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\n\nplt.tight_layout()\nplt.show()\n\n🔍 What do you notice now? - Which colour dominates January and February? - Are there any green or yellow days in winter? - How long does the “safe” window in summer last?",
+    "objectID": "labs/02/notebooks/correlation.html#step-5-your-turn",
+    "href": "labs/02/notebooks/correlation.html#step-5-your-turn",
+    "title": "Introducing Correlation",
+    "section": "Step 5: Your turn",
+    "text": "Step 5: Your turn\nThe cell below is set up to plot temperature against PM2.5 — the same chart you already made.\nTry changing the variables on the x or y axis to investigate other relationships in the data.\nSome questions to try: - Does wind speed affect pollution? Plot wind_speed_ms on the x-axis against pm25 on the y-axis. Is the correlation stronger or weaker than temperature? - How closely do PM2.5 and PM10 track each other? Try plotting one against the other. - Does the temperature correlation look the same if you only look at Winter days? Add a filter: df_test = df[df['season'] == 'Winter'] and re-run.\nChange one thing at a time, re-run the cell, and note what you find.\n\n# Change these two variables to explore other relationships\nx_column = 'temp_c'     # try: 'wind_speed_ms', 'pm10'\ny_column = 'pm25'       # try: 'pm10', 'pm25'\n\n# Change this if you want to filter to one season\ndf_test = df                           # or: df[df['season'] == 'Winter']\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(df_test[x_column], df_test[y_column], alpha=0.3, s=12, color='steelblue')\nax.set_xlabel(x_column, fontsize=12)\nax.set_ylabel(y_column, fontsize=12)\nax.set_title(f'{x_column} vs. {y_column}', fontsize=13, fontweight='bold')\n\ncorr = df_test[x_column].corr(df_test[y_column])\nax.text(0.03, 0.93, f'Correlation: {corr:.2f}', transform=ax.transAxes,\n        fontsize=11, bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.8))\n\nplt.tight_layout()\nplt.show()",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-6-your-turn-try-2020-and-2021",
-    "href": "labs/02/notebooks/air_quality.html#step-6-your-turn-try-2020-and-2021",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "Step 6: Your turn — try 2020 and 2021",
-    "text": "Step 6: Your turn — try 2020 and 2021\nThe cells above only showed 2019. Now it’s your turn to explore the other years.\n👇 Modify the code below to plot 2020 instead of 2019. Then try 2021.\nDoes the pattern look the same? Is the pollution getting better or worse over time?\n\n# ✏️ YOUR TURN: change 2019 to 2020 or 2021 and re-run\n\ndf_your_year = df[df['year'] == 2019].copy()   # &lt;-- change this year\ndf_your_year['date'] = pd.to_datetime(df_your_year['date'])\n\nfig, ax = plt.subplots(figsize=(14, 5))\nax.plot(df_your_year['date'], df_your_year['pm25'], color='steelblue', linewidth=1.2)\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\nax.set_title(f\"Daily PM2.5 in Ulaanbaatar — {df_your_year['year'].iloc[0]}\", fontsize=14, fontweight='bold')\nax.set_xlabel('Date')\nax.set_ylabel('PM2.5 (µg/m³)')\nax.legend()\nplt.tight_layout()\nplt.show()",
+    "objectID": "labs/02/notebooks/correlation.html#step-6-what-have-you-found",
+    "href": "labs/02/notebooks/correlation.html#step-6-what-have-you-found",
+    "title": "Introducing Correlation",
+    "section": "Step 6: What have you found?",
+    "text": "Step 6: What have you found?\nYou now have a specific, evidence-backed answer to today’s question.\nTake a moment to write your conclusion:\n\nWhat is the relationship between temperature and PM2.5 in Ulaanbaatar?\nHow confident are you in this conclusion, based on the correlation value?\nWhat other variable in the dataset had the strongest relationship with PM2.5?\nIs temperature the only cause of high winter pollution, or just a reliable indicator of it? What is the actual mechanism? (Hint: think about how people heat their homes in -30°C winters.)\n\nWrite your answers in the cell below — double-click to edit it.\nWrite your conclusions here.",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
-    "href": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "Step 7: All three years together",
-    "text": "Step 7: All three years together\nLet’s put all three years on the same chart so it’s easy to compare.\n\ndf['date'] = pd.to_datetime(df['date'])\n\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=False, sharey=True)\nyears = [2019, 2020, 2021]\ncolors = ['steelblue', 'darkorange', 'seagreen']\n\nfor ax, year, color in zip(axes, years, colors):\n    df_year = df[df['year'] == year]\n    ax.plot(df_year['date'], df_year['pm25'], color=color, linewidth=1.0)\n    ax.axhline(y=15, color='gray', linestyle='--', linewidth=1.0)\n    ax.set_title(f'{year}', fontsize=12, fontweight='bold')\n    ax.set_ylabel('PM2.5')\n    mean_val = df_year['pm25'].mean()\n    ax.text(0.01, 0.92, f'Yearly average: {mean_val:.0f} µg/m³',\n            transform=ax.transAxes, fontsize=9, color='black',\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.7))\n\naxes[-1].set_xlabel('Date', fontsize=11)\nfig.suptitle('PM2.5 in Ulaanbaatar — 2019 to 2021', fontsize=15, fontweight='bold', y=1.01)\nplt.tight_layout()\nplt.show()\n\n🔍 Discussion questions: 1. Is the shape the same in all three years? What does that tell you about the cause? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes — days that were far worse than the surrounding days? What might cause those?",
+    "objectID": "labs/02/notebooks/correlation.html#where-this-is-heading",
+    "href": "labs/02/notebooks/correlation.html#where-this-is-heading",
+    "title": "Introducing Correlation",
+    "section": "Where this is heading",
+    "text": "Where this is heading\nYou have now done something that data scientists do every day: used a scatter plot and a correlation coefficient to identify which variable best predicts an outcome.\nThe next step — which you will explore in tomorrow’s session — is to let a machine learn that relationship automatically from the data, and then use it to make predictions on days it has never seen before.\nThe question will change from “does temperature predict pollution?” to “given today’s temperature, what PM2.5 level would a model predict for tomorrow?” That is the core idea behind linear regression, and it is also the core idea behind what the micro:bit will do with your movement data later this week.",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/02/notebooks/air_quality.html#what-youve-learned",
-    "href": "labs/02/notebooks/air_quality.html#what-youve-learned",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "What you’ve learned",
-    "text": "What you’ve learned\nIn this notebook you: - Loaded a CSV dataset from the web using pd.read_csv() - Explored its structure with .head(), .info(), and .describe() - Created a line chart and a coloured bar chart using matplotlib - Compared patterns across three years\nThe pattern you found — extreme winter pollution, clean summers — is one of the most well-documented environmental problems in Central Asia. The cause is coal heating in Ulaanbaatar’s ger districts (traditional tent communities), where hundreds of thousands of families burn coal through -30°C winters with no central heating.",
-    "crumbs": [
-      "Day 2",
-      "Notebooks",
-      "air_quality.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
-    "href": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
-    "title": "🌫️ Day 2: The Air Mystery",
-    "section": "🔍 Ready for the next clue?",
-    "text": "🔍 Ready for the next clue?\nIn the next investigation card, you’ll ask: does colder weather directly cause worse pollution?\nYou found the shape today. Next, you’ll find the reason.",
-    "crumbs": [
-      "Day 2",
-      "Notebooks",
-      "air_quality.ipynb"
+      "correlation.ipynb"
     ]
   }
 ]
