@@ -2,74 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simonguest.github.io/codercub/labs/03/notebooks/regression.html</loc>
-    <lastmod>2026-05-25T17:08:56.410Z</lastmod>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/codercub/labs/03/notebooks/finding_cause.html</loc>
-    <lastmod>2026-05-25T17:08:56.410Z</lastmod>
+    <lastmod>2026-06-01T21:58:16.356Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/codercub/labs/02/notebooks/correlation.html</loc>
-    <lastmod>2026-05-25T17:08:56.408Z</lastmod>
+    <lastmod>2026-06-01T21:58:16.356Z</lastmod>
   </url>
   <url>
-    <loc>https://simonguest.github.io/codercub/labs/Syllabus.html</loc>
-    <lastmod>2026-05-25T17:08:56.412Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/09/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/07/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/05/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/03/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.410Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/01/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/index.html</loc>
-    <lastmod>2026-05-25T17:08:56.407Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/02/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.408Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/04/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/06/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.411Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/codercub/labs/08/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.411Z</lastmod>
+    <loc>https://simonguest.github.io/codercub/labs/01/notebooks/hello_world.html</loc>
+    <lastmod>2026-06-01T21:58:16.355Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/codercub/labs/10/slides.html</loc>
-    <lastmod>2026-05-25T17:08:56.412Z</lastmod>
+    <lastmod>2026-06-01T21:58:16.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/08/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/06/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/04/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/02/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.356Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/index.html</loc>
+    <lastmod>2026-06-01T21:58:16.355Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/01/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.355Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/03/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/05/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/07/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/09/slides.html</loc>
+    <lastmod>2026-06-01T21:58:16.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/codercub/labs/Syllabus.html</loc>
+    <lastmod>2026-06-01T21:58:16.358Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/codercub/labs/02/notebooks/air_quality.html</loc>
-    <lastmod>2026-05-25T17:08:56.408Z</lastmod>
+    <lastmod>2026-06-01T21:58:16.355Z</lastmod>
   </url>
   <url>
-    <loc>https://simonguest.github.io/codercub/labs/02/notebooks/hello_world.html</loc>
-    <lastmod>2026-05-25T17:08:56.408Z</lastmod>
+    <loc>https://simonguest.github.io/codercub/labs/02/notebooks/pandas_matplotlib.html</loc>
+    <lastmod>2026-06-01T21:58:16.356Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/codercub/labs/03/notebooks/finding_disasters.html</loc>
-    <lastmod>2026-05-25T17:08:56.410Z</lastmod>
+    <lastmod>2026-06-01T21:58:16.357Z</lastmod>
   </url>
 </urlset>

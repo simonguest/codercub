@@ -28,7 +28,7 @@
     "href": "labs/03/notebooks/regression.html#step-2-the-idea-behind-linear-regression",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 2: The idea behind linear regression",
-    "text": "Step 2: The idea behind linear regression\nBefore writing any model code, it is worth understanding what linear regression actually does.\nIn the previous notebook you found that colder winters tend to produce higher mortality. If you drew a straight line through that scatter plot that best fits the data, you would have a linear regression model. Given a new winter temperature value, the line tells you the predicted mortality.\nThe line has two properties: - A slope — how much mortality changes for each one-degree change in temperature - An intercept — where the line crosses the y-axis (the predicted mortality at 0°C)\nA model with two input variables (temperature and drought) fits a flat plane through the data instead of a line — the same idea, one dimension higher.\nScikit-learn finds the slope and intercept automatically by minimising the total distance between the line (or plane) and all the actual data points. You do not need to calculate this by hand.\nWhat do you think will happen to the predicted mortality if winter temperature goes down by 5°C? What about if summer drought index goes up from 0.2 to 0.8?",
+    "text": "Step 2: The idea behind linear regression\nBefore writing any model code, it is worth understanding what linear regression actually does.\nIn the previous notebook you found that colder winters tend to produce higher mortality. If you drew a straight line through that scatter plot that best fits the data, you would have a linear regression model. Given a new winter temperature value, the line tells you the predicted mortality.\nThe line has two properties: - A slope — how much mortality changes for each one-degree change in temperature - An intercept — where the line crosses the y-axis (the predicted mortality at 0°C)\nA model with two input variables (temperature and drought) fits a flat plane through the data instead of a line — the same idea, one dimension higher.\nScikit-learn finds the slope and intercept automatically by minimising the total distance between the line (or plane) and all the actual data points. You do not need to calculate this by hand.\nWhat do you think will happen to the predicted mortality if winter temperature goes down by 5°C? What about if summer drought index goes up from 0.2 to 0.8?\nBefore training the model: if winter temperature drops by 5°C, what do you predict happens to mortality? What if the summer drought index rises from 0.2 to 0.8? Write your prediction — you can check it against the model’s coefficients later.",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -52,7 +52,7 @@
     "href": "labs/03/notebooks/regression.html#step-4-train-the-first-model-temperature-only",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 4: Train the first model — temperature only",
-    "text": "Step 4: Train the first model — temperature only\nThree lines of code to train a model. That is all scikit-learn requires.\nThe fit call is where the learning happens — it finds the slope and intercept that best describes the relationship between winter temperature and mortality in the training data.\n\nmodel_1 = LinearRegression()\nmodel_1.fit(X_train, y_train)\n\nprint(f\"Model learned:\")\nprint(f\"  Slope (per 1°C change in winter temp): {model_1.coef_[0]:.3f}\")\nprint(f\"  Intercept:                             {model_1.intercept_:.3f}\")\nprint()\nprint(f\"Interpretation: for every 1°C colder the winter is,\")\nprint(f\"the model predicts mortality increases by {abs(model_1.coef_[0]):.2f} percentage points\")\n\nThe slope tells you something directly interpretable: each additional degree of winter cold is associated with a specific increase in predicted mortality.\nDoes that number feel intuitively reasonable given what you saw in the scatter plots?",
+    "text": "Step 4: Train the first model — temperature only\nThree lines of code to train a model. That is all scikit-learn requires.\nThe fit call is where the learning happens — it finds the slope and intercept that best describes the relationship between winter temperature and mortality in the training data.\n\nmodel_1 = LinearRegression()\nmodel_1.fit(X_train, y_train)\n\nprint(f\"Model learned:\")\nprint(f\"  Slope (per 1°C change in winter temp): {model_1.coef_[0]:.3f}\")\nprint(f\"  Intercept:                             {model_1.intercept_:.3f}\")\nprint()\nprint(f\"Interpretation: for every 1°C colder the winter is,\")\nprint(f\"the model predicts mortality increases by {abs(model_1.coef_[0]):.2f} percentage points\")\n\nThe slope tells you something directly interpretable: each additional degree of winter cold is associated with a specific increase in predicted mortality.\nDoes that number feel intuitively reasonable given what you saw in the scatter plots?\nThe model learned a specific slope — how much mortality increases per degree of cold. Does that number feel intuitively reasonable based on the scatter plots you saw earlier? Is it larger or smaller than you expected?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -76,7 +76,7 @@
     "href": "labs/03/notebooks/regression.html#step-6-visualise-the-first-models-predictions",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 6: Visualise the first model’s predictions",
-    "text": "Step 6: Visualise the first model’s predictions\nA good way to inspect a model is to plot its predictions against the actual values. If the model were perfect, every point would lie on the diagonal. Points above the diagonal are cases where the model under-predicted mortality; points below are over-predictions.\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Left: predicted vs actual\nax = axes[0]\nax.scatter(y_test, y_pred_1, alpha=0.45, s=18, color=\"steelblue\")\nlims = [0, max(y_test.max(), y_pred_1.max()) + 2]\nax.plot(lims, lims, \"k--\", linewidth=1, label=\"Perfect prediction\")\nax.set_xlabel(\"Actual mortality (%)\", fontsize=11)\nax.set_ylabel(\"Predicted mortality (%)\", fontsize=11)\nax.set_title(f\"Model 1: temperature only\\nR² = {r2_1:.3f}\", fontsize=12, fontweight=\"bold\")\nax.legend(fontsize=9)\n\n# Right: the regression line over the training data\nax = axes[1]\ntemp_range = np.linspace(df[\"winter_temp_c\"].min(), df[\"winter_temp_c\"].max(), 200).reshape(-1, 1)\npred_line  = model_1.predict(temp_range)\n\nax.scatter(df[\"winter_temp_c\"], df[\"mortality_pct\"],\n           alpha=0.2, s=12, color=\"steelblue\", label=\"Observed data\")\nax.plot(temp_range, pred_line, color=\"firebrick\", linewidth=2, label=\"Regression line\")\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=11)\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(\"The fitted regression line\", fontsize=12, fontweight=\"bold\")\nax.legend(fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nLook at the predicted vs. actual chart on the left. The points should follow the diagonal broadly, but with noticeable scatter — especially at higher mortality values.\nThe wide spread at the top right is the model struggling with the catastrophic dzud years. What might explain why the temperature-only model has more trouble predicting the worst outcomes?",
+    "text": "Step 6: Visualise the first model’s predictions\nA good way to inspect a model is to plot its predictions against the actual values. If the model were perfect, every point would lie on the diagonal. Points above the diagonal are cases where the model under-predicted mortality; points below are over-predictions.\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Left: predicted vs actual\nax = axes[0]\nax.scatter(y_test, y_pred_1, alpha=0.45, s=18, color=\"steelblue\")\nlims = [0, max(y_test.max(), y_pred_1.max()) + 2]\nax.plot(lims, lims, \"k--\", linewidth=1, label=\"Perfect prediction\")\nax.set_xlabel(\"Actual mortality (%)\", fontsize=11)\nax.set_ylabel(\"Predicted mortality (%)\", fontsize=11)\nax.set_title(f\"Model 1: temperature only\\nR² = {r2_1:.3f}\", fontsize=12, fontweight=\"bold\")\nax.legend(fontsize=9)\n\n# Right: the regression line over the training data\nax = axes[1]\ntemp_range = np.linspace(df[\"winter_temp_c\"].min(), df[\"winter_temp_c\"].max(), 200).reshape(-1, 1)\npred_line  = model_1.predict(temp_range)\n\nax.scatter(df[\"winter_temp_c\"], df[\"mortality_pct\"],\n           alpha=0.2, s=12, color=\"steelblue\", label=\"Observed data\")\nax.plot(temp_range, pred_line, color=\"firebrick\", linewidth=2, label=\"Regression line\")\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=11)\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(\"The fitted regression line\", fontsize=12, fontweight=\"bold\")\nax.legend(fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nLook at the predicted vs. actual chart on the left. The points should follow the diagonal broadly, but with noticeable scatter — especially at higher mortality values.\nThe wide spread at the top right is the model struggling with the catastrophic dzud years. What might explain why the temperature-only model has more trouble predicting the worst outcomes?\nLook at the predicted vs. actual chart. Where does the model struggle most — at low mortality values, high values, or both? Why do you think the temperature-only model has more trouble predicting the worst dzud years?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -100,7 +100,7 @@
     "href": "labs/03/notebooks/regression.html#step-8-evaluate-the-second-model",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 8: Evaluate the second model",
-    "text": "Step 8: Evaluate the second model\nLet’s measure whether adding drought genuinely improves the model.\n\ny_pred_2 = model_2.predict(X2_test)\n\nr2_2  = r2_score(y2_test, y_pred_2)\nmae_2 = mean_absolute_error(y2_test, y_pred_2)\n\nprint(f\"Model 1 — temperature only\")\nprint(f\"  R²:  {r2_1:.3f}   MAE: {mae_1:.2f} pp\")\nprint()\nprint(f\"Model 2 — temperature + drought\")\nprint(f\"  R²:  {r2_2:.3f}   MAE: {mae_2:.2f} pp\")\nprint()\nr2_improvement  = (r2_2 - r2_1) * 100\nmae_improvement = mae_1 - mae_2\nprint(f\"Adding drought index:\")\nprint(f\"  R² improved by  {r2_improvement:.1f} percentage points\")\nprint(f\"  MAE improved by {mae_improvement:.2f} percentage points\")\n\nThe R² should improve meaningfully when drought is added — the model now explains more of the variation in mortality. The MAE should decrease, meaning predictions are closer to the actual values on average.\nIs the improvement larger or smaller than you expected? Does it change your view of how important the summer drought variable is relative to winter temperature?",
+    "text": "Step 8: Evaluate the second model\nLet’s measure whether adding drought genuinely improves the model.\n\ny_pred_2 = model_2.predict(X2_test)\n\nr2_2  = r2_score(y2_test, y_pred_2)\nmae_2 = mean_absolute_error(y2_test, y_pred_2)\n\nprint(f\"Model 1 — temperature only\")\nprint(f\"  R²:  {r2_1:.3f}   MAE: {mae_1:.2f} pp\")\nprint()\nprint(f\"Model 2 — temperature + drought\")\nprint(f\"  R²:  {r2_2:.3f}   MAE: {mae_2:.2f} pp\")\nprint()\nr2_improvement  = (r2_2 - r2_1) * 100\nmae_improvement = mae_1 - mae_2\nprint(f\"Adding drought index:\")\nprint(f\"  R² improved by  {r2_improvement:.1f} percentage points\")\nprint(f\"  MAE improved by {mae_improvement:.2f} percentage points\")\n\nThe R² should improve meaningfully when drought is added — the model now explains more of the variation in mortality. The MAE should decrease, meaning predictions are closer to the actual values on average.\nIs the improvement larger or smaller than you expected? Does it change your view of how important the summer drought variable is relative to winter temperature?\nWas the improvement from adding drought larger or smaller than you expected? Does it change your view of how important the summer drought variable is compared to winter temperature?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -156,6 +156,18 @@
     ]
   },
   {
+    "objectID": "labs/03/notebooks/regression.html#check-your-understanding",
+    "href": "labs/03/notebooks/regression.html#check-your-understanding",
+    "title": "The Dzud — Teaching a Machine to Predict Disaster",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “Why do we keep a test set separate from the training data?”, “options”: [ { “key”: “a”, “text”: “To make the model train faster” }, { “key”: “b”, “text”: “To evaluate how well the model generalises to data it has never seen” }, { “key”: “c”, “text”: “To reduce the total amount of data needed” }, { “key”: “d”, “text”: “To improve the slope calculation” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the R² score measure?”, “options”: [ { “key”: “a”, “text”: “The slope of the regression line” }, { “key”: “b”, “text”: “The average prediction error in the same units as the output” }, { “key”: “c”, “text”: “How much of the variation in the outcome the model explains” }, { “key”: “d”, “text”: “The number of input variables in the model” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “A model with a lower MAE is making predictions that are, on average, closer to the actual values.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Why did Model 2 (temperature + drought) outperform Model 1 (temperature only)?”, “options”: [ { “key”: “a”, “text”: “It was trained on more rows of data” }, { “key”: “b”, “text”: “Drought adds independent information that temperature alone does not capture” }, { “key”: “c”, “text”: “Temperature was given less weight in Model 2” }, { “key”: “d”, “text”: “Model 2 trained for a longer time” } ], “answer”: “b”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "regression.ipynb"
+    ]
+  },
+  {
     "objectID": "labs/03/notebooks/finding_cause.html",
     "href": "labs/03/notebooks/finding_cause.html",
     "title": "The Dzud — Finding the Cause",
@@ -184,7 +196,7 @@
     "href": "labs/03/notebooks/finding_cause.html#step-2-the-primary-suspect-winter-temperature",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 2: The primary suspect — winter temperature",
-    "text": "Step 2: The primary suspect — winter temperature\nMongolia’s winters are severe by any standard. But some winters are much colder than others. The obvious hypothesis is: colder winters kill more livestock.\nLet’s test that with a scatter plot. Each point is one aimag in one year.\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    alpha=0.25,\n    s=14,\n    color=\"steelblue\"\n)\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. livestock mortality — all aimags, 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nThere should be a clear downward slope — colder winters correspond to higher mortality.\nBut look carefully at the spread of the points. At any given temperature, mortality varies considerably. Some aimags at -22°C lost 10% of their herd; others lost 30%.\nTemperature is clearly important, but it is not the whole story. What does that spread suggest to you?",
+    "text": "Step 2: The primary suspect — winter temperature\nMongolia’s winters are severe by any standard. But some winters are much colder than others. The obvious hypothesis is: colder winters kill more livestock.\nLet’s test that with a scatter plot. Each point is one aimag in one year.\nBefore you run the scatter plot: if colder winters cause more livestock deaths, what shape would you expect the points to form? Do you think all aimags will fit the pattern, or will some be outliers?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    alpha=0.25,\n    s=14,\n    color=\"steelblue\"\n)\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. livestock mortality — all aimags, 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nThere should be a clear downward slope — colder winters correspond to higher mortality.\nBut look carefully at the spread of the points. At any given temperature, mortality varies considerably. Some aimags at -22°C lost 10% of their herd; others lost 30%.\nTemperature is clearly important, but it is not the whole story. What does that spread suggest to you?\nDescribe what you see in the scatter plot. Is there a clear slope? At the same temperature, why might some aimags lose 10% of their herd while others lose 30%? What does that spread suggest to you?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -208,7 +220,7 @@
     "href": "labs/03/notebooks/finding_cause.html#step-4-introducing-the-second-variable",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 4: Introducing the second variable",
-    "text": "Step 4: Introducing the second variable\nMongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened — thinner, with smaller fat reserves, less able to withstand extreme cold.\nThe dataset includes a summer_drought_idx column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.\nLet’s check whether this variable also correlates with mortality.\n\ncorr_drought = df[\"mortality_pct\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between summer drought index and mortality: {corr_drought:.3f}\")\n\nThe drought index has a meaningful positive correlation with mortality — higher drought, higher mortality.\nIt is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.\nBefore testing that, what is your intuition? Do you think summer drought and winter temperature tend to occur together, or are they independent of each other?",
+    "text": "Step 4: Introducing the second variable\nMongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened — thinner, with smaller fat reserves, less able to withstand extreme cold.\nThe dataset includes a summer_drought_idx column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.\nLet’s check whether this variable also correlates with mortality.\n\ncorr_drought = df[\"mortality_pct\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between summer drought index and mortality: {corr_drought:.3f}\")\n\nThe drought index has a meaningful positive correlation with mortality — higher drought, higher mortality.\nIt is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.\nBefore testing that, what is your intuition? Do you think summer drought and winter temperature tend to occur together, or are they independent of each other?\nWhat is your intuition — do you think dry summers and cold winters tend to happen in the same years, or are they independent events? Why does it matter for building a prediction model?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -256,7 +268,7 @@
     "href": "labs/03/notebooks/finding_cause.html#step-8-your-turn-explore-a-third-variable",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 8: Your turn — explore a third variable",
-    "text": "Step 8: Your turn — explore a third variable\nThe dataset also includes snow_depth_cm. Heavy snow traps livestock and prevents them from reaching pasture, which can compound the effects of cold and drought.\nUsing the pattern from the cells above, investigate whether snow depth adds any additional explanatory power:\n\nWhat is the correlation between snow depth and mortality?\nDoes it add information beyond what temperature already captures?\nTry a scatter plot of snow depth vs. mortality, coloured by drought index.\n\nModify the cells below and record what you find.\n\n# Calculate the correlation between snow depth and mortality\ncorr_snow = df[\"mortality_pct\"].corr(df[\"snow_depth_cm\"])\nprint(f\"Correlation between snow depth and mortality: {corr_snow:.3f}\")\n\n# Also check whether snow depth and winter temperature are correlated with each other\ncorr_snow_temp = df[\"snow_depth_cm\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between snow depth and winter temperature: {corr_snow_temp:.3f}\")\n\n\n# Your scatter plot — modify as you like\nfig, ax = plt.subplots(figsize=(9, 6))\n\nscatter = ax.scatter(\n    df[\"snow_depth_cm\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.45,\n    s=14\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index\")\nax.set_xlabel(\"Snow depth (cm)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Snow depth vs. mortality\", fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nDoes snow depth appear to add useful information, or does it largely overlap with what winter temperature already tells you?\nBased on all the correlations you have now calculated, which two variables would you choose as inputs to a prediction model — and why?",
+    "text": "Step 8: Your turn — explore a third variable\nThe dataset also includes snow_depth_cm. Heavy snow traps livestock and prevents them from reaching pasture, which can compound the effects of cold and drought.\nUsing the pattern from the cells above, investigate whether snow depth adds any additional explanatory power:\n\nWhat is the correlation between snow depth and mortality?\nDoes it add information beyond what temperature already captures?\nTry a scatter plot of snow depth vs. mortality, coloured by drought index.\n\nModify the cells below and record what you find.\n\n# Calculate the correlation between snow depth and mortality\ncorr_snow = df[\"mortality_pct\"].corr(df[\"snow_depth_cm\"])\nprint(f\"Correlation between snow depth and mortality: {corr_snow:.3f}\")\n\n# Also check whether snow depth and winter temperature are correlated with each other\ncorr_snow_temp = df[\"snow_depth_cm\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between snow depth and winter temperature: {corr_snow_temp:.3f}\")\n\n\n# Your scatter plot — modify as you like\nfig, ax = plt.subplots(figsize=(9, 6))\n\nscatter = ax.scatter(\n    df[\"snow_depth_cm\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.45,\n    s=14\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index\")\nax.set_xlabel(\"Snow depth (cm)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Snow depth vs. mortality\", fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nDoes snow depth appear to add useful information, or does it largely overlap with what winter temperature already tells you?\nBased on all the correlations you have now calculated, which two variables would you choose as inputs to a prediction model — and why?\nBased on the correlations you calculated, which two variables would you choose as inputs to a prediction model — and why? Does snow depth add useful information, or does it largely overlap with temperature?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -269,6 +281,18 @@
     "title": "The Dzud — Finding the Cause",
     "section": "What you have done in this notebook",
     "text": "What you have done in this notebook\nYou tested three variables against livestock mortality, measured their correlations, checked whether they were independent of each other, and visualised the combined effect of the two strongest predictors.\nThe key findings: - Winter temperature is the strongest single predictor of mortality - Summer drought is an independent second predictor — it adds real information that temperature alone misses - The worst dzud events occur when both conditions coincide - Snow depth is correlated with temperature and adds less independent information\nIn the next notebook you will use these two variables to train a linear regression model — one that can take a winter temperature and a drought reading as inputs and output a predicted mortality percentage for any aimag.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_cause.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/finding_cause.html#check-your-understanding",
+    "href": "labs/03/notebooks/finding_cause.html#check-your-understanding",
+    "title": "The Dzud — Finding the Cause",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “Winter temperature has a correlation of around -0.65 with livestock mortality. What does this mean?”, “options”: [ { “key”: “a”, “text”: “There is no relationship between the two” }, { “key”: “b”, “text”: “Warmer winters tend to produce higher mortality” }, { “key”: “c”, “text”: “Colder winters tend to produce higher mortality” }, { “key”: “d”, “text”: “Temperature and mortality are perfectly related” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “If two predictor variables are strongly correlated with each other, they both add independent new information to a model.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Why is it useful that winter temperature and summer drought are NOT strongly correlated with each other?”, “options”: [ { “key”: “a”, “text”: “It means neither variable is important on its own” }, { “key”: “b”, “text”: “It means they measure different things and can both improve a prediction model” }, { “key”: “c”, “text”: “It means cold winters and droughts always happen in different years” }, { “key”: “d”, “text”: “It makes the correlation calculation simpler” } ], “answer”: “b”, “submitted_answer”: “” }",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -316,7 +340,7 @@
     "href": "labs/02/notebooks/correlation.html#step-2-your-first-scatter-plot",
     "title": "Introducing Correlation",
     "section": "Step 2: Your first scatter plot",
-    "text": "Step 2: Your first scatter plot\nA scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together.\nWe will put temperature on the x-axis and PM2.5 on the y-axis. Before you run the cell, make a prediction: what shape do you expect to see?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df['temp_c'],\n    df['pm25'],\n    alpha=0.3,       # transparency so overlapping points are visible\n    s=12,            # dot size\n    color='steelblue'\n)\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 — Ulaanbaatar 2019–2021', fontsize=13, fontweight='bold')\n\nplt.tight_layout()\nplt.show()\n\nLook at the overall shape of the cloud of points.\n\nDoes it slope upward, downward, or is it flat?\nAre the points tightly clustered, or spread out loosely?\nAre there any days that don’t fit the pattern?",
+    "text": "Step 2: Your first scatter plot\nA scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together.\nWe will put temperature on the x-axis and PM2.5 on the y-axis. Before you run the cell, make a prediction: what shape do you expect to see?\nBefore you run the scatter plot: what do you predict it will look like? Do you think the dots will slope upward, downward, or be flat? Will they be tightly grouped or spread out?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df['temp_c'],\n    df['pm25'],\n    alpha=0.3,       # transparency so overlapping points are visible\n    s=12,            # dot size\n    color='steelblue'\n)\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 — Ulaanbaatar 2019–2021', fontsize=13, fontweight='bold')\n\nplt.tight_layout()\nplt.show()\n\nLook at the overall shape of the cloud of points.\n\nDoes it slope upward, downward, or is it flat?\nAre the points tightly clustered, or spread out loosely?\nAre there any days that don’t fit the pattern?\n\nDescribe what you see in the scatter plot. Does it slope up or down? Are the points tightly clustered or spread out? Were there any days that didn’t fit the pattern?",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -328,7 +352,7 @@
     "href": "labs/02/notebooks/correlation.html#step-3-colour-the-points-by-season",
     "title": "Introducing Correlation",
     "section": "Step 3: Colour the points by season",
-    "text": "Step 3: Colour the points by season\nThe scatter plot shows a clear slope, but it mixes together data from all four seasons. Let’s colour each point by season so we can see whether the pattern is consistent throughout the year, or whether one season is driving the whole relationship.\n\nseason_colors = {\n    'Winter': '#4477AA',\n    'Spring': '#66BB6A',\n    'Summer': '#FFA726',\n    'Autumn': '#AB47BC'\n}\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nfor season, color in season_colors.items():\n    subset = df[df['season'] == season]\n    ax.scatter(\n        subset['temp_c'],\n        subset['pm25'],\n        alpha=0.4,\n        s=12,\n        color=color,\n        label=season\n    )\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 by Season', fontsize=13, fontweight='bold')\nax.legend(title='Season', fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe four seasons should now appear as distinct clusters.\n\nWhere do the Winter points sit on the chart?\nWhere do the Summer points sit?\nDo Spring and Autumn overlap, or are they clearly separated?\n\nNotice that the downward slope is not caused by one unusual season pulling the average down. Each season sits in its own region of the chart, and the overall slope emerges from the progression across all four.",
+    "text": "Step 3: Colour the points by season\nThe scatter plot shows a clear slope, but it mixes together data from all four seasons. Let’s colour each point by season so we can see whether the pattern is consistent throughout the year, or whether one season is driving the whole relationship.\n\nseason_colors = {\n    'Winter': '#4477AA',\n    'Spring': '#66BB6A',\n    'Summer': '#FFA726',\n    'Autumn': '#AB47BC'\n}\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nfor season, color in season_colors.items():\n    subset = df[df['season'] == season]\n    ax.scatter(\n        subset['temp_c'],\n        subset['pm25'],\n        alpha=0.4,\n        s=12,\n        color=color,\n        label=season\n    )\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 by Season', fontsize=13, fontweight='bold')\nax.legend(title='Season', fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe four seasons should now appear as distinct clusters.\n\nWhere do the Winter points sit on the chart?\nWhere do the Summer points sit?\nDo Spring and Autumn overlap, or are they clearly separated?\n\nNotice that the downward slope is not caused by one unusual season pulling the average down. Each season sits in its own region of the chart, and the overall slope emerges from the progression across all four.\nWhere do the Winter points appear on the chart compared to the Summer points? Do Spring and Autumn overlap, or are they clearly separated? What does the position of each season’s cluster tell you?",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -381,6 +405,417 @@
       "Day 2",
       "Notebooks",
       "correlation.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/correlation.html#check-your-understanding",
+    "href": "labs/02/notebooks/correlation.html#check-your-understanding",
+    "title": "Introducing Correlation",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What does a correlation coefficient of -0.85 tell you?”, “options”: [ { “key”: “a”, “text”: “No relationship between the two variables” }, { “key”: “b”, “text”: “A weak positive relationship” }, { “key”: “c”, “text”: “A strong negative relationship” }, { “key”: “d”, “text”: “A perfect negative relationship” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “If two variables are strongly correlated, it proves that one causes the other.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In a scatter plot, what does each dot represent?”, “options”: [ { “key”: “a”, “text”: “A monthly average” }, { “key”: “b”, “text”: “A single day’s reading” }, { “key”: “c”, “text”: “A full year of data” }, { “key”: “d”, “text”: “A column in the dataset” } ], “answer”: “b”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "correlation.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/01/notebooks/hello_world.html",
+    "href": "labs/01/notebooks/hello_world.html",
+    "title": "Hello World Notebook!",
+    "section": "",
+    "text": "This is an example of the Jupyter .ipynb document format\n{ “url”: “https://example.com/intro-to-notebooks.mp4”, “controls”: true }\n# This is an executable cell\nprint(\"Hello World!\")\n# Setting variables in Python\nx = 42\nx\n# Variables persist after being set in previously executed cells\nx",
+    "crumbs": [
+      "Day 1",
+      "Notebooks",
+      "hello_world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/01/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
+    "href": "labs/01/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
+    "title": "Hello World Notebook!",
+    "section": "Markdown Cells Support Rich Formatting",
+    "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()\n\nYou just created a chart using Python! What do you notice about the sine wave? What happens to the values as x gets larger?",
+    "crumbs": [
+      "Day 1",
+      "Notebooks",
+      "hello_world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/01/notebooks/hello_world.html#interactive-form-fields",
+    "href": "labs/01/notebooks/hello_world.html#interactive-form-fields",
+    "title": "Hello World Notebook!",
+    "section": "Interactive Form Fields",
+    "text": "Interactive Form Fields\nNotebooks support form fields — interactive controls that let you change values without editing code.\nAdd #@param after a variable to turn it into a text box, a dropdown, a slider, or a checkbox.\nTry changing the values below and re-running the cell:\n\nNAME = \"World\" #@param\nGREETING = \"Hello\" #@param [\"Hello\", \"Hi\", \"Hey\", \"Greetings\"]\nTIMES = 1 #@param {type:\"slider\", min:1, max:5, step:1}\n\nfor i in range(TIMES):\n    print(f\"{GREETING}, {NAME}!\")",
+    "crumbs": [
+      "Day 1",
+      "Notebooks",
+      "hello_world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/01/notebooks/hello_world.html#what-happens-when-theres-an-error",
+    "href": "labs/01/notebooks/hello_world.html#what-happens-when-theres-an-error",
+    "title": "Hello World Notebook!",
+    "section": "What Happens When There’s an Error?",
+    "text": "What Happens When There’s an Error?\nRun the cell below to see how notebooks handle errors.\nThe error appears in the output, but other cells continue to work.\n\n# This will cause an error\nresult = 10 / 0",
+    "crumbs": [
+      "Day 1",
+      "Notebooks",
+      "hello_world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/01/notebooks/hello_world.html#check-your-understanding",
+    "href": "labs/01/notebooks/hello_world.html#check-your-understanding",
+    "title": "Hello World Notebook!",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What type of cell lets you write and run Python code?”, “options”: [ { “key”: “a”, “text”: “Markdown cell” }, { “key”: “b”, “text”: “Code cell” }, { “key”: “c”, “text”: “Text cell” }, { “key”: “d”, “text”: “Output cell” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “A variable set in one cell can be used in cells you run later.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “When one cell causes an error, all other cells in the notebook stop working.”, “answer”: “False”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 1",
+      "Notebooks",
+      "hello_world.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#tbd",
+    "href": "labs/06/slides.html#tbd",
+    "title": "Day 6",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#tbd",
+    "href": "labs/04/slides.html#tbd",
+    "title": "Day 4: AI in the Physical World",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#recap",
+    "href": "labs/02/slides.html#recap",
+    "title": "Day 2: Working With Data",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-pandas",
+    "href": "labs/02/slides.html#what-is-pandas",
+    "title": "Day 2: Working With Data",
+    "section": "What is Pandas?",
+    "text": "What is Pandas?\n\nA Python library for working with structured data — think spreadsheets, tables, CSVs\nLets you load, clean, filter, and analyze data with just a few lines of code\nOne of the most widely used tools in data science and AI",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-pandas",
+    "href": "labs/02/slides.html#a-brief-history-of-pandas",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Pandas",
+    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at an investment firm\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#key-pandas-concepts",
+    "href": "labs/02/slides.html#key-pandas-concepts",
+    "title": "Day 2: Working With Data",
+    "section": "Key Pandas Concepts",
+    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more\n\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.head()",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-matplotlib",
+    "href": "labs/02/slides.html#what-is-matplotlib",
+    "title": "Day 2: Working With Data",
+    "section": "What is Matplotlib?",
+    "text": "What is Matplotlib?\n\nA Python library for creating charts and visualizations\nLine charts, bar charts, scatter plots, histograms, heatmaps, and more\nTurns raw data into pictures — making patterns much easier to spot",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-matplotlib",
+    "href": "labs/02/slides.html#a-brief-history-of-matplotlib",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Matplotlib",
+    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB — without needing MATLAB\nHunter passed away in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#key-matplotlib-concepts",
+    "href": "labs/02/slides.html#key-matplotlib-concepts",
+    "title": "Day 2: Working With Data",
+    "section": "Key Matplotlib Concepts",
+    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib\n\nimport matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 7, 2])\nplt.show()",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2: Working With Data",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-2",
+    "href": "labs/01/slides.html#types-of-ai-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD: Single slide for each type",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#tbd",
+    "href": "labs/01/slides.html#tbd",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#nn-demo",
+    "href": "labs/01/slides.html#nn-demo",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "NN Demo",
+    "text": "NN Demo",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-a-notebook",
+    "href": "labs/01/slides.html#what-is-a-notebook",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#a-brief-history-of-notebooks",
+    "href": "labs/01/slides.html#a-brief-history-of-notebooks",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#anatomy-of-a-python-notebook",
+    "href": "labs/01/slides.html#anatomy-of-a-python-notebook",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#introducing-jupyter-k12",
+    "href": "labs/01/slides.html#introducing-jupyter-k12",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Introducing Jupyter-K12",
+    "text": "Introducing Jupyter-K12\n\nNotebook platform designed for K-12 students\nEasy to setup; no accounts required\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students to use this!",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#recap",
+    "href": "labs/03/slides.html#recap",
+    "title": "Day 3: How Machines Learn",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#tbd",
+    "href": "labs/03/slides.html#tbd",
+    "title": "Day 3: How Machines Learn",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#tbd",
+    "href": "labs/05/slides.html#tbd",
+    "title": "Day 5",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 9",
+      "Slides"
     ]
   },
   {
@@ -504,246 +939,6 @@
     ]
   },
   {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 9",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 7",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/05/slides.html#tbd",
-    "href": "labs/05/slides.html#tbd",
-    "title": "Day 5",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 5",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#tbd",
-    "href": "labs/03/slides.html#tbd",
-    "title": "Day 3",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-1",
-    "href": "labs/01/slides.html#types-of-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-2",
-    "href": "labs/01/slides.html#types-of-ai-2",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD: Single slide for each type",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#tbd",
-    "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#nn-demo",
-    "href": "labs/01/slides.html#nn-demo",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "NN Demo",
-    "text": "NN Demo",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-a-notebook",
-    "href": "labs/02/slides.html#what-is-a-notebook",
-    "title": "Day 2: Working With Data",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-notebooks",
-    "href": "labs/02/slides.html#a-brief-history-of-notebooks",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#anatomy-of-a-python-notebook",
-    "href": "labs/02/slides.html#anatomy-of-a-python-notebook",
-    "title": "Day 2: Working With Data",
-    "section": "Anatomy of a Python Notebook",
-    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
-    "title": "Day 2: Working With Data",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#tbd",
-    "href": "labs/04/slides.html#tbd",
-    "title": "Day 4",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#tbd",
-    "href": "labs/06/slides.html#tbd",
-    "title": "Day 6",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 8",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 10",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "labs/02/notebooks/air_quality.html",
     "href": "labs/02/notebooks/air_quality.html",
     "title": "Exploring Air Quality",
@@ -796,7 +991,7 @@
     "href": "labs/02/notebooks/air_quality.html#step-3-quick-summary-statistics",
     "title": "Exploring Air Quality",
     "section": "Step 3: Quick summary statistics",
-    "text": "Step 3: Quick summary statistics\ndf.describe() gives you the min, max, average, and more for every numeric column — a fast way to get a feel for the data.\n\ndf.describe().round(1)\n\nQuestions to think about: - What is the average PM2.5 across all three years? - What is the maximum PM2.5 recorded? How does that compare to the WHO limit of 15 µg/m³? - What is the coldest temperature in the dataset? The warmest?",
+    "text": "Step 3: Quick summary statistics\ndf.describe() gives you the min, max, average, and more for every numeric column — a fast way to get a feel for the data.\n\ndf.describe().round(1)\n\nQuestions to think about: - What is the average PM2.5 across all three years? - What is the maximum PM2.5 recorded? How does that compare to the WHO limit of 15 µg/m³? - What is the coldest temperature in the dataset? The warmest?\nWhat did you find in df.describe()? What is the average PM2.5 across all three years? How does the maximum reading compare to the WHO safe limit of 15 µg/m³?",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -808,7 +1003,7 @@
     "href": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
     "title": "Exploring Air Quality",
     "section": "Step 4: Plot a full year of pollution",
-    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nWhat shape do you see?\nDescribe the pattern in your own words before reading on.\nThe chart should show a clear U-shape: very high pollution at the start of the year (winter), dropping dramatically in spring, staying low through summer, then rising steeply again in autumn and winter.\nThis pattern has a specific cause — but what is it? That’s what the rest of today’s investigation is about.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?",
+    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nWhat shape do you see?\nDescribe the pattern in your own words before reading on.\nThe chart should show a clear U-shape: very high pollution at the start of the year (winter), dropping dramatically in spring, staying low through summer, then rising steeply again in autumn and winter.\nThis pattern has a specific cause — but what is it? That’s what the rest of today’s investigation is about.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?\n\nDescribe the shape of the chart in your own words. When is pollution highest? When is it lowest? What do you think might cause this pattern?",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -820,7 +1015,7 @@
     "href": "labs/02/notebooks/air_quality.html#step-5-add-some-color",
     "title": "Exploring Air Quality",
     "section": "Step 5: Add some color",
-    "text": "Step 5: Add some color\nThe line chart shows the pattern, but let’s make it easier to read by coloring each day by its AQI category — so we can immediately see which days are dangerous.\n\n# Colour map for AQI categories\naqi_colors = {\n    'Good': '#00e400',\n    'Moderate': '#ffff00',\n    'Unhealthy for Sensitive Groups': '#ff7e00',\n    'Unhealthy': '#ff0000',\n    'Very Unhealthy': '#8f3f97',\n    'Hazardous': '#7e0023'\n}\n\nfig, ax = plt.subplots(figsize=(14, 5))\n\n# Plot each day as a coloured vertical bar\nfor _, row in df_2019.iterrows():\n    color = aqi_colors.get(row['aqi_category'], 'gray')\n    ax.bar(row['date'], row['pm25'], color=color, width=1.0, alpha=0.85)\n\n# WHO limit line\nax.axhline(y=15, color='black', linestyle='--', linewidth=1.2, label='WHO safe limit (15 µg/m³)')\n\n# Legend\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=aqi_colors[cat], label=cat) for cat in aqi_colors]\nax.legend(handles=legend_elements, fontsize=8, loc='upper right')\n\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)', fontsize=14, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\n\nplt.tight_layout()\nplt.show()\n\nWhat do you notice now? - Which color dominates January and February? - Are there any green or yellow days in winter? - How long does the “safe” window in summer last?",
+    "text": "Step 5: Add some color\nThe line chart shows the pattern, but let’s make it easier to read by coloring each day by its AQI category — so we can immediately see which days are dangerous.\n\n# Colour map for AQI categories\naqi_colors = {\n    'Good': '#00e400',\n    'Moderate': '#ffff00',\n    'Unhealthy for Sensitive Groups': '#ff7e00',\n    'Unhealthy': '#ff0000',\n    'Very Unhealthy': '#8f3f97',\n    'Hazardous': '#7e0023'\n}\n\nfig, ax = plt.subplots(figsize=(14, 5))\n\n# Plot each day as a coloured vertical bar\nfor _, row in df_2019.iterrows():\n    color = aqi_colors.get(row['aqi_category'], 'gray')\n    ax.bar(row['date'], row['pm25'], color=color, width=1.0, alpha=0.85)\n\n# WHO limit line\nax.axhline(y=15, color='black', linestyle='--', linewidth=1.2, label='WHO safe limit (15 µg/m³)')\n\n# Legend\nfrom matplotlib.patches import Patch\nlegend_elements = [Patch(facecolor=aqi_colors[cat], label=cat) for cat in aqi_colors]\nax.legend(handles=legend_elements, fontsize=8, loc='upper right')\n\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)', fontsize=14, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\n\nplt.tight_layout()\nplt.show()\n\nWhat do you notice now? - Which color dominates January and February? - Are there any green or yellow days in winter? - How long does the “safe” window in summer last?\nLook at the coloured chart. Which AQI category dominates January and February? How many roughly safe (green or yellow) days are there in winter? How long does the clean window in summer last?",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -844,7 +1039,7 @@
     "href": "labs/02/notebooks/air_quality.html#step-7-all-three-years-together",
     "title": "Exploring Air Quality",
     "section": "Step 7: All three years together",
-    "text": "Step 7: All three years together\nLet’s put all three years on the same chart so it’s easy to compare.\n\ndf['date'] = pd.to_datetime(df['date'])\n\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=False, sharey=True)\nyears = [2019, 2020, 2021]\ncolors = ['steelblue', 'darkorange', 'seagreen']\n\nfor ax, year, color in zip(axes, years, colors):\n    df_year = df[df['year'] == year]\n    ax.plot(df_year['date'], df_year['pm25'], color=color, linewidth=1.0)\n    ax.axhline(y=15, color='gray', linestyle='--', linewidth=1.0)\n    ax.set_title(f'{year}', fontsize=12, fontweight='bold')\n    ax.set_ylabel('PM2.5')\n    mean_val = df_year['pm25'].mean()\n    ax.text(0.01, 0.92, f'Yearly average: {mean_val:.0f} µg/m³',\n            transform=ax.transAxes, fontsize=9, color='black',\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.7))\n\naxes[-1].set_xlabel('Date', fontsize=11)\nfig.suptitle('PM2.5 in Ulaanbaatar — 2019 to 2021', fontsize=15, fontweight='bold', y=1.01)\nplt.tight_layout()\nplt.show()\n\nDiscussion questions: 1. Is the shape the same in all three years? What does that tell you about the cause? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes — days that were far worse than the surrounding days? What might cause those?",
+    "text": "Step 7: All three years together\nLet’s put all three years on the same chart so it’s easy to compare.\n\ndf['date'] = pd.to_datetime(df['date'])\n\nfig, axes = plt.subplots(3, 1, figsize=(14, 10), sharex=False, sharey=True)\nyears = [2019, 2020, 2021]\ncolors = ['steelblue', 'darkorange', 'seagreen']\n\nfor ax, year, color in zip(axes, years, colors):\n    df_year = df[df['year'] == year]\n    ax.plot(df_year['date'], df_year['pm25'], color=color, linewidth=1.0)\n    ax.axhline(y=15, color='gray', linestyle='--', linewidth=1.0)\n    ax.set_title(f'{year}', fontsize=12, fontweight='bold')\n    ax.set_ylabel('PM2.5')\n    mean_val = df_year['pm25'].mean()\n    ax.text(0.01, 0.92, f'Yearly average: {mean_val:.0f} µg/m³',\n            transform=ax.transAxes, fontsize=9, color='black',\n            bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.7))\n\naxes[-1].set_xlabel('Date', fontsize=11)\nfig.suptitle('PM2.5 in Ulaanbaatar — 2019 to 2021', fontsize=15, fontweight='bold', y=1.01)\nplt.tight_layout()\nplt.show()\n\nDiscussion questions: 1. Is the shape the same in all three years? What does that tell you about the cause? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes — days that were far worse than the surrounding days? What might cause those?\nCompare the three years. Is the seasonal pattern the same each year? Are the yearly averages getting better or worse? Did you spot any unusual spikes — and what might have caused them?",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -864,11 +1059,11 @@
     ]
   },
   {
-    "objectID": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
-    "href": "labs/02/notebooks/air_quality.html#ready-for-the-next-clue",
+    "objectID": "labs/02/notebooks/air_quality.html#check-your-understanding",
+    "href": "labs/02/notebooks/air_quality.html#check-your-understanding",
     "title": "Exploring Air Quality",
-    "section": "Ready for the next clue?",
-    "text": "Ready for the next clue?\nIn the next investigation card, you’ll ask: does colder weather directly cause worse pollution?\nYou found the shape today. Next, you’ll find the reason.",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What does PM2.5 measure?”, “options”: [ { “key”: “a”, “text”: “Air temperature” }, { “key”: “b”, “text”: “Wind speed” }, { “key”: “c”, “text”: “Tiny particles in the air small enough to enter your lungs” }, { “key”: “d”, “text”: “Humidity” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does df.describe() show you?”, “options”: [ { “key”: “a”, “text”: “The first 5 rows of the dataset” }, { “key”: “b”, “text”: “Summary statistics like min, max, and average” }, { “key”: “c”, “text”: “The column names and data types” }, { “key”: “d”, “text”: “A chart of the data” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Based on the charts, when is air pollution in Ulaanbaatar at its worst?”, “options”: [ { “key”: “a”, “text”: “Summer” }, { “key”: “b”, “text”: “Spring” }, { “key”: “c”, “text”: “Autumn” }, { “key”: “d”, “text”: “Winter” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The WHO considers any PM2.5 reading above 15 µg/m³ unsafe for daily exposure.”, “answer”: “True”, “submitted_answer”: “” }",
     "crumbs": [
       "Day 2",
       "Notebooks",
@@ -876,39 +1071,99 @@
     ]
   },
   {
-    "objectID": "labs/02/notebooks/hello_world.html",
-    "href": "labs/02/notebooks/hello_world.html",
-    "title": "Hello World Notebook!",
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html",
+    "href": "labs/02/notebooks/pandas_matplotlib.html",
+    "title": "Exploring Data with Pandas and Matplotlib",
     "section": "",
-    "text": "This is an example of the Jupyter .ipynb document format\n# This is an executable cell\nprint(\"Hello World!\")\n\nHello World!\n# Setting variables in Python\nx = 42\nx\n\n42\n# Variables persist after being set in previously executed cells\nx\n\n42",
+    "text": "In this notebook, you’ll learn how to work with data using two powerful Python libraries: Pandas and Matplotlib.",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "hello_world.ipynb"
+      "pandas_matplotlib.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
-    "href": "labs/02/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
-    "title": "Hello World Notebook!",
-    "section": "Markdown Cells Support Rich Formatting",
-    "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\nThe square root of 29 is 5.39\n\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()",
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#what-youll-learn",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#what-youll-learn",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "What You’ll Learn",
+    "text": "What You’ll Learn\n\nWhat a DataFrame is and how to create one\nHow to explore and inspect data with Pandas\nHow to create charts and visualizations with Matplotlib",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "hello_world.ipynb"
+      "pandas_matplotlib.ipynb"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/hello_world.html#what-happens-when-theres-an-error",
-    "href": "labs/02/notebooks/hello_world.html#what-happens-when-theres-an-error",
-    "title": "Hello World Notebook!",
-    "section": "What Happens When There’s an Error?",
-    "text": "What Happens When There’s an Error?\nRun the cell below to see how notebooks handle errors.\nThe error appears in the output, but other cells continue to work.\n\n# This will cause an error\nresult = 10 / 0\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[9], line 2\n      1 # This will cause an error\n----&gt; 2 result = 10 / 0\n\nZeroDivisionError: division by zero",
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#part-1-hello-pandas",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#part-1-hello-pandas",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "Part 1: Hello, Pandas!",
+    "text": "Part 1: Hello, Pandas!\nPandas is a Python library for working with structured data — like spreadsheets or tables.\nThe key building block is a DataFrame — think of it as a table with rows and columns, just like a spreadsheet.\nLet’s create a DataFrame using average monthly temperatures in New York City:\n\nimport pandas as pd\n\ndata = {\n    'month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',\n               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],\n    'avg_temp_c': [0, 1, 6, 12, 18, 23, 26, 25, 21, 15, 9, 3]\n}\n\ndf = pd.DataFrame(data)\ndf",
     "crumbs": [
       "Day 2",
       "Notebooks",
-      "hello_world.ipynb"
+      "pandas_matplotlib.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#what-is-a-series",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#what-is-a-series",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "What is a Series?",
+    "text": "What is a Series?\nA Series is a single column of data — like one column pulled from your DataFrame.\nYou can access a column by name using square brackets []. Let’s look at just the temperature column:\n\ntemperatures = df['avg_temp_c']\nprint(temperatures)",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "pandas_matplotlib.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#exploring-your-data",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#exploring-your-data",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "Exploring Your Data",
+    "text": "Exploring Your Data\nPandas has some handy methods for getting a quick look at your data:\n\ndf.head() — shows the first 5 rows\ndf.describe() — shows summary statistics like min, max, and average\ndf.shape — tells you how many rows and columns you have\n\nRun each cell below to see what they do:\n\ndf.head()\n\n\ndf.describe()\n\n\nprint(f\"This dataset has {df.shape[0]} rows and {df.shape[1]} columns.\")\n\nWhat did you notice from df.describe()? What was the hottest average month? What was the coldest?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "pandas_matplotlib.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#part-2-making-charts-with-matplotlib",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#part-2-making-charts-with-matplotlib",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "Part 2: Making Charts with Matplotlib",
+    "text": "Part 2: Making Charts with Matplotlib\nNumbers in a table are useful, but charts make patterns much easier to see!\nMatplotlib is a Python library for creating charts and visualizations.\nThe most common chart types are: - Line chart — great for showing change over time - Bar chart — great for comparing values side by side\nLet’s plot our temperature data as a line chart:\n\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 5))\nplt.plot(df['month'], df['avg_temp_c'], marker='o', color='steelblue', linewidth=2)\nplt.title('Average Monthly Temperature — New York City')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nNow let’s show the same data as a bar chart. Months below freezing (0°C) will appear in a different colour:\n\ncolors = ['steelblue' if t &gt;= 0 else 'slateblue' for t in df['avg_temp_c']]\n\nplt.figure(figsize=(10, 5))\nplt.bar(df['month'], df['avg_temp_c'], color=colors)\nplt.title('Average Monthly Temperature — New York City')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.axhline(y=0, color='black', linewidth=0.8)\nplt.show()",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "pandas_matplotlib.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#explore-different-cities",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#explore-different-cities",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "Explore Different Cities",
+    "text": "Explore Different Cities\nUse the dropdown below to pick a different city and see how the temperature pattern changes!\n\nCITY = \"Sydney\" #@param [\"New York\", \"Sydney\", \"London\", \"Nairobi\"]\n\ncity_data = {\n    \"New York\":  [0,  1,  6, 12, 18, 23, 26, 25, 21, 15,  9,  3],\n    \"Sydney\":    [26, 26, 24, 21, 18, 15, 14, 15, 17, 20, 22, 25],\n    \"London\":    [6,  6,  9, 12, 15, 18, 20, 20, 17, 13,  9,  6],\n    \"Nairobi\":   [22, 23, 23, 22, 21, 19, 18, 19, 21, 22, 21, 21]\n}\n\nmonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']\ntemps = city_data[CITY]\n\nplt.figure(figsize=(10, 5))\nplt.plot(months, temps, marker='o', color='coral', linewidth=2)\nplt.title(f'Average Monthly Temperature — {CITY}')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nWhat differences did you notice between cities? Which city has the most stable temperature year-round? Why do you think that is?",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "pandas_matplotlib.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/pandas_matplotlib.html#check-your-understanding",
+    "href": "labs/02/notebooks/pandas_matplotlib.html#check-your-understanding",
+    "title": "Exploring Data with Pandas and Matplotlib",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What is a Pandas DataFrame?”, “options”: [ { “key”: “a”, “text”: “A single column of data” }, { “key”: “b”, “text”: “A table of data with rows and columns” }, { “key”: “c”, “text”: “A type of chart” }, { “key”: “d”, “text”: “A Python function for reading files” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which Pandas method shows the first 5 rows of a DataFrame?”, “options”: [ { “key”: “a”, “text”: “df.show()” }, { “key”: “b”, “text”: “df.top()” }, { “key”: “c”, “text”: “df.first()” }, { “key”: “d”, “text”: “df.head()” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Matplotlib is used to load and clean data.”, “answer”: “False”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 2",
+      "Notebooks",
+      "pandas_matplotlib.ipynb"
     ]
   },
   {
@@ -952,7 +1207,7 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-3-national-average-mortality-over-time",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 3: National average mortality over time",
-    "text": "Step 3: National average mortality over time\nBecause each year contains 21 rows (one per aimag), we need to aggregate before we can plot a time series.\ngroupby lets us group all rows that share the same year, then calculate a summary statistic across those groups — in this case, the mean mortality percentage.\n\nnational = df.groupby(\"year\")[\"mortality_pct\"].mean().reset_index()\nnational.columns = [\"year\", \"avg_mortality_pct\"]\n\nprint(national.to_string(index=False))\n\nScan through the table. Two years should stand out immediately as far higher than the rest.\nWhich years are they? Before plotting, write down your prediction.\n\nfig, ax = plt.subplots(figsize=(13, 5))\n\nax.plot(national[\"year\"], national[\"avg_mortality_pct\"],\n        color=\"steelblue\", linewidth=2, marker=\"o\", markersize=5)\n\nax.set_xlabel(\"Year\", fontsize=12)\nax.set_ylabel(\"Average mortality (%)\", fontsize=12)\nax.set_title(\"National average livestock mortality — Mongolia 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nax.set_xticks(national[\"year\"])\nax.set_xticklabels(national[\"year\"], rotation=45, ha=\"right\", fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nThe two peaks correspond to the dzud catastrophes documented by researchers and the Mongolian government.\nThe 2000–2002 event and the 2009–2010 event together killed an estimated 20 million animals — roughly a third of Mongolia’s entire national herd at the time.\nDoes the chart match what you expected? Were there any years that surprised you — either higher or lower than you anticipated?",
+    "text": "Step 3: National average mortality over time\nBecause each year contains 21 rows (one per aimag), we need to aggregate before we can plot a time series.\ngroupby lets us group all rows that share the same year, then calculate a summary statistic across those groups — in this case, the mean mortality percentage.\n\nnational = df.groupby(\"year\")[\"mortality_pct\"].mean().reset_index()\nnational.columns = [\"year\", \"avg_mortality_pct\"]\n\nprint(national.to_string(index=False))\n\nScan through the table. Two years should stand out immediately as far higher than the rest.\nWhich years are they? Before plotting, write down your prediction.\nBefore you run the chart: looking at the table above, which two years stand out as the worst? Write down your prediction before plotting.\n\nfig, ax = plt.subplots(figsize=(13, 5))\n\nax.plot(national[\"year\"], national[\"avg_mortality_pct\"],\n        color=\"steelblue\", linewidth=2, marker=\"o\", markersize=5)\n\nax.set_xlabel(\"Year\", fontsize=12)\nax.set_ylabel(\"Average mortality (%)\", fontsize=12)\nax.set_title(\"National average livestock mortality — Mongolia 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nax.set_xticks(national[\"year\"])\nax.set_xticklabels(national[\"year\"], rotation=45, ha=\"right\", fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nThe two peaks correspond to the dzud catastrophes documented by researchers and the Mongolian government.\nThe 2000–2002 event and the 2009–2010 event together killed an estimated 20 million animals — roughly a third of Mongolia’s entire national herd at the time.\nDoes the chart match what you expected? Were there any years that surprised you — either higher or lower than you anticipated?\nDid the chart match your prediction? Were there any years that surprised you — either higher or lower than you expected? Describe the shape of the line.",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -964,7 +1219,7 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-4-which-aimags-were-hit-hardest",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 4: Which aimags were hit hardest?",
-    "text": "Step 4: Which aimags were hit hardest?\nThe national average tells you when disasters happened. But Mongolia is large — roughly the size of Western Europe — and conditions vary enormously across its 21 provinces.\nLet’s look at average mortality by aimag across the full 24-year period to find which regions are most vulnerable.\n\nby_aimag = (df.groupby([\"aimag\", \"region\"])[\"mortality_pct\"]\n            .mean()\n            .round(1)\n            .reset_index()\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nregion_palette = {\n    \"South\":   \"#E53935\",\n    \"West\":    \"#FB8C00\",\n    \"Central\": \"#8E24AA\",\n    \"North\":   \"#1E88E5\",\n    \"East\":    \"#43A047\"\n}\n\nbar_colors = [region_palette[r] for r in by_aimag[\"region\"]]\n\nax.barh(by_aimag[\"aimag\"], by_aimag[\"mortality_pct\"],\n        color=bar_colors, edgecolor=\"white\", linewidth=0.5)\n\nax.set_xlabel(\"Average mortality (%) across 1990–2013\", fontsize=11)\nax.set_title(\"Average livestock mortality by aimag\", fontsize=13, fontweight=\"bold\")\nax.invert_yaxis()\n\nfrom matplotlib.patches import Patch\nlegend_handles = [Patch(color=c, label=r) for r, c in region_palette.items()]\nax.legend(handles=legend_handles, title=\"Region\", fontsize=9, loc=\"lower right\")\n\nplt.tight_layout()\nplt.show()\n\nLook at which regions dominate the top of the chart.\nIs there a geographic pattern? What might explain why certain parts of Mongolia are more vulnerable than others?",
+    "text": "Step 4: Which aimags were hit hardest?\nThe national average tells you when disasters happened. But Mongolia is large — roughly the size of Western Europe — and conditions vary enormously across its 21 provinces.\nLet’s look at average mortality by aimag across the full 24-year period to find which regions are most vulnerable.\n\nby_aimag = (df.groupby([\"aimag\", \"region\"])[\"mortality_pct\"]\n            .mean()\n            .round(1)\n            .reset_index()\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nregion_palette = {\n    \"South\":   \"#E53935\",\n    \"West\":    \"#FB8C00\",\n    \"Central\": \"#8E24AA\",\n    \"North\":   \"#1E88E5\",\n    \"East\":    \"#43A047\"\n}\n\nbar_colors = [region_palette[r] for r in by_aimag[\"region\"]]\n\nax.barh(by_aimag[\"aimag\"], by_aimag[\"mortality_pct\"],\n        color=bar_colors, edgecolor=\"white\", linewidth=0.5)\n\nax.set_xlabel(\"Average mortality (%) across 1990–2013\", fontsize=11)\nax.set_title(\"Average livestock mortality by aimag\", fontsize=13, fontweight=\"bold\")\nax.invert_yaxis()\n\nfrom matplotlib.patches import Patch\nlegend_handles = [Patch(color=c, label=r) for r, c in region_palette.items()]\nax.legend(handles=legend_handles, title=\"Region\", fontsize=9, loc=\"lower right\")\n\nplt.tight_layout()\nplt.show()\n\nLook at which regions dominate the top of the chart.\nIs there a geographic pattern? What might explain why certain parts of Mongolia are more vulnerable than others?\nWhich regions dominate the top of the chart? Is there a clear geographic pattern? What might explain why certain parts of Mongolia are more vulnerable?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -988,7 +1243,7 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-6-zoom-in-on-the-worst-year",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 6: Zoom in on the worst year",
-    "text": "Step 6: Zoom in on the worst year\nLet’s take a closer look at 2001 — the single worst year in the dataset — and see how mortality varied across aimags.\n\nworst_year = 2001\n\ndf_worst = (df[df[\"year\"] == worst_year]\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nax.bar(df_worst[\"aimag\"], df_worst[\"mortality_pct\"],\n       color=\"firebrick\", edgecolor=\"white\", linewidth=0.5)\n\nax.axhline(y=df_worst[\"mortality_pct\"].mean(), color=\"black\",\n           linestyle=\"--\", linewidth=1.2,\n           label=f\"National average: {df_worst['mortality_pct'].mean():.1f}%\")\n\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(f\"Livestock mortality by aimag — {worst_year}\",\n             fontsize=13, fontweight=\"bold\")\nax.set_xticklabels(df_worst[\"aimag\"], rotation=45, ha=\"right\", fontsize=9)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nEven in the worst year, there is variation between aimags. Some are well above the national average; others are below it.\nIn the next notebook you will investigate why — and which variables in the dataset best explain the difference.\nBefore moving on: based on what you have seen today, what is your hypothesis? What do you think causes some aimags to suffer more than others, and some years to be catastrophic while others are normal?",
+    "text": "Step 6: Zoom in on the worst year\nLet’s take a closer look at 2001 — the single worst year in the dataset — and see how mortality varied across aimags.\n\nworst_year = 2001\n\ndf_worst = (df[df[\"year\"] == worst_year]\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nax.bar(df_worst[\"aimag\"], df_worst[\"mortality_pct\"],\n       color=\"firebrick\", edgecolor=\"white\", linewidth=0.5)\n\nax.axhline(y=df_worst[\"mortality_pct\"].mean(), color=\"black\",\n           linestyle=\"--\", linewidth=1.2,\n           label=f\"National average: {df_worst['mortality_pct'].mean():.1f}%\")\n\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(f\"Livestock mortality by aimag — {worst_year}\",\n             fontsize=13, fontweight=\"bold\")\nax.set_xticklabels(df_worst[\"aimag\"], rotation=45, ha=\"right\", fontsize=9)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nEven in the worst year, there is variation between aimags. Some are well above the national average; others are below it.\nIn the next notebook you will investigate why — and which variables in the dataset best explain the difference.\nBefore moving on: based on what you have seen today, what is your hypothesis? What do you think causes some aimags to suffer more than others, and some years to be catastrophic while others are normal?\nBased on everything you have seen today, what is your hypothesis? What do you think causes some years to become disasters while others don’t, and why do some aimags suffer more than others?",
     "crumbs": [
       "Day 3",
       "Notebooks",
@@ -1001,6 +1256,18 @@
     "title": "The Dzud — Finding the Disasters",
     "section": "What you have done in this notebook",
     "text": "What you have done in this notebook\nYou loaded a multi-dimensional dataset — 21 aimags across 24 years — and navigated its structure using groupby aggregation. You built four different visualisations that each reveal something different about the same data: when disasters happened, which regions are most vulnerable, the full pattern across all aimags and years simultaneously, and the variation within a single catastrophic year.\nThe next notebook asks the harder question: why do some years become disasters while others don’t? You will look for the variables that predict mortality — and find that one variable alone isn’t enough to explain it.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "finding_disasters.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/finding_disasters.html#check-your-understanding",
+    "href": "labs/03/notebooks/finding_disasters.html#check-your-understanding",
+    "title": "The Dzud — Finding the Disasters",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What does groupby allow you to do with a DataFrame?”, “options”: [ { “key”: “a”, “text”: “Filter rows that match a condition” }, { “key”: “b”, “text”: “Aggregate data by groups and calculate summaries” }, { “key”: “c”, “text”: “Sort the rows in a new order” }, { “key”: “d”, “text”: “Add new columns to the DataFrame” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In the heatmap, what does a darker red cell represent?”, “options”: [ { “key”: “a”, “text”: “A colder winter temperature” }, { “key”: “b”, “text”: “A higher livestock mortality rate” }, { “key”: “c”, “text”: “A lower mortality rate” }, { “key”: “d”, “text”: “More rainfall that year” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “In 2001, every aimag in Mongolia experienced exactly the same livestock mortality rate.”, “answer”: “False”, “submitted_answer”: “” }",
     "crumbs": [
       "Day 3",
       "Notebooks",

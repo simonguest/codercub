@@ -1063,6 +1063,95 @@ Simon Guest
 </div>
 
 </section>
+<section id="recap" class="slide level2">
+<h2>Recap</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="working-with-data" class="title-slide slide level1 center">
+<h1>Working with Data</h1>
+<ul>
+<li class="fragment">TBD: Why data is so important for AI models</li>
+</ul>
+</section>
+
+<section>
+<section id="introducing-pandas" class="title-slide slide level1 center">
+<h1>Introducing Pandas</h1>
+
+</section>
+<section id="what-is-pandas" class="slide level2">
+<h2>What is Pandas?</h2>
+<ul>
+<li class="fragment">A Python library for working with <strong>structured data</strong> — think spreadsheets, tables, CSVs</li>
+<li class="fragment">Lets you load, clean, filter, and analyze data with just a few lines of code</li>
+<li class="fragment">One of the most widely used tools in data science and AI</li>
+</ul>
+</section>
+<section id="a-brief-history-of-pandas" class="slide level2">
+<h2>A Brief History of Pandas</h2>
+<ul>
+<li class="fragment">Created by <strong>Wes McKinney</strong> in 2008 while working at an investment firm</li>
+<li class="fragment">He was frustrated that existing tools made data analysis too slow and painful</li>
+<li class="fragment">Released as open source — now downloaded hundreds of millions of times a year</li>
+<li class="fragment">The name comes from <strong>“Panel Data”</strong>, an economics term for multi-dimensional datasets</li>
+</ul>
+</section>
+<section id="key-pandas-concepts" class="slide level2">
+<h2>Key Pandas Concepts</h2>
+<ul>
+<li class="fragment"><strong>DataFrame</strong> — a table of data with rows and columns, like a spreadsheet</li>
+<li class="fragment"><strong>Series</strong> — a single column of data</li>
+<li class="fragment">Can read CSV files, Excel files, databases, JSON, and more</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data.csv&quot;</span>)</span>
+<span id="cb1-3"><a></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section>
+<section id="introducing-matplotlib" class="title-slide slide level1 center">
+<h1>Introducing Matplotlib</h1>
+
+</section>
+<section id="what-is-matplotlib" class="slide level2">
+<h2>What is Matplotlib?</h2>
+<ul>
+<li class="fragment">A Python library for creating <strong>charts and visualizations</strong></li>
+<li class="fragment">Line charts, bar charts, scatter plots, histograms, heatmaps, and more</li>
+<li class="fragment">Turns raw data into pictures — making patterns much easier to spot</li>
+</ul>
+</section>
+<section id="a-brief-history-of-matplotlib" class="slide level2">
+<h2>A Brief History of Matplotlib</h2>
+<ul>
+<li class="fragment">Created by <strong>John D. Hunter</strong> in 2003, originally for neuroscience research</li>
+<li class="fragment">He wanted Python to produce charts like MATLAB — without needing MATLAB</li>
+<li class="fragment">Hunter passed away in 2012, but the project continues as a major open-source effort</li>
+<li class="fragment">Today it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)</li>
+</ul>
+</section>
+<section id="key-matplotlib-concepts" class="slide level2">
+<h2>Key Matplotlib Concepts</h2>
+<ul>
+<li class="fragment"><strong>Figure</strong> — the entire canvas for your chart</li>
+<li class="fragment"><strong>Axes</strong> — the plot area where your data is actually drawn</li>
+<li class="fragment">Usually paired with Pandas: load data with Pandas, visualize it with Matplotlib</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">2</span>])</span>
+<span id="cb2-3"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Using Pandas and Matplotlib in a Notebook</p>
+</section>
+
+<section id="hands-on" class="title-slide slide level1 center">
+<h1>Hands-on</h1>
+<p>Run through the same Pandas and Matplotlib Notebook.</p>
+</section>
+
 <section>
 <section id="a-mystery" class="title-slide slide level1 center">
 <h1>A Mystery</h1>
@@ -1084,81 +1173,7 @@ Simon Guest
 <section id="a-mystery-1" class="title-slide slide level1 center">
 <h1>A Mystery</h1>
 <p>What causes this?</p>
-<p>Your job today is to figure out why, using data.</p>
-</section>
-
-<section>
-<section id="introducing-notebooks" class="title-slide slide level1 center">
-<h1>Introducing Notebooks</h1>
-
-</section>
-<section id="what-is-a-notebook" class="slide level2">
-<h2>What is a Notebook?</h2>
-<ul>
-<li class="fragment">An <strong>interactive document</strong> that combines:
-<ul>
-<li class="fragment">Code that can be executed</li>
-<li class="fragment">Rich text explanations (markdown)</li>
-<li class="fragment">Visualizations and outputs</li>
-</ul></li>
-<li class="fragment">Think of it as a <strong>computational story</strong>
-<ul>
-<li class="fragment">Tell a story with code, data, and explanations</li>
-</ul></li>
-<li class="fragment">Originally designed for data science and research</li>
-<li class="fragment">Now, a fundamental tool for working with AI</li>
-</ul>
-</section>
-<section id="a-brief-history-of-notebooks" class="slide level2">
-<h2>A Brief History of Notebooks</h2>
-<ul>
-<li class="fragment"><strong>2011</strong>: IPython Notebook project begins
-<ul>
-<li class="fragment">Interactive Python shell → web-based notebook</li>
-</ul></li>
-<li class="fragment"><strong>2014</strong>: Renamed to <strong>Jupyter</strong> (Julia, Python, R)
-<ul>
-<li class="fragment">Now supports 40+ programming languages</li>
-<li class="fragment">Python is most popular by far</li>
-</ul></li>
-<li class="fragment"><strong>2017</strong>: Google launches <strong>Colab</strong>
-<ul>
-<li class="fragment">Free cloud-based Jupyter notebooks</li>
-<li class="fragment">Free access to GPUs and TPUs</li>
-</ul></li>
-<li class="fragment"><strong>Today</strong>: Industry standard for ML/AI development</li>
-</ul>
-</section>
-<section id="anatomy-of-a-python-notebook" class="slide level2">
-<h2>Anatomy of a Python Notebook</h2>
-<ul>
-<li class="fragment"><strong>Cells</strong>: Building blocks of notebooks
-<ul>
-<li class="fragment"><strong>Code cells</strong>: Executable Python code</li>
-<li class="fragment"><strong>Markdown cells</strong>: Text, headings, images, equations</li>
-</ul></li>
-<li class="fragment"><strong>Outputs</strong>: Results appear directly below code cells
-<ul>
-<li class="fragment">Text, tables, plots, interactive widgets</li>
-</ul></li>
-<li class="fragment"><strong>Kernel</strong>: The computational engine running your code
-<ul>
-<li class="fragment">Maintains state between cell executions</li>
-</ul></li>
-</ul>
-</section></section>
-<section id="demo" class="title-slide slide level1 center">
-<h1>Demo</h1>
-<p>“Hello World” Jupyter Notebook on Google Colab</p>
-<ul>
-<li class="fragment">TBD</li>
-</ul>
-</section>
-
-<section id="hands-on" class="title-slide slide level1 center">
-<h1>Hands-On</h1>
-<p>Open the “Hello World” Jupyter Notebook on Google Colab</p>
-<p>Run and edit the code cells. Observe the outputs.</p>
+<p>Your job today is to figure out why, using pandas and matplotlib.</p>
 </section>
 
 <section>
@@ -1168,7 +1183,7 @@ Simon Guest
 </section>
 <section id="tbd" class="slide level2">
 <h2>TBD</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="bu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="bu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section></section>
