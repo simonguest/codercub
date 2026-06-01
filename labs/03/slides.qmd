@@ -19,9 +19,36 @@ format:
 
 - TBD
 
+## What is scikit-learn?
 
-## TBD
+- A Python library for **machine learning**
+- Built on top of NumPy and Pandas — works with DataFrames you already know
+- Provides ready-to-use models for:
+  - **Regression** — predicting a number (price, temperature, score)
+  - **Classification** — predicting a category (spam/not spam, yes/no)
+  - **Clustering** — finding hidden groups in data
+
+## The sklearn Workflow
+
+Every sklearn model follows the same three steps:
+
+. . .
+
+1. **Prepare** your features (`X`) and labels (`y`)
+2. **Fit** — `model.fit(X, y)` — the model *learns* from your data
+3. **Predict** — `model.predict(X_new)` — apply what it learned to new data
+
+## Your First sklearn Model
 
 ```python
-print("Hello world")
+from sklearn.linear_model import LinearRegression
+
+# Hours studied → test scores
+X = [[1], [2], [3], [4], [5]]   # feature (must be 2D)
+y = [50, 60, 65, 75, 85]        # label
+
+model = LinearRegression()
+model.fit(X, y)             # train
+
+model.predict([[6]])        # → predicted score for 6 hours
 ```
