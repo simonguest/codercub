@@ -60,3 +60,56 @@ print("Hello world")
 ```{=html}
 <iframe src="../components/nn.html" allowtransparency="true" width="100%" height="600px" style="border:none; background:transparent;"></iframe>
 ```
+
+# Introducing Notebooks
+
+## What is a Notebook?
+
+- An **interactive document** that combines:
+  - Code that can be executed
+  - Rich text explanations (markdown)
+  - Visualizations and outputs
+- Think of it as a **computational story**
+  - Tell a story with code, data, and explanations
+- Originally designed for data science and research
+- Now, a fundamental tool for working with AI
+
+## A Brief History of Notebooks
+
+- **2011**: IPython Notebook project begins
+  - Interactive Python shell → web-based notebook
+- **2014**: Renamed to **Jupyter** (Julia, Python, R)
+  - Now supports 40+ programming languages
+  - Python is most popular by far
+- **2017**: Google launches **Colab**
+  - Free cloud-based Jupyter notebooks
+  - Free access to GPUs and TPUs
+- **Today**: Industry standard for ML/AI development
+
+## Anatomy of a Python Notebook
+
+- **Cells**: Building blocks of notebooks
+  - **Code cells**: Executable Python code
+  - **Markdown cells**: Text, headings, images, equations
+- **Outputs**: Results appear directly below code cells
+  - Text, tables, plots, interactive widgets
+- **Kernel**: The computational engine running your code
+  - Maintains state between cell executions
+
+## Introducing Jupyter-K12
+
+- Notebook platform designed for K-12 students
+- Easy to setup; no accounts required
+- Extra features for in-classroom use
+- Created by me :)
+- You are the first students to use this!
+
+# Demo
+
+"Hello World" Notebook on Jupyter-K12
+
+# Hands-On
+
+Open the "Hello World" Notebook
+
+Run and edit the code cells. Observe the outputs.

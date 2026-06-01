@@ -1,5 +1,5 @@
 ---
-title: "Day 3"
+title: "Day 3: How Machines Learn"
 author: "Simon Guest"
 format:
   revealjs:
@@ -14,6 +14,11 @@ format:
       data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
 
 ---
+
+## Recap
+
+- TBD
+
 
 ## TBD
 

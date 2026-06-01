@@ -1,5 +1,5 @@
 ---
-title: "Day 4"
+title: "Day 4: AI in the Physical World"
 author: "Simon Guest"
 format:
   revealjs:

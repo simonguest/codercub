@@ -15,6 +15,76 @@ format:
 
 ---
 
+## Recap
+
+- TBD
+
+# Working with Data
+
+- TBD: Why data is so important for AI models
+
+# Introducing Pandas
+
+## What is Pandas?
+
+- A Python library for working with **structured data** — think spreadsheets, tables, CSVs
+- Lets you load, clean, filter, and analyze data with just a few lines of code
+- One of the most widely used tools in data science and AI
+
+## A Brief History of Pandas
+
+- Created by **Wes McKinney** in 2008 while working at an investment firm
+- He was frustrated that existing tools made data analysis too slow and painful
+- Released as open source — now downloaded hundreds of millions of times a year
+- The name comes from **"Panel Data"**, an economics term for multi-dimensional datasets
+
+## Key Pandas Concepts
+
+- **DataFrame** — a table of data with rows and columns, like a spreadsheet
+- **Series** — a single column of data
+- Can read CSV files, Excel files, databases, JSON, and more
+
+```python
+import pandas as pd
+df = pd.read_csv("data.csv")
+df.head()
+```
+
+# Introducing Matplotlib
+
+## What is Matplotlib?
+
+- A Python library for creating **charts and visualizations**
+- Line charts, bar charts, scatter plots, histograms, heatmaps, and more
+- Turns raw data into pictures — making patterns much easier to spot
+
+## A Brief History of Matplotlib
+
+- Created by **John D. Hunter** in 2003, originally for neuroscience research
+- He wanted Python to produce charts like MATLAB — without needing MATLAB
+- Hunter passed away in 2012, but the project continues as a major open-source effort
+- Today it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)
+
+## Key Matplotlib Concepts
+
+- **Figure** — the entire canvas for your chart
+- **Axes** — the plot area where your data is actually drawn
+- Usually paired with Pandas: load data with Pandas, visualize it with Matplotlib
+
+```python
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3], [4, 7, 2])
+plt.show()
+```
+
+# Demo
+
+Using Pandas and Matplotlib in a Notebook
+
+# Hands-on
+
+Run through the same Pandas and Matplotlib Notebook.
+
 # A Mystery
 
 ## Ulaanbaatar's Air Quality
@@ -30,54 +100,9 @@ format:
 
 What causes this?
 
-Your job today is to figure out why, using data.
+Your job today is to figure out why, using pandas and matplotlib.
 
-# Introducing Notebooks
 
-## What is a Notebook?
-
-- An **interactive document** that combines:
-  - Code that can be executed
-  - Rich text explanations (markdown)
-  - Visualizations and outputs
-- Think of it as a **computational story**
-  - Tell a story with code, data, and explanations
-- Originally designed for data science and research
-- Now, a fundamental tool for working with AI
-
-## A Brief History of Notebooks
-
-- **2011**: IPython Notebook project begins
-  - Interactive Python shell → web-based notebook
-- **2014**: Renamed to **Jupyter** (Julia, Python, R)
-  - Now supports 40+ programming languages
-  - Python is most popular by far
-- **2017**: Google launches **Colab**
-  - Free cloud-based Jupyter notebooks
-  - Free access to GPUs and TPUs
-- **Today**: Industry standard for ML/AI development
-
-## Anatomy of a Python Notebook
-
-- **Cells**: Building blocks of notebooks
-  - **Code cells**: Executable Python code
-  - **Markdown cells**: Text, headings, images, equations
-- **Outputs**: Results appear directly below code cells
-  - Text, tables, plots, interactive widgets
-- **Kernel**: The computational engine running your code
-  - Maintains state between cell executions
-
-# Demo
-
-"Hello World" Jupyter Notebook on Google Colab
-
-- TBD
-
-# Hands-On
-
-Open the "Hello World" Jupyter Notebook on Google Colab
-
-Run and edit the code cells. Observe the outputs.
 
 # Initial
 

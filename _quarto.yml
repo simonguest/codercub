@@ -31,6 +31,10 @@ website:
           - text: "Slides"
             href: labs/01/slides.qmd
             target: blank
+          - section: "Notebooks"
+            contents:
+              - text: "hello_world.ipynb"
+                href: labs/01/notebooks/hello_world.ipynb
       - section: "Day 2"
         contents:
           - text: "Slides"
@@ -38,8 +42,8 @@ website:
             target: blank
           - section: "Notebooks"
             contents:
-              - text: "hello_world.ipynb"
-                href: labs/02/notebooks/hello_world.ipynb
+              - text: "pandas_matplotlib.ipynb"
+                href: labs/02/notebooks/pandas_matplotlib.ipynb
               - text: "air_quality.ipynb"
                 href: labs/02/notebooks/air_quality.ipynb
               - text: "correlation.ipynb"
