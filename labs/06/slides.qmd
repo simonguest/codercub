@@ -15,8 +15,86 @@ format:
 
 ---
 
-## TBD
+## What Is a Neural Network?
 
-```python
-print("Hello world")
+- A computing system loosely **inspired by the human brain**
+- Made up of layers of connected **nodes** (neurons)
+  - **Input layer**: receives raw data (numbers, pixels, text)
+  - **Hidden layers**: find patterns in that data
+  - **Output layer**: produces the final prediction
+- Each connection has a **weight** — how much does one neuron influence the next?
+- Stack enough layers and the network can learn almost anything
+
+## How Does a Network Learn?
+
+- Learning = finding the right weights through repetition
+- **Forward pass**: data flows through the network → produces a prediction
+- **Loss function**: measures how wrong the prediction was
+- **Backpropagation**: traces the error back and nudges each weight
+- Repeat thousands of times on labeled training data → accuracy improves
+
+## Neural Network Demo
+
+## Will I Do Well on My Test?
+
+```{=html}
+<iframe src="../components/nn.html" allowtransparency="true" width="100%" height="600px" style="border:none; background:transparent;"></iframe>
 ```
+
+# How Do Computers See?
+
+## How Do Computers See?
+
+- Computers see images as **grids of numbers** — pixels
+- Each pixel is a number from 0–255 (or 3 numbers for color: R, G, B)
+- A 640×480 photo = nearly **1 million numbers**
+- The challenge: how do we find meaning in all those numbers?
+- Answer: **Convolutional Neural Networks (CNNs)**
+  - Specialized networks designed to process grid-like data
+
+## A Brief History of Computer Vision
+
+- **1989**: LeCun trains first CNN to read handwritten digits
+- **2012**: AlexNet wins the ImageNet challenge by a huge margin
+  - Error rate dropped from ~26% → ~15% overnight
+  - Kicked off the modern deep learning era
+- **2015**: Real-time object detection becomes practical (YOLO)
+- **2017–present**: CV is everywhere — phones, cars, hospitals, social media
+
+## Image Classification
+
+- **Question**: "What is in this image?"
+- The model assigns a **single label** to the entire photo
+- Examples:
+  - Is this a cat or a dog?
+  - What disease does this X-ray suggest?
+  - Which product is this on the shelf?
+- The first major CV task conquered by deep learning
+
+## Object Detection
+
+- **Question**: "What is in this image, and *where* is it?"
+- Detects **multiple objects** and draws bounding boxes around each one
+- Examples:
+  - Self-driving cars spotting pedestrians and vehicles in real time
+  - Security cameras flagging suspicious activity
+  - Counting inventory in a warehouse automatically
+
+## Pose Estimation
+
+- **Question**: "Where are the body parts?"
+- Detects **key landmarks** on a person — joints, hands, face points
+- Examples:
+  - Fitness apps checking your squat form
+  - Video games that respond to your movement (no controller needed)
+  - Physical therapy tools tracking patient recovery
+- We'll use MediaPipe for this in our notebooks
+
+## Image Segmentation
+
+- **Question**: "Which pixel belongs to which object?"
+- Goes beyond bounding boxes — labels **every single pixel**
+- Examples:
+  - Medical imaging — precisely outlining a tumor for surgeons
+  - Photo apps removing backgrounds with one tap
+  - Autonomous vehicles painting a full picture of the road scene

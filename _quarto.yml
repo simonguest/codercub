@@ -55,6 +55,8 @@ website:
             target: blank
           - section: "Notebooks"
             contents:
+              - text: "sklearn.ipynb"
+                href: labs/03/notebooks/sklearn.ipynb
               - text: "finding_disasters.ipynb"
                 href: labs/03/notebooks/finding_disasters.ipynb
               - text: "finding_cause.ipynb"

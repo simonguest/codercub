@@ -264,24 +264,139 @@ ctx.fill_rect(10, 10, 100, 50)
 
 ### `cv` — webcam and computer vision
 
+All detectors accept an optional `delegate="GPU"` argument (default). Falls back to CPU automatically with a printed warning if GPU is unavailable.
+
+**Setup:**
+
 ```python
 import cv
+import graphics
 
-canvas = cv.get_canvas()                              # auto-sized
-canvas = cv.get_canvas(width, height)                 # explicit pixels
-camera = cv.start_camera(canvas)                      # starts webcam feed
+canvas = graphics.canvas()           # auto-sized (full cell width, 4:3)
+canvas = graphics.canvas(640, 480)   # explicit pixels
+camera = cv.start_camera(canvas)     # starts webcam feed; canvas is optional (headless camera)
+```
 
-detector = cv.start_face_detector(camera)             # BlazeFace
-detector = cv.start_object_detector(camera)           # EfficientDet-Lite0
-detector = cv.start_object_detector(camera, delegate="GPU")
+**Face detection** (BlazeFace):
 
+```python
+detector = cv.start_face_detector(camera)
 detections = detector.get_detections()
-# Each detection: {"type": "face"|"<label>", "x": int, "y": int, "w": int, "h": int, "confidence": float}
-
+# Each detection: {"type": "face", "x": int, "y": int, "w": int, "h": int, "confidence": float}
 canvas.draw_bounding_boxes(detections)
-camera.stop()
 detector.stop()
 ```
+
+**Object detection** (EfficientDet-Lite0, 80 COCO classes):
+
+```python
+detector = cv.start_object_detector(camera)
+detections = detector.get_detections()
+# Each detection: {"type": "<label>", "x": int, "y": int, "w": int, "h": int, "confidence": float}
+canvas.draw_bounding_boxes(detections)
+detector.stop()
+```
+
+**Pose landmarker** (MediaPipe Pose, 33 landmarks):
+
+```python
+detector = cv.start_pose_detector(camera)              # num_poses=1 default
+detector = cv.start_pose_detector(camera, num_poses=2) # detect up to 2 people
+poses = detector.get_detections()
+# poses is a list of poses; each pose is a list of 33 landmark dicts:
+# {"x": int, "y": int, "z": float, "visibility": float}
+# Index landmarks with cv.POSE constants:
+left_elbow = poses[0][cv.POSE.LEFT_ELBOW]
+canvas.draw_poses(poses)
+detector.stop()
+```
+
+Available `cv.POSE` landmarks: `NOSE`, `LEFT_EYE_INNER`, `LEFT_EYE`, `LEFT_EYE_OUTER`, `RIGHT_EYE_INNER`, `RIGHT_EYE`, `RIGHT_EYE_OUTER`, `LEFT_EAR`, `RIGHT_EAR`, `MOUTH_LEFT`, `MOUTH_RIGHT`, `LEFT_SHOULDER`, `RIGHT_SHOULDER`, `LEFT_ELBOW`, `RIGHT_ELBOW`, `LEFT_WRIST`, `RIGHT_WRIST`, `LEFT_PINKY`, `RIGHT_PINKY`, `LEFT_INDEX`, `RIGHT_INDEX`, `LEFT_THUMB`, `RIGHT_THUMB`, `LEFT_HIP`, `RIGHT_HIP`, `LEFT_KNEE`, `RIGHT_KNEE`, `LEFT_ANKLE`, `RIGHT_ANKLE`, `LEFT_HEEL`, `RIGHT_HEEL`, `LEFT_FOOT_INDEX`, `RIGHT_FOOT_INDEX`.
+
+**Gesture recognition** (MediaPipe Gesture Recognizer, 21 hand landmarks):
+
+```python
+detector = cv.start_gesture_detector(camera)               # num_hands=2 default
+detector = cv.start_gesture_detector(camera, num_hands=1)
+detections = detector.get_detections()
+# Each detection: {"gesture": str, "confidence": float, "handedness": "Left"|"Right",
+#                  "landmarks": [{"x": int, "y": int, "z": float}, ...]}  # 21 landmarks
+# Gesture values: "None", "Closed_Fist", "Open_Palm", "Pointing_Up",
+#                 "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou"
+thumb_tip = detections[0]["landmarks"][cv.HAND.THUMB_TIP]
+canvas.draw_hands(detections)
+detector.stop()
+```
+
+Available `cv.HAND` landmarks: `WRIST`, `THUMB_CMC`, `THUMB_MCP`, `THUMB_IP`, `THUMB_TIP`, `INDEX_FINGER_MCP`, `INDEX_FINGER_PIP`, `INDEX_FINGER_DIP`, `INDEX_FINGER_TIP`, `MIDDLE_FINGER_MCP`, `MIDDLE_FINGER_PIP`, `MIDDLE_FINGER_DIP`, `MIDDLE_FINGER_TIP`, `RING_FINGER_MCP`, `RING_FINGER_PIP`, `RING_FINGER_DIP`, `RING_FINGER_TIP`, `PINKY_MCP`, `PINKY_PIP`, `PINKY_DIP`, `PINKY_TIP`.
+
+**Image segmentation** (MediaPipe Selfie Multi-Class):
+
+```python
+segmenter = cv.start_segmenter(camera)
+segments = segmenter.get_segments()  # list of class names visible in the frame
+# e.g. ["background", "hair", "clothes"]
+
+# Paint a segment class with a solid colour
+cv.color_segment(canvas, segmenter, cv.SEGMENT.HAIR, "#ff69b4", opacity=0.6)
+
+# Replace a segment with an image, clipped to the segment shape
+cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, "/sample_files/cat.png", opacity=0.9)
+
+segmenter.stop()
+```
+
+Available `cv.SEGMENT` classes: `BACKGROUND`, `HAIR`, `BODY_SKIN`, `FACE_SKIN`, `CLOTHES`, `OTHERS`.
+
+**Stopping everything:**
+
+```python
+camera.stop()
+```
+
+### `scene3d` — interactive 3D scenes (BabylonJS)
+
+```python
+import scene3d, math
+
+scene = scene3d.Scene()          # creates canvas + BabylonJS engine, shows output immediately
+scene.set_sky("#87CEEB")         # background colour
+scene.set_ground(length=10, width=10)
+
+box = scene3d.Shapes.Box(width=1, height=1, depth=1)
+box.set_position(0, 0.5, 0)
+box.set_color("#cc4400")
+box.on_click(lambda: box.set_color("#ff0000"))
+scene.add(box)
+
+sphere = scene3d.Shapes.Sphere(diameter=1, segments=16)
+scene.add(sphere)
+
+ctx = scene.get_context('2d')    # 2D overlay canvas for HUD drawing (supports standard Canvas2D methods)
+
+t = 0.0
+
+@scene.on_frame                  # called each render tick; dt = seconds since last frame
+def animate(dt):
+    global t
+    t += dt
+    box.set_position(0, 0.5 + math.sin(t * 2), 0)
+    ctx.clear()
+    ctx.fill_style = '#ffffff'
+    ctx.fill_text(f'Time: {t:.1f}s', 10, 24)
+
+scene.run()                      # blocks Python in event loop; Stop button works
+```
+
+**Shapes:** `Shapes.Box(width, height, depth)`, `Shapes.Sphere(diameter, segments)`, `Shapes.Cylinder(diameter, height, tessellation)`.
+
+**Scene defaults:** ArcRotateCamera (mouse orbit/zoom), HemisphericLight, dark background. BabylonJS loads lazily the first time `scene3d` is used.
+
+**`ctx.clear()`** is a custom method that clears the full 2D overlay; all other standard Canvas2D methods work normally.
+
+**`scene.run()`** must be the last call — it blocks Python in an event loop. The Stop button interrupts it within ~250 ms.
+
+---
 
 ### Standard scientific libraries (available via Pyodide)
 
