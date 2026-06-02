@@ -78,11 +78,31 @@ website:
           - text: "Slides"
             href: labs/06/slides.qmd
             target: blank
+          - section: "Notebooks"
+            contents:
+              - text: "face_detection.ipynb"
+                href: labs/06/notebooks/face_detection.ipynb
+              - text: "object_detection.ipynb"
+                href: labs/06/notebooks/object_detection.ipynb
+              - text: "pose_landmarks.ipynb"
+                href: labs/06/notebooks/pose_landmarks.ipynb
+              - text: "gesture_recognition.ipynb"
+                href: labs/06/notebooks/gesture_recognition.ipynb
+              - text: "image_segmentation.ipynb"
+                href: labs/06/notebooks/image_segmentation.ipynb
       - section: "Day 7"
         contents:
           - text: "Slides"
             href: labs/07/slides.qmd
             target: blank
+          - section: "Notebooks"
+            contents:
+              - text: "tosh_qaychi_qogoz.ipynb"
+                href: labs/07/notebooks/tosh_qaychi_qogoz.ipynb
+              - text: "gesture_painter.ipynb"
+                href: labs/07/notebooks/gesture_painter.ipynb
+              - text: "pose_avatar.ipynb"
+                href: labs/07/notebooks/pose_avatar.ipynb
       - section: "Day 8"
         contents:
           - text: "Slides"
