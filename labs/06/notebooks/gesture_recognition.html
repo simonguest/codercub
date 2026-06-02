@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introducing Correlation – Codercub Summer of Code 2026</title>
+<title>Gesture Recognition with Computer Vision – Codercub Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/03/slides.html" rel="next">
-<link href="../../../labs/02/notebooks/air_quality.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas_matplotlib.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation.html">correlation.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Gesture Recognition with Computer Vision</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -377,13 +375,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/pandas_matplotlib.html" class="sidebar-item-text sidebar-link">
@@ -398,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/02/notebooks/correlation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/02/notebooks/correlation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">correlation.ipynb</span></a>
   </div>
 </li>
@@ -587,9 +585,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas_matplotlib.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation.html">correlation.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introducing Correlation</h1>
+<h1 class="title">Gesture Recognition with Computer Vision</h1>
 </div>
 
 
@@ -606,183 +604,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="does-colder-weather-mean-worse-air" class="level2">
-<h2 class="anchored" data-anchor-id="does-colder-weather-mean-worse-air">Does colder weather mean worse air?</h2>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/02/notebooks/correlation.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<p>In the previous notebook you found that Ulaanbaatar’s air quality follows a striking seasonal pattern: dangerous in winter, relatively clean in summer.</p>
-<p>That raises an obvious question: is temperature the cause?</p>
-<p>In this notebook you will: - Build a scatter plot to look for a relationship between temperature and pollution - Colour the data points by season to see whether the pattern holds year-round - Calculate a correlation coefficient to put a number on the relationship - Test whether other variables in the dataset also play a role</p>
+<p>In this notebook, you’ll use a neural network to recognize hand gestures in real time. The model tracks <strong>21 landmarks</strong> per hand and classifies the shape into one of <strong>8 named gestures</strong> — all without any special hardware.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/06/notebooks/gesture_recognition.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>By the end of this notebook, you will be able to:</p>
+<ul>
+<li>Explain how gesture recognition builds on hand landmark detection</li>
+<li>Use Python to detect hand gestures and read landmark positions</li>
+<li>Distinguish between left and right hands using the <code>handedness</code> field</li>
+<li>Reflect on real-world applications of gesture-based interfaces</li>
+</ul>
 </section>
-<section id="step-1-load-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-load-the-data">Step 1: Load the data</h2>
-<p>We start the same way as before — loading the dataset and importing our libraries.</p>
-<div id="262ab33e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> httpx</span>
+<section id="what-is-gesture-recognition" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-gesture-recognition">What Is Gesture Recognition?</h2>
+<p><strong>Gesture recognition</strong> combines two ideas:</p>
+<ol type="1">
+<li><strong>Hand landmark detection</strong> — locating 21 key points on each hand (fingertips, joints, wrist)</li>
+<li><strong>Gesture classification</strong> — analyzing the shape of those landmarks to name the gesture</li>
+</ol>
+<p>This platform uses <strong>MediaPipe Gesture Recognizer</strong>, which can identify these 8 gestures:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Gesture</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>None</code></td>
+<td>No recognized gesture</td>
+</tr>
+<tr class="even">
+<td><code>Closed_Fist</code></td>
+<td>All fingers curled in</td>
+</tr>
+<tr class="odd">
+<td><code>Open_Palm</code></td>
+<td>All fingers extended, palm facing forward</td>
+</tr>
+<tr class="even">
+<td><code>Pointing_Up</code></td>
+<td>Index finger extended upward</td>
+</tr>
+<tr class="odd">
+<td><code>Thumb_Down</code></td>
+<td>Thumbs down</td>
+</tr>
+<tr class="even">
+<td><code>Thumb_Up</code></td>
+<td>Thumbs up</td>
+</tr>
+<tr class="odd">
+<td><code>Victory</code></td>
+<td>Index and middle fingers extended (V sign)</td>
+</tr>
+<tr class="even">
+<td><code>ILoveYou</code></td>
+<td>ASL “I love you” sign</td>
+</tr>
+</tbody>
+</table>
+<section id="real-world-applications" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-applications">Real-World Applications</h3>
+<ul>
+<li><strong>Accessibility tools</strong> let people control devices without touching a keyboard or mouse</li>
+<li><strong>Presentation software</strong> advances slides with a swipe gesture</li>
+<li><strong>Smart home systems</strong> turn lights on or off based on a hand signal</li>
+<li><strong>Sign language translation</strong> tools interpret hand shapes as words</li>
+</ul>
+</section>
+</section>
+<section id="step-1-live-gesture-detection" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-live-gesture-detection">Step 1: Live Gesture Detection</h2>
+<p>The cell below starts your camera and runs gesture detection in real time. Hold your hand up and try different gestures — the model will draw landmarks on your hand and print the detected gesture once per second.</p>
+<p>Make sure there is enough light so the camera can clearly see your hand. Click <strong>Allow</strong> for webcam access, then click <strong>Stop</strong> (■) when you’re ready to move on.</p>
+<div id="cell-live-detection" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> httpx.get(url)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(io.StringIO(response.text))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Loaded </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> rows and </span><span class="sc">{</span><span class="bu">len</span>(df.columns)<span class="sc">}</span><span class="ss"> columns"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Date range: </span><span class="sc">{</span>df[<span class="st">'date'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'date'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span><span class="bu">len</span>(detections)<span class="sc">}</span><span class="ss"> hand(s) detected ---"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss"> hand: </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>hand[<span class="st">'confidence'</span>]<span class="sc">:.1%}</span><span class="ss">)"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="step-2-your-first-scatter-plot" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-your-first-scatter-plot">Step 2: Your first scatter plot</h2>
-<p>A scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together.</p>
-<p>We will put temperature on the x-axis and PM2.5 on the y-axis. Before you run the cell, make a prediction: what shape do you expect to see?</p>
-<p>Before you run the scatter plot: what do you predict it will look like? Do you think the dots will slope upward, downward, or be flat? Will they be tightly grouped or spread out?</p>
-<div id="423e00d8" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'temp_c'</span>],</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">'pm25'</span>],</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.3</span>,       <span class="co"># transparency so overlapping points are visible</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">12</span>,            <span class="co"># dot size</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'steelblue'</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Temperature vs. PM2.5 — Ulaanbaatar 2019–2021'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Look at the overall shape of the cloud of points.</p>
-<ul>
-<li>Does it slope upward, downward, or is it flat?</li>
-<li>Are the points tightly clustered, or spread out loosely?</li>
-<li>Are there any days that don’t fit the pattern?</li>
-</ul>
-<p>Describe what you see in the scatter plot. Does it slope up or down? Are the points tightly clustered or spread out? Were there any days that didn’t fit the pattern?</p>
-</section>
-<section id="step-3-colour-the-points-by-season" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-colour-the-points-by-season">Step 3: Colour the points by season</h2>
-<p>The scatter plot shows a clear slope, but it mixes together data from all four seasons. Let’s colour each point by season so we can see whether the pattern is consistent throughout the year, or whether one season is driving the whole relationship.</p>
-<div id="7a94cc5a" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>season_colors <span class="op">=</span> {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Winter'</span>: <span class="st">'#4477AA'</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Spring'</span>: <span class="st">'#66BB6A'</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Summer'</span>: <span class="st">'#FFA726'</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Autumn'</span>: <span class="st">'#AB47BC'</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> season, color <span class="kw">in</span> season_colors.items():</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> df[df[<span class="st">'season'</span>] <span class="op">==</span> season]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    ax.scatter(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        subset[<span class="st">'temp_c'</span>],</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        subset[<span class="st">'pm25'</span>],</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.4</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        s<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>color,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>season</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Temperature vs. PM2.5 by Season'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">'Season'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The four seasons should now appear as distinct clusters.</p>
-<ul>
-<li>Where do the Winter points sit on the chart?</li>
-<li>Where do the Summer points sit?</li>
-<li>Do Spring and Autumn overlap, or are they clearly separated?</li>
-</ul>
-<p>Notice that the downward slope is not caused by one unusual season pulling the average down. Each season sits in its own region of the chart, and the overall slope emerges from the progression across all four.</p>
-<p>Where do the Winter points appear on the chart compared to the Summer points? Do Spring and Autumn overlap, or are they clearly separated? What does the position of each season’s cluster tell you?</p>
-</section>
-<section id="step-4-putting-a-number-on-the-relationship" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-putting-a-number-on-the-relationship">Step 4: Putting a number on the relationship</h2>
-<p>The scatter plot shows that colder temperatures tend to go with higher pollution. But how strong is that relationship exactly?</p>
-<p>A <strong>correlation coefficient</strong> measures the strength and direction of a relationship between two variables. It always falls between -1 and +1:</p>
-<ul>
-<li><strong>-1</strong> means a perfect inverse relationship: as one variable goes up, the other always goes down</li>
-<li><strong>0</strong> means no relationship at all</li>
-<li><strong>+1</strong> means a perfect direct relationship: both variables always move together</li>
-</ul>
-<p>In pandas, you can calculate it with a single line.</p>
-<div id="d8be7662" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> df[<span class="st">'pm25'</span>].corr(df[<span class="st">'temp_c'</span>])</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between temperature and PM2.5: </span><span class="sc">{</span>correlation<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>A value close to -0.85 is a strong negative correlation. In practical terms it means:</p>
-<ul>
-<li>The relationship is reliable — cold days are almost always more polluted</li>
-<li>But it is not perfect — temperature is not the only factor at play</li>
-<li>Something else must explain the remaining variation</li>
-</ul>
-<p>That “something else” is worth investigating. The dataset contains other variables that might also play a role: <code>wind_speed_ms</code> and <code>pm10</code> for example.</p>
-</section>
-<section id="step-5-your-turn" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-your-turn">Step 5: Your turn</h2>
-<p>The cell below is set up to plot temperature against PM2.5 — the same chart you already made.</p>
-<p>Try changing the variables on the x or y axis to investigate other relationships in the data.</p>
-<p>Some questions to try: - Does wind speed affect pollution? Plot <code>wind_speed_ms</code> on the x-axis against <code>pm25</code> on the y-axis. Is the correlation stronger or weaker than temperature? - How closely do PM2.5 and PM10 track each other? Try plotting one against the other. - Does the temperature correlation look the same if you only look at Winter days? Add a filter: <code>df_test = df[df['season'] == 'Winter']</code> and re-run.</p>
-<p>Change one thing at a time, re-run the cell, and note what you find.</p>
-<div id="2f8e25e6" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change these two variables to explore other relationships</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x_column <span class="op">=</span> <span class="st">'temp_c'</span>     <span class="co"># try: 'wind_speed_ms', 'pm10'</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y_column <span class="op">=</span> <span class="st">'pm25'</span>       <span class="co"># try: 'pm10', 'pm25'</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change this if you want to filter to one season</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df_test <span class="op">=</span> df                           <span class="co"># or: df[df['season'] == 'Winter']</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ax.scatter(df_test[x_column], df_test[y_column], alpha<span class="op">=</span><span class="fl">0.3</span>, s<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(x_column, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(y_column, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'</span><span class="sc">{</span>x_column<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>y_column<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df_test[x_column].corr(df_test[y_column])</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.03</span>, <span class="fl">0.93</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>))</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="step-2-explore-hand-landmarks" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-explore-hand-landmarks">Step 2: Explore Hand Landmarks</h2>
+<p>Beyond the gesture name, the detector gives you the exact position of every joint. We access individual landmarks using <code>cv.HAND</code> constants — for example, <code>cv.HAND.INDEX_FINGER_TIP</code>.</p>
+<p>The cell below prints the index fingertip and wrist position once per second alongside the live hand overlay. Try different hand shapes and watch the coordinates change.</p>
+<p>Click <strong>Stop</strong> (■) when you’re done.</p>
+<div id="cell-explore-landmarks" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                tip   <span class="op">=</span> hand[<span class="st">'landmarks'</span>][cv.HAND.INDEX_FINGER_TIP]</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                wrist <span class="op">=</span> hand[<span class="st">'landmarks'</span>][cv.HAND.WRIST]</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss"> hand — </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  Index fingertip: (</span><span class="sc">{</span>tip[<span class="st">'x'</span>]<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>tip[<span class="st">'y'</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  Wrist          : (</span><span class="sc">{</span>wrist[<span class="st">'x'</span>]<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>wrist[<span class="st">'y'</span>]<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="step-6-what-have-you-found" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-what-have-you-found">Step 6: What have you found?</h2>
-<p>You now have a specific, evidence-backed answer to today’s question.</p>
-<p>Take a moment to write your conclusion:</p>
-<ol type="1">
-<li>What is the relationship between temperature and PM2.5 in Ulaanbaatar?</li>
-<li>How confident are you in this conclusion, based on the correlation value?</li>
-<li>What other variable in the dataset had the strongest relationship with PM2.5?</li>
-<li>Is temperature the only cause of high winter pollution, or just a reliable indicator of it? What is the actual mechanism? (Hint: think about how people heat their homes in -30°C winters.)</li>
-</ol>
-<p>Write your answers in the cell below — double-click to edit it.</p>
-<p><em>Write your conclusions here.</em></p>
-<ol type="1">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ol>
+<section id="step-3-experiment-gesture-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-experiment-gesture-challenge">Step 3: Experiment — Gesture Challenge</h2>
+<p>Use the dropdown to choose a <strong>target gesture</strong>, then run the cell and try to make that gesture. The output will tell you what gesture it’s currently seeing and whether it matches your target.</p>
+<p>Can you hit <strong>MATCH!</strong> on every gesture in the list? Click <strong>Stop</strong> (■) when you’re done.</p>
+<div id="cell-gesture-experiment" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>TARGET_GESTURE <span class="op">=</span> <span class="st">"Thumb_Up"</span> <span class="co">#@param ["None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou"]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> detections:</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                    matched <span class="op">=</span> hand[<span class="st">'gesture'</span>] <span class="op">==</span> TARGET_GESTURE</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                    result  <span class="op">=</span> <span class="st">"MATCH!"</span> <span class="cf">if</span> matched <span class="cf">else</span> <span class="st">"not yet..."</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss"> hand: </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>hand[<span class="st">'confidence'</span>]<span class="sc">:.1%}</span><span class="ss">) — </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="st">"No hands detected — hold your hand up to the camera."</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="where-this-is-heading" class="level2">
-<h2 class="anchored" data-anchor-id="where-this-is-heading">Where this is heading</h2>
-<p>You have now done something that data scientists do every day: used a scatter plot and a correlation coefficient to identify which variable best predicts an outcome.</p>
-<p>The next step — which you will explore in tomorrow’s session — is to let a machine learn that relationship automatically from the data, and then use it to make predictions on days it has never seen before.</p>
-<p>The question will change from “does temperature predict pollution?” to “given today’s temperature, what PM2.5 level would a model predict for tomorrow?” That is the core idea behind linear regression, and it is also the core idea behind what the micro:bit will do with your movement data later this week.</p>
+<section id="reflect" class="level2">
+<h2 class="anchored" data-anchor-id="reflect">Reflect</h2>
+<p>Record your observations in the journal cells below.</p>
+<p>Which gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?</p>
+<p>Gesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems.</p>
 </section>
-<section id="check-your-understanding" class="level2">
-<h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does a correlation coefficient of -0.85 tell you?”, “options”: [ { “key”: “a”, “text”: “No relationship between the two variables” }, { “key”: “b”, “text”: “A weak positive relationship” }, { “key”: “c”, “text”: “A strong negative relationship” }, { “key”: “d”, “text”: “A perfect negative relationship” } ], “answer”: “c”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “If two variables are strongly correlated, it proves that one causes the other.”, “answer”: “False”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “In a scatter plot, what does each dot represent?”, “options”: [ { “key”: “a”, “text”: “A monthly average” }, { “key”: “b”, “text”: “A single day’s reading” }, { “key”: “c”, “text”: “A full year of data” }, { “key”: “d”, “text”: “A column in the dataset” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+<section id="check-for-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-for-understanding">Check for Understanding</h2>
+<p>{ “question_type”: “multiple_choice”, “question”: “How many different gestures can the MediaPipe Gesture Recognizer detect?”, “options”: [ { “key”: “a”, “text”: “4” }, { “key”: “b”, “text”: “6” }, { “key”: “c”, “text”: “8” }, { “key”: “d”, “text”: “12” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “The gesture detector can tell whether a detected hand is the left or right hand.”, “answer”: “True”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “How many landmarks does MediaPipe track per hand?”, “options”: [ { “key”: “a”, “text”: “5 (one per finger)” }, { “key”: “b”, “text”: “10” }, { “key”: “c”, “text”: “21” }, { “key”: “d”, “text”: “33” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “The gesture detector can only track one hand at a time.”, “answer”: “False”, “submitted_answer”: “” }</p>
 
 
 </section>
@@ -1201,18 +1206,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../labs/02/notebooks/air_quality.html" class="pagination-link" aria-label="air_quality.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">air_quality.ipynb</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../labs/03/slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

@@ -1,5 +1,180 @@
 [
   {
+    "objectID": "labs/06/notebooks/pose_landmarks.html",
+    "href": "labs/06/notebooks/pose_landmarks.html",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll use a neural network to detect the position of 33 body landmarks in real time. By tracking joints like shoulders, elbows, and wrists, we can understand how a person is moving — without knowing who they are."
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#learning-objectives",
+    "href": "labs/06/notebooks/pose_landmarks.html#learning-objectives",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain what pose estimation is and how it differs from face or object detection\nUse Python to detect and draw body landmarks from a live webcam feed\nAccess individual landmark coordinates using named constants\nWrite simple logic based on body position (e.g., detecting a raised arm)\nReflect on the applications and privacy implications of pose tracking"
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#what-is-pose-estimation",
+    "href": "labs/06/notebooks/pose_landmarks.html#what-is-pose-estimation",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "What Is Pose Estimation?",
+    "text": "What Is Pose Estimation?\nPose estimation detects the position of specific points on a person’s body — called landmarks or keypoints. The result is a skeleton-like overlay showing where joints are located in the image.\nThis platform uses MediaPipe Pose, which tracks 33 landmarks including: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, and ankles.\nEach landmark has: - x, y — position on screen (pixels) - z — estimated depth (how far the point is from the camera) - visibility — how confident the model is that this point is visible (0.0 – 1.0)\n\nReal-World Applications\n\nFitness apps analyze your exercise form and count reps automatically\nVideo games let you control characters with your body movements\nPhysical therapy tools track patient progress and flag unsafe movements\nAnimation studios use pose capture to bring characters to life\n\nNotice that none of these need to know who you are — just how you’re positioned."
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#step-1-live-pose-detection",
+    "href": "labs/06/notebooks/pose_landmarks.html#step-1-live-pose-detection",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Step 1: Live Pose Detection",
+    "text": "Step 1: Live Pose Detection\nThe cell below starts your camera and draws a skeleton overlay on your body in real time. Step back so your full upper body is visible — the model works best when it can see your shoulders, arms, and head.\nClick Allow when your browser asks for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#step-2-explore-landmark-data",
+    "href": "labs/06/notebooks/pose_landmarks.html#step-2-explore-landmark-data",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Step 2: Explore Landmark Data",
+    "text": "Step 2: Explore Landmark Data\nThe cell below runs the same live skeleton overlay, but also prints the coordinates of key joints once per second. We access each landmark using cv.POSE constants — for example, cv.POSE.LEFT_WRIST.\nMove your arms, lean in, or step back and watch the numbers change.\n\nTip: In image coordinates, y=0 is the top of the screen and increases downward.\n\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\nkey_points = [\n    (\"Nose\",           cv.POSE.NOSE),\n    (\"Left Shoulder\",  cv.POSE.LEFT_SHOULDER),\n    (\"Right Shoulder\", cv.POSE.RIGHT_SHOULDER),\n    (\"Left Wrist\",     cv.POSE.LEFT_WRIST),\n    (\"Right Wrist\",    cv.POSE.RIGHT_WRIST),\n]\n\nframe = 0\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        if frame % 30 == 0:\n            if poses:\n                pose = poses[0]\n                print(\"--- Key landmarks ---\")\n                for name, idx in key_points:\n                    lm = pose[idx]\n                    print(f\"  {name:16}: x={lm['x']}, y={lm['y']}  (visible: {lm['visibility']:.0%})\")\n            else:\n                print(\"No pose detected — step back so more of your body is visible.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#step-3-experiment-arm-raise-detector",
+    "href": "labs/06/notebooks/pose_landmarks.html#step-3-experiment-arm-raise-detector",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Step 3: Experiment — Arm Raise Detector",
+    "text": "Step 3: Experiment — Arm Raise Detector\nNow let’s write logic on top of the landmark data. If your wrist is higher than your shoulder, your arm is raised. Since y=0 is the top of the screen, a higher position means a smaller y value.\nRun the cell, then try raising one or both arms. Watch the status update in the output. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        if frame % 30 == 0:\n            if poses:\n                pose       = poses[0]\n                l_wrist    = pose[cv.POSE.LEFT_WRIST]\n                l_shoulder = pose[cv.POSE.LEFT_SHOULDER]\n                r_wrist    = pose[cv.POSE.RIGHT_WRIST]\n                r_shoulder = pose[cv.POSE.RIGHT_SHOULDER]\n                left_raised  = l_wrist['y'] &lt; l_shoulder['y']\n                right_raised = r_wrist['y'] &lt; r_shoulder['y']\n                print(f\"Left arm: {'RAISED' if left_raised else 'at side'}  |  \"\n                      f\"Right arm: {'RAISED' if right_raised else 'at side'}\")\n            else:\n                print(\"No pose detected.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#reflect",
+    "href": "labs/06/notebooks/pose_landmarks.html#reflect",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nImagine you could only see the skeleton data — no video, no face, no identity. What could you still figure out about the person? What couldn’t you tell?\nFitness apps, games, and therapy tools all use pose estimation. Pick one application and describe how it would use landmark data. What are the benefits? Could there be any privacy concerns?"
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#check-for-understanding",
+    "href": "labs/06/notebooks/pose_landmarks.html#check-for-understanding",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “true_false”, “question”: “MediaPipe Pose tracks 33 landmarks on the human body.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the visibility value tell you about a landmark?”, “options”: [ { “key”: “a”, “text”: “Whether the landmark is currently moving” }, { “key”: “b”, “text”: “How confident the model is that the landmark is visible” }, { “key”: “c”, “text”: “The color of the landmark on screen” }, { “key”: “d”, “text”: “How far the person is from the camera in meters” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “In image coordinates, a smaller y value means the point is higher on the screen.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which constant would you use to get the position of a person’s left wrist?”, “options”: [ { “key”: “a”, “text”: “cv.POSE.LEFT_HAND” }, { “key”: “b”, “text”: “cv.POSE.LEFT_WRIST” }, { “key”: “c”, “text”: “cv.POSE.WRIST_LEFT” }, { “key”: “d”, “text”: “cv.POSE.LEFT_PALM” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html",
+    "href": "labs/06/notebooks/image_segmentation.html",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll explore image segmentation — the most detailed form of computer vision. Instead of drawing a box around something, segmentation labels every single pixel in the frame, letting us recolor hair, replace backgrounds, and change clothing colors in real time."
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#learning-objectives",
+    "href": "labs/06/notebooks/image_segmentation.html#learning-objectives",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how image segmentation differs from object detection\nUse Python to segment body parts and apply color effects in a live webcam feed\nReplace a video background using a single line of code\nReflect on how segmentation is used in everyday apps and medical imaging"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#what-is-image-segmentation",
+    "href": "labs/06/notebooks/image_segmentation.html#what-is-image-segmentation",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "What Is Image Segmentation?",
+    "text": "What Is Image Segmentation?\nYou’ve seen how object detection draws bounding boxes — rectangles around objects. Segmentation goes much further: it assigns a class label to every pixel in the image.\nThis platform uses MediaPipe Selfie Multi-Class Segmenter, which classifies pixels into 6 categories:\n\n\n\nClass\nWhat it covers\n\n\n\n\nBACKGROUND\nEverything behind the person\n\n\nHAIR\nHair on the head\n\n\nBODY_SKIN\nExposed skin on arms and hands\n\n\nFACE_SKIN\nSkin on the face\n\n\nCLOTHES\nClothing worn by the person\n\n\nOTHERS\nAccessories, glasses, etc.\n\n\n\n\nReal-World Applications\n\nVideo calls (Zoom, Teams) use background segmentation to blur or replace your background\nPhoto apps let you change hair color or apply filters to just your face\nMedical imaging outlines tumors or organs with pixel-perfect accuracy for surgeons\nFilm production composites actors onto virtual sets without a green screen"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#step-1-explore-segment-classes",
+    "href": "labs/06/notebooks/image_segmentation.html#step-1-explore-segment-classes",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 1: Explore Segment Classes",
+    "text": "Step 1: Explore Segment Classes\nThe cell below starts your camera and segmenter, then prints the segment classes it can see in the frame once per second. Make sure your face, hair, and shoulders are visible.\nClick Allow for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\nframe = 0\ntry:\n    while True:\n        if frame % 30 == 0:\n            segments = segmenter.get_segments()\n            print(\"Segments visible:\", segments)\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#step-2-recolor-your-hair",
+    "href": "labs/06/notebooks/image_segmentation.html#step-2-recolor-your-hair",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 2: Recolor Your Hair",
+    "text": "Step 2: Recolor Your Hair\nThe cv.color_segment() function fills a segment class with a solid color at a given opacity. The original video still shows through — the color is an overlay blended on top.\nRun the cell to color your hair pink in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, cv.SEGMENT.HAIR, \"#ff69b4\", opacity=0.7)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#step-3-replace-your-background",
+    "href": "labs/06/notebooks/image_segmentation.html#step-3-replace-your-background",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 3: Replace Your Background",
+    "text": "Step 3: Replace Your Background\nThe cv.apply_image_to_segment() function replaces a segment with an image file, clipped precisely to that segment’s shape.\nRun the cell to replace your background with a sample image in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, \"/sample_files/cat.png\", opacity=0.9)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
+    "href": "labs/06/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 4: Experiment — Color Any Segment",
+    "text": "Step 4: Experiment — Color Any Segment\nUse the controls below to choose which body part to recolor, what color to apply, and how strong the effect is. Set your values, run the cell, and see the result live.\nStop the cell, adjust the controls, and run again to try something different. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nSEGMENT = \"HAIR\"    #@param [\"HAIR\", \"BODY_SKIN\", \"FACE_SKIN\", \"CLOTHES\"]\nCOLOR   = \"#ff69b4\" #@param [\"#ff69b4\", \"#00bfff\", \"#00ff88\", \"#ff4500\", \"#ffffff\", \"#ffff00\"]\nOPACITY = 0.6       #@param {type:\"slider\", min:0.1, max:1.0, step:0.1}\n\nsegment_map = {\n    \"HAIR\":      cv.SEGMENT.HAIR,\n    \"BODY_SKIN\": cv.SEGMENT.BODY_SKIN,\n    \"FACE_SKIN\": cv.SEGMENT.FACE_SKIN,\n    \"CLOTHES\":   cv.SEGMENT.CLOTHES,\n}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, segment_map[SEGMENT], COLOR, opacity=OPACITY)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#reflect",
+    "href": "labs/06/notebooks/image_segmentation.html#reflect",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nHow precise were the segment boundaries? Did you notice any areas where the model struggled — for example, at the edges of your hair or where your clothing meets your skin?\nVirtual background replacement is now built into most video call apps. What are the benefits? Are there any situations where this technology could be misused or misleading?"
+  },
+  {
+    "objectID": "labs/06/notebooks/image_segmentation.html#check-for-understanding",
+    "href": "labs/06/notebooks/image_segmentation.html#check-for-understanding",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “multiple_choice”, “question”: “What makes image segmentation more detailed than object detection?”, “options”: [ { “key”: “a”, “text”: “Segmentation is faster to run” }, { “key”: “b”, “text”: “Segmentation labels every pixel, not just bounding boxes” }, { “key”: “c”, “text”: “Segmentation only works on people” }, { “key”: “d”, “text”: “Segmentation doesn’t use neural networks” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Image segmentation draws bounding boxes around each detected person.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which segment class would you use to recolor someone’s hair?”, “options”: [ { “key”: “a”, “text”: “cv.SEGMENT.FACE_SKIN” }, { “key”: “b”, “text”: “cv.SEGMENT.BODY_SKIN” }, { “key”: “c”, “text”: “cv.SEGMENT.HAIR” }, { “key”: “d”, “text”: “cv.SEGMENT.OTHERS” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “You can only apply color to one segment class per frame.”, “answer”: “False”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html",
+    "href": "labs/06/notebooks/face_detection.html",
+    "title": "Face Detection with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll use a neural network to detect faces in real time using your webcam. You’ll learn how computers “see” and locate faces in an image — and think about how this technology is used in the real world."
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#learning-objectives",
+    "href": "labs/06/notebooks/face_detection.html#learning-objectives",
+    "title": "Face Detection with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain the difference between face detection and face recognition\nUse Python to detect faces in a live webcam feed\nRead and interpret bounding box data returned by a detector\nUnderstand what a confidence score means in AI detection\nReflect on ethical uses of face detection technology"
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#what-is-face-detection",
+    "href": "labs/06/notebooks/face_detection.html#what-is-face-detection",
+    "title": "Face Detection with Computer Vision",
+    "section": "What Is Face Detection?",
+    "text": "What Is Face Detection?\nFace detection is the task of finding where faces are located in an image or video frame. The output is a bounding box — a rectangle drawn around each face — plus a confidence score that says how certain the model is.\nThis is not the same as face recognition, which tries to identify who a person is. Face detection only says: “there is a face at this location.” It has no idea who you are.\n\nReal-World Applications\n\nPhone cameras auto-focus on faces when you line up a shot\nSecurity systems alert staff when a person enters a restricted area\nVideo filters (Snapchat, TikTok) track your face position in real time\nMedical imaging tools find regions of interest in scans for further analysis\n\nUnder the hood, modern face detectors are small neural networks trained on millions of face images — exactly the kind of networks you learned about today."
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#step-1-live-face-detection",
+    "href": "labs/06/notebooks/face_detection.html#step-1-live-face-detection",
+    "title": "Face Detection with Computer Vision",
+    "section": "Step 1: Live Face Detection",
+    "text": "Step 1: Live Face Detection\nThis platform uses BlazeFace — a lightweight neural network from Google that detects faces in real time. Each face it finds is returned as a dictionary with these fields:\n\n\n\nField\nMeaning\n\n\n\n\nx, y\nTop-left corner of the bounding box (pixels)\n\n\nw, h\nWidth and height of the bounding box (pixels)\n\n\nconfidence\nHow certain the model is (0.0 – 1.0)\n\n\n\nRun the cell below — your browser will ask for webcam access, click Allow. The detector will run continuously and draw a box around any face it finds. Click Stop (■) in the toolbar when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#step-2-explore-the-detection-data",
+    "href": "labs/06/notebooks/face_detection.html#step-2-explore-the-detection-data",
+    "title": "Face Detection with Computer Vision",
+    "section": "Step 2: Explore the Detection Data",
+    "text": "Step 2: Explore the Detection Data\nThe cell below runs the same live detection loop, but also prints the raw numbers for every face it finds — updated once per second.\nTry moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} face(s) detected ---\")\n            for i, face in enumerate(detections):\n                print(f\"  Face {i + 1}: x={face['x']}, y={face['y']}  \"\n                      f\"size={face['w']}x{face['h']}  confidence={face['confidence']:.1%}\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#step-3-experiment-confidence-threshold",
+    "href": "labs/06/notebooks/face_detection.html#step-3-experiment-confidence-threshold",
+    "title": "Face Detection with Computer Vision",
+    "section": "Step 3: Experiment — Confidence Threshold",
+    "text": "Step 3: Experiment — Confidence Threshold\nA confidence threshold filters out detections the model isn’t sure about.\n\nHigh threshold (e.g., 0.90) → only very certain detections pass through\nLow threshold (e.g., 0.20) → more detections, including uncertain ones\n\nSet the slider to your desired threshold, then run the cell. The loop will filter detections in real time using that value. Try a very high threshold — can you make the detector lose track of your face?\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nCONFIDENCE_THRESHOLD = 0.7 #@param {type:\"slider\", min:0.1, max:1.0, step:0.05}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        filtered = [d for d in detections if d['confidence'] &gt;= CONFIDENCE_THRESHOLD]\n        canvas.draw_bounding_boxes(filtered)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#reflect",
+    "href": "labs/06/notebooks/face_detection.html#reflect",
+    "title": "Face Detection with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nTake a moment to record your observations and thoughts in the journal cells below.\nWhat did you notice when you changed the confidence threshold? Did the detector ever get it wrong — missing your face, or detecting something that wasn’t a face?\nFace detection is used in schools, airports, stadiums, and social media platforms. Where do you think it’s helpful? Are there places where you’d want limits on how it’s used — and why?"
+  },
+  {
+    "objectID": "labs/06/notebooks/face_detection.html#check-for-understanding",
+    "href": "labs/06/notebooks/face_detection.html#check-for-understanding",
+    "title": "Face Detection with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\nAnswer the questions below to check what you’ve learned.\n{ “question_type”: “true_false”, “question”: “Face detection can identify who a person is.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does a confidence score of 0.95 mean for a face detection?”, “options”: [ { “key”: “a”, “text”: “95 faces were found in the image” }, { “key”: “b”, “text”: “The model is 95% certain it found a face” }, { “key”: “c”, “text”: “The face is 95 pixels wide” }, { “key”: “d”, “text”: “The detection took 0.95 seconds” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Setting a higher confidence threshold causes the detector to find more faces.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which four values describe a bounding box around a detected face?”, “options”: [ { “key”: “a”, “text”: “x, y, width, height” }, { “key”: “b”, “text”: “top, bottom, left, right” }, { “key”: “c”, “text”: “row, column, depth, color” }, { “key”: “d”, “text”: “red, green, blue, alpha” } ], “answer”: “a”, “submitted_answer”: “” }"
+  },
+  {
     "objectID": "labs/03/notebooks/regression.html",
     "href": "labs/03/notebooks/regression.html",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
@@ -502,11 +677,110 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#tbd",
-    "href": "labs/06/slides.html#tbd",
+    "objectID": "labs/06/slides.html#what-is-a-neural-network",
+    "href": "labs/06/slides.html#what-is-a-neural-network",
     "title": "Day 6",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "section": "What Is a Neural Network?",
+    "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#how-does-a-network-learn",
+    "href": "labs/06/slides.html#how-does-a-network-learn",
+    "title": "Day 6",
+    "section": "How Does a Network Learn?",
+    "text": "How Does a Network Learn?\n\nLearning = finding the right weights through repetition\nForward pass: data flows through the network → produces a prediction\nLoss function: measures how wrong the prediction was\nBackpropagation: traces the error back and nudges each weight\nRepeat thousands of times on labeled training data → accuracy improves",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#neural-network-demo",
+    "href": "labs/06/slides.html#neural-network-demo",
+    "title": "Day 6",
+    "section": "Neural Network Demo",
+    "text": "Neural Network Demo",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/06/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 6",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#how-do-computers-see-1",
+    "href": "labs/06/slides.html#how-do-computers-see-1",
+    "title": "Day 6",
+    "section": "How Do Computers See?",
+    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?\nAnswer: Convolutional Neural Networks (CNNs)\n\nSpecialized networks designed to process grid-like data",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#a-brief-history-of-computer-vision",
+    "href": "labs/06/slides.html#a-brief-history-of-computer-vision",
+    "title": "Day 6",
+    "section": "A Brief History of Computer Vision",
+    "text": "A Brief History of Computer Vision\n\n1989: LeCun trains first CNN to read handwritten digits\n2012: AlexNet wins the ImageNet challenge by a huge margin\n\nError rate dropped from ~26% → ~15% overnight\nKicked off the modern deep learning era\n\n2015: Real-time object detection becomes practical (YOLO)\n2017–present: CV is everywhere — phones, cars, hospitals, social media",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#image-classification",
+    "href": "labs/06/slides.html#image-classification",
+    "title": "Day 6",
+    "section": "Image Classification",
+    "text": "Image Classification\n\nQuestion: “What is in this image?”\nThe model assigns a single label to the entire photo\nExamples:\n\nIs this a cat or a dog?\nWhat disease does this X-ray suggest?\nWhich product is this on the shelf?\n\nThe first major CV task conquered by deep learning",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#object-detection",
+    "href": "labs/06/slides.html#object-detection",
+    "title": "Day 6",
+    "section": "Object Detection",
+    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#pose-estimation",
+    "href": "labs/06/slides.html#pose-estimation",
+    "title": "Day 6",
+    "section": "Pose Estimation",
+    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#image-segmentation",
+    "href": "labs/06/slides.html#image-segmentation",
+    "title": "Day 6",
+    "section": "Image Segmentation",
+    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
     "crumbs": [
       "Day 6",
       "Slides"
@@ -698,28 +972,6 @@
     ]
   },
   {
-    "objectID": "labs/01/slides.html#nn-demo",
-    "href": "labs/01/slides.html#nn-demo",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "NN Demo",
-    "text": "NN Demo",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/01/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "labs/01/slides.html#what-is-a-notebook",
     "href": "labs/01/slides.html#what-is-a-notebook",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
@@ -775,11 +1027,33 @@
     ]
   },
   {
-    "objectID": "labs/03/slides.html#tbd",
-    "href": "labs/03/slides.html#tbd",
+    "objectID": "labs/03/slides.html#what-is-scikit-learn",
+    "href": "labs/03/slides.html#what-is-scikit-learn",
     "title": "Day 3: How Machines Learn",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "section": "What is scikit-learn?",
+    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of NumPy and Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#the-sklearn-workflow",
+    "href": "labs/03/slides.html#the-sklearn-workflow",
+    "title": "Day 3: How Machines Learn",
+    "section": "The sklearn Workflow",
+    "text": "The sklearn Workflow\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#your-first-sklearn-model",
+    "href": "labs/03/slides.html#your-first-sklearn-model",
+    "title": "Day 3: How Machines Learn",
+    "section": "Your First sklearn Model",
+    "text": "Your First sklearn Model\nfrom sklearn.linear_model import LinearRegression\n\n# Hours studied → test scores\nX = [[1], [2], [3], [4], [5]]   # feature (must be 2D)\ny = [50, 60, 65, 75, 85]        # label\n\nmodel = LinearRegression()\nmodel.fit(X, y)             # train\n\nmodel.predict([[6]])        # → predicted score for 6 hours",
     "crumbs": [
       "Day 3",
       "Slides"
@@ -1273,5 +1547,237 @@
       "Notebooks",
       "finding_disasters.ipynb"
     ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html",
+    "href": "labs/03/notebooks/sklearn.html",
+    "title": "Predicting with scikit-learn",
+    "section": "",
+    "text": "In this notebook, you’ll train your first machine learning model using scikit-learn — the most popular Python library for machine learning.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#what-youll-learn",
+    "href": "labs/03/notebooks/sklearn.html#what-youll-learn",
+    "title": "Predicting with scikit-learn",
+    "section": "What You’ll Learn",
+    "text": "What You’ll Learn\n\nWhat scikit-learn is and what it’s used for\nThe three-step sklearn workflow: prepare → fit → predict\nHow to train a linear regression model on a simple dataset\nHow to visualize your model’s predictions",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#part-1-what-is-scikit-learn",
+    "href": "labs/03/notebooks/sklearn.html#part-1-what-is-scikit-learn",
+    "title": "Predicting with scikit-learn",
+    "section": "Part 1: What is scikit-learn?",
+    "text": "Part 1: What is scikit-learn?\nscikit-learn (imported as sklearn) is a Python library that gives you ready-to-use machine learning models.\nIt works alongside the tools you already know: Pandas organizes your data, Matplotlib visualizes it, and sklearn learns from it.\nEvery sklearn model follows the same three steps: 1. Prepare your data into features (X) and labels (y) 2. Fit — model.fit(X, y) — the model finds the pattern in your data 3. Predict — model.predict(...) — use the learned pattern on new data",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#part-2-our-dataset",
+    "href": "labs/03/notebooks/sklearn.html#part-2-our-dataset",
+    "title": "Predicting with scikit-learn",
+    "section": "Part 2: Our Dataset",
+    "text": "Part 2: Our Dataset\nWe’ll start with a simple question: can a machine learn the relationship between hours spent studying and test scores?\nHere’s data from a group of students:\n\nimport pandas as pd\n\nhours  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nscores = [45, 52, 58, 63, 70, 74, 80, 85, 88, 94]\n\ndf = pd.DataFrame({'hours_studied': hours, 'test_score': scores})\ndf",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#features-and-labels",
+    "href": "labs/03/notebooks/sklearn.html#features-and-labels",
+    "title": "Predicting with scikit-learn",
+    "section": "Features and Labels",
+    "text": "Features and Labels\nBefore training, we split our data into two parts: - X — the feature (what we know): hours studied - y — the label (what we want to predict): test score\nWe can pull these directly from our DataFrame. Notice we use double brackets df[['hours_studied']] for X — that keeps it as a table (one column), which is what sklearn expects:\n\nX = df[['hours_studied']]   # double brackets → keeps it as a table\ny = df['test_score']         # single brackets → a simple list of values\n\nprint(\"X — our feature (hours studied):\")\nprint(X.head())\nprint(\"\\ny — our label (test scores):\")\nprint(y.values)",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#part-3-training-a-model",
+    "href": "labs/03/notebooks/sklearn.html#part-3-training-a-model",
+    "title": "Predicting with scikit-learn",
+    "section": "Part 3: Training a Model",
+    "text": "Part 3: Training a Model\nWe’ll use Linear Regression — a model that finds the best straight line through your data points.\nmodel.fit(X, y) is where the learning happens. The model figures out the slope and position of the line that best matches your data:\n\nfrom sklearn.linear_model import LinearRegression\n\nmodel = LinearRegression()\nmodel.fit(X, y)\n\nprint(\"Model trained!\")\nprint(f\"  Slope:     {model.coef_[0]:.2f}  (score increases by this much per hour)\")\nprint(f\"  Intercept: {model.intercept_:.2f}  (predicted score at 0 hours)\")",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#part-4-making-predictions",
+    "href": "labs/03/notebooks/sklearn.html#part-4-making-predictions",
+    "title": "Predicting with scikit-learn",
+    "section": "Part 4: Making Predictions",
+    "text": "Part 4: Making Predictions\nNow that the model has learned the pattern, we can ask it to predict scores for hours it has never seen.\nmodel.predict() takes a feature value and returns its best guess:\n\ntest_hours = pd.DataFrame({'hours_studied': [3, 6, 11]})\npredictions = model.predict(test_hours)\n\nfor h, p in zip([3, 6, 11], predictions):\n    print(f\"  {h:2d} hours studied  →  predicted score: {p:.1f}\")",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#part-5-seeing-the-models-line",
+    "href": "labs/03/notebooks/sklearn.html#part-5-seeing-the-models-line",
+    "title": "Predicting with scikit-learn",
+    "section": "Part 5: Seeing the Model’s Line",
+    "text": "Part 5: Seeing the Model’s Line\nThe best way to understand a linear regression model is to see the line it drew.\nThe blue dots are the real data points. The red line is what the model learned:\n\nimport matplotlib.pyplot as plt\n\nx_vals = list(range(0, 13))\nx_line = pd.DataFrame({'hours_studied': x_vals})\ny_line = model.predict(x_line)\n\nplt.figure(figsize=(9, 5))\nplt.scatter(df['hours_studied'], df['test_score'], color='steelblue', s=80, zorder=5, label='Actual scores')\nplt.plot(x_vals, y_line, color='crimson', linewidth=2, label='Model prediction')\nplt.title('Hours Studied vs Test Score')\nplt.xlabel('Hours Studied')\nplt.ylabel('Test Score')\nplt.legend()\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nThe model predicted a score above 100 for 11 hours. Does that seem realistic? What are the limits of using a straight line to model real-world data like this?",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#predict-your-score",
+    "href": "labs/03/notebooks/sklearn.html#predict-your-score",
+    "title": "Predicting with scikit-learn",
+    "section": "Predict Your Score",
+    "text": "Predict Your Score\nUse the slider to choose how many hours you studied, and see what the model predicts:\n\nHOURS_STUDIED = 5 #@param {type:\"slider\", min:1, max:15, step:1}\n\nprediction = model.predict(pd.DataFrame({'hours_studied': [HOURS_STUDIED]}))[0]\nprint(f\"Hours studied: {HOURS_STUDIED}\")\nprint(f\"Predicted score: {prediction:.1f}\")",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn.html#check-your-understanding",
+    "href": "labs/03/notebooks/sklearn.html#check-your-understanding",
+    "title": "Predicting with scikit-learn",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “In sklearn, what does model.fit(X, y) do?”, “options”: [ { “key”: “a”, “text”: “It creates a chart of the data” }, { “key”: “b”, “text”: “It trains the model by learning patterns from the data” }, { “key”: “c”, “text”: “It makes a prediction for new data” }, { “key”: “d”, “text”: “It loads data from a CSV file” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In machine learning, what do we call the value we are trying to predict?”, “options”: [ { “key”: “a”, “text”: “A feature” }, { “key”: “b”, “text”: “A model” }, { “key”: “c”, “text”: “A label” }, { “key”: “d”, “text”: “A slope” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “scikit-learn can only be used for linear regression.”, “answer”: “False”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "sklearn.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html",
+    "href": "labs/06/notebooks/gesture_recognition.html",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll use a neural network to recognize hand gestures in real time. The model tracks 21 landmarks per hand and classifies the shape into one of 8 named gestures — all without any special hardware."
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#learning-objectives",
+    "href": "labs/06/notebooks/gesture_recognition.html#learning-objectives",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how gesture recognition builds on hand landmark detection\nUse Python to detect hand gestures and read landmark positions\nDistinguish between left and right hands using the handedness field\nReflect on real-world applications of gesture-based interfaces"
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#what-is-gesture-recognition",
+    "href": "labs/06/notebooks/gesture_recognition.html#what-is-gesture-recognition",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "What Is Gesture Recognition?",
+    "text": "What Is Gesture Recognition?\nGesture recognition combines two ideas:\n\nHand landmark detection — locating 21 key points on each hand (fingertips, joints, wrist)\nGesture classification — analyzing the shape of those landmarks to name the gesture\n\nThis platform uses MediaPipe Gesture Recognizer, which can identify these 8 gestures:\n\n\n\nGesture\nDescription\n\n\n\n\nNone\nNo recognized gesture\n\n\nClosed_Fist\nAll fingers curled in\n\n\nOpen_Palm\nAll fingers extended, palm facing forward\n\n\nPointing_Up\nIndex finger extended upward\n\n\nThumb_Down\nThumbs down\n\n\nThumb_Up\nThumbs up\n\n\nVictory\nIndex and middle fingers extended (V sign)\n\n\nILoveYou\nASL “I love you” sign\n\n\n\n\nReal-World Applications\n\nAccessibility tools let people control devices without touching a keyboard or mouse\nPresentation software advances slides with a swipe gesture\nSmart home systems turn lights on or off based on a hand signal\nSign language translation tools interpret hand shapes as words"
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#step-1-live-gesture-detection",
+    "href": "labs/06/notebooks/gesture_recognition.html#step-1-live-gesture-detection",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Step 1: Live Gesture Detection",
+    "text": "Step 1: Live Gesture Detection\nThe cell below starts your camera and runs gesture detection in real time. Hold your hand up and try different gestures — the model will draw landmarks on your hand and print the detected gesture once per second.\nMake sure there is enough light so the camera can clearly see your hand. Click Allow for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} hand(s) detected ---\")\n            for hand in detections:\n                print(f\"  {hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#step-2-explore-hand-landmarks",
+    "href": "labs/06/notebooks/gesture_recognition.html#step-2-explore-hand-landmarks",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Step 2: Explore Hand Landmarks",
+    "text": "Step 2: Explore Hand Landmarks\nBeyond the gesture name, the detector gives you the exact position of every joint. We access individual landmarks using cv.HAND constants — for example, cv.HAND.INDEX_FINGER_TIP.\nThe cell below prints the index fingertip and wrist position once per second alongside the live hand overlay. Try different hand shapes and watch the coordinates change.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            for hand in detections:\n                tip   = hand['landmarks'][cv.HAND.INDEX_FINGER_TIP]\n                wrist = hand['landmarks'][cv.HAND.WRIST]\n                print(f\"{hand['handedness']} hand — {hand['gesture']}\")\n                print(f\"  Index fingertip: ({tip['x']}, {tip['y']})\")\n                print(f\"  Wrist          : ({wrist['x']}, {wrist['y']})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
+    "href": "labs/06/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Step 3: Experiment — Gesture Challenge",
+    "text": "Step 3: Experiment — Gesture Challenge\nUse the dropdown to choose a target gesture, then run the cell and try to make that gesture. The output will tell you what gesture it’s currently seeing and whether it matches your target.\nCan you hit MATCH! on every gesture in the list? Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nTARGET_GESTURE = \"Thumb_Up\" #@param [\"None\", \"Closed_Fist\", \"Open_Palm\", \"Pointing_Up\", \"Thumb_Down\", \"Thumb_Up\", \"Victory\", \"ILoveYou\"]\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            if detections:\n                for hand in detections:\n                    matched = hand['gesture'] == TARGET_GESTURE\n                    result  = \"MATCH!\" if matched else \"not yet...\"\n                    print(f\"{hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%}) — {result}\")\n            else:\n                print(\"No hands detected — hold your hand up to the camera.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#reflect",
+    "href": "labs/06/notebooks/gesture_recognition.html#reflect",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nWhich gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?\nGesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems."
+  },
+  {
+    "objectID": "labs/06/notebooks/gesture_recognition.html#check-for-understanding",
+    "href": "labs/06/notebooks/gesture_recognition.html#check-for-understanding",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “multiple_choice”, “question”: “How many different gestures can the MediaPipe Gesture Recognizer detect?”, “options”: [ { “key”: “a”, “text”: “4” }, { “key”: “b”, “text”: “6” }, { “key”: “c”, “text”: “8” }, { “key”: “d”, “text”: “12” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The gesture detector can tell whether a detected hand is the left or right hand.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “How many landmarks does MediaPipe track per hand?”, “options”: [ { “key”: “a”, “text”: “5 (one per finger)” }, { “key”: “b”, “text”: “10” }, { “key”: “c”, “text”: “21” }, { “key”: “d”, “text”: “33” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The gesture detector can only track one hand at a time.”, “answer”: “False”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html",
+    "href": "labs/06/notebooks/object_detection.html",
+    "title": "Object Detection with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll use a neural network to detect and label everyday objects in real time. Unlike face detection, which only looks for one thing, an object detector can recognize 80 different categories — all at the same time."
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#learning-objectives",
+    "href": "labs/06/notebooks/object_detection.html#learning-objectives",
+    "title": "Object Detection with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how object detection extends face detection to many object categories\nUse Python to detect and label objects in a live webcam feed\nFilter detections by confidence score\nReflect on real-world uses of multi-class object detection"
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#from-face-detection-to-object-detection",
+    "href": "labs/06/notebooks/object_detection.html#from-face-detection-to-object-detection",
+    "title": "Object Detection with Computer Vision",
+    "section": "From Face Detection to Object Detection",
+    "text": "From Face Detection to Object Detection\nIn the face detection notebook, the model was trained to find one thing: faces. An object detector is more general — it’s trained to find dozens of different object categories at once.\nThis platform uses EfficientDet-Lite0, a compact but powerful model trained on the COCO dataset. COCO contains 80 everyday object categories, including:\n\nPeople, chairs, laptops, phones, cups, books\nCars, bikes, dogs, cats, birds\nAnd many more…\n\nEach detection still returns a bounding box and a confidence score — but now also includes a label telling you what was found.\n\nReal-World Applications\n\nSelf-driving cars detect pedestrians, vehicles, traffic signs, and cyclists simultaneously\nRetail stores count products on shelves and track inventory automatically\nAccessibility tools describe the contents of a scene to visually impaired users"
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#step-1-live-object-detection",
+    "href": "labs/06/notebooks/object_detection.html#step-1-live-object-detection",
+    "title": "Object Detection with Computer Vision",
+    "section": "Step 1: Live Object Detection",
+    "text": "Step 1: Live Object Detection\nThe cell below starts your camera and runs the object detector in real time. Bounding boxes will appear around anything the model recognizes, labeled with the object type.\nPoint the camera around the room to see what it finds. Click Allow when your browser asks for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#step-2-explore-detection-data",
+    "href": "labs/06/notebooks/object_detection.html#step-2-explore-detection-data",
+    "title": "Object Detection with Computer Vision",
+    "section": "Step 2: Explore Detection Data",
+    "text": "Step 2: Explore Detection Data\nThe cell below runs the same live loop but also prints the raw detection data once per second. Each detection has a type (the object label), position, size, and confidence score.\nTry pointing the camera at different objects around the room and watch the output update. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} object(s) detected ---\")\n            for i, obj in enumerate(detections):\n                print(f\"  {obj['type']}: ({obj['x']}, {obj['y']})  \"\n                      f\"size={obj['w']}x{obj['h']}  confidence={obj['confidence']:.1%}\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#step-3-experiment-confidence-threshold",
+    "href": "labs/06/notebooks/object_detection.html#step-3-experiment-confidence-threshold",
+    "title": "Object Detection with Computer Vision",
+    "section": "Step 3: Experiment — Confidence Threshold",
+    "text": "Step 3: Experiment — Confidence Threshold\nA confidence threshold controls how certain the model must be before a detection is shown.\n\nA low threshold finds more objects, but some may be wrong\nA high threshold only shows objects the model is very sure about\n\nSet the slider to your desired threshold, then run the cell. The loop filters detections in real time using that value. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nCONFIDENCE_THRESHOLD = 0.5 #@param {type:\"slider\", min:0.1, max:1.0, step:0.05}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        filtered = [d for d in detections if d['confidence'] &gt;= CONFIDENCE_THRESHOLD]\n        canvas.draw_bounding_boxes(filtered)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")"
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#reflect",
+    "href": "labs/06/notebooks/object_detection.html#reflect",
+    "title": "Object Detection with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nWhat objects did the detector find? Were there any surprises — things it labeled incorrectly or missed entirely?\nObject detection is used in self-driving cars, security cameras, and automated warehouses. Pick one application and describe both a benefit and a potential risk."
+  },
+  {
+    "objectID": "labs/06/notebooks/object_detection.html#check-for-understanding",
+    "href": "labs/06/notebooks/object_detection.html#check-for-understanding",
+    "title": "Object Detection with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “true_false”, “question”: “An object detector can find more than one object in a single frame.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “How many object categories can EfficientDet-Lite0 detect?”, “options”: [ { “key”: “a”, “text”: “10” }, { “key”: “b”, “text”: “40” }, { “key”: “c”, “text”: “80” }, { “key”: “d”, “text”: “200” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The type field in an object detection tells you how many objects were found.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What is drawn around each object that the detector finds?”, “options”: [ { “key”: “a”, “text”: “A skeleton” }, { “key”: “b”, “text”: “A colored pixel mask” }, { “key”: “c”, “text”: “A bounding box” }, { “key”: “d”, “text”: “A dot at the center” } ], “answer”: “c”, “submitted_answer”: “” }"
   }
 ]

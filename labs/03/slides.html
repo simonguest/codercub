@@ -1069,9 +1069,42 @@ Simon Guest
 <li class="fragment">TBD</li>
 </ul>
 </section>
-<section id="tbd" class="slide level2">
-<h2>TBD</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="bu">print</span>(<span class="st">&quot;Hello world&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="what-is-scikit-learn" class="slide level2">
+<h2>What is scikit-learn?</h2>
+<ul>
+<li class="fragment">A Python library for <strong>machine learning</strong></li>
+<li class="fragment">Built on top of NumPy and Pandas — works with DataFrames you already know</li>
+<li class="fragment">Provides ready-to-use models for:
+<ul>
+<li class="fragment"><strong>Regression</strong> — predicting a number (price, temperature, score)</li>
+<li class="fragment"><strong>Classification</strong> — predicting a category (spam/not spam, yes/no)</li>
+<li class="fragment"><strong>Clustering</strong> — finding hidden groups in data</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-sklearn-workflow" class="slide level2">
+<h2>The sklearn Workflow</h2>
+<p>Every sklearn model follows the same three steps:</p>
+<div class="fragment">
+<ol type="1">
+<li class="fragment"><strong>Prepare</strong> your features (<code>X</code>) and labels (<code>y</code>)</li>
+<li class="fragment"><strong>Fit</strong> — <code>model.fit(X, y)</code> — the model <em>learns</em> from your data</li>
+<li class="fragment"><strong>Predict</strong> — <code>model.predict(X_new)</code> — apply what it learned to new data</li>
+</ol>
+</div>
+</section>
+<section id="your-first-sklearn-model" class="slide level2">
+<h2>Your First sklearn Model</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-2"><a></a></span>
+<span id="cb1-3"><a></a><span class="co"># Hours studied → test scores</span></span>
+<span id="cb1-4"><a></a>X <span class="op">=</span> [[<span class="dv">1</span>], [<span class="dv">2</span>], [<span class="dv">3</span>], [<span class="dv">4</span>], [<span class="dv">5</span>]]   <span class="co"># feature (must be 2D)</span></span>
+<span id="cb1-5"><a></a>y <span class="op">=</span> [<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">65</span>, <span class="dv">75</span>, <span class="dv">85</span>]        <span class="co"># label</span></span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>model <span class="op">=</span> LinearRegression()</span>
+<span id="cb1-8"><a></a>model.fit(X, y)             <span class="co"># train</span></span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>model.predict([[<span class="dv">6</span>]])        <span class="co"># → predicted score for 6 hours</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
