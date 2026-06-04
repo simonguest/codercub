@@ -118,3 +118,13 @@ website:
           - text: "Slides"
             href: labs/10/slides.qmd
             target: blank
+    contents:
+      - text: "CMU Exploring Programming"
+        href: index.qmd
+      - text: "---"
+      - section: "Day 3"
+        contents:
+          - section: "Notebooks"
+            contents:
+              - text: "if_statements.ipynb"
+                href: cmu/03/notebooks/if_statements.ipynb
