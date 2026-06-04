@@ -756,6 +756,540 @@
     ]
   },
   {
+    "objectID": "cmu/03/notebooks/if_statements.html",
+    "href": "cmu/03/notebooks/if_statements.html",
+    "title": "The if Statement",
+    "section": "",
+    "text": "So far your programs have run the same way every time — every line executes, top to bottom, no matter what. But real programs need to make decisions. Should the ball bounce? Is the player’s score high enough to win? That’s where the if statement comes in.\nIn this lesson you’ll learn how to give your program a condition to check, and only run certain code when that condition is true.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#a-ball-that-falls-forever",
+    "href": "cmu/03/notebooks/if_statements.html#a-ball-that-falls-forever",
+    "title": "The if Statement",
+    "section": "A Ball That Falls Forever",
+    "text": "A Ball That Falls Forever\nRun the cell below. A ball drops from the sky — and keeps going… forever. There’s nothing telling it to stop or come back. Click Stop (■) when you’ve seen enough.\nHint: You can hold down the left mouse button to move around the scene. Use the scroll wheel to zoom in and out.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#e94560')\nball.set_position(0, 8, 0)\nscene.add(ball)\n\ny = 8.0\n\n@scene.on_frame\ndef animate(dt):\n    global y\n    y -= 3 * dt\n    ball.set_position(0, y, 0)\n\nscene.run()",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#the-problem-and-the-fix",
+    "href": "cmu/03/notebooks/if_statements.html#the-problem-and-the-fix",
+    "title": "The if Statement",
+    "section": "The Problem — and the Fix",
+    "text": "The Problem — and the Fix\nThe ball just keeps falling because we never told it what to do when it hits the ground. Every frame, the program subtracts from y — no questions asked.\nWe need a way to say: “if the ball reaches the ground, reset it to the top.”\nThat’s exactly what an if statement does. It checks a condition, and only runs the indented code underneath when that condition is True.\nif y &lt; 0:\n    y = 8.0\nLet’s add it and see what happens.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#e94560')\nball.set_position(0, 8, 0)\nscene.add(ball)\n\ny = 8.0\n\n@scene.on_frame\ndef animate(dt):\n    global y\n    y -= 3 * dt\n\n    if y &lt; 0:\n        y = 8.0\n\n    ball.set_position(0, y, 0)\n\nscene.run()",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#how-the-if-statement-works",
+    "href": "cmu/03/notebooks/if_statements.html#how-the-if-statement-works",
+    "title": "The if Statement",
+    "section": "How the if Statement Works",
+    "text": "How the if Statement Works\nAn if statement has three parts:\nif y &lt; 0:\n    y = 8.0\n\n\n\n\n\n\n\n\nPart\nWhat it is\nExample\n\n\n\n\nif\nThe keyword that starts the statement\nif\n\n\nCondition\nA question Python checks — is this True or False?\ny &lt; 0\n\n\nColon :\nMarks the end of the condition\n:\n\n\nIndented body\nThe code that runs only when the condition is True\ny = 8.0\n\n\n\n\nIndentation matters!\nPython uses indentation (spaces at the start of a line) to know which lines belong inside the if. Any line indented under the if only runs when the condition is True. As soon as you go back to the left margin, you’re outside the if again.\nif y &lt; 0:\n    y = 8.0          # inside the if — only runs when y &lt; 0\n    print('reset!')  # also inside\nball.set_position(0, y, 0)  # outside — always runs",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#controlling-a-growing-sphere",
+    "href": "cmu/03/notebooks/if_statements.html#controlling-a-growing-sphere",
+    "title": "The if Statement",
+    "section": "Controlling a Growing Sphere",
+    "text": "Controlling a Growing Sphere\nHere’s another example. Each frame, the sphere grows a little bigger. When it gets too large, an if statement resets it back to a small size.\nNotice how size keeps increasing — until the condition size &gt; 3 becomes True, and the if steps in.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#f5a623')\nsphere.set_position(0, 1.5, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nsize = 0.2\n\n@scene.on_frame\ndef animate(dt):\n    global size\n    size += 0.5 * dt\n\n    if size &gt; 3:\n        size = 0.2\n\n    sphere.set_scale(size, size, size)\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.fill_text(f'Size: {size:.2f}', 10, 28)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “What character must appear at the end of every if condition?”, “options”: [ { “key”: “a”, “text”: “A semicolon ;” }, { “key”: “b”, “text”: “A colon :” }, { “key”: “c”, “text”: “A period .” }, { “key”: “d”, “text”: “An equals sign =” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The indented code inside an if statement always runs, even when the condition is False.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In the growing-sphere example, what happens when size &gt; 3 is True?”, “options”: [ { “key”: “a”, “text”: “The program crashes” }, { “key”: “b”, “text”: “The sphere stops moving” }, { “key”: “c”, “text”: “size resets to 0.2” }, { “key”: “d”, “text”: “size doubles” } ], “answer”: “c”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#comparison-operators",
+    "href": "cmu/03/notebooks/if_statements.html#comparison-operators",
+    "title": "The if Statement",
+    "section": "Comparison Operators",
+    "text": "Comparison Operators\nThe condition inside an if statement uses a comparison operator to compare two values. Python gives you six of them:\n\n\n\nOperator\nMeaning\nExample\nResult\n\n\n\n\n&lt;\nless than\n3 &lt; 5\nTrue\n\n\n&gt;\ngreater than\n7 &gt; 2\nTrue\n\n\n&lt;=\nless than or equal to\n4 &lt;= 4\nTrue\n\n\n&gt;=\ngreater than or equal to\n6 &gt;= 9\nFalse\n\n\n==\nequal to\n5 == 5\nTrue\n\n\n!=\nnot equal to\n3 != 7\nTrue\n\n\n\n\nWatch out! A single = assigns a value (x = 5). A double == compares two values (x == 5). Easy to mix up!\n\nThe examples below show a few of these operators in action inside 3D scenes.",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#using-to-match-an-exact-value",
+    "href": "cmu/03/notebooks/if_statements.html#using-to-match-an-exact-value",
+    "title": "The if Statement",
+    "section": "Using == to Match an Exact Value",
+    "text": "Using == to Match an Exact Value\nThe == operator checks if two values are exactly equal. In the scene below, a counter increments each second. When it hits exactly 3, the ball changes color — demonstrating a precise match.\nClick Stop (■) after you’ve watched a couple of cycles.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1.5, segments=16)\nball.set_color('#aaaaaa')\nball.set_position(0, 1.5, 0)\nscene.add(ball)\n\nctx = scene.get_context('2d')\n\nelapsed = 0.0\ncount = 0\n\n@scene.on_frame\ndef animate(dt):\n    global elapsed, count\n    elapsed += dt\n\n    if elapsed &gt;= 1.0:\n        elapsed = 0.0\n        count += 1\n\n    if count == 5:\n        count = 0\n\n    if count == 3:\n        ball.set_color('#e94560')\n    else:\n        ball.set_color('#aaaaaa')\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '24px sans-serif'\n    ctx.fill_text(f'Count: {count}  (turns red when count == 3)', 10, 32)\n\nscene.run()",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "cmu/03/notebooks/if_statements.html#multiple-if-statements",
+    "href": "cmu/03/notebooks/if_statements.html#multiple-if-statements",
+    "title": "The if Statement",
+    "section": "Multiple if Statements",
+    "text": "Multiple if Statements\nYou can use as many if statements as you need — Python checks each one independently.\nThe scene below has three zones: left, center, and right. A ball drifts across the scene, and a separate if statement handles each zone, changing the ball’s color and bouncing it back when it hits a wall.\nNotice how all three if statements are checked on every frame — they don’t interfere with each other.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=12, width=12)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#f5a623')\nball.set_position(0, 0.8, 0)\nscene.add(ball)\n\nctx = scene.get_context('2d')\n\nx = 0.0\nspeed = 3.0\nzone = 'center'\n\n@scene.on_frame\ndef animate(dt):\n    global x, speed, zone\n\n    x += speed * dt\n\n    if x &gt; 4:\n        speed = -speed\n        x = 4\n\n    if x &lt; -4:\n        speed = -speed\n        x = -4\n\n    if x &lt; -1.5:\n        zone = 'left'\n        ball.set_color('#4488ff')\n\n    if x &gt; 1.5:\n        zone = 'right'\n        ball.set_color('#44cc88')\n\n    if x &gt;= -1.5 and x &lt;= 1.5:\n        zone = 'center'\n        ball.set_color('#f5a623')\n\n    ball.set_position(x, 0.8, 0)\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '22px sans-serif'\n    ctx.fill_text(f'Zone: {zone}  |  x = {x:.1f}', 10, 30)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “Which operator checks if two values are exactly equal?”, “options”: [ { “key”: “a”, “text”: “= (single equals)” }, { “key”: “b”, “text”: “== (double equals)” }, { “key”: “c”, “text”: “!= (not equals)” }, { “key”: “d”, “text”: “&gt;= (greater or equal)” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “When you have three if statements in a row, Python checks all three independently on every frame.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the != operator do?”, “options”: [ { “key”: “a”, “text”: “Checks if two values are equal” }, { “key”: “b”, “text”: “Assigns a value to a variable” }, { “key”: “c”, “text”: “Checks if two values are NOT equal” }, { “key”: “d”, “text”: “Checks if a value is negative” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “Write an if statement condition (just the part after ‘if’) that is True when a variable called score is greater than or equal to 100.”, “answer”: “score &gt;= 100”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Day 3",
+      "Notebooks",
+      "if_statements.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#what-is-a-neural-network",
+    "href": "labs/06/slides.html#what-is-a-neural-network",
+    "title": "Day 6",
+    "section": "What Is a Neural Network?",
+    "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#how-does-a-network-learn",
+    "href": "labs/06/slides.html#how-does-a-network-learn",
+    "title": "Day 6",
+    "section": "How Does a Network Learn?",
+    "text": "How Does a Network Learn?\n\nLearning = finding the right weights through repetition\nForward pass: data flows through the network → produces a prediction\nLoss function: measures how wrong the prediction was\nBackpropagation: traces the error back and nudges each weight\nRepeat thousands of times on labeled training data → accuracy improves",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#neural-network-demo",
+    "href": "labs/06/slides.html#neural-network-demo",
+    "title": "Day 6",
+    "section": "Neural Network Demo",
+    "text": "Neural Network Demo",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/06/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 6",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#how-do-computers-see-1",
+    "href": "labs/06/slides.html#how-do-computers-see-1",
+    "title": "Day 6",
+    "section": "How Do Computers See?",
+    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?\nAnswer: Convolutional Neural Networks (CNNs)\n\nSpecialized networks designed to process grid-like data",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#a-brief-history-of-computer-vision",
+    "href": "labs/06/slides.html#a-brief-history-of-computer-vision",
+    "title": "Day 6",
+    "section": "A Brief History of Computer Vision",
+    "text": "A Brief History of Computer Vision\n\n1989: LeCun trains first CNN to read handwritten digits\n2012: AlexNet wins the ImageNet challenge by a huge margin\n\nError rate dropped from ~26% → ~15% overnight\nKicked off the modern deep learning era\n\n2015: Real-time object detection becomes practical (YOLO)\n2017–present: CV is everywhere — phones, cars, hospitals, social media",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#image-classification",
+    "href": "labs/06/slides.html#image-classification",
+    "title": "Day 6",
+    "section": "Image Classification",
+    "text": "Image Classification\n\nQuestion: “What is in this image?”\nThe model assigns a single label to the entire photo\nExamples:\n\nIs this a cat or a dog?\nWhat disease does this X-ray suggest?\nWhich product is this on the shelf?\n\nThe first major CV task conquered by deep learning",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#object-detection",
+    "href": "labs/06/slides.html#object-detection",
+    "title": "Day 6",
+    "section": "Object Detection",
+    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#pose-estimation",
+    "href": "labs/06/slides.html#pose-estimation",
+    "title": "Day 6",
+    "section": "Pose Estimation",
+    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#image-segmentation",
+    "href": "labs/06/slides.html#image-segmentation",
+    "title": "Day 6",
+    "section": "Image Segmentation",
+    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
+    "crumbs": [
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#tbd",
+    "href": "labs/04/slides.html#tbd",
+    "title": "Day 4: AI in the Physical World",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#recap",
+    "href": "labs/02/slides.html#recap",
+    "title": "Day 2: Working With Data",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-pandas",
+    "href": "labs/02/slides.html#what-is-pandas",
+    "title": "Day 2: Working With Data",
+    "section": "What is Pandas?",
+    "text": "What is Pandas?\n\nA Python library for working with structured data — think spreadsheets, tables, CSVs\nLets you load, clean, filter, and analyze data with just a few lines of code\nOne of the most widely used tools in data science and AI",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-pandas",
+    "href": "labs/02/slides.html#a-brief-history-of-pandas",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Pandas",
+    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at an investment firm\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#key-pandas-concepts",
+    "href": "labs/02/slides.html#key-pandas-concepts",
+    "title": "Day 2: Working With Data",
+    "section": "Key Pandas Concepts",
+    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more\n\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.head()",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-matplotlib",
+    "href": "labs/02/slides.html#what-is-matplotlib",
+    "title": "Day 2: Working With Data",
+    "section": "What is Matplotlib?",
+    "text": "What is Matplotlib?\n\nA Python library for creating charts and visualizations\nLine charts, bar charts, scatter plots, histograms, heatmaps, and more\nTurns raw data into pictures — making patterns much easier to spot",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#a-brief-history-of-matplotlib",
+    "href": "labs/02/slides.html#a-brief-history-of-matplotlib",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Matplotlib",
+    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB — without needing MATLAB\nHunter passed away in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#key-matplotlib-concepts",
+    "href": "labs/02/slides.html#key-matplotlib-concepts",
+    "title": "Day 2: Working With Data",
+    "section": "Key Matplotlib Concepts",
+    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib\n\nimport matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 7, 2])\nplt.show()",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2: Working With Data",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
+    "crumbs": [
+      "Future Intelligence Lab"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-2",
+    "href": "labs/01/slides.html#types-of-ai-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD: Single slide for each type",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#tbd",
+    "href": "labs/01/slides.html#tbd",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-a-notebook",
+    "href": "labs/01/slides.html#what-is-a-notebook",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#a-brief-history-of-notebooks",
+    "href": "labs/01/slides.html#a-brief-history-of-notebooks",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#anatomy-of-a-python-notebook",
+    "href": "labs/01/slides.html#anatomy-of-a-python-notebook",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#introducing-jupyter-k12",
+    "href": "labs/01/slides.html#introducing-jupyter-k12",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Introducing Jupyter-K12",
+    "text": "Introducing Jupyter-K12\n\nNotebook platform designed for K-12 students\nEasy to setup; no accounts required\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students to use this!",
+    "crumbs": [
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#recap",
+    "href": "labs/03/slides.html#recap",
+    "title": "Day 3: How Machines Learn",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#what-is-scikit-learn",
+    "href": "labs/03/slides.html#what-is-scikit-learn",
+    "title": "Day 3: How Machines Learn",
+    "section": "What is scikit-learn?",
+    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of NumPy and Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#the-sklearn-workflow",
+    "href": "labs/03/slides.html#the-sklearn-workflow",
+    "title": "Day 3: How Machines Learn",
+    "section": "The sklearn Workflow",
+    "text": "The sklearn Workflow\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#your-first-sklearn-model",
+    "href": "labs/03/slides.html#your-first-sklearn-model",
+    "title": "Day 3: How Machines Learn",
+    "section": "Your First sklearn Model",
+    "text": "Your First sklearn Model\nfrom sklearn.linear_model import LinearRegression\n\n# Hours studied → test scores\nX = [[1], [2], [3], [4], [5]]   # feature (must be 2D)\ny = [50, 60, 65, 75, 85]        # label\n\nmodel = LinearRegression()\nmodel.fit(X, y)             # train\n\nmodel.predict([[6]])        # → predicted score for 6 hours",
+    "crumbs": [
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#tbd",
+    "href": "labs/05/slides.html#tbd",
+    "title": "Day 5",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/Syllabus.html",
     "href": "labs/Syllabus.html",
     "title": "Summer of Code 2026",
@@ -873,444 +1407,6 @@
     "text": "Synthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
     "crumbs": [
       "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 9",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 7",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/05/slides.html#tbd",
-    "href": "labs/05/slides.html#tbd",
-    "title": "Day 5",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 5",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#recap",
-    "href": "labs/03/slides.html#recap",
-    "title": "Day 3: How Machines Learn",
-    "section": "Recap",
-    "text": "Recap\n\nTBD",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#what-is-scikit-learn",
-    "href": "labs/03/slides.html#what-is-scikit-learn",
-    "title": "Day 3: How Machines Learn",
-    "section": "What is scikit-learn?",
-    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of NumPy and Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#the-sklearn-workflow",
-    "href": "labs/03/slides.html#the-sklearn-workflow",
-    "title": "Day 3: How Machines Learn",
-    "section": "The sklearn Workflow",
-    "text": "The sklearn Workflow\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#your-first-sklearn-model",
-    "href": "labs/03/slides.html#your-first-sklearn-model",
-    "title": "Day 3: How Machines Learn",
-    "section": "Your First sklearn Model",
-    "text": "Your First sklearn Model\nfrom sklearn.linear_model import LinearRegression\n\n# Hours studied → test scores\nX = [[1], [2], [3], [4], [5]]   # feature (must be 2D)\ny = [50, 60, 65, 75, 85]        # label\n\nmodel = LinearRegression()\nmodel.fit(X, y)             # train\n\nmodel.predict([[6]])        # → predicted score for 6 hours",
-    "crumbs": [
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-1",
-    "href": "labs/01/slides.html#types-of-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-2",
-    "href": "labs/01/slides.html#types-of-ai-2",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD: Single slide for each type",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#tbd",
-    "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-a-notebook",
-    "href": "labs/01/slides.html#what-is-a-notebook",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#a-brief-history-of-notebooks",
-    "href": "labs/01/slides.html#a-brief-history-of-notebooks",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#anatomy-of-a-python-notebook",
-    "href": "labs/01/slides.html#anatomy-of-a-python-notebook",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Anatomy of a Python Notebook",
-    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#introducing-jupyter-k12",
-    "href": "labs/01/slides.html#introducing-jupyter-k12",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Introducing Jupyter-K12",
-    "text": "Introducing Jupyter-K12\n\nNotebook platform designed for K-12 students\nEasy to setup; no accounts required\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students to use this!",
-    "crumbs": [
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026",
-    "crumbs": [
-      "Future Intelligence Lab"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#recap",
-    "href": "labs/02/slides.html#recap",
-    "title": "Day 2: Working With Data",
-    "section": "Recap",
-    "text": "Recap\n\nTBD",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-pandas",
-    "href": "labs/02/slides.html#what-is-pandas",
-    "title": "Day 2: Working With Data",
-    "section": "What is Pandas?",
-    "text": "What is Pandas?\n\nA Python library for working with structured data — think spreadsheets, tables, CSVs\nLets you load, clean, filter, and analyze data with just a few lines of code\nOne of the most widely used tools in data science and AI",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-pandas",
-    "href": "labs/02/slides.html#a-brief-history-of-pandas",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Pandas",
-    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at an investment firm\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#key-pandas-concepts",
-    "href": "labs/02/slides.html#key-pandas-concepts",
-    "title": "Day 2: Working With Data",
-    "section": "Key Pandas Concepts",
-    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more\n\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.head()",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-matplotlib",
-    "href": "labs/02/slides.html#what-is-matplotlib",
-    "title": "Day 2: Working With Data",
-    "section": "What is Matplotlib?",
-    "text": "What is Matplotlib?\n\nA Python library for creating charts and visualizations\nLine charts, bar charts, scatter plots, histograms, heatmaps, and more\nTurns raw data into pictures — making patterns much easier to spot",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-matplotlib",
-    "href": "labs/02/slides.html#a-brief-history-of-matplotlib",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Matplotlib",
-    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB — without needing MATLAB\nHunter passed away in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#key-matplotlib-concepts",
-    "href": "labs/02/slides.html#key-matplotlib-concepts",
-    "title": "Day 2: Working With Data",
-    "section": "Key Matplotlib Concepts",
-    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib\n\nimport matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 7, 2])\nplt.show()",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
-    "title": "Day 2: Working With Data",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#tbd",
-    "href": "labs/04/slides.html#tbd",
-    "title": "Day 4: AI in the Physical World",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#what-is-a-neural-network",
-    "href": "labs/06/slides.html#what-is-a-neural-network",
-    "title": "Day 6",
-    "section": "What Is a Neural Network?",
-    "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#how-does-a-network-learn",
-    "href": "labs/06/slides.html#how-does-a-network-learn",
-    "title": "Day 6",
-    "section": "How Does a Network Learn?",
-    "text": "How Does a Network Learn?\n\nLearning = finding the right weights through repetition\nForward pass: data flows through the network → produces a prediction\nLoss function: measures how wrong the prediction was\nBackpropagation: traces the error back and nudges each weight\nRepeat thousands of times on labeled training data → accuracy improves",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#neural-network-demo",
-    "href": "labs/06/slides.html#neural-network-demo",
-    "title": "Day 6",
-    "section": "Neural Network Demo",
-    "text": "Neural Network Demo",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/06/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 6",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#how-do-computers-see-1",
-    "href": "labs/06/slides.html#how-do-computers-see-1",
-    "title": "Day 6",
-    "section": "How Do Computers See?",
-    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?\nAnswer: Convolutional Neural Networks (CNNs)\n\nSpecialized networks designed to process grid-like data",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#a-brief-history-of-computer-vision",
-    "href": "labs/06/slides.html#a-brief-history-of-computer-vision",
-    "title": "Day 6",
-    "section": "A Brief History of Computer Vision",
-    "text": "A Brief History of Computer Vision\n\n1989: LeCun trains first CNN to read handwritten digits\n2012: AlexNet wins the ImageNet challenge by a huge margin\n\nError rate dropped from ~26% → ~15% overnight\nKicked off the modern deep learning era\n\n2015: Real-time object detection becomes practical (YOLO)\n2017–present: CV is everywhere — phones, cars, hospitals, social media",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#image-classification",
-    "href": "labs/06/slides.html#image-classification",
-    "title": "Day 6",
-    "section": "Image Classification",
-    "text": "Image Classification\n\nQuestion: “What is in this image?”\nThe model assigns a single label to the entire photo\nExamples:\n\nIs this a cat or a dog?\nWhat disease does this X-ray suggest?\nWhich product is this on the shelf?\n\nThe first major CV task conquered by deep learning",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#object-detection",
-    "href": "labs/06/slides.html#object-detection",
-    "title": "Day 6",
-    "section": "Object Detection",
-    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#pose-estimation",
-    "href": "labs/06/slides.html#pose-estimation",
-    "title": "Day 6",
-    "section": "Pose Estimation",
-    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#image-segmentation",
-    "href": "labs/06/slides.html#image-segmentation",
-    "title": "Day 6",
-    "section": "Image Segmentation",
-    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
-    "crumbs": [
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 8",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Day 10",
-      "Slides"
     ]
   },
   {
