@@ -21,7 +21,7 @@ website:
     collapse-level: 2
     search: true
     contents:
-      - text: "Future Intelligence Lab"
+      - section: "Future Intelligence Lab"
         href: index.qmd
       - text: "---"
       - text: "Syllabus"
@@ -118,8 +118,7 @@ website:
           - text: "Slides"
             href: labs/10/slides.qmd
             target: blank
-    contents:
-      - text: "CMU Exploring Programming"
+      - section: "CMU Exploring Programming"
         href: index.qmd
       - text: "---"
       - section: "Day 3"
