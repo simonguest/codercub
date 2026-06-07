@@ -767,7 +767,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  extra_body<span class="op">=</span>{</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"modalities"</span>:[<span class="st">"image"</span>]</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Response received"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we need to extract the image from the result…</p>
 <div id="6e875b75-00c6-48d8-9750-c61e3dc0cab0" class="cell">
@@ -792,6 +794,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>You’ve just generated an image from a text description — take a moment to reflect.</p>
 <p>What did the generated image look like? How closely did it match what you imagined from the prompt? What different prompt would you want to try, and what would you change about it?</p>
+<p>The <code>image_url</code> contains the base64 representation of the image, which means that we can also use it in a 3D scene…</p>
+<div id="1b857259-d0e2-4399-8337-5fc3851ca7a2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0d1b2a'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">5</span>, height<span class="op">=</span><span class="dv">5</span>, depth<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>box.set_position(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>box.set_texture(image_url)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>scene.add(box)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>angle<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> angle</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  angle <span class="op">+=</span> dt <span class="op">*</span> <span class="dv">60</span>  <span class="co"># 60 degrees per second → 1 degree per frame at 60fps</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  box.set_rotation(x<span class="op">=</span>angle, y<span class="op">=-</span>angle, z<span class="op">=-</span>angle)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>{ “question_type”: “true_false”, “question”: “Text-to-image models use the diffusion process to generate images from a text prompt.”, “answer”: “True”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “multiple_choice”, “question”: “What is the purpose of passing <code>\"modalities\": [\"image\"]</code> in the extra_body parameter?”, “options”: [ { “key”: “a”, “text”: “It sets the resolution of the generated image” }, { “key”: “b”, “text”: “It tells the model to return an image instead of text” }, { “key”: “c”, “text”: “It enables streaming of the image data” }, { “key”: “d”, “text”: “It selects the image style” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “freeform”, “question”: “What encoding format is used to represent the image data returned by the model?”, “answer”: “base64”, “submitted_answer”: “” }</p>
