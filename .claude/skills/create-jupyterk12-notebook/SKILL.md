@@ -433,6 +433,8 @@ scene.run()                      # blocks Python in event loop; Stop button work
 
 **Mesh methods:** `set_position(x, y, z)`, `set_rotation(x, y, z)` (degrees), `set_scale(x, y, z)`, `set_color(hex)`, `set_texture(source)`, `set_material(constant)`, `set_glossiness(value)`, `set_tiling(u, v=None)`, `on_click(fn)`. All keyword arguments default to 0 (or 1 for scale), so `set_rotation(y=45)` is valid. `set_ground` returns a `Mesh` so all these methods work on the ground too.
 
+**Mesh getters:** `get_position()` → `(x, y, z)` tuple, `get_rotation()` → `(x, y, z)` tuple in degrees, `get_scale()` → `(x, y, z)` tuple, `get_color()` → hex string. Values are always in sync because every `set_*` call updates Python-side state immediately.
+
 **`set_texture(source)`:** accepts a file path (e.g. `'/sample_files/cat.png'`), a `data:` URL, or a raw base64 string (assumed PNG). Setting a texture resets the color to white; call `set_color` after `set_texture` to apply a tint.
 
 **`set_material(constant)`:** applies a PBR material (colour + normal + roughness) or simple diffuse texture. Available constants:
