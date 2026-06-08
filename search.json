@@ -883,6 +883,62 @@
     ]
   },
   {
+    "objectID": "cmu/01/notebooks/materials.html",
+    "href": "cmu/01/notebooks/materials.html",
+    "title": "Materials and Constants",
+    "section": "",
+    "text": "In 3D graphics, a material describes how a surface looks — its texture, color, and shine. The scene3d library comes with a built-in material collection: bricks, marble, grass, planets, and more.\nBut before you start using them, you’ll learn a powerful coding habit: constants — named values that make your code easier to read, update, and reuse."
+  },
+  {
+    "objectID": "cmu/01/notebooks/materials.html#the-problem-with-repeated-values",
+    "href": "cmu/01/notebooks/materials.html#the-problem-with-repeated-values",
+    "title": "Materials and Constants",
+    "section": "The Problem with Repeated Values",
+    "text": "The Problem with Repeated Values\nRun the code below. It creates two shapes using the same slate-grey color '#708090'.\nNow look closely — that hex code appears twice. What if you wanted to repaint both shapes red? You’d need to find and change every occurrence. In a longer program, it’s easy to miss one and end up with a broken-looking scene.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#708090')\nsphere.set_position(-2, 0.5, 0)\nscene.add(sphere)\n\nbox = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox.set_color('#708090')\nbox.set_position(2, 0.5, 0)\nscene.add(box)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/materials.html#constants-to-the-rescue",
+    "href": "cmu/01/notebooks/materials.html#constants-to-the-rescue",
+    "title": "Materials and Constants",
+    "section": "Constants to the Rescue",
+    "text": "Constants to the Rescue\nA constant is a name you give to a value so you only have to write the value once. By convention, constant names are written in ALL_CAPS — this signals to any programmer reading the code:\n\n“This is a fixed setting. Define it once at the top, then use the name everywhere.”\n\nSTONE = '#708090'\nNow instead of writing '#708090' twice, you write STONE twice. To repaint both shapes, you change one line at the top — and everything updates.\n\n\n\nName\nWhat it signals\n\n\n\n\nSTONE\nA constant — a fixed, named value\n\n\nsphere\nA regular variable\n\n\nset_color\nA function call\n\n\n'#708090'\nA magic value — no name, easy to mistype or miss\n\n\n\nTry it: change STONE = '#708090' to STONE = '#e94560' on the first line of the code below and run again — both shapes change at once.\n\nimport scene3d\n\nSTONE = '#708090'\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color(STONE)\nsphere.set_position(-2, 0.5, 0)\nscene.add(sphere)\n\nbox = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox.set_color(STONE)\nbox.set_position(2, 0.5, 0)\nscene.add(box)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “Which variable name follows the Python convention for a constant?”, “options”: [ { “key”: “a”, “text”: “nightSky” }, { “key”: “b”, “text”: “Night_Sky” }, { “key”: “c”, “text”: “nightsky” }, { “key”: “d”, “text”: “NIGHT_SKY” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Python automatically prevents you from changing the value of a constant.”, “answer”: “False”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/01/notebooks/materials.html#sky-constants-the-library-already-named-them",
+    "href": "cmu/01/notebooks/materials.html#sky-constants-the-library-already-named-them",
+    "title": "Materials and Constants",
+    "section": "Sky Constants — The Library Already Named Them",
+    "text": "Sky Constants — The Library Already Named Them\nYou’ve set the sky with hex colors like '#87ceeb'. But scene3d also includes pre-built sky environments, each with its own constant name:\n\n\n\nConstant\nWhat it looks like\n\n\n\n\nscene3d.Sky.CLOUDS\nFluffy white clouds\n\n\nscene3d.Sky.DEEP_SPACE\nDark sky filled with stars\n\n\nscene3d.Sky.PURE_SKY\nClear blue sky\n\n\nscene3d.Sky.MODERN_BUILDINGS\nCity skyline reflections\n\n\nscene3d.Sky.ORLANDO_STADIUM\nStadium lighting\n\n\n\nThese are constants the library defined for you — you use them exactly the same way as any constant you’d write yourself.\nTry swapping Sky.CLOUDS for another option in the code below.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.CLOUDS)\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1.5, segments=24)\nsphere.set_color('#e94560')\nsphere.set_position(0, 0.75, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/materials.html#giving-the-ground-a-material",
+    "href": "cmu/01/notebooks/materials.html#giving-the-ground-a-material",
+    "title": "Materials and Constants",
+    "section": "Giving the Ground a Material",
+    "text": "Giving the Ground a Material\nset_ground returns a mesh — the same kind of object as a sphere or box. That means you can call set_material on it to apply a texture:\nground = scene.set_ground(length=20, width=20)\nground.set_material(scene3d.Material.Grass.Bright)\nground.set_tiling(8)\nset_tiling(8) repeats the texture 8 times across the surface. Without tiling, a single tile would stretch to cover the entire ground and look blurry.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\n\nground = scene.set_ground(length=20, width=20)\nground.set_material(scene3d.Material.Grass.Bright)\nground.set_tiling(8)\n\nsphere = scene3d.Shapes.Sphere(diameter=1.5, segments=24)\nsphere.set_color('#e94560')\nsphere.set_position(0, 0.75, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/materials.html#materials-on-shapes",
+    "href": "cmu/01/notebooks/materials.html#materials-on-shapes",
+    "title": "Materials and Constants",
+    "section": "Materials on Shapes",
+    "text": "Materials on Shapes\nset_material works on any shape — sphere, box, or cylinder. The materials are organized into groups. Here are some to explore:\n\n\n\nGroup\nConstants\nWorks great on…\n\n\n\n\nMaterial.Bricks\n.DarkClay, .RoughStone\nBoxes\n\n\nMaterial.Marble\n.Gray, .Brown, .Black\nSpheres, cylinders\n\n\nMaterial.Planets\n.Earth, .Mars, .Jupiter\nSpheres\n\n\nMaterial.Wood\n.Oak\nCylinders, boxes\n\n\nMaterial.Snow\n.Fresh\nAny surface\n\n\nMaterial.Fabric\n.Denim, .BurgundyRibbed\nAny surface\n\n\n\nYou can also control shine with set_glossiness: - 0.0 = completely matte - 1.0 = mirror-like\n\nset_glossiness only works on shapes that use set_material — it has no effect on plain set_color shapes.\n\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\nground = scene.set_ground(length=20, width=20)\nground.set_material(scene3d.Material.Grass.Bright)\nground.set_tiling(8)\n\nbox = scene3d.Shapes.Box(width=2, height=2, depth=2)\nbox.set_material(scene3d.Material.Bricks.DarkClay)\nbox.set_position(-3, 1, 0)\nscene.add(box)\n\nsphere = scene3d.Shapes.Sphere(diameter=2, segments=24)\nsphere.set_material(scene3d.Material.Marble.Gray)\nsphere.set_glossiness(0.8)\nsphere.set_position(3, 1, 0)\nscene.add(sphere)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “What does set_material() do?”, “options”: [ { “key”: “a”, “text”: “Changes the shape of an object” }, { “key”: “b”, “text”: “Applies a pre-built texture and lighting material to a surface” }, { “key”: “c”, “text”: “Moves an object to a new position” }, { “key”: “d”, “text”: “Sets the background sky color” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “set_glossiness(0.9) works on a sphere that has only had set_color applied.”, “answer”: “False”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/01/notebooks/materials.html#your-material-library",
+    "href": "cmu/01/notebooks/materials.html#your-material-library",
+    "title": "Materials and Constants",
+    "section": "Your Material Library",
+    "text": "Your Material Library\nWhen you gather all the material choices into named constants at the top of your code, they form a material library — a single place where the look of the entire scene is defined.\nTry swapping any of the three constants below: - SKY — try Sky.CLOUDS, Sky.MODERN_BUILDINGS, Sky.ORLANDO_STADIUM - GROUND — try Material.Snow.Fresh, Material.Gravel.LightGray - PLANET — try Material.Planets.Mars, Material.Planets.Jupiter, Material.Planets.Venus\n\nimport scene3d\n\nSKY    = scene3d.Sky.DEEP_SPACE\nGROUND = scene3d.Material.Gravel.LightGray\nPLANET = scene3d.Material.Planets.Earth\n\nscene = scene3d.Scene()\nscene.set_sky(SKY)\n\nground = scene.set_ground(length=20, width=20)\nground.set_material(GROUND)\nground.set_tiling(8)\n\nplanet = scene3d.Shapes.Sphere(diameter=3, segments=32)\nplanet.set_material(PLANET)\nplanet.set_position(0, 1.5, 0)\nscene.add(planet)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “What is the main advantage of using STONE = ‘#708090’ instead of writing ‘#708090’ each time?”, “options”: [ { “key”: “a”, “text”: “It makes Python run faster” }, { “key”: “b”, “text”: “It prevents the color from ever being changed” }, { “key”: “c”, “text”: “Updating all uses only requires editing one line” }, { “key”: “d”, “text”: “It makes the hex code valid” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which is the correct way to define a constant for the Bricks.DarkClay material?”, “options”: [ { “key”: “a”, “text”: “wall = scene3d.Material.Bricks.DarkClay” }, { “key”: “b”, “text”: “Wall = scene3d.Material.Bricks.DarkClay” }, { “key”: “c”, “text”: “WALL = scene3d.Material.Bricks.DarkClay” }, { “key”: “d”, “text”: “wall_Material = scene3d.Material.Bricks.DarkClay” } ], “answer”: “c”, “submitted_answer”: “” }\nThink of a scene you’d like to build — a beach, a space station, a snowy forest, or anything you like.\nWrite out a mini material library for it: at least three constants with ALL_CAPS names, each set to a scene3d.Sky or scene3d.Material value. For example:\nSKY = scene3d.Sky.DEEP_SPACE\nGROUND = scene3d.Material.Snow.Fresh\nDescribe what the finished scene would look like."
+  },
+  {
+    "objectID": "cmu/01/notebooks/experiment.html",
+    "href": "cmu/01/notebooks/experiment.html",
+    "title": "Now Experiment!",
+    "section": "",
+    "text": "You’ve covered a lot in Lesson 1. Here’s what you now know how to do:\n\nCall functions with parameters to create shapes (Sphere, Box, Cylinder)\nControl size and position using diameter, set_position, and set_scale\nApply colors with hex codes and set_color\nPaint the sky with set_sky — using a hex code or a Sky constant\nApply materials with set_material and adjust shine with set_glossiness\nUse constants to name values once and reuse them everywhere\n\nThe cell below is your sandbox. It starts with a simple scene — a sky, a ground, and one sphere. The rest is up to you.\nIdeas to try: - Add more shapes — a box, a cylinder, another sphere - Give each shape a different material or color - Change the sky and ground to match a theme (space, a meadow, a city) - Use set_scale to squash or stretch shapes into something new - Define constants at the top to describe your scene’s “material library”\n  \n\nimport scene3d\n\nSKY    = scene3d.Sky.CLOUDS\nGROUND = scene3d.Material.Grass.Bright\nSPHERE = scene3d.Material.Planets.Earth\n\nscene = scene3d.Scene()\nscene.set_sky(SKY)\n\nground = scene.set_ground(length=20, width=20)\nground.set_material(GROUND)\nground.set_tiling(8)\n\nsphere = scene3d.Shapes.Sphere(diameter=2, segments=32)\nsphere.set_material(SPHERE)\nsphere.set_position(0, 1, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
     "objectID": "labs/Syllabus.html",
     "href": "labs/Syllabus.html",
     "title": "Summer of Code 2026",
@@ -1439,6 +1495,111 @@
       "Day 10",
       "Slides"
     ]
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html",
+    "href": "cmu/01/notebooks/colors.html",
+    "title": "Colors",
+    "section": "",
+    "text": "Every shape in a 3D scene starts out grey — and it’s up to you to bring it to life. In Python, colors are written as hex codes: a # sign followed by six digits that blend red, green, and blue light together.\nIn this lesson you’ll learn how hex codes work and use them to paint the sky, the ground, and every shape in your scene."
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html#a-colorless-world",
+    "href": "cmu/01/notebooks/colors.html#a-colorless-world",
+    "title": "Colors",
+    "section": "A Colorless World",
+    "text": "A Colorless World\nRun the cell below. Notice anything missing? The sphere appears, but it’s a flat grey — and the sky is almost black. That’s what a scene looks like with no colors applied.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_position(0, 0.5, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html#how-hex-colors-work",
+    "href": "cmu/01/notebooks/colors.html#how-hex-colors-work",
+    "title": "Colors",
+    "section": "How Hex Colors Work",
+    "text": "How Hex Colors Work\nEvery color is made from three ingredients: Red, Green, and Blue. A hex color code packs all three into one short string:\n#e94560\nThe # marks the start. After that come three pairs of digits:\n\n\n\nPair\nControls\n00 means…\nff means…\n\n\n\n\ne9\nRed\nno red\nfull red\n\n\n45\nGreen\nno green\nfull green\n\n\n60\nBlue\nno blue\nfull blue\n\n\n\nThe digits go from 00 (zero) to ff (which equals 255 in regular numbers — the maximum).\nHere are some colors made from pure combinations:\n\n\n\nColor\nHex code\nWhy?\n\n\n\n\nRed\n#ff0000\nFull red, no green, no blue\n\n\nGreen\n#00ff00\nNo red, full green, no blue\n\n\nBlue\n#0000ff\nNo red, no green, full blue\n\n\nYellow\n#ffff00\nFull red + full green mixed\n\n\nCyan\n#00ffff\nFull green + full blue mixed\n\n\nWhite\n#ffffff\nAll three at maximum\n\n\nBlack\n#000000\nAll three at zero"
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html#coloring-the-sky-and-a-shape",
+    "href": "cmu/01/notebooks/colors.html#coloring-the-sky-and-a-shape",
+    "title": "Colors",
+    "section": "Coloring the Sky and a Shape",
+    "text": "Coloring the Sky and a Shape\nTwo function calls change the scene completely: - scene.set_sky('#color') — paints the background sky - sphere.set_color('#color') — paints the sphere\nRun the cell below to see the difference from the grey world above.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#87ceeb')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(0, 0.5, 0)\nscene.add(sphere)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “What color does the hex code #ff0000 produce?”, “options”: [ { “key”: “a”, “text”: “Blue” }, { “key”: “b”, “text”: “Green” }, { “key”: “c”, “text”: “Red” }, { “key”: “d”, “text”: “White” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The hex code #000000 produces white.”, “answer”: “False”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html#any-shape-can-be-colored",
+    "href": "cmu/01/notebooks/colors.html#any-shape-can-be-colored",
+    "title": "Colors",
+    "section": "Any Shape Can Be Colored",
+    "text": "Any Shape Can Be Colored\nset_color works on every 3D shape — spheres, boxes, and cylinders all use the same function. The scene below places three different shapes side by side, each with its own color.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=12, width=12)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(-3, 0.5, 0)\nscene.add(sphere)\n\nbox = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox.set_color('#4488ff')\nbox.set_position(0, 0.5, 0)\nscene.add(box)\n\ncylinder = scene3d.Shapes.Cylinder(diameter=1, height=1.5, tessellation=16)\ncylinder.set_color('#44cc88')\ncylinder.set_position(3, 0.75, 0)\nscene.add(cylinder)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “Which hex code produces yellow?”, “options”: [ { “key”: “a”, “text”: “#ff00ff” }, { “key”: “b”, “text”: “#00ffff” }, { “key”: “c”, “text”: “#ffff00” }, { “key”: “d”, “text”: “#ff0000” } ], “answer”: “c”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html#design-your-own-palette",
+    "href": "cmu/01/notebooks/colors.html#design-your-own-palette",
+    "title": "Colors",
+    "section": "Design Your Own Palette",
+    "text": "Design Your Own Palette\nUse the dropdowns below to pick colors for the sky, the sphere, and the box. Change the values and run the cell to see your choices in action.\n\nimport scene3d\n\nSKY_COLOR    = '#1a1a2e' #@param ['#1a1a2e', '#87ceeb', '#ff6b35', '#0f3460', '#2d5a27']\nSPHERE_COLOR = '#e94560' #@param ['#e94560', '#4488ff', '#44cc88', '#f5a623', '#aa44ff']\nBOX_COLOR    = '#f5a623' #@param ['#e94560', '#4488ff', '#44cc88', '#f5a623', '#aa44ff']\n\nscene = scene3d.Scene()\nscene.set_sky(SKY_COLOR)\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color(SPHERE_COLOR)\nsphere.set_position(-2, 0.5, 0)\nscene.add(sphere)\n\nbox = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox.set_color(BOX_COLOR)\nbox.set_position(2, 0.5, 0)\nscene.add(box)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/colors.html#coloring-the-ground",
+    "href": "cmu/01/notebooks/colors.html#coloring-the-ground",
+    "title": "Colors",
+    "section": "Coloring the Ground",
+    "text": "Coloring the Ground\nThe sky gets its color from set_sky. But what about the ground? The built-in ground plane doesn’t have a color setting — so instead, we can place a wide, flat Box right at ground level and color that.\nThis turns out to be a useful trick: a Box with a small height and large width and depth becomes a colored floor for the whole scene.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\n\nfloor = scene3d.Shapes.Box(width=12, height=0.1, depth=12)\nfloor.set_color('#2d5a27')\nscene.add(floor)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(-2, 0.55, 0)\nscene.add(sphere)\n\ncylinder = scene3d.Shapes.Cylinder(diameter=1, height=1.5, tessellation=16)\ncylinder.set_color('#f5a623')\ncylinder.set_position(2, 0.8, 0)\nscene.add(cylinder)\n\nscene.run()\n\n{ “question_type”: “true_false”, “question”: “In a hex color code, the value ff equals 255 in regular decimal numbers.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What color does #00ffff produce?”, “options”: [ { “key”: “a”, “text”: “Purple” }, { “key”: “b”, “text”: “Yellow” }, { “key”: “c”, “text”: “Orange” }, { “key”: “d”, “text”: “Cyan (blue-green)” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What is the name of the function used to set the sky color on a scene?”, “answer”: “set_sky”, “submitted_answer”: “” }\nLook at the color mixing table in this lesson (red + green = yellow, green + blue = cyan, etc.).\nCan you predict what red + blue mixed together would make? Write your prediction, then try it — set a sphere’s color to #ff00ff and see if you were right!"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html",
+    "href": "cmu/01/notebooks/functions.html",
+    "title": "Functions",
+    "section": "",
+    "text": "In programming, a function is a named piece of code that does a specific job. Instead of writing the same instructions over and over, you simply call the function by name — and it handles everything.\nIn this lesson, you’ll use functions to place a 3D sphere in space and control its size, shape, and position."
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#your-first-function-call",
+    "href": "cmu/01/notebooks/functions.html#your-first-function-call",
+    "title": "Functions",
+    "section": "Your First Function Call",
+    "text": "Your First Function Call\nRun the cell below. A sphere appears in a 3D scene!\n\nHint: Hold the left mouse button to rotate the scene. Use the scroll wheel to zoom.\n\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(0, 0.5, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#what-just-happened",
+    "href": "cmu/01/notebooks/functions.html#what-just-happened",
+    "title": "Functions",
+    "section": "What Just Happened?",
+    "text": "What Just Happened?\nLook at this line from the code above:\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nYou just called a function. Here’s how to read it:\n\n\n\nPart\nWhat it means\n\n\n\n\nSphere\nThe function’s name — it builds a sphere\n\n\n( )\nParentheses — they tell Python to run the function\n\n\ndiameter=1\nA parameter — controls how big the sphere is\n\n\nsegments=16\nAnother parameter — controls how smooth it looks\n\n\n\nA parameter is a value you pass into a function to customize what it does. Change a parameter, and you get a different result.\n{ “question_type”: “multiple_choice”, “question”: “What tells Python that you are calling a function?”, “options”: [ { “key”: “a”, “text”: “An equals sign =” }, { “key”: “b”, “text”: “Parentheses ( )” }, { “key”: “c”, “text”: “A colon :” }, { “key”: “d”, “text”: “Square brackets [ ]” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#changing-parameters-changes-the-result",
+    "href": "cmu/01/notebooks/functions.html#changing-parameters-changes-the-result",
+    "title": "Functions",
+    "section": "Changing Parameters Changes the Result",
+    "text": "Changing Parameters Changes the Result\nWhat happens if you make the diameter bigger? Let’s find out. Run the code below — the sphere is now three times as wide as before.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=3, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(0, 1.5, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#two-parameters-two-effects",
+    "href": "cmu/01/notebooks/functions.html#two-parameters-two-effects",
+    "title": "Functions",
+    "section": "Two Parameters, Two Effects",
+    "text": "Two Parameters, Two Effects\nEach parameter controls something different:\n\n\n\n\n\n\n\n\nParameter\nWhat it controls\nTry…\n\n\n\n\ndiameter\nHow large the sphere is\n0.5 → tiny, 4 → huge\n\n\nsegments\nHow smooth the surface looks\n4 → blocky, 32 → very smooth\n\n\n\nTry changing segments to 4 in the code above and running it again. A low value makes the sphere look like a faceted gem!\n{ “question_type”: “true_false”, “question”: “Changing the diameter parameter makes the sphere a different color.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does increasing the segments parameter do?”, “options”: [ { “key”: “a”, “text”: “Makes the sphere larger” }, { “key”: “b”, “text”: “Makes the sphere’s surface smoother” }, { “key”: “c”, “text”: “Moves the sphere higher” }, { “key”: “d”, “text”: “Changes the sphere’s color” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#try-it-yourself",
+    "href": "cmu/01/notebooks/functions.html#try-it-yourself",
+    "title": "Functions",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nUse the sliders below to experiment with diameter and segments. Adjust each one and run the cell to see how the sphere changes.\n\nimport scene3d\n\nDIAMETER = 1.0 #@param {type:\"slider\", min:0.5, max:4, step:0.5}\nSEGMENTS = 16 #@param {type:\"slider\", min:4, max:32, step:4}\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=DIAMETER, segments=SEGMENTS)\nsphere.set_color('#e94560')\nsphere.set_position(0, DIAMETER / 2, 0)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#placing-the-sphere-in-space",
+    "href": "cmu/01/notebooks/functions.html#placing-the-sphere-in-space",
+    "title": "Functions",
+    "section": "Placing the Sphere in Space",
+    "text": "Placing the Sphere in Space\nSo far the sphere has sat at the center of the scene. The set_position(x, y, z) function moves it anywhere in 3D space.\nIt takes three parameters — one for each direction:\n\n\n\nParameter\nDirection\nPositive moves…\n\n\n\n\nx\nLeft / Right\nRight\n\n\ny\nDown / Up\nUp\n\n\nz\nBack / Forward\nAway from you\n\n\n\nRun the code below. The sphere is now floating to the right and above the ground.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#44cc88')\nsphere.set_position(3, 2, -2)\nscene.add(sphere)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/01/notebooks/functions.html#stretching-width-height-and-depth",
+    "href": "cmu/01/notebooks/functions.html#stretching-width-height-and-depth",
+    "title": "Functions",
+    "section": "Stretching: Width, Height, and Depth",
+    "text": "Stretching: Width, Height, and Depth\nA sphere is perfectly round — the same in every direction. But set_scale(x, y, z) lets you stretch or squash it independently along each axis:\n\n\n\nParameter\nControls\n\n\n\n\nx\nWidth (left to right)\n\n\ny\nHeight (up and down)\n\n\nz\nDepth (front to back)\n\n\n\nA value of 1 means normal size. 2 means double, 0.5 means half. Use the sliders below to squash and stretch the sphere in each direction!\n\nimport scene3d\n\nWIDTH  = 1.0 #@param {type:\"slider\", min:0.2, max:3, step:0.2}\nHEIGHT = 1.0 #@param {type:\"slider\", min:0.2, max:3, step:0.2}\nDEPTH  = 1.0 #@param {type:\"slider\", min:0.2, max:3, step:0.2}\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=2, segments=24)\nsphere.set_color('#f5a623')\nsphere.set_position(0, 3, 0)\nsphere.set_scale(WIDTH, HEIGHT, DEPTH)\nscene.add(sphere)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “In set_position(x, y, z), which parameter moves the sphere up and down?”, “options”: [ { “key”: “a”, “text”: “x” }, { “key”: “b”, “text”: “y” }, { “key”: “c”, “text”: “z” }, { “key”: “d”, “text”: “All three equally” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Calling set_scale(1, 3, 1) makes a sphere that is taller than it is wide.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What is the name of the parameter that controls the size of a Sphere?”, “answer”: “diameter”, “submitted_answer”: “” }\nIn your own words, explain what a function is and what a parameter does.\nCan you think of a real-life example where you give instructions with specific details — like ordering food with options? What would the function name be? What would the parameters be?"
   },
   {
     "objectID": "cmu/03/notebooks/if_statements.html",
