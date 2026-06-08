@@ -435,6 +435,27 @@ scene.run()                      # blocks Python in event loop; Stop button work
 
 **Mesh getters:** `get_position()` → `(x, y, z)` tuple, `get_rotation()` → `(x, y, z)` tuple in degrees, `get_scale()` → `(x, y, z)` tuple, `get_color()` → hex string. Values are always in sync because every `set_*` call updates Python-side state immediately.
 
+**`Group`:** groups multiple meshes so they move and rotate as a single unit. Child positions and rotations are relative to the group origin. Supports `set_position`, `set_rotation`, `set_scale`, `get_position`, `get_rotation`, `get_scale`. No appearance methods (`set_color`, `set_material`, etc.) — those belong on the individual child meshes.
+
+```python
+car = scene3d.Group()
+
+body = scene3d.Shapes.Box(width=2, height=0.5, depth=1)
+body.set_color('#cc2200')
+
+wheel = scene3d.Shapes.Cylinder(diameter=0.4, height=0.15, tessellation=16)
+wheel.set_rotation(z=90)
+wheel.set_position(0.8, 0, 0.5)
+wheel.set_color('#222222')
+
+car.add(body)
+car.add(wheel)
+car.set_position(0, 0.5, 0)
+scene.add(car)                   # adds the group + all children in one call
+
+car.set_rotation(y=45)           # rotates the whole group
+```
+
 **`set_texture(source)`:** accepts a file path (e.g. `'/sample_files/cat.png'`), a `data:` URL, or a raw base64 string (assumed PNG). Setting a texture resets the color to white; call `set_color` after `set_texture` to apply a tint.
 
 **`set_material(constant)`:** applies a PBR material (colour + normal + roughness) or simple diffuse texture. Available constants:
@@ -449,7 +470,7 @@ box.set_material(scene3d.Material.Bricks.RoughStone)
 # Grass: Bright, Dark, Olive
 # Gravel: LightGray, DarkGray
 # Marble: Brown, Gray, Black, Charcoal
-# Planets (simple): Earth, Jupiter, Mars, Mercury, Neptune, Saturn, Uranus, Venus
+# Planets (simple): Earth, Jupiter, Mars, Mercury, Neptune, Saturn, Uranus, Venus, Moon
 # Road: PatchedAsphalt, AsphaltEdges, Highway
 # RoofingTiles: DarkSlate
 # Snow: Fresh
