@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tosh, Qaychi, Qog’oz – Codercub Summer of Code 2026</title>
+<title>Random Numbers – Codercub Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/07/notebooks/gesture_painter.html" rel="next">
-<link href="../../../labs/07/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/07/slides.html">Day 7</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">tosh_qaychi_qogoz.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Random Numbers</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -565,16 +563,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tosh_qaychi_qogoz.ipynb</span></a>
   </div>
 </li>
@@ -729,9 +727,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/07/slides.html">Day 7</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">tosh_qaychi_qogoz.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tosh, Qaychi, Qog’oz</h1>
+<h1 class="title">Random Numbers</h1>
 </div>
 
 
@@ -748,155 +746,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Tosh, Qaychi, Qog’oz</strong> (Rock, Scissors, Paper) is a game deeply embedded in Mongolian culture — played to resolve disputes, make decisions, and just have fun. In this miniapp, your webcam becomes the game controller: hold up a hand gesture and the computer picks its move.</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/07/notebooks/tosh_qaychi_qogoz.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How It Works</h2>
-<p>Three gestures map to the three moves:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Gesture</th>
-<th>Mongolian</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Closed fist</td>
-<td><strong>Tosh</strong></td>
-<td>Rock</td>
-</tr>
-<tr class="even">
-<td>V-sign (Victory)</td>
-<td><strong>Qaychi</strong></td>
-<td>Scissors</td>
-</tr>
-<tr class="odd">
-<td>Open palm</td>
-<td><strong>Qog’oz</strong></td>
-<td>Paper</td>
-</tr>
-</tbody>
-</table>
-<p>The rules are the same as always: - <strong>Tosh</strong> crushes <strong>Qaychi</strong> - <strong>Qaychi</strong> cuts <strong>Qog’oz</strong> - <strong>Qog’oz</strong> covers <strong>Tosh</strong></p>
-<p>Hold a gesture steady for about <strong>1 second</strong> to register your play. A charge bar shows your progress while you hold, and there’s a short pause between rounds so you can see the result.</p>
-</section>
-<section id="step-1-practice-your-gestures" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-practice-your-gestures">Step 1: Practice Your Gestures</h2>
-<p>Run the cell below to see what the detector recognizes for each gesture. Try all three moves and check the output to confirm they’re being picked up correctly.</p>
-<p>Click <strong>Stop</strong> (■) when you’re ready to play.</p>
-<div id="cell-practice" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>VALID <span class="op">=</span> {<span class="st">'Closed_Fist'</span>, <span class="st">'Victory'</span>, <span class="st">'Open_Palm'</span>}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> hand[<span class="st">'gesture'</span>] <span class="kw">in</span> VALID:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>hand[<span class="st">'confidence'</span>]<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="step-2-play" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-play">Step 2: Play!</h2>
-<p>Run the cell below and hold any of the three gestures steady for about 1 second. The charge bar fills as you hold — when it’s full, the computer makes its move and the result appears. There’s a short pause between rounds so you can read the result before the next round starts.</p>
-<p>Your score carries across rounds until you click <strong>Stop</strong> (■).</p>
-<div id="cell-game" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>VALID        <span class="op">=</span> {<span class="st">'Closed_Fist'</span>: <span class="st">'Tosh'</span>, <span class="st">'Victory'</span>: <span class="st">'Qaychi'</span>, <span class="st">'Open_Palm'</span>: <span class="st">"Qog'oz"</span>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>BEATS        <span class="op">=</span> {<span class="st">'Closed_Fist'</span>: <span class="st">'Victory'</span>, <span class="st">'Victory'</span>: <span class="st">'Open_Palm'</span>, <span class="st">'Open_Palm'</span>: <span class="st">'Closed_Fist'</span>}</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>HOLD         <span class="op">=</span> <span class="dv">40</span>   <span class="co"># frames to hold (~1.3 sec at 30fps)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>PAUSE_FRAMES <span class="op">=</span> <span class="dv">60</span>   <span class="co"># pause between rounds (~2 sec)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
+<p>Every time you run your scene, everything appears in exactly the same place. That’s useful for control — but real worlds feel alive because things are <em>unpredictable</em>.</p>
+<p>Python’s <code>random</code> module lets you generate numbers that are different every time your code runs. Use them to scatter objects across a scene, pick colors on the fly, or animate things that move in surprising ways.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/cmu/02/notebooks/random_numbers.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<section id="random.randint-a-random-whole-number" class="level2">
+<h2 class="anchored" data-anchor-id="random.randint-a-random-whole-number"><code>random.randint()</code> — A Random Whole Number</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>random.randint(a, b)</code> returns a random <strong>integer</strong> (whole number) between <code>a</code> and <code>b</code>, including both endpoints. Think of it like rolling a custom die — <code>randint(1, 6)</code> simulates a standard six-sided die.</p>
+<p>Run the cell below a few times. The sphere lands at a different height each time!</p>
+<div id="cell-randint-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">10</span>, width<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">8</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="dv">1</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>sphere.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>sphere.set_position(<span class="dv">0</span>, height, <span class="dv">0</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>scene.add(sphere)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>result_line <span class="op">=</span> <span class="st">"Hold a gesture steady to play!"</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>]</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>pause <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            pause <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            gesture <span class="op">=</span> detections[<span class="dv">0</span>][<span class="st">'gesture'</span>] <span class="cf">if</span> detections <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> gesture <span class="kw">in</span> VALID:</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span> <span class="cf">if</span> gesture <span class="op">==</span> held <span class="cf">else</span> <span class="dv">1</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                held  <span class="op">=</span> gesture</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> count <span class="op">&gt;=</span> HOLD:</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                    comp <span class="op">=</span> random.choice(<span class="bu">list</span>(VALID))</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> gesture <span class="op">==</span> comp:</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"Tie!"</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> BEATS[gesture] <span class="op">==</span> comp:</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"You win!"</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                        score[<span class="dv">0</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"Computer wins!"</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                        score[<span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                    result_line <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>VALID[gesture]<span class="sc">}</span><span class="ss">  vs  </span><span class="sc">{</span>VALID[comp]<span class="sc">}</span><span class="ss">  —  </span><span class="sc">{</span>msg<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                    held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                    pause <span class="op">=</span> PAUSE_FRAMES</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'rgba(0,0,0,0.7)'</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">84</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'bold 22px sans-serif'</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(result_line, <span class="dv">12</span>, <span class="dv">28</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="ss">f"You: </span><span class="sc">{</span>score[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">   Computer: </span><span class="sc">{</span>score[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">54</span>)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>            ctx.fill_text(<span class="st">"Get ready..."</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> held:</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>            bars <span class="op">=</span> <span class="bu">int</span>(count <span class="op">/</span> HOLD <span class="op">*</span> <span class="dv">10</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>            ctx.fill_text(<span class="ss">f"Holding </span><span class="sc">{</span>VALID[held]<span class="sc">}</span><span class="ss">... </span><span class="sc">{</span><span class="st">'#'</span> <span class="op">*</span> bars<span class="sc">}{</span><span class="st">'.'</span> <span class="op">*</span> (<span class="dv">10</span> <span class="op">-</span> bars)<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ctx.fill_text(<span class="ss">f'Height: </span><span class="sc">{</span>height<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>What would you add or change to make this game more fun? (Think about sound effects, a countdown, a best-of-3 mode, or showing the computer’s move as an image.)</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “What real-world thing does random.randint(1, 6) simulate?”, “options”: [ { “key”: “a”, “text”: “Flipping a coin” }, { “key”: “b”, “text”: “Rolling a six-sided die” }, { “key”: “c”, “text”: “Picking a card from a deck” }, { “key”: “d”, “text”: “Spinning a wheel with 10 sections” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
-<section id="ideas-to-extend-this-app" class="level2">
-<h2 class="anchored" data-anchor-id="ideas-to-extend-this-app">Ideas to Extend This App</h2>
-<ul>
-<li><strong>Sound effects</strong> — play a chime on a win using <code>import audio; audio.play('/sample_files/chime.wav')</code></li>
-<li><strong>Countdown</strong> — show “3… 2… 1… Show!” on the canvas before reading the gesture</li>
-<li><strong>Best of 3</strong> — track rounds and announce an overall winner after 3 games</li>
-<li><strong>Two-player mode</strong> — use both hands (<code>num_hands=2</code>) and compare them directly</li>
-<li><strong>Win streak</strong> — track and display the longest winning streak</li>
-</ul>
+<section id="random.uniform-a-random-decimal-number" class="level2">
+<h2 class="anchored" data-anchor-id="random.uniform-a-random-decimal-number"><code>random.uniform()</code> — A Random Decimal Number</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>random.uniform(a, b)</code> returns a random <strong>float</strong> (decimal number) anywhere between <code>a</code> and <code>b</code>. This is perfect for placing objects at precise positions in 3D space, where you want full coverage of a range — not just whole numbers.</p>
+<p>Run the cell below. Each time, 25 spheres appear at completely different positions!</p>
+<div id="cell-scatter-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">25</span>):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">0.5</span>, segments<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    sphere.set_position(x, <span class="fl">0.3</span>, z)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    sphere.set_color(<span class="st">'#f5a623'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    scene.add(sphere)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “What is the difference between random.randint(1, 10) and random.uniform(1, 10)?”, “options”: [ { “key”: “a”, “text”: “randint is faster; uniform is slower” }, { “key”: “b”, “text”: “randint returns a whole number; uniform returns a decimal” }, { “key”: “c”, “text”: “randint includes 10; uniform does not” }, { “key”: “d”, “text”: “They return exactly the same values” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+</section>
+<section id="random.choice-pick-from-a-list" class="level2">
+<h2 class="anchored" data-anchor-id="random.choice-pick-from-a-list"><code>random.choice()</code> — Pick from a List</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#f5a623'</span>, <span class="st">'#4488ff'</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> random.choice(colors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>random.choice(list)</code> picks one item at random from a list. It’s perfect for choosing a random color, a random shape, or a random word from a collection you’ve defined.</p>
+<p>The scene below combines <code>random.choice()</code> with <code>random.uniform()</code> to scatter colorful spheres across the ground.</p>
+<div id="cell-choice-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#f5a623'</span>, <span class="st">'#4488ff'</span>, <span class="st">'#44cc88'</span>, <span class="st">'#cc44ff'</span>, <span class="st">'#ff8844'</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">20</span>):</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">0.7</span>, segments<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    sphere.set_color(random.choice(colors))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    sphere.set_position(x, <span class="fl">0.45</span>, z)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    scene.add(sphere)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “What does random.choice([‘red’, ‘blue’, ‘green’]) return?”, “options”: [ { “key”: “a”, “text”: “All three items at once” }, { “key”: “b”, “text”: “A random number between 0 and 2” }, { “key”: “c”, “text”: “One randomly selected item from the list” }, { “key”: “d”, “text”: “Always the first item in the list” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+</section>
+<section id="randomness-in-animation" class="level2">
+<h2 class="anchored" data-anchor-id="randomness-in-animation">Randomness in Animation</h2>
+<p>Random numbers aren’t just for placing objects at the start — you can use them <em>during</em> animation too. The scene below creates a rain effect. Each drop falls at a random speed, and when it hits the ground it reappears at a new random position at the top.</p>
+<p>Click <strong>Stop</strong> (■) when you’ve watched the rain for a while.</p>
+<div id="cell-rain-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0a0a1e'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>drops <span class="op">=</span> []</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">15</span>):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    drop <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.1</span>, height<span class="op">=</span><span class="fl">0.5</span>, tessellation<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    drop.set_color(<span class="st">'#88aaff'</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> random.uniform(<span class="dv">3</span>, <span class="dv">12</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    speed <span class="op">=</span> random.uniform(<span class="dv">3</span>, <span class="dv">8</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    drop.set_position(x, y, z)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    scene.add(drop)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    drops.append({<span class="st">'mesh'</span>: drop, <span class="st">'x'</span>: x, <span class="st">'y'</span>: y, <span class="st">'z'</span>: z, <span class="st">'speed'</span>: speed})</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> drop <span class="kw">in</span> drops:</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>        drop[<span class="st">'y'</span>] <span class="op">-=</span> drop[<span class="st">'speed'</span>] <span class="op">*</span> dt</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> drop[<span class="st">'y'</span>] <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>            drop[<span class="st">'y'</span>] <span class="op">=</span> random.uniform(<span class="dv">8</span>, <span class="dv">14</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>            drop[<span class="st">'x'</span>] <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            drop[<span class="st">'z'</span>] <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>            drop[<span class="st">'speed'</span>] <span class="op">=</span> random.uniform(<span class="dv">3</span>, <span class="dv">8</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        drop[<span class="st">'mesh'</span>].set_position(drop[<span class="st">'x'</span>], drop[<span class="st">'y'</span>], drop[<span class="st">'z'</span>])</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “true_false”, “question”: “If you call random.seed(42) before generating numbers, you will always get the same sequence of random values.”, “answer”: “True”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “freeform”, “question”: “Write the function call that picks a random integer between 1 and 100, including both 1 and 100.”, “answer”: “random.randint(1, 100)”, “submitted_answer”: “” }</p>
+</section>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
+<p>Use the sliders to control how many spheres appear and which <strong>seed</strong> is used.</p>
+<p>A <strong>seed</strong> is a starting value for the random number generator. The same seed always produces the same sequence of numbers — so you can “freeze” a layout you like by keeping the seed fixed, and change the seed to explore a totally different arrangement.</p>
+<div id="cell-interactive" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>COUNT <span class="op">=</span> <span class="dv">20</span> <span class="co">#@param {type:"slider", min:5, max:50, step:5}</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>SEED  <span class="op">=</span> <span class="dv">42</span> <span class="co">#@param {type:"slider", min:1, max:100, step:1}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>random.seed(SEED)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#f5a623'</span>, <span class="st">'#4488ff'</span>, <span class="st">'#44cc88'</span>, <span class="st">'#cc44ff'</span>, <span class="st">'#ff8844'</span>, <span class="st">'#44ffcc'</span>]</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(COUNT):</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">0.6</span>, segments<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    sphere.set_color(random.choice(colors))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    sphere.set_position(x, <span class="fl">0.4</span>, z)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    scene.add(sphere)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Think about a game or simulation you’ve played where randomness made things interesting — a shuffled deck, a procedurally generated map, enemies that move unpredictably.</p>
+<p>Describe one way you’d use random numbers in a 3D scene of your own. Which function would you use — <code>randint</code>, <code>uniform</code>, or <code>choice</code> — and why?</p>
 
 
 </section>
@@ -1315,18 +1313,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../labs/07/slides.html" class="pagination-link" aria-label="Slides">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../labs/07/notebooks/gesture_painter.html" class="pagination-link" aria-label="gesture_painter.ipynb">
-        <span class="nav-page-text">gesture_painter.ipynb</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

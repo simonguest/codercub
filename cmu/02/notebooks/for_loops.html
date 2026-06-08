@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tosh, Qaychi, Qog’oz – Codercub Summer of Code 2026</title>
+<title>For Loops and While Loops – Codercub Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/07/notebooks/gesture_painter.html" rel="next">
-<link href="../../../labs/07/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/07/slides.html">Day 7</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">tosh_qaychi_qogoz.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">For Loops and While Loops</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -565,16 +563,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false">
  <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tosh_qaychi_qogoz.ipynb</span></a>
   </div>
 </li>
@@ -729,9 +727,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/07/slides.html">Day 7</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html">tosh_qaychi_qogoz.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tosh, Qaychi, Qog’oz</h1>
+<h1 class="title">For Loops and While Loops</h1>
 </div>
 
 
@@ -748,155 +746,252 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Tosh, Qaychi, Qog’oz</strong> (Rock, Scissors, Paper) is a game deeply embedded in Mongolian culture — played to resolve disputes, make decisions, and just have fun. In this miniapp, your webcam becomes the game controller: hold up a hand gesture and the computer picks its move.</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/07/notebooks/tosh_qaychi_qogoz.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How It Works</h2>
-<p>Three gestures map to the three moves:</p>
+<p>What if you wanted to place ten boxes in a row? Or a hundred stars scattered across the sky? Writing the same code over and over would take forever — and one typo ruins everything.</p>
+<p>A <strong>loop</strong> lets you repeat code automatically. Python gives you two kinds:</p>
+<ul>
+<li>A <strong><code>for</code> loop</strong> runs a block of code once for each item in a sequence.</li>
+<li>A <strong><code>while</code> loop</strong> keeps running as long as a condition stays true.</li>
+</ul>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/cmu/02/notebooks/for_loops.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<section id="four-boxes-the-hard-way" class="level2">
+<h2 class="anchored" data-anchor-id="four-boxes-the-hard-way">Four Boxes the Hard Way</h2>
+<p>Run the cell below. Four boxes appear in a row. Each box requires three nearly identical lines of code. Imagine having to do this for twenty boxes!</p>
+<div id="cell-manual-boxes" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">12</span>, width<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>box1 <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>box1.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>box1.set_position(<span class="op">-</span><span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>scene.add(box1)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>box2 <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>box2.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>box2.set_position(<span class="op">-</span><span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>scene.add(box2)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>box3 <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>box3.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>box3.set_position(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>scene.add(box3)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>box4 <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>box4.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>box4.set_position(<span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>scene.add(box4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="four-boxes-the-smart-way" class="level2">
+<h2 class="anchored" data-anchor-id="four-boxes-the-smart-way">Four Boxes the Smart Way</h2>
+<p>A <code>for</code> loop does the same job in just a few lines. Run the cell below — you’ll get the exact same four boxes.</p>
+<div id="cell-for-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">12</span>, width<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    box.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    box.set_position(i <span class="op">*</span> <span class="dv">2</span> <span class="op">-</span> <span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    scene.add(box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="how-the-for-loop-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-for-loop-works">How the <code>for</code> Loop Works</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    box.set_position(i <span class="op">*</span> <span class="dv">2</span> <span class="op">-</span> <span class="dv">3</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Gesture</th>
-<th>Mongolian</th>
-<th>Meaning</th>
+<th>Part</th>
+<th>What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Closed fist</td>
-<td><strong>Tosh</strong></td>
-<td>Rock</td>
+<td><code>for</code></td>
+<td>The keyword that starts the loop</td>
 </tr>
 <tr class="even">
-<td>V-sign (Victory)</td>
-<td><strong>Qaychi</strong></td>
-<td>Scissors</td>
+<td><code>i</code></td>
+<td>A variable that takes each number from <code>range</code>, one at a time</td>
 </tr>
 <tr class="odd">
-<td>Open palm</td>
-<td><strong>Qog’oz</strong></td>
-<td>Paper</td>
+<td><code>range(4)</code></td>
+<td>Produces the numbers 0, 1, 2, 3 — four values total</td>
+</tr>
+<tr class="even">
+<td><code>:</code></td>
+<td>Marks the end of the <code>for</code> line</td>
+</tr>
+<tr class="odd">
+<td>Indented body</td>
+<td>The code that repeats — one run per value in <code>range</code></td>
 </tr>
 </tbody>
 </table>
-<p>The rules are the same as always: - <strong>Tosh</strong> crushes <strong>Qaychi</strong> - <strong>Qaychi</strong> cuts <strong>Qog’oz</strong> - <strong>Qog’oz</strong> covers <strong>Tosh</strong></p>
-<p>Hold a gesture steady for about <strong>1 second</strong> to register your play. A charge bar shows your progress while you hold, and there’s a short pause between rounds so you can see the result.</p>
+<p>On the first pass, <code>i</code> is <code>0</code>. Second: <code>i</code> is <code>1</code>. And so on through <code>3</code>. The expression <code>i * 2 - 3</code> gives x-positions of <code>-3</code>, <code>-1</code>, <code>1</code>, <code>3</code> — spacing the boxes evenly.</p>
+<section id="indentation-matters" class="level3">
+<h3 class="anchored" data-anchor-id="indentation-matters">Indentation matters!</h3>
+<p>Just like with <code>if</code> statements, everything indented under the <code>for</code> line is inside the loop. Return to the left margin and you’re outside again.</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “What values does range(4) produce?”, “options”: [ { “key”: “a”, “text”: “1, 2, 3, 4” }, { “key”: “b”, “text”: “0, 1, 2, 3” }, { “key”: “c”, “text”: “0, 1, 2, 3, 4” }, { “key”: “d”, “text”: “4, 3, 2, 1” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “If you write ‘for i in range(3):’, the loop body will run exactly 3 times.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
-<section id="step-1-practice-your-gestures" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-practice-your-gestures">Step 1: Practice Your Gestures</h2>
-<p>Run the cell below to see what the detector recognizes for each gesture. Try all three moves and check the output to confirm they’re being picked up correctly.</p>
-<p>Click <strong>Stop</strong> (■) when you’re ready to play.</p>
-<div id="cell-practice" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>VALID <span class="op">=</span> {<span class="st">'Closed_Fist'</span>, <span class="st">'Victory'</span>, <span class="st">'Open_Palm'</span>}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> hand[<span class="st">'gesture'</span>] <span class="kw">in</span> VALID:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>hand[<span class="st">'confidence'</span>]<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="using-i-to-create-variety" class="level2">
+<h2 class="anchored" data-anchor-id="using-i-to-create-variety">Using <code>i</code> to Create Variety</h2>
+<p>The loop variable <code>i</code> isn’t just a counter — you can use its value to make each object different. The scene below uses <code>i</code> to control both the height and the color of each box, creating a staircase.</p>
+<div id="cell-staircase-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">15</span>, width<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#f5a623'</span>, <span class="st">'#44cc88'</span>, <span class="st">'#4488ff'</span>, <span class="st">'#cc44ff'</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    box_height <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span>box_height, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    box.set_color(colors[i])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    box.set_position(i <span class="op">*</span> <span class="fl">2.5</span> <span class="op">-</span> <span class="dv">5</span>, box_height <span class="op">/</span> <span class="dv">2</span>, <span class="dv">0</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    scene.add(box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “In the staircase example, what is the value of i during the very first pass through the loop?”, “options”: [ { “key”: “a”, “text”: “1” }, { “key”: “b”, “text”: “-1” }, { “key”: “c”, “text”: “0” }, { “key”: “d”, “text”: “5” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+</section>
+<section id="while-loops-repeat-until-a-condition-changes" class="level2">
+<h2 class="anchored" data-anchor-id="while-loops-repeat-until-a-condition-changes"><code>while</code> Loops — Repeat Until a Condition Changes</h2>
+<p>A <code>for</code> loop is great when you know <em>exactly</em> how many times to repeat. But sometimes you want to keep going <strong>until something happens</strong> — and you don’t know in advance how many steps that takes.</p>
+<p>That’s what a <code>while</code> loop is for:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> condition:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># runs as long as condition is True</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The scene below builds a tower by stacking boxes. The loop keeps adding a box <strong>while</strong> the current height is less than 5 — and stops the moment that’s no longer true.</p>
+<p>Hint: Use the scroll wheel to zoom out and see the full tower.</p>
+<div id="cell-while-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#87CEEB'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">12</span>, width<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> height <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.5</span>, height<span class="op">=</span><span class="fl">1.0</span>, depth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    box.set_color(<span class="st">'#cc4400'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    box.set_position(<span class="dv">0</span>, height, <span class="dv">0</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    scene.add(box)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    height <span class="op">+=</span> <span class="fl">1.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="step-2-play" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-play">Step 2: Play!</h2>
-<p>Run the cell below and hold any of the three gestures steady for about 1 second. The charge bar fills as you hold — when it’s full, the computer makes its move and the result appears. There’s a short pause between rounds so you can read the result before the next round starts.</p>
-<p>Your score carries across rounds until you click <strong>Stop</strong> (■).</p>
-<div id="cell-game" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>VALID        <span class="op">=</span> {<span class="st">'Closed_Fist'</span>: <span class="st">'Tosh'</span>, <span class="st">'Victory'</span>: <span class="st">'Qaychi'</span>, <span class="st">'Open_Palm'</span>: <span class="st">"Qog'oz"</span>}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>BEATS        <span class="op">=</span> {<span class="st">'Closed_Fist'</span>: <span class="st">'Victory'</span>, <span class="st">'Victory'</span>: <span class="st">'Open_Palm'</span>, <span class="st">'Open_Palm'</span>: <span class="st">'Closed_Fist'</span>}</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>HOLD         <span class="op">=</span> <span class="dv">40</span>   <span class="co"># frames to hold (~1.3 sec at 30fps)</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>PAUSE_FRAMES <span class="op">=</span> <span class="dv">60</span>   <span class="co"># pause between rounds (~2 sec)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_gesture_detector(camera)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>result_line <span class="op">=</span> <span class="st">"Hold a gesture steady to play!"</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>]</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>pause <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            pause <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            gesture <span class="op">=</span> detections[<span class="dv">0</span>][<span class="st">'gesture'</span>] <span class="cf">if</span> detections <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> gesture <span class="kw">in</span> VALID:</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span> <span class="cf">if</span> gesture <span class="op">==</span> held <span class="cf">else</span> <span class="dv">1</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                held  <span class="op">=</span> gesture</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> count <span class="op">&gt;=</span> HOLD:</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                    comp <span class="op">=</span> random.choice(<span class="bu">list</span>(VALID))</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> gesture <span class="op">==</span> comp:</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"Tie!"</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> BEATS[gesture] <span class="op">==</span> comp:</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"You win!"</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                        score[<span class="dv">0</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"Computer wins!"</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                        score[<span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                    result_line <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>VALID[gesture]<span class="sc">}</span><span class="ss">  vs  </span><span class="sc">{</span>VALID[comp]<span class="sc">}</span><span class="ss">  —  </span><span class="sc">{</span>msg<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                    held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                    pause <span class="op">=</span> PAUSE_FRAMES</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'rgba(0,0,0,0.7)'</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">84</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'bold 22px sans-serif'</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(result_line, <span class="dv">12</span>, <span class="dv">28</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="ss">f"You: </span><span class="sc">{</span>score[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">   Computer: </span><span class="sc">{</span>score[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">54</span>)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>            ctx.fill_text(<span class="st">"Get ready..."</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> held:</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>            bars <span class="op">=</span> <span class="bu">int</span>(count <span class="op">/</span> HOLD <span class="op">*</span> <span class="dv">10</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>            ctx.fill_text(<span class="ss">f"Holding </span><span class="sc">{</span>VALID[held]<span class="sc">}</span><span class="ss">... </span><span class="sc">{</span><span class="st">'#'</span> <span class="op">*</span> bars<span class="sc">}{</span><span class="st">'.'</span> <span class="op">*</span> (<span class="dv">10</span> <span class="op">-</span> bars)<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>What would you add or change to make this game more fun? (Think about sound effects, a countdown, a best-of-3 mode, or showing the computer’s move as an image.)</p>
+<section id="how-the-while-loop-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-the-while-loop-works">How the <code>while</code> Loop Works</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>height <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> height <span class="op">&lt;</span> <span class="dv">5</span>:</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    height <span class="op">+=</span> <span class="fl">1.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Python checks: is <code>height &lt; 5</code>?</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>If <strong>True</strong> → run the indented body</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>After the body, go back to step 1</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>If <strong>False</strong> → exit the loop and continue</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Warning — Infinite Loops!</strong> If the condition never becomes False, the loop runs forever and your program hangs. Always make sure something inside the loop changes the condition. Here, <code>height += 1.0</code> keeps growing <code>height</code> until it reaches 5.</p>
+</blockquote>
+<section id="for-vs-while-which-one-to-use" class="level3">
+<h3 class="anchored" data-anchor-id="for-vs-while-which-one-to-use"><code>for</code> vs <code>while</code> — which one to use?</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Use <code>for</code> when…</th>
+<th>Use <code>while</code> when…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>You know exactly how many times to repeat</td>
+<td>You repeat until a condition changes</td>
+</tr>
+<tr class="even">
+<td>Stepping through a fixed sequence</td>
+<td>The number of repetitions isn’t known upfront</td>
+</tr>
+<tr class="odd">
+<td><code>range(n)</code> fits naturally</td>
+<td>You’re waiting for something to happen</td>
+</tr>
+</tbody>
+</table>
+<p>{ “question_type”: “true_false”, “question”: “A while loop automatically stops after running exactly 10 times, no matter what the condition says.”, “answer”: “False”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “Which loop is the most natural choice for placing exactly 8 spheres in a scene?”, “options”: [ { “key”: “a”, “text”: “A while loop” }, { “key”: “b”, “text”: “A for loop with range(8)” }, { “key”: “c”, “text”: “Neither — just write 8 separate lines of code” }, { “key”: “d”, “text”: “It doesn’t matter — for and while always do the same thing” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
-<section id="ideas-to-extend-this-app" class="level2">
-<h2 class="anchored" data-anchor-id="ideas-to-extend-this-app">Ideas to Extend This App</h2>
-<ul>
-<li><strong>Sound effects</strong> — play a chime on a win using <code>import audio; audio.play('/sample_files/chime.wav')</code></li>
-<li><strong>Countdown</strong> — show “3… 2… 1… Show!” on the canvas before reading the gesture</li>
-<li><strong>Best of 3</strong> — track rounds and announce an overall winner after 3 games</li>
-<li><strong>Two-player mode</strong> — use both hands (<code>num_hands=2</code>) and compare them directly</li>
-<li><strong>Win streak</strong> — track and display the longest winning streak</li>
-</ul>
+</section>
+<section id="a-note-on-dowhile" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-dowhile">A Note on <code>do/while</code></h2>
+<p>Some languages have a <strong>do/while</strong> loop that always runs the body at least once <em>before</em> checking the condition. Python doesn’t have this keyword, but you can get the same effect using <code>while True:</code> with <code>break</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this always runs at least once</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> count <span class="op">&gt;=</span> <span class="dv">5</span>:</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span>   <span class="co"># exit the loop immediately</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>break</code> exits the loop right away, jumping to the first line after it. <code>while True:</code> would run forever on its own — <code>break</code> is how you decide exactly when to stop.</p>
+</section>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
+<p>Use the slider to choose how many spheres appear in the scene. The <code>for</code> loop adapts automatically — change the count, rerun the cell, and see the result.</p>
+<div id="cell-interactive" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>COUNT <span class="op">=</span> <span class="dv">5</span> <span class="co">#@param {type:"slider", min:1, max:10, step:1}</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">25</span>, width<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#f5a623'</span>, <span class="st">'#4488ff'</span>, <span class="st">'#44cc88'</span>, <span class="st">'#cc44ff'</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">'#ff44cc'</span>, <span class="st">'#44ffcc'</span>, <span class="st">'#ffcc44'</span>, <span class="st">'#ff8844'</span>, <span class="st">'#88ff44'</span>]</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>spacing <span class="op">=</span> <span class="dv">20</span> <span class="op">/</span> COUNT</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(COUNT):</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    sphere.set_color(colors[i <span class="op">%</span> <span class="bu">len</span>(colors)])</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    sphere.set_position(i <span class="op">*</span> spacing <span class="op">-</span> <span class="dv">10</span> <span class="op">+</span> spacing <span class="op">/</span> <span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    scene.add(sphere)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Think of a real scene you’d like to build — a forest of trees, a city block of buildings, a night sky full of stars, a row of traffic cones.</p>
+<p>Which kind of loop would you use, and why? What code would go inside the loop? Write a short description of your scene and how the loop helps build it.</p>
 
 
 </section>
@@ -1315,18 +1410,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../labs/07/slides.html" class="pagination-link" aria-label="Slides">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../labs/07/notebooks/gesture_painter.html" class="pagination-link" aria-label="gesture_painter.ipynb">
-        <span class="nav-page-text">gesture_painter.ipynb</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

@@ -883,6 +883,69 @@
     ]
   },
   {
+    "objectID": "cmu/02/notebooks/if_statements.html",
+    "href": "cmu/02/notebooks/if_statements.html",
+    "title": "The if Statement",
+    "section": "",
+    "text": "So far your programs have run the same way every time — every line executes, top to bottom, no matter what. But real programs need to make decisions. Should the ball bounce? Is the player’s score high enough to win? That’s where the if statement comes in.\nIn this lesson you’ll learn how to give your program a condition to check, and only run certain code when that condition is true."
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#a-ball-that-falls-forever",
+    "href": "cmu/02/notebooks/if_statements.html#a-ball-that-falls-forever",
+    "title": "The if Statement",
+    "section": "A Ball That Falls Forever",
+    "text": "A Ball That Falls Forever\nRun the cell below. A ball drops from the sky — and keeps going… forever. There’s nothing telling it to stop or come back. Click Stop (■) when you’ve seen enough.\nHint: You can hold down the left mouse button to move around the scene. Use the scroll wheel to zoom in and out.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#e94560')\nball.set_position(0, 8, 0)\nscene.add(ball)\n\ny = 8.0\n\n@scene.on_frame\ndef animate(dt):\n    global y\n    y -= 3 * dt\n    ball.set_position(0, y, 0)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#the-problem-and-the-fix",
+    "href": "cmu/02/notebooks/if_statements.html#the-problem-and-the-fix",
+    "title": "The if Statement",
+    "section": "The Problem — and the Fix",
+    "text": "The Problem — and the Fix\nThe ball just keeps falling because we never told it what to do when it hits the ground. Every frame, the program subtracts from y — no questions asked.\nWe need a way to say: “if the ball reaches the ground, reset it to the top.”\nThat’s exactly what an if statement does. It checks a condition, and only runs the indented code underneath when that condition is True.\nif y &lt; 0:\n    y = 8.0\nLet’s add it and see what happens.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#e94560')\nball.set_position(0, 8, 0)\nscene.add(ball)\n\ny = 8.0\n\n@scene.on_frame\ndef animate(dt):\n    global y\n    y -= 3 * dt\n\n    if y &lt; 0:\n        y = 8.0\n\n    ball.set_position(0, y, 0)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#how-the-if-statement-works",
+    "href": "cmu/02/notebooks/if_statements.html#how-the-if-statement-works",
+    "title": "The if Statement",
+    "section": "How the if Statement Works",
+    "text": "How the if Statement Works\nAn if statement has three parts:\nif y &lt; 0:\n    y = 8.0\n\n\n\n\n\n\n\n\nPart\nWhat it is\nExample\n\n\n\n\nif\nThe keyword that starts the statement\nif\n\n\nCondition\nA question Python checks — is this True or False?\ny &lt; 0\n\n\nColon :\nMarks the end of the condition\n:\n\n\nIndented body\nThe code that runs only when the condition is True\ny = 8.0\n\n\n\n\nIndentation matters!\nPython uses indentation (spaces at the start of a line) to know which lines belong inside the if. Any line indented under the if only runs when the condition is True. As soon as you go back to the left margin, you’re outside the if again.\nif y &lt; 0:\n    y = 8.0          # inside the if — only runs when y &lt; 0\n    print('reset!')  # also inside\nball.set_position(0, y, 0)  # outside — always runs"
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#controlling-a-growing-sphere",
+    "href": "cmu/02/notebooks/if_statements.html#controlling-a-growing-sphere",
+    "title": "The if Statement",
+    "section": "Controlling a Growing Sphere",
+    "text": "Controlling a Growing Sphere\nHere’s another example. Each frame, the sphere grows a little bigger. When it gets too large, an if statement resets it back to a small size.\nNotice how size keeps increasing — until the condition size &gt; 3 becomes True, and the if steps in.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#f5a623')\nsphere.set_position(0, 1.5, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nsize = 0.2\n\n@scene.on_frame\ndef animate(dt):\n    global size\n    size += 0.5 * dt\n\n    if size &gt; 3:\n        size = 0.2\n\n    sphere.set_scale(size, size, size)\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.fill_text(f'Size: {size:.2f}', 10, 28)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “What character must appear at the end of every if condition?”, “options”: [ { “key”: “a”, “text”: “A semicolon ;” }, { “key”: “b”, “text”: “A colon :” }, { “key”: “c”, “text”: “A period .” }, { “key”: “d”, “text”: “An equals sign =” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The indented code inside an if statement always runs, even when the condition is False.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In the growing-sphere example, what happens when size &gt; 3 is True?”, “options”: [ { “key”: “a”, “text”: “The program crashes” }, { “key”: “b”, “text”: “The sphere stops moving” }, { “key”: “c”, “text”: “size resets to 0.2” }, { “key”: “d”, “text”: “size doubles” } ], “answer”: “c”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#comparison-operators",
+    "href": "cmu/02/notebooks/if_statements.html#comparison-operators",
+    "title": "The if Statement",
+    "section": "Comparison Operators",
+    "text": "Comparison Operators\nThe condition inside an if statement uses a comparison operator to compare two values. Python gives you six of them:\n\n\n\nOperator\nMeaning\nExample\nResult\n\n\n\n\n&lt;\nless than\n3 &lt; 5\nTrue\n\n\n&gt;\ngreater than\n7 &gt; 2\nTrue\n\n\n&lt;=\nless than or equal to\n4 &lt;= 4\nTrue\n\n\n&gt;=\ngreater than or equal to\n6 &gt;= 9\nFalse\n\n\n==\nequal to\n5 == 5\nTrue\n\n\n!=\nnot equal to\n3 != 7\nTrue\n\n\n\n\nWatch out! A single = assigns a value (x = 5). A double == compares two values (x == 5). Easy to mix up!\n\nThe examples below show a few of these operators in action inside 3D scenes."
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#using-to-match-an-exact-value",
+    "href": "cmu/02/notebooks/if_statements.html#using-to-match-an-exact-value",
+    "title": "The if Statement",
+    "section": "Using == to Match an Exact Value",
+    "text": "Using == to Match an Exact Value\nThe == operator checks if two values are exactly equal. In the scene below, a counter increments each second. When it hits exactly 3, the ball changes color — demonstrating a precise match.\nClick Stop (■) after you’ve watched a couple of cycles.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1.5, segments=16)\nball.set_color('#aaaaaa')\nball.set_position(0, 1.5, 0)\nscene.add(ball)\n\nctx = scene.get_context('2d')\n\nelapsed = 0.0\ncount = 0\n\n@scene.on_frame\ndef animate(dt):\n    global elapsed, count\n    elapsed += dt\n\n    if elapsed &gt;= 1.0:\n        elapsed = 0.0\n        count += 1\n\n    if count == 5:\n        count = 0\n\n    if count == 3:\n        ball.set_color('#e94560')\n    else:\n        ball.set_color('#aaaaaa')\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '24px sans-serif'\n    ctx.fill_text(f'Count: {count}  (turns red when count == 3)', 10, 32)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/02/notebooks/if_statements.html#multiple-if-statements",
+    "href": "cmu/02/notebooks/if_statements.html#multiple-if-statements",
+    "title": "The if Statement",
+    "section": "Multiple if Statements",
+    "text": "Multiple if Statements\nYou can use as many if statements as you need — Python checks each one independently.\nThe scene below has three zones: left, center, and right. A ball drifts across the scene, and a separate if statement handles each zone, changing the ball’s color and bouncing it back when it hits a wall.\nNotice how all three if statements are checked on every frame — they don’t interfere with each other.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=12, width=12)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#f5a623')\nball.set_position(0, 0.8, 0)\nscene.add(ball)\n\nctx = scene.get_context('2d')\n\nx = 0.0\nspeed = 3.0\nzone = 'center'\n\n@scene.on_frame\ndef animate(dt):\n    global x, speed, zone\n\n    x += speed * dt\n\n    if x &gt; 4:\n        speed = -speed\n        x = 4\n\n    if x &lt; -4:\n        speed = -speed\n        x = -4\n\n    if x &lt; -1.5:\n        zone = 'left'\n        ball.set_color('#4488ff')\n\n    if x &gt; 1.5:\n        zone = 'right'\n        ball.set_color('#44cc88')\n\n    if x &gt;= -1.5 and x &lt;= 1.5:\n        zone = 'center'\n        ball.set_color('#f5a623')\n\n    ball.set_position(x, 0.8, 0)\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '22px sans-serif'\n    ctx.fill_text(f'Zone: {zone}  |  x = {x:.1f}', 10, 30)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “Which operator checks if two values are exactly equal?”, “options”: [ { “key”: “a”, “text”: “= (single equals)” }, { “key”: “b”, “text”: “== (double equals)” }, { “key”: “c”, “text”: “!= (not equals)” }, { “key”: “d”, “text”: “&gt;= (greater or equal)” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “When you have three if statements in a row, Python checks all three independently on every frame.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the != operator do?”, “options”: [ { “key”: “a”, “text”: “Checks if two values are equal” }, { “key”: “b”, “text”: “Assigns a value to a variable” }, { “key”: “c”, “text”: “Checks if two values are NOT equal” }, { “key”: “d”, “text”: “Checks if a value is negative” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “Write an if statement condition (just the part after ‘if’) that is True when a variable called score is greater than or equal to 100.”, “answer”: “score &gt;= 100”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/experiment.html",
+    "href": "cmu/02/notebooks/experiment.html",
+    "title": "Now Experiment!",
+    "section": "",
+    "text": "You’ve covered a lot in Lesson 2. Here’s what you now know how to do:\n\nRepeat code automatically with for loops and while loops\nMake decisions using if statements and comparison operators\nAdd unpredictability with random.randint(), random.uniform(), and random.choice()\nGroup code under a name by defining your own functions with def\n\nThe cell below is your sandbox. It starts with a scene that uses all four ideas: a function, a loop, an if statement, and random numbers. The rest is up to you.\nIdeas to try: - Change the if threshold so large objects use a different color instead of a different shape - Add a second function — maybe make_tree from the functions lesson — and mix it into the loop - Add a while loop that stacks a tower of boxes in the center of the scene - Use random.randint to choose COUNT instead of setting it manually - Add @scene.on_frame animation: make the objects slowly spin, bob up and down, or change color when they get too big\n  \n\nimport scene3d\nimport random\n\nSKY    = scene3d.Sky.PURE_SKY\nGROUND = scene3d.Material.Grass.Bright\nCOUNT  = 12\n\nscene = scene3d.Scene()\nscene.set_sky(SKY)\n\nground = scene.set_ground(length=30, width=30)\nground.set_material(GROUND)\nground.set_tiling(8)\n\ncolors = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff']\n\ndef make_object(scene, x, z):\n    size = random.uniform(0.5, 2.5)\n    if size &gt; 1.5:\n        shape = scene3d.Shapes.Box(width=size, height=size * 1.5, depth=size)\n    else:\n        shape = scene3d.Shapes.Sphere(diameter=size, segments=12)\n    shape.set_color(random.choice(colors))\n    shape.set_position(x, size / 2, z)\n    scene.add(shape)\n\nfor i in range(COUNT):\n    x = random.uniform(-10, 10)\n    z = random.uniform(-10, 10)\n    make_object(scene, x, z)"
+  },
+  {
     "objectID": "cmu/01/notebooks/variables.html",
     "href": "cmu/01/notebooks/variables.html",
     "title": "Variables",
@@ -1630,100 +1693,158 @@
     "text": "Your Material Library\nWhen you gather all the material choices into named constants at the top of your code, they form a material library — a single place where the look of the entire scene is defined.\nTry swapping any of the three constants below: - SKY — try Sky.CLOUDS, Sky.MODERN_BUILDINGS, Sky.ORLANDO_STADIUM - GROUND — try Material.Snow.Fresh, Material.Gravel.LightGray - PLANET — try Material.Planets.Mars, Material.Planets.Jupiter, Material.Planets.Venus\n\nimport scene3d\n\nSKY    = scene3d.Sky.DEEP_SPACE\nGROUND = scene3d.Material.Gravel.LightGray\nPLANET = scene3d.Material.Planets.Earth\n\nscene = scene3d.Scene()\nscene.set_sky(SKY)\n\nground = scene.set_ground(length=20, width=20)\nground.set_material(GROUND)\nground.set_tiling(8)\n\nplanet = scene3d.Shapes.Sphere(diameter=3, segments=32)\nplanet.set_material(PLANET)\nplanet.set_position(0, 1.5, 0)\nscene.add(planet)\n\n{ “question_type”: “multiple_choice”, “question”: “What is the main advantage of using STONE = ‘#708090’ instead of writing ‘#708090’ each time?”, “options”: [ { “key”: “a”, “text”: “It makes Python run faster” }, { “key”: “b”, “text”: “It prevents the color from ever being changed” }, { “key”: “c”, “text”: “Updating all uses only requires editing one line” }, { “key”: “d”, “text”: “It makes the hex code valid” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which is the correct way to define a constant for the Bricks.DarkClay material?”, “options”: [ { “key”: “a”, “text”: “wall = scene3d.Material.Bricks.DarkClay” }, { “key”: “b”, “text”: “Wall = scene3d.Material.Bricks.DarkClay” }, { “key”: “c”, “text”: “WALL = scene3d.Material.Bricks.DarkClay” }, { “key”: “d”, “text”: “wall_Material = scene3d.Material.Bricks.DarkClay” } ], “answer”: “c”, “submitted_answer”: “” }\nThink of a scene you’d like to build — a beach, a space station, a snowy forest, or anything you like.\nWrite out a mini material library for it: at least three constants with ALL_CAPS names, each set to a scene3d.Sky or scene3d.Material value. For example:\nSKY = scene3d.Sky.DEEP_SPACE\nGROUND = scene3d.Material.Snow.Fresh\nDescribe what the finished scene would look like."
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html",
-    "href": "cmu/03/notebooks/if_statements.html",
-    "title": "The if Statement",
+    "objectID": "cmu/02/notebooks/custom_functions.html",
+    "href": "cmu/02/notebooks/custom_functions.html",
+    "title": "Creating Your Own Functions",
     "section": "",
-    "text": "So far your programs have run the same way every time — every line executes, top to bottom, no matter what. But real programs need to make decisions. Should the ball bounce? Is the player’s score high enough to win? That’s where the if statement comes in.\nIn this lesson you’ll learn how to give your program a condition to check, and only run certain code when that condition is true.",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "text": "You’ve been calling functions all along — set_position(), set_color(), scene.add(). Each one packages up a bunch of steps under a single name so you don’t have to repeat them.\nNow it’s your turn. In this lesson you’ll write your own functions using def. A function you define works exactly like the built-in ones — call it by name, pass in values, and it does the work."
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#a-ball-that-falls-forever",
-    "href": "cmu/03/notebooks/if_statements.html#a-ball-that-falls-forever",
-    "title": "The if Statement",
-    "section": "A Ball That Falls Forever",
-    "text": "A Ball That Falls Forever\nRun the cell below. A ball drops from the sky — and keeps going… forever. There’s nothing telling it to stop or come back. Click Stop (■) when you’ve seen enough.\nHint: You can hold down the left mouse button to move around the scene. Use the scroll wheel to zoom in and out.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#e94560')\nball.set_position(0, 8, 0)\nscene.add(ball)\n\ny = 8.0\n\n@scene.on_frame\ndef animate(dt):\n    global y\n    y -= 3 * dt\n    ball.set_position(0, y, 0)\n\nscene.run()",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/custom_functions.html#the-problem-repeated-code",
+    "href": "cmu/02/notebooks/custom_functions.html#the-problem-repeated-code",
+    "title": "Creating Your Own Functions",
+    "section": "The Problem — Repeated Code",
+    "text": "The Problem — Repeated Code\nThe scene below contains two trees. Each tree is made from a cylinder (trunk) and a sphere (leaves). That’s six lines per tree — and they’re nearly identical. Adding a third tree means copying six more lines. A forest of ten trees? Sixty lines of nearly identical code.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\nscene.set_ground(length=20, width=20)\n\ntrunk1 = scene3d.Shapes.Cylinder(diameter=0.3, height=1.5, tessellation=8)\ntrunk1.set_color('#8B4513')\ntrunk1.set_position(-3, 0.75, 0)\nscene.add(trunk1)\n\nleaves1 = scene3d.Shapes.Sphere(diameter=2.0, segments=12)\nleaves1.set_color('#228B22')\nleaves1.set_position(-3, 2.0, 0)\nscene.add(leaves1)\n\ntrunk2 = scene3d.Shapes.Cylinder(diameter=0.3, height=1.5, tessellation=8)\ntrunk2.set_color('#8B4513')\ntrunk2.set_position(3, 0.75, 0)\nscene.add(trunk2)\n\nleaves2 = scene3d.Shapes.Sphere(diameter=2.0, segments=12)\nleaves2.set_color('#228B22')\nleaves2.set_position(3, 2.0, 0)\nscene.add(leaves2)"
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#the-problem-and-the-fix",
-    "href": "cmu/03/notebooks/if_statements.html#the-problem-and-the-fix",
-    "title": "The if Statement",
-    "section": "The Problem — and the Fix",
-    "text": "The Problem — and the Fix\nThe ball just keeps falling because we never told it what to do when it hits the ground. Every frame, the program subtracts from y — no questions asked.\nWe need a way to say: “if the ball reaches the ground, reset it to the top.”\nThat’s exactly what an if statement does. It checks a condition, and only runs the indented code underneath when that condition is True.\nif y &lt; 0:\n    y = 8.0\nLet’s add it and see what happens.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#e94560')\nball.set_position(0, 8, 0)\nscene.add(ball)\n\ny = 8.0\n\n@scene.on_frame\ndef animate(dt):\n    global y\n    y -= 3 * dt\n\n    if y &lt; 0:\n        y = 8.0\n\n    ball.set_position(0, y, 0)\n\nscene.run()",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/custom_functions.html#the-solution-define-a-function",
+    "href": "cmu/02/notebooks/custom_functions.html#the-solution-define-a-function",
+    "title": "Creating Your Own Functions",
+    "section": "The Solution — Define a Function",
+    "text": "The Solution — Define a Function\nA function groups code under a name. You write the steps once, then call the name as many times as you need.\ndef make_tree(scene, x, z):\n    # steps that build one tree go here\nRun the cell below. It produces the same two trees — but now adding a third is just one more line.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\nscene.set_ground(length=20, width=20)\n\ndef make_tree(scene, x, z):\n    trunk = scene3d.Shapes.Cylinder(diameter=0.3, height=1.5, tessellation=8)\n    trunk.set_color('#8B4513')\n    trunk.set_position(x, 0.75, z)\n    scene.add(trunk)\n    leaves = scene3d.Shapes.Sphere(diameter=2.0, segments=12)\n    leaves.set_color('#228B22')\n    leaves.set_position(x, 2.0, z)\n    scene.add(leaves)\n\nmake_tree(scene, -3, 0)\nmake_tree(scene, 3, 0)\nmake_tree(scene, 0, -3)"
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#how-the-if-statement-works",
-    "href": "cmu/03/notebooks/if_statements.html#how-the-if-statement-works",
-    "title": "The if Statement",
-    "section": "How the if Statement Works",
-    "text": "How the if Statement Works\nAn if statement has three parts:\nif y &lt; 0:\n    y = 8.0\n\n\n\n\n\n\n\n\nPart\nWhat it is\nExample\n\n\n\n\nif\nThe keyword that starts the statement\nif\n\n\nCondition\nA question Python checks — is this True or False?\ny &lt; 0\n\n\nColon :\nMarks the end of the condition\n:\n\n\nIndented body\nThe code that runs only when the condition is True\ny = 8.0\n\n\n\n\nIndentation matters!\nPython uses indentation (spaces at the start of a line) to know which lines belong inside the if. Any line indented under the if only runs when the condition is True. As soon as you go back to the left margin, you’re outside the if again.\nif y &lt; 0:\n    y = 8.0          # inside the if — only runs when y &lt; 0\n    print('reset!')  # also inside\nball.set_position(0, y, 0)  # outside — always runs",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/custom_functions.html#how-def-works",
+    "href": "cmu/02/notebooks/custom_functions.html#how-def-works",
+    "title": "Creating Your Own Functions",
+    "section": "How def Works",
+    "text": "How def Works\ndef make_tree(scene, x, z):\n    trunk = scene3d.Shapes.Cylinder(...)\n    ...\n\n\n\n\n\n\n\nPart\nWhat it does\n\n\n\n\ndef\nThe keyword that defines a new function\n\n\nmake_tree\nThe name you give the function — use it to call it later\n\n\n(scene, x, z)\nParameters — values passed in when the function is called\n\n\n:\nMarks the end of the def line\n\n\nIndented body\nThe code that runs each time the function is called\n\n\n\nWhen you write make_tree(scene, -3, 0), Python replaces scene with your scene, x with -3, and z with 0 inside the function body.\n\nTwo rules to remember\n\nDefine before calling. The def block must appear in your code before you call the function.\nIndentation marks the body. Everything indented under def is inside the function.\n\n{ “question_type”: “multiple_choice”, “question”: “Which keyword do you use to define a new function in Python?”, “options”: [ { “key”: “a”, “text”: “function” }, { “key”: “b”, “text”: “define” }, { “key”: “c”, “text”: “def” }, { “key”: “d”, “text”: “new” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “You can call a function as many times as you like after defining it once.”, “answer”: “True”, “submitted_answer”: “” }"
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#controlling-a-growing-sphere",
-    "href": "cmu/03/notebooks/if_statements.html#controlling-a-growing-sphere",
-    "title": "The if Statement",
-    "section": "Controlling a Growing Sphere",
-    "text": "Controlling a Growing Sphere\nHere’s another example. Each frame, the sphere grows a little bigger. When it gets too large, an if statement resets it back to a small size.\nNotice how size keeps increasing — until the condition size &gt; 3 becomes True, and the if steps in.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#f5a623')\nsphere.set_position(0, 1.5, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nsize = 0.2\n\n@scene.on_frame\ndef animate(dt):\n    global size\n    size += 0.5 * dt\n\n    if size &gt; 3:\n        size = 0.2\n\n    sphere.set_scale(size, size, size)\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.fill_text(f'Size: {size:.2f}', 10, 28)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “What character must appear at the end of every if condition?”, “options”: [ { “key”: “a”, “text”: “A semicolon ;” }, { “key”: “b”, “text”: “A colon :” }, { “key”: “c”, “text”: “A period .” }, { “key”: “d”, “text”: “An equals sign =” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The indented code inside an if statement always runs, even when the condition is False.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In the growing-sphere example, what happens when size &gt; 3 is True?”, “options”: [ { “key”: “a”, “text”: “The program crashes” }, { “key”: “b”, “text”: “The sphere stops moving” }, { “key”: “c”, “text”: “size resets to 0.2” }, { “key”: “d”, “text”: “size doubles” } ], “answer”: “c”, “submitted_answer”: “” }",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/custom_functions.html#adding-parameters-to-customize-behavior",
+    "href": "cmu/02/notebooks/custom_functions.html#adding-parameters-to-customize-behavior",
+    "title": "Creating Your Own Functions",
+    "section": "Adding Parameters to Customize Behavior",
+    "text": "Adding Parameters to Customize Behavior\nRight now every tree is the same height. Parameters let callers choose different values. Adding a height parameter — with a default value of 1.5 — lets you vary the tree without making it required:\ndef make_tree(scene, x, z, height=1.5):\n    ...\nmake_tree(scene, 0, 0) still works and uses the default height. make_tree(scene, 0, 0, height=3.0) overrides it with a taller tree.\nRun the cell below to see three trees of different heights side by side.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\nscene.set_ground(length=20, width=20)\n\ndef make_tree(scene, x, z, height=1.5):\n    trunk = scene3d.Shapes.Cylinder(diameter=0.3, height=height, tessellation=8)\n    trunk.set_color('#8B4513')\n    trunk.set_position(x, height / 2, z)\n    scene.add(trunk)\n    leaf_diameter = height * 1.4\n    leaves = scene3d.Shapes.Sphere(diameter=leaf_diameter, segments=12)\n    leaves.set_color('#228B22')\n    leaves.set_position(x, height + leaf_diameter / 2, z)\n    scene.add(leaves)\n\nmake_tree(scene, -4, 0, height=1.0)\nmake_tree(scene, 0, 0, height=2.0)\nmake_tree(scene, 4, 0, height=3.5)\n\n{ “question_type”: “multiple_choice”, “question”: “In the function definition ‘def make_tree(scene, x, z, height=1.5):’, what does height=1.5 mean?”, “options”: [ { “key”: “a”, “text”: “height must always equal 1.5” }, { “key”: “b”, “text”: “height is used as a variable name only” }, { “key”: “c”, “text”: “1.5 is the default value used when the caller doesn’t supply height” }, { “key”: “d”, “text”: “The function will error if height is not exactly 1.5” } ], “answer”: “c”, “submitted_answer”: “” }"
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#comparison-operators",
-    "href": "cmu/03/notebooks/if_statements.html#comparison-operators",
-    "title": "The if Statement",
-    "section": "Comparison Operators",
-    "text": "Comparison Operators\nThe condition inside an if statement uses a comparison operator to compare two values. Python gives you six of them:\n\n\n\nOperator\nMeaning\nExample\nResult\n\n\n\n\n&lt;\nless than\n3 &lt; 5\nTrue\n\n\n&gt;\ngreater than\n7 &gt; 2\nTrue\n\n\n&lt;=\nless than or equal to\n4 &lt;= 4\nTrue\n\n\n&gt;=\ngreater than or equal to\n6 &gt;= 9\nFalse\n\n\n==\nequal to\n5 == 5\nTrue\n\n\n!=\nnot equal to\n3 != 7\nTrue\n\n\n\n\nWatch out! A single = assigns a value (x = 5). A double == compares two values (x == 5). Easy to mix up!\n\nThe examples below show a few of these operators in action inside 3D scenes.",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/custom_functions.html#building-a-forest-functions-meet-loops",
+    "href": "cmu/02/notebooks/custom_functions.html#building-a-forest-functions-meet-loops",
+    "title": "Creating Your Own Functions",
+    "section": "Building a Forest — Functions Meet Loops",
+    "text": "Building a Forest — Functions Meet Loops\nFunctions become even more powerful when combined with loops. The scene below uses make_tree inside a for loop with random positions and heights, building an entire forest from a single function definition.\nRun it a few times — a different forest appears each time!\n\nimport scene3d\nimport random\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\nground = scene.set_ground(length=30, width=30)\nground.set_material(scene3d.Material.Grass.Bright)\nground.set_tiling(8)\n\ndef make_tree(scene, x, z, height=1.5):\n    trunk = scene3d.Shapes.Cylinder(diameter=0.3, height=height, tessellation=8)\n    trunk.set_color('#8B4513')\n    trunk.set_position(x, height / 2, z)\n    scene.add(trunk)\n    leaf_diameter = height * 1.4\n    leaves = scene3d.Shapes.Sphere(diameter=leaf_diameter, segments=12)\n    leaves.set_color('#228B22')\n    leaves.set_position(x, height + leaf_diameter / 2, z)\n    scene.add(leaves)\n\nfor i in range(12):\n    x = random.uniform(-10, 10)\n    z = random.uniform(-10, 10)\n    h = random.uniform(1.0, 3.5)\n    make_tree(scene, x, z, height=h)\n\n{ “question_type”: “freeform”, “question”: “In one sentence, describe the main benefit of grouping code into a function.”, “answer”: “write once reuse”, “submitted_answer”: “” }"
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#using-to-match-an-exact-value",
-    "href": "cmu/03/notebooks/if_statements.html#using-to-match-an-exact-value",
-    "title": "The if Statement",
-    "section": "Using == to Match an Exact Value",
-    "text": "Using == to Match an Exact Value\nThe == operator checks if two values are exactly equal. In the scene below, a counter increments each second. When it hits exactly 3, the ball changes color — demonstrating a precise match.\nClick Stop (■) after you’ve watched a couple of cycles.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nball = scene3d.Shapes.Sphere(diameter=1.5, segments=16)\nball.set_color('#aaaaaa')\nball.set_position(0, 1.5, 0)\nscene.add(ball)\n\nctx = scene.get_context('2d')\n\nelapsed = 0.0\ncount = 0\n\n@scene.on_frame\ndef animate(dt):\n    global elapsed, count\n    elapsed += dt\n\n    if elapsed &gt;= 1.0:\n        elapsed = 0.0\n        count += 1\n\n    if count == 5:\n        count = 0\n\n    if count == 3:\n        ball.set_color('#e94560')\n    else:\n        ball.set_color('#aaaaaa')\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '24px sans-serif'\n    ctx.fill_text(f'Count: {count}  (turns red when count == 3)', 10, 32)\n\nscene.run()",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/custom_functions.html#try-it-yourself",
+    "href": "cmu/02/notebooks/custom_functions.html#try-it-yourself",
+    "title": "Creating Your Own Functions",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nUse the slider to control how many trees appear in the forest. Notice that no matter the count, the function handles all the placement — you only changed one number.\n\nimport scene3d\nimport random\n\nTREE_COUNT = 8 #@param {type:\"slider\", min:1, max:25, step:1}\n\nrandom.seed(99)\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.PURE_SKY)\nground = scene.set_ground(length=30, width=30)\nground.set_material(scene3d.Material.Grass.Bright)\nground.set_tiling(8)\n\ndef make_tree(scene, x, z, height=1.5):\n    trunk = scene3d.Shapes.Cylinder(diameter=0.3, height=height, tessellation=8)\n    trunk.set_color('#8B4513')\n    trunk.set_position(x, height / 2, z)\n    scene.add(trunk)\n    leaf_diameter = height * 1.4\n    leaves = scene3d.Shapes.Sphere(diameter=leaf_diameter, segments=12)\n    leaves.set_color('#228B22')\n    leaves.set_position(x, height + leaf_diameter / 2, z)\n    scene.add(leaves)\n\nfor i in range(TREE_COUNT):\n    x = random.uniform(-10, 10)\n    z = random.uniform(-10, 10)\n    h = random.uniform(1.0, 3.5)\n    make_tree(scene, x, z, height=h)\n\nThink about a 3D scene you’d like to build — a city with buildings, a reef with coral, a campsite with tents and campfires.\nWhat function would you define? What would you name it, and what parameters would it take? Describe what goes inside the function and how you’d call it to populate your scene."
   },
   {
-    "objectID": "cmu/03/notebooks/if_statements.html#multiple-if-statements",
-    "href": "cmu/03/notebooks/if_statements.html#multiple-if-statements",
-    "title": "The if Statement",
-    "section": "Multiple if Statements",
-    "text": "Multiple if Statements\nYou can use as many if statements as you need — Python checks each one independently.\nThe scene below has three zones: left, center, and right. A ball drifts across the scene, and a separate if statement handles each zone, changing the ball’s color and bouncing it back when it hits a wall.\nNotice how all three if statements are checked on every frame — they don’t interfere with each other.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=12, width=12)\n\nball = scene3d.Shapes.Sphere(diameter=1, segments=16)\nball.set_color('#f5a623')\nball.set_position(0, 0.8, 0)\nscene.add(ball)\n\nctx = scene.get_context('2d')\n\nx = 0.0\nspeed = 3.0\nzone = 'center'\n\n@scene.on_frame\ndef animate(dt):\n    global x, speed, zone\n\n    x += speed * dt\n\n    if x &gt; 4:\n        speed = -speed\n        x = 4\n\n    if x &lt; -4:\n        speed = -speed\n        x = -4\n\n    if x &lt; -1.5:\n        zone = 'left'\n        ball.set_color('#4488ff')\n\n    if x &gt; 1.5:\n        zone = 'right'\n        ball.set_color('#44cc88')\n\n    if x &gt;= -1.5 and x &lt;= 1.5:\n        zone = 'center'\n        ball.set_color('#f5a623')\n\n    ball.set_position(x, 0.8, 0)\n\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '22px sans-serif'\n    ctx.fill_text(f'Zone: {zone}  |  x = {x:.1f}', 10, 30)\n\nscene.run()\n\n{ “question_type”: “multiple_choice”, “question”: “Which operator checks if two values are exactly equal?”, “options”: [ { “key”: “a”, “text”: “= (single equals)” }, { “key”: “b”, “text”: “== (double equals)” }, { “key”: “c”, “text”: “!= (not equals)” }, { “key”: “d”, “text”: “&gt;= (greater or equal)” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “When you have three if statements in a row, Python checks all three independently on every frame.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the != operator do?”, “options”: [ { “key”: “a”, “text”: “Checks if two values are equal” }, { “key”: “b”, “text”: “Assigns a value to a variable” }, { “key”: “c”, “text”: “Checks if two values are NOT equal” }, { “key”: “d”, “text”: “Checks if a value is negative” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “Write an if statement condition (just the part after ‘if’) that is True when a variable called score is greater than or equal to 100.”, “answer”: “score &gt;= 100”, “submitted_answer”: “” }",
-    "crumbs": [
-      "Day 3",
-      "Notebooks",
-      "if_statements.ipynb"
-    ]
+    "objectID": "cmu/02/notebooks/for_loops.html",
+    "href": "cmu/02/notebooks/for_loops.html",
+    "title": "For Loops and While Loops",
+    "section": "",
+    "text": "What if you wanted to place ten boxes in a row? Or a hundred stars scattered across the sky? Writing the same code over and over would take forever — and one typo ruins everything.\nA loop lets you repeat code automatically. Python gives you two kinds:"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#four-boxes-the-hard-way",
+    "href": "cmu/02/notebooks/for_loops.html#four-boxes-the-hard-way",
+    "title": "For Loops and While Loops",
+    "section": "Four Boxes the Hard Way",
+    "text": "Four Boxes the Hard Way\nRun the cell below. Four boxes appear in a row. Each box requires three nearly identical lines of code. Imagine having to do this for twenty boxes!\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=12, width=8)\n\nbox1 = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox1.set_color('#e94560')\nbox1.set_position(-3, 0.5, 0)\nscene.add(box1)\n\nbox2 = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox2.set_color('#e94560')\nbox2.set_position(-1, 0.5, 0)\nscene.add(box2)\n\nbox3 = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox3.set_color('#e94560')\nbox3.set_position(1, 0.5, 0)\nscene.add(box3)\n\nbox4 = scene3d.Shapes.Box(width=1, height=1, depth=1)\nbox4.set_color('#e94560')\nbox4.set_position(3, 0.5, 0)\nscene.add(box4)"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#four-boxes-the-smart-way",
+    "href": "cmu/02/notebooks/for_loops.html#four-boxes-the-smart-way",
+    "title": "For Loops and While Loops",
+    "section": "Four Boxes the Smart Way",
+    "text": "Four Boxes the Smart Way\nA for loop does the same job in just a few lines. Run the cell below — you’ll get the exact same four boxes.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=12, width=8)\n\nfor i in range(4):\n    box = scene3d.Shapes.Box(width=1, height=1, depth=1)\n    box.set_color('#e94560')\n    box.set_position(i * 2 - 3, 0.5, 0)\n    scene.add(box)"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#how-the-for-loop-works",
+    "href": "cmu/02/notebooks/for_loops.html#how-the-for-loop-works",
+    "title": "For Loops and While Loops",
+    "section": "How the for Loop Works",
+    "text": "How the for Loop Works\nfor i in range(4):\n    box = scene3d.Shapes.Box(width=1, height=1, depth=1)\n    box.set_position(i * 2 - 3, 0.5, 0)\n    ...\n\n\n\nPart\nWhat it does\n\n\n\n\nfor\nThe keyword that starts the loop\n\n\ni\nA variable that takes each number from range, one at a time\n\n\nrange(4)\nProduces the numbers 0, 1, 2, 3 — four values total\n\n\n:\nMarks the end of the for line\n\n\nIndented body\nThe code that repeats — one run per value in range\n\n\n\nOn the first pass, i is 0. Second: i is 1. And so on through 3. The expression i * 2 - 3 gives x-positions of -3, -1, 1, 3 — spacing the boxes evenly.\n\nIndentation matters!\nJust like with if statements, everything indented under the for line is inside the loop. Return to the left margin and you’re outside again.\n{ “question_type”: “multiple_choice”, “question”: “What values does range(4) produce?”, “options”: [ { “key”: “a”, “text”: “1, 2, 3, 4” }, { “key”: “b”, “text”: “0, 1, 2, 3” }, { “key”: “c”, “text”: “0, 1, 2, 3, 4” }, { “key”: “d”, “text”: “4, 3, 2, 1” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “If you write ‘for i in range(3):’, the loop body will run exactly 3 times.”, “answer”: “True”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#using-i-to-create-variety",
+    "href": "cmu/02/notebooks/for_loops.html#using-i-to-create-variety",
+    "title": "For Loops and While Loops",
+    "section": "Using i to Create Variety",
+    "text": "Using i to Create Variety\nThe loop variable i isn’t just a counter — you can use its value to make each object different. The scene below uses i to control both the height and the color of each box, creating a staircase.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=15, width=8)\n\ncolors = ['#e94560', '#f5a623', '#44cc88', '#4488ff', '#cc44ff']\n\nfor i in range(5):\n    box_height = i + 1\n    box = scene3d.Shapes.Box(width=1.2, height=box_height, depth=1.2)\n    box.set_color(colors[i])\n    box.set_position(i * 2.5 - 5, box_height / 2, 0)\n    scene.add(box)\n\n{ “question_type”: “multiple_choice”, “question”: “In the staircase example, what is the value of i during the very first pass through the loop?”, “options”: [ { “key”: “a”, “text”: “1” }, { “key”: “b”, “text”: “-1” }, { “key”: “c”, “text”: “0” }, { “key”: “d”, “text”: “5” } ], “answer”: “c”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#while-loops-repeat-until-a-condition-changes",
+    "href": "cmu/02/notebooks/for_loops.html#while-loops-repeat-until-a-condition-changes",
+    "title": "For Loops and While Loops",
+    "section": "while Loops — Repeat Until a Condition Changes",
+    "text": "while Loops — Repeat Until a Condition Changes\nA for loop is great when you know exactly how many times to repeat. But sometimes you want to keep going until something happens — and you don’t know in advance how many steps that takes.\nThat’s what a while loop is for:\nwhile condition:\n    # runs as long as condition is True\nThe scene below builds a tower by stacking boxes. The loop keeps adding a box while the current height is less than 5 — and stops the moment that’s no longer true.\nHint: Use the scroll wheel to zoom out and see the full tower.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#87CEEB')\nscene.set_ground(length=12, width=12)\n\nheight = 0.5\nwhile height &lt; 5:\n    box = scene3d.Shapes.Box(width=1.5, height=1.0, depth=1.5)\n    box.set_color('#cc4400')\n    box.set_position(0, height, 0)\n    scene.add(box)\n    height += 1.0"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#how-the-while-loop-works",
+    "href": "cmu/02/notebooks/for_loops.html#how-the-while-loop-works",
+    "title": "For Loops and While Loops",
+    "section": "How the while Loop Works",
+    "text": "How the while Loop Works\nheight = 0.5\nwhile height &lt; 5:\n    ...\n    height += 1.0\n\n\n\nStep\nWhat happens\n\n\n\n\n1\nPython checks: is height &lt; 5?\n\n\n2\nIf True → run the indented body\n\n\n3\nAfter the body, go back to step 1\n\n\n4\nIf False → exit the loop and continue\n\n\n\n\nWarning — Infinite Loops! If the condition never becomes False, the loop runs forever and your program hangs. Always make sure something inside the loop changes the condition. Here, height += 1.0 keeps growing height until it reaches 5.\n\n\nfor vs while — which one to use?\n\n\n\n\n\n\n\nUse for when…\nUse while when…\n\n\n\n\nYou know exactly how many times to repeat\nYou repeat until a condition changes\n\n\nStepping through a fixed sequence\nThe number of repetitions isn’t known upfront\n\n\nrange(n) fits naturally\nYou’re waiting for something to happen\n\n\n\n{ “question_type”: “true_false”, “question”: “A while loop automatically stops after running exactly 10 times, no matter what the condition says.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which loop is the most natural choice for placing exactly 8 spheres in a scene?”, “options”: [ { “key”: “a”, “text”: “A while loop” }, { “key”: “b”, “text”: “A for loop with range(8)” }, { “key”: “c”, “text”: “Neither — just write 8 separate lines of code” }, { “key”: “d”, “text”: “It doesn’t matter — for and while always do the same thing” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#a-note-on-dowhile",
+    "href": "cmu/02/notebooks/for_loops.html#a-note-on-dowhile",
+    "title": "For Loops and While Loops",
+    "section": "A Note on do/while",
+    "text": "A Note on do/while\nSome languages have a do/while loop that always runs the body at least once before checking the condition. Python doesn’t have this keyword, but you can get the same effect using while True: with break:\nwhile True:\n    # this always runs at least once\n    count += 1\n    if count &gt;= 5:\n        break   # exit the loop immediately\nbreak exits the loop right away, jumping to the first line after it. while True: would run forever on its own — break is how you decide exactly when to stop."
+  },
+  {
+    "objectID": "cmu/02/notebooks/for_loops.html#try-it-yourself",
+    "href": "cmu/02/notebooks/for_loops.html#try-it-yourself",
+    "title": "For Loops and While Loops",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nUse the slider to choose how many spheres appear in the scene. The for loop adapts automatically — change the count, rerun the cell, and see the result.\n\nimport scene3d\n\nCOUNT = 5 #@param {type:\"slider\", min:1, max:10, step:1}\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=25, width=8)\n\ncolors = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff',\n          '#ff44cc', '#44ffcc', '#ffcc44', '#ff8844', '#88ff44']\n\nspacing = 20 / COUNT\n\nfor i in range(COUNT):\n    sphere = scene3d.Shapes.Sphere(diameter=1.2, segments=16)\n    sphere.set_color(colors[i % len(colors)])\n    sphere.set_position(i * spacing - 10 + spacing / 2, 0.7, 0)\n    scene.add(sphere)\n\nThink of a real scene you’d like to build — a forest of trees, a city block of buildings, a night sky full of stars, a row of traffic cones.\nWhich kind of loop would you use, and why? What code would go inside the loop? Write a short description of your scene and how the loop helps build it."
+  },
+  {
+    "objectID": "cmu/02/notebooks/random_numbers.html",
+    "href": "cmu/02/notebooks/random_numbers.html",
+    "title": "Random Numbers",
+    "section": "",
+    "text": "Every time you run your scene, everything appears in exactly the same place. That’s useful for control — but real worlds feel alive because things are unpredictable.\nPython’s random module lets you generate numbers that are different every time your code runs. Use them to scatter objects across a scene, pick colors on the fly, or animate things that move in surprising ways."
+  },
+  {
+    "objectID": "cmu/02/notebooks/random_numbers.html#random.randint-a-random-whole-number",
+    "href": "cmu/02/notebooks/random_numbers.html#random.randint-a-random-whole-number",
+    "title": "Random Numbers",
+    "section": "random.randint() — A Random Whole Number",
+    "text": "random.randint() — A Random Whole Number\nimport random\nheight = random.randint(1, 8)\nrandom.randint(a, b) returns a random integer (whole number) between a and b, including both endpoints. Think of it like rolling a custom die — randint(1, 6) simulates a standard six-sided die.\nRun the cell below a few times. The sphere lands at a different height each time!\n\nimport scene3d\nimport random\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nheight = random.randint(1, 8)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(0, height, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nctx.fill_style = '#ffffff'\nctx.font = '22px sans-serif'\nctx.fill_text(f'Height: {height}', 10, 30)\n\n{ “question_type”: “multiple_choice”, “question”: “What real-world thing does random.randint(1, 6) simulate?”, “options”: [ { “key”: “a”, “text”: “Flipping a coin” }, { “key”: “b”, “text”: “Rolling a six-sided die” }, { “key”: “c”, “text”: “Picking a card from a deck” }, { “key”: “d”, “text”: “Spinning a wheel with 10 sections” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/random_numbers.html#random.uniform-a-random-decimal-number",
+    "href": "cmu/02/notebooks/random_numbers.html#random.uniform-a-random-decimal-number",
+    "title": "Random Numbers",
+    "section": "random.uniform() — A Random Decimal Number",
+    "text": "random.uniform() — A Random Decimal Number\nx = random.uniform(-8, 8)\nrandom.uniform(a, b) returns a random float (decimal number) anywhere between a and b. This is perfect for placing objects at precise positions in 3D space, where you want full coverage of a range — not just whole numbers.\nRun the cell below. Each time, 25 spheres appear at completely different positions!\n\nimport scene3d\nimport random\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=20, width=20)\n\nfor i in range(25):\n    sphere = scene3d.Shapes.Sphere(diameter=0.5, segments=10)\n    x = random.uniform(-8, 8)\n    z = random.uniform(-8, 8)\n    sphere.set_position(x, 0.3, z)\n    sphere.set_color('#f5a623')\n    scene.add(sphere)\n\n{ “question_type”: “multiple_choice”, “question”: “What is the difference between random.randint(1, 10) and random.uniform(1, 10)?”, “options”: [ { “key”: “a”, “text”: “randint is faster; uniform is slower” }, { “key”: “b”, “text”: “randint returns a whole number; uniform returns a decimal” }, { “key”: “c”, “text”: “randint includes 10; uniform does not” }, { “key”: “d”, “text”: “They return exactly the same values” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/random_numbers.html#random.choice-pick-from-a-list",
+    "href": "cmu/02/notebooks/random_numbers.html#random.choice-pick-from-a-list",
+    "title": "Random Numbers",
+    "section": "random.choice() — Pick from a List",
+    "text": "random.choice() — Pick from a List\ncolors = ['#e94560', '#f5a623', '#4488ff']\ncolor = random.choice(colors)\nrandom.choice(list) picks one item at random from a list. It’s perfect for choosing a random color, a random shape, or a random word from a collection you’ve defined.\nThe scene below combines random.choice() with random.uniform() to scatter colorful spheres across the ground.\n\nimport scene3d\nimport random\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=20, width=20)\n\ncolors = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff', '#ff8844']\n\nfor i in range(20):\n    sphere = scene3d.Shapes.Sphere(diameter=0.7, segments=12)\n    x = random.uniform(-8, 8)\n    z = random.uniform(-8, 8)\n    sphere.set_color(random.choice(colors))\n    sphere.set_position(x, 0.45, z)\n    scene.add(sphere)\n\n{ “question_type”: “multiple_choice”, “question”: “What does random.choice([‘red’, ‘blue’, ‘green’]) return?”, “options”: [ { “key”: “a”, “text”: “All three items at once” }, { “key”: “b”, “text”: “A random number between 0 and 2” }, { “key”: “c”, “text”: “One randomly selected item from the list” }, { “key”: “d”, “text”: “Always the first item in the list” } ], “answer”: “c”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/random_numbers.html#randomness-in-animation",
+    "href": "cmu/02/notebooks/random_numbers.html#randomness-in-animation",
+    "title": "Random Numbers",
+    "section": "Randomness in Animation",
+    "text": "Randomness in Animation\nRandom numbers aren’t just for placing objects at the start — you can use them during animation too. The scene below creates a rain effect. Each drop falls at a random speed, and when it hits the ground it reappears at a new random position at the top.\nClick Stop (■) when you’ve watched the rain for a while.\n\nimport scene3d\nimport random\n\nscene = scene3d.Scene()\nscene.set_sky('#0a0a1e')\nscene.set_ground(length=20, width=20)\n\ndrops = []\nfor i in range(15):\n    drop = scene3d.Shapes.Cylinder(diameter=0.1, height=0.5, tessellation=6)\n    drop.set_color('#88aaff')\n    x = random.uniform(-8, 8)\n    y = random.uniform(3, 12)\n    z = random.uniform(-8, 8)\n    speed = random.uniform(3, 8)\n    drop.set_position(x, y, z)\n    scene.add(drop)\n    drops.append({'mesh': drop, 'x': x, 'y': y, 'z': z, 'speed': speed})\n\n@scene.on_frame\ndef animate(dt):\n    for drop in drops:\n        drop['y'] -= drop['speed'] * dt\n        if drop['y'] &lt; 0:\n            drop['y'] = random.uniform(8, 14)\n            drop['x'] = random.uniform(-8, 8)\n            drop['z'] = random.uniform(-8, 8)\n            drop['speed'] = random.uniform(3, 8)\n        drop['mesh'].set_position(drop['x'], drop['y'], drop['z'])\n\nscene.run()\n\n{ “question_type”: “true_false”, “question”: “If you call random.seed(42) before generating numbers, you will always get the same sequence of random values.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “Write the function call that picks a random integer between 1 and 100, including both 1 and 100.”, “answer”: “random.randint(1, 100)”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/02/notebooks/random_numbers.html#try-it-yourself",
+    "href": "cmu/02/notebooks/random_numbers.html#try-it-yourself",
+    "title": "Random Numbers",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nUse the sliders to control how many spheres appear and which seed is used.\nA seed is a starting value for the random number generator. The same seed always produces the same sequence of numbers — so you can “freeze” a layout you like by keeping the seed fixed, and change the seed to explore a totally different arrangement.\n\nimport scene3d\nimport random\n\nCOUNT = 20 #@param {type:\"slider\", min:5, max:50, step:5}\nSEED  = 42 #@param {type:\"slider\", min:1, max:100, step:1}\n\nrandom.seed(SEED)\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=20, width=20)\n\ncolors = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff', '#ff8844', '#44ffcc']\n\nfor i in range(COUNT):\n    sphere = scene3d.Shapes.Sphere(diameter=0.6, segments=10)\n    x = random.uniform(-8, 8)\n    z = random.uniform(-8, 8)\n    sphere.set_color(random.choice(colors))\n    sphere.set_position(x, 0.4, z)\n    scene.add(sphere)\n\nThink about a game or simulation you’ve played where randomness made things interesting — a shuffled deck, a procedurally generated map, enemies that move unpredictably.\nDescribe one way you’d use random numbers in a 3D scene of your own. Which function would you use — randint, uniform, or choice — and why?"
   },
   {
     "objectID": "labs/02/notebooks/air_quality.html",
