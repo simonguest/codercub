@@ -241,6 +241,26 @@ import audio
 
 audio.play('/sample_files/chime.wav')           # blocks until done
 await audio.play_async('/sample_files/chime.wav')  # returns immediately (must use await)
+
+# Note names: letter + optional accidental (# or b) + octave, e.g. "C4", "F#3", "Bb5"
+audio.play_note('C4', 0.5)                   # single note, blocks until done
+audio.play_note(['C4', 'E4', 'G4'], 1.0)     # chord (list of note names)
+await audio.play_note_async('A4', 0.25)      # non-blocking
+
+audio.play_notes([                           # sequence of (note, duration) tuples
+    ('C4', 0.4), ('E4', 0.4), ('G4', 0.4),
+    (['C4', 'E4', 'G4'], 1.0),               # chord in a sequence
+])
+await audio.play_notes_async(melody)         # non-blocking sequence
+
+audio.speak("Hello, world!")                          # blocks until speech finishes
+audio.speak("G'day!", voice=audio.Voice.EN_AU.FEMALE) # with a specific voice
+await audio.speak_async("This doesn't block.")        # fire and forget
+
+# Available Voice constants (all have .FEMALE and .MALE):
+# Voice.EN_US  Voice.EN_GB  Voice.EN_AU
+# Voice.FR_FR  Voice.DE_DE  Voice.ES_ES  Voice.IT_IT  Voice.PT_BR
+# Voice.JA_JP  Voice.ZH_CN  Voice.KO_KR  Voice.HI_IN  Voice.AR_SA
 ```
 
 Supported formats: WAV, MP3, OGG, M4A, FLAC.
@@ -348,6 +368,14 @@ segmenter.stop()
 
 Available `cv.SEGMENT` classes: `BACKGROUND`, `HAIR`, `BODY_SKIN`, `FACE_SKIN`, `CLOTHES`, `OTHERS`.
 
+**Capturing a still frame:**
+
+```python
+jpeg_data_url = cv.capture_frame(camera)
+# Returns "data:image/jpeg;base64,..." — suitable for passing to a VLM API as an image input.
+# The camera must have produced at least one frame before calling this.
+```
+
 **Stopping everything:**
 
 ```python
@@ -361,16 +389,29 @@ import scene3d, math
 
 scene = scene3d.Scene()          # creates canvas + BabylonJS engine, shows output immediately
 scene.set_sky("#87CEEB")         # background colour
-scene.set_ground(length=10, width=10)
+scene.set_sky(scene3d.Sky.CLOUDS)  # HDR environment skybox (also drives PBR reflections)
+
+ground = scene.set_ground(length=20, width=20)  # returns a Mesh
+ground.set_material(scene3d.Material.Grass.Bright)
+ground.set_tiling(10)            # repeat texture 10× across the ground
 
 box = scene3d.Shapes.Box(width=1, height=1, depth=1)
 box.set_position(0, 0.5, 0)
+box.set_rotation(y=45)           # degrees; any combination of x, y, z
 box.set_color("#cc4400")
+box.set_texture('/sample_files/cat.png')   # file path from Pyodide FS
+box.set_texture('data:image/png;base64,…') # data URL (e.g. from AI model)
+box.set_scale(1, 2, 1)           # scale on each axis
+box.set_material(scene3d.Material.Bricks.DarkClay)  # PBR material
+box.set_glossiness(0.3)          # 0.0 = matte, 1.0 = mirror-like (PBR only)
 box.on_click(lambda: box.set_color("#ff0000"))
 scene.add(box)
 
 sphere = scene3d.Shapes.Sphere(diameter=1, segments=16)
 scene.add(sphere)
+
+cylinder = scene3d.Shapes.Cylinder(diameter=1, height=2, tessellation=16)
+scene.add(cylinder)
 
 ctx = scene.get_context('2d')    # 2D overlay canvas for HUD drawing (supports standard Canvas2D methods)
 
@@ -389,6 +430,46 @@ scene.run()                      # blocks Python in event loop; Stop button work
 ```
 
 **Shapes:** `Shapes.Box(width, height, depth)`, `Shapes.Sphere(diameter, segments)`, `Shapes.Cylinder(diameter, height, tessellation)`.
+
+**Mesh methods:** `set_position(x, y, z)`, `set_rotation(x, y, z)` (degrees), `set_scale(x, y, z)`, `set_color(hex)`, `set_texture(source)`, `set_material(constant)`, `set_glossiness(value)`, `set_tiling(u, v=None)`, `on_click(fn)`. All keyword arguments default to 0 (or 1 for scale), so `set_rotation(y=45)` is valid. `set_ground` returns a `Mesh` so all these methods work on the ground too.
+
+**`set_texture(source)`:** accepts a file path (e.g. `'/sample_files/cat.png'`), a `data:` URL, or a raw base64 string (assumed PNG). Setting a texture resets the color to white; call `set_color` after `set_texture` to apply a tint.
+
+**`set_material(constant)`:** applies a PBR material (colour + normal + roughness) or simple diffuse texture. Available constants:
+
+```python
+# Bricks
+box.set_material(scene3d.Material.Bricks.DarkClay)
+box.set_material(scene3d.Material.Bricks.RoughStone)
+# Carpet: BlueCheckerboard, BeigePattern
+# Chip: CircuitGreen, CircuitRed, CircuitOrange, CircuitBlue
+# Fabric: BurgundyRibbed, BlueQuilted, BlackTartan, RedBlueCheck, Denim
+# Grass: Bright, Dark, Olive
+# Gravel: LightGray, DarkGray
+# Marble: Brown, Gray, Black, Charcoal
+# Planets (simple): Earth, Jupiter, Mars, Mercury, Neptune, Saturn, Uranus, Venus
+# Road: PatchedAsphalt, AsphaltEdges, Highway
+# RoofingTiles: DarkSlate
+# Snow: Fresh
+# Sports (simple): Soccerball, Tennis
+# Tiles: LimeGreen, GreenMosaic, WoodHexagon, Checkerboard
+# Wood: Oak
+# WoodFloor: PinePlanks
+```
+
+**`set_glossiness(value)`:** `0.0` = completely matte, `1.0` = mirror-like. Only affects PBR materials (set via `set_material`); no-ops on plain colour/texture meshes.
+
+**`set_tiling(u, v=None)`:** repeats the texture `u` times horizontally and `v` vertically (`v` defaults to `u`). Persists across `set_material` calls. Essential for ground planes — without it a single tile stretches across the whole surface.
+
+**`set_sky(color)`:** accepts a hex colour string (e.g. `"#87CEEB"`) or a `Sky` constant. When an env skybox is used, PBR materials automatically pick up IBL reflections.
+
+```python
+scene.set_sky(scene3d.Sky.CLOUDS)
+scene.set_sky(scene3d.Sky.DEEP_SPACE)
+scene.set_sky(scene3d.Sky.MODERN_BUILDINGS)
+scene.set_sky(scene3d.Sky.ORLANDO_STADIUM)
+scene.set_sky(scene3d.Sky.PURE_SKY)
+```
 
 **Scene defaults:** ArcRotateCamera (mouse orbit/zoom), HemisphericLight, dark background. BabylonJS loads lazily the first time `scene3d` is used.
 
