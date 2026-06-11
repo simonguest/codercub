@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>VLM Test – Codercub Summer of Code 2026</title>
+<title>Camera Control – Codercub Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">VLM Test</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Camera Control</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -729,7 +729,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">VLM Test</h1>
+<h1 class="title">Camera Control</h1>
 </div>
 
 
@@ -746,78 +746,228 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, we use a VLM (Vision Language Model) to capture an image from the camera, send it to the model and ask “What do you see in this image?”</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/09/notebooks/vlm.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<div id="e2f5a916-d55f-4591-bfa8-74cf0aa64c57" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> canvas.get_width()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> canvas.get_height()</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> count <span class="kw">in</span> [<span class="st">"3"</span>, <span class="st">"2"</span>, <span class="st">"1"</span>]:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">"rgba(0, 0, 0, 0.5)"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, w, h)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">"bold 200px sans-serif"</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">"white"</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  ctx.text_align <span class="op">=</span> <span class="st">"center"</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  ctx.text_baseline <span class="op">=</span> <span class="st">"middle"</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(count, w <span class="op">/</span> <span class="dv">2</span>, h <span class="op">/</span> <span class="dv">2</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  time.sleep(<span class="dv">1</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  canvas.clear()</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> cv.capture_frame(camera)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>camera.stop()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_url[:<span class="dv">500</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Every scene3d scene gives you a free-roaming camera by default — click and drag to orbit, scroll to zoom. But sometimes you want to <em>place</em> the camera exactly where it should be: a bird’s-eye view, a close-up of one object, or a camera that tracks a moving character.</p>
+<p><code>scene.camera</code> gives you full control over where the camera sits, what it looks at, and whether it should follow a moving mesh.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/cmu/04/notebooks/camera.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<section id="placing-the-camera-set_position-and-look_at" class="level2">
+<h2 class="anchored" data-anchor-id="placing-the-camera-set_position-and-look_at">Placing the Camera — <code>set_position</code> and <code>look_at</code></h2>
+<p>By default the camera starts behind and above the scene, pointed at the origin. <code>set_position(x, y, z)</code> teleports it to any world coordinate you choose. <code>look_at()</code> then swivels it to face a mesh or a point in space.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">0</span>, <span class="dv">14</span>, <span class="dv">0</span>)   <span class="co"># directly above the scene</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>scene.camera.look_at(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)         <span class="co"># looking straight down at the origin</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">8</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">8</span>)   <span class="co"># high and to the side</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>scene.camera.look_at(box)             <span class="co"># pointing at a specific mesh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The cell below uses a bird’s-eye view. Run it, then try orbiting with the mouse — you can still move the camera freely after any <code>set_position</code> call.</p>
+<div id="cell-position-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, color <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="st">'#e94560'</span>), (<span class="dv">0</span>, <span class="st">'#f5a623'</span>), (<span class="dv">3</span>, <span class="st">'#44cc88'</span>)]:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    s.set_color(color)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Bird's-eye view — camera directly above, looking straight down</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">0</span>, <span class="dv">14</span>, <span class="dv">0</span>).look_at(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that we have the image captured, let’s give it to the model…</p>
-<div id="58504926-2e6f-43a3-b692-3a5b1e610911" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"qwen/qwen3-vl-8b-instruct"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"content"</span>: [</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>          <span class="st">"type"</span>: <span class="st">"image_url"</span>,</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>          <span class="st">"image_url"</span>: {<span class="st">"url"</span>: data_url},</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>          <span class="st">"type"</span>: <span class="st">"text"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"text"</span>: <span class="st">"What do you see in this image?"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      ],</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ],</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  stream<span class="op">=</span><span class="va">True</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> response:</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Each chunk contains a delta with the new content</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="camera-coordinates" class="level2">
+<h2 class="anchored" data-anchor-id="camera-coordinates">Camera Coordinates</h2>
+<p>The camera lives in the same 3D world as every shape. Its position uses the same axes:</p>
+<pre><code>       y (up)
+       |
+       |   z (toward camera, away from scene)
+       |  /
+       | /
+       +---------- x (right)</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Position</th>
+<th>What you see</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>(0, 14, 0)</code></td>
+<td>Straight down from above</td>
+</tr>
+<tr class="even">
+<td><code>(0, 5, -15)</code></td>
+<td>Default-like — behind and slightly above</td>
+</tr>
+<tr class="odd">
+<td><code>(15, 2, 0)</code></td>
+<td>Side view from the right</td>
+</tr>
+<tr class="even">
+<td><code>(0, 1, -3)</code></td>
+<td>Ground level, close up</td>
+</tr>
+</tbody>
+</table>
+<p>Methods can be <strong>chained</strong> because each one returns <code>scene.camera</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">8</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>).look_at(box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>{ “question_type”: “multiple_choice”, “question”: “scene.camera.set_position(0, 14, 0).look_at(0, 0, 0) places the camera:”, “options”: [ { “key”: “a”, “text”: “In front of the scene at eye level” }, { “key”: “b”, “text”: “Directly above the scene, looking down” }, { “key”: “c”, “text”: “Behind the scene, looking forward” }, { “key”: “d”, “text”: “To the right of the scene” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+</section>
+<section id="set_distance-zooming-in-and-out" class="level2">
+<h2 class="anchored" data-anchor-id="set_distance-zooming-in-and-out"><code>set_distance</code> — Zooming In and Out</h2>
+<p><code>set_distance()</code> controls how far the camera sits from its target — a fast way to zoom without repositioning the camera entirely.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scene.camera.set_distance(<span class="dv">5</span>)    <span class="co"># close-up</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>scene.camera.set_distance(<span class="dv">30</span>)   <span class="co"># wide establishing shot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Use the sliders to explore different heights and distances and see how they change the feel of the scene.</p>
+<div id="cell-distance-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>CAMERA_HEIGHT   <span class="op">=</span>  <span class="dv">6</span> <span class="co">#@param {type:"slider", min:2, max:16, step:1}</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>CAMERA_DISTANCE <span class="op">=</span> <span class="dv">12</span> <span class="co">#@param {type:"slider", min:4, max:30, step:2}</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.5</span>, height<span class="op">=</span><span class="fl">1.5</span>, depth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>box.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>box.set_position(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.75</span>, <span class="dv">0</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>scene.add(box)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.4</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>sphere.set_color(<span class="st">'#4488ff'</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>sphere.set_position(<span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>scene.add(sphere)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">0</span>, CAMERA_HEIGHT, <span class="op">-</span>CAMERA_DISTANCE).look_at(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that the model has described your image, take a moment to reflect.</p>
-<p>How accurate was the model’s description of your image? What details did it get right or miss? What other question would you want to ask the model about the image?</p>
-<p>{ “question_type”: “freeform”, “question”: “What does VLM stand for?”, “answer”: “Vision Language Model”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “How is the captured image sent to the VLM in this notebook?”, “options”: [ { “key”: “a”, “text”: “As a file path on the server” }, { “key”: “b”, “text”: “As a base64-encoded data URL” }, { “key”: “c”, “text”: “As a public web URL” }, { “key”: “d”, “text”: “As a grid of pixel colour values” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only process text — it cannot understand images.”, “answer”: “False”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “scene.camera.set_distance(5) moves the camera closer to its current target.”, “answer”: “True”, “submitted_answer”: “” }</p>
+</section>
+<section id="follow-tracking-a-moving-object" class="level2">
+<h2 class="anchored" data-anchor-id="follow-tracking-a-moving-object"><code>follow</code> — Tracking a Moving Object</h2>
+<p><code>scene.camera.follow(mesh)</code> makes the camera automatically track a mesh every frame. As the mesh moves, the camera moves with it to keep it in view.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scene.camera.follow(ball)              <span class="co"># track the ball</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>scene.camera.follow(ball, distance<span class="op">=</span><span class="dv">12</span>) <span class="co"># track at a specific distance</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>scene.camera.follow(<span class="va">None</span>)              <span class="co"># stop following</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The scene below has a bouncing ball that travels left and right. The camera follows it the whole way. Click <strong>Stop</strong> (■) when you’re done.</p>
+<div id="cell-follow-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">30</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ball <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="dv">1</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>ball.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ball.set_position(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>scene.add(ball)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Static markers for the ball to pass</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> [<span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">8</span>]:</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">0.8</span>, height<span class="op">=</span><span class="fl">0.8</span>, depth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    b.set_color(<span class="st">'#4488ff'</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.4</span>, <span class="dv">3</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Camera tracks the ball from behind</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>scene.camera.follow(ball, distance<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> math.sin(t <span class="op">*</span> <span class="fl">0.8</span>) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="bu">abs</span>(math.sin(t <span class="op">*</span> <span class="dv">3</span>)) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    ball.set_position(x, y, <span class="dv">0</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “What does scene.camera.follow(None) do?”, “options”: [ { “key”: “a”, “text”: “Pauses the animation” }, { “key”: “b”, “text”: “Makes the camera look at the origin” }, { “key”: “c”, “text”: “Stops the camera from tracking the mesh it was following” }, { “key”: “d”, “text”: “Removes the camera from the scene” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+</section>
+<section id="method-chaining-and-reset" class="level2">
+<h2 class="anchored" data-anchor-id="method-chaining-and-reset">Method Chaining and <code>reset()</code></h2>
+<p>Every camera method returns <code>scene.camera</code>, so you can chain calls on one line:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Three separate calls:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">8</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>scene.camera.set_distance(<span class="dv">14</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>scene.camera.look_at(box)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent chain:</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">8</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>).set_distance(<span class="dv">14</span>).look_at(box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>scene.camera.reset()</code> returns the camera to the default start position and angle — useful when you want a clean slate or need to undo experimental positioning.</p>
+<p>The demo below uses a chain to set a dramatic low-angle view of a single object.</p>
+<div id="cell-reset-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">2</span>, height<span class="op">=</span><span class="dv">2</span>, depth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>box.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>box.set_position(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>scene.add(box)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Low angle, close in, pointing at the box — all in one chain</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">6</span>, <span class="fl">1.5</span>, <span class="op">-</span><span class="dv">6</span>).set_distance(<span class="dv">10</span>).look_at(box)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment the line below and re-run to jump back to the default view:</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># scene.camera.reset()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “What does scene.camera.reset() do?”, “options”: [ { “key”: “a”, “text”: “Deletes all camera settings permanently” }, { “key”: “b”, “text”: “Returns the camera to the default start position and angle” }, { “key”: “c”, “text”: “Freezes the camera so the mouse no longer works” }, { “key”: “d”, “text”: “Resets the entire scene, including all shapes” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+</section>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
+<p>Use the sliders to adjust the camera height and distance, and toggle <strong>Follow Ball</strong> to switch between a fixed viewpoint and a tracking camera. Watch how dramatically the same scene feels different from different angles.</p>
+<div id="cell-interactive" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>CAMERA_HEIGHT   <span class="op">=</span>  <span class="dv">8</span> <span class="co">#@param {type:"slider", min:2, max:20, step:1}</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>CAMERA_DISTANCE <span class="op">=</span> <span class="dv">14</span> <span class="co">#@param {type:"slider", min:5, max:30, step:1}</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>FOLLOW_BALL     <span class="op">=</span> <span class="va">True</span> <span class="co">#@param {type:"boolean"}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">30</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>ball <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="dv">1</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>ball.set_color(<span class="st">'#e94560'</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>ball.set_position(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="dv">0</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>scene.add(ball)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, color <span class="kw">in</span> [(<span class="op">-</span><span class="dv">8</span>, <span class="st">'#44cc88'</span>), (<span class="op">-</span><span class="dv">4</span>, <span class="st">'#f5a623'</span>), (<span class="dv">4</span>, <span class="st">'#f5a623'</span>), (<span class="dv">8</span>, <span class="st">'#44cc88'</span>)]:</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">1</span>, height<span class="op">=</span><span class="dv">1</span>, depth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    b.set_color(color)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.5</span>, <span class="dv">3</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> FOLLOW_BALL:</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    scene.camera.follow(ball, distance<span class="op">=</span>CAMERA_DISTANCE)</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    scene.camera.set_position(<span class="dv">0</span>, CAMERA_HEIGHT, <span class="op">-</span>CAMERA_DISTANCE).look_at(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> math.sin(t <span class="op">*</span> <span class="fl">0.8</span>) <span class="op">*</span> <span class="dv">10</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="bu">abs</span>(math.sin(t <span class="op">*</span> <span class="dv">3</span>)) <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    ball.set_position(x, y, <span class="dv">0</span>)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Think about a 3D scene or game you’d like to build — a race, a platformer, a tour of a building.</p>
+<p>How would the camera position change the feel of the experience? Would a fixed overhead view, a close follow-cam, or a wide establishing shot work best? Describe how you’d use <code>set_position</code>, <code>look_at</code>, and <code>follow</code> to create that effect.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

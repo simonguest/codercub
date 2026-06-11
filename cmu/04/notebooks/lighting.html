@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>VLM Test – Codercub Summer of Code 2026</title>
+<title>Lighting – Codercub Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">VLM Test</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lighting</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -729,7 +729,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">VLM Test</h1>
+<h1 class="title">Lighting</h1>
 </div>
 
 
@@ -746,78 +746,224 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, we use a VLM (Vision Language Model) to capture an image from the camera, send it to the model and ask “What do you see in this image?”</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/09/notebooks/vlm.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<div id="e2f5a916-d55f-4591-bfa8-74cf0aa64c57" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<p>Every scene3d scene starts with a default ambient light — it illuminates everything equally. That’s fine for seeing shapes, but it’s flat and lifeless.</p>
+<p>Real lighting shapes how a scene <em>feels</em>. Dimming the world and adding a warm spotlight creates atmosphere. Colored lights can suggest fire, moonlight, or neon. A moving light casts shifting illumination that brings a scene to life.</p>
+<p>In this notebook you’ll learn how to control the ambient light, add point lights, use color, and animate lights for dynamic effects.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/cmu/04/notebooks/lighting.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<section id="the-ambient-light" class="level2">
+<h2 class="anchored" data-anchor-id="the-ambient-light">The Ambient Light</h2>
+<p>Every scene starts with a <strong>hemispheric ambient light</strong> that shines evenly on every surface. <code>scene.ambient</code> lets you adjust its brightness and color.</p>
+<p>Brightness runs from 0 to 100. The default is 90 — nearly full. Dropping it to 20 or 30 creates a darker, more atmospheric scene.</p>
+<p>Use the slider to see how brightness changes the mood.</p>
+<div id="cell-ambient-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>BRIGHTNESS <span class="op">=</span> <span class="dv">40</span> <span class="co">#@param {type:"slider", min:0, max:100, step:5}</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> canvas.get_width()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> canvas.get_height()</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> count <span class="kw">in</span> [<span class="st">"3"</span>, <span class="st">"2"</span>, <span class="st">"1"</span>]:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">"rgba(0, 0, 0, 0.5)"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, w, h)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">"bold 200px sans-serif"</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">"white"</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  ctx.text_align <span class="op">=</span> <span class="st">"center"</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  ctx.text_baseline <span class="op">=</span> <span class="st">"middle"</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(count, w <span class="op">/</span> <span class="dv">2</span>, h <span class="op">/</span> <span class="dv">2</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  time.sleep(<span class="dv">1</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  canvas.clear()</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> cv.capture_frame(camera)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>camera.stop()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_url[:<span class="dv">500</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">12</span>, width<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.DarkGray)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, color <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="st">'#e94560'</span>), (<span class="dv">0</span>, <span class="st">'#f5a623'</span>), (<span class="dv">3</span>, <span class="st">'#44cc88'</span>)]:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    s.set_color(color)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(BRIGHTNESS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that we have the image captured, let’s give it to the model…</p>
-<div id="58504926-2e6f-43a3-b692-3a5b1e610911" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"qwen/qwen3-vl-8b-instruct"</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"content"</span>: [</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>          <span class="st">"type"</span>: <span class="st">"image_url"</span>,</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>          <span class="st">"image_url"</span>: {<span class="st">"url"</span>: data_url},</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>          <span class="st">"type"</span>: <span class="st">"text"</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"text"</span>: <span class="st">"What do you see in this image?"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        },</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      ],</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ],</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  stream<span class="op">=</span><span class="va">True</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> response:</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Each chunk contains a delta with the new content</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="ambient-color-setting-the-mood" class="level2">
+<h2 class="anchored" data-anchor-id="ambient-color-setting-the-mood">Ambient Color — Setting the Mood</h2>
+<p><code>scene.ambient.set_color()</code> tints the whole scene with a color. Combined with a low brightness, this is how you create distinct moods: a warm orange sunset, a cold blue moonlit night, a dim underground cavern.</p>
+<p>The dropdown below switches between preset moods — notice how both color <em>and</em> brightness work together to create the effect.</p>
+<div id="cell-ambient-color-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>MOOD <span class="op">=</span> <span class="st">'sunset'</span> <span class="co">#@param ["daylight", "sunset", "moonlight", "underground"]</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>moods <span class="op">=</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'daylight'</span>:    (<span class="st">'#ffffff'</span>, <span class="dv">90</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sunset'</span>:      (<span class="st">'#ff9955'</span>, <span class="dv">55</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'moonlight'</span>:   (<span class="st">'#aabbff'</span>, <span class="dv">25</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'underground'</span>: (<span class="st">'#334422'</span>, <span class="dv">18</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>color, brightness <span class="op">=</span> moods[MOOD]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.DarkGray)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, z <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">3</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>), (<span class="fl">1.5</span>, <span class="dv">3</span>)]:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    b.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.6</span>, z)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_color(color)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(brightness)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that the model has described your image, take a moment to reflect.</p>
-<p>How accurate was the model’s description of your image? What details did it get right or miss? What other question would you want to ask the model about the image?</p>
-<p>{ “question_type”: “freeform”, “question”: “What does VLM stand for?”, “answer”: “Vision Language Model”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “How is the captured image sent to the VLM in this notebook?”, “options”: [ { “key”: “a”, “text”: “As a file path on the server” }, { “key”: “b”, “text”: “As a base64-encoded data URL” }, { “key”: “c”, “text”: “As a public web URL” }, { “key”: “d”, “text”: “As a grid of pixel colour values” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only process text — it cannot understand images.”, “answer”: “False”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “scene.ambient.set_brightness(0) makes the scene completely dark.”, “answer”: “True”, “submitted_answer”: “” }</p>
+</section>
+<section id="adding-a-point-light" class="level2">
+<h2 class="anchored" data-anchor-id="adding-a-point-light">Adding a Point Light</h2>
+<p>A <strong>point light</strong> shines in all directions from a single position in space — like a light bulb. <code>scene.add_light(x, y, z)</code> creates one and returns a <code>Light</code> object you can configure.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">0</span>)   <span class="co"># light directly overhead</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>light.set_brightness(<span class="dv">80</span>)           <span class="co"># 0–100 scale</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">True</span>)            <span class="co"># show a glowing marker at the light's position</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To see exactly where your light is while setting it up, call <code>light.set_visible(True)</code> — it places a small glowing sphere at the light’s position.</p>
+<p>The scene below dims the ambient light so the point light stands out. Run it and look for the marker.</p>
+<div id="cell-pointlight-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.DarkGray)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Dim the ambient light so the point light makes a visible difference</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(<span class="dv">15</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, color <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="st">'#e94560'</span>), (<span class="dv">0</span>, <span class="st">'#f5a623'</span>), (<span class="dv">3</span>, <span class="st">'#44cc88'</span>)]:</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    s.set_color(color)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Point light overhead — set_visible shows its position as a glowing sphere</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">0</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>light.set_brightness(<span class="dv">100</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="set_visible-your-positioning-tool" class="level2">
+<h2 class="anchored" data-anchor-id="set_visible-your-positioning-tool"><code>set_visible</code> — Your Positioning Tool</h2>
+<p>The glowing indicator sphere sits exactly where the light is — so you can see if it’s in the right spot. Hide it when you’re happy with the result:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">True</span>)   <span class="co"># show while building — does the light land where you expect?</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">False</span>)  <span class="co"># hide for the final scene</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>set_visible</code> only affects the indicator. The light itself — its brightness, color, and influence on every surface — stays exactly the same either way.</p>
+<p>Try changing <code>set_visible(True)</code> to <code>set_visible(False)</code> in the cell above and re-running.</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “What does light.set_visible(True) do?”, “options”: [ { “key”: “a”, “text”: “Turns the light on” }, { “key”: “b”, “text”: “Shows a small glowing sphere at the light’s position” }, { “key”: “c”, “text”: “Makes the light only affect visible meshes” }, { “key”: “d”, “text”: “Makes the light pulse on and off” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+</section>
+<section id="light-color" class="level2">
+<h2 class="anchored" data-anchor-id="light-color">Light Color</h2>
+<p>Point lights can be any color. The light color mixes with the surface colors beneath it: a red light on a blue sphere produces a very different result than white light.</p>
+<p>Using a neutral gray material (like marble) makes the color effect clearest — the surface has no bias, so it reflects whatever color the light brings.</p>
+<p>Use the dropdown to try different light colors on the same gray surfaces.</p>
+<div id="cell-light-color-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>LIGHT_COLOR <span class="op">=</span> <span class="st">'#ff8844'</span> <span class="co">#@param ["#ffffff", "#ff8844", "#4488ff", "#ff3300", "#44ff88", "#ffff44"]</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.DarkGray)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(<span class="dv">10</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.5</span>, height<span class="op">=</span><span class="fl">1.5</span>, depth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>box.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>box.set_position(<span class="op">-</span><span class="dv">2</span>, <span class="fl">0.75</span>, <span class="dv">0</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>scene.add(box)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.4</span>, segments<span class="op">=</span><span class="dv">24</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>sphere.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>sphere.set_position(<span class="dv">2</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>scene.add(sphere)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>light.set_color(LIGHT_COLOR)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>light.set_brightness(<span class="dv">100</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “A gray marble sphere is lit only by a pure red point light (ambient brightness = 0). What color does the sphere appear?”, “options”: [ { “key”: “a”, “text”: “Gray, because the material color overrides the light” }, { “key”: “b”, “text”: “Black, because the sphere absorbs red light” }, { “key”: “c”, “text”: “Red, because the light color tints the surface” }, { “key”: “d”, “text”: “White, because marble is always white” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+</section>
+<section id="animated-lights" class="level2">
+<h2 class="anchored" data-anchor-id="animated-lights">Animated Lights</h2>
+<p>Lights can move just like meshes. Call <code>light.set_position(x, y, z)</code> inside <code>@scene.on_frame</code> to sweep light across a scene, simulate a torch flickering around a room, or orbit a spotlight.</p>
+<p>The scene below has a warm light orbiting a cluster of gray boxes. Watch how the lit faces shift as the light sweeps around. Click <strong>Stop</strong> (■) when you’re done.</p>
+<div id="cell-animated-demo" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.DarkGray)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(<span class="dv">10</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, z <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">3</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>), (<span class="fl">1.5</span>, <span class="dv">3</span>)]:</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    b.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.6</span>, z)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>light.set_color(<span class="st">'#ff8844'</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>light.set_brightness(<span class="dv">100</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">True</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> math.sin(t) <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> math.cos(t) <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    light.set_position(x, <span class="dv">4</span>, z)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>{ “question_type”: “multiple_choice”, “question”: “To make a point light orbit around the scene, you would:”, “options”: [ { “key”: “a”, “text”: “Call scene.add_light() multiple times per frame” }, { “key”: “b”, “text”: “Call light.set_position() each frame using math.sin and math.cos” }, { “key”: “c”, “text”: “Call scene.camera.follow(light)” }, { “key”: “d”, “text”: “Call light.set_visible(True) each frame” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+</section>
+<section id="try-it-yourself" class="level2">
+<h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
+<p>Build a scene lit by two colored point lights. Use the sliders and dropdowns to experiment with brightness, colors, and height. Try combining a warm color and a cool color and see how they blend on the same neutral surfaces.</p>
+<div id="cell-interactive" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>AMBIENT      <span class="op">=</span>  <span class="dv">10</span> <span class="co">#@param {type:"slider", min:0, max:60, step:5}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>LIGHT1_COLOR <span class="op">=</span> <span class="st">'#ff8844'</span> <span class="co">#@param ["#ffffff", "#ff8844", "#4488ff", "#ff3300", "#44ff88", "#ffff44"]</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>LIGHT2_COLOR <span class="op">=</span> <span class="st">'#4488ff'</span> <span class="co">#@param ["#ffffff", "#ff8844", "#4488ff", "#ff3300", "#44ff88", "#ffff44"]</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>LIGHT_HEIGHT <span class="op">=</span>   <span class="dv">5</span> <span class="co">#@param {type:"slider", min:2, max:12, step:1}</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#1a1a2e'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">14</span>, width<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.DarkGray)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(AMBIENT)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, z <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">3</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>), (<span class="fl">1.5</span>, <span class="dv">3</span>)]:</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    b.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.6</span>, z)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>light1 <span class="op">=</span> scene.add_light(<span class="op">-</span><span class="dv">4</span>, LIGHT_HEIGHT, <span class="dv">0</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>light1.set_color(LIGHT1_COLOR)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>light1.set_visible(<span class="va">True</span>)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>light2 <span class="op">=</span> scene.add_light(<span class="dv">4</span>, LIGHT_HEIGHT, <span class="dv">0</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>light2.set_color(LIGHT2_COLOR)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>light2.set_visible(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Think about a scene you’d like to create where lighting tells a story — a torch in a dungeon, a neon-lit city street at night, a campfire in a clearing.</p>
+<p>What colors would you use for the lights? How bright would the ambient light be? Would the lights be still or moving? Describe the atmosphere you want to create and how you’d use <code>scene.ambient</code> and <code>scene.add_light</code> to achieve it.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
