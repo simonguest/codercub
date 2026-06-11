@@ -417,6 +417,23 @@ scene.add(sphere)
 cylinder = scene3d.Shapes.Cylinder(diameter=1, height=2, tessellation=16)
 scene.add(cylinder)
 
+# Collision detection — call on_collide after scene.add() for both meshes, before scene.run()
+box.on_collide(sphere, lambda: box.set_color("#00ff00"))  # fires once when bounding boxes first overlap
+# Multiple colliders on the same mesh are supported:
+# box.on_collide(cylinder, lambda: print("hit cylinder"))
+
+# Key handling — register on_key before scene.run()
+# Camera arrow-key bindings are removed automatically when any on_key is registered.
+# Canvas is auto-focused so keys work immediately without clicking.
+scene.on_key(scene3d.Key.LEFT,  move_left)    # Key constants for special keys
+scene.on_key(scene3d.Key.RIGHT, move_right)
+scene.on_key(scene3d.Key.UP,    move_forward) # UP = +z (away from default camera)
+scene.on_key(scene3d.Key.DOWN,  move_back)    # DOWN = -z
+scene.on_key(scene3d.Key.SPACE, jump)
+scene.on_key('w', move_forward)               # plain strings for letter keys
+# Available Key constants: Key.LEFT, Key.RIGHT, Key.UP, Key.DOWN,
+#                          Key.SPACE, Key.ENTER, Key.ESCAPE
+
 ctx = scene.get_context('2d')    # 2D overlay canvas for HUD drawing (supports standard Canvas2D methods)
 
 t = 0.0
@@ -435,7 +452,7 @@ scene.run()                      # blocks Python in event loop; Stop button work
 
 **Shapes:** `Shapes.Box(width, height, depth)`, `Shapes.Sphere(diameter, segments)`, `Shapes.Cylinder(diameter, height, tessellation)`.
 
-**Mesh methods:** `set_position(x, y, z)`, `set_rotation(x, y, z)` (degrees), `set_scale(x, y, z)`, `set_color(hex)`, `set_texture(source)`, `set_material(constant)`, `set_glossiness(value)`, `set_tiling(u, v=None)`, `on_click(fn)`. All keyword arguments default to 0 (or 1 for scale), so `set_rotation(y=45)` is valid. `set_ground` returns a `Mesh` so all these methods work on the ground too.
+**Mesh methods:** `set_position(x, y, z)`, `set_rotation(x, y, z)` (degrees), `set_scale(x, y, z)`, `set_color(hex)`, `set_texture(source)`, `set_material(constant)`, `set_glossiness(value)`, `set_tiling(u, v=None)`, `on_click(fn)`, `on_collide(other_mesh, fn)`. All keyword arguments default to 0 (or 1 for scale), so `set_rotation(y=45)` is valid. `set_ground` returns a `Mesh` so all these methods work on the ground too.
 
 **Mesh getters:** `get_position()` → `(x, y, z)` tuple, `get_rotation()` → `(x, y, z)` tuple in degrees, `get_scale()` → `(x, y, z)` tuple, `get_color()` → hex string. Values are always in sync because every `set_*` call updates Python-side state immediately.
 
