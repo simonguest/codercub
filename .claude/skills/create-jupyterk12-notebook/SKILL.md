@@ -234,13 +234,17 @@ These modules are always available without `pip install`.
 
 ### `audio` — play sound files
 
-Files in `/sample_files/` are pre-loaded at startup. Current files: `cat.png`, `chime.wav`.
+Files in `/sample_files/` are pre-loaded at startup.
+
+- **Images:** `abstract.jpg`, `cat.jpg`, `city.jpg`, `codercub.jpg`, `dog.jpg`, `earth.jpg`, `fabric.jpg`, `forest.jpg`, `undersea.jpg`
+- **Sounds:** `clang.wav`, `coin_pickup.wav`, `correct.wav`, `door.wav`, `gameover.wav`, `incorrect.wav`, `laser.wav`, `pop.wav`, `thud.wav`, `wood.wav`, `zap.wav`
+- **Music:** `music_ambience.wav`, `music_bach.wav`, `music_sibelius.wav`
 
 ```python
 import audio
 
-audio.play('/sample_files/chime.wav')           # blocks until done
-await audio.play_async('/sample_files/chime.wav')  # returns immediately (must use await)
+audio.play('/sample_files/correct.wav')           # blocks until done
+await audio.play_async('/sample_files/correct.wav')  # returns immediately (must use await)
 
 # Note names: letter + optional accidental (# or b) + octave, e.g. "C4", "F#3", "Bb5"
 audio.play_note('C4', 0.5)                   # single note, blocks until done
@@ -274,7 +278,7 @@ c = graphics.canvas()               # auto-size (full cell width, 4:3)
 c = graphics.canvas(640, 480)       # explicit pixels
 
 # Draw an image file
-graphics.draw_image(c, '/sample_files/cat.png')
+graphics.draw_image(c, '/sample_files/cat.jpg')
 
 # Access HTML Canvas 2D context methods via DOMProxy (snake_case → camelCase)
 ctx = c.get_context('2d')
@@ -361,7 +365,7 @@ segments = segmenter.get_segments()  # list of class names visible in the frame
 cv.color_segment(canvas, segmenter, cv.SEGMENT.HAIR, "#ff69b4", opacity=0.6)
 
 # Replace a segment with an image, clipped to the segment shape
-cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, "/sample_files/cat.png", opacity=0.9)
+cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, "/sample_files/cat.jpg", opacity=0.9)
 
 segmenter.stop()
 ```
@@ -399,7 +403,7 @@ box = scene3d.Shapes.Box(width=1, height=1, depth=1)
 box.set_position(0, 0.5, 0)
 box.set_rotation(y=45)           # degrees; any combination of x, y, z
 box.set_color("#cc4400")
-box.set_texture('/sample_files/cat.png')   # file path from Pyodide FS
+box.set_texture('/sample_files/cat.jpg')   # file path from Pyodide FS
 box.set_texture('data:image/png;base64,…') # data URL (e.g. from AI model)
 box.set_scale(1, 2, 1)           # scale on each axis
 box.set_material(scene3d.Material.Bricks.DarkClay)  # PBR material
@@ -456,7 +460,7 @@ scene.add(car)                   # adds the group + all children in one call
 car.set_rotation(y=45)           # rotates the whole group
 ```
 
-**`set_texture(source)`:** accepts a file path (e.g. `'/sample_files/cat.png'`), a `data:` URL, or a raw base64 string (assumed PNG). Setting a texture resets the color to white; call `set_color` after `set_texture` to apply a tint.
+**`set_texture(source)`:** accepts a file path (e.g. `'/sample_files/cat.jpg'`), a `data:` URL, or a raw base64 string (assumed PNG). Setting a texture resets the color to white; call `set_color` after `set_texture` to apply a tint.
 
 **`set_material(constant)`:** applies a PBR material (colour + normal + roughness) or simple diffuse texture. Available constants:
 
