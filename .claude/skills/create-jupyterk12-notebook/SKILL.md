@@ -498,6 +498,44 @@ scene.set_sky(scene3d.Sky.ORLANDO_STADIUM)
 scene.set_sky(scene3d.Sky.PURE_SKY)
 ```
 
+**`scene.ambient` — world light control:**
+
+```python
+scene.ambient.set_brightness(50)     # dim the scene (0–100 scale; default 90; 0 = pitch black)
+scene.ambient.set_color("#ffddcc")   # warm tint; "#cceeff" for cool/moonlight
+```
+
+**`scene.add_light(x, y, z)` — add a point light:**
+
+```python
+light = scene.add_light(0, 5, 0)     # point light overhead, returns a Light object
+light.set_brightness(80)             # 0–100 scale; default 100; maps to 0–20 BabylonJS internally
+light.set_color("#ff4400")           # warm orange; indicator sphere tint matches
+light.set_visible(True)              # show a small glowing sphere at the light's position
+light.set_position(3, 5, -2)        # move the light (and indicator) together
+light.set_visible(False)             # hide indicator for the final scene
+light.remove()                       # dispose the light entirely
+```
+
+`set_visible(True)` is the "discover" tool — it places a small emissive sphere exactly where the light is, making it easy to see and position lights while building a scene.
+
+**`scene.camera` — camera control:**
+
+```python
+scene.camera.set_position(0, 10, -15)   # teleport camera to world position
+scene.camera.move(dx=2, dy=0, dz=0)     # move by a relative amount
+scene.camera.look_at(box)               # point at a mesh
+scene.camera.look_at(0, 0, 0)          # point at world coordinates
+scene.camera.set_distance(20)           # zoom (distance from target)
+scene.camera.follow(box, distance=15)   # track a mesh every frame; optional distance
+scene.camera.follow(None)               # stop following
+scene.camera.reset()                    # return to default position and angle
+# All methods return self, so chaining works:
+scene.camera.set_position(5, 5, -10).set_distance(18).look_at(0, 1, 0)
+```
+
+The student can still use mouse orbit and scroll-wheel zoom on top of any camera call — those controls stay active throughout.
+
 **Scene defaults:** ArcRotateCamera (mouse orbit/zoom), HemisphericLight, dark background. BabylonJS loads lazily the first time `scene3d` is used.
 
 **`ctx.clear()`** is a custom method that clears the full 2D overlay; all other standard Canvas2D methods work normally.
