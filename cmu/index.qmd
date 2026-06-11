@@ -1,0 +1,5 @@
+# Learning Python in 3D
+
+## About
+
+This site contains notebooks and resources for the Learning Python in 3D course, where you'll learn Python fundamentals through hands-on 3D graphics projects.

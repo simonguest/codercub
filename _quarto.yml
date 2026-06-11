@@ -8,192 +8,198 @@ project:
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
+      light: [flatly, theme/site.scss]
+      dark: [darkly, theme/site.scss]
 execute:
   freeze: true
 website:
-  title: "Codercub Summer of Code 2026"
+  title: "Summer of Code 2026"
   page-navigation: true
+  navbar:
+    logo: theme/codercub.jpg
+    left:
+      - text: "Future Intelligence Lab"
+        href: index.qmd
+      - text: "Learning Python in 3D"
+        href: cmu/index.qmd
   sidebar:
-    logo: theme/codercub.png
-    style: "docked"
-    collapse-level: 2
-    search: true
-    contents:
-      - section: "Future Intelligence Lab"
-        href: index.qmd
-      - text: "---"
-      - text: "Syllabus"
-        href: labs/Syllabus.qmd
-      - section: "Day 1"
-        contents:
-          - text: "Slides"
-            href: labs/01/slides.qmd
-            target: blank
-          - section: "Notebooks"
-            contents:
-              - text: "hello_world.ipynb"
-                href: labs/01/notebooks/hello_world.ipynb
-      - section: "Day 2"
-        contents:
-          - text: "Slides"
-            href: labs/02/slides.qmd
-            target: blank
-          - section: "Notebooks"
-            contents:
-              - text: "pandas_matplotlib.ipynb"
-                href: labs/02/notebooks/pandas_matplotlib.ipynb
-              - text: "air_quality.ipynb"
-                href: labs/02/notebooks/air_quality.ipynb
-              - text: "correlation.ipynb"
-                href: labs/02/notebooks/correlation.ipynb
-      - section: "Day 3"
-        contents:
-          - text: "Slides"
-            href: labs/03/slides.qmd
-            target: blank
-          - section: "Notebooks"
-            contents:
-              - text: "sklearn.ipynb"
-                href: labs/03/notebooks/sklearn.ipynb
-              - text: "finding_disasters.ipynb"
-                href: labs/03/notebooks/finding_disasters.ipynb
-              - text: "finding_cause.ipynb"
-                href: labs/03/notebooks/finding_cause.ipynb
-              - text: "regression.ipynb"
-                href: labs/03/notebooks/regression.ipynb
-      - section: "Day 4"
-        contents:
-          - text: "Slides"
-            href: labs/04/slides.qmd
-            target: blank
-      - section: "Day 5"
-        contents:
-          - text: "Slides"
-            href: labs/05/slides.qmd
-            target: blank
-      - section: "Day 6"
-        contents:
-          - text: "Slides"
-            href: labs/06/slides.qmd
-            target: blank
-          - section: "Notebooks"
-            contents:
-              - text: "face_detection.ipynb"
-                href: labs/06/notebooks/face_detection.ipynb
-              - text: "object_detection.ipynb"
-                href: labs/06/notebooks/object_detection.ipynb
-              - text: "pose_landmarks.ipynb"
-                href: labs/06/notebooks/pose_landmarks.ipynb
-              - text: "gesture_recognition.ipynb"
-                href: labs/06/notebooks/gesture_recognition.ipynb
-              - text: "image_segmentation.ipynb"
-                href: labs/06/notebooks/image_segmentation.ipynb
-      - section: "Day 7"
-        contents:
-          - text: "Slides"
-            href: labs/07/slides.qmd
-            target: blank
-          - section: "Notebooks"
-            contents:
-              - text: "tosh_qaychi_qogoz.ipynb"
-                href: labs/07/notebooks/tosh_qaychi_qogoz.ipynb
-              - text: "gesture_painter.ipynb"
-                href: labs/07/notebooks/gesture_painter.ipynb
-              - text: "pose_avatar.ipynb"
-                href: labs/07/notebooks/pose_avatar.ipynb
-      - section: "Day 8"
-        contents:
-          - text: "Slides"
-            href: labs/08/slides.qmd
-            target: blank
-          - section: "Notebooks"
-            contents:
-              - text: "word2vec.ipynb"
-                href: labs/08/notebooks/word2vec.ipynb
-              - text: "openai_sdk.ipynb"
-                href: labs/08/notebooks/openai_sdk.ipynb
-              - text: "openai_streaming.ipynb"
-                href: labs/08/notebooks/openai_streaming.ipynb
-              - text: "structured_output.ipynb"
-                href: labs/08/notebooks/structured_output.ipynb
-              - text: "structured_output_piano.ipynb"
-                href: labs/08/notebooks/structured_output_piano.ipynb
-      - section: "Day 9"
-        contents:
-          - text: "Slides"
-            href: labs/09/slides.qmd
-            target: blank
-      - section: "Day 10"
-        contents:
-          - text: "Slides"
-            href: labs/10/slides.qmd
-            target: blank
-      - section: "Learning Python in 3D"
-        href: index.qmd
-      - text: "---"
-      - section: "Day 1"
-        contents:
-          - section: "Notebooks"
-            contents:
-              - text: "variables.ipynb"
-                href: cmu/01/notebooks/variables.ipynb
-              - text: "functions.ipynb"
-                href: cmu/01/notebooks/functions.ipynb
-              - text: "colors.ipynb"
-                href: cmu/01/notebooks/colors.ipynb
-              - text: "materials.ipynb"
-                href: cmu/01/notebooks/materials.ipynb
-              - text: "experiment.ipynb"
-                href: cmu/01/notebooks/experiment.ipynb
-      - section: "Day 2"
-        contents:
-          - section: "Notebooks"
-            contents:
-              - text: "for_loops.ipynb"
-                href: cmu/02/notebooks/for_loops.ipynb
-              - text: "if_statements.ipynb"
-                href: cmu/02/notebooks/if_statements.ipynb
-              - text: "random_numbers.ipynb"
-                href: cmu/02/notebooks/random_numbers.ipynb
-              - text: "custom_functions.ipynb"
-                href: cmu/02/notebooks/custom_functions.ipynb
-              - text: "experiment.ipynb"
-                href: cmu/02/notebooks/experiment.ipynb
-      - section: "Day 3"
-        contents:
-          - section: "Notebooks"
-            contents:
-              - text: "getters.ipynb"
-                href: cmu/03/notebooks/getters.ipynb
-              - text: "on_click.ipynb"
-                href: cmu/03/notebooks/on_click.ipynb
-              - text: "on_key.ipynb"
-                href: cmu/03/notebooks/on_key.ipynb
-              - text: "grouping.ipynb"
-                href: cmu/03/notebooks/grouping.ipynb
-              - text: "animations.ipynb"
-                href: cmu/03/notebooks/animations.ipynb
-              - text: "experiment.ipynb"
-                href: cmu/03/notebooks/experiment.ipynb
-      - section: "Day 4"
-        contents:
-          - section: "Notebooks"
-            contents:
-              - text: "hud.ipynb"
-                href: cmu/04/notebooks/hud.ipynb
-              - text: "sound.ipynb"
-                href: cmu/04/notebooks/sound.ipynb
-              - text: "lighting.ipynb"
-                href: cmu/04/notebooks/lighting.ipynb
-              - text: "camera.ipynb"
-                href: cmu/04/notebooks/camera.ipynb
-              - text: "collisions.ipynb"
-                href: cmu/04/notebooks/collisions.ipynb
-      - section: "Day 5"
-        contents:
-          - section: "Notebooks"
-            contents:
-              - text: "final_project.ipynb"
-                href: cmu/05/notebooks/final_project.ipynb
+    - id: fil
+      style: "docked"
+      collapse-level: 99
+      search: true
+      contents:
+        - text: "Syllabus"
+          href: labs/Syllabus.qmd
+        - section: "Day 1"
+          contents:
+            - text: "Slides"
+              href: labs/01/slides.qmd
+              target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "hello_world.ipynb"
+                  href: labs/01/notebooks/hello_world.ipynb
+        - section: "Day 2"
+          contents:
+            - text: "Slides"
+              href: labs/02/slides.qmd
+              target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "pandas_matplotlib.ipynb"
+                  href: labs/02/notebooks/pandas_matplotlib.ipynb
+                - text: "air_quality.ipynb"
+                  href: labs/02/notebooks/air_quality.ipynb
+                - text: "correlation.ipynb"
+                  href: labs/02/notebooks/correlation.ipynb
+        - section: "Day 3"
+          contents:
+            - text: "Slides"
+              href: labs/03/slides.qmd
+              target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "sklearn.ipynb"
+                  href: labs/03/notebooks/sklearn.ipynb
+                - text: "finding_disasters.ipynb"
+                  href: labs/03/notebooks/finding_disasters.ipynb
+                - text: "finding_cause.ipynb"
+                  href: labs/03/notebooks/finding_cause.ipynb
+                - text: "regression.ipynb"
+                  href: labs/03/notebooks/regression.ipynb
+        - section: "Day 4"
+          contents:
+            - text: "Slides"
+              href: labs/04/slides.qmd
+              target: blank
+        - section: "Day 5"
+          contents:
+            - text: "Slides"
+              href: labs/05/slides.qmd
+              target: blank
+        - section: "Day 6"
+          contents:
+            - text: "Slides"
+              href: labs/06/slides.qmd
+              target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "face_detection.ipynb"
+                  href: labs/06/notebooks/face_detection.ipynb
+                - text: "object_detection.ipynb"
+                  href: labs/06/notebooks/object_detection.ipynb
+                - text: "pose_landmarks.ipynb"
+                  href: labs/06/notebooks/pose_landmarks.ipynb
+                - text: "gesture_recognition.ipynb"
+                  href: labs/06/notebooks/gesture_recognition.ipynb
+                - text: "image_segmentation.ipynb"
+                  href: labs/06/notebooks/image_segmentation.ipynb
+        - section: "Day 7"
+          contents:
+            - text: "Slides"
+              href: labs/07/slides.qmd
+              target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "tosh_qaychi_qogoz.ipynb"
+                  href: labs/07/notebooks/tosh_qaychi_qogoz.ipynb
+                - text: "gesture_painter.ipynb"
+                  href: labs/07/notebooks/gesture_painter.ipynb
+                - text: "pose_avatar.ipynb"
+                  href: labs/07/notebooks/pose_avatar.ipynb
+        - section: "Day 8"
+          contents:
+            - text: "Slides"
+              href: labs/08/slides.qmd
+              target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "word2vec.ipynb"
+                  href: labs/08/notebooks/word2vec.ipynb
+                - text: "openai_sdk.ipynb"
+                  href: labs/08/notebooks/openai_sdk.ipynb
+                - text: "openai_streaming.ipynb"
+                  href: labs/08/notebooks/openai_streaming.ipynb
+                - text: "structured_output.ipynb"
+                  href: labs/08/notebooks/structured_output.ipynb
+                - text: "structured_output_piano.ipynb"
+                  href: labs/08/notebooks/structured_output_piano.ipynb
+        - section: "Day 9"
+          contents:
+            - text: "Slides"
+              href: labs/09/slides.qmd
+              target: blank
+        - section: "Day 10"
+          contents:
+            - text: "Slides"
+              href: labs/10/slides.qmd
+              target: blank
+    - id: cmu
+      style: "docked"
+      collapse-level: 99
+      search: true
+      contents:
+        - section: "Day 1"
+          contents:
+            - section: "Notebooks"
+              contents:
+                - text: "variables.ipynb"
+                  href: cmu/01/notebooks/variables.ipynb
+                - text: "functions.ipynb"
+                  href: cmu/01/notebooks/functions.ipynb
+                - text: "colors.ipynb"
+                  href: cmu/01/notebooks/colors.ipynb
+                - text: "materials.ipynb"
+                  href: cmu/01/notebooks/materials.ipynb
+                - text: "experiment.ipynb"
+                  href: cmu/01/notebooks/experiment.ipynb
+        - section: "Day 2"
+          contents:
+            - section: "Notebooks"
+              contents:
+                - text: "for_loops.ipynb"
+                  href: cmu/02/notebooks/for_loops.ipynb
+                - text: "if_statements.ipynb"
+                  href: cmu/02/notebooks/if_statements.ipynb
+                - text: "random_numbers.ipynb"
+                  href: cmu/02/notebooks/random_numbers.ipynb
+                - text: "custom_functions.ipynb"
+                  href: cmu/02/notebooks/custom_functions.ipynb
+                - text: "experiment.ipynb"
+                  href: cmu/02/notebooks/experiment.ipynb
+        - section: "Day 3"
+          contents:
+            - section: "Notebooks"
+              contents:
+                - text: "getters.ipynb"
+                  href: cmu/03/notebooks/getters.ipynb
+                - text: "on_click.ipynb"
+                  href: cmu/03/notebooks/on_click.ipynb
+                - text: "on_key.ipynb"
+                  href: cmu/03/notebooks/on_key.ipynb
+                - text: "grouping.ipynb"
+                  href: cmu/03/notebooks/grouping.ipynb
+                - text: "animations.ipynb"
+                  href: cmu/03/notebooks/animations.ipynb
+                - text: "experiment.ipynb"
+                  href: cmu/03/notebooks/experiment.ipynb
+        - section: "Day 4"
+          contents:
+            - section: "Notebooks"
+              contents:
+                - text: "hud.ipynb"
+                  href: cmu/04/notebooks/hud.ipynb
+                - text: "sound.ipynb"
+                  href: cmu/04/notebooks/sound.ipynb
+                - text: "lighting.ipynb"
+                  href: cmu/04/notebooks/lighting.ipynb
+                - text: "camera.ipynb"
+                  href: cmu/04/notebooks/camera.ipynb
+                - text: "collisions.ipynb"
+                  href: cmu/04/notebooks/collisions.ipynb
+        - section: "Day 5"
+          contents:
+            - section: "Notebooks"
+              contents:
+                - text: "final_project.ipynb"
+                  href: cmu/05/notebooks/final_project.ipynb

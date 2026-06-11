@@ -1,0 +1,35 @@
+/*-- scss:rules --*/
+
+// Course switcher links in the navbar — styled as pill buttons.
+// rgba white works on both flatly (dark navy navbar) and darkly (dark navbar).
+.navbar-nav > .nav-item > .nav-link {
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  padding: 0.3rem 1rem;
+  margin: 0 0.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.15s, border-color 0.15s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+  }
+}
+
+// Top-level sidebar section headers (Day 1, Day 2, etc.) only.
+// The selector targets .sidebar-item-section that are direct children of the
+// root sidebar <ul>, excluding nested sections like "Notebooks".
+#quarto-sidebar > nav > ul > li.sidebar-item-section > .sidebar-item-container .menu-text {
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $primary;
+}
