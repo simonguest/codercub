@@ -883,6 +883,76 @@
     ]
   },
   {
+    "objectID": "cmu/04/notebooks/hud.html",
+    "href": "cmu/04/notebooks/hud.html",
+    "title": "HUD — Heads-Up Display",
+    "section": "",
+    "text": "A HUD (Heads-Up Display) is the information layer drawn on top of a game or simulation — score, health, timer, mini-map. You’ve already seen it used briefly in the Animations and On Click notebooks, where a single line of text appeared in the corner.\nIn scene3d, every scene has a 2D canvas that floats above the 3D world. In this notebook you’ll learn how that canvas works, how to draw shapes on it, and how to build a real, live-updating HUD."
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#the-2d-canvas-overlay",
+    "href": "cmu/04/notebooks/hud.html#the-2d-canvas-overlay",
+    "title": "HUD — Heads-Up Display",
+    "section": "The 2D Canvas Overlay",
+    "text": "The 2D Canvas Overlay\nscene.get_context('2d') returns a canvas that sits transparently on top of the 3D scene. Everything you draw on it appears in front of the 3D world.\nThe canvas uses the same coordinate system as every browser canvas:\n\n\n\nCorner\nCoordinates\n\n\n\n\nTop-left\n(0, 0)\n\n\nRight\nx increases →\n\n\nDown\ny increases ↓\n\n\n\nThe scene below draws labels at different positions to make this concrete. Run it and read the labels — notice where each one appears.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1.5, segments=16)\nsphere.set_color('#4488ff')\nsphere.set_position(0, 0.75, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nctx.font = '16px sans-serif'\n\nctx.fill_style = '#e94560'\nctx.fill_text('(0, 0) — top-left', 8, 20)\n\nctx.fill_style = '#f5a623'\nctx.fill_text('x increases to the right →', 8, 50)\n\nctx.fill_style = '#44cc88'\nctx.fill_text('y increases downward ↓', 8, 80)\n\nctx.fill_style = '#ffffff'\nctx.fill_text('This text is at x=8, y=260', 8, 260)"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#how-fill_text-places-text",
+    "href": "cmu/04/notebooks/hud.html#how-fill_text-places-text",
+    "title": "HUD — Heads-Up Display",
+    "section": "How fill_text Places Text",
+    "text": "How fill_text Places Text\nctx.fill_text('Score: 0', 8, 20)\n#                          x  y\nThe x and y values position the bottom-left of the first character. So y=20 means the baseline of the text is 20 pixels from the top edge.\nctx.font sets the size and typeface: '20px sans-serif', '14px monospace'. Change it before each fill_text call to use different sizes in the same HUD.\n{ “question_type”: “multiple_choice”, “question”: “In the 2D overlay canvas, where is the point (0, 0)?”, “options”: [ { “key”: “a”, “text”: “Center of the canvas” }, { “key”: “b”, “text”: “Bottom-left corner” }, { “key”: “c”, “text”: “Top-left corner” }, { “key”: “d”, “text”: “Top-right corner” } ], “answer”: “c”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#drawing-rectangles",
+    "href": "cmu/04/notebooks/hud.html#drawing-rectangles",
+    "title": "HUD — Heads-Up Display",
+    "section": "Drawing Rectangles",
+    "text": "Drawing Rectangles\nText alone isn’t enough for a real HUD — you also need solid shapes like panels and bars. The canvas has two rectangle methods:\nctx.fill_rect(x, y, width, height)    # solid filled rectangle\nctx.stroke_rect(x, y, width, height)  # outlined rectangle (no fill)\nThe first two arguments are the top-left corner of the rectangle. fill_rect uses fill_style for its color; stroke_rect uses stroke_style.\nRun the scene below to see both in action.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nbox = scene3d.Shapes.Box(width=1.5, height=1.5, depth=1.5)\nbox.set_color('#cc44ff')\nbox.set_position(0, 0.75, 0)\nscene.add(box)\n\nctx = scene.get_context('2d')\n\n# Filled rectangle\nctx.fill_style = '#e94560'\nctx.fill_rect(10, 10, 160, 40)\n\n# Outlined rectangle\nctx.stroke_style = '#44cc88'\nctx.line_width = 3\nctx.stroke_rect(10, 60, 160, 40)\n\n# Labels\nctx.fill_style = '#ffffff'\nctx.font = '15px sans-serif'\nctx.fill_text('fill_rect — solid', 18, 36)\nctx.fill_text('stroke_rect — outline', 18, 86)"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#rectangle-parameters",
+    "href": "cmu/04/notebooks/hud.html#rectangle-parameters",
+    "title": "HUD — Heads-Up Display",
+    "section": "Rectangle Parameters",
+    "text": "Rectangle Parameters\nctx.fill_rect(x, y, width, height)\n#             |  |  |      |\n#             |  |  |      height in pixels\n#             |  |  width in pixels\n#             |  y of top-left corner\n#             x of top-left corner\nFor stroke_rect, set ctx.stroke_style (a color) and ctx.line_width (pixels) before calling it — otherwise you get the default black 1-pixel border.\n{ “question_type”: “true_false”, “question”: “ctx.fill_rect(10, 20, 100, 40) draws a rectangle whose top-left corner is at x=10, y=20.”, “answer”: “True”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#building-a-progress-bar",
+    "href": "cmu/04/notebooks/hud.html#building-a-progress-bar",
+    "title": "HUD — Heads-Up Display",
+    "section": "Building a Progress Bar",
+    "text": "Building a Progress Bar\nA progress bar is the most common HUD element — health, energy, loading, time remaining. It’s built from two rectangles stacked in the same position:\n\nA background rectangle (the empty bar)\nA fill rectangle drawn on top, whose width is proportional to a value\n\nThe key formula:\nfill_width = bar_max_width * (value / max_value)\nIf bar_max_width = 200 and health is 70 / 100, the fill is 200 * 0.70 = 140 pixels wide.\nRun the cell to see a health bar drawn at 70%.\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1.5, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(0, 0.75, 0)\nscene.add(sphere)\n\nhealth = 70\nmax_health = 100\nbar_x, bar_y = 10, 10\nbar_max_width = 220\nbar_height = 26\n\nctx = scene.get_context('2d')\n\n# Background (empty bar)\nctx.fill_style = '#333333'\nctx.fill_rect(bar_x, bar_y, bar_max_width, bar_height)\n\n# Fill (proportional to health)\nfill_width = bar_max_width * (health / max_health)\nctx.fill_style = '#44cc88'\nctx.fill_rect(bar_x, bar_y, fill_width, bar_height)\n\n# Label below the bar\nctx.fill_style = '#ffffff'\nctx.font = '17px sans-serif'\nctx.fill_text(f'Health: {health} / {max_health}', bar_x, bar_y + bar_height + 20)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#why-the-formula-works",
+    "href": "cmu/04/notebooks/hud.html#why-the-formula-works",
+    "title": "HUD — Heads-Up Display",
+    "section": "Why the Formula Works",
+    "text": "Why the Formula Works\nfill_width = bar_max_width * (value / max_value)\nvalue / max_value is always between 0.0 and 1.0 — it’s the fraction of the bar that should be filled. Multiplying by bar_max_width converts that fraction to pixels.\n\n\n\nHealth\nvalue / max_value\nPixels filled (out of 220)\n\n\n\n\n100\n1.00\n220\n\n\n70\n0.70\n154\n\n\n25\n0.25\n55\n\n\n0\n0.00\n0\n\n\n\nTry changing health = 70 to other values in the cell above and re-running.\n{ “question_type”: “multiple_choice”, “question”: “A health bar has bar_max_width = 200. The player has 45 out of 100 health. How wide should the filled bar be?”, “options”: [ { “key”: “a”, “text”: “45 pixels” }, { “key”: “b”, “text”: “90 pixels” }, { “key”: “c”, “text”: “155 pixels” }, { “key”: “d”, “text”: “200 pixels” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#a-live-updating-hud",
+    "href": "cmu/04/notebooks/hud.html#a-live-updating-hud",
+    "title": "HUD — Heads-Up Display",
+    "section": "A Live, Updating HUD",
+    "text": "A Live, Updating HUD\nSo far the HUD has been drawn once at startup. In a real game it needs to update every frame.\nThe pattern is: 1. Write a draw_hud() helper that calls ctx.clear() first, then redraws everything 2. Call draw_hud() inside your @scene.on_frame callback\nctx.clear() wipes the entire 2D canvas. Without it, every frame’s drawing stacks on top of the previous one and the screen turns into a mess. Always clear before redrawing.\nThe scene below has an animated sphere and a countdown timer bar. Click Stop (■) when you’ve watched the timer run.\n\nimport scene3d\nimport math\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=12, width=12)\n\nsphere = scene3d.Shapes.Sphere(diameter=1, segments=16)\nsphere.set_color('#e94560')\nsphere.set_position(0, 1, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nt = 0.0\nduration = 20.0\n\ndef draw_hud(elapsed):\n    remaining = max(0.0, duration - elapsed)\n    fraction = remaining / duration\n\n    ctx.clear()  # wipe the previous frame's drawing first\n\n    # Timer bar background\n    ctx.fill_style = '#333333'\n    ctx.fill_rect(10, 10, 240, 22)\n\n    # Timer bar fill\n    ctx.fill_style = '#f5a623'\n    ctx.fill_rect(10, 10, 240 * fraction, 22)\n\n    # Timer label\n    ctx.fill_style = '#ffffff'\n    ctx.font = '18px sans-serif'\n    ctx.fill_text(f'Time remaining: {remaining:.1f}s', 10, 52)\n\n@scene.on_frame\ndef animate(dt):\n    global t\n    t += dt\n    x = math.sin(t * 1.5) * 4\n    sphere.set_position(x, 1, 0)\n    draw_hud(t)\n\nscene.run()"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#the-clear-and-redraw-pattern",
+    "href": "cmu/04/notebooks/hud.html#the-clear-and-redraw-pattern",
+    "title": "HUD — Heads-Up Display",
+    "section": "The Clear-and-Redraw Pattern",
+    "text": "The Clear-and-Redraw Pattern\ndef draw_hud(elapsed):\n    ctx.clear()          # step 1: wipe everything\n    ctx.fill_rect(...)   # step 2: draw background elements\n    ctx.fill_text(...)   # step 3: draw text on top\n\n@scene.on_frame\ndef animate(dt):\n    ...\n    draw_hud(t)          # called every frame\nSeparating draw_hud into its own function keeps the animation callback clean and makes it easy to add more HUD elements later — just add lines inside draw_hud.\n{ “question_type”: “multiple_choice”, “question”: “Why does draw_hud() call ctx.clear() at the start of every frame?”, “options”: [ { “key”: “a”, “text”: “To save memory” }, { “key”: “b”, “text”: “To prevent old drawn elements from staying on screen” }, { “key”: “c”, “text”: “Because fill_rect only works after clear()” }, { “key”: “d”, “text”: “To reset the canvas coordinate system” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/hud.html#try-it-yourself",
+    "href": "cmu/04/notebooks/hud.html#try-it-yourself",
+    "title": "HUD — Heads-Up Display",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nClick the spheres to score points before the timer runs out. The HUD shows your score, a countdown bar, and the time remaining. The bar turns red when less than 40% of the time is left.\nUse the slider to choose how long the round lasts.\n\nimport scene3d\nimport random\n\nTIMER = 20 #@param {type:\"slider\", min:10, max:30, step:5}\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=16, width=10)\n\nctx = scene.get_context('2d')\nt = 0.0\nscore = 0\npalette = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff']\n\ndef draw_hud():\n    remaining = max(0.0, TIMER - t)\n    fraction = remaining / TIMER\n\n    ctx.clear()\n\n    # Score\n    ctx.fill_style = '#ffffff'\n    ctx.font = '22px sans-serif'\n    ctx.fill_text(f'Score: {score}', 10, 30)\n\n    # Timer bar background\n    ctx.fill_style = '#333333'\n    ctx.fill_rect(10, 42, 260, 22)\n\n    # Timer bar fill — green when plenty of time, red when running low\n    ctx.fill_style = '#44cc88' if fraction &gt; 0.4 else '#e94560'\n    ctx.fill_rect(10, 42, 260 * fraction, 22)\n\n    ctx.fill_style = '#ffffff'\n    ctx.font = '16px sans-serif'\n    ctx.fill_text(f'{remaining:.0f}s remaining', 10, 84)\n\nspheres = []\n\ndef make_handler(idx):\n    def handler():\n        global score\n        score += 1\n        spheres[idx].set_color(random.choice(palette))\n        draw_hud()\n    return handler\n\nfor i in range(5):\n    s = scene3d.Shapes.Sphere(diameter=1.2, segments=16)\n    s.set_color(palette[i])\n    s.set_position(i * 3 - 6, 0.7, 0)\n    s.on_click(make_handler(i))\n    scene.add(s)\n    spheres.append(s)\n\n@scene.on_frame\ndef animate(dt):\n    global t\n    t += dt\n    draw_hud()\n\ndraw_hud()\nscene.run()\n\nThink about a game or app you use that has a HUD. What information does it show?\nIf you were designing your own game, what would you put on the HUD — health, score, a map, ammo, time? Describe the layout: where on screen would each element go, and how would you use fill_rect and fill_text to build it?"
+  },
+  {
     "objectID": "cmu/03/notebooks/grouping.html",
     "href": "cmu/03/notebooks/grouping.html",
     "title": "Grouping Shapes",
@@ -2034,6 +2104,69 @@
     "title": "On Click — Event Handling",
     "section": "Try It Yourself",
     "text": "Try It Yourself\nThe scene below has a row of five spheres. Each one tracks how many times it’s been clicked and changes to a random new color with every click. Click them as fast as you can!\n\nimport scene3d\nimport random\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=16, width=8)\n\npalette = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff', '#ff8844', '#44ffcc']\nspheres = []\nclicks = [0, 0, 0, 0, 0]\nctx = scene.get_context('2d')\n\ndef update_hud():\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '20px sans-serif'\n    ctx.fill_text('Clicks: ' + '  |  '.join(str(c) for c in clicks), 10, 28)\n\ndef make_handler(idx):\n    def handler():\n        clicks[idx] += 1\n        spheres[idx].set_color(random.choice(palette))\n        update_hud()\n    return handler\n\nfor i in range(5):\n    s = scene3d.Shapes.Sphere(diameter=1.2, segments=16)\n    s.set_color(palette[i])\n    s.set_position(i * 3 - 6, 0.7, 0)\n    s.on_click(make_handler(i))\n    scene.add(s)\n    spheres.append(s)\n\nupdate_hud()\nscene.run()\n\nThink about an interactive game or experience you’d like to build — a puzzle, a quiz, an instrument you play with clicks.\nWhich objects would be clickable? What would each click do? Would clicks change just one object, or would clicking one thing affect others too? Describe the experience you have in mind."
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html",
+    "href": "cmu/04/notebooks/sound.html",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "",
+    "text": "Sound turns a 3D scene from something you watch into something you experience. A click that plays a note, background music that sets a mood, speech that reacts to what the user does — all of this is possible with the audio module.\nIn this notebook you’ll learn how to play sound files, create notes and melodies, add sound effects to 3D shapes, and make your program speak out loud."
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#playing-a-sound-file",
+    "href": "cmu/04/notebooks/sound.html#playing-a-sound-file",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Playing a Sound File",
+    "text": "Playing a Sound File\nThe platform comes pre-loaded with a library of sound effects:\n\n\n\nFile\nSounds like\n\n\n\n\nclang.wav\nMetal striking metal\n\n\ncoin_pickup.wav\nCollecting a coin\n\n\ncorrect.wav\nRight answer chime\n\n\ndoor.wav\nDoor opening\n\n\ngameover.wav\nGame over jingle\n\n\nincorrect.wav\nWrong answer buzz\n\n\nlaser.wav\nSci-fi laser shot\n\n\npop.wav\nBubble pop\n\n\nthud.wav\nHeavy impact\n\n\nwood.wav\nWood knock\n\n\nzap.wav\nElectric zap\n\n\n\nUse the dropdown to pick a sound and run the cell to hear it.\n\nimport audio\n\nSOUND = 'coin_pickup.wav' #@param [\"clang.wav\", \"coin_pickup.wav\", \"correct.wav\", \"door.wav\", \"gameover.wav\", \"incorrect.wav\", \"laser.wav\", \"pop.wav\", \"thud.wav\", \"wood.wav\", \"zap.wav\"]\n\naudio.play(f'/sample_files/{SOUND}')\nprint(f'Played: {SOUND}')"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#play-is-blocking",
+    "href": "cmu/04/notebooks/sound.html#play-is-blocking",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "play() Is Blocking",
+    "text": "play() Is Blocking\naudio.play() is blocking — your code pauses and waits for the sound to finish before moving to the next line. That’s why the print only appeared after you heard the sound.\naudio.play('/sample_files/laser.wav')  # ← code stops here until done\nprint('Done!')                          # ← only runs after the sound ends\nThis is useful for short effects you want to hear before continuing. Later you’ll see how to play sounds in the background so the scene keeps running at the same time.\n{ “question_type”: “true_false”, “question”: “audio.play() returns immediately and lets the rest of the code continue while the sound plays.”, “answer”: “False”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#playing-notes",
+    "href": "cmu/04/notebooks/sound.html#playing-notes",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Playing Notes",
+    "text": "Playing Notes\naudio.play_note(note, duration) plays a single musical note for a given number of seconds.\nNote names use the format letter + optional accidental + octave number:\n\n\n\nNote\nMeaning\n\n\n\n\n'C4'\nMiddle C — the most common reference note\n\n\n'E4'\nE in the 4th octave\n\n\n'F#3'\nF sharp in the 3rd octave\n\n\n'Bb5'\nB flat in the 5th octave\n\n\n\nHigher octave numbers sound higher in pitch. 'C5' is one octave above 'C4'.\nRun the cell and listen to the four notes in sequence.\n\nimport audio\n\naudio.play_note('C4', 0.4)   # middle C\naudio.play_note('E4', 0.4)   # a major third above C\naudio.play_note('G4', 0.4)   # a perfect fifth above C\naudio.play_note('C5', 0.6)   # same note, one octave higher"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#melodies-and-chords",
+    "href": "cmu/04/notebooks/sound.html#melodies-and-chords",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Melodies and Chords",
+    "text": "Melodies and Chords\nFor a melody, audio.play_notes() is cleaner than calling play_note repeatedly. It takes a list of (note, duration) tuples and plays them in order:\naudio.play_notes([\n    ('C4', 0.3),\n    ('E4', 0.3),\n    ('G4', 0.6),\n])\nTo play several notes at the same time — a chord — pass a list of note names as the first argument to play_note:\naudio.play_note(['C4', 'E4', 'G4'], 1.0)   # C major chord\nRun the cell below to hear a short melody followed by a chord.\n\nimport audio\n\n# A short melody\nmelody = [\n    ('C4', 0.25), ('E4', 0.25), ('G4', 0.25), ('C5', 0.25),\n    ('G4', 0.25), ('E4', 0.25), ('C4', 0.5),\n]\naudio.play_notes(melody)\n\n# Finish with a C major chord — all three notes at once\naudio.play_note(['C4', 'E4', 'G4'], 1.0)\n\n{ “question_type”: “multiple_choice”, “question”: “Which line plays three notes at exactly the same time (a chord)?”, “options”: [ { “key”: “a”, “text”: “audio.play_notes([(‘C4’, 0.3), (‘E4’, 0.3), (‘G4’, 0.3)])” }, { “key”: “b”, “text”: “audio.play_note(‘C4’, 0.3) then audio.play_note(‘E4’, 0.3)” }, { “key”: “c”, “text”: “audio.play_note([‘C4’, ‘E4’, ‘G4’], 1.0)” }, { “key”: “d”, “text”: “audio.play(‘C4’, ‘E4’, ‘G4’)” } ], “answer”: “c”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#background-music",
+    "href": "cmu/04/notebooks/sound.html#background-music",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Background Music",
+    "text": "Background Music\nSo far every audio call has been blocking — the scene would have to wait for the music to finish before it could start. That’s the opposite of background music.\nThe platform includes three pre-recorded music tracks: music_ambience.wav, music_bach.wav, and music_sibelius.wav.\nTo start one while a scene runs, use await audio.play_async() instead of audio.play(). The keyword await tells Python: “kick this off, then keep going without waiting for it to finish.”\nUse the dropdown to choose a track, then run the cell — the music starts and the scene loads at the same time.\n\nimport scene3d\nimport audio\n\nTRACK = 'music_ambience.wav' #@param [\"music_ambience.wav\", \"music_bach.wav\", \"music_sibelius.wav\"]\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=10, width=10)\n\nsphere = scene3d.Shapes.Sphere(diameter=1.5, segments=16)\nsphere.set_color('#4488ff')\nsphere.set_position(0, 0.75, 0)\nscene.add(sphere)\n\nctx = scene.get_context('2d')\nctx.fill_style = '#ffffff'\nctx.font = '18px sans-serif'\nctx.fill_text(f'Now playing: {TRACK}', 10, 30)\n\nawait audio.play_async(f'/sample_files/{TRACK}')  # starts music, continues immediately\nscene.run()"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#sound-effects-in-a-3d-scene",
+    "href": "cmu/04/notebooks/sound.html#sound-effects-in-a-3d-scene",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Sound Effects in a 3D Scene",
+    "text": "Sound Effects in a 3D Scene\nSound effects make interactions feel satisfying. You already know how on_click works — all you need to do is call audio.play() inside the handler.\nThe scene below has three shapes, each wired to a different sound effect. Click them and notice how the right sound makes each interaction feel distinct.\n\nimport scene3d\nimport audio\n\nscene = scene3d.Scene()\nscene.set_sky('#1a1a2e')\nscene.set_ground(length=12, width=10)\n\nctx = scene.get_context('2d')\nsounds = ['coin_pickup.wav', 'laser.wav', 'correct.wav']\ncolors = ['#e94560', '#f5a623', '#44cc88']\nx_pos  = [-3, 0, 3]\n\ndef make_handler(sound):\n    def handler():\n        audio.play(f'/sample_files/{sound}')\n        ctx.clear()\n        ctx.fill_style = '#ffffff'\n        ctx.font = '20px sans-serif'\n        ctx.fill_text(f'Played: {sound}', 10, 30)\n    return handler\n\nfor i in range(3):\n    s = scene3d.Shapes.Sphere(diameter=1.2, segments=16)\n    s.set_color(colors[i])\n    s.set_position(x_pos[i], 0.7, 0)\n    s.on_click(make_handler(sounds[i]))\n    scene.add(s)\n\nctx.fill_style = '#ffffff'\nctx.font = '20px sans-serif'\nctx.fill_text('Click a sphere!', 10, 30)\nscene.run()\n\n{ “question_type”: “true_false”, “question”: “You can call audio.play() inside an on_click handler to play a sound when a shape is clicked.”, “answer”: “True”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#text-to-speech",
+    "href": "cmu/04/notebooks/sound.html#text-to-speech",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Text-to-Speech",
+    "text": "Text-to-Speech\naudio.speak() converts any string into spoken words using the browser’s built-in voice engine. Like play(), it blocks until the speech finishes.\nBy default it uses an American English voice, but you can choose from many languages and accents using voice=audio.Voice.&lt;LANGUAGE&gt;.&lt;GENDER&gt;.\nRun each cell and listen.\n\nimport audio\n\naudio.speak('Hello! Welcome to the Python with 3D course.')\n\n\nimport audio\n\n# Different languages and voices\naudio.speak('This is an Australian accent!', voice=audio.Voice.EN_AU.FEMALE)\naudio.speak('Bonjour! Je parle avec une voix francaise.', voice=audio.Voice.FR_FR.MALE)\naudio.speak('Hola! Esta es una voz espanola.', voice=audio.Voice.ES_ES.FEMALE)\n\n{ “question_type”: “multiple_choice”, “question”: “Which call makes the computer speak in a British male voice?”, “options”: [ { “key”: “a”, “text”: “audio.speak(‘Hello’, language=‘British’)” }, { “key”: “b”, “text”: “audio.speak(‘Hello’, voice=audio.Voice.EN_GB.MALE)” }, { “key”: “c”, “text”: “audio.speak_british(‘Hello’, gender=‘male’)” }, { “key”: “d”, “text”: “audio.speak(‘Hello’, accent=‘EN_GB’)” } ], “answer”: “b”, “submitted_answer”: “” }"
+  },
+  {
+    "objectID": "cmu/04/notebooks/sound.html#try-it-yourself",
+    "href": "cmu/04/notebooks/sound.html#try-it-yourself",
+    "title": "Sound — Audio, Music, and Speech",
+    "section": "Try It Yourself",
+    "text": "Try It Yourself\nThe scene below is a mini musical instrument — five spheres, each mapped to a note of the pentatonic scale. Click them in any order to play a tune. Every fifth note, the program announces your total out loud.\nUse the slider to control how long each note rings.\n\nimport scene3d\nimport audio\n\nNOTE_DURATION = 0.3 #@param {type:\"slider\", min:0.1, max:1.0, step:0.1}\n\nscene = scene3d.Scene()\nscene.set_sky('#0f3460')\nscene.set_ground(length=18, width=10)\n\nctx = scene.get_context('2d')\nnotes  = ['C4', 'D4', 'E4', 'G4', 'A4']\ncolors = ['#e94560', '#f5a623', '#4488ff', '#44cc88', '#cc44ff']\ntotal_clicks = 0\nspheres = []\n\ndef draw_hud():\n    ctx.clear()\n    ctx.fill_style = '#ffffff'\n    ctx.font = '20px sans-serif'\n    ctx.fill_text(f'Notes played: {total_clicks}', 10, 30)\n\ndef make_handler(idx):\n    def handler():\n        global total_clicks\n        total_clicks += 1\n        audio.play_note(notes[idx], NOTE_DURATION)\n        draw_hud()\n        if total_clicks % 5 == 0:\n            audio.speak(f'Nice! {total_clicks} notes played.')\n    return handler\n\nfor i in range(5):\n    s = scene3d.Shapes.Sphere(diameter=1.2, segments=16)\n    s.set_color(colors[i])\n    s.set_position(i * 3.5 - 7, 0.7, 0)\n    s.on_click(make_handler(i))\n    scene.add(s)\n    spheres.append(s)\n\ndraw_hud()\nscene.run()\n\nThink about a game or experience where sound makes a big difference — a rhythm game, an adventure with narration, a puzzle with audio clues.\nHow would you add sound to the HUD mini-game from the previous notebook? What would you play when the timer runs out, when a new high score is reached, or when the player clicks a sphere? Describe how you would combine audio with what you already built."
   },
   {
     "objectID": "labs/02/notebooks/air_quality.html",
