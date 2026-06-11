@@ -130,12 +130,70 @@ website:
           - text: "Slides"
             href: labs/10/slides.qmd
             target: blank
-      - section: "CMU Exploring Programming"
+      - section: "Learning Python in 3D"
         href: index.qmd
       - text: "---"
+      - section: "Day 1"
+        contents:
+          - section: "Notebooks"
+            contents:
+              - text: "variables.ipynb"
+                href: cmu/01/notebooks/variables.ipynb
+              - text: "functions.ipynb"
+                href: cmu/01/notebooks/functions.ipynb
+              - text: "colors.ipynb"
+                href: cmu/01/notebooks/colors.ipynb
+              - text: "materials.ipynb"
+                href: cmu/01/notebooks/materials.ipynb
+              - text: "experiment.ipynb"
+                href: cmu/01/notebooks/experiment.ipynb
+      - section: "Day 2"
+        contents:
+          - section: "Notebooks"
+            contents:
+              - text: "for_loops.ipynb"
+                href: cmu/02/notebooks/for_loops.ipynb
+              - text: "if_statements.ipynb"
+                href: cmu/02/notebooks/if_statements.ipynb
+              - text: "random_numbers.ipynb"
+                href: cmu/02/notebooks/random_numbers.ipynb
+              - text: "custom_functions.ipynb"
+                href: cmu/02/notebooks/custom_functions.ipynb
+              - text: "experiment.ipynb"
+                href: cmu/02/notebooks/experiment.ipynb
       - section: "Day 3"
         contents:
           - section: "Notebooks"
             contents:
-              - text: "if_statements.ipynb"
-                href: cmu/03/notebooks/if_statements.ipynb
+              - text: "getters.ipynb"
+                href: cmu/03/notebooks/getters.ipynb
+              - text: "on_click.ipynb"
+                href: cmu/03/notebooks/on_click.ipynb
+              - text: "on_key.ipynb"
+                href: cmu/03/notebooks/on_key.ipynb
+              - text: "grouping.ipynb"
+                href: cmu/03/notebooks/grouping.ipynb
+              - text: "animations.ipynb"
+                href: cmu/03/notebooks/animations.ipynb
+              - text: "experiment.ipynb"
+                href: cmu/03/notebooks/experiment.ipynb
+      - section: "Day 4"
+        contents:
+          - section: "Notebooks"
+            contents:
+              - text: "hud.ipynb"
+                href: cmu/04/notebooks/hud.ipynb
+              - text: "sound.ipynb"
+                href: cmu/04/notebooks/sound.ipynb
+              - text: "lighting.ipynb"
+                href: cmu/04/notebooks/lighting.ipynb
+              - text: "camera.ipynb"
+                href: cmu/04/notebooks/camera.ipynb
+              - text: "collisions.ipynb"
+                href: cmu/04/notebooks/collisions.ipynb
+      - section: "Day 5"
+        contents:
+          - section: "Notebooks"
+            contents:
+              - text: "final_project.ipynb"
+                href: cmu/05/notebooks/final_project.ipynb
