@@ -2062,11 +2062,179 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#tbd",
-    "href": "labs/04/slides.html#tbd",
+    "objectID": "labs/04/slides.html#recap",
+    "href": "labs/04/slides.html#recap",
     "title": "Day 4: AI in the Physical World",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "section": "Recap",
+    "text": "Recap\n\nWhat did we learn?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#exploring-patterns-in-data",
+    "href": "labs/04/slides.html#exploring-patterns-in-data",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Exploring Patterns in Data",
+    "text": "Exploring Patterns in Data\n\nBring in diagrams from https://microbit.org/teach/lessons/exploring-patterns-in-data/",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#what-is-a-microbit-1",
+    "href": "labs/04/slides.html#what-is-a-microbit-1",
+    "title": "Day 4: AI in the Physical World",
+    "section": "What is a micro:bit?",
+    "text": "What is a micro:bit?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#what-is-a-microbit-2",
+    "href": "labs/04/slides.html#what-is-a-microbit-2",
+    "title": "Day 4: AI in the Physical World",
+    "section": "What is a micro:bit?",
+    "text": "What is a micro:bit?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#what-is-an-accelerometer",
+    "href": "labs/04/slides.html#what-is-an-accelerometer",
+    "title": "Day 4: AI in the Physical World",
+    "section": "What is an Accelerometer?",
+    "text": "What is an Accelerometer?\n\nA small chip that measures acceleration\n\nHow fast moves from one speed to another\n\nMeasures acceleration in 3 directions: X, Y, and Z\n\nMeasures both positive and negative direction",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#what-is-an-accelerometer-1",
+    "href": "labs/04/slides.html#what-is-an-accelerometer-1",
+    "title": "Day 4: AI in the Physical World",
+    "section": "What is an Accelerometer?",
+    "text": "What is an Accelerometer?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#introducing-the-microbit-wearable",
+    "href": "labs/04/slides.html#introducing-the-microbit-wearable",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Introducing the micro:bit Wearable!",
+    "text": "Introducing the micro:bit Wearable!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#our-plan-1",
+    "href": "labs/04/slides.html#our-plan-1",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan\n\nSetup and connect the micro:bit\nCollect accelerometer data\nUse this data to train a model\nTest our model\n(Tomorrow) Use the model in code",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#walkthrough-demo",
+    "href": "labs/04/slides.html#walkthrough-demo",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Walkthrough / Demo",
+    "text": "Walkthrough / Demo\n\nGo to createai.microbit.org\nConnect/use as radio\nWalk through recording actions\n(get to good stopping point / maybe training the model?)\nSaving your work",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#hands-on",
+    "href": "labs/04/slides.html#hands-on",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Hands-on",
+    "text": "Hands-on\n\nGet into pairs\nNow your turn!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#training-the-model",
+    "href": "labs/04/slides.html#training-the-model",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Training the model",
+    "text": "Training the model\n\nData cleaning - does anything look odd? Replace data samples\nWhen ready, train the model\nTest the model - does it react as expected? What does it do if still?\nImprove the model (edit data samples, retrain)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#hands-on-1",
+    "href": "labs/04/slides.html#hands-on-1",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Hands-on",
+    "text": "Hands-on\n\nNow your turn!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#diversity-in-data",
+    "href": "labs/04/slides.html#diversity-in-data",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Diversity in Data",
+    "text": "Diversity in Data\n\nWhy is diversity important?\nTBD a slide or two on this, maybe some examples from AI failures - three good points here: https://microbit.org/teach/lessons/strengthening-models-through-adding-diverse-data/",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#hands-on-2",
+    "href": "labs/04/slides.html#hands-on-2",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Hands-on",
+    "text": "Hands-on\n\nSwap and test your micro:bits with another pair\nDid your micro:bit work accurately? How about theirs?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#discussion",
+    "href": "labs/04/slides.html#discussion",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Discussion",
+    "text": "Discussion\n\nWhat did everyone find?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2258,18 +2426,6 @@
     ]
   },
   {
-    "objectID": "labs/01/slides.html#tbd",
-    "href": "labs/01/slides.html#tbd",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "labs/01/slides.html#what-is-a-notebook",
     "href": "labs/01/slides.html#what-is-a-notebook",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
@@ -2366,11 +2522,59 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#tbd",
-    "href": "labs/05/slides.html#tbd",
+    "objectID": "labs/05/slides.html#recap",
+    "href": "labs/05/slides.html#recap",
     "title": "Day 5",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#using-your-model-in-code",
+    "href": "labs/05/slides.html#using-your-model-in-code",
+    "title": "Day 5",
+    "section": "Using your model in code",
+    "text": "Using your model in code\n\nReload the project\nEdit in MakeCode\nGo through detecting movement / playing sounds/showing icon\nHow to then download everything on to running hardware",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#hands-on",
+    "href": "labs/05/slides.html#hands-on",
+    "title": "Day 5",
+    "section": "Hands-on",
+    "text": "Hands-on\n\nTry this",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#project-time",
+    "href": "labs/05/slides.html#project-time",
+    "title": "Day 5",
+    "section": "Project Time",
+    "text": "Project Time\n\nRest of class will be free-form project\nIdeas of what you can create:\n\nExercise app\nLight switch clapper",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#reflect-and-share",
+    "href": "labs/05/slides.html#reflect-and-share",
+    "title": "Day 5",
+    "section": "Reflect and Share",
+    "text": "Reflect and Share\n\nWhat did you build?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
