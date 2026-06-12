@@ -8,15 +8,95 @@ format:
     center-title-slide: true
     embed-resources: true
     theme: [default, ../../theme/dark.scss]
-    logo: ../../theme/codercub.png
+    logo: ../../theme/codercub.jpg
     highlight-style: dracula
     title-slide-attributes:
       data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
 
 ---
 
-## TBD
+## Recap
 
-```python
-print("Hello world")
-```
+- What did we learn?
+
+## Exploring Patterns in Data
+
+- Bring in diagrams from https://microbit.org/teach/lessons/exploring-patterns-in-data/
+
+# What is a micro:bit?
+
+## What is a micro:bit?
+
+![](images/microbit-front.png){fig-align="center"}
+
+## What is a micro:bit?
+
+![](images/microbit-back.png){fig-align="center"}
+
+## What is an Accelerometer?
+
+- A small chip that measures acceleration
+  - How fast moves from one speed to another
+- Measures acceleration in 3 directions: X, Y, and Z
+  - Measures both positive and negative direction
+
+## What is an Accelerometer?
+
+![](images/accelerometer.jpg){fig-align="center"}
+
+# *If the micro:bit is plugged in, how do we move it around?*
+
+## Introducing the micro:bit Wearable!
+
+![](images/wearable.jpg){fig-align="center"}
+
+# Our Plan
+
+## Our Plan
+
+- Setup and connect the micro:bit
+- Collect accelerometer data
+- Use this data to train a model
+- Test our model
+- (Tomorrow) Use the model in code
+
+## Walkthrough / Demo
+
+- Go to createai.microbit.org
+- Connect/use as radio
+- Walk through recording actions
+- (get to good stopping point / maybe training the model?)
+- Saving your work
+
+## Hands-on
+
+- Get into pairs
+- Now your turn!
+
+## Training the model
+
+- Data cleaning - does anything look odd? Replace data samples
+- When ready, train the model
+- Test the model - does it react as expected? What does it do if still?
+- Improve the model (edit data samples, retrain)
+
+## Hands-on
+
+- Now your turn!
+
+## Diversity in Data
+
+- Why is diversity important?
+- TBD a slide or two on this, maybe some examples from AI failures - three good points here: https://microbit.org/teach/lessons/strengthening-models-through-adding-diverse-data/
+
+## Hands-on
+
+- Swap and test your micro:bits with another pair
+- Did your micro:bit work accurately? How about theirs?
+
+## Discussion
+
+- What did everyone find?
+
+
+

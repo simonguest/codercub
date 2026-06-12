@@ -8,7 +8,7 @@ format:
     center-title-slide: true
     embed-resources: true
     theme: [default, ../../theme/dark.scss]
-    logo: ../../theme/codercub.png
+    logo: ../../theme/codercub.jpg
     highlight-style: dracula
     title-slide-attributes:
       data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
@@ -24,6 +24,16 @@ format:
 ## What is Artificial Intelligence (AI)?
 
 - TBD
+
+# Does It Use AI?
+
+- Chatbot
+- Fitness Tracker
+- Calculator
+- Washing Machine
+- Music App
+- Mobile Phone Camera
+- Gaming Console
 
 # AI All Around You
 
@@ -46,12 +56,6 @@ What are the different types of AI that you have experienced?
 
 - TBD: Single slide for each type
 
-
-## TBD
-
-```python
-print("Hello world")
-```
 
 
 

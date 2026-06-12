@@ -8,15 +8,36 @@ format:
     center-title-slide: true
     embed-resources: true
     theme: [default, ../../theme/dark.scss]
-    logo: ../../theme/codercub.png
+    logo: ../../theme/codercub.jpg
     highlight-style: dracula
     title-slide-attributes:
       data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
 
 ---
 
-## TBD
+## Recap
 
-```python
-print("Hello world")
-```
+- TBD
+
+
+## Using your model in code
+
+- Reload the project
+- Edit in MakeCode
+- Go through detecting movement / playing sounds/showing icon
+- How to then download everything on to running hardware
+
+## Hands-on
+
+- Try this
+
+## Project Time
+
+- Rest of class will be free-form project
+- Ideas of what you can create:
+  - Exercise app
+  - Light switch clapper
+  
+## Reflect and Share
+
+- What did you build?
