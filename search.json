@@ -2146,11 +2146,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#our-plan-1",
-    "href": "labs/04/slides.html#our-plan-1",
+    "objectID": "labs/04/slides.html#introducing-the-microbit-wearable-1",
+    "href": "labs/04/slides.html#introducing-the-microbit-wearable-1",
     "title": "Day 4: AI in the Physical World",
-    "section": "Our Plan",
-    "text": "Our Plan\n\nSetup and connect the micro:bit\nCollect accelerometer data\nUse this data to train a model\nTest our model\n(Tomorrow) Use the model in code",
+    "section": "Introducing the micro:bit Wearable!",
+    "text": "Introducing the micro:bit Wearable!\n\nTBD: diagram of wearable and receiver",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2158,11 +2158,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#walkthrough-demo",
-    "href": "labs/04/slides.html#walkthrough-demo",
+    "objectID": "labs/04/slides.html#our-plan---pull-in-screenshots-from-createai-starter-animation",
+    "href": "labs/04/slides.html#our-plan---pull-in-screenshots-from-createai-starter-animation",
     "title": "Day 4: AI in the Physical World",
-    "section": "Walkthrough / Demo",
-    "text": "Walkthrough / Demo\n\nGo to createai.microbit.org\nConnect/use as radio\nWalk through recording actions\n(get to good stopping point / maybe training the model?)\nSaving your work",
+    "section": "Our Plan - pull in screenshots from CreateAI starter animation",
+    "text": "Our Plan - pull in screenshots from CreateAI starter animation\n\nConnect the micro:bits\nCollect accelerometer data\nUse this data to train a model\nTest our model\n(Tomorrow) Use the model in code",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2174,7 +2174,7 @@
     "href": "labs/04/slides.html#hands-on",
     "title": "Day 4: AI in the Physical World",
     "section": "Hands-on",
-    "text": "Hands-on\n\nGet into pairs\nNow your turn!",
+    "text": "Hands-on\n\nGet into pairs\nPickup two micro:bits (one with and one without wearable)\nWait for instructions! (We are going to do this together)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2182,11 +2182,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#training-the-model",
-    "href": "labs/04/slides.html#training-the-model",
+    "objectID": "labs/04/slides.html#steps---connect-the-microbits",
+    "href": "labs/04/slides.html#steps---connect-the-microbits",
     "title": "Day 4: AI in the Physical World",
-    "section": "Training the model",
-    "text": "Training the model\n\nData cleaning - does anything look odd? Replace data samples\nWhen ready, train the model\nTest the model - does it react as expected? What does it do if still?\nImprove the model (edit data samples, retrain)",
+    "section": "Steps - Connect the micro:bits",
+    "text": "Steps - Connect the micro:bits\n\nGo to createai.microbit.org - has to be using Chrome browser\nCreate a project: “My First Project”\nClick on “Connect using micro:bit radio instead”\nConnect the collector (wearable) micro:bit and click “Next”\nSelect the micro:bit connection from the the popup\nDisconnect and very gently insert the battery wire\n(Pause to make sure everyone sees smiley face)\nNext, connect the receiver micro:bit and click “Next”\nSelect the connection again from the popup\nPut the wearable on one of your wrists (don’t worry who is first, you’ll both have a turn to collect data)\nCheck that the graphs are moving correctly! Yes, you are connected and ready to record!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2194,11 +2194,59 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#hands-on-1",
-    "href": "labs/04/slides.html#hands-on-1",
+    "objectID": "labs/04/slides.html#steps---recording-data",
+    "href": "labs/04/slides.html#steps---recording-data",
     "title": "Day 4: AI in the Physical World",
-    "section": "Hands-on",
-    "text": "Hands-on\n\nNow your turn!",
+    "section": "Steps - Recording Data",
+    "text": "Steps - Recording Data\n\nCreate an action: “Waving”\nRecord and repeat three times\nPass the wearable to your partner. Have them record a different action. You can pick which action. Make sure your band is tight and don’t hit anyone!\n(Pause to make sure everyone has two actions)\nLet’s do another two. (One per person)\n(Pause to make sure everyone has four actions)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#steps---train-the-model",
+    "href": "labs/04/slides.html#steps---train-the-model",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Steps - Train the Model",
+    "text": "Steps - Train the Model\n\nWhen ready, click on the “Train model” button",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#steps---test-the-model",
+    "href": "labs/04/slides.html#steps---test-the-model",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Steps - Test the Model",
+    "text": "Steps - Test the Model\n\nTake turns and test your actions. How well did the model learn? What happened if you just let your hand do nothing?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#discussion---what-did-you-find",
+    "href": "labs/04/slides.html#discussion---what-did-you-find",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Discussion - What did you find?",
+    "text": "Discussion - What did you find?\n\nWhat worked well?\nWhat didn’t work well? Or what did it get wrong?\nHow did it do on the actions that your partner recorded?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#steps---add-some-more-data",
+    "href": "labs/04/slides.html#steps---add-some-more-data",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Steps - Add Some More Data",
+    "text": "Steps - Add Some More Data\n\nClick “Edit Data Samples” button\nAdd an action for being still (if you don’t already have one)\nEither re-record or add a new action. Try to have four or five.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2218,11 +2266,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#hands-on-2",
-    "href": "labs/04/slides.html#hands-on-2",
+    "objectID": "labs/04/slides.html#steps---swap-with-another-group",
+    "href": "labs/04/slides.html#steps---swap-with-another-group",
     "title": "Day 4: AI in the Physical World",
-    "section": "Hands-on",
-    "text": "Hands-on\n\nSwap and test your micro:bits with another pair\nDid your micro:bit work accurately? How about theirs?",
+    "section": "Steps - Swap with another group",
+    "text": "Steps - Swap with another group\n\nTake off the micro:bits and leave both of them on the table\nMake sure you are in the “Testing Model” screen\nSwap desks with another pair close to you\nTake turns to put on their micro:bit and test their actions",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2230,11 +2278,23 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#discussion",
-    "href": "labs/04/slides.html#discussion",
+    "objectID": "labs/04/slides.html#diversity-discussion",
+    "href": "labs/04/slides.html#diversity-discussion",
     "title": "Day 4: AI in the Physical World",
-    "section": "Discussion",
-    "text": "Discussion\n\nWhat did everyone find?",
+    "section": "Diversity Discussion",
+    "text": "Diversity Discussion\n\nWhat did you find?\nDid they work as you expected?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#steps---disconnecting-the-microbit",
+    "href": "labs/04/slides.html#steps---disconnecting-the-microbit",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Steps - Disconnecting the micro:bit",
+    "text": "Steps - Disconnecting the micro:bit\n\nDisconnect your receiver micro:bit and leave on the desk\nLeave your wearable micro:bit connected to the battery pack. I will disconnect this for you. (These can be easy to break)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
