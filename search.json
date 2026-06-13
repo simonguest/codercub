@@ -1619,498 +1619,153 @@
     ]
   },
   {
-    "objectID": "labs/Syllabus.html",
-    "href": "labs/Syllabus.html",
-    "title": "Summer of Code 2026",
+    "objectID": "cmu/00/notebooks/space_demo.html",
+    "href": "cmu/00/notebooks/space_demo.html",
+    "title": "Solar System Demo",
     "section": "",
-    "text": "Days\nModule\nFocus\n\n\n\n\nWeek 1, Day 1\nIntro\nAI concepts survey, types of AI, setting the stage\n\n\nWeek 1, Days 2–3\nModule 1: Working with Data\npandas, matplotlib, scikit-learn, Mongolian datasets\n\n\nWeek 1, Days 4–5\nModule 2: Physical Computing\nmicro:bit V2, CreateAI, gesture ML models, MakeCode\n\n\nWeek 2, Day 6\nModule 3: Computer Vision\nCNNs, TF.js, MediaPipe, CV mini-projects\n\n\nWeek 2, Day 7\nCV → GenAI Bridge\nVLMs, tokens, embeddings, transformer overview\n\n\nWeek 2, Days 8–9\nModule 4: Generative AI\nPrompt engineering, chatbots, diffusion, image gen\n\n\nWeek 2, Day 10\nCapstone Showcase\nFinal project presentations, reflection, celebration\n\n\n\n\n\n\n\n\n\n\n\n\nArticulate what AI is and name 3+ real-world examples they interact with daily\nDistinguish between supervised ML, computer vision, and generative AI\nPreview all four modules and understand how the two weeks connect\nFeel comfortable and curious — this is a safe space to experiment and be wrong\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nWarm-Up (15 min)\n“AI Around You” brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard.\n0:00–0:15\nIcebreaker energy\n\n\nDirect Instruction (20 min)\nInstructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action.\n0:15–0:35\nKeep slides visual\n\n\n“Is It AI?” Activity (20 min)\nGroups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class.\n0:35–0:55\nPhysical or Jamboard cards\n\n\nMini-Project (35 min)\n“My AI Map”: students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed.\n0:55–1:30\nPaper or slides\n\n\nShare & Preview (20 min)\n3–4 volunteers share maps. Instructor reveals the 10-day journey — the “syllabus reveal.” Preview tomorrow’s data deep-dive.\n1:30–1:50\n\n\n\nExit Ticket (10 min)\nOne thing I knew · one thing I learned · one question I have. Collect for planning.\n1:50–2:00\n\n\n\n\n\n\n\n\nMiro\n“Is it AI?” card set (printable or digital)\nShort video clips from Code.org (~2 min)\n\n\n\n\n\n\n\n\n\n\n\n\nOpen a Colab notebook, run cells, and load a CSV with pandas\nUse .head(), .describe(), .value_counts(), and filtering to investigate a real question\nProduce at least one meaningful matplotlib visualization that supports a finding\nExplain why data quality and selection matter for AI — using today’s dataset as evidence\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: A Mystery (10 min)\nInstructor opens with a single striking fact: in January, Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit — worse than Beijing, worse than Delhi. Show a before/after satellite photo of the city in summer vs. winter smog. ‘Your job today: figure out why, using data.’ Introduce the detective framing: the dataset is your crime scene.\n0:00–0:10\nShow satellite comparison image\n\n\nSetup & Tools (15 min)\nWalk through Google Colab. Every student runs: print('Investigation begins!'). Quick pandas demo: DataFrames, .head(), .info(), .describe() — framed as ‘reading the crime scene.’\n0:10–0:25\nPair struggling students\n\n\nInvestigation Sprint (40 min)\nGroups of 3 dig into the Ulaanbaatar AQI dataset with guided question cards (not open-ended — each card is a specific clue to chase). E.g., ‘Which month has the worst PM2.5? Which has the best?’, ‘Is there a pattern by day of week?’, ‘Does temperature predict pollution level?’ Groups record findings in a shared doc.\n0:25–1:05\nQuestion cards pre-prepared\n\n\nVisualize Your Evidence (25 min)\nEach group turns their strongest finding into one chart using matplotlib templates. Frame: ‘A detective doesn’t just tell the jury — they show the evidence.’\n1:05–1:30\nTemplates in notebook\n\n\nAI Training Data Lens (20 min)\nPivot: ‘Now imagine you’re an AI company and this is your training data for a pollution prediction model. Would it be good enough? What’s missing? What would your model get wrong?’ Small group discussion, then share out.\n1:30–1:50\nConnects directly to Week 2\n\n\nWrap-Up (10 min)\nEach group posts their one-sentence finding to a class board. Preview: tomorrow you get an AI assistant to help with a harder dataset — and you’ll decide if it’s trustworthy.\n1:50–2:00\n\n\n\n\n\n\n\n\nGoogle Colab (browser, no install)\nUlaanbaatar historical AQI dataset (PM2.5, PM10, temperature, season — CSV, pre-cleaned from aqicn.org or IQAir historical download)\nStarter notebook with scaffolded cells + matplotlib templates\nInvestigation question cards (printed, one set per group — 6–8 clues to chase)\nShared class findings doc (Google Doc or Jamboard)\nSatellite comparison images: Ulaanbaatar summer vs. winter smog (freely available)\n\n\n\n\n\n\n\n\n\n\n\n\nUse a Claude-powered data assistant to query a dataset in plain English\nCritically evaluate AI-generated interpretations against actual data\nTrain a simple linear regression model and interpret its predictions\nArticulate the direct conceptual link between regression modeling and the micro:bit ML training in Module 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: Dzud (10 min)\nInstructor introduces the dzud — Mongolia’s winter livestock disaster. Show the stat: in 2010, 20 million animals died in a single winter. In 2024, 7.4 million in just four months. ‘Herders knew a bad summer meant a bad winter. Can a machine learn that relationship from data?’ Introduce today’s dataset: aimag-level livestock mortality, summer drought index, and winter temperature, 1990–2013.\n0:00–0:10\nMap of Mongolia’s 21 aimags on screen\n\n\nIntroduce the AI Co-Pilot (15 min)\nInstructor demo: a Claude-powered chat interface loaded with the dzud dataset context. Ask it: ‘Which aimag suffered the most in 2010?’ Then ask something it gets wrong or oversimplifies. ‘Your job: use this tool as a starting point, then verify everything in code.’\n0:10–0:25\nClaude.ai Project or Colab widget\n\n\nInvestigation: Human + AI (35 min)\nGroups explore the dataset with the AI co-pilot. Workflow: ask the assistant a question → verify in pandas → document where it’s right, wrong, or uncertain. Each group must catch the AI making at least 2 errors or oversimplifications before they present.\n0:25–1:00\nEncourage skepticism explicitly\n\n\nLinear Regression: Predict the Disaster (25 min)\nInstructor-led walkthrough: train a linear regression model to predict livestock mortality from summer drought index and winter temperature. Students run it step-by-step. Key question: ‘This model sees the summer data — can it warn a herder before winter arrives?’\n1:00–1:25\nHeavily scaffolded notebook\n\n\nThe Bridge Moment (5 min)\nInstructor draws the explicit connection: ‘Yesterday we looked for patterns in pollution data. Today we trained a model to predict disasters from patterns in climate data. On Thursday, you’ll do the exact same thing — but the data will be your own body movement, and the micro:bit will be the device that learns.’ Plant the seed.\n1:25–1:30\nKey conceptual moment — don’t rush\n\n\nData Story Presentations (20 min)\nEach group: 3 min presentation — the question, the evidence, one thing the AI got wrong, one limitation of the dataset.\n1:30–1:50\nRubric: story, evidence, AI critique, limitation\n\n\nWrap-Up (10 min)\nClass vote: whose finding was most surprising? ‘What does it feel like to catch an AI being wrong?’ Preview: micro:bits arrive tomorrow.\n1:50–2:00\n\n\n\n\n\n\n\n\nClaude-powered data assistant (Claude.ai Project with dataset summary as context, or a lightweight Colab widget using the Anthropic API)\nDzud dataset: aimag-level livestock mortality + summer drought index + winter temperature, 1990–2013 (sourced from Mongolian NSO / Rao et al. 2015 supplementary data)\nColab notebook with linear regression walkthrough + visualization templates\nMap of Mongolia’s 21 aimags (printed or on-screen)\nPresentation rubric (story, evidence, AI critique, limitation — 1 page)\nOptional: class leaderboard for ‘best AI catch of the day’\n\n\n\n\n\n\n\n\n\n\n\n\nConnect a micro:bit to CreateAI and view live accelerometer data in real time\nTrain a gesture model with at least 3 classes and explain what ‘confidence threshold’ means\nUnderstand that ML models learn from examples, not explicit rules\nWrite a MakeCode program that responds meaningfully to detected gestures\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHardware Orientation (15 min)\nDistribute micro:bits (groups of 2–3). Connect via USB, open createai.microbit.org. Instructor demo: accelerometer graph while shaking vs. still.\n0:00–0:15\nV2 required for on-device ML\n\n\nFirst Model: Walk vs. Still (25 min)\nGuided: everyone trains the same model — ‘walking’ vs. ‘still’ vs. ‘other’. Collect 20 samples per class. Train and test on each other.\n0:15–0:40\nUse CreateAI guided tour\n\n\nIterate & Improve (20 min)\nWhy does it fail on someone else’s wrist? Collect more diverse samples. Compare accuracy before/after.\n0:40–1:00\nKey insight: data quality matters\n\n\nMakeCode Response (30 min)\nExport model to MakeCode. Program: walking → scroll message on LED; still → show symbol; other → show ‘?’.\n1:00–1:30\nTemplates provided\n\n\nDesign Challenge (20 min)\nGroups sketch their own gesture-based device concept for tomorrow: what 3–4 gestures? What human need does it serve?\n1:30–1:50\nDesign brief template\n\n\nWrap-Up (10 min)\nDiscussion: How is this similar to scikit-learn? How is it different? Preview tomorrow’s build.\n1:50–2:00\n\n\n\n\n\n\n\n\nBBC micro:bit V2 (1 per 2–3 students) + USB cables + Chrome browser\ncreateai.microbit.org + makecode.microbit.org\nCreateAI getting started guide (microbit.org/createai)\nDesign brief template (1-pager)\n\n\n\n\n\n\n\n\n\n\n\n\nDesign and train a multi-class gesture model for a purposeful application\nWrite a program that takes meaningful action on detected gestures\nDebug and iterate on model quality (test on different people, orientations)\nArticulate the human role in AI: labeling, choosing classes, and testing\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nDesign Review (10 min)\nGroups share their sketch from Day 4. Quick peer feedback: is the human need clear?\n0:00–0:10\n\n\n\nBuild & Train (60 min)\nGroups collect data, train, test, iterate. Prompt: ‘Does it still work on someone else’s arm? In a different room?’ Aim for 2–3 iteration cycles.\n0:10–1:10\nIterate deliberately\n\n\nCode the Response (35 min)\nWrite the MakeCode or Python program. Micro:bit responds with LED, sound, or serial output. Push toward a complete, working demo.\n1:10–1:45\n\n\n\nDemo Gallery (15 min)\nInformal 2-min demo per group. Peers act as testers. Celebrate creative use of gestures.\n1:45–2:00\nFun, low-stakes\n\n\n\n\n\n\n\nmicro:bits from Day 4\ncreateai.microbit.org + MakeCode\nOptional: buzzer accessories for audio feedback\n\n\nInstructor Notes: Module 2 capstone. Accuracy matters less than purposeful design — celebrate a 70% accurate exercise counter more than a 95% accurate wave detector with no clear use. Great transition line: ‘Next week we’ll teach computers to see, not just move.’\n\n\n\n\n\n\n\n\n\n\n\n\nExplain how a CNN classifies images at a conceptual level (pixels → features → predictions)\nRun pre-trained classification, pose detection, and object detection models in the browser\nBuild a working CV application combining a pre-trained model with custom Python logic\nIdentify at least one ethical concern in computer vision technology\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHook (10 min)\nShow 10 images pixelated at varying levels. Students classify. ‘Computers start from pixels just like this bottom row.’\n0:00–0:10\n\n\n\nCV Concepts (20 min)\nInstructor overview: pixels → CNN layers → predictions. Demo MobileNet on webcam in browser — confidence scores live. Show 3 task types: classification, pose detection, object detection.\n0:10–0:30\nTF.js demos, no GPU\n\n\nExploration Stations (25 min)\nSequential or parallel: (1) Image classification with MobileNet, (2) Pose detection with MoveNet, (3) Object detection with COCO-SSD. Students screenshot one result from each.\n0:30–0:55\nPre-built browser demos\n\n\nEthics Discussion (15 min)\nCase study: CV in surveillance, facial recognition bias. Small groups: ‘Should CV be used to monitor students in school?’ 2-min debrief.\n0:55–1:10\nSocratic format\n\n\nMini-Project Build (40 min)\nGroups choose a project track: (A) Pose Counter — count reps when keypoint crosses threshold. (B) Object Zone Game — detect object entering a screen zone. (C) Virtual Background — segmentation + canvas overlay. (D) Expression Mirror — MediaPipe Face Mesh reactions.\n1:10–1:50\nTemplate notebooks per track\n\n\nWrap-Up (10 min)\nQuick share: one unexpected CV challenge you hit. Preview: tomorrow we add language to vision.\n1:50–2:00\n\n\n\n\n\n\n\n\nTensorFlow.js browser demos (tensorflow.org/js/demos)\nMediaPipe (mediapipe.dev) for pose/face\nProject template notebooks (one per track)\nColab with webcam access (JS bridge) or pre-recorded video fallback\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe what a VLM does and how it differs from a classifier\nExplain tokenization with a hands-on example\nDescribe word embeddings as ‘coordinates for meaning’ in vector space\nExplain the transformer architecture at a high level and connect it to VLMs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nVLM Demo & Discussion (20 min)\nInstructor shows a VLM describing images — impressive case, then a failure case. ‘How is this different from MobileNet?’ Discussion: it produces language, not just a label. Show the two-component model: visual encoder + language model.\n0:00–0:20\nClaude API, GPT-4V, or HuggingFace Spaces (free)\n\n\nVLM Exploration (25 min)\nStudents query a VLM with their CV project screenshots + Mongolia/Naadam photos. Task: find one impressive result and one failure. Share findings.\n0:20–0:45\nNo API key needed via HuggingFace\n\n\nBridge: From Vision to Language (5 min)\nQuick pivot: ‘VLMs describe images. What if AI could generate language from scratch — or generate images?’ Introduce Module 4.\n0:45–0:50\n\n\n\nTokenization Activity (20 min)\nStudents use platform.openai.com/tokenizer on Mongolian words, code, emoji, and their own name. Questions: how many tokens? Why does it matter for cost and context?\n0:50–1:10\nPhysical token cards as backup\n\n\nEmbeddings Demo (20 min)\nWord2vec/semantic similarity: ‘King − Man + Woman ≈ Queen.’ Students try analogies in a Colab notebook. Instructor explains: these are the coordinates transformers learn from data.\n1:10–1:30\nColab + gensim\n\n\nTransformer Overview (20 min)\nVisual walkthrough of attention using ‘The bank by the river’ example. No math — diagrams only. Connect: ‘The LLM is doing this for every token, millions of times, trained on the same kind of data you used in Week 1.’\n1:30–1:50\nJay Alammar visuals\n\n\nWrap-Up (10 min)\nExit ticket: draw the path from ‘user types a message’ → ‘LLM responds.’ Preview tomorrow’s chatbot build.\n1:50–2:00\n\n\n\n\n\n\n\n\nVLM access: HuggingFace Spaces (free LLaVA demo), Claude API, or GPT-4V\nplatform.openai.com/tokenizer (free, no login)\nColab notebook: gensim word embeddings\nJay Alammar ‘Illustrated Transformer’ diagrams (jalammar.github.io)\n\n\n\n\n\n\n\n\n\n\n\n\nApply 4+ prompt engineering techniques: persona, few-shot, chain-of-thought, constraints\nUse Code.org’s AI Chat Lab to design and build a custom chatbot with a system prompt\nEvaluate a chatbot’s responses critically and iterate on the design\nExplain how system prompts shape model behavior\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nPrompt Warm-Up (15 min)\nInstructor shows the same question with 3 different prompts → very different outputs. Students guess which prompt produced which. Introduce: persona, few-shot, CoT, constraints.\n0:00–0:15\n\n\n\nPrompt Engineering Practice (25 min)\nStudents experiment with a live LLM: explain photosynthesis to a 5-year-old vs. a PhD; add a constraint (‘no jargon’); try chain-of-thought for a logic problem.\n0:15–0:40\nClaude.ai or Code.org AI Chat Lab\n\n\nChatbot Design Intro (10 min)\nIntroduce Code.org’s Exploring Generative AI curriculum and AI Chat Lab. Walk through system prompt anatomy. Show a pre-built ‘Cat Expert’ chatbot.\n0:40–0:50\ncode.org — free, grades 8–12\n\n\nBuild Your Chatbot (60 min)\nGroups of 2 design and build a chatbot on a topic they care about. Requirements: clear persona, 3 topic focus areas, 1 ‘do not discuss’ boundary, tested with 5+ different questions.\n0:50–1:50\n\n\n\nWrap-Up (10 min)\nShare chatbot name + one surprising thing it did. Preview: tomorrow you’ll add knowledge and show it off — plus explore image generation.\n1:50–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab (code.org/en-US/curriculum/exploring-generative-artificial-intelligence)\nPrompt engineering reference card (1-pager: 4 techniques with examples)\nExample system prompts to study and remix\nClaude.ai or similar LLM for free-form practice\n\n\n\n\n\n\n\n\n\n\n\n\nDeliver a polished chatbot demo including a system prompt, knowledge grounding, and graceful failure\nExplain how diffusion models generate images at a conceptual level\nCraft effective image generation prompts using a structured scaffold\nEngage with IP and ethics questions around AI-generated art\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nRAG & Knowledge Grounding (15 min)\nQuick demo: same chatbot with and without a knowledge document. What changed? Why? Conceptual explanation of retrieval-augmented generation — no code required.\n0:00–0:15\n\n\n\nPolish Your Chatbot (25 min)\nGroups add a knowledge document (or expanded system prompt with facts) and evaluate using a peer rubric: helpfulness, accuracy, personality, graceful failure.\n0:15–0:40\nPrinted rubric\n\n\nChatbot Showcase (20 min)\nEach group demos in 2 minutes: what it does, a successful exchange, something it won’t do. Peer votes: Most Creative, Most Useful, Best Personality.\n0:40–1:00\nCelebration atmosphere\n\n\nDiffusion Model Concepts (15 min)\nHow AI generates images: noise → denoise → image, latent space, text encoder. Visual only — no math. ‘This is the visual twin of what the LLM does with tokens.’\n1:00–1:15\nShow denoising animation\n\n\nImage Generation Workshop (30 min)\nStudents generate images on Replicate (or Adobe Firefly / Canva AI). Prompt scaffold: [subject] + [style] + [lighting] + [mood]. Theme: inspired by Mongolia or Naadam. Iterate 3 times.\n1:15–1:45\nReplicate.com or free alternatives\n\n\nEthics: Art & AI (10 min)\nQuick discussion: Who owns AI-generated art? Should models be trained on artists’ work without consent? 2-min think-pair-share.\n1:45–1:55\n\n\n\nPreview Final Day (5 min)\nExplain tomorrow’s capstone structure. Remind groups to choose their showcase project.\n1:55–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab\nPeer chatbot evaluation rubric (4 dimensions, 1 page)\nReplicate.com (hosted image models) or Adobe Firefly / Canva AI (free)\nDiffusion explainer clip (Computerphile or 3Blue1Brown, ~5 min)\nPrompt scaffold template (printable)\n\n\n\n\n\n\n\n\n\n\n\n\nSynthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
+    "text": "A live preview of what you’ll be able to build by the end of this course — eight planets orbiting the sun, Saturn’s rings, the Moon circling Earth, dramatic lighting, and Bach playing in the background.\nPress ▶ to run the cell, then sit back and watch.\n  \n\nimport scene3d, audio, math\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.DEEP_SPACE)\nscene.ambient.set_brightness(35)\n\n# Sun light (no sphere — the planets are the stars of the show)\nsun_light = scene.add_light(0, 0, 0)\nsun_light.set_color('#ffeeaa')\nsun_light.set_brightness(5)\n\n# Planets: (material, orbital_radius, speed, diameter, initial_angle)\nplanet_data = [\n    (scene3d.Material.Planets.Mercury,  9,  2.0,  1.5,  0.0),\n    (scene3d.Material.Planets.Venus,   14,  1.3,  2.5,  1.2),\n    (scene3d.Material.Planets.Earth,   20,  0.9,  2.5,  2.5),\n    (scene3d.Material.Planets.Mars,    27,  0.65, 2.0,  0.8),\n    (scene3d.Material.Planets.Jupiter, 44,  0.3,  9.0,  3.8),\n    (scene3d.Material.Planets.Uranus,  68,  0.15, 5.5,  1.5),\n    (scene3d.Material.Planets.Neptune, 80,  0.10, 5.5,  4.2),\n]\n\nplanets = []\nfor mat, r, speed, dia, angle0 in planet_data:\n    p = scene3d.Shapes.Sphere(diameter=dia, segments=24)\n    p.set_material(mat)\n    p.set_position(r * math.cos(angle0), 0, r * math.sin(angle0))\n    p.set_glossiness(0)\n    scene.add(p)\n    planets.append((p, r, speed, angle0))\n\n# Saturn with rings\nsaturn_group = scene3d.Group()\nsaturn_body = scene3d.Shapes.Sphere(diameter=8.0, segments=24)\nsaturn_body.set_material(scene3d.Material.Planets.Saturn)\nsaturn_ring = scene3d.Shapes.Cylinder(diameter=17.0, height=0.3, tessellation=32)\n#saturn_ring.set_color('#c8a464')\nsaturn_ring.set_material(scene3d.Material.Gravel.LightGray)\nsaturn_ring.set_tiling(5)\nsaturn_ring.set_rotation(x=72)\nsaturn_group.add(saturn_body)\nsaturn_group.add(saturn_ring)\nscene.add(saturn_group)\n\n# Moon orbiting Earth\nmoon = scene3d.Shapes.Sphere(diameter=0.8, segments=16)\nmoon.set_material(scene3d.Material.Planets.Moon)\nscene.add(moon)\n\n# Title HUD\nctx = scene.get_context('2d')\nctx.fill_style = 'rgba(255,255,255,0.85)'\nctx.font = 'bold 22px sans-serif'\nctx.fill_text('Solar System  —  Python with 3D', 14, 38)\n\nt = 0.0\nSATURN_R     = 56\nSATURN_SPEED = 0.2\nSATURN_A0    = 2.8\n\n# Camera visits each planet in sequence, smoothly panning between them\nVISIT     = [2,   3,   4,   -1,  5,   6,   1,   0  ]  # -1 = Saturn\nORBIT_R   = [10,  8,   20,  24,  12,  12,  8,   6  ]  # camera orbit radius per planet\nORBIT_H   = [6,   5,   12,  14,  7,   7,   5,   4  ]  # camera height per planet\nPHASE_DUR = 10                                          # seconds per planet\n\ncam = {'lx': 15.0, 'ly': 0.0, 'lz': 0.0, 'r': 30.0, 'h': 12.0, 'ang': 0.0}\n\n@scene.on_frame\ndef animate(dt):\n    global t\n    t += dt\n\n    for p, r, speed, angle0 in planets:\n        angle = angle0 + t * speed * 0.22\n        p.set_position(r * math.cos(angle), 0, r * math.sin(angle))\n\n    sa = SATURN_A0 + t * SATURN_SPEED * 0.22\n    saturn_group.set_position(\n        SATURN_R * math.cos(sa), 0,\n        SATURN_R * math.sin(sa)\n    )\n\n    earth = planets[2][0]\n    ex, ey, ez = earth.get_position()\n    ma = t * 3.5\n    moon.set_position(ex + 5 * math.cos(ma), 0, ez + 5 * math.sin(ma))\n\n    # Determine which planet to focus on and desired orbit params\n    phase_idx  = int(t / PHASE_DUR) % len(VISIT)\n    planet_idx = VISIT[phase_idx]\n    desired_r  = ORBIT_R[phase_idx]\n    desired_h  = ORBIT_H[phase_idx]\n\n    if planet_idx == -1:\n        tx, ty, tz = saturn_group.get_position()\n    else:\n        tx, ty, tz = planets[planet_idx][0].get_position()\n\n    # Smoothly pan look-at and adjust orbit radius toward the new target\n    look_blend  = min(1.0, dt * 2.5)\n    orbit_blend = min(1.0, dt * 1.2)\n\n    cam['lx'] += (tx - cam['lx']) * look_blend\n    cam['ly'] += (ty - cam['ly']) * look_blend\n    cam['lz'] += (tz - cam['lz']) * look_blend\n    cam['r']  += (desired_r - cam['r'])  * orbit_blend\n    cam['h']  += (desired_h - cam['h'])  * orbit_blend\n    cam['ang'] += dt * 0.22\n\n    scene.camera.set_position(\n        cam['lx'] + cam['r'] * math.cos(cam['ang']),\n        cam['h'],\n        cam['lz'] + cam['r'] * math.sin(cam['ang'])\n    ).look_at(cam['lx'], cam['ly'], cam['lz'])\n\nawait audio.play_async('/sample_files/music_bach.wav')\nscene.run()"
   },
   {
-    "objectID": "labs/Syllabus.html#at-a-glance",
-    "href": "labs/Syllabus.html#at-a-glance",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Days\nModule\nFocus\n\n\n\n\nWeek 1, Day 1\nIntro\nAI concepts survey, types of AI, setting the stage\n\n\nWeek 1, Days 2–3\nModule 1: Working with Data\npandas, matplotlib, scikit-learn, Mongolian datasets\n\n\nWeek 1, Days 4–5\nModule 2: Physical Computing\nmicro:bit V2, CreateAI, gesture ML models, MakeCode\n\n\nWeek 2, Day 6\nModule 3: Computer Vision\nCNNs, TF.js, MediaPipe, CV mini-projects\n\n\nWeek 2, Day 7\nCV → GenAI Bridge\nVLMs, tokens, embeddings, transformer overview\n\n\nWeek 2, Days 8–9\nModule 4: Generative AI\nPrompt engineering, chatbots, diffusion, image gen\n\n\nWeek 2, Day 10\nCapstone Showcase\nFinal project presentations, reflection, celebration",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-1-week-1-intro",
-    "href": "labs/Syllabus.html#day-1-week-1-intro",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Articulate what AI is and name 3+ real-world examples they interact with daily\nDistinguish between supervised ML, computer vision, and generative AI\nPreview all four modules and understand how the two weeks connect\nFeel comfortable and curious — this is a safe space to experiment and be wrong\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nWarm-Up (15 min)\n“AI Around You” brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard.\n0:00–0:15\nIcebreaker energy\n\n\nDirect Instruction (20 min)\nInstructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action.\n0:15–0:35\nKeep slides visual\n\n\n“Is It AI?” Activity (20 min)\nGroups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class.\n0:35–0:55\nPhysical or Jamboard cards\n\n\nMini-Project (35 min)\n“My AI Map”: students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed.\n0:55–1:30\nPaper or slides\n\n\nShare & Preview (20 min)\n3–4 volunteers share maps. Instructor reveals the 10-day journey — the “syllabus reveal.” Preview tomorrow’s data deep-dive.\n1:30–1:50\n\n\n\nExit Ticket (10 min)\nOne thing I knew · one thing I learned · one question I have. Collect for planning.\n1:50–2:00\n\n\n\n\n\n\n\n\nMiro\n“Is it AI?” card set (printable or digital)\nShort video clips from Code.org (~2 min)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-2-week-1-module-1-working-with-data",
-    "href": "labs/Syllabus.html#day-2-week-1-module-1-working-with-data",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Open a Colab notebook, run cells, and load a CSV with pandas\nUse .head(), .describe(), .value_counts(), and filtering to investigate a real question\nProduce at least one meaningful matplotlib visualization that supports a finding\nExplain why data quality and selection matter for AI — using today’s dataset as evidence\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: A Mystery (10 min)\nInstructor opens with a single striking fact: in January, Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit — worse than Beijing, worse than Delhi. Show a before/after satellite photo of the city in summer vs. winter smog. ‘Your job today: figure out why, using data.’ Introduce the detective framing: the dataset is your crime scene.\n0:00–0:10\nShow satellite comparison image\n\n\nSetup & Tools (15 min)\nWalk through Google Colab. Every student runs: print('Investigation begins!'). Quick pandas demo: DataFrames, .head(), .info(), .describe() — framed as ‘reading the crime scene.’\n0:10–0:25\nPair struggling students\n\n\nInvestigation Sprint (40 min)\nGroups of 3 dig into the Ulaanbaatar AQI dataset with guided question cards (not open-ended — each card is a specific clue to chase). E.g., ‘Which month has the worst PM2.5? Which has the best?’, ‘Is there a pattern by day of week?’, ‘Does temperature predict pollution level?’ Groups record findings in a shared doc.\n0:25–1:05\nQuestion cards pre-prepared\n\n\nVisualize Your Evidence (25 min)\nEach group turns their strongest finding into one chart using matplotlib templates. Frame: ‘A detective doesn’t just tell the jury — they show the evidence.’\n1:05–1:30\nTemplates in notebook\n\n\nAI Training Data Lens (20 min)\nPivot: ‘Now imagine you’re an AI company and this is your training data for a pollution prediction model. Would it be good enough? What’s missing? What would your model get wrong?’ Small group discussion, then share out.\n1:30–1:50\nConnects directly to Week 2\n\n\nWrap-Up (10 min)\nEach group posts their one-sentence finding to a class board. Preview: tomorrow you get an AI assistant to help with a harder dataset — and you’ll decide if it’s trustworthy.\n1:50–2:00\n\n\n\n\n\n\n\n\nGoogle Colab (browser, no install)\nUlaanbaatar historical AQI dataset (PM2.5, PM10, temperature, season — CSV, pre-cleaned from aqicn.org or IQAir historical download)\nStarter notebook with scaffolded cells + matplotlib templates\nInvestigation question cards (printed, one set per group — 6–8 clues to chase)\nShared class findings doc (Google Doc or Jamboard)\nSatellite comparison images: Ulaanbaatar summer vs. winter smog (freely available)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-3-week-1-module-1-working-with-data",
-    "href": "labs/Syllabus.html#day-3-week-1-module-1-working-with-data",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Use a Claude-powered data assistant to query a dataset in plain English\nCritically evaluate AI-generated interpretations against actual data\nTrain a simple linear regression model and interpret its predictions\nArticulate the direct conceptual link between regression modeling and the micro:bit ML training in Module 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: Dzud (10 min)\nInstructor introduces the dzud — Mongolia’s winter livestock disaster. Show the stat: in 2010, 20 million animals died in a single winter. In 2024, 7.4 million in just four months. ‘Herders knew a bad summer meant a bad winter. Can a machine learn that relationship from data?’ Introduce today’s dataset: aimag-level livestock mortality, summer drought index, and winter temperature, 1990–2013.\n0:00–0:10\nMap of Mongolia’s 21 aimags on screen\n\n\nIntroduce the AI Co-Pilot (15 min)\nInstructor demo: a Claude-powered chat interface loaded with the dzud dataset context. Ask it: ‘Which aimag suffered the most in 2010?’ Then ask something it gets wrong or oversimplifies. ‘Your job: use this tool as a starting point, then verify everything in code.’\n0:10–0:25\nClaude.ai Project or Colab widget\n\n\nInvestigation: Human + AI (35 min)\nGroups explore the dataset with the AI co-pilot. Workflow: ask the assistant a question → verify in pandas → document where it’s right, wrong, or uncertain. Each group must catch the AI making at least 2 errors or oversimplifications before they present.\n0:25–1:00\nEncourage skepticism explicitly\n\n\nLinear Regression: Predict the Disaster (25 min)\nInstructor-led walkthrough: train a linear regression model to predict livestock mortality from summer drought index and winter temperature. Students run it step-by-step. Key question: ‘This model sees the summer data — can it warn a herder before winter arrives?’\n1:00–1:25\nHeavily scaffolded notebook\n\n\nThe Bridge Moment (5 min)\nInstructor draws the explicit connection: ‘Yesterday we looked for patterns in pollution data. Today we trained a model to predict disasters from patterns in climate data. On Thursday, you’ll do the exact same thing — but the data will be your own body movement, and the micro:bit will be the device that learns.’ Plant the seed.\n1:25–1:30\nKey conceptual moment — don’t rush\n\n\nData Story Presentations (20 min)\nEach group: 3 min presentation — the question, the evidence, one thing the AI got wrong, one limitation of the dataset.\n1:30–1:50\nRubric: story, evidence, AI critique, limitation\n\n\nWrap-Up (10 min)\nClass vote: whose finding was most surprising? ‘What does it feel like to catch an AI being wrong?’ Preview: micro:bits arrive tomorrow.\n1:50–2:00\n\n\n\n\n\n\n\n\nClaude-powered data assistant (Claude.ai Project with dataset summary as context, or a lightweight Colab widget using the Anthropic API)\nDzud dataset: aimag-level livestock mortality + summer drought index + winter temperature, 1990–2013 (sourced from Mongolian NSO / Rao et al. 2015 supplementary data)\nColab notebook with linear regression walkthrough + visualization templates\nMap of Mongolia’s 21 aimags (printed or on-screen)\nPresentation rubric (story, evidence, AI critique, limitation — 1 page)\nOptional: class leaderboard for ‘best AI catch of the day’",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-4-week-1-module-2-physical-computing",
-    "href": "labs/Syllabus.html#day-4-week-1-module-2-physical-computing",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Connect a micro:bit to CreateAI and view live accelerometer data in real time\nTrain a gesture model with at least 3 classes and explain what ‘confidence threshold’ means\nUnderstand that ML models learn from examples, not explicit rules\nWrite a MakeCode program that responds meaningfully to detected gestures\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHardware Orientation (15 min)\nDistribute micro:bits (groups of 2–3). Connect via USB, open createai.microbit.org. Instructor demo: accelerometer graph while shaking vs. still.\n0:00–0:15\nV2 required for on-device ML\n\n\nFirst Model: Walk vs. Still (25 min)\nGuided: everyone trains the same model — ‘walking’ vs. ‘still’ vs. ‘other’. Collect 20 samples per class. Train and test on each other.\n0:15–0:40\nUse CreateAI guided tour\n\n\nIterate & Improve (20 min)\nWhy does it fail on someone else’s wrist? Collect more diverse samples. Compare accuracy before/after.\n0:40–1:00\nKey insight: data quality matters\n\n\nMakeCode Response (30 min)\nExport model to MakeCode. Program: walking → scroll message on LED; still → show symbol; other → show ‘?’.\n1:00–1:30\nTemplates provided\n\n\nDesign Challenge (20 min)\nGroups sketch their own gesture-based device concept for tomorrow: what 3–4 gestures? What human need does it serve?\n1:30–1:50\nDesign brief template\n\n\nWrap-Up (10 min)\nDiscussion: How is this similar to scikit-learn? How is it different? Preview tomorrow’s build.\n1:50–2:00\n\n\n\n\n\n\n\n\nBBC micro:bit V2 (1 per 2–3 students) + USB cables + Chrome browser\ncreateai.microbit.org + makecode.microbit.org\nCreateAI getting started guide (microbit.org/createai)\nDesign brief template (1-pager)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-5-week-1-module-2-physical-computing",
-    "href": "labs/Syllabus.html#day-5-week-1-module-2-physical-computing",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Design and train a multi-class gesture model for a purposeful application\nWrite a program that takes meaningful action on detected gestures\nDebug and iterate on model quality (test on different people, orientations)\nArticulate the human role in AI: labeling, choosing classes, and testing\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nDesign Review (10 min)\nGroups share their sketch from Day 4. Quick peer feedback: is the human need clear?\n0:00–0:10\n\n\n\nBuild & Train (60 min)\nGroups collect data, train, test, iterate. Prompt: ‘Does it still work on someone else’s arm? In a different room?’ Aim for 2–3 iteration cycles.\n0:10–1:10\nIterate deliberately\n\n\nCode the Response (35 min)\nWrite the MakeCode or Python program. Micro:bit responds with LED, sound, or serial output. Push toward a complete, working demo.\n1:10–1:45\n\n\n\nDemo Gallery (15 min)\nInformal 2-min demo per group. Peers act as testers. Celebrate creative use of gestures.\n1:45–2:00\nFun, low-stakes\n\n\n\n\n\n\n\nmicro:bits from Day 4\ncreateai.microbit.org + MakeCode\nOptional: buzzer accessories for audio feedback\n\n\nInstructor Notes: Module 2 capstone. Accuracy matters less than purposeful design — celebrate a 70% accurate exercise counter more than a 95% accurate wave detector with no clear use. Great transition line: ‘Next week we’ll teach computers to see, not just move.’",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-6-week-2-module-3-computer-vision",
-    "href": "labs/Syllabus.html#day-6-week-2-module-3-computer-vision",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Explain how a CNN classifies images at a conceptual level (pixels → features → predictions)\nRun pre-trained classification, pose detection, and object detection models in the browser\nBuild a working CV application combining a pre-trained model with custom Python logic\nIdentify at least one ethical concern in computer vision technology\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHook (10 min)\nShow 10 images pixelated at varying levels. Students classify. ‘Computers start from pixels just like this bottom row.’\n0:00–0:10\n\n\n\nCV Concepts (20 min)\nInstructor overview: pixels → CNN layers → predictions. Demo MobileNet on webcam in browser — confidence scores live. Show 3 task types: classification, pose detection, object detection.\n0:10–0:30\nTF.js demos, no GPU\n\n\nExploration Stations (25 min)\nSequential or parallel: (1) Image classification with MobileNet, (2) Pose detection with MoveNet, (3) Object detection with COCO-SSD. Students screenshot one result from each.\n0:30–0:55\nPre-built browser demos\n\n\nEthics Discussion (15 min)\nCase study: CV in surveillance, facial recognition bias. Small groups: ‘Should CV be used to monitor students in school?’ 2-min debrief.\n0:55–1:10\nSocratic format\n\n\nMini-Project Build (40 min)\nGroups choose a project track: (A) Pose Counter — count reps when keypoint crosses threshold. (B) Object Zone Game — detect object entering a screen zone. (C) Virtual Background — segmentation + canvas overlay. (D) Expression Mirror — MediaPipe Face Mesh reactions.\n1:10–1:50\nTemplate notebooks per track\n\n\nWrap-Up (10 min)\nQuick share: one unexpected CV challenge you hit. Preview: tomorrow we add language to vision.\n1:50–2:00\n\n\n\n\n\n\n\n\nTensorFlow.js browser demos (tensorflow.org/js/demos)\nMediaPipe (mediapipe.dev) for pose/face\nProject template notebooks (one per track)\nColab with webcam access (JS bridge) or pre-recorded video fallback",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-7-week-2-module-3-cv-module-4-generative-ai",
-    "href": "labs/Syllabus.html#day-7-week-2-module-3-cv-module-4-generative-ai",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Describe what a VLM does and how it differs from a classifier\nExplain tokenization with a hands-on example\nDescribe word embeddings as ‘coordinates for meaning’ in vector space\nExplain the transformer architecture at a high level and connect it to VLMs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nVLM Demo & Discussion (20 min)\nInstructor shows a VLM describing images — impressive case, then a failure case. ‘How is this different from MobileNet?’ Discussion: it produces language, not just a label. Show the two-component model: visual encoder + language model.\n0:00–0:20\nClaude API, GPT-4V, or HuggingFace Spaces (free)\n\n\nVLM Exploration (25 min)\nStudents query a VLM with their CV project screenshots + Mongolia/Naadam photos. Task: find one impressive result and one failure. Share findings.\n0:20–0:45\nNo API key needed via HuggingFace\n\n\nBridge: From Vision to Language (5 min)\nQuick pivot: ‘VLMs describe images. What if AI could generate language from scratch — or generate images?’ Introduce Module 4.\n0:45–0:50\n\n\n\nTokenization Activity (20 min)\nStudents use platform.openai.com/tokenizer on Mongolian words, code, emoji, and their own name. Questions: how many tokens? Why does it matter for cost and context?\n0:50–1:10\nPhysical token cards as backup\n\n\nEmbeddings Demo (20 min)\nWord2vec/semantic similarity: ‘King − Man + Woman ≈ Queen.’ Students try analogies in a Colab notebook. Instructor explains: these are the coordinates transformers learn from data.\n1:10–1:30\nColab + gensim\n\n\nTransformer Overview (20 min)\nVisual walkthrough of attention using ‘The bank by the river’ example. No math — diagrams only. Connect: ‘The LLM is doing this for every token, millions of times, trained on the same kind of data you used in Week 1.’\n1:30–1:50\nJay Alammar visuals\n\n\nWrap-Up (10 min)\nExit ticket: draw the path from ‘user types a message’ → ‘LLM responds.’ Preview tomorrow’s chatbot build.\n1:50–2:00\n\n\n\n\n\n\n\n\nVLM access: HuggingFace Spaces (free LLaVA demo), Claude API, or GPT-4V\nplatform.openai.com/tokenizer (free, no login)\nColab notebook: gensim word embeddings\nJay Alammar ‘Illustrated Transformer’ diagrams (jalammar.github.io)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-8-week-2-module-4-generative-ai",
-    "href": "labs/Syllabus.html#day-8-week-2-module-4-generative-ai",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Apply 4+ prompt engineering techniques: persona, few-shot, chain-of-thought, constraints\nUse Code.org’s AI Chat Lab to design and build a custom chatbot with a system prompt\nEvaluate a chatbot’s responses critically and iterate on the design\nExplain how system prompts shape model behavior\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nPrompt Warm-Up (15 min)\nInstructor shows the same question with 3 different prompts → very different outputs. Students guess which prompt produced which. Introduce: persona, few-shot, CoT, constraints.\n0:00–0:15\n\n\n\nPrompt Engineering Practice (25 min)\nStudents experiment with a live LLM: explain photosynthesis to a 5-year-old vs. a PhD; add a constraint (‘no jargon’); try chain-of-thought for a logic problem.\n0:15–0:40\nClaude.ai or Code.org AI Chat Lab\n\n\nChatbot Design Intro (10 min)\nIntroduce Code.org’s Exploring Generative AI curriculum and AI Chat Lab. Walk through system prompt anatomy. Show a pre-built ‘Cat Expert’ chatbot.\n0:40–0:50\ncode.org — free, grades 8–12\n\n\nBuild Your Chatbot (60 min)\nGroups of 2 design and build a chatbot on a topic they care about. Requirements: clear persona, 3 topic focus areas, 1 ‘do not discuss’ boundary, tested with 5+ different questions.\n0:50–1:50\n\n\n\nWrap-Up (10 min)\nShare chatbot name + one surprising thing it did. Preview: tomorrow you’ll add knowledge and show it off — plus explore image generation.\n1:50–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab (code.org/en-US/curriculum/exploring-generative-artificial-intelligence)\nPrompt engineering reference card (1-pager: 4 techniques with examples)\nExample system prompts to study and remix\nClaude.ai or similar LLM for free-form practice",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-9-week-2-module-4-generative-ai",
-    "href": "labs/Syllabus.html#day-9-week-2-module-4-generative-ai",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Deliver a polished chatbot demo including a system prompt, knowledge grounding, and graceful failure\nExplain how diffusion models generate images at a conceptual level\nCraft effective image generation prompts using a structured scaffold\nEngage with IP and ethics questions around AI-generated art\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nRAG & Knowledge Grounding (15 min)\nQuick demo: same chatbot with and without a knowledge document. What changed? Why? Conceptual explanation of retrieval-augmented generation — no code required.\n0:00–0:15\n\n\n\nPolish Your Chatbot (25 min)\nGroups add a knowledge document (or expanded system prompt with facts) and evaluate using a peer rubric: helpfulness, accuracy, personality, graceful failure.\n0:15–0:40\nPrinted rubric\n\n\nChatbot Showcase (20 min)\nEach group demos in 2 minutes: what it does, a successful exchange, something it won’t do. Peer votes: Most Creative, Most Useful, Best Personality.\n0:40–1:00\nCelebration atmosphere\n\n\nDiffusion Model Concepts (15 min)\nHow AI generates images: noise → denoise → image, latent space, text encoder. Visual only — no math. ‘This is the visual twin of what the LLM does with tokens.’\n1:00–1:15\nShow denoising animation\n\n\nImage Generation Workshop (30 min)\nStudents generate images on Replicate (or Adobe Firefly / Canva AI). Prompt scaffold: [subject] + [style] + [lighting] + [mood]. Theme: inspired by Mongolia or Naadam. Iterate 3 times.\n1:15–1:45\nReplicate.com or free alternatives\n\n\nEthics: Art & AI (10 min)\nQuick discussion: Who owns AI-generated art? Should models be trained on artists’ work without consent? 2-min think-pair-share.\n1:45–1:55\n\n\n\nPreview Final Day (5 min)\nExplain tomorrow’s capstone structure. Remind groups to choose their showcase project.\n1:55–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab\nPeer chatbot evaluation rubric (4 dimensions, 1 page)\nReplicate.com (hosted image models) or Adobe Firefly / Canva AI (free)\nDiffusion explainer clip (Computerphile or 3Blue1Brown, ~5 min)\nPrompt scaffold template (printable)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/Syllabus.html#day-10-week-2-capstone",
-    "href": "labs/Syllabus.html#day-10-week-2-capstone",
-    "title": "Summer of Code 2026",
-    "section": "",
-    "text": "Synthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Syllabus"
-    ]
-  },
-  {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
+    "objectID": "labs/10/slides.html#tbd",
+    "href": "labs/10/slides.html#tbd",
+    "title": "Day 10",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 9",
+      "Day 10",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
+    "objectID": "labs/08/slides.html#tbd",
+    "href": "labs/08/slides.html#tbd",
+    "title": "Day 8",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 7",
+      "Day 8",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/05/slides.html#recap",
-    "href": "labs/05/slides.html#recap",
-    "title": "Day 5",
-    "section": "Recap",
-    "text": "Recap\n\nTBD",
+    "objectID": "labs/06/slides.html#what-is-a-neural-network",
+    "href": "labs/06/slides.html#what-is-a-neural-network",
+    "title": "Day 6",
+    "section": "What Is a Neural Network?",
+    "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 5",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/05/slides.html#using-your-model-in-code",
-    "href": "labs/05/slides.html#using-your-model-in-code",
-    "title": "Day 5",
-    "section": "Using your model in code",
-    "text": "Using your model in code\n\nReload the project\nEdit in MakeCode\nGo through detecting movement / playing sounds/showing icon\nHow to then download everything on to running hardware",
+    "objectID": "labs/06/slides.html#how-does-a-network-learn",
+    "href": "labs/06/slides.html#how-does-a-network-learn",
+    "title": "Day 6",
+    "section": "How Does a Network Learn?",
+    "text": "How Does a Network Learn?\n\nLearning = finding the right weights through repetition\nForward pass: data flows through the network → produces a prediction\nLoss function: measures how wrong the prediction was\nBackpropagation: traces the error back and nudges each weight\nRepeat thousands of times on labeled training data → accuracy improves",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 5",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/05/slides.html#hands-on",
-    "href": "labs/05/slides.html#hands-on",
-    "title": "Day 5",
-    "section": "Hands-on",
-    "text": "Hands-on\n\nTry this",
+    "objectID": "labs/06/slides.html#neural-network-demo",
+    "href": "labs/06/slides.html#neural-network-demo",
+    "title": "Day 6",
+    "section": "Neural Network Demo",
+    "text": "Neural Network Demo",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 5",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/05/slides.html#project-time",
-    "href": "labs/05/slides.html#project-time",
-    "title": "Day 5",
-    "section": "Project Time",
-    "text": "Project Time\n\nRest of class will be free-form project\nIdeas of what you can create:\n\nExercise app\nLight switch clapper",
+    "objectID": "labs/06/slides.html#will-i-do-well-on-my-test",
+    "href": "labs/06/slides.html#will-i-do-well-on-my-test",
+    "title": "Day 6",
+    "section": "Will I Do Well on My Test?",
+    "text": "Will I Do Well on My Test?",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 5",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/05/slides.html#reflect-and-share",
-    "href": "labs/05/slides.html#reflect-and-share",
-    "title": "Day 5",
-    "section": "Reflect and Share",
-    "text": "Reflect and Share\n\nWhat did you build?",
+    "objectID": "labs/06/slides.html#how-do-computers-see-1",
+    "href": "labs/06/slides.html#how-do-computers-see-1",
+    "title": "Day 6",
+    "section": "How Do Computers See?",
+    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?\nAnswer: Convolutional Neural Networks (CNNs)\n\nSpecialized networks designed to process grid-like data",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 5",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/03/slides.html#recap",
-    "href": "labs/03/slides.html#recap",
-    "title": "Day 3: How Machines Learn",
-    "section": "Recap",
-    "text": "Recap\n\nTBD",
+    "objectID": "labs/06/slides.html#a-brief-history-of-computer-vision",
+    "href": "labs/06/slides.html#a-brief-history-of-computer-vision",
+    "title": "Day 6",
+    "section": "A Brief History of Computer Vision",
+    "text": "A Brief History of Computer Vision\n\n1989: LeCun trains first CNN to read handwritten digits\n2012: AlexNet wins the ImageNet challenge by a huge margin\n\nError rate dropped from ~26% → ~15% overnight\nKicked off the modern deep learning era\n\n2015: Real-time object detection becomes practical (YOLO)\n2017–present: CV is everywhere — phones, cars, hospitals, social media",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 3",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/03/slides.html#what-is-scikit-learn",
-    "href": "labs/03/slides.html#what-is-scikit-learn",
-    "title": "Day 3: How Machines Learn",
-    "section": "What is scikit-learn?",
-    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of NumPy and Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
+    "objectID": "labs/06/slides.html#image-classification",
+    "href": "labs/06/slides.html#image-classification",
+    "title": "Day 6",
+    "section": "Image Classification",
+    "text": "Image Classification\n\nQuestion: “What is in this image?”\nThe model assigns a single label to the entire photo\nExamples:\n\nIs this a cat or a dog?\nWhat disease does this X-ray suggest?\nWhich product is this on the shelf?\n\nThe first major CV task conquered by deep learning",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 3",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/03/slides.html#the-sklearn-workflow",
-    "href": "labs/03/slides.html#the-sklearn-workflow",
-    "title": "Day 3: How Machines Learn",
-    "section": "The sklearn Workflow",
-    "text": "The sklearn Workflow\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
+    "objectID": "labs/06/slides.html#object-detection",
+    "href": "labs/06/slides.html#object-detection",
+    "title": "Day 6",
+    "section": "Object Detection",
+    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 3",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/03/slides.html#your-first-sklearn-model",
-    "href": "labs/03/slides.html#your-first-sklearn-model",
-    "title": "Day 3: How Machines Learn",
-    "section": "Your First sklearn Model",
-    "text": "Your First sklearn Model\nfrom sklearn.linear_model import LinearRegression\n\n# Hours studied → test scores\nX = [[1], [2], [3], [4], [5]]   # feature (must be 2D)\ny = [50, 60, 65, 75, 85]        # label\n\nmodel = LinearRegression()\nmodel.fit(X, y)             # train\n\nmodel.predict([[6]])        # → predicted score for 6 hours",
+    "objectID": "labs/06/slides.html#pose-estimation",
+    "href": "labs/06/slides.html#pose-estimation",
+    "title": "Day 6",
+    "section": "Pose Estimation",
+    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 3",
+      "Day 6",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "objectID": "labs/06/slides.html#image-segmentation",
+    "href": "labs/06/slides.html#image-segmentation",
+    "title": "Day 6",
+    "section": "Image Segmentation",
+    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-1",
-    "href": "labs/01/slides.html#types-of-ai-1",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#types-of-ai-2",
-    "href": "labs/01/slides.html#types-of-ai-2",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nTBD: Single slide for each type",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#what-is-a-notebook",
-    "href": "labs/01/slides.html#what-is-a-notebook",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#a-brief-history-of-notebooks",
-    "href": "labs/01/slides.html#a-brief-history-of-notebooks",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#anatomy-of-a-python-notebook",
-    "href": "labs/01/slides.html#anatomy-of-a-python-notebook",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Anatomy of a Python Notebook",
-    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#introducing-jupyter-k12",
-    "href": "labs/01/slides.html#introducing-jupyter-k12",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Introducing Jupyter-K12",
-    "text": "Introducing Jupyter-K12\n\nNotebook platform designed for K-12 students\nEasy to setup; no accounts required\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students to use this!",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "cmu/index.html",
-    "href": "cmu/index.html",
-    "title": "Learning Python in 3D",
-    "section": "",
-    "text": "This site contains notebooks and resources for the Learning Python in 3D course, where you’ll learn Python fundamentals through hands-on 3D graphics projects."
-  },
-  {
-    "objectID": "cmu/index.html#about",
-    "href": "cmu/index.html#about",
-    "title": "Learning Python in 3D",
-    "section": "",
-    "text": "This site contains notebooks and resources for the Learning Python in 3D course, where you’ll learn Python fundamentals through hands-on 3D graphics projects."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026"
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "Codercub Summer of Code 2026",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026"
-  },
-  {
-    "objectID": "labs/02/slides.html#recap",
-    "href": "labs/02/slides.html#recap",
-    "title": "Day 2: Working With Data",
-    "section": "Recap",
-    "text": "Recap\n\nTBD",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-pandas",
-    "href": "labs/02/slides.html#what-is-pandas",
-    "title": "Day 2: Working With Data",
-    "section": "What is Pandas?",
-    "text": "What is Pandas?\n\nA Python library for working with structured data — think spreadsheets, tables, CSVs\nLets you load, clean, filter, and analyze data with just a few lines of code\nOne of the most widely used tools in data science and AI",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-pandas",
-    "href": "labs/02/slides.html#a-brief-history-of-pandas",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Pandas",
-    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at an investment firm\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#key-pandas-concepts",
-    "href": "labs/02/slides.html#key-pandas-concepts",
-    "title": "Day 2: Working With Data",
-    "section": "Key Pandas Concepts",
-    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more\n\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.head()",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#what-is-matplotlib",
-    "href": "labs/02/slides.html#what-is-matplotlib",
-    "title": "Day 2: Working With Data",
-    "section": "What is Matplotlib?",
-    "text": "What is Matplotlib?\n\nA Python library for creating charts and visualizations\nLine charts, bar charts, scatter plots, histograms, heatmaps, and more\nTurns raw data into pictures — making patterns much easier to spot",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#a-brief-history-of-matplotlib",
-    "href": "labs/02/slides.html#a-brief-history-of-matplotlib",
-    "title": "Day 2: Working With Data",
-    "section": "A Brief History of Matplotlib",
-    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB — without needing MATLAB\nHunter passed away in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#key-matplotlib-concepts",
-    "href": "labs/02/slides.html#key-matplotlib-concepts",
-    "title": "Day 2: Working With Data",
-    "section": "Key Matplotlib Concepts",
-    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib\n\nimport matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 7, 2])\nplt.show()",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
-    "title": "Day 2: Working With Data",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
+      "Day 6",
       "Slides"
     ]
   },
@@ -2355,147 +2010,499 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#what-is-a-neural-network",
-    "href": "labs/06/slides.html#what-is-a-neural-network",
-    "title": "Day 6",
-    "section": "What Is a Neural Network?",
-    "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
+    "objectID": "labs/02/slides.html#recap",
+    "href": "labs/02/slides.html#recap",
+    "title": "Day 2: Working With Data",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#how-does-a-network-learn",
-    "href": "labs/06/slides.html#how-does-a-network-learn",
-    "title": "Day 6",
-    "section": "How Does a Network Learn?",
-    "text": "How Does a Network Learn?\n\nLearning = finding the right weights through repetition\nForward pass: data flows through the network → produces a prediction\nLoss function: measures how wrong the prediction was\nBackpropagation: traces the error back and nudges each weight\nRepeat thousands of times on labeled training data → accuracy improves",
+    "objectID": "labs/02/slides.html#what-is-pandas",
+    "href": "labs/02/slides.html#what-is-pandas",
+    "title": "Day 2: Working With Data",
+    "section": "What is Pandas?",
+    "text": "What is Pandas?\n\nA Python library for working with structured data — think spreadsheets, tables, CSVs\nLets you load, clean, filter, and analyze data with just a few lines of code\nOne of the most widely used tools in data science and AI",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#neural-network-demo",
-    "href": "labs/06/slides.html#neural-network-demo",
-    "title": "Day 6",
-    "section": "Neural Network Demo",
-    "text": "Neural Network Demo",
+    "objectID": "labs/02/slides.html#a-brief-history-of-pandas",
+    "href": "labs/02/slides.html#a-brief-history-of-pandas",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Pandas",
+    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at an investment firm\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#will-i-do-well-on-my-test",
-    "href": "labs/06/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 6",
-    "section": "Will I Do Well on My Test?",
-    "text": "Will I Do Well on My Test?",
+    "objectID": "labs/02/slides.html#key-pandas-concepts",
+    "href": "labs/02/slides.html#key-pandas-concepts",
+    "title": "Day 2: Working With Data",
+    "section": "Key Pandas Concepts",
+    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more\n\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#how-do-computers-see-1",
-    "href": "labs/06/slides.html#how-do-computers-see-1",
-    "title": "Day 6",
-    "section": "How Do Computers See?",
-    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?\nAnswer: Convolutional Neural Networks (CNNs)\n\nSpecialized networks designed to process grid-like data",
+    "objectID": "labs/02/slides.html#what-is-matplotlib",
+    "href": "labs/02/slides.html#what-is-matplotlib",
+    "title": "Day 2: Working With Data",
+    "section": "What is Matplotlib?",
+    "text": "What is Matplotlib?\n\nA Python library for creating charts and visualizations\nLine charts, bar charts, scatter plots, histograms, heatmaps, and more\nTurns raw data into pictures — making patterns much easier to spot",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#a-brief-history-of-computer-vision",
-    "href": "labs/06/slides.html#a-brief-history-of-computer-vision",
-    "title": "Day 6",
-    "section": "A Brief History of Computer Vision",
-    "text": "A Brief History of Computer Vision\n\n1989: LeCun trains first CNN to read handwritten digits\n2012: AlexNet wins the ImageNet challenge by a huge margin\n\nError rate dropped from ~26% → ~15% overnight\nKicked off the modern deep learning era\n\n2015: Real-time object detection becomes practical (YOLO)\n2017–present: CV is everywhere — phones, cars, hospitals, social media",
+    "objectID": "labs/02/slides.html#a-brief-history-of-matplotlib",
+    "href": "labs/02/slides.html#a-brief-history-of-matplotlib",
+    "title": "Day 2: Working With Data",
+    "section": "A Brief History of Matplotlib",
+    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB — without needing MATLAB\nHunter passed away in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#image-classification",
-    "href": "labs/06/slides.html#image-classification",
-    "title": "Day 6",
-    "section": "Image Classification",
-    "text": "Image Classification\n\nQuestion: “What is in this image?”\nThe model assigns a single label to the entire photo\nExamples:\n\nIs this a cat or a dog?\nWhat disease does this X-ray suggest?\nWhich product is this on the shelf?\n\nThe first major CV task conquered by deep learning",
+    "objectID": "labs/02/slides.html#key-matplotlib-concepts",
+    "href": "labs/02/slides.html#key-matplotlib-concepts",
+    "title": "Day 2: Working With Data",
+    "section": "Key Matplotlib Concepts",
+    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib\n\nimport matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 7, 2])\nplt.show()",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#object-detection",
-    "href": "labs/06/slides.html#object-detection",
-    "title": "Day 6",
-    "section": "Object Detection",
-    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#pose-estimation",
-    "href": "labs/06/slides.html#pose-estimation",
-    "title": "Day 6",
-    "section": "Pose Estimation",
-    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
+    "title": "Day 2: Working With Data",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 6",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/06/slides.html#image-segmentation",
-    "href": "labs/06/slides.html#image-segmentation",
-    "title": "Day 6",
-    "section": "Image Segmentation",
-    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
+    "objectID": "labs/02/slides.html#tbd",
+    "href": "labs/02/slides.html#tbd",
+    "title": "Day 2: Working With Data",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 8",
+      "Day 2",
       "Slides"
     ]
   },
   {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026"
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "Codercub Summer of Code 2026",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for Codercub’s Summer of Code 2026"
+  },
+  {
+    "objectID": "cmu/index.html",
+    "href": "cmu/index.html",
+    "title": "Learning Python in 3D",
+    "section": "",
+    "text": "This site contains notebooks and resources for the Learning Python in 3D course, where you’ll learn Python fundamentals through hands-on 3D graphics projects."
+  },
+  {
+    "objectID": "cmu/index.html#about",
+    "href": "cmu/index.html#about",
+    "title": "Learning Python in 3D",
+    "section": "",
+    "text": "This site contains notebooks and resources for the Learning Python in 3D course, where you’ll learn Python fundamentals through hands-on 3D graphics projects."
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is Artificial Intelligence (AI)?",
+    "text": "What is Artificial Intelligence (AI)?\n\nTBD",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD\nRegression\nClassification\nNeural Network\nLLM (Large Language Model)\nCV (Computer Vision)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-2",
+    "href": "labs/01/slides.html#types-of-ai-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nTBD: Single slide for each type",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#what-is-a-notebook",
+    "href": "labs/01/slides.html#what-is-a-notebook",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#a-brief-history-of-notebooks",
+    "href": "labs/01/slides.html#a-brief-history-of-notebooks",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#anatomy-of-a-python-notebook",
+    "href": "labs/01/slides.html#anatomy-of-a-python-notebook",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#introducing-jupyter-k12",
+    "href": "labs/01/slides.html#introducing-jupyter-k12",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Introducing Jupyter-K12",
+    "text": "Introducing Jupyter-K12\n\nNotebook platform designed for K-12 students\nEasy to setup; no accounts required\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students to use this!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#recap",
+    "href": "labs/03/slides.html#recap",
+    "title": "Day 3: How Machines Learn",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#what-is-scikit-learn",
+    "href": "labs/03/slides.html#what-is-scikit-learn",
+    "title": "Day 3: How Machines Learn",
+    "section": "What is scikit-learn?",
+    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of NumPy and Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#the-sklearn-workflow",
+    "href": "labs/03/slides.html#the-sklearn-workflow",
+    "title": "Day 3: How Machines Learn",
+    "section": "The sklearn Workflow",
+    "text": "The sklearn Workflow\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#your-first-sklearn-model",
+    "href": "labs/03/slides.html#your-first-sklearn-model",
+    "title": "Day 3: How Machines Learn",
+    "section": "Your First sklearn Model",
+    "text": "Your First sklearn Model\nfrom sklearn.linear_model import LinearRegression\n\n# Hours studied → test scores\nX = [[1], [2], [3], [4], [5]]   # feature (must be 2D)\ny = [50, 60, 65, 75, 85]        # label\n\nmodel = LinearRegression()\nmodel.fit(X, y)             # train\n\nmodel.predict([[6]])        # → predicted score for 6 hours",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#recap",
+    "href": "labs/05/slides.html#recap",
+    "title": "Day 5",
+    "section": "Recap",
+    "text": "Recap\n\nTBD",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#using-your-model-in-code",
+    "href": "labs/05/slides.html#using-your-model-in-code",
+    "title": "Day 5",
+    "section": "Using your model in code",
+    "text": "Using your model in code\n\nReload the project\nEdit in MakeCode\nGo through detecting movement / playing sounds/showing icon\nHow to then download everything on to running hardware",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#hands-on",
+    "href": "labs/05/slides.html#hands-on",
+    "title": "Day 5",
+    "section": "Hands-on",
+    "text": "Hands-on\n\nTry this",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#project-time",
+    "href": "labs/05/slides.html#project-time",
+    "title": "Day 5",
+    "section": "Project Time",
+    "text": "Project Time\n\nRest of class will be free-form project\nIdeas of what you can create:\n\nExercise app\nLight switch clapper",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/05/slides.html#reflect-and-share",
+    "href": "labs/05/slides.html#reflect-and-share",
+    "title": "Day 5",
+    "section": "Reflect and Share",
+    "text": "Reflect and Share\n\nWhat did you build?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tbd",
+    "href": "labs/07/slides.html#tbd",
+    "title": "Day 7",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 10",
+      "Day 7",
       "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tbd",
+    "href": "labs/09/slides.html#tbd",
+    "title": "Day 9",
+    "section": "TBD",
+    "text": "TBD\nprint(\"Hello world\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html",
+    "href": "labs/Syllabus.html",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Days\nModule\nFocus\n\n\n\n\nWeek 1, Day 1\nIntro\nAI concepts survey, types of AI, setting the stage\n\n\nWeek 1, Days 2–3\nModule 1: Working with Data\npandas, matplotlib, scikit-learn, Mongolian datasets\n\n\nWeek 1, Days 4–5\nModule 2: Physical Computing\nmicro:bit V2, CreateAI, gesture ML models, MakeCode\n\n\nWeek 2, Day 6\nModule 3: Computer Vision\nCNNs, TF.js, MediaPipe, CV mini-projects\n\n\nWeek 2, Day 7\nCV → GenAI Bridge\nVLMs, tokens, embeddings, transformer overview\n\n\nWeek 2, Days 8–9\nModule 4: Generative AI\nPrompt engineering, chatbots, diffusion, image gen\n\n\nWeek 2, Day 10\nCapstone Showcase\nFinal project presentations, reflection, celebration\n\n\n\n\n\n\n\n\n\n\n\n\nArticulate what AI is and name 3+ real-world examples they interact with daily\nDistinguish between supervised ML, computer vision, and generative AI\nPreview all four modules and understand how the two weeks connect\nFeel comfortable and curious — this is a safe space to experiment and be wrong\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nWarm-Up (15 min)\n“AI Around You” brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard.\n0:00–0:15\nIcebreaker energy\n\n\nDirect Instruction (20 min)\nInstructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action.\n0:15–0:35\nKeep slides visual\n\n\n“Is It AI?” Activity (20 min)\nGroups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class.\n0:35–0:55\nPhysical or Jamboard cards\n\n\nMini-Project (35 min)\n“My AI Map”: students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed.\n0:55–1:30\nPaper or slides\n\n\nShare & Preview (20 min)\n3–4 volunteers share maps. Instructor reveals the 10-day journey — the “syllabus reveal.” Preview tomorrow’s data deep-dive.\n1:30–1:50\n\n\n\nExit Ticket (10 min)\nOne thing I knew · one thing I learned · one question I have. Collect for planning.\n1:50–2:00\n\n\n\n\n\n\n\n\nMiro\n“Is it AI?” card set (printable or digital)\nShort video clips from Code.org (~2 min)\n\n\n\n\n\n\n\n\n\n\n\n\nOpen a Colab notebook, run cells, and load a CSV with pandas\nUse .head(), .describe(), .value_counts(), and filtering to investigate a real question\nProduce at least one meaningful matplotlib visualization that supports a finding\nExplain why data quality and selection matter for AI — using today’s dataset as evidence\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: A Mystery (10 min)\nInstructor opens with a single striking fact: in January, Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit — worse than Beijing, worse than Delhi. Show a before/after satellite photo of the city in summer vs. winter smog. ‘Your job today: figure out why, using data.’ Introduce the detective framing: the dataset is your crime scene.\n0:00–0:10\nShow satellite comparison image\n\n\nSetup & Tools (15 min)\nWalk through Google Colab. Every student runs: print('Investigation begins!'). Quick pandas demo: DataFrames, .head(), .info(), .describe() — framed as ‘reading the crime scene.’\n0:10–0:25\nPair struggling students\n\n\nInvestigation Sprint (40 min)\nGroups of 3 dig into the Ulaanbaatar AQI dataset with guided question cards (not open-ended — each card is a specific clue to chase). E.g., ‘Which month has the worst PM2.5? Which has the best?’, ‘Is there a pattern by day of week?’, ‘Does temperature predict pollution level?’ Groups record findings in a shared doc.\n0:25–1:05\nQuestion cards pre-prepared\n\n\nVisualize Your Evidence (25 min)\nEach group turns their strongest finding into one chart using matplotlib templates. Frame: ‘A detective doesn’t just tell the jury — they show the evidence.’\n1:05–1:30\nTemplates in notebook\n\n\nAI Training Data Lens (20 min)\nPivot: ‘Now imagine you’re an AI company and this is your training data for a pollution prediction model. Would it be good enough? What’s missing? What would your model get wrong?’ Small group discussion, then share out.\n1:30–1:50\nConnects directly to Week 2\n\n\nWrap-Up (10 min)\nEach group posts their one-sentence finding to a class board. Preview: tomorrow you get an AI assistant to help with a harder dataset — and you’ll decide if it’s trustworthy.\n1:50–2:00\n\n\n\n\n\n\n\n\nGoogle Colab (browser, no install)\nUlaanbaatar historical AQI dataset (PM2.5, PM10, temperature, season — CSV, pre-cleaned from aqicn.org or IQAir historical download)\nStarter notebook with scaffolded cells + matplotlib templates\nInvestigation question cards (printed, one set per group — 6–8 clues to chase)\nShared class findings doc (Google Doc or Jamboard)\nSatellite comparison images: Ulaanbaatar summer vs. winter smog (freely available)\n\n\n\n\n\n\n\n\n\n\n\n\nUse a Claude-powered data assistant to query a dataset in plain English\nCritically evaluate AI-generated interpretations against actual data\nTrain a simple linear regression model and interpret its predictions\nArticulate the direct conceptual link between regression modeling and the micro:bit ML training in Module 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: Dzud (10 min)\nInstructor introduces the dzud — Mongolia’s winter livestock disaster. Show the stat: in 2010, 20 million animals died in a single winter. In 2024, 7.4 million in just four months. ‘Herders knew a bad summer meant a bad winter. Can a machine learn that relationship from data?’ Introduce today’s dataset: aimag-level livestock mortality, summer drought index, and winter temperature, 1990–2013.\n0:00–0:10\nMap of Mongolia’s 21 aimags on screen\n\n\nIntroduce the AI Co-Pilot (15 min)\nInstructor demo: a Claude-powered chat interface loaded with the dzud dataset context. Ask it: ‘Which aimag suffered the most in 2010?’ Then ask something it gets wrong or oversimplifies. ‘Your job: use this tool as a starting point, then verify everything in code.’\n0:10–0:25\nClaude.ai Project or Colab widget\n\n\nInvestigation: Human + AI (35 min)\nGroups explore the dataset with the AI co-pilot. Workflow: ask the assistant a question → verify in pandas → document where it’s right, wrong, or uncertain. Each group must catch the AI making at least 2 errors or oversimplifications before they present.\n0:25–1:00\nEncourage skepticism explicitly\n\n\nLinear Regression: Predict the Disaster (25 min)\nInstructor-led walkthrough: train a linear regression model to predict livestock mortality from summer drought index and winter temperature. Students run it step-by-step. Key question: ‘This model sees the summer data — can it warn a herder before winter arrives?’\n1:00–1:25\nHeavily scaffolded notebook\n\n\nThe Bridge Moment (5 min)\nInstructor draws the explicit connection: ‘Yesterday we looked for patterns in pollution data. Today we trained a model to predict disasters from patterns in climate data. On Thursday, you’ll do the exact same thing — but the data will be your own body movement, and the micro:bit will be the device that learns.’ Plant the seed.\n1:25–1:30\nKey conceptual moment — don’t rush\n\n\nData Story Presentations (20 min)\nEach group: 3 min presentation — the question, the evidence, one thing the AI got wrong, one limitation of the dataset.\n1:30–1:50\nRubric: story, evidence, AI critique, limitation\n\n\nWrap-Up (10 min)\nClass vote: whose finding was most surprising? ‘What does it feel like to catch an AI being wrong?’ Preview: micro:bits arrive tomorrow.\n1:50–2:00\n\n\n\n\n\n\n\n\nClaude-powered data assistant (Claude.ai Project with dataset summary as context, or a lightweight Colab widget using the Anthropic API)\nDzud dataset: aimag-level livestock mortality + summer drought index + winter temperature, 1990–2013 (sourced from Mongolian NSO / Rao et al. 2015 supplementary data)\nColab notebook with linear regression walkthrough + visualization templates\nMap of Mongolia’s 21 aimags (printed or on-screen)\nPresentation rubric (story, evidence, AI critique, limitation — 1 page)\nOptional: class leaderboard for ‘best AI catch of the day’\n\n\n\n\n\n\n\n\n\n\n\n\nConnect a micro:bit to CreateAI and view live accelerometer data in real time\nTrain a gesture model with at least 3 classes and explain what ‘confidence threshold’ means\nUnderstand that ML models learn from examples, not explicit rules\nWrite a MakeCode program that responds meaningfully to detected gestures\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHardware Orientation (15 min)\nDistribute micro:bits (groups of 2–3). Connect via USB, open createai.microbit.org. Instructor demo: accelerometer graph while shaking vs. still.\n0:00–0:15\nV2 required for on-device ML\n\n\nFirst Model: Walk vs. Still (25 min)\nGuided: everyone trains the same model — ‘walking’ vs. ‘still’ vs. ‘other’. Collect 20 samples per class. Train and test on each other.\n0:15–0:40\nUse CreateAI guided tour\n\n\nIterate & Improve (20 min)\nWhy does it fail on someone else’s wrist? Collect more diverse samples. Compare accuracy before/after.\n0:40–1:00\nKey insight: data quality matters\n\n\nMakeCode Response (30 min)\nExport model to MakeCode. Program: walking → scroll message on LED; still → show symbol; other → show ‘?’.\n1:00–1:30\nTemplates provided\n\n\nDesign Challenge (20 min)\nGroups sketch their own gesture-based device concept for tomorrow: what 3–4 gestures? What human need does it serve?\n1:30–1:50\nDesign brief template\n\n\nWrap-Up (10 min)\nDiscussion: How is this similar to scikit-learn? How is it different? Preview tomorrow’s build.\n1:50–2:00\n\n\n\n\n\n\n\n\nBBC micro:bit V2 (1 per 2–3 students) + USB cables + Chrome browser\ncreateai.microbit.org + makecode.microbit.org\nCreateAI getting started guide (microbit.org/createai)\nDesign brief template (1-pager)\n\n\n\n\n\n\n\n\n\n\n\n\nDesign and train a multi-class gesture model for a purposeful application\nWrite a program that takes meaningful action on detected gestures\nDebug and iterate on model quality (test on different people, orientations)\nArticulate the human role in AI: labeling, choosing classes, and testing\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nDesign Review (10 min)\nGroups share their sketch from Day 4. Quick peer feedback: is the human need clear?\n0:00–0:10\n\n\n\nBuild & Train (60 min)\nGroups collect data, train, test, iterate. Prompt: ‘Does it still work on someone else’s arm? In a different room?’ Aim for 2–3 iteration cycles.\n0:10–1:10\nIterate deliberately\n\n\nCode the Response (35 min)\nWrite the MakeCode or Python program. Micro:bit responds with LED, sound, or serial output. Push toward a complete, working demo.\n1:10–1:45\n\n\n\nDemo Gallery (15 min)\nInformal 2-min demo per group. Peers act as testers. Celebrate creative use of gestures.\n1:45–2:00\nFun, low-stakes\n\n\n\n\n\n\n\nmicro:bits from Day 4\ncreateai.microbit.org + MakeCode\nOptional: buzzer accessories for audio feedback\n\n\nInstructor Notes: Module 2 capstone. Accuracy matters less than purposeful design — celebrate a 70% accurate exercise counter more than a 95% accurate wave detector with no clear use. Great transition line: ‘Next week we’ll teach computers to see, not just move.’\n\n\n\n\n\n\n\n\n\n\n\n\nExplain how a CNN classifies images at a conceptual level (pixels → features → predictions)\nRun pre-trained classification, pose detection, and object detection models in the browser\nBuild a working CV application combining a pre-trained model with custom Python logic\nIdentify at least one ethical concern in computer vision technology\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHook (10 min)\nShow 10 images pixelated at varying levels. Students classify. ‘Computers start from pixels just like this bottom row.’\n0:00–0:10\n\n\n\nCV Concepts (20 min)\nInstructor overview: pixels → CNN layers → predictions. Demo MobileNet on webcam in browser — confidence scores live. Show 3 task types: classification, pose detection, object detection.\n0:10–0:30\nTF.js demos, no GPU\n\n\nExploration Stations (25 min)\nSequential or parallel: (1) Image classification with MobileNet, (2) Pose detection with MoveNet, (3) Object detection with COCO-SSD. Students screenshot one result from each.\n0:30–0:55\nPre-built browser demos\n\n\nEthics Discussion (15 min)\nCase study: CV in surveillance, facial recognition bias. Small groups: ‘Should CV be used to monitor students in school?’ 2-min debrief.\n0:55–1:10\nSocratic format\n\n\nMini-Project Build (40 min)\nGroups choose a project track: (A) Pose Counter — count reps when keypoint crosses threshold. (B) Object Zone Game — detect object entering a screen zone. (C) Virtual Background — segmentation + canvas overlay. (D) Expression Mirror — MediaPipe Face Mesh reactions.\n1:10–1:50\nTemplate notebooks per track\n\n\nWrap-Up (10 min)\nQuick share: one unexpected CV challenge you hit. Preview: tomorrow we add language to vision.\n1:50–2:00\n\n\n\n\n\n\n\n\nTensorFlow.js browser demos (tensorflow.org/js/demos)\nMediaPipe (mediapipe.dev) for pose/face\nProject template notebooks (one per track)\nColab with webcam access (JS bridge) or pre-recorded video fallback\n\n\n\n\n\n\n\n\n\n\n\n\nDescribe what a VLM does and how it differs from a classifier\nExplain tokenization with a hands-on example\nDescribe word embeddings as ‘coordinates for meaning’ in vector space\nExplain the transformer architecture at a high level and connect it to VLMs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nVLM Demo & Discussion (20 min)\nInstructor shows a VLM describing images — impressive case, then a failure case. ‘How is this different from MobileNet?’ Discussion: it produces language, not just a label. Show the two-component model: visual encoder + language model.\n0:00–0:20\nClaude API, GPT-4V, or HuggingFace Spaces (free)\n\n\nVLM Exploration (25 min)\nStudents query a VLM with their CV project screenshots + Mongolia/Naadam photos. Task: find one impressive result and one failure. Share findings.\n0:20–0:45\nNo API key needed via HuggingFace\n\n\nBridge: From Vision to Language (5 min)\nQuick pivot: ‘VLMs describe images. What if AI could generate language from scratch — or generate images?’ Introduce Module 4.\n0:45–0:50\n\n\n\nTokenization Activity (20 min)\nStudents use platform.openai.com/tokenizer on Mongolian words, code, emoji, and their own name. Questions: how many tokens? Why does it matter for cost and context?\n0:50–1:10\nPhysical token cards as backup\n\n\nEmbeddings Demo (20 min)\nWord2vec/semantic similarity: ‘King − Man + Woman ≈ Queen.’ Students try analogies in a Colab notebook. Instructor explains: these are the coordinates transformers learn from data.\n1:10–1:30\nColab + gensim\n\n\nTransformer Overview (20 min)\nVisual walkthrough of attention using ‘The bank by the river’ example. No math — diagrams only. Connect: ‘The LLM is doing this for every token, millions of times, trained on the same kind of data you used in Week 1.’\n1:30–1:50\nJay Alammar visuals\n\n\nWrap-Up (10 min)\nExit ticket: draw the path from ‘user types a message’ → ‘LLM responds.’ Preview tomorrow’s chatbot build.\n1:50–2:00\n\n\n\n\n\n\n\n\nVLM access: HuggingFace Spaces (free LLaVA demo), Claude API, or GPT-4V\nplatform.openai.com/tokenizer (free, no login)\nColab notebook: gensim word embeddings\nJay Alammar ‘Illustrated Transformer’ diagrams (jalammar.github.io)\n\n\n\n\n\n\n\n\n\n\n\n\nApply 4+ prompt engineering techniques: persona, few-shot, chain-of-thought, constraints\nUse Code.org’s AI Chat Lab to design and build a custom chatbot with a system prompt\nEvaluate a chatbot’s responses critically and iterate on the design\nExplain how system prompts shape model behavior\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nPrompt Warm-Up (15 min)\nInstructor shows the same question with 3 different prompts → very different outputs. Students guess which prompt produced which. Introduce: persona, few-shot, CoT, constraints.\n0:00–0:15\n\n\n\nPrompt Engineering Practice (25 min)\nStudents experiment with a live LLM: explain photosynthesis to a 5-year-old vs. a PhD; add a constraint (‘no jargon’); try chain-of-thought for a logic problem.\n0:15–0:40\nClaude.ai or Code.org AI Chat Lab\n\n\nChatbot Design Intro (10 min)\nIntroduce Code.org’s Exploring Generative AI curriculum and AI Chat Lab. Walk through system prompt anatomy. Show a pre-built ‘Cat Expert’ chatbot.\n0:40–0:50\ncode.org — free, grades 8–12\n\n\nBuild Your Chatbot (60 min)\nGroups of 2 design and build a chatbot on a topic they care about. Requirements: clear persona, 3 topic focus areas, 1 ‘do not discuss’ boundary, tested with 5+ different questions.\n0:50–1:50\n\n\n\nWrap-Up (10 min)\nShare chatbot name + one surprising thing it did. Preview: tomorrow you’ll add knowledge and show it off — plus explore image generation.\n1:50–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab (code.org/en-US/curriculum/exploring-generative-artificial-intelligence)\nPrompt engineering reference card (1-pager: 4 techniques with examples)\nExample system prompts to study and remix\nClaude.ai or similar LLM for free-form practice\n\n\n\n\n\n\n\n\n\n\n\n\nDeliver a polished chatbot demo including a system prompt, knowledge grounding, and graceful failure\nExplain how diffusion models generate images at a conceptual level\nCraft effective image generation prompts using a structured scaffold\nEngage with IP and ethics questions around AI-generated art\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nRAG & Knowledge Grounding (15 min)\nQuick demo: same chatbot with and without a knowledge document. What changed? Why? Conceptual explanation of retrieval-augmented generation — no code required.\n0:00–0:15\n\n\n\nPolish Your Chatbot (25 min)\nGroups add a knowledge document (or expanded system prompt with facts) and evaluate using a peer rubric: helpfulness, accuracy, personality, graceful failure.\n0:15–0:40\nPrinted rubric\n\n\nChatbot Showcase (20 min)\nEach group demos in 2 minutes: what it does, a successful exchange, something it won’t do. Peer votes: Most Creative, Most Useful, Best Personality.\n0:40–1:00\nCelebration atmosphere\n\n\nDiffusion Model Concepts (15 min)\nHow AI generates images: noise → denoise → image, latent space, text encoder. Visual only — no math. ‘This is the visual twin of what the LLM does with tokens.’\n1:00–1:15\nShow denoising animation\n\n\nImage Generation Workshop (30 min)\nStudents generate images on Replicate (or Adobe Firefly / Canva AI). Prompt scaffold: [subject] + [style] + [lighting] + [mood]. Theme: inspired by Mongolia or Naadam. Iterate 3 times.\n1:15–1:45\nReplicate.com or free alternatives\n\n\nEthics: Art & AI (10 min)\nQuick discussion: Who owns AI-generated art? Should models be trained on artists’ work without consent? 2-min think-pair-share.\n1:45–1:55\n\n\n\nPreview Final Day (5 min)\nExplain tomorrow’s capstone structure. Remind groups to choose their showcase project.\n1:55–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab\nPeer chatbot evaluation rubric (4 dimensions, 1 page)\nReplicate.com (hosted image models) or Adobe Firefly / Canva AI (free)\nDiffusion explainer clip (Computerphile or 3Blue1Brown, ~5 min)\nPrompt scaffold template (printable)\n\n\n\n\n\n\n\n\n\n\n\n\nSynthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#at-a-glance",
+    "href": "labs/Syllabus.html#at-a-glance",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Days\nModule\nFocus\n\n\n\n\nWeek 1, Day 1\nIntro\nAI concepts survey, types of AI, setting the stage\n\n\nWeek 1, Days 2–3\nModule 1: Working with Data\npandas, matplotlib, scikit-learn, Mongolian datasets\n\n\nWeek 1, Days 4–5\nModule 2: Physical Computing\nmicro:bit V2, CreateAI, gesture ML models, MakeCode\n\n\nWeek 2, Day 6\nModule 3: Computer Vision\nCNNs, TF.js, MediaPipe, CV mini-projects\n\n\nWeek 2, Day 7\nCV → GenAI Bridge\nVLMs, tokens, embeddings, transformer overview\n\n\nWeek 2, Days 8–9\nModule 4: Generative AI\nPrompt engineering, chatbots, diffusion, image gen\n\n\nWeek 2, Day 10\nCapstone Showcase\nFinal project presentations, reflection, celebration",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-1-week-1-intro",
+    "href": "labs/Syllabus.html#day-1-week-1-intro",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Articulate what AI is and name 3+ real-world examples they interact with daily\nDistinguish between supervised ML, computer vision, and generative AI\nPreview all four modules and understand how the two weeks connect\nFeel comfortable and curious — this is a safe space to experiment and be wrong\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nWarm-Up (15 min)\n“AI Around You” brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard.\n0:00–0:15\nIcebreaker energy\n\n\nDirect Instruction (20 min)\nInstructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action.\n0:15–0:35\nKeep slides visual\n\n\n“Is It AI?” Activity (20 min)\nGroups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class.\n0:35–0:55\nPhysical or Jamboard cards\n\n\nMini-Project (35 min)\n“My AI Map”: students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed.\n0:55–1:30\nPaper or slides\n\n\nShare & Preview (20 min)\n3–4 volunteers share maps. Instructor reveals the 10-day journey — the “syllabus reveal.” Preview tomorrow’s data deep-dive.\n1:30–1:50\n\n\n\nExit Ticket (10 min)\nOne thing I knew · one thing I learned · one question I have. Collect for planning.\n1:50–2:00\n\n\n\n\n\n\n\n\nMiro\n“Is it AI?” card set (printable or digital)\nShort video clips from Code.org (~2 min)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-2-week-1-module-1-working-with-data",
+    "href": "labs/Syllabus.html#day-2-week-1-module-1-working-with-data",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Open a Colab notebook, run cells, and load a CSV with pandas\nUse .head(), .describe(), .value_counts(), and filtering to investigate a real question\nProduce at least one meaningful matplotlib visualization that supports a finding\nExplain why data quality and selection matter for AI — using today’s dataset as evidence\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: A Mystery (10 min)\nInstructor opens with a single striking fact: in January, Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit — worse than Beijing, worse than Delhi. Show a before/after satellite photo of the city in summer vs. winter smog. ‘Your job today: figure out why, using data.’ Introduce the detective framing: the dataset is your crime scene.\n0:00–0:10\nShow satellite comparison image\n\n\nSetup & Tools (15 min)\nWalk through Google Colab. Every student runs: print('Investigation begins!'). Quick pandas demo: DataFrames, .head(), .info(), .describe() — framed as ‘reading the crime scene.’\n0:10–0:25\nPair struggling students\n\n\nInvestigation Sprint (40 min)\nGroups of 3 dig into the Ulaanbaatar AQI dataset with guided question cards (not open-ended — each card is a specific clue to chase). E.g., ‘Which month has the worst PM2.5? Which has the best?’, ‘Is there a pattern by day of week?’, ‘Does temperature predict pollution level?’ Groups record findings in a shared doc.\n0:25–1:05\nQuestion cards pre-prepared\n\n\nVisualize Your Evidence (25 min)\nEach group turns their strongest finding into one chart using matplotlib templates. Frame: ‘A detective doesn’t just tell the jury — they show the evidence.’\n1:05–1:30\nTemplates in notebook\n\n\nAI Training Data Lens (20 min)\nPivot: ‘Now imagine you’re an AI company and this is your training data for a pollution prediction model. Would it be good enough? What’s missing? What would your model get wrong?’ Small group discussion, then share out.\n1:30–1:50\nConnects directly to Week 2\n\n\nWrap-Up (10 min)\nEach group posts their one-sentence finding to a class board. Preview: tomorrow you get an AI assistant to help with a harder dataset — and you’ll decide if it’s trustworthy.\n1:50–2:00\n\n\n\n\n\n\n\n\nGoogle Colab (browser, no install)\nUlaanbaatar historical AQI dataset (PM2.5, PM10, temperature, season — CSV, pre-cleaned from aqicn.org or IQAir historical download)\nStarter notebook with scaffolded cells + matplotlib templates\nInvestigation question cards (printed, one set per group — 6–8 clues to chase)\nShared class findings doc (Google Doc or Jamboard)\nSatellite comparison images: Ulaanbaatar summer vs. winter smog (freely available)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-3-week-1-module-1-working-with-data",
+    "href": "labs/Syllabus.html#day-3-week-1-module-1-working-with-data",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Use a Claude-powered data assistant to query a dataset in plain English\nCritically evaluate AI-generated interpretations against actual data\nTrain a simple linear regression model and interpret its predictions\nArticulate the direct conceptual link between regression modeling and the micro:bit ML training in Module 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nThe Hook: Dzud (10 min)\nInstructor introduces the dzud — Mongolia’s winter livestock disaster. Show the stat: in 2010, 20 million animals died in a single winter. In 2024, 7.4 million in just four months. ‘Herders knew a bad summer meant a bad winter. Can a machine learn that relationship from data?’ Introduce today’s dataset: aimag-level livestock mortality, summer drought index, and winter temperature, 1990–2013.\n0:00–0:10\nMap of Mongolia’s 21 aimags on screen\n\n\nIntroduce the AI Co-Pilot (15 min)\nInstructor demo: a Claude-powered chat interface loaded with the dzud dataset context. Ask it: ‘Which aimag suffered the most in 2010?’ Then ask something it gets wrong or oversimplifies. ‘Your job: use this tool as a starting point, then verify everything in code.’\n0:10–0:25\nClaude.ai Project or Colab widget\n\n\nInvestigation: Human + AI (35 min)\nGroups explore the dataset with the AI co-pilot. Workflow: ask the assistant a question → verify in pandas → document where it’s right, wrong, or uncertain. Each group must catch the AI making at least 2 errors or oversimplifications before they present.\n0:25–1:00\nEncourage skepticism explicitly\n\n\nLinear Regression: Predict the Disaster (25 min)\nInstructor-led walkthrough: train a linear regression model to predict livestock mortality from summer drought index and winter temperature. Students run it step-by-step. Key question: ‘This model sees the summer data — can it warn a herder before winter arrives?’\n1:00–1:25\nHeavily scaffolded notebook\n\n\nThe Bridge Moment (5 min)\nInstructor draws the explicit connection: ‘Yesterday we looked for patterns in pollution data. Today we trained a model to predict disasters from patterns in climate data. On Thursday, you’ll do the exact same thing — but the data will be your own body movement, and the micro:bit will be the device that learns.’ Plant the seed.\n1:25–1:30\nKey conceptual moment — don’t rush\n\n\nData Story Presentations (20 min)\nEach group: 3 min presentation — the question, the evidence, one thing the AI got wrong, one limitation of the dataset.\n1:30–1:50\nRubric: story, evidence, AI critique, limitation\n\n\nWrap-Up (10 min)\nClass vote: whose finding was most surprising? ‘What does it feel like to catch an AI being wrong?’ Preview: micro:bits arrive tomorrow.\n1:50–2:00\n\n\n\n\n\n\n\n\nClaude-powered data assistant (Claude.ai Project with dataset summary as context, or a lightweight Colab widget using the Anthropic API)\nDzud dataset: aimag-level livestock mortality + summer drought index + winter temperature, 1990–2013 (sourced from Mongolian NSO / Rao et al. 2015 supplementary data)\nColab notebook with linear regression walkthrough + visualization templates\nMap of Mongolia’s 21 aimags (printed or on-screen)\nPresentation rubric (story, evidence, AI critique, limitation — 1 page)\nOptional: class leaderboard for ‘best AI catch of the day’",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-4-week-1-module-2-physical-computing",
+    "href": "labs/Syllabus.html#day-4-week-1-module-2-physical-computing",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Connect a micro:bit to CreateAI and view live accelerometer data in real time\nTrain a gesture model with at least 3 classes and explain what ‘confidence threshold’ means\nUnderstand that ML models learn from examples, not explicit rules\nWrite a MakeCode program that responds meaningfully to detected gestures\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHardware Orientation (15 min)\nDistribute micro:bits (groups of 2–3). Connect via USB, open createai.microbit.org. Instructor demo: accelerometer graph while shaking vs. still.\n0:00–0:15\nV2 required for on-device ML\n\n\nFirst Model: Walk vs. Still (25 min)\nGuided: everyone trains the same model — ‘walking’ vs. ‘still’ vs. ‘other’. Collect 20 samples per class. Train and test on each other.\n0:15–0:40\nUse CreateAI guided tour\n\n\nIterate & Improve (20 min)\nWhy does it fail on someone else’s wrist? Collect more diverse samples. Compare accuracy before/after.\n0:40–1:00\nKey insight: data quality matters\n\n\nMakeCode Response (30 min)\nExport model to MakeCode. Program: walking → scroll message on LED; still → show symbol; other → show ‘?’.\n1:00–1:30\nTemplates provided\n\n\nDesign Challenge (20 min)\nGroups sketch their own gesture-based device concept for tomorrow: what 3–4 gestures? What human need does it serve?\n1:30–1:50\nDesign brief template\n\n\nWrap-Up (10 min)\nDiscussion: How is this similar to scikit-learn? How is it different? Preview tomorrow’s build.\n1:50–2:00\n\n\n\n\n\n\n\n\nBBC micro:bit V2 (1 per 2–3 students) + USB cables + Chrome browser\ncreateai.microbit.org + makecode.microbit.org\nCreateAI getting started guide (microbit.org/createai)\nDesign brief template (1-pager)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-5-week-1-module-2-physical-computing",
+    "href": "labs/Syllabus.html#day-5-week-1-module-2-physical-computing",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Design and train a multi-class gesture model for a purposeful application\nWrite a program that takes meaningful action on detected gestures\nDebug and iterate on model quality (test on different people, orientations)\nArticulate the human role in AI: labeling, choosing classes, and testing\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nDesign Review (10 min)\nGroups share their sketch from Day 4. Quick peer feedback: is the human need clear?\n0:00–0:10\n\n\n\nBuild & Train (60 min)\nGroups collect data, train, test, iterate. Prompt: ‘Does it still work on someone else’s arm? In a different room?’ Aim for 2–3 iteration cycles.\n0:10–1:10\nIterate deliberately\n\n\nCode the Response (35 min)\nWrite the MakeCode or Python program. Micro:bit responds with LED, sound, or serial output. Push toward a complete, working demo.\n1:10–1:45\n\n\n\nDemo Gallery (15 min)\nInformal 2-min demo per group. Peers act as testers. Celebrate creative use of gestures.\n1:45–2:00\nFun, low-stakes\n\n\n\n\n\n\n\nmicro:bits from Day 4\ncreateai.microbit.org + MakeCode\nOptional: buzzer accessories for audio feedback\n\n\nInstructor Notes: Module 2 capstone. Accuracy matters less than purposeful design — celebrate a 70% accurate exercise counter more than a 95% accurate wave detector with no clear use. Great transition line: ‘Next week we’ll teach computers to see, not just move.’",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-6-week-2-module-3-computer-vision",
+    "href": "labs/Syllabus.html#day-6-week-2-module-3-computer-vision",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Explain how a CNN classifies images at a conceptual level (pixels → features → predictions)\nRun pre-trained classification, pose detection, and object detection models in the browser\nBuild a working CV application combining a pre-trained model with custom Python logic\nIdentify at least one ethical concern in computer vision technology\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nHook (10 min)\nShow 10 images pixelated at varying levels. Students classify. ‘Computers start from pixels just like this bottom row.’\n0:00–0:10\n\n\n\nCV Concepts (20 min)\nInstructor overview: pixels → CNN layers → predictions. Demo MobileNet on webcam in browser — confidence scores live. Show 3 task types: classification, pose detection, object detection.\n0:10–0:30\nTF.js demos, no GPU\n\n\nExploration Stations (25 min)\nSequential or parallel: (1) Image classification with MobileNet, (2) Pose detection with MoveNet, (3) Object detection with COCO-SSD. Students screenshot one result from each.\n0:30–0:55\nPre-built browser demos\n\n\nEthics Discussion (15 min)\nCase study: CV in surveillance, facial recognition bias. Small groups: ‘Should CV be used to monitor students in school?’ 2-min debrief.\n0:55–1:10\nSocratic format\n\n\nMini-Project Build (40 min)\nGroups choose a project track: (A) Pose Counter — count reps when keypoint crosses threshold. (B) Object Zone Game — detect object entering a screen zone. (C) Virtual Background — segmentation + canvas overlay. (D) Expression Mirror — MediaPipe Face Mesh reactions.\n1:10–1:50\nTemplate notebooks per track\n\n\nWrap-Up (10 min)\nQuick share: one unexpected CV challenge you hit. Preview: tomorrow we add language to vision.\n1:50–2:00\n\n\n\n\n\n\n\n\nTensorFlow.js browser demos (tensorflow.org/js/demos)\nMediaPipe (mediapipe.dev) for pose/face\nProject template notebooks (one per track)\nColab with webcam access (JS bridge) or pre-recorded video fallback",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-7-week-2-module-3-cv-module-4-generative-ai",
+    "href": "labs/Syllabus.html#day-7-week-2-module-3-cv-module-4-generative-ai",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Describe what a VLM does and how it differs from a classifier\nExplain tokenization with a hands-on example\nDescribe word embeddings as ‘coordinates for meaning’ in vector space\nExplain the transformer architecture at a high level and connect it to VLMs\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nVLM Demo & Discussion (20 min)\nInstructor shows a VLM describing images — impressive case, then a failure case. ‘How is this different from MobileNet?’ Discussion: it produces language, not just a label. Show the two-component model: visual encoder + language model.\n0:00–0:20\nClaude API, GPT-4V, or HuggingFace Spaces (free)\n\n\nVLM Exploration (25 min)\nStudents query a VLM with their CV project screenshots + Mongolia/Naadam photos. Task: find one impressive result and one failure. Share findings.\n0:20–0:45\nNo API key needed via HuggingFace\n\n\nBridge: From Vision to Language (5 min)\nQuick pivot: ‘VLMs describe images. What if AI could generate language from scratch — or generate images?’ Introduce Module 4.\n0:45–0:50\n\n\n\nTokenization Activity (20 min)\nStudents use platform.openai.com/tokenizer on Mongolian words, code, emoji, and their own name. Questions: how many tokens? Why does it matter for cost and context?\n0:50–1:10\nPhysical token cards as backup\n\n\nEmbeddings Demo (20 min)\nWord2vec/semantic similarity: ‘King − Man + Woman ≈ Queen.’ Students try analogies in a Colab notebook. Instructor explains: these are the coordinates transformers learn from data.\n1:10–1:30\nColab + gensim\n\n\nTransformer Overview (20 min)\nVisual walkthrough of attention using ‘The bank by the river’ example. No math — diagrams only. Connect: ‘The LLM is doing this for every token, millions of times, trained on the same kind of data you used in Week 1.’\n1:30–1:50\nJay Alammar visuals\n\n\nWrap-Up (10 min)\nExit ticket: draw the path from ‘user types a message’ → ‘LLM responds.’ Preview tomorrow’s chatbot build.\n1:50–2:00\n\n\n\n\n\n\n\n\nVLM access: HuggingFace Spaces (free LLaVA demo), Claude API, or GPT-4V\nplatform.openai.com/tokenizer (free, no login)\nColab notebook: gensim word embeddings\nJay Alammar ‘Illustrated Transformer’ diagrams (jalammar.github.io)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-8-week-2-module-4-generative-ai",
+    "href": "labs/Syllabus.html#day-8-week-2-module-4-generative-ai",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Apply 4+ prompt engineering techniques: persona, few-shot, chain-of-thought, constraints\nUse Code.org’s AI Chat Lab to design and build a custom chatbot with a system prompt\nEvaluate a chatbot’s responses critically and iterate on the design\nExplain how system prompts shape model behavior\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nPrompt Warm-Up (15 min)\nInstructor shows the same question with 3 different prompts → very different outputs. Students guess which prompt produced which. Introduce: persona, few-shot, CoT, constraints.\n0:00–0:15\n\n\n\nPrompt Engineering Practice (25 min)\nStudents experiment with a live LLM: explain photosynthesis to a 5-year-old vs. a PhD; add a constraint (‘no jargon’); try chain-of-thought for a logic problem.\n0:15–0:40\nClaude.ai or Code.org AI Chat Lab\n\n\nChatbot Design Intro (10 min)\nIntroduce Code.org’s Exploring Generative AI curriculum and AI Chat Lab. Walk through system prompt anatomy. Show a pre-built ‘Cat Expert’ chatbot.\n0:40–0:50\ncode.org — free, grades 8–12\n\n\nBuild Your Chatbot (60 min)\nGroups of 2 design and build a chatbot on a topic they care about. Requirements: clear persona, 3 topic focus areas, 1 ‘do not discuss’ boundary, tested with 5+ different questions.\n0:50–1:50\n\n\n\nWrap-Up (10 min)\nShare chatbot name + one surprising thing it did. Preview: tomorrow you’ll add knowledge and show it off — plus explore image generation.\n1:50–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab (code.org/en-US/curriculum/exploring-generative-artificial-intelligence)\nPrompt engineering reference card (1-pager: 4 techniques with examples)\nExample system prompts to study and remix\nClaude.ai or similar LLM for free-form practice",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-9-week-2-module-4-generative-ai",
+    "href": "labs/Syllabus.html#day-9-week-2-module-4-generative-ai",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Deliver a polished chatbot demo including a system prompt, knowledge grounding, and graceful failure\nExplain how diffusion models generate images at a conceptual level\nCraft effective image generation prompts using a structured scaffold\nEngage with IP and ethics questions around AI-generated art\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nRAG & Knowledge Grounding (15 min)\nQuick demo: same chatbot with and without a knowledge document. What changed? Why? Conceptual explanation of retrieval-augmented generation — no code required.\n0:00–0:15\n\n\n\nPolish Your Chatbot (25 min)\nGroups add a knowledge document (or expanded system prompt with facts) and evaluate using a peer rubric: helpfulness, accuracy, personality, graceful failure.\n0:15–0:40\nPrinted rubric\n\n\nChatbot Showcase (20 min)\nEach group demos in 2 minutes: what it does, a successful exchange, something it won’t do. Peer votes: Most Creative, Most Useful, Best Personality.\n0:40–1:00\nCelebration atmosphere\n\n\nDiffusion Model Concepts (15 min)\nHow AI generates images: noise → denoise → image, latent space, text encoder. Visual only — no math. ‘This is the visual twin of what the LLM does with tokens.’\n1:00–1:15\nShow denoising animation\n\n\nImage Generation Workshop (30 min)\nStudents generate images on Replicate (or Adobe Firefly / Canva AI). Prompt scaffold: [subject] + [style] + [lighting] + [mood]. Theme: inspired by Mongolia or Naadam. Iterate 3 times.\n1:15–1:45\nReplicate.com or free alternatives\n\n\nEthics: Art & AI (10 min)\nQuick discussion: Who owns AI-generated art? Should models be trained on artists’ work without consent? 2-min think-pair-share.\n1:45–1:55\n\n\n\nPreview Final Day (5 min)\nExplain tomorrow’s capstone structure. Remind groups to choose their showcase project.\n1:55–2:00\n\n\n\n\n\n\n\n\nCode.org AI Chat Lab\nPeer chatbot evaluation rubric (4 dimensions, 1 page)\nReplicate.com (hosted image models) or Adobe Firefly / Canva AI (free)\nDiffusion explainer clip (Computerphile or 3Blue1Brown, ~5 min)\nPrompt scaffold template (printable)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "labs/Syllabus.html#day-10-week-2-capstone",
+    "href": "labs/Syllabus.html#day-10-week-2-capstone",
+    "title": "Summer of Code 2026",
+    "section": "",
+    "text": "Synthesize learning across all four modules in a final project presentation\nDemonstrate genuine understanding of at least one AI concept to peers\nArticulate one societal implication of AI in a domain they care about\nLeave feeling capable, curious, and inspired to keep building\n\n\n\n\n\n\n\n\n\n\n\n\n\nSegment\nDetails\nTime\nNotes\n\n\n\n\nSetup & Last-Mile Polish (20 min)\nGroups do final prep on their capstone project. Instructor confirms running order.\n0:00–0:20\n\n\n\nFinal Project Presentations (60 min)\nEach group: 3–4 min presentation + 1 min Q&A. Project options: (A) Data Story — extended Module 1 investigation; (B) Physical AI Device — polished micro:bit project with docs; (C) CV Application — finished Module 3 project with demo; (D) Chatbot — polished bot with knowledge base; (E) Wild Card — cross-module project combining 2+ AI types.\n0:20–1:20\nAll groups present\n\n\nLetter to Myself (15 min)\nEach student writes: one AI application they want to build in the next year, and one thing they commit to thinking critically about.\n1:20–1:35\nPrivate or share optionally\n\n\nPanel Reflection (10 min)\nStudent-led open Q&A: What surprised you most? What do you wish AI could do that it can’t? What worries you?\n1:35–1:45\n\n\n\nCelebration & Certificates (15 min)\nAward recognition in all categories. Share ‘What’s Next’ resource card. Group photo.\n1:45–2:00\nCertificates printed in advance\n\n\n\n\n\n\n\nCross-module presentation rubric (technical accuracy, creativity, communication, ethics awareness)\nCertificate template\n“What to Explore Next” card: fast.ai · Kaggle Learn · CS50 AI · 3Blue1Brown · deeplearning.ai short courses\nOptional: highlight reel compiled from Days 1–9",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Syllabus"
     ]
   },
   {
