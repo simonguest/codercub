@@ -50,53 +50,94 @@ format:
 
 ![](images/wearable.jpg){fig-align="center"}
 
+## Introducing the micro:bit Wearable!
+
+- TBD: diagram of wearable and receiver
+
 # Our Plan
 
-## Our Plan
+## Our Plan - pull in screenshots from CreateAI starter animation
 
-- Setup and connect the micro:bit
-- Collect accelerometer data
-- Use this data to train a model
-- Test our model
-- (Tomorrow) Use the model in code
-
-## Walkthrough / Demo
-
-- Go to createai.microbit.org
-- Connect/use as radio
-- Walk through recording actions
-- (get to good stopping point / maybe training the model?)
-- Saving your work
+1. Connect the micro:bits
+2. Collect accelerometer data
+3. Use this data to train a model
+4. Test our model
+5. (Tomorrow) Use the model in code
 
 ## Hands-on
 
 - Get into pairs
-- Now your turn!
+- Pickup two micro:bits (one with and one without wearable)
+- Wait for instructions! (We are going to do this together) 
 
-## Training the model
+## Steps - Connect the micro:bits
 
-- Data cleaning - does anything look odd? Replace data samples
-- When ready, train the model
-- Test the model - does it react as expected? What does it do if still?
-- Improve the model (edit data samples, retrain)
+- Go to [createai.microbit.org](https://createai.microbit.org) - has to be using Chrome browser
+- Create a project: "My First Project"
+- Click on "Connect using micro:bit radio instead"
+- Connect the collector (wearable) micro:bit and click "Next"
+- Select the micro:bit connection from the the popup
+- Disconnect and **very gently** insert the battery wire
+- (Pause to make sure everyone sees smiley face)
+- Next, connect the receiver micro:bit and click "Next"
+- Select the connection again from the popup
+- Put the wearable on one of your wrists (don't worry who is first, you'll both have a turn to collect data)
+- Check that the graphs are moving correctly! Yes, you are connected and ready to record!
 
-## Hands-on
+## Steps - Recording Data
 
-- Now your turn!
+- Create an action: "Waving"
+- Record and repeat three times
+- Pass the wearable to your partner. Have them record a different action. You can pick which action. Make sure your band is tight and don't hit anyone!
+- (Pause to make sure everyone has two actions)
+- Let's do another two. (One per person)
+- (Pause to make sure everyone has four actions)
+
+## Steps - Train the Model
+
+- When ready, click on the "Train model" button
+
+## Steps - Test the Model
+
+- Take turns and test your actions. How well did the model learn? What happened if you just let your hand do nothing?
+
+## Discussion - What did you find?
+
+- What worked well?
+- What didn't work well? Or what did it get wrong?
+- How did it do on the actions that your partner recorded?
+
+## Steps - Add Some More Data
+
+- Click "Edit Data Samples" button
+- Add an action for being still (if you don't already have one)
+- Either re-record or add a new action. Try to have four or five.
 
 ## Diversity in Data
 
 - Why is diversity important?
 - TBD a slide or two on this, maybe some examples from AI failures - three good points here: https://microbit.org/teach/lessons/strengthening-models-through-adding-diverse-data/
 
-## Hands-on
+## Steps - Swap with another group
 
-- Swap and test your micro:bits with another pair
-- Did your micro:bit work accurately? How about theirs?
+- Take off the micro:bits and leave both of them on the table
+- Make sure you are in the "Testing Model" screen
+- Swap desks with another pair close to you
+- Take turns to put on their micro:bit and test their actions
 
-## Discussion
+## Diversity Discussion
 
-- What did everyone find?
+- What did you find?
+- Did they work as you expected?
 
+# Summary
+
+- Summary of what we've covered today
+- What we will do tomorrow
+
+## Steps - Disconnecting the micro:bit
+
+- Disconnect your receiver micro:bit and leave on the desk
+- Leave your wearable micro:bit connected to the battery pack. I will disconnect this for you. (These can be easy to break)
 
 
