@@ -553,6 +553,22 @@ scene.camera.set_position(5, 5, -10).set_distance(18).look_at(0, 1, 0)
 
 The student can still use mouse orbit and scroll-wheel zoom on top of any camera call — those controls stay active throughout.
 
+**`scene.import_meshes(meshes)`:** creates and adds meshes from a list of descriptors — ideal for LLM-generated scenes. Each descriptor is a plain dict or a Pydantic model instance. Supported fields:
+
+| Field | Values | Default |
+|---|---|---|
+| `type` | `"Box"` \| `"Sphere"` \| `"Cylinder"` | required |
+| `position` | `[x, y, z]` | `[0, 0, 0]` |
+| `rotation` | `[x, y, z]` degrees | `[0, 0, 0]` |
+| `scale` | `[x, y, z]` | `[1, 1, 1]` |
+| `color` | hex string | grey |
+| `material` | dotted string e.g. `"Grass.Bright"` | none |
+| `width` / `height` / `depth` | floats (Box) | 1 |
+| `diameter` / `segments` | float / int (Sphere) | 1 / 16 |
+| `diameter` / `height` / `tessellation` | floats / int (Cylinder) | 1 / 1 / 24 |
+
+Unknown `type` values and unrecognised `material` strings are silently skipped. Use with OpenAI structured output.
+
 **Scene defaults:** ArcRotateCamera (mouse orbit/zoom), HemisphericLight, dark background. BabylonJS loads lazily the first time `scene3d` is used.
 
 **`ctx.clear()`** is a custom method that clears the full 2D overlay; all other standard Canvas2D methods work normally.

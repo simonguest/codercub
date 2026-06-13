@@ -124,6 +124,8 @@ website:
                   href: labs/08/notebooks/structured_output.ipynb
                 - text: "structured_output_piano.ipynb"
                   href: labs/08/notebooks/structured_output_piano.ipynb
+                - text: "structured_output_mesh.ipynb"
+                  href: labs/08/notebooks/structured_output_mesh.ipynb
         - section: "Day 9"
           contents:
             - text: "Slides"
