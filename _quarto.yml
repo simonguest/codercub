@@ -39,6 +39,8 @@ website:
               contents:
                 - text: "hello_world.ipynb"
                   href: labs/01/notebooks/hello_world.ipynb
+                - text: "ai_in_action.ipynb"
+                  href: labs/01/notebooks/ai_in_action.ipynb
         - section: "Day 2"
           contents:
             - text: "Slides"

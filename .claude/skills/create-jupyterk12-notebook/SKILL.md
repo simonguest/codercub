@@ -111,6 +111,26 @@ Use globals in cell source: `Hello, {{STUDENT_NAME}}!`
 
 These are activated by the `tags` array in `cell.metadata`.
 
+### Hidden code cell (`code` + `"hide_code"` tag)
+
+A code cell tagged `"hide_code"` starts with the editor collapsed — the student sees the Run button and output but not the source. They can reveal it with the "Hide code" toggle. Use this for setup code (imports, helper functions) that would distract from the lesson focus.
+
+```json
+{
+  "cell_type": "code",
+  "execution_count": null,
+  "id": "cell-setup",
+  "metadata": {
+    "tags": ["hide_code"]
+  },
+  "outputs": [],
+  "source": [
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt"
+  ]
+}
+```
+
 ### Video cell (`raw` + `"video"` tag)
 
 ```json

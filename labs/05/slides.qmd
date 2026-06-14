@@ -17,27 +17,72 @@ format:
 
 ## Recap
 
-- TBD
+- TBD - cover everything that we did yesterday
 
+## Plan for Today
 
-## Using your model in code
+- Take our trained models from yesterday and make a mini app from it!
 
-- Reload the project
-- Edit in MakeCode
-- Go through detecting movement / playing sounds/showing icon
-- How to then download everything on to running hardware
+## Steps
 
-## Hands-on
+- Get back into your same pairs
+- Use the same laptop as you did yesterday and go to [createai.microbit.org](https://createai.microbit.org)
+- You'll have to connect again. Remember to use the micro:bit radio option.
+- And the first micro:bit to connect is the wearable
+- After connecting, a quick test to make sure that the actions are still being recognized
+- (Pause for the class to catchup)
 
-- Try this
+## Steps
+
+- Click "Edit in MakeCode"
+- In MakeCode, switch to JavaScript and then drop-down button for Python
+- You'll have something like the following:
+
+```
+def on_on_start():
+    basic.show_icon(IconNames.HOUSE)
+ml.on_start(ml.event.waving, on_on_start)
+
+def on_on_start2():
+    basic.show_icon(IconNames.DUCK)
+ml.on_start(ml.event.writing, on_on_start2)
+
+# ...and so on for other actions
+```
+
+- This is all running in a simulator as you code
+- Try selecting the ML event on the left. Does the icon change?
+- Try adding some additional code:
+
+```
+def on_on_start2():
+    basic.show_icon(IconNames.DUCK)
+    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)
+ml.on_start(ml.event.writing, on_on_start2)
+```
+
+## Steps
+
+- When you want to test it on your micro:bit...
+- Click on the download button
+- Follow the prompts to disconnect the radio micro:bit
+- Plug in the wearable micro:bit. You can keep the battery connected.
+- Wait for the model to download
+- Disconnect the wearable from the USB
+- Test your code!
 
 ## Project Time
 
-- Rest of class will be free-form project
+- Next hour will be free-form project!
 - Ideas of what you can create:
-  - Exercise app
-  - Light switch clapper
+  - Exercise app - count the number of arm raises
+    - Display on the LED when you press a button
+  - Light clapper - clap to switch on / off the LEDs or play a sound
+  - Safe driving app - detect between holding the steering wheel and texting on your phone
+  - (Advanced) Create a 2nd project in Makecode and develop a radio app 
+    - Movements from the wearable get displayed on the laptop
   
 ## Reflect and Share
 
 - What did you build?
+- How did you find the experience?

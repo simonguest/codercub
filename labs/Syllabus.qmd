@@ -25,24 +25,30 @@
 - Articulate what AI is and name 3+ real-world examples they interact with daily
 - Distinguish between supervised ML, computer vision, and generative AI
 - Preview all four modules and understand how the two weeks connect
-- Feel comfortable and curious — this is a safe space to experiment and be wrong
+- Run a Jupyter K-12 notebook and interact with all three types of AI hands-on
 
 #### Session Schedule (2 hours)
 
 | Segment | Details | Time | Notes |
 |---------|---------|------|-------|
-| Warm-Up (15 min) | "AI Around You" brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard. | 0:00–0:15 | Icebreaker energy |
-| Direct Instruction (20 min) | Instructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action. | 0:15–0:35 | Keep slides visual |
-| "Is It AI?" Activity (20 min) | Groups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class. | 0:35–0:55 | Physical or Jamboard cards |
-| Mini-Project (35 min) | "My AI Map": students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed. | 0:55–1:30 | Paper or slides |
-| Share & Preview (20 min) | 3–4 volunteers share maps. Instructor reveals the 10-day journey — the "syllabus reveal." Preview tomorrow's data deep-dive. | 1:30–1:50 | |
-| Exit Ticket (10 min) | One thing I knew · one thing I learned · one question I have. Collect for planning. | 1:50–2:00 | |
+| Instructor Intro (10 min) | "Who am I?" — instructor background and motivation. Sets the tone for the two weeks. | 0:00–0:10 | Warm and personal |
+| What is AI? (15 min) | Slides: definition (learning from examples vs. following rules), why AI is having its moment now (data + compute + algorithms), and what AI is NOT (not magic, not conscious, not always right, not one thing). | 0:10–0:25 | Dispel myths early |
+| "Does It Use AI?" (15 min) | Class vote on 7 tech examples (AI Chatbot, Fitness Tracker, Calculator, Washing Machine, Music App, Phone Camera, Video Game) — show of hands or Mentimeter. Instructor reveals and explains each. | 0:25–0:40 | Encourage debate on "maybe" cases |
+| AI All Around You (10 min) | Students add their own examples to a Miro board with three pre-labeled zones: Supervised ML / Computer Vision / Generative AI. Reinforces the classification before the deep-dive. | 0:40–0:50 | Miro board set up in advance |
+| Types of AI (20 min) | Detailed slides: supervised ML (regression and classification with forward references to Days 2–5), computer vision (pixels → CNNs → applications), generative AI (LLMs and diffusion models). Ends with the two-week journey map. | 0:50–1:10 | 10 slides; keep pace brisk |
+| Introducing Notebooks (10 min) | What a notebook is, brief history of Jupyter, anatomy of a notebook cell, intro to Jupyter-K12. | 1:10–1:20 | 4 slides |
+| Hello World + API Key Setup (20 min) | Instructor demos the Hello World notebook live, then students open it and run each cell themselves. While students finish, distribute and enter OpenRouter API keys — students paste their key into the platform environment settings. | 1:20–1:40 | Pair struggling students |
+| AI in Action Notebook (15 min) | Students open the AI in Action notebook and work through three sections: spam detector (Supervised ML), live webcam object detection (Computer Vision), and generative Q&A with style control (Generative AI). Each section ends with a short challenge. Notebook CFU questions wrap up. | 1:40–1:55 | Part 3 requires API key from previous step |
+| Wrap-Up & Preview (5 min) | Instructor highlights one surprising moment from the room. Preview: tomorrow we dig into a real Mongolian air quality dataset. | 1:55–2:00 | |
 
 #### Resources & Tools
 
-- Miro
-- "Is it AI?" card set (printable or digital)
-- Short video clips from Code.org (~2 min)
+- Miro board with three pre-labeled zones (Supervised ML / Computer Vision / Generative AI)
+- Mentimeter or show-of-hands for "Does It Use AI?" votes
+- Jupyter-K12 platform
+- Hello World notebook (`labs/01/notebooks/hello_world.ipynb`)
+- AI in Action notebook (`labs/01/notebooks/ai_in_action.ipynb`)
+- OpenRouter API keys (one per student, distributed before class)
 
 ---
 
