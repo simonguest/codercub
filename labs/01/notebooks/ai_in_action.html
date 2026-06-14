@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Face Detection with Computer Vision – Summer of Code 2026</title>
+<title>AI in Action – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/06/notebooks/object_detection.html" rel="next">
-<link href="../../../labs/06/slides.html" rel="prev">
+<link href="../../../labs/02/slides.html" rel="next">
+<link href="../../../labs/01/notebooks/hello_world.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">face_detection.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/ai_in_action.html">ai_in_action.ipynb</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -374,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/01/notebooks/ai_in_action.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/01/notebooks/ai_in_action.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ai_in_action.ipynb</span></a>
   </div>
 </li>
@@ -540,7 +540,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/06/notebooks/face_detection.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/06/notebooks/face_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">face_detection.ipynb</span></a>
   </div>
 </li>
@@ -726,9 +726,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">face_detection.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/ai_in_action.html">ai_in_action.ipynb</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Face Detection with Computer Vision</h1>
+<h1 class="title">AI in Action</h1>
 </div>
 
 
@@ -745,157 +745,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, you’ll use a neural network to detect faces in real time using your webcam. You’ll learn how computers “see” and locate faces in an image — and think about how this technology is used in the real world.</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/06/notebooks/face_detection.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this notebook, you will be able to:</p>
+<p>You’ve just learned about three types of AI. Now let’s see them working — right here in the browser.</p>
+<p>Run each section to see <strong>Supervised ML</strong>, <strong>Computer Vision</strong>, and <strong>Generative AI</strong> in action.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/01/notebooks/ai_in_action.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<section id="what-youll-explore" class="level2">
+<h2 class="anchored" data-anchor-id="what-youll-explore">What You’ll Explore</h2>
 <ul>
-<li>Explain the difference between <strong>face detection</strong> and <strong>face recognition</strong></li>
-<li>Use Python to detect faces in a live webcam feed</li>
-<li>Read and interpret <strong>bounding box</strong> data returned by a detector</li>
-<li>Understand what a <strong>confidence score</strong> means in AI detection</li>
-<li>Reflect on ethical uses of face detection technology</li>
+<li><strong>Part 1 — Supervised ML</strong>: A model trained to detect spam messages</li>
+<li><strong>Part 2 — Computer Vision</strong>: A model that identifies objects through your webcam</li>
+<li><strong>Part 3 — Generative AI</strong>: An AI that answers your questions in different styles</li>
 </ul>
+<hr>
 </section>
-<section id="what-is-face-detection" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-face-detection">What Is Face Detection?</h2>
-<p><strong>Face detection</strong> is the task of finding <em>where</em> faces are located in an image or video frame. The output is a <strong>bounding box</strong> — a rectangle drawn around each face — plus a <strong>confidence score</strong> that says how certain the model is.</p>
-<p>This is <strong>not</strong> the same as <strong>face recognition</strong>, which tries to identify <em>who</em> a person is. Face detection only says: <em>“there is a face at this location.”</em> It has no idea who you are.</p>
-<section id="real-world-applications" class="level3">
-<h3 class="anchored" data-anchor-id="real-world-applications">Real-World Applications</h3>
-<ul>
-<li><strong>Phone cameras</strong> auto-focus on faces when you line up a shot</li>
-<li><strong>Security systems</strong> alert staff when a person enters a restricted area</li>
-<li><strong>Video filters</strong> (Snapchat, TikTok) track your face position in real time</li>
-<li><strong>Medical imaging</strong> tools find regions of interest in scans for further analysis</li>
-</ul>
-<p>Under the hood, modern face detectors are small neural networks trained on millions of face images — exactly the kind of networks you learned about today.</p>
-</section>
-</section>
-<section id="step-1-live-face-detection" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-live-face-detection">Step 1: Live Face Detection</h2>
-<p>This platform uses <strong>BlazeFace</strong> — a lightweight neural network from Google that detects faces in real time. Each face it finds is returned as a dictionary with these fields:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>x</code>, <code>y</code></td>
-<td>Top-left corner of the bounding box (pixels)</td>
-</tr>
-<tr class="even">
-<td><code>w</code>, <code>h</code></td>
-<td>Width and height of the bounding box (pixels)</td>
-</tr>
-<tr class="odd">
-<td><code>confidence</code></td>
-<td>How certain the model is (0.0 – 1.0)</td>
-</tr>
-</tbody>
-</table>
-<p>Run the cell below — your browser will ask for webcam access, click <strong>Allow</strong>. The detector will run continuously and draw a box around any face it finds. Click <strong>Stop</strong> (■) in the toolbar when you’re ready to move on.</p>
-<div id="cell-live-detection" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        canvas.draw_bounding_boxes(detections)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="part-1-supervised-ml-spam-detector" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-supervised-ml-spam-detector">Part 1: Supervised ML — Spam Detector</h2>
+<p>Spam detectors are one of the most common uses of supervised ML. Engineers collected thousands of emails labelled <strong>Spam</strong> or <strong>Not Spam</strong>, then trained a model to learn the difference.</p>
+<p>The model below was trained on 16 example messages. Run the cell to train it.</p>
+<div id="cell-ml-train" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>spam <span class="op">=</span> [</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Free money! Click here now!'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"You've won a prize! Claim it today!"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Limited offer: Buy now and save 90%!'</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'URGENT: Your account has been compromised'</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Make $5000 a week working from home'</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Congratulations! You are the winner!'</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Get rich quick with this simple trick'</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Special discount for you only today'</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>not_spam <span class="op">=</span> [</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Hey, are you coming to the meeting tomorrow?'</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Can you pick up some groceries on your way home?'</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'The project report is due on Friday'</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Happy birthday! Hope you have a great day'</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Let's catch up over coffee this week"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Thanks for your help with the homework'</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">'The match starts at 7pm tonight'</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'See you at school tomorrow'</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> spam <span class="op">+</span> not_spam</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="st">'Spam'</span>] <span class="op">*</span> <span class="bu">len</span>(spam) <span class="op">+</span> [<span class="st">'Not Spam'</span>] <span class="op">*</span> <span class="bu">len</span>(not_spam)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> CountVectorizer()</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> vectorizer.fit_transform(texts)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MultinomialNB()</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>model.fit(X, labels)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'✓ Spam detector trained on'</span>, <span class="bu">len</span>(texts), <span class="st">'examples'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="step-2-explore-the-detection-data" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-explore-the-detection-data">Step 2: Explore the Detection Data</h2>
-<p>The cell below runs the same live detection loop, but also prints the raw numbers for every face it finds — updated once per second.</p>
-<p>Try moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.</p>
-<p>Click <strong>Stop</strong> (■) when you’re done.</p>
-<div id="cell-explore-data" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        canvas.draw_bounding_boxes(detections)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span><span class="bu">len</span>(detections)<span class="sc">}</span><span class="ss"> face(s) detected ---"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, face <span class="kw">in</span> <span class="bu">enumerate</span>(detections):</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  Face </span><span class="sc">{</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">: x=</span><span class="sc">{</span>face[<span class="st">'x'</span>]<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>face[<span class="st">'y'</span>]<span class="sc">}</span><span class="ss">  "</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                      <span class="ss">f"size=</span><span class="sc">{</span>face[<span class="st">'w'</span>]<span class="sc">}</span><span class="ss">x</span><span class="sc">{</span>face[<span class="st">'h'</span>]<span class="sc">}</span><span class="ss">  confidence=</span><span class="sc">{</span>face[<span class="st">'confidence'</span>]<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The model is trained. Type any message below and run the cell to see what it predicts.</p>
+<div id="cell-ml-predict" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MESSAGE <span class="op">=</span> <span class="st">"You've won a free iPhone!"</span> <span class="co">#@param {type:"string"}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X_new <span class="op">=</span> vectorizer.transform([MESSAGE])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model.predict(X_new)[<span class="dv">0</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>proba <span class="op">=</span> model.predict_proba(X_new)[<span class="dv">0</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>confidence <span class="op">=</span> <span class="bu">max</span>(proba)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>emoji <span class="op">=</span> <span class="st">'🚨'</span> <span class="cf">if</span> prediction <span class="op">==</span> <span class="st">'Spam'</span> <span class="cf">else</span> <span class="st">'✅'</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>emoji<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>prediction<span class="sc">}</span><span class="ss"> (confidence: </span><span class="sc">{</span>confidence<span class="sc">:.0%}</span><span class="ss">)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<blockquote class="blockquote">
+<p><strong>Challenge:</strong> Can you write a spam message that fools the detector into thinking it’s not spam? Or a normal message it incorrectly labels as spam?</p>
+</blockquote>
+<p>What kinds of words do you think the model learned to associate with spam?</p>
+<hr>
 </section>
-<section id="step-3-experiment-confidence-threshold" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-experiment-confidence-threshold">Step 3: Experiment — Confidence Threshold</h2>
-<p>A <strong>confidence threshold</strong> filters out detections the model isn’t sure about.</p>
-<ul>
-<li><strong>High threshold</strong> (e.g., 0.90) → only very certain detections pass through</li>
-<li><strong>Low threshold</strong> (e.g., 0.20) → more detections, including uncertain ones</li>
-</ul>
-<p>Set the slider to your desired threshold, then run the cell. The loop will filter detections in real time using that value. Try a very high threshold — can you make the detector lose track of your face?</p>
-<p>Click <strong>Stop</strong> (■) when you’re done.</p>
-<div id="cell-confidence-experiment" class="cell">
+<section id="part-2-computer-vision-what-can-the-camera-see" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-computer-vision-what-can-the-camera-see">Part 2: Computer Vision — What Can the Camera See?</h2>
+<p>The model in the next cell can detect <strong>80 different types of objects</strong> — from people and laptops to chairs, cups, and phones. It was trained on millions of labelled images.</p>
+<p>Click <strong>Allow</strong> when your browser asks for webcam access, then point the camera around the room. Press <strong>Stop (■)</strong> when you’re done.</p>
+<div id="cell-cv-live" class="cell" data-tags="[&quot;hide_code&quot;]">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>CONFIDENCE_THRESHOLD <span class="op">=</span> <span class="fl">0.7</span> <span class="co">#@param {type:"slider", min:0.1, max:1.0, step:0.05}</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        filtered <span class="op">=</span> [d <span class="cf">for</span> d <span class="kw">in</span> detections <span class="cf">if</span> d[<span class="st">'confidence'</span>] <span class="op">&gt;=</span> CONFIDENCE_THRESHOLD]</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        canvas.draw_bounding_boxes(filtered)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_object_detector(camera)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        canvas.draw_bounding_boxes(detections)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Camera stopped.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<blockquote class="blockquote">
+<p><strong>Challenge:</strong> Find an object the model labels incorrectly, or something it completely fails to detect. What does that tell you about how the model was trained?</p>
+</blockquote>
+<p>What was the most surprising thing the model detected — or failed to detect?</p>
+<hr>
 </section>
-<section id="reflect" class="level2">
-<h2 class="anchored" data-anchor-id="reflect">Reflect</h2>
-<p>Take a moment to record your observations and thoughts in the journal cells below.</p>
-<p>What did you notice when you changed the confidence threshold? Did the detector ever get it wrong — missing your face, or detecting something that wasn’t a face?</p>
-<p>Face detection is used in schools, airports, stadiums, and social media platforms. Where do you think it’s helpful? Are there places where you’d want limits on how it’s used — and why?</p>
+<section id="part-3-generative-ai-ask-an-ai" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-generative-ai-ask-an-ai">Part 3: Generative AI — Ask an AI</h2>
+<p>Unlike the spam detector, this AI doesn’t just predict a label — it <strong>generates</strong> a response. Type any topic, choose a style, and run the cell.</p>
+<div id="cell-genai-ask" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>TOPIC <span class="op">=</span> <span class="st">"How do solar panels work?"</span> <span class="co">#@param {type:"string"}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>STYLE <span class="op">=</span> <span class="st">"simple"</span> <span class="co">#@param ["simple", "detailed", "funny"]</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ[<span class="st">'OPENROUTER_API_KEY'</span>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">'openai/gpt-oss-120b:free'</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'role'</span>: <span class="st">'system'</span>, <span class="st">'content'</span>: <span class="ss">f'You are a helpful teacher. Explain things in a </span><span class="sc">{</span>STYLE<span class="sc">}</span><span class="ss"> way. Keep your answer to 3-4 sentences.'</span>},</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'role'</span>: <span class="st">'user'</span>, <span class="st">'content'</span>: TOPIC},</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Challenge:</strong> Ask it something factual and check if the answer is correct. Can you find something it gets wrong or makes up?</p>
+</blockquote>
+<p>How did changing the style change the response? Which style was most useful — and why?</p>
+<hr>
 </section>
 <section id="check-for-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-for-understanding">Check for Understanding</h2>
-<p>Answer the questions below to check what you’ve learned.</p>
-<p>{ “question_type”: “true_false”, “question”: “Face detection can identify who a person is.”, “answer”: “False”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does a confidence score of 0.95 mean for a face detection?”, “options”: [ { “key”: “a”, “text”: “95 faces were found in the image” }, { “key”: “b”, “text”: “The model is 95% certain it found a face” }, { “key”: “c”, “text”: “The face is 95 pixels wide” }, { “key”: “d”, “text”: “The detection took 0.95 seconds” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “Setting a higher confidence threshold causes the detector to find more faces.”, “answer”: “False”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “Which four values describe a bounding box around a detected face?”, “options”: [ { “key”: “a”, “text”: “x, y, width, height” }, { “key”: “b”, “text”: “top, bottom, left, right” }, { “key”: “c”, “text”: “row, column, depth, color” }, { “key”: “d”, “text”: “red, green, blue, alpha” } ], “answer”: “a”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “Which type of AI would you use to predict tomorrow’s temperature from today’s weather data?”, “options”: [ { “key”: “a”, “text”: “Computer Vision” }, { “key”: “b”, “text”: “Supervised ML (regression)” }, { “key”: “c”, “text”: “Generative AI” }, { “key”: “d”, “text”: “Object detection” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “A computer vision model understands what it sees the same way a human does.”, “answer”: “False”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “What is the main difference between supervised ML and generative AI?”, “options”: [ { “key”: “a”, “text”: “Supervised ML uses cameras; generative AI does not” }, { “key”: “b”, “text”: “Supervised ML predicts from fixed categories; generative AI creates new content” }, { “key”: “c”, “text”: “Generative AI is always more accurate” }, { “key”: “d”, “text”: “Supervised ML only works with numbers” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 
 
 </section>
@@ -1316,13 +1296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/06/slides.html" class="pagination-link" aria-label="Slides">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
+      <a href="../../../labs/01/notebooks/hello_world.html" class="pagination-link" aria-label="hello_world.ipynb">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">hello_world.ipynb</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/06/notebooks/object_detection.html" class="pagination-link" aria-label="object_detection.ipynb">
-        <span class="nav-page-text">object_detection.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/02/slides.html" class="pagination-link" aria-label="Slides">
+        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

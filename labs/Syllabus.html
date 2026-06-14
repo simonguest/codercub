@@ -336,6 +336,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">hello_world.ipynb</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/01/notebooks/ai_in_action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ai_in_action.ipynb</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -757,7 +763,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Articulate what AI is and name 3+ real-world examples they interact with daily</li>
 <li>Distinguish between supervised ML, computer vision, and generative AI</li>
 <li>Preview all four modules and understand how the two weeks connect</li>
-<li>Feel comfortable and curious — this is a safe space to experiment and be wrong</li>
+<li>Run a Jupyter K-12 notebook and interact with all three types of AI hands-on</li>
 </ul>
 </section>
 <section id="session-schedule-2-hours" class="level4">
@@ -779,39 +785,57 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Warm-Up (15 min)</td>
-<td>“AI Around You” brainstorm: pairs list every AI they encountered in the last 24 hours. Share on whiteboard/Jamboard.</td>
-<td>0:00–0:15</td>
-<td>Icebreaker energy</td>
+<td>Instructor Intro (10 min)</td>
+<td>“Who am I?” — instructor background and motivation. Sets the tone for the two weeks.</td>
+<td>0:00–0:10</td>
+<td>Warm and personal</td>
 </tr>
 <tr class="even">
-<td>Direct Instruction (20 min)</td>
-<td>Instructor overview: types of AI (supervised ML, CV, generative AI). Teaser for each module with short visual clips — Naadam footage, an image classifier, a chatbot in action.</td>
-<td>0:15–0:35</td>
-<td>Keep slides visual</td>
+<td>What is AI? (15 min)</td>
+<td>Slides: definition (learning from examples vs.&nbsp;following rules), why AI is having its moment now (data + compute + algorithms), and what AI is NOT (not magic, not conscious, not always right, not one thing).</td>
+<td>0:10–0:25</td>
+<td>Dispel myths early</td>
 </tr>
 <tr class="odd">
-<td>“Is It AI?” Activity (20 min)</td>
-<td>Groups sort 20 tech examples (cards) into: AI / Not AI / Not Sure. Debrief as class.</td>
-<td>0:35–0:55</td>
-<td>Physical or Jamboard cards</td>
+<td>“Does It Use AI?” (15 min)</td>
+<td>Class vote on 7 tech examples (AI Chatbot, Fitness Tracker, Calculator, Washing Machine, Music App, Phone Camera, Video Game) — show of hands or Mentimeter. Instructor reveals and explains each.</td>
+<td>0:25–0:40</td>
+<td>Encourage debate on “maybe” cases</td>
 </tr>
 <tr class="even">
-<td>Mini-Project (35 min)</td>
-<td>“My AI Map”: students sketch a personal diagram of AI they use, categorized by type. Add one AI they wish existed.</td>
-<td>0:55–1:30</td>
-<td>Paper or slides</td>
+<td>AI All Around You (10 min)</td>
+<td>Students add their own examples to a Miro board with three pre-labeled zones: Supervised ML / Computer Vision / Generative AI. Reinforces the classification before the deep-dive.</td>
+<td>0:40–0:50</td>
+<td>Miro board set up in advance</td>
 </tr>
 <tr class="odd">
-<td>Share &amp; Preview (20 min)</td>
-<td>3–4 volunteers share maps. Instructor reveals the 10-day journey — the “syllabus reveal.” Preview tomorrow’s data deep-dive.</td>
-<td>1:30–1:50</td>
-<td></td>
+<td>Types of AI (20 min)</td>
+<td>Detailed slides: supervised ML (regression and classification with forward references to Days 2–5), computer vision (pixels → CNNs → applications), generative AI (LLMs and diffusion models). Ends with the two-week journey map.</td>
+<td>0:50–1:10</td>
+<td>10 slides; keep pace brisk</td>
 </tr>
 <tr class="even">
-<td>Exit Ticket (10 min)</td>
-<td>One thing I knew · one thing I learned · one question I have. Collect for planning.</td>
-<td>1:50–2:00</td>
+<td>Introducing Notebooks (10 min)</td>
+<td>What a notebook is, brief history of Jupyter, anatomy of a notebook cell, intro to Jupyter-K12.</td>
+<td>1:10–1:20</td>
+<td>4 slides</td>
+</tr>
+<tr class="odd">
+<td>Hello World + API Key Setup (20 min)</td>
+<td>Instructor demos the Hello World notebook live, then students open it and run each cell themselves. While students finish, distribute and enter OpenRouter API keys — students paste their key into the platform environment settings.</td>
+<td>1:20–1:40</td>
+<td>Pair struggling students</td>
+</tr>
+<tr class="even">
+<td>AI in Action Notebook (15 min)</td>
+<td>Students open the AI in Action notebook and work through three sections: spam detector (Supervised ML), live webcam object detection (Computer Vision), and generative Q&amp;A with style control (Generative AI). Each section ends with a short challenge. Notebook CFU questions wrap up.</td>
+<td>1:40–1:55</td>
+<td>Part 3 requires API key from previous step</td>
+</tr>
+<tr class="odd">
+<td>Wrap-Up &amp; Preview (5 min)</td>
+<td>Instructor highlights one surprising moment from the room. Preview: tomorrow we dig into a real Mongolian air quality dataset.</td>
+<td>1:55–2:00</td>
 <td></td>
 </tr>
 </tbody>
@@ -820,9 +844,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="resources-tools" class="level4">
 <h4 class="anchored" data-anchor-id="resources-tools">Resources &amp; Tools</h4>
 <ul>
-<li>Miro</li>
-<li>“Is it AI?” card set (printable or digital)</li>
-<li>Short video clips from Code.org (~2 min)</li>
+<li>Miro board with three pre-labeled zones (Supervised ML / Computer Vision / Generative AI)</li>
+<li>Mentimeter or show-of-hands for “Does It Use AI?” votes</li>
+<li>Jupyter-K12 platform</li>
+<li>Hello World notebook (<code>labs/01/notebooks/hello_world.ipynb</code>)</li>
+<li>AI in Action notebook (<code>labs/01/notebooks/ai_in_action.ipynb</code>)</li>
+<li>OpenRouter API keys (one per student, distributed before class)</li>
 </ul>
 <hr>
 </section>

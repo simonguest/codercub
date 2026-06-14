@@ -997,8 +997,8 @@ Simon Guest
 </div>
 
 </section>
-<section id="about-me" class="title-slide slide level1 center">
-<h1>About Me</h1>
+<section id="who-am-i" class="title-slide slide level1 center">
+<h1>Who am I?</h1>
 <ul>
 <li class="fragment">TBD</li>
 </ul>
@@ -1012,19 +1012,41 @@ Simon Guest
 <section id="what-is-artificial-intelligence-ai-1" class="slide level2">
 <h2>What is Artificial Intelligence (AI)?</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">Software that <strong>learns from examples</strong>, rather than following rules someone wrote</li>
+<li class="fragment">Traditional software: you write the rules → computer follows them</li>
+<li class="fragment">AI: you provide data and outcomes → computer learns the rules itself</li>
+<li class="fragment">The definition keeps shifting as AI improves — that’s part of what makes it interesting</li>
+</ul>
+</section>
+<section id="why-is-ai-having-its-moment-right-now" class="slide level2">
+<h2>Why is AI Having Its Moment <em>Right Now</em>?</h2>
+<p>Three things came together at the same time:</p>
+<ul>
+<li class="fragment"><strong>Data</strong> — the internet created training data at a scale that never existed before</li>
+<li class="fragment"><strong>Compute</strong> — GPUs made it feasible to train on that data</li>
+<li class="fragment"><strong>Algorithms</strong> — breakthroughs in neural network design unlocked new capabilities</li>
+</ul>
+<p>None of these alone was enough — all three arriving together unlocked the current wave</p>
+</section>
+<section id="what-ai-is-not" class="slide level2">
+<h2>What AI is NOT</h2>
+<ul>
+<li class="fragment"><strong>Not magic</strong> — it’s math and statistics applied to data</li>
+<li class="fragment"><strong>Not conscious</strong> — it has no understanding, only pattern matching</li>
+<li class="fragment"><strong>Not always right</strong> — it fails in predictable and unpredictable ways</li>
+<li class="fragment"><strong>Not one thing</strong> — it’s a family of very different techniques</li>
 </ul>
 </section></section>
-<section id="does-it-use-ai" class="title-slide slide level1 center">
-<h1>Does It Use AI?</h1>
+<section id="does-it-use-ai-yes-no-possibly" class="title-slide slide level1 center">
+<h1>Does It Use AI? (Yes, no, possibly)</h1>
 <ul>
-<li class="fragment">Chatbot</li>
+<li class="fragment">AI Chatbot</li>
 <li class="fragment">Fitness Tracker</li>
 <li class="fragment">Calculator</li>
 <li class="fragment">Washing Machine</li>
 <li class="fragment">Music App</li>
 <li class="fragment">Mobile Phone Camera</li>
-<li class="fragment">Gaming Console</li>
+<li class="fragment">Video Game</li>
 </ul>
 </section>
 
@@ -1042,19 +1064,154 @@ Simon Guest
 <section id="types-of-ai-1" class="slide level2">
 <h2>Types of AI</h2>
 <ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Regression</li>
-<li class="fragment">Classification</li>
-<li class="fragment">Neural Network</li>
-<li class="fragment">LLM (Large Language Model)</li>
-<li class="fragment">CV (Computer Vision)</li>
+<li class="fragment">Supervised ML
+<ul>
+<li class="fragment">Regression (predict a number)</li>
+<li class="fragment">Classification (predict a category)</li>
+</ul></li>
+<li class="fragment">Computer Vision
+<ul>
+<li class="fragment">CNNs</li>
+</ul></li>
+<li class="fragment">Generative AI
+<ul>
+<li class="fragment">LLMs</li>
+<li class="fragment">Diffusion Models</li>
+</ul></li>
 </ul>
 </section>
-<section id="types-of-ai-2" class="slide level2">
-<h2>Types of AI</h2>
+<section id="supervised-ml-learning-from-examples" class="slide level2">
+<h2>Supervised ML: Learning from Examples</h2>
 <ul>
-<li class="fragment">TBD: Single slide for each type</li>
+<li class="fragment">Traditional programming: write rules → computer follows them</li>
+<li class="fragment">Machine learning: show examples → computer <strong>learns</strong> the rules</li>
+<li class="fragment">We label the data; the model finds the pattern</li>
 </ul>
+<blockquote>
+<p>Like teaching a child to recognise cats — not by defining rules, but by showing 1,000 photos</p>
+</blockquote>
+</section>
+<section id="regression-predicting-a-number" class="slide level2">
+<h2>Regression: Predicting a Number</h2>
+<ul>
+<li class="fragment">The model outputs a <strong>continuous value</strong></li>
+<li class="fragment">Predict tomorrow’s temperature from today’s weather</li>
+<li class="fragment">Predict house price from size and location</li>
+<li class="fragment">Predict livestock mortality from drought and temperature</li>
+<li class="fragment">We’ll build one of these on <strong>Day 3</strong> with real Mongolian data</li>
+</ul>
+</section>
+<section id="classification-predicting-a-category" class="slide level2">
+<h2>Classification: Predicting a Category</h2>
+<ul>
+<li class="fragment">The model outputs a <strong>label</strong> from a fixed set</li>
+<li class="fragment">Spam or not spam?</li>
+<li class="fragment">Cat, dog, or bird?</li>
+<li class="fragment">Walking, still, or waving?</li>
+<li class="fragment">We’ll build a gesture classifier on <strong>Days 4–5</strong> using a micro:bit</li>
+</ul>
+</section>
+<section id="computer-vision-how-computers-see" class="slide level2">
+<h2>Computer Vision: How Computers See</h2>
+<ul>
+<li class="fragment">A digital image is just a grid of numbers (pixels)</li>
+<li class="fragment">Each pixel has a value: 0 (black) → 255 (white)</li>
+<li class="fragment">A 640×480 photo = <strong>307,200 numbers</strong></li>
+<li class="fragment">The computer processes grids of numbers — it has never truly “seen” anything</li>
+</ul>
+</section>
+<section id="convolutional-neural-networks-cnns" class="slide level2">
+<h2>Convolutional Neural Networks (CNNs)</h2>
+<p>A CNN learns to see in stages:</p>
+<ol type="1">
+<li class="fragment"><strong>Edges</strong> — detect lines and boundaries</li>
+<li class="fragment"><strong>Shapes</strong> — combine edges into curves and corners</li>
+<li class="fragment"><strong>Objects</strong> — combine shapes into recognisable things</li>
+</ol>
+<p>No one programs these steps — the network learns them from data</p>
+</section>
+<section id="computer-vision-all-around-you" class="slide level2">
+<h2>Computer Vision All Around You</h2>
+<ul>
+<li class="fragment">Face unlock on your phone</li>
+<li class="fragment">Photo search (“find all photos with a dog”)</li>
+<li class="fragment">Self-driving cars detecting pedestrians</li>
+<li class="fragment">Medical imaging: spotting tumours in X-rays</li>
+<li class="fragment">We’ll build our own CV applications on <strong>Day 6</strong></li>
+</ul>
+</section>
+<section id="generative-ai-creating-not-just-predicting" class="slide level2">
+<h2>Generative AI: Creating, Not Just Predicting</h2>
+<ul>
+<li class="fragment">Supervised ML <strong>predicts</strong> from existing data</li>
+<li class="fragment">Generative AI <strong>creates</strong> new content
+<ul>
+<li class="fragment">Text, images, audio, video, code</li>
+</ul></li>
+<li class="fragment">Trained on vast amounts of human-created work</li>
+<li class="fragment">Two main types: <strong>LLMs</strong> and <strong>Diffusion Models</strong></li>
+</ul>
+</section>
+<section id="large-language-models-llms" class="slide level2">
+<h2>Large Language Models (LLMs)</h2>
+<ul>
+<li class="fragment">Trained to predict: <em>what word comes next?</em></li>
+<li class="fragment">Do this billions of times on internet-scale text</li>
+<li class="fragment">Emergent result: answer questions, write code, explain concepts</li>
+<li class="fragment">Examples: ChatGPT, Claude, Gemini</li>
+</ul>
+<blockquote>
+<p>“The capital of Mongolia is ___”</p>
+</blockquote>
+</section>
+<section id="diffusion-models-from-noise-to-image" class="slide level2">
+<h2>Diffusion Models: From Noise to Image</h2>
+<ul>
+<li class="fragment">Start with random noise (static)</li>
+<li class="fragment">Repeatedly <strong>denoise</strong>, guided by a text description</li>
+<li class="fragment">After ~50 steps: a photorealistic image</li>
+<li class="fragment">Examples: DALL·E, Midjourney, Stable Diffusion</li>
+<li class="fragment">We’ll generate images on <strong>Day 9</strong></li>
+</ul>
+</section>
+<section id="your-two-week-ai-journey" class="slide level2">
+<h2>Your Two-Week AI Journey</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Days</th>
+<th>Topic</th>
+<th>What You’ll Build</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Days 2–3</td>
+<td>Supervised ML</td>
+<td>Data analysis &amp; regression</td>
+</tr>
+<tr class="even">
+<td>Days 4–5</td>
+<td>Supervised ML</td>
+<td>Gesture classifier on micro:bit</td>
+</tr>
+<tr class="odd">
+<td>Days 6–7</td>
+<td>Computer Vision</td>
+<td>CV mini-project</td>
+</tr>
+<tr class="even">
+<td>Days 8–9</td>
+<td>Generative AI</td>
+<td>Chatbot + image generation</td>
+</tr>
+<tr class="odd">
+<td>Day 10</td>
+<td>Capstone</td>
+<td>Your own AI project</td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section>
 <section id="introducing-notebooks" class="title-slide slide level1 center">
@@ -1123,7 +1280,7 @@ Simon Guest
 <li class="fragment">Easy to setup; no accounts required</li>
 <li class="fragment">Extra features for in-classroom use</li>
 <li class="fragment">Created by me :)</li>
-<li class="fragment">You are the first students to use this!</li>
+<li class="fragment">You are the first students in the world to use this!</li>
 </ul>
 </section></section>
 <section id="demo" class="title-slide slide level1 center">
@@ -1135,6 +1292,15 @@ Simon Guest
 <h1>Hands-On</h1>
 <p>Open the “Hello World” Notebook</p>
 <p>Run and edit the code cells. Observe the outputs.</p>
+</section>
+
+<section id="lets-configure-your-openrouter_api_key-setting" class="title-slide slide level1 center">
+<h1>Let’s Configure your OPENROUTER_API_KEY setting!</h1>
+
+</section>
+
+<section id="ai-in-action-notebook" class="title-slide slide level1 center">
+<h1>AI in Action Notebook</h1>
 
 
 </section>

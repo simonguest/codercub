@@ -1000,32 +1000,80 @@ Simon Guest
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD - cover everything that we did yesterday</li>
 </ul>
 </section>
-<section id="using-your-model-in-code" class="slide level2">
-<h2>Using your model in code</h2>
+<section id="plan-for-today" class="slide level2">
+<h2>Plan for Today</h2>
 <ul>
-<li class="fragment">Reload the project</li>
-<li class="fragment">Edit in MakeCode</li>
-<li class="fragment">Go through detecting movement / playing sounds/showing icon</li>
-<li class="fragment">How to then download everything on to running hardware</li>
+<li class="fragment">Take our trained models from yesterday and make a mini app from it!</li>
 </ul>
 </section>
-<section id="hands-on" class="slide level2">
-<h2>Hands-on</h2>
+<section id="steps" class="slide level2">
+<h2>Steps</h2>
 <ul>
-<li class="fragment">Try this</li>
+<li class="fragment">Get back into your same pairs</li>
+<li class="fragment">Use the same laptop as you did yesterday and go to <a href="https://createai.microbit.org">createai.microbit.org</a></li>
+<li class="fragment">You’ll have to connect again. Remember to use the micro:bit radio option.</li>
+<li class="fragment">And the first micro:bit to connect is the wearable</li>
+<li class="fragment">After connecting, a quick test to make sure that the actions are still being recognized</li>
+<li class="fragment">(Pause for the class to catchup)</li>
+</ul>
+</section>
+<section id="steps-1" class="slide level2">
+<h2>Steps</h2>
+<ul>
+<li class="fragment">Click “Edit in MakeCode”</li>
+<li class="fragment">In MakeCode, switch to JavaScript and then drop-down button for Python</li>
+<li class="fragment">You’ll have something like the following:</li>
+</ul>
+<pre><code>def on_on_start():
+    basic.show_icon(IconNames.HOUSE)
+ml.on_start(ml.event.waving, on_on_start)
+
+def on_on_start2():
+    basic.show_icon(IconNames.DUCK)
+ml.on_start(ml.event.writing, on_on_start2)
+
+# ...and so on for other actions</code></pre>
+<ul>
+<li class="fragment">This is all running in a simulator as you code</li>
+<li class="fragment">Try selecting the ML event on the left. Does the icon change?</li>
+<li class="fragment">Try adding some additional code:</li>
+</ul>
+<pre><code>def on_on_start2():
+    basic.show_icon(IconNames.DUCK)
+    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)
+ml.on_start(ml.event.writing, on_on_start2)</code></pre>
+</section>
+<section id="steps-2" class="slide level2">
+<h2>Steps</h2>
+<ul>
+<li class="fragment">When you want to test it on your micro:bit…</li>
+<li class="fragment">Click on the download button</li>
+<li class="fragment">Follow the prompts to disconnect the radio micro:bit</li>
+<li class="fragment">Plug in the wearable micro:bit. You can keep the battery connected.</li>
+<li class="fragment">Wait for the model to download</li>
+<li class="fragment">Disconnect the wearable from the USB</li>
+<li class="fragment">Test your code!</li>
 </ul>
 </section>
 <section id="project-time" class="slide level2">
 <h2>Project Time</h2>
 <ul>
-<li class="fragment">Rest of class will be free-form project</li>
+<li class="fragment">Next hour will be free-form project!</li>
 <li class="fragment">Ideas of what you can create:
 <ul>
-<li class="fragment">Exercise app</li>
-<li class="fragment">Light switch clapper</li>
+<li class="fragment">Exercise app - count the number of arm raises
+<ul>
+<li class="fragment">Display on the LED when you press a button</li>
+</ul></li>
+<li class="fragment">Light clapper - clap to switch on / off the LEDs or play a sound</li>
+<li class="fragment">Safe driving app - detect between holding the steering wheel and texting on your phone</li>
+<li class="fragment">(Advanced) Create a 2nd project in Makecode and develop a radio app
+<ul>
+<li class="fragment">Movements from the wearable get displayed on the laptop</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
@@ -1033,6 +1081,7 @@ Simon Guest
 <h2>Reflect and Share</h2>
 <ul>
 <li class="fragment">What did you build?</li>
+<li class="fragment">How did you find the experience?</li>
 </ul>
 
 
