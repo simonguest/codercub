@@ -1,0 +1,7 @@
+# Future Intelligence Lab
+
+## About
+
+This site contains a collection of slides, code, and other resources for the Future Intelligence Lab using Python and AI.
+
+Use the left-hand side bar to select the day and activity.

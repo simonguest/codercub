@@ -19,7 +19,7 @@ website:
     logo: theme/codercub.jpg
     left:
       - text: "Future Intelligence Lab"
-        href: index.qmd
+        href: labs/index.qmd
       - text: "Learning Python in 3D"
         href: cmu/index.qmd
   sidebar:
@@ -133,6 +133,12 @@ website:
             - text: "Slides"
               href: labs/09/slides.qmd
               target: blank
+            - section: "Notebooks"
+              contents:
+                - text: "image_generation.ipynb"
+                  href: labs/09/notebooks/image_generation.ipynb
+                - text: "vlm.ipynb"
+                  href: labs/09/notebooks/vlm.ipynb
         - section: "Day 10"
           contents:
             - text: "Slides"
