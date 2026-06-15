@@ -2780,7 +2780,7 @@
     "href": "labs/01/slides.html#supervised-ml-machine-learning",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Supervised ML (Machine Learning)",
-    "text": "Supervised ML (Machine Learning)\n\nTraditional programming\n\nWrite rules → computer follows them\n\nMachine learning\n\nShow examples → computer learns the rules\n\nWhat does Supervised mean?\n\nWe label the data; the discovers finds the pattern",
+    "text": "Supervised ML (Machine Learning)\n\nTraditional programming\n\nWrite rules → computer follows them\n\nMachine learning\n\nShow examples → computer learns the rules\n\nWhat does Supervised mean?\n\nWe label the data; the AI model discovers finds the pattern",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2804,6 +2804,42 @@
     "href": "labs/01/slides.html#regression-predicting-a-number",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Regression: Predicting a Number",
+    "text": "Regression: Predicting a Number\n\n\n10 → 20 → 30 → 40 → ?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#regression-predicting-a-number-1",
+    "href": "labs/01/slides.html#regression-predicting-a-number-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Regression: Predicting a Number",
+    "text": "Regression: Predicting a Number\n\n\n1 → 2 → 1 → 3 → ?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#regression-predicting-a-number-2",
+    "href": "labs/01/slides.html#regression-predicting-a-number-2",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Regression: Predicting a Number",
+    "text": "Regression: Predicting a Number\n\n\n7 → 2 → 0 → 5 → ?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#regression-predicting-a-number-3",
+    "href": "labs/01/slides.html#regression-predicting-a-number-3",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Regression: Predicting a Number",
     "text": "Regression: Predicting a Number\n\nThe model outputs a continuous value\nPredict tomorrow’s temperature from today’s weather\nPredict house price from size and location\nPredict livestock mortality from drought and temperature\nWe’ll build one of these on Day 3 with real Mongolian data",
     "crumbs": [
       "Future Intelligence Lab",
@@ -2814,6 +2850,18 @@
   {
     "objectID": "labs/01/slides.html#classification-predicting-a-category",
     "href": "labs/01/slides.html#classification-predicting-a-category",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Classification: Predicting a Category",
+    "text": "Classification: Predicting a Category\n\n5°C → 🧥\n\n\n18°C → 👔\n\n\n30°C → 👕\n\n\n12°C → ?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#classification-predicting-a-category-1",
+    "href": "labs/01/slides.html#classification-predicting-a-category-1",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Classification: Predicting a Category",
     "text": "Classification: Predicting a Category\n\nThe model outputs a label from a fixed set\nSpam or not spam?\nCat, dog, or bird?\nWalking, still, or waving?\nWe’ll build a gesture classifier on Days 4–5 using a micro:bit",
@@ -2828,7 +2876,7 @@
     "href": "labs/01/slides.html#computer-vision-how-computers-see",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Computer Vision: How Computers See",
-    "text": "Computer Vision: How Computers See\n\nA digital image is just a grid of numbers (pixels)\nEach pixel has a value: 0 (black) → 255 (white)\nA 640×480 photo = 307,200 numbers\nThe computer processes grids of numbers — it has never truly “seen” anything",
+    "text": "Computer Vision: How Computers See\n\n\n\nA digital image is just a grid of numbers (pixels)\nEach pixel has a value: 0 (black) → 255 (white)\nA 640×480 photo = 307,200 numbers\nThe computer processes grids of numbers — it has never truly “seen” anything",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2900,19 +2948,7 @@
     "href": "labs/01/slides.html#what-is-a-notebook",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nCode that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/01/slides.html#a-brief-history-of-notebooks",
-    "href": "labs/01/slides.html#a-brief-history-of-notebooks",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nPython code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational story\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nNow, a fundamental tool for working with AI",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2936,7 +2972,19 @@
     "href": "labs/01/slides.html#introducing-jupyter-k12",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Introducing Jupyter-K12",
-    "text": "Introducing Jupyter-K12\n\nNotebook platform designed for K-12 students\nEasy to setup; no accounts required\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students in the world to use this!",
+    "text": "Introducing Jupyter-K12\n\nUses the Jupyter document format\nNotebook platform designed for students\nExtra features for in-classroom use\nCreated by me :)\nYou are the first students in the world to use this!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#tomorrow",
+    "href": "labs/01/slides.html#tomorrow",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nUse a lot of data in Python!\npandas and matplotlib\nUsing weather data from Ulaanbaatar",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
