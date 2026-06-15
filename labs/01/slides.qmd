@@ -217,15 +217,37 @@ Put them in the NO/MAYBE/YES categories in this board:
 - Machine learning
    - Show examples → computer **learns** the rules
 - What does Supervised mean?
-  - We label the data; the discovers finds the pattern
-
-***
+  - We label the data; the AI model discovers finds the pattern
 
 ## Supervised ML (Machine Learning)
 
 - Two types of Supervised ML
   - **Regression**
   - **Classification**
+
+## Regression: Predicting a Number
+
+::: {style="display:flex; align-items:center; justify-content:center; height:70% "}
+::: {.number-sequence}
+[10]{} [→]{.arrow} [20]{} [→]{.arrow} [30]{} [→]{.arrow} [40]{} [→]{.arrow} [?]{.unknown}
+:::
+:::
+
+## Regression: Predicting a Number
+
+::: {style="display:flex; align-items:center; justify-content:center; height:70% "}
+::: {.number-sequence}
+[1]{} [→]{.arrow} [2]{} [→]{.arrow} [1]{} [→]{.arrow} [3]{} [→]{.arrow} [?]{.unknown}
+:::
+:::
+
+## Regression: Predicting a Number
+
+::: {style="display:flex; align-items:center; justify-content:center; height:70% "}
+::: {.number-sequence}
+[7]{} [→]{.arrow} [2]{} [→]{.arrow} [0]{} [→]{.arrow} [5]{} [→]{.arrow} [?]{.unknown}
+:::
+:::
 
 ## Regression: Predicting a Number
 
@@ -237,6 +259,21 @@ Put them in the NO/MAYBE/YES categories in this board:
 
 ## Classification: Predicting a Category
 
+::: {.number-sequence}
+[5°C]{} [→]{.arrow} [🧥]{}
+:::
+::: {.number-sequence}
+[18°C]{} [→]{.arrow} [👔]{}
+:::
+::: {.number-sequence}
+[30°C]{} [→]{.arrow} [👕]{}
+:::
+::: {.number-sequence}
+[12°C]{} [→]{.arrow} [?]{.unknown}
+:::
+
+## Classification: Predicting a Category
+
 - The model outputs a **label** from a fixed set
 - Spam or not spam?
 - Cat, dog, or bird?
@@ -245,10 +282,17 @@ Put them in the NO/MAYBE/YES categories in this board:
 
 ## Computer Vision: How Computers See
 
+:::: {.columns}
+::: {.column width="50%"}
 - A digital image is just a grid of numbers (pixels)
 - Each pixel has a value: 0 (black) → 255 (white)
 - A 640×480 photo = **307,200 numbers**
 - The computer processes grids of numbers — it has never truly "seen" anything
+:::
+::: {.column width="50%"}
+![](./images/cv_pixels.png)
+:::
+::::
 
 ## Computer Vision All Around You
 
@@ -292,31 +336,20 @@ Put them in the NO/MAYBE/YES categories in this board:
 | Days 8–9 | Generative AI | Chatbot + image generation |
 | Day 10 | Capstone | Your own AI project |
 
+# *"How are we going to create all of this in Python?"*
 
 # Introducing Notebooks
 
 ## What is a Notebook?
 
 - An **interactive document** that combines:
-  - Code that can be executed
+  - Python code that can be executed
   - Rich text explanations (markdown)
   - Visualizations and outputs
 - Think of it as a **computational story**
   - Tell a story with code, data, and explanations
 - Originally designed for data science and research
 - Now, a fundamental tool for working with AI
-
-## A Brief History of Notebooks
-
-- **2011**: IPython Notebook project begins
-  - Interactive Python shell → web-based notebook
-- **2014**: Renamed to **Jupyter** (Julia, Python, R)
-  - Now supports 40+ programming languages
-  - Python is most popular by far
-- **2017**: Google launches **Colab**
-  - Free cloud-based Jupyter notebooks
-  - Free access to GPUs and TPUs
-- **Today**: Industry standard for ML/AI development
 
 ## Anatomy of a Python Notebook
 
@@ -330,22 +363,56 @@ Put them in the NO/MAYBE/YES categories in this board:
 
 ## Introducing Jupyter-K12
 
-- Notebook platform designed for K-12 students
-- Easy to setup; no accounts required
+- Uses the Jupyter document format
+- Notebook platform designed for students
 - Extra features for in-classroom use
 - Created by me :)
 - You are the first students in the world to use this!
 
 # Demo
 
-"Hello World" Notebook on Jupyter-K12
+["Hello World" Notebook](https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/01/notebooks/hello_world.ipynb){.external target="blank"} on Jupyter-K12
 
 # Hands-On
 
-Open the "Hello World" Notebook
+Open the Curriculum Page 
 
-Run and edit the code cells. Observe the outputs.
+[https://simonguest.github.io/codercub](https://simonguest.github.io/codercub)
 
-# Let's Configure your OPENROUTER_API_KEY setting!
+Find the "Hello World" Notebook in Day 1
 
-# AI in Action Notebook
+Click on this button: <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K12"/>
+
+Run all of the code in the notebook
+
+# Demo
+
+Configuring the OPENROUTER_API_KEY
+
+# Hands-On
+
+Go into Settings
+
+Scan QR Code
+
+Make sure that OPENROUTER_API_KEY is set
+
+# Demo
+
+["AI in Action" Notebook](https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/01/notebooks/ai_in_action.ipynb){.external target="blank"} on Jupyter-K12
+
+# Hands-On
+
+Open the "AI in Action" Notebook
+
+Run through all of the cells!
+
+# Discussion
+
+What worked? What didn't work?
+
+## Tomorrow
+
+- Use a lot of data in Python!
+- **pandas** and **matplotlib**
+- Using weather data from Ulaanbaatar

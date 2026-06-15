@@ -367,6 +367,38 @@ $headingMargin: 0 0 20px 0;
 }
 
 
+// ── Number sequence (regression intro slides) ────────────────────────────────
+.number-sequence {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 1.75em;
+  margin-top: 0.5em;
+
+  span {
+    background: rgba(66, 153, 225, 0.15);
+    border: 2px solid #4299e1;
+    border-radius: 0.4em;
+    padding: 0.2em 0.5em;
+  }
+
+  .unknown {
+    background: rgba(192, 57, 43, 0.15);
+    border-color: #c0392b;
+    color: #e74c3c;
+  }
+
+  .arrow {
+    background: none;
+    border: none;
+    color: #6b7280;
+    font-size: 0.7em;
+    padding: 0;
+  }
+}
+
+
 // ── Voting pills (Does It Use AI? slides) ─────────────────────────────────────
 .voting-pills {
   display: flex;
