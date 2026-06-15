@@ -1,0 +1,13 @@
+month,avg_temp_c,precipitation_mm,sunny_days
+Jan,0,94,8
+Feb,1,88,9
+Mar,6,109,10
+Apr,12,102,11
+May,18,104,13
+Jun,23,84,12
+Jul,26,106,12
+Aug,25,109,12
+Sep,21,97,11
+Oct,15,89,11
+Nov,9,89,9
+Dec,3,104,8
