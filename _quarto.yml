@@ -137,8 +137,12 @@ website:
               contents:
                 - text: "image_generation.ipynb"
                   href: labs/09/notebooks/image_generation.ipynb
+                - text: "image_to_image.ipynb"
+                  href: labs/09/notebooks/image_to_image.ipynb
                 - text: "vlm.ipynb"
                   href: labs/09/notebooks/vlm.ipynb
+                - text: "vlm_reasoning.ipynb"
+                  href: labs/09/notebooks/vlm_reasoning.ipynb
         - section: "Day 10"
           contents:
             - text: "Slides"
