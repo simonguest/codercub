@@ -2552,7 +2552,7 @@
     "href": "labs/01/slides.html#what-is-artificial-intelligence-ai-1",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "What is Artificial Intelligence (AI)?",
-    "text": "What is Artificial Intelligence (AI)?\n\nSoftware that learns from examples, rather than following rules someone wrote\nTraditional software: you write the rules → computer follows them\nAI: you provide data and outcomes → computer learns the rules itself\nThe definition keeps shifting as AI improves — that’s part of what makes it interesting",
+    "text": "What is Artificial Intelligence (AI)?\n\nTraditional software: you write the rules → computer follows them\nAI: Software that learns from examples, rather than following rules someone wrote\nThe definition keeps shifting as AI improves — that’s part of what makes it interesting",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2560,11 +2560,11 @@
     ]
   },
   {
-    "objectID": "labs/01/slides.html#why-is-ai-having-its-moment-right-now",
-    "href": "labs/01/slides.html#why-is-ai-having-its-moment-right-now",
+    "objectID": "labs/01/slides.html#why-is-ai-popular-right-now",
+    "href": "labs/01/slides.html#why-is-ai-popular-right-now",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Why is AI Having Its Moment Right Now?",
-    "text": "Why is AI Having Its Moment Right Now?\nThree things came together at the same time:\n\nData — the internet created training data at a scale that never existed before\nCompute — GPUs made it feasible to train on that data\nAlgorithms — breakthroughs in neural network design unlocked new capabilities\n\nNone of these alone was enough — all three arriving together unlocked the current wave",
+    "section": "Why is AI Popular Right Now?",
+    "text": "Why is AI Popular Right Now?\nThree things came together at the same time:\n\nData — the internet created training data at a scale that never existed before\nCompute — GPUs made it feasible to train on that data\nAlgorithms — breakthroughs in neural network design unlocked new capabilities",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2584,11 +2584,11 @@
     ]
   },
   {
-    "objectID": "labs/01/slides.html#types-of-ai-1",
-    "href": "labs/01/slides.html#types-of-ai-1",
+    "objectID": "labs/01/slides.html#does-it-use-ai-1",
+    "href": "labs/01/slides.html#does-it-use-ai-1",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Types of AI",
-    "text": "Types of AI\n\nSupervised ML\n\nRegression (predict a number)\nClassification (predict a category)\n\nComputer Vision\n\nCNNs\n\nGenerative AI\n\nLLMs\nDiffusion Models",
+    "section": "Does It Use AI?",
+    "text": "Does It Use AI?\n\n?\n\n\n❌ No 🤔 Maybe ✅ Yes",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2596,11 +2596,203 @@
     ]
   },
   {
-    "objectID": "labs/01/slides.html#supervised-ml-learning-from-examples",
-    "href": "labs/01/slides.html#supervised-ml-learning-from-examples",
+    "objectID": "labs/01/slides.html#chatgpt-does-it-use-ai",
+    "href": "labs/01/slides.html#chatgpt-does-it-use-ai",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Supervised ML: Learning from Examples",
-    "text": "Supervised ML: Learning from Examples\n\nTraditional programming: write rules → computer follows them\nMachine learning: show examples → computer learns the rules\nWe label the data; the model finds the pattern\n\n\nLike teaching a child to recognise cats — not by defining rules, but by showing 1,000 photos",
+    "section": "ChatGPT: Does It Use AI?",
+    "text": "ChatGPT: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#chatgpt-does-it-use-ai-1",
+    "href": "labs/01/slides.html#chatgpt-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "ChatGPT: Does It Use AI?",
+    "text": "ChatGPT: Does It Use AI?\n\n\n\n\n✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#fitness-tracker-does-it-use-ai",
+    "href": "labs/01/slides.html#fitness-tracker-does-it-use-ai",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Fitness Tracker: Does It Use AI?",
+    "text": "Fitness Tracker: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#fitness-tracker-does-it-use-ai-1",
+    "href": "labs/01/slides.html#fitness-tracker-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Fitness Tracker: Does It Use AI?",
+    "text": "Fitness Tracker: Does It Use AI?\n\n\n\n\n✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#calculator-does-it-use-ai",
+    "href": "labs/01/slides.html#calculator-does-it-use-ai",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Calculator: Does It Use AI?",
+    "text": "Calculator: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#calculator-does-it-use-ai-1",
+    "href": "labs/01/slides.html#calculator-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Calculator: Does It Use AI?",
+    "text": "Calculator: Does It Use AI?\n\n\n\n\n❌ No",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#washing-machine-does-it-use-ai",
+    "href": "labs/01/slides.html#washing-machine-does-it-use-ai",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Washing Machine: Does It Use AI?",
+    "text": "Washing Machine: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#washing-machine-does-it-use-ai-1",
+    "href": "labs/01/slides.html#washing-machine-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Washing Machine: Does It Use AI?",
+    "text": "Washing Machine: Does It Use AI?\n\n\n\n\n🤔 Maybe but most often ❌ No",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#music-app-does-it-use-ai",
+    "href": "labs/01/slides.html#music-app-does-it-use-ai",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Music App: Does It Use AI?",
+    "text": "Music App: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#music-app-does-it-use-ai-1",
+    "href": "labs/01/slides.html#music-app-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Music App: Does It Use AI?",
+    "text": "Music App: Does It Use AI?\n\n\n\n\n✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#smartphone-camera-does-it-use-ai",
+    "href": "labs/01/slides.html#smartphone-camera-does-it-use-ai",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Smartphone Camera: Does It Use AI?",
+    "text": "Smartphone Camera: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#smartphone-camera-does-it-use-ai-1",
+    "href": "labs/01/slides.html#smartphone-camera-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Smartphone Camera: Does It Use AI?",
+    "text": "Smartphone Camera: Does It Use AI?\n\n\n\n\n✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#video-game-does-it-use-ai",
+    "href": "labs/01/slides.html#video-game-does-it-use-ai",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Video Game: Does It Use AI?",
+    "text": "Video Game: Does It Use AI?\n\n\n\n\n❌ No 🤔 Maybe ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#video-game-does-it-use-ai-1",
+    "href": "labs/01/slides.html#video-game-does-it-use-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Video Game: Does It Use AI?",
+    "text": "Video Game: Does It Use AI?\n\n\n\n\n🤔 Maybe and often ✅ Yes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#types-of-ai-1",
+    "href": "labs/01/slides.html#types-of-ai-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Types of AI",
+    "text": "Types of AI\n\nThere are many different types of AI\nThree main types over the next two weeks\n\nSupervised ML\nComputer Vision\nGenerative AI",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#supervised-ml-machine-learning",
+    "href": "labs/01/slides.html#supervised-ml-machine-learning",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Supervised ML (Machine Learning)",
+    "text": "Supervised ML (Machine Learning)\n\nTraditional programming\n\nWrite rules → computer follows them\n\nMachine learning\n\nShow examples → computer learns the rules\n\nWhat does Supervised mean?\n\nWe label the data; the discovers finds the pattern",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/01/slides.html#supervised-ml-machine-learning-1",
+    "href": "labs/01/slides.html#supervised-ml-machine-learning-1",
+    "title": "Day 1: Welcome to the Future Intelligence Lab!",
+    "section": "Supervised ML (Machine Learning)",
+    "text": "Supervised ML (Machine Learning)\n\nTwo types of Supervised ML\n\nRegression\nClassification",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2644,23 +2836,11 @@
     ]
   },
   {
-    "objectID": "labs/01/slides.html#convolutional-neural-networks-cnns",
-    "href": "labs/01/slides.html#convolutional-neural-networks-cnns",
-    "title": "Day 1: Welcome to the Future Intelligence Lab!",
-    "section": "Convolutional Neural Networks (CNNs)",
-    "text": "Convolutional Neural Networks (CNNs)\nA CNN learns to see in stages:\n\nEdges — detect lines and boundaries\nShapes — combine edges into curves and corners\nObjects — combine shapes into recognisable things\n\nNo one programs these steps — the network learns them from data",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 1",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "labs/01/slides.html#computer-vision-all-around-you",
     "href": "labs/01/slides.html#computer-vision-all-around-you",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Computer Vision All Around You",
-    "text": "Computer Vision All Around You\n\nFace unlock on your phone\nPhoto search (“find all photos with a dog”)\nSelf-driving cars detecting pedestrians\nMedical imaging: spotting tumours in X-rays\nWe’ll build our own CV applications on Day 6",
+    "text": "Computer Vision All Around You\n\nFace unlock on your phone\nPhoto search (“find all photos with a dog”)\nSelf-driving cars detecting pedestrians\nMedical imaging: spotting tumors in X-rays\nWe’ll build our own CV applications on Day 6",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -2684,7 +2864,7 @@
     "href": "labs/01/slides.html#large-language-models-llms",
     "title": "Day 1: Welcome to the Future Intelligence Lab!",
     "section": "Large Language Models (LLMs)",
-    "text": "Large Language Models (LLMs)\n\nTrained to predict: what word comes next?\nDo this billions of times on internet-scale text\nEmergent result: answer questions, write code, explain concepts\nExamples: ChatGPT, Claude, Gemini\n\n\n“The capital of Mongolia is ___”",
+    "text": "Large Language Models (LLMs)\n\nTrained to predict: what word comes next?\nDo this billions of times on internet-scale text\nEmergent result: answer questions, write code, explain concepts\nExamples: ChatGPT, Claude, Gemini\n\n“The capital of Mongolia is ___”",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
