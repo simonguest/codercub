@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Structured Output: Mesh Generator – Summer of Code 2026</title>
+<title>Image-to-Image Transformation – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/09/slides.html" rel="next">
-<link href="../../../labs/08/notebooks/structured_output_piano.html" rel="prev">
+<link href="../../../labs/09/notebooks/vlm.html" rel="next">
+<link href="../../../labs/09/notebooks/image_generation.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/structured_output_mesh.html">structured_output_mesh.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_to_image.html">image_to_image.ipynb</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -674,7 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/08/notebooks/structured_output_mesh.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/08/notebooks/structured_output_mesh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">structured_output_mesh.ipynb</span></a>
   </div>
 </li>
@@ -714,7 +714,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/09/notebooks/image_to_image.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/09/notebooks/image_to_image.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">image_to_image.ipynb</span></a>
   </div>
 </li>
@@ -761,9 +761,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/structured_output_mesh.html">structured_output_mesh.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_to_image.html">image_to_image.ipynb</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Structured Output: Mesh Generator</h1>
+<h1 class="title">Image-to-Image Transformation</h1>
 </div>
 
 
@@ -780,83 +780,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this example, we use structured output to generate a 3D scene from a text description. The AI returns a structured list of mesh objects that are then rendered in a 3D scene viewer.</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/08/notebooks/structured_output_mesh.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<div id="cc61db5c-c252-4d64-8afe-5c73ac95c7de" class="cell">
+<p>In this notebook, we capture a photo from the camera and use an image model to transform it into a different artistic style. Unlike text-to-image, this model takes an existing image <em>plus</em> a text instruction and uses both to produce the result.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/09/notebooks/image_to_image.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
+<div id="cell-setup" class="cell" data-tags="[&quot;hide_code&quot;]">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Optional, Literal</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Mesh(BaseModel):</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span>: Literal[<span class="st">"Box"</span>, <span class="st">"Sphere"</span>, <span class="st">"Cylinder"</span>]</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    position: <span class="bu">list</span>[<span class="bu">float</span>] <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    rotation: <span class="bu">list</span>[<span class="bu">float</span>] <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    color: Optional[<span class="bu">str</span>] <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    width: <span class="bu">float</span> <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    height: <span class="bu">float</span> <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    depth: <span class="bu">float</span> <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    diameter: <span class="bu">float</span> <span class="op">=</span> <span class="fl">1.0</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SceneDescription(BaseModel):</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    meshes: <span class="bu">list</span>[Mesh]</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>OPENROUTER_API_KEY <span class="op">=</span> os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  api_key<span class="op">=</span>OPENROUTER_API_KEY</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">"openai/gpt-5-nano"</span> <span class="co">#@param ["openai/gpt-5-nano"]</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>SYSTEM_PROMPT <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">You are a 3D scene designer. Generate scenes using simple 3D mesh primitives.</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="st">COORDINATE SYSTEM</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="st">- Y is up. The ground plane is at Y=0.</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="st">- A Box with height H has its center at Y = H/2 to sit flush on the ground.</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="st">- Z increases away from the default camera position (which looks from negative Z).</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="st">SHAPES AND PARAMS</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="st">- Box: width (X), height (Y), depth (Z). Default 1 each.</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="st">- Sphere: diameter. Default 1.</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="st">- Cylinder: diameter, height. Default 1 each. Oriented vertically.</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="st">COLORS</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="st">- RGB Hex code strings: e.g., "#ff0000" for red.</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.beta.chat.completions.parse(</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span>MODEL,</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: SYSTEM_PROMPT},</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Generate me a house in the middle of a forest"</span>},</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  ],</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  response_format<span class="op">=</span>SceneDescription</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Response received"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> base64</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> BytesIO</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_image(image_url):</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> image_url</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> url.startswith(<span class="st">"data:"</span>):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        url <span class="op">=</span> url.split(<span class="st">","</span>, <span class="dv">1</span>)[<span class="dv">1</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    image_data <span class="op">=</span> base64.b64decode(url)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    image <span class="op">=</span> Image.<span class="bu">open</span>(BytesIO(image_data))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    display(image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Let’s take a look at the meshes received by the model:</p>
-<div id="ca159d66-b961-4637-8dd6-a59dc9e3573c" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.parsed.meshes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="step-1-capture-a-photo" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-capture-a-photo">Step 1: Capture a Photo</h2>
+<p>Run the cell below to take a photo using your camera. The countdown gives you 3 seconds to get into position. Point at something interesting — an object, a scene, or yourself.</p>
+<div id="cell-capture" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> canvas.get_width()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> canvas.get_height()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> count <span class="kw">in</span> [<span class="st">"3"</span>, <span class="st">"2"</span>, <span class="st">"1"</span>]:</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">"rgba(0, 0, 0, 0.5)"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, w, h)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">"bold 200px sans-serif"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ctx.text_align <span class="op">=</span> <span class="st">"center"</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    ctx.text_baseline <span class="op">=</span> <span class="st">"middle"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(count, w <span class="op">/</span> <span class="dv">2</span>, h <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    canvas.clear()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> cv.capture_frame(camera)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>camera.stop()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Photo captured!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>And bring these meshes into a 3D scene…</p>
-<div id="9ed6cdd1-5e62-40b5-9779-292bcb8a1761" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+</section>
+<section id="step-2-transform-the-image" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-transform-the-image">Step 2: Transform the Image</h2>
+<p>Now we send the captured photo to an image editing model along with a style instruction. The model uses your photo as a starting point — preserving the content — and renders it in a completely different style.</p>
+<p>Choose a transformation from the dropdown and run the cell.</p>
+<div id="cell-transform" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>TRANSFORMATION <span class="op">=</span> <span class="st">"Transform this into an oil painting"</span> <span class="co">#@param ["Transform this into an oil painting", "Convert this into watercolor art", "Redraw this in anime style", "Make this look like a pencil sketch", "Transform this into pixel art"]</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(scene3d.Sky.CLOUDS)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>scene.import_meshes(response.choices[<span class="dv">0</span>].message.parsed.meshes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Applying: </span><span class="sc">{</span>TRANSFORMATION<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"black-forest-labs/flux.2-klein-4b"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[{</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">"content"</span>: [</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"type"</span>: <span class="st">"image_url"</span>, <span class="st">"image_url"</span>: {<span class="st">"url"</span>: data_url}},</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: TRANSFORMATION}</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    }],</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    extra_body<span class="op">=</span>{<span class="st">"modalities"</span>: [<span class="st">"image"</span>]}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>transformed_url <span class="op">=</span> response.choices[<span class="dv">0</span>].message.images[<span class="dv">0</span>][<span class="st">"image_url"</span>][<span class="st">"url"</span>]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>display_image(transformed_url)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You just used AI to generate a 3D scene from a text description — take a moment to reflect.</p>
-<p>What other scene would you want the AI to generate? Why was structured output necessary for this example — what do you think would have gone wrong if the model had returned a plain text description of the scene instead?</p>
-<p>{ “question_type”: “freeform”, “question”: “What Python library is used to define the Mesh and SceneDescription classes?”, “answer”: “pydantic”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does using <code>Literal[\"Box\", \"Sphere\", \"Cylinder\"]</code> for the <code>type</code> field in the Mesh class do?”, “options”: [ { “key”: “a”, “text”: “It makes the field optional” }, { “key”: “b”, “text”: “It restricts the field to only those three allowed values” }, { “key”: “c”, “text”: “It converts the value to lowercase” }, { “key”: “d”, “text”: “It sets a default value of "Box"” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “The <code>SceneDescription</code> class contains a list of <code>Mesh</code> objects.”, “answer”: “True”, “submitted_answer”: “” }</p>
+<p>Compare the original photo with the transformed version.</p>
+<p>How well did the model preserve the content of your photo while changing the style? What details changed that you didn’t expect? Which transformation did you find most impressive, and why?</p>
+<p>{ “question_type”: “true_false”, “question”: “An image-to-image model takes an existing image as input and can transform it based on a text instruction.”, “answer”: “True”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “What makes image-to-image generation different from text-to-image generation?”, “options”: [ { “key”: “a”, “text”: “It doesn’t use the diffusion process” }, { “key”: “b”, “text”: “It takes an existing image as additional input alongside the text instruction” }, { “key”: “c”, “text”: “It can only produce black and white output” }, { “key”: “d”, “text”: “It generates images much faster” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “freeform”, “question”: “In this notebook, what two inputs are sent to the image model to produce the transformation?”, “answer”: “a photo (image) and a text instruction”, “submitted_answer”: “” }</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1274,13 +1283,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/08/notebooks/structured_output_piano.html" class="pagination-link" aria-label="structured_output_piano.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">structured_output_piano.ipynb</span>
+      <a href="../../../labs/09/notebooks/image_generation.html" class="pagination-link" aria-label="image_generation.ipynb">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">image_generation.ipynb</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/09/slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/09/notebooks/vlm.html" class="pagination-link" aria-label="vlm.ipynb">
+        <span class="nav-page-text">vlm.ipynb</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
