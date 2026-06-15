@@ -15,28 +15,23 @@ format:
 
 ---
 
-# Who am I?
-
-- TBD
+# Hello, I'm Simon!
 
 # What is Artificial Intelligence (AI)?
 
 ## What is Artificial Intelligence (AI)?
 
-- Software that **learns from examples**, rather than following rules someone wrote
 - Traditional software: you write the rules → computer follows them
-- AI: you provide data and outcomes → computer learns the rules itself
+- AI: Software that **learns from examples**, rather than following rules someone wrote
 - The definition keeps shifting as AI improves — that's part of what makes it interesting
 
-## Why is AI Having Its Moment *Right Now*?
+## Why is AI Popular *Right Now*?
 
 Three things came together at the same time:
 
 - **Data** — the internet created training data at a scale that never existed before
 - **Compute** — GPUs made it feasible to train on that data
 - **Algorithms** — breakthroughs in neural network design unlocked new capabilities
-
-None of these alone was enough — all three arriving together unlocked the current wave
 
 ## What AI is NOT
 
@@ -45,19 +40,163 @@ None of these alone was enough — all three arriving together unlocked the curr
 - **Not always right** — it fails in predictable and unpredictable ways
 - **Not one thing** — it's a family of very different techniques
 
-# Does It Use AI? (Yes, no, possibly)
+# Does It Use AI?
 
-- AI Chatbot
-- Fitness Tracker
-- Calculator
-- Washing Machine
-- Music App
-- Mobile Phone Camera
-- Video Game
+## Does It Use AI?
 
-# AI All Around You
+::: {style="text-align:center; font-size:8em"}
+?
+:::
 
-What are the different types of AI that you have experienced?
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **ChatGPT:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/chatgpt.png){style="width:40%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **ChatGPT:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/chatgpt.png){style="width:40%; margin:0"}
+:::
+
+::: {.voting-pills}
+[✅ Yes]{.yes}
+:::
+
+## **Fitness Tracker:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/fitness_tracker.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **Fitness Tracker:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/fitness_tracker.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[✅ Yes]{.yes}
+:::
+
+## **Calculator:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/calculator.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **Calculator:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/calculator.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no}
+:::
+
+## **Washing Machine:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/washing_machine.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **Washing Machine:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/washing_machine.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[🤔 Maybe]{.maybe} but most often [❌ No]{.no}
+:::
+
+## **Music App:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/music_app.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **Music App:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/music_app.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[✅ Yes]{.yes}
+:::
+
+## **Smartphone Camera:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/smartphone_camera.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **Smartphone Camera:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/smartphone_camera.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[✅ Yes]{.yes}
+:::
+
+## **Video Game:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/video_game.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[❌ No]{.no} [🤔 Maybe]{.maybe} [✅ Yes]{.yes}
+:::
+
+## **Video Game:** Does It Use AI?
+
+::: {style="text-align:center"}
+![](images/video_game.png){style="width:50%; margin:0"}
+:::
+
+::: {.voting-pills}
+[🤔 Maybe]{.maybe} and often [✅ Yes]{.yes}
+:::
+
+# AI Around You
+
+Think of other things that you use everyday.
+
+Put them in the NO/MAYBE/YES categories in this board:
 
 [Join Board](https://miro.com/app/board/uXjVHQ3gK7A=/?share_link_id=187298904915){.external target="miro"}
 
@@ -65,22 +204,28 @@ What are the different types of AI that you have experienced?
 
 ## Types of AI
 
-- Supervised ML
-  - Regression (predict a number)
-  - Classification (predict a category)
-- Computer Vision
-  - CNNs
-- Generative AI
-  - LLMs
-  - Diffusion Models
+- There are many different types of AI
+- **Three** main types over the next two weeks
+  - **Supervised ML**
+  - **Computer Vision**
+  - **Generative AI**
 
-## Supervised ML: Learning from Examples
+## Supervised ML (Machine Learning)
 
-- Traditional programming: write rules → computer follows them
-- Machine learning: show examples → computer **learns** the rules
-- We label the data; the model finds the pattern
+- Traditional programming
+  - Write rules → computer follows them
+- Machine learning
+   - Show examples → computer **learns** the rules
+- What does Supervised mean?
+  - We label the data; the discovers finds the pattern
 
-> Like teaching a child to recognise cats — not by defining rules, but by showing 1,000 photos
+***
+
+## Supervised ML (Machine Learning)
+
+- Two types of Supervised ML
+  - **Regression**
+  - **Classification**
 
 ## Regression: Predicting a Number
 
@@ -105,22 +250,12 @@ What are the different types of AI that you have experienced?
 - A 640×480 photo = **307,200 numbers**
 - The computer processes grids of numbers — it has never truly "seen" anything
 
-## Convolutional Neural Networks (CNNs)
-
-A CNN learns to see in stages:
-
-1. **Edges** — detect lines and boundaries
-2. **Shapes** — combine edges into curves and corners
-3. **Objects** — combine shapes into recognisable things
-
-No one programs these steps — the network learns them from data
-
 ## Computer Vision All Around You
 
 - Face unlock on your phone
 - Photo search ("find all photos with a dog")
 - Self-driving cars detecting pedestrians
-- Medical imaging: spotting tumours in X-rays
+- Medical imaging: spotting tumors in X-rays
 - We'll build our own CV applications on **Day 6**
 
 ## Generative AI: Creating, Not Just Predicting
@@ -137,8 +272,7 @@ No one programs these steps — the network learns them from data
 - Do this billions of times on internet-scale text
 - Emergent result: answer questions, write code, explain concepts
 - Examples: ChatGPT, Claude, Gemini
-
-> "The capital of Mongolia is ___"
+- > "The capital of Mongolia is ___"
 
 ## Diffusion Models: From Noise to Image
 

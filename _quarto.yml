@@ -35,6 +35,9 @@ website:
             - text: "Slides"
               href: labs/01/slides.qmd
               target: blank
+            - text: "Miro Board"
+              href: https://miro.com/app/board/uXjVHQ3gK7A=/?share_link_id=187298904915
+              target: blank
             - section: "Notebooks"
               contents:
                 - text: "hello_world.ipynb"
