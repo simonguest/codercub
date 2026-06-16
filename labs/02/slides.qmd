@@ -1,6 +1,5 @@
 ---
 title: "Day 2: Working With Data"
-author: "Simon Guest"
 format:
   revealjs:
     slide-number: true
@@ -17,11 +16,28 @@ format:
 
 ## Recap
 
-- TBD
+- What is AI?
+- Is it AI or not?
+- Types of AI: Supervised ML, Computer Vision, and Generative AI
+- Using Notebooks
+- "AI in Action" Notebook
 
-# Working with Data
+# Start With Data!
 
-- TBD: Why data is so important for AI models
+## Start With Data!
+
+- Traditional software: a programmer writes every rule by hand
+- AI/ML: you feed the system **examples**, and it finds the patterns itself
+- Think of teaching a child to recognize a dog — not by listing rules, but by showing thousands of pictures
+- Those examples are the **data**
+
+## No Data, No AI
+
+- Spam filter → millions of emails labelled "spam" or "not spam"
+- Music App recommendations → millions of listening sessions
+- ChatGPT → a large chunk of the entire internet
+- More data + better data = smarter model
+- **Today** we learn to work with data, because that's where AI starts
 
 # Introducing Pandas
 
@@ -33,10 +49,10 @@ format:
 
 ## A Brief History of Pandas
 
-- Created by **Wes McKinney** in 2008 while working at an investment firm
+- Created by **Wes McKinney** in 2008 while working at a bank
 - He was frustrated that existing tools made data analysis too slow and painful
 - Released as open source — now downloaded hundreds of millions of times a year
-- The name comes from **"Panel Data"**, an economics term for multi-dimensional datasets
+- The name comes from **"Pan**el **Da**ta", an economics term for multi-dimensional datasets
 
 ## Key Pandas Concepts
 
@@ -44,11 +60,15 @@ format:
 - **Series** — a single column of data
 - Can read CSV files, Excel files, databases, JSON, and more
 
-```python
-import pandas as pd
-df = pd.read_csv("data.csv")
-df.head()
-```
+# Demo
+
+The "Using Pandas" Notebook (pandas.ipynb)
+
+# Hands-On
+
+The "Using Pandas" Notebook (pandas.ipynb)
+
+# Beyond Boring Tables!
 
 # Introducing Matplotlib
 
@@ -61,8 +81,8 @@ df.head()
 ## A Brief History of Matplotlib
 
 - Created by **John D. Hunter** in 2003, originally for neuroscience research
-- He wanted Python to produce charts like MATLAB — without needing MATLAB
-- Hunter passed away in 2012, but the project continues as a major open-source effort
+- He wanted Python to produce charts like MATLAB, without needing MATLAB
+- Hunter died in 2012, but the project continues as a major open-source effort
 - Today it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)
 
 ## Key Matplotlib Concepts
@@ -71,43 +91,74 @@ df.head()
 - **Axes** — the plot area where your data is actually drawn
 - Usually paired with Pandas: load data with Pandas, visualize it with Matplotlib
 
-```python
-import matplotlib.pyplot as plt
-plt.plot([1, 2, 3], [4, 7, 2])
-plt.show()
-```
-
 # Demo
 
-Using Pandas and Matplotlib in a Notebook
+The "Using Matplotlib" Notebook (matplotlib.ipynb)
 
 # Hands-on
 
-Run through the same Pandas and Matplotlib Notebook.
+The "Using Matplotlib" Notebook (matplotlib.ipynb)
 
-# A Mystery
+# Ulaanbaatar's Air Quality
 
 ## Ulaanbaatar's Air Quality
 
 - Ulaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit
 - Worse than Beijing, worse than Delhi
+- Let's find out more...
 
 ## Ulaanbaatar's Air Quality
 
-- TBD: Before/After satellite photos
+[https://www.youtube.com/watch?v=xySwAUt6ojQ](https://www.youtube.com/watch?v=xySwAUt6ojQ){.external target="_blank"}
 
-# A Mystery
+# What Causes This?
 
-What causes this?
+Your job today is to figure out why, using pandas and matplotlib!
 
-Your job today is to figure out why, using pandas and matplotlib.
+# Demo
 
+Open and run the "Exploring Air Quality" Notebook (air_quality.ipynb)
 
+# Hands-On
 
-# Initial
+Open and run the "Exploring Air Quality" Notebook (air_quality.ipynb)
 
-## TBD
+# Reflection
 
-```python
-print("Hello world")
-```
+What did you learn? Did anything surprise you?
+
+# Introducing Correlation
+
+## What is Correlation?
+
+- When two variables tend to move together, we say they are **correlated**
+- More hours of sleep → better test scores = **positive correlation**
+- Higher temperature → lower PM2.5 in Ulaanbaatar = **negative correlation**
+- We measure the strength and direction with a number: the **correlation coefficient**
+
+## The Correlation Coefficient
+
+- Always falls between **-1** and **+1**
+  - **+1** = perfect positive relationship (both always move together)
+  - **0** = no relationship at all
+  - **-1** = perfect inverse relationship (one goes up, the other always goes down)
+- But be careful: correlation doesn't mean **causation**!
+- Ice cream sales and sunburn rates are both high in summer! Does ice cream cause sunburn?
+
+# Demo
+
+Open and run the "Correlation" Notebook (correlation.ipynb)
+
+# Hands-On
+
+Open and run the "Correlation" Notebook (correlation.ipynb)
+
+# Reflection
+
+What did you learn? Did anything surprise you?
+
+## Tomorrow
+
+- Introduce **sklearn**
+- Train our first AI model!
+- Explore a dataset about Dzud

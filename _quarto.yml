@@ -40,9 +40,9 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "hello_world.ipynb"
+                - text: "Hello World! (hello_world.ipynb)"
                   href: labs/01/notebooks/hello_world.ipynb
-                - text: "ai_in_action.ipynb"
+                - text: "AI in Action (ai_in_action.ipynb)"
                   href: labs/01/notebooks/ai_in_action.ipynb
         - section: "Day 2"
           contents:
@@ -51,11 +51,13 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "pandas_matplotlib.ipynb"
-                  href: labs/02/notebooks/pandas_matplotlib.ipynb
-                - text: "air_quality.ipynb"
+                - text: "Using Pandas (pandas.ipynb)"
+                  href: labs/02/notebooks/pandas.ipynb
+                - text: "Using Matplotlib (matplotlib.ipynb)"
+                  href: labs/02/notebooks/matplotlib.ipynb
+                - text: "Exploring Air Quality (air_quality.ipynb)"
                   href: labs/02/notebooks/air_quality.ipynb
-                - text: "correlation.ipynb"
+                - text: "Introducing Correlation (correlation.ipynb)"
                   href: labs/02/notebooks/correlation.ipynb
         - section: "Day 3"
           contents:
