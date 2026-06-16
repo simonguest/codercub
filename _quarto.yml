@@ -66,13 +66,13 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "sklearn.ipynb"
+                - text: "Using Scikit-learn (sklearn.ipynb)"
                   href: labs/03/notebooks/sklearn.ipynb
-                - text: "finding_disasters.ipynb"
+                - text: "Finding Disasters (finding_disasters.ipynb)"
                   href: labs/03/notebooks/finding_disasters.ipynb
-                - text: "finding_cause.ipynb"
+                - text: "Finding the Cause (finding_cause.ipynb)"
                   href: labs/03/notebooks/finding_cause.ipynb
-                - text: "regression.ipynb"
+                - text: "Linear Regression (regression.ipynb)"
                   href: labs/03/notebooks/regression.ipynb
         - section: "Day 4"
           contents:

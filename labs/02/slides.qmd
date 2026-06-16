@@ -107,7 +107,7 @@ The "Using Matplotlib" Notebook (matplotlib.ipynb)
 - Worse than Beijing, worse than Delhi
 - Let's find out more...
 
-## Ulaanbaatar's Air Quality
+# Video
 
 [https://www.youtube.com/watch?v=xySwAUt6ojQ](https://www.youtube.com/watch?v=xySwAUt6ojQ){.external target="_blank"}
 
@@ -159,6 +159,6 @@ What did you learn? Did anything surprise you?
 
 ## Tomorrow
 
-- Introduce **sklearn**
+- Introduce **scikit-learn**
 - Train our first AI model!
 - Explore a dataset about Dzud
