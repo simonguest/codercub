@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/regression.html">regression.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/regression.html">Linear Regression (regression.ipynb)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -467,25 +467,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">sklearn.ipynb</span></a>
+ <span class="menu-text">Using Scikit-learn (sklearn.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/finding_disasters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">finding_disasters.ipynb</span></a>
+ <span class="menu-text">Finding Disasters (finding_disasters.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/finding_cause.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">finding_cause.ipynb</span></a>
+ <span class="menu-text">Finding the Cause (finding_cause.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/regression.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">regression.ipynb</span></a>
+ <span class="menu-text">Linear Regression (regression.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -773,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/regression.html">regression.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/regression.html">Linear Regression (regression.ipynb)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">The Dzud — Teaching a Machine to Predict Disaster</h1>
 </div>
@@ -793,13 +793,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/03/notebooks/regression.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<p>In the previous two notebooks you found the disasters and identified their causes. You know that winter temperature is the strongest predictor of livestock mortality, and that summer drought adds independent explanatory power on top of it.</p>
-<p>Now comes the question that makes this practically useful: can a machine learn that relationship from historical data and use it to make predictions about years it has never seen?</p>
-<p>That is linear regression — and it is also, at its core, the same idea behind every model you will work with this week, including the micro:bit gesture detector on Thursday.</p>
 <p>By the end of this notebook you will have trained two models, compared their accuracy, and used the better one to predict what would happen to a Mongolian herding family given a specific forecast of winter temperature and summer drought.</p>
 <section id="step-1-load-the-data-and-imports" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-load-the-data-and-imports">Step 1: Load the data and imports</h2>
-<p>We add one new import today: <code>scikit-learn</code>, the most widely used machine learning library in Python. We will use just two things from it — a <code>LinearRegression</code> model and a function to split data into training and test sets.</p>
+<p>We are going to train the machine using <code>scikit-learn</code>, the most widely used machine learning library in Python. We will use just two things from it: a <code>LinearRegression</code> model and a function to split data into training and test sets.</p>
 <div id="0cf183a4" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> httpx</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
@@ -808,9 +805,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> r2_score, mean_absolute_error</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv"</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> httpx.get(url)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(io.StringIO(response.text))</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
@@ -824,14 +821,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In the previous notebook you found that colder winters tend to produce higher mortality. If you drew a straight line through that scatter plot that best fits the data, you would have a linear regression model. Given a new winter temperature value, the line tells you the predicted mortality.</p>
 <p>The line has two properties: - A <strong>slope</strong> — how much mortality changes for each one-degree change in temperature - An <strong>intercept</strong> — where the line crosses the y-axis (the predicted mortality at 0°C)</p>
 <p>A model with two input variables (temperature and drought) fits a flat plane through the data instead of a line — the same idea, one dimension higher.</p>
-<p>Scikit-learn finds the slope and intercept automatically by minimising the total distance between the line (or plane) and all the actual data points. You do not need to calculate this by hand.</p>
-<p>What do you think will happen to the predicted mortality if winter temperature goes down by 5°C? What about if summer drought index goes up from 0.2 to 0.8?</p>
 <p>Before training the model: if winter temperature drops by 5°C, what do you predict happens to mortality? What if the summer drought index rises from 0.2 to 0.8? Write your prediction — you can check it against the model’s coefficients later.</p>
 </section>
 <section id="step-3-prepare-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="step-3-prepare-the-data">Step 3: Prepare the data</h2>
 <p>Before training, we need to decide on three things: 1. Which columns are our <strong>inputs</strong> (features) — the variables the model will learn from 2. Which column is our <strong>output</strong> (target) — the value the model will try to predict 3. How to split the data into a <strong>training set</strong> (data the model learns from) and a <strong>test set</strong> (data we hold back to evaluate it)</p>
-<p>Keeping the test set hidden during training is critical. If we evaluated the model on data it had already seen, we would have no idea how well it generalises to genuinely new situations.</p>
+<p>Keeping the test set hidden during training is critical. If we evaluated the model on data it had already seen, we would have no idea how well it generalizes to genuinely new situations.</p>
 <div id="6bd0018d" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input features and target</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[[<span class="st">"winter_temp_c"</span>]]          <span class="co"># start with one variable only</span></span>
@@ -850,7 +845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="step-4-train-the-first-model-temperature-only" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-train-the-first-model-temperature-only">Step 4: Train the first model — temperature only</h2>
+<h2 class="anchored" data-anchor-id="step-4-train-the-first-model-temperature-only">Step 4: Train the first model: temperature only</h2>
 <p>Three lines of code to train a model. That is all scikit-learn requires.</p>
 <p>The <code>fit</code> call is where the learning happens — it finds the slope and intercept that best describes the relationship between winter temperature and mortality in the training data.</p>
 <div id="a3016879" class="cell">
@@ -864,215 +859,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Interpretation: for every 1°C colder the winter is,"</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"the model predicts mortality increases by </span><span class="sc">{</span><span class="bu">abs</span>(model_1.coef_[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss"> percentage points"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The slope tells you something directly interpretable: each additional degree of winter cold is associated with a specific increase in predicted mortality.</p>
-<p>Does that number feel intuitively reasonable given what you saw in the scatter plots?</p>
 <p>The model learned a specific slope — how much mortality increases per degree of cold. Does that number feel intuitively reasonable based on the scatter plots you saw earlier? Is it larger or smaller than you expected?</p>
 </section>
 <section id="step-5-evaluate-the-first-model" class="level2">
 <h2 class="anchored" data-anchor-id="step-5-evaluate-the-first-model">Step 5: Evaluate the first model</h2>
 <p>Training a model is straightforward. The harder question is: how good is it?</p>
 <p>We evaluate on the <strong>test set</strong> — the 20% of data the model has never seen.</p>
-<p>Two metrics: - <strong>R² (R-squared)</strong>: how much of the variation in mortality does the model explain? Ranges from 0 (explains nothing) to 1 (explains everything perfectly). An R² of 0.7 means the model accounts for 70% of the variation. - <strong>MAE (Mean Absolute Error)</strong>: on average, how many percentage points is the model’s prediction off from the real value?</p>
+<p>We use <strong>MAE (Mean Absolute Error)</strong>: on average, how many percentage points is the model’s prediction off from the real value? A lower MAE means the model is more accurate.</p>
 <div id="f68a88e3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y_pred_1 <span class="op">=</span> model_1.predict(X_test)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>r2_1  <span class="op">=</span> r2_score(y_test, y_pred_1)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mae_1 <span class="op">=</span> mean_absolute_error(y_test, y_pred_1)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 1 — temperature only"</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  R²:  </span><span class="sc">{</span>r2_1<span class="sc">:.3f}</span><span class="ss">  (explains </span><span class="sc">{</span>r2_1<span class="op">*</span><span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">% of the variation in mortality)"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  MAE: </span><span class="sc">{</span>mae_1<span class="sc">:.2f}</span><span class="ss"> percentage points average error"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mae_1 <span class="op">=</span> mean_absolute_error(y_test, y_pred_1)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 1 — temperature only"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  MAE: </span><span class="sc">{</span>mae_1<span class="sc">:.2f}</span><span class="ss"> percentage points average error"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>An R² in the range of 0.65–0.75 is a reasonable result for a single-variable model on noisy real-world data. The MAE tells you something more concrete — on average, the model’s prediction is off by that many percentage points.</p>
+<p>The MAE tells you something concrete — on average, the model’s prediction is off by that many percentage points.</p>
 <p>For context, in a year like 2001 when average national mortality was around 23%, an MAE of several percentage points represents a meaningful margin of error for a herder trying to decide whether to move their animals or seek insurance support.</p>
 </section>
-<section id="step-6-visualise-the-first-models-predictions" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-visualise-the-first-models-predictions">Step 6: Visualise the first model’s predictions</h2>
-<p>A good way to inspect a model is to plot its predictions against the actual values. If the model were perfect, every point would lie on the diagonal. Points above the diagonal are cases where the model under-predicted mortality; points below are over-predictions.</p>
-<div id="ea254313" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Left: predicted vs actual</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">0</span>]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(y_test, y_pred_1, alpha<span class="op">=</span><span class="fl">0.45</span>, s<span class="op">=</span><span class="dv">18</span>, color<span class="op">=</span><span class="st">"steelblue"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>lims <span class="op">=</span> [<span class="dv">0</span>, <span class="bu">max</span>(y_test.<span class="bu">max</span>(), y_pred_1.<span class="bu">max</span>()) <span class="op">+</span> <span class="dv">2</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.plot(lims, lims, <span class="st">"k--"</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Perfect prediction"</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Actual mortality (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Predicted mortality (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Model 1: temperature only</span><span class="ch">\n</span><span class="ss">R² = </span><span class="sc">{</span>r2_1<span class="sc">:.3f}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Right: the regression line over the training data</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> axes[<span class="dv">1</span>]</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>temp_range <span class="op">=</span> np.linspace(df[<span class="st">"winter_temp_c"</span>].<span class="bu">min</span>(), df[<span class="st">"winter_temp_c"</span>].<span class="bu">max</span>(), <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>pred_line  <span class="op">=</span> model_1.predict(temp_range)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">"winter_temp_c"</span>], df[<span class="st">"mortality_pct"</span>],</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>           alpha<span class="op">=</span><span class="fl">0.2</span>, s<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">"steelblue"</span>, label<span class="op">=</span><span class="st">"Observed data"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>ax.plot(temp_range, pred_line, color<span class="op">=</span><span class="st">"firebrick"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Regression line"</span>)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Winter temperature (°C)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Mortality (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"The fitted regression line"</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Look at the predicted vs.&nbsp;actual chart on the left. The points should follow the diagonal broadly, but with noticeable scatter — especially at higher mortality values.</p>
-<p>The wide spread at the top right is the model struggling with the catastrophic dzud years. What might explain why the temperature-only model has more trouble predicting the worst outcomes?</p>
-<p>Look at the predicted vs.&nbsp;actual chart. Where does the model struggle most — at low mortality values, high values, or both? Why do you think the temperature-only model has more trouble predicting the worst dzud years?</p>
-</section>
-<section id="step-7-train-the-second-model-temperature-and-drought" class="level2">
-<h2 class="anchored" data-anchor-id="step-7-train-the-second-model-temperature-and-drought">Step 7: Train the second model — temperature and drought</h2>
+<section id="step-6-train-the-second-model-with-both-temperature-and-drought" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-train-the-second-model-with-both-temperature-and-drought">Step 6: Train the second model with both temperature and drought</h2>
 <p>Now we add the summer drought index as a second input feature. The change to the code is minimal — we just add the second column to X. Scikit-learn handles the rest.</p>
 <div id="7de01727" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two input features this time</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> df[[<span class="st">"winter_temp_c"</span>, <span class="st">"summer_drought_idx"</span>]]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>X2_train, X2_test, y2_train, y2_test <span class="op">=</span> train_test_split(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    X2, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>   <span class="co"># same random_state = same split</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>model_2 <span class="op">=</span> LinearRegression()</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>model_2.fit(X2_train, y2_train)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 2 learned:"</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Coefficient for winter_temp_c:        </span><span class="sc">{</span>model_2<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Coefficient for summer_drought_idx:   </span><span class="sc">{</span>model_2<span class="sc">.</span>coef_[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Intercept:                            </span><span class="sc">{</span>model_2<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Interpretation:"</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Each 1°C colder  → mortality increases by </span><span class="sc">{</span><span class="bu">abs</span>(model_2.coef_[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss"> pp"</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Each 0.1 increase in drought index → mortality increases by </span><span class="sc">{</span>model_2<span class="sc">.</span>coef_[<span class="dv">1</span>]<span class="op">*</span><span class="fl">0.1</span><span class="sc">:.2f}</span><span class="ss"> pp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two input features this time</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> df[[<span class="st">"winter_temp_c"</span>, <span class="st">"summer_drought_idx"</span>]]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X2_train, X2_test, y2_train, y2_test <span class="op">=</span> train_test_split(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    X2, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>   <span class="co"># same random_state = same split</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>model_2 <span class="op">=</span> LinearRegression()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>model_2.fit(X2_train, y2_train)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 2 learned:"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Coefficient for winter_temp_c:        </span><span class="sc">{</span>model_2<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Coefficient for summer_drought_idx:   </span><span class="sc">{</span>model_2<span class="sc">.</span>coef_[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Intercept:                            </span><span class="sc">{</span>model_2<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Interpretation:"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Each 1°C colder  → mortality increases by </span><span class="sc">{</span><span class="bu">abs</span>(model_2.coef_[<span class="dv">0</span>])<span class="sc">:.2f}</span><span class="ss"> pp"</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  Each 0.1 increase in drought index → mortality increases by </span><span class="sc">{</span>model_2<span class="sc">.</span>coef_[<span class="dv">1</span>]<span class="op">*</span><span class="fl">0.1</span><span class="sc">:.2f}</span><span class="ss"> pp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="step-8-evaluate-the-second-model" class="level2">
-<h2 class="anchored" data-anchor-id="step-8-evaluate-the-second-model">Step 8: Evaluate the second model</h2>
+<section id="step-7-evaluate-the-second-model" class="level2">
+<h2 class="anchored" data-anchor-id="step-7-evaluate-the-second-model">Step 7: Evaluate the second model</h2>
 <p>Let’s measure whether adding drought genuinely improves the model.</p>
 <div id="00f22745" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y_pred_2 <span class="op">=</span> model_2.predict(X2_test)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>r2_2  <span class="op">=</span> r2_score(y2_test, y_pred_2)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>mae_2 <span class="op">=</span> mean_absolute_error(y2_test, y_pred_2)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 1 — temperature only"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  R²:  </span><span class="sc">{</span>r2_1<span class="sc">:.3f}</span><span class="ss">   MAE: </span><span class="sc">{</span>mae_1<span class="sc">:.2f}</span><span class="ss"> pp"</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 2 — temperature + drought"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  R²:  </span><span class="sc">{</span>r2_2<span class="sc">:.3f}</span><span class="ss">   MAE: </span><span class="sc">{</span>mae_2<span class="sc">:.2f}</span><span class="ss"> pp"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>r2_improvement  <span class="op">=</span> (r2_2 <span class="op">-</span> r2_1) <span class="op">*</span> <span class="dv">100</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>mae_improvement <span class="op">=</span> mae_1 <span class="op">-</span> mae_2</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Adding drought index:"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  R² improved by  </span><span class="sc">{</span>r2_improvement<span class="sc">:.1f}</span><span class="ss"> percentage points"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  MAE improved by </span><span class="sc">{</span>mae_improvement<span class="sc">:.2f}</span><span class="ss"> percentage points"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y_pred_2 <span class="op">=</span> model_2.predict(X2_test)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mae_2 <span class="op">=</span> mean_absolute_error(y2_test, y_pred_2)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 1 — temperature only"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  MAE: </span><span class="sc">{</span>mae_1<span class="sc">:.2f}</span><span class="ss"> percentage points average error"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model 2 — temperature + drought"</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"  MAE: </span><span class="sc">{</span>mae_2<span class="sc">:.2f}</span><span class="ss"> percentage points average error"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>mae_improvement <span class="op">=</span> mae_1 <span class="op">-</span> mae_2</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Adding drought index reduced the average error by </span><span class="sc">{</span>mae_improvement<span class="sc">:.2f}</span><span class="ss"> percentage points"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The R² should improve meaningfully when drought is added — the model now explains more of the variation in mortality. The MAE should decrease, meaning predictions are closer to the actual values on average.</p>
-<p>Is the improvement larger or smaller than you expected? Does it change your view of how important the summer drought variable is relative to winter temperature?</p>
+<p>The MAE should decrease when drought is added — meaning the model’s predictions are closer to the real values on average. A lower MAE means a more useful model.</p>
 <p>Was the improvement from adding drought larger or smaller than you expected? Does it change your view of how important the summer drought variable is compared to winter temperature?</p>
 </section>
-<section id="step-9-side-by-side-comparison" class="level2">
-<h2 class="anchored" data-anchor-id="step-9-side-by-side-comparison">Step 9: Side-by-side comparison</h2>
-<div id="ea4bc059" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, y_pred, title <span class="kw">in</span> <span class="bu">zip</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    axes,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    [y_pred_1, y_pred_2],</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    [<span class="ss">f"Model 1: temperature only</span><span class="ch">\n</span><span class="ss">R² = </span><span class="sc">{</span>r2_1<span class="sc">:.3f}</span><span class="ss">, MAE = </span><span class="sc">{</span>mae_1<span class="sc">:.2f}</span><span class="ss"> pp"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="ss">f"Model 2: temperature + drought</span><span class="ch">\n</span><span class="ss">R² = </span><span class="sc">{</span>r2_2<span class="sc">:.3f}</span><span class="ss">, MAE = </span><span class="sc">{</span>mae_2<span class="sc">:.2f}</span><span class="ss"> pp"</span>]</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>):</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    ax.scatter(y_test, y_pred, alpha<span class="op">=</span><span class="fl">0.45</span>, s<span class="op">=</span><span class="dv">18</span>, color<span class="op">=</span><span class="st">"steelblue"</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    lims <span class="op">=</span> [<span class="dv">0</span>, <span class="bu">max</span>(y_test.<span class="bu">max</span>(), <span class="bu">max</span>(y_pred)) <span class="op">+</span> <span class="dv">2</span>]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    ax.plot(lims, lims, <span class="st">"k--"</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">"Perfect prediction"</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">"Actual mortality (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">"Predicted mortality (%)"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    ax.set_title(title, fontsize<span class="op">=</span><span class="dv">11</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(lims)<span class="op">;</span> ax.set_ylim(lims)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    ax.legend(fontsize<span class="op">=</span><span class="dv">9</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">"Predicted vs. actual mortality — model comparison"</span>, </span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>             fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The right chart should show points sitting closer to the diagonal — particularly at the high end, where the temperature-only model struggled most.</p>
-<p>The improvement at the extremes is especially important: those are the catastrophic dzud years, where accurate prediction has the most practical value for herders and government planners.</p>
-</section>
-<section id="step-10-make-a-prediction" class="level2">
-<h2 class="anchored" data-anchor-id="step-10-make-a-prediction">Step 10: Make a prediction</h2>
+<section id="step-8-make-a-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="step-8-make-a-prediction">Step 8: Make a prediction</h2>
 <p>The model is now a tool. Given a forecast of winter temperature and summer drought, it can output a predicted mortality percentage — before the winter even arrives.</p>
 <p>Let’s use it to answer a concrete question: what does the model predict for three different scenarios a Mongolian herder might face?</p>
 <div id="2e7931d8" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scenarios <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"scenario"</span>:          [<span class="st">"Mild winter, no drought"</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Cold winter, no drought"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Cold winter, severe drought"</span>],</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"winter_temp_c"</span>:     [<span class="op">-</span><span class="fl">16.0</span>, <span class="op">-</span><span class="fl">24.0</span>, <span class="op">-</span><span class="fl">24.0</span>],</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summer_drought_idx"</span>: [ <span class="fl">0.10</span>,  <span class="fl">0.15</span>,  <span class="fl">0.75</span>]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>scenarios[<span class="st">"predicted_mortality_pct"</span>] <span class="op">=</span> model_2.predict(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    scenarios[[<span class="st">"winter_temp_c"</span>, <span class="st">"summer_drought_idx"</span>]]</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scenarios[[<span class="st">"scenario"</span>, <span class="st">"winter_temp_c"</span>, <span class="st">"summer_drought_idx"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"predicted_mortality_pct"</span>]].to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scenarios <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"scenario"</span>:          [<span class="st">"Mild winter, no drought"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Cold winter, no drought"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Cold winter, severe drought"</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"winter_temp_c"</span>:     [<span class="op">-</span><span class="fl">16.0</span>, <span class="op">-</span><span class="fl">24.0</span>, <span class="op">-</span><span class="fl">24.0</span>],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summer_drought_idx"</span>: [ <span class="fl">0.10</span>,  <span class="fl">0.15</span>,  <span class="fl">0.75</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>scenarios[<span class="st">"predicted_mortality_pct"</span>] <span class="op">=</span> model_2.predict(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    scenarios[[<span class="st">"winter_temp_c"</span>, <span class="st">"summer_drought_idx"</span>]]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scenarios[[<span class="st">"scenario"</span>, <span class="st">"winter_temp_c"</span>, <span class="st">"summer_drought_idx"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"predicted_mortality_pct"</span>]].to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Look at the difference between the second and third scenarios — the same cold winter, but one is preceded by drought and one is not.</p>
-<p>Now try building your own scenario. What inputs would you give the model to produce the highest possible predicted mortality? What about the lowest? Are the model’s predictions plausible given what you have learned about dzud?</p>
-<div id="b08c02b8" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build your own scenario — change these values and re-run</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>my_winter_temp  <span class="op">=</span> <span class="op">-</span><span class="fl">20.0</span>    <span class="co"># typical Mongolian winter is around -18 to -22</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>my_drought      <span class="op">=</span>  <span class="fl">0.40</span>    <span class="co"># 0 = no drought, 1 = severe drought</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>my_scenario <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"winter_temp_c"</span>:     [my_winter_temp],</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summer_drought_idx"</span>: [my_drought]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model_2.predict(my_scenario)[<span class="dv">0</span>]</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Winter temperature:  </span><span class="sc">{</span>my_winter_temp<span class="sc">}</span><span class="ss">°C"</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Summer drought index: </span><span class="sc">{</span>my_drought<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Predicted mortality:  </span><span class="sc">{</span>prediction<span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Put that in context with a hypothetical herd</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>herd_size <span class="op">=</span> <span class="dv">2_000</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>predicted_losses <span class="op">=</span> <span class="bu">int</span>(herd_size <span class="op">*</span> prediction <span class="op">/</span> <span class="dv">100</span>)</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"For a herder with </span><span class="sc">{</span>herd_size<span class="sc">:,}</span><span class="ss"> animals,"</span>)</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"that is approximately </span><span class="sc">{</span>predicted_losses<span class="sc">:,}</span><span class="ss"> animals lost."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now try building your own scenario!</p>
+<div id="b08c02b8" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>my_winter_temp <span class="op">=</span> <span class="op">-</span><span class="dv">20</span> <span class="co">#@param {type:"slider", min:-30, max:-10, step:1}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>my_drought <span class="op">=</span> <span class="fl">0.4</span> <span class="co">#@param {type:"slider", min:0.0, max:1.0, step:0.05}</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>herd_size <span class="op">=</span> <span class="dv">2000</span> <span class="co">#@param {type:"slider", min:500, max:5000, step:500}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>my_scenario <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"winter_temp_c"</span>:      [my_winter_temp],</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"summer_drought_idx"</span>: [my_drought]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model_2.predict(my_scenario)[<span class="dv">0</span>]</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Winter temperature:   </span><span class="sc">{</span>my_winter_temp<span class="sc">}</span><span class="ss">°C"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Summer drought index: </span><span class="sc">{</span>my_drought<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Predicted mortality:  </span><span class="sc">{</span>prediction<span class="sc">:.1f}</span><span class="ss">%"</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>predicted_losses <span class="op">=</span> <span class="bu">int</span>(herd_size <span class="op">*</span> prediction <span class="op">/</span> <span class="dv">100</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"For a herder with </span><span class="sc">{</span>herd_size<span class="sc">:,}</span><span class="ss"> animals,"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"that is approximately </span><span class="sc">{</span>predicted_losses<span class="sc">:,}</span><span class="ss"> animals lost."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="step-11-the-same-idea-a-different-kind-of-data" class="level2">
-<h2 class="anchored" data-anchor-id="step-11-the-same-idea-a-different-kind-of-data">Step 11: The same idea — a different kind of data</h2>
-<p>You have just built a model that takes numerical inputs and predicts a numerical output. The process was:</p>
-<ol type="1">
-<li>Collect labeled examples (historical aimag-years with known outcomes)</li>
-<li>Split into training and test sets</li>
-<li>Fit a model to the training data</li>
-<li>Evaluate on the test set</li>
-<li>Use the model to predict on new, unseen inputs</li>
-</ol>
-<p>On Thursday you will do exactly the same thing with your micro:bit — but instead of aimag climate data, the inputs will be accelerometer readings from your wrist, and instead of predicting mortality, the model will predict which gesture you are making.</p>
-<p>The tools will be different (CreateAI rather than scikit-learn), the data will be different (motion rather than climate), and the output will be different (a category rather than a number). But the underlying loop — label examples, train, evaluate, predict — is identical.</p>
-<p>That loop is the core of supervised machine learning. You have now run through it completely.</p>
-</section>
-<section id="what-you-have-done-across-these-three-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-have-done-across-these-three-notebooks">What you have done across these three notebooks</h2>
-<p>Across the Day 3 sequence you have worked through a complete data science and machine learning workflow on a real-world problem:</p>
-<ul>
-<li>Loaded and explored a multi-dimensional dataset (Notebook 1)</li>
-<li>Identified the variables that explain an outcome through correlation and visualisation (Notebook 2)</li>
-<li>Trained two linear regression models, compared their accuracy with R² and MAE, and used the better model to make predictions on new scenarios (Notebook 3)</li>
-</ul>
-<p>The problem — predicting livestock disaster in Mongolia — is one that researchers and international insurance programmes have worked on for years using exactly these methods. You have replicated the core of that analysis in three notebooks.</p>
-<p>Tomorrow you will take the same supervised learning concept and apply it to physical movement data. The jump from climate data to accelerometer data is smaller than it looks.</p>
 </section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
-<p>{ “question_type”: “multiple_choice”, “question”: “Why do we keep a test set separate from the training data?”, “options”: [ { “key”: “a”, “text”: “To make the model train faster” }, { “key”: “b”, “text”: “To evaluate how well the model generalises to data it has never seen” }, { “key”: “c”, “text”: “To reduce the total amount of data needed” }, { “key”: “d”, “text”: “To improve the slope calculation” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does the R² score measure?”, “options”: [ { “key”: “a”, “text”: “The slope of the regression line” }, { “key”: “b”, “text”: “The average prediction error in the same units as the output” }, { “key”: “c”, “text”: “How much of the variation in the outcome the model explains” }, { “key”: “d”, “text”: “The number of input variables in the model” } ], “answer”: “c”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “Why do we keep a test set separate from the training data?”, “options”: [ { “key”: “a”, “text”: “To make the model train faster” }, { “key”: “b”, “text”: “To evaluate how well the model generalizes to data it has never seen” }, { “key”: “c”, “text”: “To reduce the total amount of data needed” }, { “key”: “d”, “text”: “To improve the slope calculation” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “Model 1 has an MAE of 4.2 and Model 2 has an MAE of 3.1. Which model is better?”, “options”: [ { “key”: “a”, “text”: “Model 1, because a higher MAE means it learned more” }, { “key”: “b”, “text”: “Model 2, because a lower MAE means smaller prediction errors” }, { “key”: “c”, “text”: “They are the same — the difference is too small to matter” }, { “key”: “d”, “text”: “Model 1, because it uses fewer variables” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “true_false”, “question”: “A model with a lower MAE is making predictions that are, on average, closer to the actual values.”, “answer”: “True”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “multiple_choice”, “question”: “Why did Model 2 (temperature + drought) outperform Model 1 (temperature only)?”, “options”: [ { “key”: “a”, “text”: “It was trained on more rows of data” }, { “key”: “b”, “text”: “Drought adds independent information that temperature alone does not capture” }, { “key”: “c”, “text”: “Temperature was given less weight in Model 2” }, { “key”: “d”, “text”: “Model 2 trained for a longer time” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 
@@ -1495,8 +1390,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/03/notebooks/finding_cause.html" class="pagination-link" aria-label="finding_cause.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">finding_cause.ipynb</span>
+      <a href="../../../labs/03/notebooks/finding_cause.html" class="pagination-link" aria-label="Finding the Cause (finding_cause.ipynb)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Finding the Cause (finding_cause.ipynb)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

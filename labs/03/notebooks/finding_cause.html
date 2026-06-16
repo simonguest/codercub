@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_cause.html">finding_cause.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_cause.html">Finding the Cause (finding_cause.ipynb)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -467,25 +467,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">sklearn.ipynb</span></a>
+ <span class="menu-text">Using Scikit-learn (sklearn.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/finding_disasters.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">finding_disasters.ipynb</span></a>
+ <span class="menu-text">Finding Disasters (finding_disasters.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/finding_cause.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">finding_cause.ipynb</span></a>
+ <span class="menu-text">Finding the Cause (finding_cause.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">regression.ipynb</span></a>
+ <span class="menu-text">Linear Regression (regression.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -773,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_cause.html">finding_cause.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_cause.html">Finding the Cause (finding_cause.ipynb)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">The Dzud — Finding the Cause</h1>
 </div>
@@ -793,8 +793,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/03/notebooks/finding_cause.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<p>In the previous notebook you found the disasters. You could see clearly that 2001 and 2010 were catastrophic years, and that southern and western aimags tend to suffer more than others.</p>
-<p>But knowing <em>when</em> and <em>where</em> is not the same as knowing <em>why</em>.</p>
 <p>In this notebook you will look for the variables that explain livestock mortality. You will start with the most obvious suspect — winter temperature — and discover that it tells only part of the story. Finding the second piece of the puzzle is the core task.</p>
 <p>By the end you will have a clear, evidence-backed answer to: what combination of conditions turns a harsh winter into a national disaster?</p>
 <section id="step-1-load-the-data" class="level2">
@@ -806,7 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv"</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> httpx.get(url)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(io.StringIO(response.text))</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -838,9 +836,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>There should be a clear downward slope — colder winters correspond to higher mortality.</p>
-<p>But look carefully at the spread of the points. At any given temperature, mortality varies considerably. Some aimags at -22°C lost 10% of their herd; others lost 30%.</p>
-<p>Temperature is clearly important, but it is not the whole story. What does that spread suggest to you?</p>
 <p>Describe what you see in the scatter plot. Is there a clear slope? At the same temperature, why might some aimags lose 10% of their herd while others lose 30%? What does that spread suggest to you?</p>
 </section>
 <section id="step-3-measure-the-relationship" class="level2">
@@ -851,37 +846,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between winter temperature and mortality: </span><span class="sc">{</span>corr_temp<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Compare this value to the -0.85 correlation you found between temperature and PM2.5 in the air quality data.</p>
-<p>The relationship here is strong, but noticeably weaker. That gap — the variation that temperature alone cannot explain — is what we are going to investigate next.</p>
+<p>The relationship here is strong, but something else might also be a factor.</p>
 </section>
 <section id="step-4-introducing-the-second-variable" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-introducing-the-second-variable">Step 4: Introducing the second variable</h2>
-<p>Mongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened — thinner, with smaller fat reserves, less able to withstand extreme cold.</p>
+<p>Mongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened. They are thinner, with smaller fat reserves, less able to withstand extreme cold.</p>
 <p>The dataset includes a <code>summer_drought_idx</code> column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.</p>
 <p>Let’s check whether this variable also correlates with mortality.</p>
 <div id="f8bd6158" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>corr_drought <span class="op">=</span> df[<span class="st">"mortality_pct"</span>].corr(df[<span class="st">"summer_drought_idx"</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between summer drought index and mortality: </span><span class="sc">{</span>corr_drought<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The drought index has a meaningful positive correlation with mortality — higher drought, higher mortality.</p>
+<p>The drought index has a meaningful positive correlation with mortality. If there is higher drought, there is higher mortality.</p>
 <p>It is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.</p>
-<p>Before testing that, what is your intuition? Do you think summer drought and winter temperature tend to occur together, or are they independent of each other?</p>
-<p>What is your intuition — do you think dry summers and cold winters tend to happen in the same years, or are they independent events? Why does it matter for building a prediction model?</p>
+<p>What is your intuition? Do you think dry summers and cold winters tend to happen in the same years, or are they independent events? Why does it matter for building a prediction model?</p>
 </section>
 <section id="step-5-are-the-two-variables-independent" class="level2">
 <h2 class="anchored" data-anchor-id="step-5-are-the-two-variables-independent">Step 5: Are the two variables independent?</h2>
-<p>If cold winters and droughts always happen in the same years, then drought is not adding new information — it is just another way of measuring the same thing. But if they are largely independent, then a year with both a cold winter AND a summer drought is genuinely more dangerous than a year with just one of those conditions.</p>
+<p>If cold winters and droughts always happen in the same years, then drought is not adding new information. But if they are largely independent, then a year with both a cold winter AND a summer drought is genuinely more dangerous than a year with just one of those conditions.</p>
 <p>Let’s check the correlation between the two predictor variables themselves.</p>
 <div id="7433be7e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>corr_between <span class="op">=</span> df[<span class="st">"winter_temp_c"</span>].corr(df[<span class="st">"summer_drought_idx"</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between winter temperature and summer drought: </span><span class="sc">{</span>corr_between<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>A low correlation between the two predictors means they are measuring largely independent things. Cold winters do not reliably follow dry summers — they are separate climate events that sometimes coincide.</p>
-<p>When they do coincide, the combined effect on livestock is much worse than either alone. That is the key insight that researchers took years to establish — and you just found evidence for it in a few lines of code.</p>
-<p>Why does it matter that the two variables are independent rather than correlated with each other?</p>
+<p>A low correlation between the two means they are measuring largely independent things. Cold winters do not reliably follow dry summers. They are separate climate events that sometimes coincide.</p>
+<p>When they do coincide, the combined effect on livestock is much worse than either alone. That is the key insight that researchers took years to establish — and you just found evidence for it in a few lines of code!</p>
 </section>
-<section id="step-6-colouring-the-scatter-by-drought-severity" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-colouring-the-scatter-by-drought-severity">Step 6: Colouring the scatter by drought severity</h2>
-<p>The best way to see the combined effect is to go back to the temperature scatter plot and colour each point by its drought index. If drought is adding real information, you should see a pattern within the scatter — high-drought points clustering toward higher mortality at any given temperature.</p>
+<section id="step-6-coloring-the-scatter-by-drought-severity" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-coloring-the-scatter-by-drought-severity">Step 6: Coloring the scatter by drought severity</h2>
+<p>The best way to see the combined effect is to go back to the temperature scatter plot and colour each point by its drought index. If drought is adding real information, you should see a pattern within the scatter: high-drought points clustering toward higher mortality at any given temperature.</p>
 <div id="f6346aef" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -905,9 +898,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Look for the pattern within the scatter.</p>
 <p>At a given temperature — say, around -22°C — are the darker points (severe drought) sitting higher on the mortality axis than the lighter points (low drought)?</p>
-<p>If you can see that pattern, it means drought is doing real explanatory work on top of temperature. Describe what you observe.</p>
+<p>Describe what you observe.</p>
 </section>
 <section id="step-7-separating-drought-years-from-non-drought-years" class="level2">
 <h2 class="anchored" data-anchor-id="step-7-separating-drought-years-from-non-drought-years">Step 7: Separating drought years from non-drought years</h2>
@@ -939,57 +931,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The red points (high drought years) should sit systematically higher on the mortality axis than the blue points at the same temperature.</p>
 <p>This is the mechanism behind Mongolia’s worst dzud events. A cold winter alone is survivable for healthy livestock. A cold winter following a drought — when animals enter winter already weakened — is not.</p>
 <p>The two catastrophic years in your data, 2001 and 2010, both involved an unusually cold winter preceded by significant summer drought across many aimags.</p>
-<p>At this point you have done what scientists do: identified two independent variables that together explain an outcome better than either one alone. The next notebook will formalise that into a model — one that can take a winter temperature and a drought index as inputs and predict how much of the herd will be lost.</p>
-</section>
-<section id="step-8-your-turn-explore-a-third-variable" class="level2">
-<h2 class="anchored" data-anchor-id="step-8-your-turn-explore-a-third-variable">Step 8: Your turn — explore a third variable</h2>
-<p>The dataset also includes <code>snow_depth_cm</code>. Heavy snow traps livestock and prevents them from reaching pasture, which can compound the effects of cold and drought.</p>
-<p>Using the pattern from the cells above, investigate whether snow depth adds any additional explanatory power:</p>
-<ul>
-<li>What is the correlation between snow depth and mortality?</li>
-<li>Does it add information beyond what temperature already captures?</li>
-<li>Try a scatter plot of snow depth vs.&nbsp;mortality, coloured by drought index.</li>
-</ul>
-<p>Modify the cells below and record what you find.</p>
-<div id="b0bd0a48" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the correlation between snow depth and mortality</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>corr_snow <span class="op">=</span> df[<span class="st">"mortality_pct"</span>].corr(df[<span class="st">"snow_depth_cm"</span>])</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between snow depth and mortality: </span><span class="sc">{</span>corr_snow<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Also check whether snow depth and winter temperature are correlated with each other</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>corr_snow_temp <span class="op">=</span> df[<span class="st">"snow_depth_cm"</span>].corr(df[<span class="st">"winter_temp_c"</span>])</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between snow depth and winter temperature: </span><span class="sc">{</span>corr_snow_temp<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="b4176619" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your scatter plot — modify as you like</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> ax.scatter(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"snow_depth_cm"</span>],</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"mortality_pct"</span>],</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    c<span class="op">=</span>df[<span class="st">"summer_drought_idx"</span>],</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span><span class="st">"YlOrRd"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.45</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">14</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.colorbar(scatter, ax<span class="op">=</span>ax, label<span class="op">=</span><span class="st">"Summer drought index"</span>)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Snow depth (cm)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Mortality (%)"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Snow depth vs. mortality"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Does snow depth appear to add useful information, or does it largely overlap with what winter temperature already tells you?</p>
-<p>Based on all the correlations you have now calculated, which two variables would you choose as inputs to a prediction model — and why?</p>
-<p>Based on the correlations you calculated, which two variables would you choose as inputs to a prediction model — and why? Does snow depth add useful information, or does it largely overlap with temperature?</p>
-</section>
-<section id="what-you-have-done-in-this-notebook" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-have-done-in-this-notebook">What you have done in this notebook</h2>
-<p>You tested three variables against livestock mortality, measured their correlations, checked whether they were independent of each other, and visualised the combined effect of the two strongest predictors.</p>
-<p>The key findings: - Winter temperature is the strongest single predictor of mortality - Summer drought is an independent second predictor — it adds real information that temperature alone misses - The worst dzud events occur when both conditions coincide - Snow depth is correlated with temperature and adds less independent information</p>
-<p>In the next notebook you will use these two variables to train a linear regression model — one that can take a winter temperature and a drought reading as inputs and output a predicted mortality percentage for any aimag.</p>
+<p>At this point you have done what scientists do: identified two independent variables that together explain an outcome better than either one alone. The next notebook will formalise that into a model: one that can take a winter temperature and a drought index as inputs and predict how much of the herd will be lost.</p>
 </section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
@@ -1416,13 +1358,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/03/notebooks/finding_disasters.html" class="pagination-link" aria-label="finding_disasters.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">finding_disasters.ipynb</span>
+      <a href="../../../labs/03/notebooks/finding_disasters.html" class="pagination-link" aria-label="Finding Disasters (finding_disasters.ipynb)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Finding Disasters (finding_disasters.ipynb)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/03/notebooks/regression.html" class="pagination-link" aria-label="regression.ipynb">
-        <span class="nav-page-text">regression.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/03/notebooks/regression.html" class="pagination-link" aria-label="Linear Regression (regression.ipynb)">
+        <span class="nav-page-text">Linear Regression (regression.ipynb)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

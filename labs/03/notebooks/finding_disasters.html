@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_disasters.html">finding_disasters.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_disasters.html">Finding Disasters (finding_disasters.ipynb)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -467,25 +467,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">sklearn.ipynb</span></a>
+ <span class="menu-text">Using Scikit-learn (sklearn.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/finding_disasters.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">finding_disasters.ipynb</span></a>
+ <span class="menu-text">Finding Disasters (finding_disasters.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/finding_cause.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">finding_cause.ipynb</span></a>
+ <span class="menu-text">Finding the Cause (finding_cause.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">regression.ipynb</span></a>
+ <span class="menu-text">Linear Regression (regression.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -773,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_disasters.html">finding_disasters.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/finding_disasters.html">Finding Disasters (finding_disasters.ipynb)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">The Dzud — Finding the Disasters</h1>
 </div>
@@ -793,8 +793,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/03/notebooks/finding_disasters.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<p>Mongolia is a country of nomadic herders. Livestock — horses, sheep, goats, cattle, camels — are not just an industry. For hundreds of thousands of families, they are the primary source of food, income, and cultural identity.</p>
-<p>Periodically, a combination of summer drought and extreme winter cold kills millions of animals in a single season. This event is called a <strong>dzud</strong>. In 2001 alone, over seven million animals died. Entire herding families were left with nothing.</p>
 <p>In this notebook you will load a dataset covering 24 years of livestock mortality across all 21 Mongolian provinces (aimags) and find the disasters hiding in the data.</p>
 <p>By the end you will be able to answer: which years were catastrophic, which aimags were hit hardest, and what does a dzud look like when you visualise it?</p>
 <section id="step-1-load-the-data" class="level2">
@@ -805,17 +803,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.colors <span class="im">as</span> mcolors</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> httpx.get(url)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(io.StringIO(response.text))</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Loaded </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> rows and </span><span class="sc">{</span><span class="bu">len</span>(df.columns)<span class="sc">}</span><span class="ss"> columns"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Years covered: </span><span class="sc">{</span>df[<span class="st">'year'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'year'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Aimags: </span><span class="sc">{</span>df[<span class="st">'aimag'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> httpx.get(url)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(io.StringIO(response.text))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Loaded </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> rows and </span><span class="sc">{</span><span class="bu">len</span>(df.columns)<span class="sc">}</span><span class="ss"> columns"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Years covered: </span><span class="sc">{</span>df[<span class="st">'year'</span>]<span class="sc">.</span><span class="bu">min</span>()<span class="sc">}</span><span class="ss"> to </span><span class="sc">{</span>df[<span class="st">'year'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Aimags: </span><span class="sc">{</span>df[<span class="st">'aimag'</span>]<span class="sc">.</span>nunique()<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="step-2-understand-the-structure" class="level2">
@@ -847,8 +843,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(national.to_string(index<span class="op">=</span><span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Scan through the table. Two years should stand out immediately as far higher than the rest.</p>
-<p>Which years are they? Before plotting, write down your prediction.</p>
 <p>Before you run the chart: looking at the table above, which two years stand out as the worst? Write down your prediction before plotting.</p>
 <div id="61bb4495" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="dv">5</span>))</span>
@@ -869,52 +863,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The two peaks correspond to the dzud catastrophes documented by researchers and the Mongolian government.</p>
 <p>The 2000–2002 event and the 2009–2010 event together killed an estimated 20 million animals — roughly a third of Mongolia’s entire national herd at the time.</p>
-<p>Does the chart match what you expected? Were there any years that surprised you — either higher or lower than you anticipated?</p>
 <p>Did the chart match your prediction? Were there any years that surprised you — either higher or lower than you expected? Describe the shape of the line.</p>
 </section>
 <section id="step-4-which-aimags-were-hit-hardest" class="level2">
 <h2 class="anchored" data-anchor-id="step-4-which-aimags-were-hit-hardest">Step 4: Which aimags were hit hardest?</h2>
-<p>The national average tells you when disasters happened. But Mongolia is large — roughly the size of Western Europe — and conditions vary enormously across its 21 provinces.</p>
+<p>The national average tells you when disasters happened. But Mongolia is large (roughly the size of Western Europe) and conditions vary enormously across its 21 provinces.</p>
 <p>Let’s look at average mortality by aimag across the full 24-year period to find which regions are most vulnerable.</p>
 <div id="a532defb" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>by_aimag <span class="op">=</span> (df.groupby([<span class="st">"aimag"</span>, <span class="st">"region"</span>])[<span class="st">"mortality_pct"</span>]</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>            .mean()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            .<span class="bu">round</span>(<span class="dv">1</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            .reset_index()</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            .sort_values(<span class="st">"mortality_pct"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>by_aimag <span class="op">=</span> (df.groupby([<span class="st">"aimag"</span>, <span class="st">"region"</span>])[<span class="st">"mortality_pct"</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            .mean()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>            .<span class="bu">round</span>(<span class="dv">1</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            .reset_index()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            .sort_values(<span class="st">"mortality_pct"</span>, ascending<span class="op">=</span><span class="va">False</span>))</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>region_palette <span class="op">=</span> {</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"South"</span>:   <span class="st">"#E53935"</span>,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"West"</span>:    <span class="st">"#FB8C00"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Central"</span>: <span class="st">"#8E24AA"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"North"</span>:   <span class="st">"#1E88E5"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"East"</span>:    <span class="st">"#43A047"</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>bar_colors <span class="op">=</span> [region_palette[r] <span class="cf">for</span> r <span class="kw">in</span> by_aimag[<span class="st">"region"</span>]]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>region_palette <span class="op">=</span> {</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"South"</span>:   <span class="st">"#E53935"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"West"</span>:    <span class="st">"#FB8C00"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Central"</span>: <span class="st">"#8E24AA"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"North"</span>:   <span class="st">"#1E88E5"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"East"</span>:    <span class="st">"#43A047"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax.barh(by_aimag[<span class="st">"aimag"</span>], by_aimag[<span class="st">"mortality_pct"</span>],</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>bar_colors, edgecolor<span class="op">=</span><span class="st">"white"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Average mortality (%) across 1990–2013"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Average livestock mortality by aimag"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>legend_handles <span class="op">=</span> [Patch(color<span class="op">=</span>c, label<span class="op">=</span>r) <span class="cf">for</span> r, c <span class="kw">in</span> region_palette.items()]</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>legend_handles, title<span class="op">=</span><span class="st">"Region"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>bar_colors <span class="op">=</span> [region_palette[r] <span class="cf">for</span> r <span class="kw">in</span> by_aimag[<span class="st">"region"</span>]]</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax.barh(by_aimag[<span class="st">"aimag"</span>], by_aimag[<span class="st">"mortality_pct"</span>],</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>bar_colors, edgecolor<span class="op">=</span><span class="st">"white"</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Average mortality (%) across 1990–2013"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Average livestock mortality by aimag"</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">"bold"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>legend_handles <span class="op">=</span> [Patch(color<span class="op">=</span>c, label<span class="op">=</span>r) <span class="cf">for</span> r, c <span class="kw">in</span> region_palette.items()]</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>legend_handles, title<span class="op">=</span><span class="st">"Region"</span>, fontsize<span class="op">=</span><span class="dv">9</span>, loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Look at which regions dominate the top of the chart.</p>
-<p>Is there a geographic pattern? What might explain why certain parts of Mongolia are more vulnerable than others?</p>
 <p>Which regions dominate the top of the chart? Is there a clear geographic pattern? What might explain why certain parts of Mongolia are more vulnerable?</p>
 </section>
 <section id="step-5-the-full-picture-a-heatmap-of-every-aimag-every-year" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-the-full-picture-a-heatmap-of-every-aimag-every-year">Step 5: The full picture — a heatmap of every aimag, every year</h2>
+<h2 class="anchored" data-anchor-id="step-5-the-full-picture-a-heatmap-of-every-aimag-every-year">Step 5: The full picture: A heatmap of every aimag, every year</h2>
 <p>The line chart shows when disasters happened. The bar chart shows which aimags are most vulnerable on average. But neither shows both dimensions at once.</p>
 <p>A heatmap lets us put all 504 data points on a single grid: years along the x-axis, aimags along the y-axis, and colour representing mortality percentage. This gives us the most complete view of the data.</p>
 <div id="de51ebaa" class="cell">
@@ -943,7 +935,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This is the most complete view of the dataset.</p>
 <p>A few things to look for: - In the catastrophic years (2001, 2010), how many aimags show dark red? Is any aimag spared? - In good years, do the same aimags consistently show lighter colours? - Can you spot any aimag that seems to suffer even in relatively mild years?</p>
 </section>
 <section id="step-6-zoom-in-on-the-worst-year" class="level2">
@@ -974,14 +965,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Even in the worst year, there is variation between aimags. Some are well above the national average; others are below it.</p>
-<p>In the next notebook you will investigate why — and which variables in the dataset best explain the difference.</p>
-<p>Before moving on: based on what you have seen today, what is your hypothesis? What do you think causes some aimags to suffer more than others, and some years to be catastrophic while others are normal?</p>
 <p>Based on everything you have seen today, what is your hypothesis? What do you think causes some years to become disasters while others don’t, and why do some aimags suffer more than others?</p>
 </section>
 <section id="what-you-have-done-in-this-notebook" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-have-done-in-this-notebook">What you have done in this notebook</h2>
-<p>You loaded a multi-dimensional dataset — 21 aimags across 24 years — and navigated its structure using groupby aggregation. You built four different visualisations that each reveal something different about the same data: when disasters happened, which regions are most vulnerable, the full pattern across all aimags and years simultaneously, and the variation within a single catastrophic year.</p>
-<p>The next notebook asks the harder question: why do some years become disasters while others don’t? You will look for the variables that predict mortality — and find that one variable alone isn’t enough to explain it.</p>
+<p>You loaded a multi-dimensional dataset (21 aimags across 24 years) and navigated its structure using <code>groupby</code> aggregation. You built four different visualizations that each reveal something different about the same data: when disasters happened, which regions are most vulnerable, the full pattern across all aimags and years simultaneously, and the variation within a single catastrophic year.</p>
 </section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
@@ -1408,13 +1396,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/03/notebooks/sklearn.html" class="pagination-link" aria-label="sklearn.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">sklearn.ipynb</span>
+      <a href="../../../labs/03/notebooks/sklearn.html" class="pagination-link" aria-label="Using Scikit-learn (sklearn.ipynb)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using Scikit-learn (sklearn.ipynb)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/03/notebooks/finding_cause.html" class="pagination-link" aria-label="finding_cause.ipynb">
-        <span class="nav-page-text">finding_cause.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/03/notebooks/finding_cause.html" class="pagination-link" aria-label="Finding the Cause (finding_cause.ipynb)">
+        <span class="nav-page-text">Finding the Cause (finding_cause.ipynb)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

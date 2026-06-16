@@ -477,7 +477,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -490,7 +490,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -503,7 +503,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -516,7 +516,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -529,7 +529,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -542,7 +542,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -555,7 +555,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -568,7 +568,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -581,7 +581,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -594,7 +594,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "sklearn.ipynb"
+      "Using Scikit-learn (sklearn.ipynb)"
     ]
   },
   {
@@ -602,12 +602,12 @@
     "href": "labs/03/notebooks/finding_disasters.html",
     "title": "The Dzud — Finding the Disasters",
     "section": "",
-    "text": "Mongolia is a country of nomadic herders. Livestock — horses, sheep, goats, cattle, camels — are not just an industry. For hundreds of thousands of families, they are the primary source of food, income, and cultural identity.\nPeriodically, a combination of summer drought and extreme winter cold kills millions of animals in a single season. This event is called a dzud. In 2001 alone, over seven million animals died. Entire herding families were left with nothing.\nIn this notebook you will load a dataset covering 24 years of livestock mortality across all 21 Mongolian provinces (aimags) and find the disasters hiding in the data.\nBy the end you will be able to answer: which years were catastrophic, which aimags were hit hardest, and what does a dzud look like when you visualise it?",
+    "text": "In this notebook you will load a dataset covering 24 years of livestock mortality across all 21 Mongolian provinces (aimags) and find the disasters hiding in the data.\nBy the end you will be able to answer: which years were catastrophic, which aimags were hit hardest, and what does a dzud look like when you visualise it?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -615,12 +615,12 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-1-load-the-data",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe use httpx to fetch the CSV directly from the web, then read it into pandas via io.StringIO — a way of treating the downloaded text as if it were a file on disk.\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport matplotlib.colors as mcolors\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Years covered: {df['year'].min()} to {df['year'].max()}\")\nprint(f\"Aimags: {df['aimag'].nunique()}\")\ndf.head()",
+    "text": "Step 1: Load the data\nWe use httpx to fetch the CSV directly from the web, then read it into pandas via io.StringIO — a way of treating the downloaded text as if it were a file on disk.\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Years covered: {df['year'].min()} to {df['year'].max()}\")\nprint(f\"Aimags: {df['aimag'].nunique()}\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -633,7 +633,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -641,12 +641,12 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-3-national-average-mortality-over-time",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 3: National average mortality over time",
-    "text": "Step 3: National average mortality over time\nBecause each year contains 21 rows (one per aimag), we need to aggregate before we can plot a time series.\ngroupby lets us group all rows that share the same year, then calculate a summary statistic across those groups — in this case, the mean mortality percentage.\n\nnational = df.groupby(\"year\")[\"mortality_pct\"].mean().reset_index()\nnational.columns = [\"year\", \"avg_mortality_pct\"]\n\nprint(national.to_string(index=False))\n\nScan through the table. Two years should stand out immediately as far higher than the rest.\nWhich years are they? Before plotting, write down your prediction.\nBefore you run the chart: looking at the table above, which two years stand out as the worst? Write down your prediction before plotting.\n\nfig, ax = plt.subplots(figsize=(13, 5))\n\nax.plot(national[\"year\"], national[\"avg_mortality_pct\"],\n        color=\"steelblue\", linewidth=2, marker=\"o\", markersize=5)\n\nax.set_xlabel(\"Year\", fontsize=12)\nax.set_ylabel(\"Average mortality (%)\", fontsize=12)\nax.set_title(\"National average livestock mortality — Mongolia 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nax.set_xticks(national[\"year\"])\nax.set_xticklabels(national[\"year\"], rotation=45, ha=\"right\", fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nThe two peaks correspond to the dzud catastrophes documented by researchers and the Mongolian government.\nThe 2000–2002 event and the 2009–2010 event together killed an estimated 20 million animals — roughly a third of Mongolia’s entire national herd at the time.\nDoes the chart match what you expected? Were there any years that surprised you — either higher or lower than you anticipated?\nDid the chart match your prediction? Were there any years that surprised you — either higher or lower than you expected? Describe the shape of the line.",
+    "text": "Step 3: National average mortality over time\nBecause each year contains 21 rows (one per aimag), we need to aggregate before we can plot a time series.\ngroupby lets us group all rows that share the same year, then calculate a summary statistic across those groups — in this case, the mean mortality percentage.\n\nnational = df.groupby(\"year\")[\"mortality_pct\"].mean().reset_index()\nnational.columns = [\"year\", \"avg_mortality_pct\"]\n\nprint(national.to_string(index=False))\n\nBefore you run the chart: looking at the table above, which two years stand out as the worst? Write down your prediction before plotting.\n\nfig, ax = plt.subplots(figsize=(13, 5))\n\nax.plot(national[\"year\"], national[\"avg_mortality_pct\"],\n        color=\"steelblue\", linewidth=2, marker=\"o\", markersize=5)\n\nax.set_xlabel(\"Year\", fontsize=12)\nax.set_ylabel(\"Average mortality (%)\", fontsize=12)\nax.set_title(\"National average livestock mortality — Mongolia 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nax.set_xticks(national[\"year\"])\nax.set_xticklabels(national[\"year\"], rotation=45, ha=\"right\", fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nThe two peaks correspond to the dzud catastrophes documented by researchers and the Mongolian government.\nThe 2000–2002 event and the 2009–2010 event together killed an estimated 20 million animals — roughly a third of Mongolia’s entire national herd at the time.\nDid the chart match your prediction? Were there any years that surprised you — either higher or lower than you expected? Describe the shape of the line.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -654,25 +654,25 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-4-which-aimags-were-hit-hardest",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 4: Which aimags were hit hardest?",
-    "text": "Step 4: Which aimags were hit hardest?\nThe national average tells you when disasters happened. But Mongolia is large — roughly the size of Western Europe — and conditions vary enormously across its 21 provinces.\nLet’s look at average mortality by aimag across the full 24-year period to find which regions are most vulnerable.\n\nby_aimag = (df.groupby([\"aimag\", \"region\"])[\"mortality_pct\"]\n            .mean()\n            .round(1)\n            .reset_index()\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nregion_palette = {\n    \"South\":   \"#E53935\",\n    \"West\":    \"#FB8C00\",\n    \"Central\": \"#8E24AA\",\n    \"North\":   \"#1E88E5\",\n    \"East\":    \"#43A047\"\n}\n\nbar_colors = [region_palette[r] for r in by_aimag[\"region\"]]\n\nax.barh(by_aimag[\"aimag\"], by_aimag[\"mortality_pct\"],\n        color=bar_colors, edgecolor=\"white\", linewidth=0.5)\n\nax.set_xlabel(\"Average mortality (%) across 1990–2013\", fontsize=11)\nax.set_title(\"Average livestock mortality by aimag\", fontsize=13, fontweight=\"bold\")\nax.invert_yaxis()\n\nfrom matplotlib.patches import Patch\nlegend_handles = [Patch(color=c, label=r) for r, c in region_palette.items()]\nax.legend(handles=legend_handles, title=\"Region\", fontsize=9, loc=\"lower right\")\n\nplt.tight_layout()\nplt.show()\n\nLook at which regions dominate the top of the chart.\nIs there a geographic pattern? What might explain why certain parts of Mongolia are more vulnerable than others?\nWhich regions dominate the top of the chart? Is there a clear geographic pattern? What might explain why certain parts of Mongolia are more vulnerable?",
+    "text": "Step 4: Which aimags were hit hardest?\nThe national average tells you when disasters happened. But Mongolia is large (roughly the size of Western Europe) and conditions vary enormously across its 21 provinces.\nLet’s look at average mortality by aimag across the full 24-year period to find which regions are most vulnerable.\n\nfrom matplotlib.patches import Patch\n\nby_aimag = (df.groupby([\"aimag\", \"region\"])[\"mortality_pct\"]\n            .mean()\n            .round(1)\n            .reset_index()\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nregion_palette = {\n    \"South\":   \"#E53935\",\n    \"West\":    \"#FB8C00\",\n    \"Central\": \"#8E24AA\",\n    \"North\":   \"#1E88E5\",\n    \"East\":    \"#43A047\"\n}\n\nbar_colors = [region_palette[r] for r in by_aimag[\"region\"]]\n\nax.barh(by_aimag[\"aimag\"], by_aimag[\"mortality_pct\"],\n        color=bar_colors, edgecolor=\"white\", linewidth=0.5)\n\nax.set_xlabel(\"Average mortality (%) across 1990–2013\", fontsize=11)\nax.set_title(\"Average livestock mortality by aimag\", fontsize=13, fontweight=\"bold\")\nax.invert_yaxis()\n\nlegend_handles = [Patch(color=c, label=r) for r, c in region_palette.items()]\nax.legend(handles=legend_handles, title=\"Region\", fontsize=9, loc=\"lower right\")\n\nplt.tight_layout()\nplt.show()\n\nWhich regions dominate the top of the chart? Is there a clear geographic pattern? What might explain why certain parts of Mongolia are more vulnerable?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
     "objectID": "labs/03/notebooks/finding_disasters.html#step-5-the-full-picture-a-heatmap-of-every-aimag-every-year",
     "href": "labs/03/notebooks/finding_disasters.html#step-5-the-full-picture-a-heatmap-of-every-aimag-every-year",
     "title": "The Dzud — Finding the Disasters",
-    "section": "Step 5: The full picture — a heatmap of every aimag, every year",
-    "text": "Step 5: The full picture — a heatmap of every aimag, every year\nThe line chart shows when disasters happened. The bar chart shows which aimags are most vulnerable on average. But neither shows both dimensions at once.\nA heatmap lets us put all 504 data points on a single grid: years along the x-axis, aimags along the y-axis, and colour representing mortality percentage. This gives us the most complete view of the data.\n\n# Pivot the data so rows are aimags and columns are years\nheatmap_data = df.pivot(index=\"aimag\", columns=\"year\", values=\"mortality_pct\")\n\n# Sort aimags by their average mortality so the most vulnerable appear at the top\naimag_order = df.groupby(\"aimag\")[\"mortality_pct\"].mean().sort_values(ascending=False).index\nheatmap_data = heatmap_data.loc[aimag_order]\n\nfig, ax = plt.subplots(figsize=(16, 8))\n\nim = ax.imshow(heatmap_data.values, aspect=\"auto\", cmap=\"YlOrRd\",\n               vmin=0, vmax=35)\n\nax.set_xticks(range(len(heatmap_data.columns)))\nax.set_xticklabels(heatmap_data.columns, rotation=45, ha=\"right\", fontsize=9)\n\nax.set_yticks(range(len(heatmap_data.index)))\nax.set_yticklabels(heatmap_data.index, fontsize=9)\n\nax.set_title(\"Livestock mortality (%) by aimag and year — darker red means more deaths\",\n             fontsize=13, fontweight=\"bold\", pad=12)\n\nplt.colorbar(im, ax=ax, label=\"Mortality (%)\", shrink=0.8)\nplt.tight_layout()\nplt.show()\n\nThis is the most complete view of the dataset.\nA few things to look for: - In the catastrophic years (2001, 2010), how many aimags show dark red? Is any aimag spared? - In good years, do the same aimags consistently show lighter colours? - Can you spot any aimag that seems to suffer even in relatively mild years?",
+    "section": "Step 5: The full picture: A heatmap of every aimag, every year",
+    "text": "Step 5: The full picture: A heatmap of every aimag, every year\nThe line chart shows when disasters happened. The bar chart shows which aimags are most vulnerable on average. But neither shows both dimensions at once.\nA heatmap lets us put all 504 data points on a single grid: years along the x-axis, aimags along the y-axis, and colour representing mortality percentage. This gives us the most complete view of the data.\n\n# Pivot the data so rows are aimags and columns are years\nheatmap_data = df.pivot(index=\"aimag\", columns=\"year\", values=\"mortality_pct\")\n\n# Sort aimags by their average mortality so the most vulnerable appear at the top\naimag_order = df.groupby(\"aimag\")[\"mortality_pct\"].mean().sort_values(ascending=False).index\nheatmap_data = heatmap_data.loc[aimag_order]\n\nfig, ax = plt.subplots(figsize=(16, 8))\n\nim = ax.imshow(heatmap_data.values, aspect=\"auto\", cmap=\"YlOrRd\",\n               vmin=0, vmax=35)\n\nax.set_xticks(range(len(heatmap_data.columns)))\nax.set_xticklabels(heatmap_data.columns, rotation=45, ha=\"right\", fontsize=9)\n\nax.set_yticks(range(len(heatmap_data.index)))\nax.set_yticklabels(heatmap_data.index, fontsize=9)\n\nax.set_title(\"Livestock mortality (%) by aimag and year — darker red means more deaths\",\n             fontsize=13, fontweight=\"bold\", pad=12)\n\nplt.colorbar(im, ax=ax, label=\"Mortality (%)\", shrink=0.8)\nplt.tight_layout()\nplt.show()\n\nA few things to look for: - In the catastrophic years (2001, 2010), how many aimags show dark red? Is any aimag spared? - In good years, do the same aimags consistently show lighter colours? - Can you spot any aimag that seems to suffer even in relatively mild years?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -680,12 +680,12 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-6-zoom-in-on-the-worst-year",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 6: Zoom in on the worst year",
-    "text": "Step 6: Zoom in on the worst year\nLet’s take a closer look at 2001 — the single worst year in the dataset — and see how mortality varied across aimags.\n\nworst_year = 2001\n\ndf_worst = (df[df[\"year\"] == worst_year]\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nax.bar(df_worst[\"aimag\"], df_worst[\"mortality_pct\"],\n       color=\"firebrick\", edgecolor=\"white\", linewidth=0.5)\n\nax.axhline(y=df_worst[\"mortality_pct\"].mean(), color=\"black\",\n           linestyle=\"--\", linewidth=1.2,\n           label=f\"National average: {df_worst['mortality_pct'].mean():.1f}%\")\n\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(f\"Livestock mortality by aimag — {worst_year}\",\n             fontsize=13, fontweight=\"bold\")\nax.set_xticklabels(df_worst[\"aimag\"], rotation=45, ha=\"right\", fontsize=9)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nEven in the worst year, there is variation between aimags. Some are well above the national average; others are below it.\nIn the next notebook you will investigate why — and which variables in the dataset best explain the difference.\nBefore moving on: based on what you have seen today, what is your hypothesis? What do you think causes some aimags to suffer more than others, and some years to be catastrophic while others are normal?\nBased on everything you have seen today, what is your hypothesis? What do you think causes some years to become disasters while others don’t, and why do some aimags suffer more than others?",
+    "text": "Step 6: Zoom in on the worst year\nLet’s take a closer look at 2001 — the single worst year in the dataset — and see how mortality varied across aimags.\n\nworst_year = 2001\n\ndf_worst = (df[df[\"year\"] == worst_year]\n            .sort_values(\"mortality_pct\", ascending=False))\n\nfig, ax = plt.subplots(figsize=(12, 6))\n\nax.bar(df_worst[\"aimag\"], df_worst[\"mortality_pct\"],\n       color=\"firebrick\", edgecolor=\"white\", linewidth=0.5)\n\nax.axhline(y=df_worst[\"mortality_pct\"].mean(), color=\"black\",\n           linestyle=\"--\", linewidth=1.2,\n           label=f\"National average: {df_worst['mortality_pct'].mean():.1f}%\")\n\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(f\"Livestock mortality by aimag — {worst_year}\",\n             fontsize=13, fontweight=\"bold\")\nax.set_xticklabels(df_worst[\"aimag\"], rotation=45, ha=\"right\", fontsize=9)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nEven in the worst year, there is variation between aimags. Some are well above the national average; others are below it.\nBased on everything you have seen today, what is your hypothesis? What do you think causes some years to become disasters while others don’t, and why do some aimags suffer more than others?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -693,12 +693,12 @@
     "href": "labs/03/notebooks/finding_disasters.html#what-you-have-done-in-this-notebook",
     "title": "The Dzud — Finding the Disasters",
     "section": "What you have done in this notebook",
-    "text": "What you have done in this notebook\nYou loaded a multi-dimensional dataset — 21 aimags across 24 years — and navigated its structure using groupby aggregation. You built four different visualisations that each reveal something different about the same data: when disasters happened, which regions are most vulnerable, the full pattern across all aimags and years simultaneously, and the variation within a single catastrophic year.\nThe next notebook asks the harder question: why do some years become disasters while others don’t? You will look for the variables that predict mortality — and find that one variable alone isn’t enough to explain it.",
+    "text": "What you have done in this notebook\nYou loaded a multi-dimensional dataset (21 aimags across 24 years) and navigated its structure using groupby aggregation. You built four different visualizations that each reveal something different about the same data: when disasters happened, which regions are most vulnerable, the full pattern across all aimags and years simultaneously, and the variation within a single catastrophic year.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -711,7 +711,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_disasters.ipynb"
+      "Finding Disasters (finding_disasters.ipynb)"
     ]
   },
   {
@@ -2032,7 +2032,7 @@
     "href": "labs/03/slides.html#recap",
     "title": "Day 3: How Machines Learn",
     "section": "Recap",
-    "text": "Recap\n\nTBD",
+    "text": "Recap\n\nLearned about Pandas\nCreated charts with Matplotlib\nInvestigated data on Ulaanbaatar’s air quality",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -2044,7 +2044,7 @@
     "href": "labs/03/slides.html#what-is-scikit-learn",
     "title": "Day 3: How Machines Learn",
     "section": "What is scikit-learn?",
-    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of NumPy and Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
+    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -2052,11 +2052,11 @@
     ]
   },
   {
-    "objectID": "labs/03/slides.html#the-sklearn-workflow",
-    "href": "labs/03/slides.html#the-sklearn-workflow",
+    "objectID": "labs/03/slides.html#using-scikit-learn",
+    "href": "labs/03/slides.html#using-scikit-learn",
     "title": "Day 3: How Machines Learn",
-    "section": "The sklearn Workflow",
-    "text": "The sklearn Workflow\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
+    "section": "Using scikit-learn",
+    "text": "Using scikit-learn\n\nEvery sklearn model follows the same three steps:\n\n\nPrepare your features (X) and labels (y)\nFit — model.fit(X, y) — the model learns from your data\nPredict — model.predict(X_new) — apply what it learned to new data",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -2064,11 +2064,83 @@
     ]
   },
   {
-    "objectID": "labs/03/slides.html#your-first-sklearn-model",
-    "href": "labs/03/slides.html#your-first-sklearn-model",
+    "objectID": "labs/03/slides.html#dzud",
+    "href": "labs/03/slides.html#dzud",
     "title": "Day 3: How Machines Learn",
-    "section": "Your First sklearn Model",
-    "text": "Your First sklearn Model\nfrom sklearn.linear_model import LinearRegression\n\n# Hours studied → test scores\nX = [[1], [2], [3], [4], [5]]   # feature (must be 2D)\ny = [50, 60, 65, 75, 85]        # label\n\nmodel = LinearRegression()\nmodel.fit(X, y)             # train\n\nmodel.predict([[6]])        # → predicted score for 6 hours",
+    "section": "Dzud",
+    "text": "Dzud\n\nFor many families in Mongolia, livestock are the primary source of food, income, and cultural identity.\nPeriodically, a combination of summer drought and extreme winter cold kills millions of animals in a single season.\nThis event is called a dzud.\nIn 2001 alone, over seven million animals died. Entire herding families were left with nothing.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#finding-the-cause-1",
+    "href": "labs/03/slides.html#finding-the-cause-1",
+    "title": "Day 3: How Machines Learn",
+    "section": "Finding The Cause",
+    "text": "Finding The Cause\n\nIn the previous notebook you found the disasters.\n\n2001 and 2010 were catastrophic years\nSouthern and western aimags tend to suffer more than others\n\nThis tells use the when and where but not the why",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#lets-train-our-model-1",
+    "href": "labs/03/slides.html#lets-train-our-model-1",
+    "title": "Day 3: How Machines Learn",
+    "section": "Let’s Train Our Model!",
+    "text": "Let’s Train Our Model!\n\nWinter temperature is the strongest predictor of livestock mortality\nA prior summer drought increases mortality\nCan a machine learn that relationship?\nAnd then predict mortality for future years?\nThis is called linear regression",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#what-is-linear-regression",
+    "href": "labs/03/slides.html#what-is-linear-regression",
+    "title": "Day 3: How Machines Learn",
+    "section": "What is Linear Regression?",
+    "text": "What is Linear Regression?\n\nIt draws the best-fit straight line through your data points\nOnce the line is drawn, you can predict new values\n“Linear” just means the relationship is a straight line",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#what-is-linear-regression-1",
+    "href": "labs/03/slides.html#what-is-linear-regression-1",
+    "title": "Day 3: How Machines Learn",
+    "section": "What is Linear Regression?",
+    "text": "What is Linear Regression?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#training-and-test-datasets",
+    "href": "labs/03/slides.html#training-and-test-datasets",
+    "title": "Day 3: How Machines Learn",
+    "section": "Training and Test Datasets",
+    "text": "Training and Test Datasets\n\nWe split our data into two groups:\n\nA training set to teach the model, and a test set to check how well it learned\n\nThe test set is like an exam at the end to see if the model is working\nA common split is 80% training / 20% testing",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#tomorrow",
+    "href": "labs/03/slides.html#tomorrow",
+    "title": "Day 3: How Machines Learn",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nUse the same approach for hardware\nExplore micro:bit boards\nUse AI to detect waving, putting your hand up, and other commands!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -2668,18 +2740,6 @@
     ]
   },
   {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-2",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality-2",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\nhttps://www.youtube.com/watch?v=xySwAUt6ojQ",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "labs/02/slides.html#what-is-correlation",
     "href": "labs/02/slides.html#what-is-correlation",
     "title": "Day 2: Working With Data",
@@ -2708,7 +2768,7 @@
     "href": "labs/02/slides.html#tomorrow",
     "title": "Day 2: Working With Data",
     "section": "Tomorrow",
-    "text": "Tomorrow\n\nIntroduce sklearn\nTrain our first AI model!\nExplore a dataset about Dzud",
+    "text": "Tomorrow\n\nIntroduce scikit-learn\nTrain our first AI model!\nExplore a dataset about Dzud",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -4405,12 +4465,12 @@
     "href": "labs/03/notebooks/finding_cause.html",
     "title": "The Dzud — Finding the Cause",
     "section": "",
-    "text": "In the previous notebook you found the disasters. You could see clearly that 2001 and 2010 were catastrophic years, and that southern and western aimags tend to suffer more than others.\nBut knowing when and where is not the same as knowing why.\nIn this notebook you will look for the variables that explain livestock mortality. You will start with the most obvious suspect — winter temperature — and discover that it tells only part of the story. Finding the second piece of the puzzle is the core task.\nBy the end you will have a clear, evidence-backed answer to: what combination of conditions turns a harsh winter into a national disaster?",
+    "text": "In this notebook you will look for the variables that explain livestock mortality. You will start with the most obvious suspect — winter temperature — and discover that it tells only part of the story. Finding the second piece of the puzzle is the core task.\nBy the end you will have a clear, evidence-backed answer to: what combination of conditions turns a harsh winter into a national disaster?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4418,12 +4478,12 @@
     "href": "labs/03/notebooks/finding_cause.html#step-1-load-the-data",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
+    "text": "Step 1: Load the data\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4431,12 +4491,12 @@
     "href": "labs/03/notebooks/finding_cause.html#step-2-the-primary-suspect-winter-temperature",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 2: The primary suspect — winter temperature",
-    "text": "Step 2: The primary suspect — winter temperature\nMongolia’s winters are severe by any standard. But some winters are much colder than others. The obvious hypothesis is: colder winters kill more livestock.\nLet’s test that with a scatter plot. Each point is one aimag in one year.\nBefore you run the scatter plot: if colder winters cause more livestock deaths, what shape would you expect the points to form? Do you think all aimags will fit the pattern, or will some be outliers?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    alpha=0.25,\n    s=14,\n    color=\"steelblue\"\n)\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. livestock mortality — all aimags, 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nThere should be a clear downward slope — colder winters correspond to higher mortality.\nBut look carefully at the spread of the points. At any given temperature, mortality varies considerably. Some aimags at -22°C lost 10% of their herd; others lost 30%.\nTemperature is clearly important, but it is not the whole story. What does that spread suggest to you?\nDescribe what you see in the scatter plot. Is there a clear slope? At the same temperature, why might some aimags lose 10% of their herd while others lose 30%? What does that spread suggest to you?",
+    "text": "Step 2: The primary suspect — winter temperature\nMongolia’s winters are severe by any standard. But some winters are much colder than others. The obvious hypothesis is: colder winters kill more livestock.\nLet’s test that with a scatter plot. Each point is one aimag in one year.\nBefore you run the scatter plot: if colder winters cause more livestock deaths, what shape would you expect the points to form? Do you think all aimags will fit the pattern, or will some be outliers?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    alpha=0.25,\n    s=14,\n    color=\"steelblue\"\n)\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. livestock mortality — all aimags, 1990–2013\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nDescribe what you see in the scatter plot. Is there a clear slope? At the same temperature, why might some aimags lose 10% of their herd while others lose 30%? What does that spread suggest to you?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4444,12 +4504,12 @@
     "href": "labs/03/notebooks/finding_cause.html#step-3-measure-the-relationship",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 3: Measure the relationship",
-    "text": "Step 3: Measure the relationship\nIn the previous notebook you calculated a correlation coefficient for the air quality data. Let’s do the same here and compare.\n\ncorr_temp = df[\"mortality_pct\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between winter temperature and mortality: {corr_temp:.3f}\")\n\nCompare this value to the -0.85 correlation you found between temperature and PM2.5 in the air quality data.\nThe relationship here is strong, but noticeably weaker. That gap — the variation that temperature alone cannot explain — is what we are going to investigate next.",
+    "text": "Step 3: Measure the relationship\nIn the previous notebook you calculated a correlation coefficient for the air quality data. Let’s do the same here and compare.\n\ncorr_temp = df[\"mortality_pct\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between winter temperature and mortality: {corr_temp:.3f}\")\n\nCompare this value to the -0.85 correlation you found between temperature and PM2.5 in the air quality data.\nThe relationship here is strong, but something else might also be a factor.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4457,12 +4517,12 @@
     "href": "labs/03/notebooks/finding_cause.html#step-4-introducing-the-second-variable",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 4: Introducing the second variable",
-    "text": "Step 4: Introducing the second variable\nMongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened — thinner, with smaller fat reserves, less able to withstand extreme cold.\nThe dataset includes a summer_drought_idx column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.\nLet’s check whether this variable also correlates with mortality.\n\ncorr_drought = df[\"mortality_pct\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between summer drought index and mortality: {corr_drought:.3f}\")\n\nThe drought index has a meaningful positive correlation with mortality — higher drought, higher mortality.\nIt is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.\nBefore testing that, what is your intuition? Do you think summer drought and winter temperature tend to occur together, or are they independent of each other?\nWhat is your intuition — do you think dry summers and cold winters tend to happen in the same years, or are they independent events? Why does it matter for building a prediction model?",
+    "text": "Step 4: Introducing the second variable\nMongolian herders have long observed that a bad summer makes a bad winter worse. When summer pastures are dried out by drought, livestock enter the winter season already weakened. They are thinner, with smaller fat reserves, less able to withstand extreme cold.\nThe dataset includes a summer_drought_idx column: a value from 0 (no drought) to 1 (severe drought) for the summer preceding each winter.\nLet’s check whether this variable also correlates with mortality.\n\ncorr_drought = df[\"mortality_pct\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between summer drought index and mortality: {corr_drought:.3f}\")\n\nThe drought index has a meaningful positive correlation with mortality. If there is higher drought, there is higher mortality.\nIt is weaker than temperature on its own, but it is measuring something different. The question is whether it adds new information on top of what temperature already tells us — or whether it just duplicates it.\nWhat is your intuition? Do you think dry summers and cold winters tend to happen in the same years, or are they independent events? Why does it matter for building a prediction model?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4470,25 +4530,25 @@
     "href": "labs/03/notebooks/finding_cause.html#step-5-are-the-two-variables-independent",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 5: Are the two variables independent?",
-    "text": "Step 5: Are the two variables independent?\nIf cold winters and droughts always happen in the same years, then drought is not adding new information — it is just another way of measuring the same thing. But if they are largely independent, then a year with both a cold winter AND a summer drought is genuinely more dangerous than a year with just one of those conditions.\nLet’s check the correlation between the two predictor variables themselves.\n\ncorr_between = df[\"winter_temp_c\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between winter temperature and summer drought: {corr_between:.3f}\")\n\nA low correlation between the two predictors means they are measuring largely independent things. Cold winters do not reliably follow dry summers — they are separate climate events that sometimes coincide.\nWhen they do coincide, the combined effect on livestock is much worse than either alone. That is the key insight that researchers took years to establish — and you just found evidence for it in a few lines of code.\nWhy does it matter that the two variables are independent rather than correlated with each other?",
+    "text": "Step 5: Are the two variables independent?\nIf cold winters and droughts always happen in the same years, then drought is not adding new information. But if they are largely independent, then a year with both a cold winter AND a summer drought is genuinely more dangerous than a year with just one of those conditions.\nLet’s check the correlation between the two predictor variables themselves.\n\ncorr_between = df[\"winter_temp_c\"].corr(df[\"summer_drought_idx\"])\nprint(f\"Correlation between winter temperature and summer drought: {corr_between:.3f}\")\n\nA low correlation between the two means they are measuring largely independent things. Cold winters do not reliably follow dry summers. They are separate climate events that sometimes coincide.\nWhen they do coincide, the combined effect on livestock is much worse than either alone. That is the key insight that researchers took years to establish — and you just found evidence for it in a few lines of code!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/finding_cause.html#step-6-colouring-the-scatter-by-drought-severity",
-    "href": "labs/03/notebooks/finding_cause.html#step-6-colouring-the-scatter-by-drought-severity",
+    "objectID": "labs/03/notebooks/finding_cause.html#step-6-coloring-the-scatter-by-drought-severity",
+    "href": "labs/03/notebooks/finding_cause.html#step-6-coloring-the-scatter-by-drought-severity",
     "title": "The Dzud — Finding the Cause",
-    "section": "Step 6: Colouring the scatter by drought severity",
-    "text": "Step 6: Colouring the scatter by drought severity\nThe best way to see the combined effect is to go back to the temperature scatter plot and colour each point by its drought index. If drought is adding real information, you should see a pattern within the scatter — high-drought points clustering toward higher mortality at any given temperature.\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nscatter = ax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.55,\n    s=18,\n    edgecolors=\"none\"\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index (0 = none, 1 = severe)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. mortality, coloured by summer drought\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nLook for the pattern within the scatter.\nAt a given temperature — say, around -22°C — are the darker points (severe drought) sitting higher on the mortality axis than the lighter points (low drought)?\nIf you can see that pattern, it means drought is doing real explanatory work on top of temperature. Describe what you observe.",
+    "section": "Step 6: Coloring the scatter by drought severity",
+    "text": "Step 6: Coloring the scatter by drought severity\nThe best way to see the combined effect is to go back to the temperature scatter plot and colour each point by its drought index. If drought is adding real information, you should see a pattern within the scatter: high-drought points clustering toward higher mortality at any given temperature.\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nscatter = ax.scatter(\n    df[\"winter_temp_c\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.55,\n    s=18,\n    edgecolors=\"none\"\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index (0 = none, 1 = severe)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Winter temperature vs. mortality, coloured by summer drought\",\n             fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nAt a given temperature — say, around -22°C — are the darker points (severe drought) sitting higher on the mortality axis than the lighter points (low drought)?\nDescribe what you observe.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4496,38 +4556,12 @@
     "href": "labs/03/notebooks/finding_cause.html#step-7-separating-drought-years-from-non-drought-years",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 7: Separating drought years from non-drought years",
-    "text": "Step 7: Separating drought years from non-drought years\nLet’s make that separation explicit. We will split the data into two groups — years with significant drought and years without — and plot them as separate series on the same scatter plot.\n\n# Define a drought threshold\ndrought_threshold = 0.5\n\ndf_drought    = df[df[\"summer_drought_idx\"] &gt;= drought_threshold]\ndf_no_drought = df[df[\"summer_drought_idx\"] &lt;  drought_threshold]\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nax.scatter(df_no_drought[\"winter_temp_c\"], df_no_drought[\"mortality_pct\"],\n           alpha=0.35, s=14, color=\"steelblue\", label=\"Low drought (index &lt; 0.5)\")\n\nax.scatter(df_drought[\"winter_temp_c\"], df_drought[\"mortality_pct\"],\n           alpha=0.45, s=14, color=\"firebrick\", label=\"High drought (index &gt;= 0.5)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"The combined effect: cold winters and summer drought\",\n             fontsize=13, fontweight=\"bold\")\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe red points (high drought years) should sit systematically higher on the mortality axis than the blue points at the same temperature.\nThis is the mechanism behind Mongolia’s worst dzud events. A cold winter alone is survivable for healthy livestock. A cold winter following a drought — when animals enter winter already weakened — is not.\nThe two catastrophic years in your data, 2001 and 2010, both involved an unusually cold winter preceded by significant summer drought across many aimags.\nAt this point you have done what scientists do: identified two independent variables that together explain an outcome better than either one alone. The next notebook will formalise that into a model — one that can take a winter temperature and a drought index as inputs and predict how much of the herd will be lost.",
+    "text": "Step 7: Separating drought years from non-drought years\nLet’s make that separation explicit. We will split the data into two groups — years with significant drought and years without — and plot them as separate series on the same scatter plot.\n\n# Define a drought threshold\ndrought_threshold = 0.5\n\ndf_drought    = df[df[\"summer_drought_idx\"] &gt;= drought_threshold]\ndf_no_drought = df[df[\"summer_drought_idx\"] &lt;  drought_threshold]\n\nfig, ax = plt.subplots(figsize=(10, 6))\n\nax.scatter(df_no_drought[\"winter_temp_c\"], df_no_drought[\"mortality_pct\"],\n           alpha=0.35, s=14, color=\"steelblue\", label=\"Low drought (index &lt; 0.5)\")\n\nax.scatter(df_drought[\"winter_temp_c\"], df_drought[\"mortality_pct\"],\n           alpha=0.45, s=14, color=\"firebrick\", label=\"High drought (index &gt;= 0.5)\")\n\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"The combined effect: cold winters and summer drought\",\n             fontsize=13, fontweight=\"bold\")\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nThe red points (high drought years) should sit systematically higher on the mortality axis than the blue points at the same temperature.\nThis is the mechanism behind Mongolia’s worst dzud events. A cold winter alone is survivable for healthy livestock. A cold winter following a drought — when animals enter winter already weakened — is not.\nThe two catastrophic years in your data, 2001 and 2010, both involved an unusually cold winter preceded by significant summer drought across many aimags.\nAt this point you have done what scientists do: identified two independent variables that together explain an outcome better than either one alone. The next notebook will formalise that into a model: one that can take a winter temperature and a drought index as inputs and predict how much of the herd will be lost.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/finding_cause.html#step-8-your-turn-explore-a-third-variable",
-    "href": "labs/03/notebooks/finding_cause.html#step-8-your-turn-explore-a-third-variable",
-    "title": "The Dzud — Finding the Cause",
-    "section": "Step 8: Your turn — explore a third variable",
-    "text": "Step 8: Your turn — explore a third variable\nThe dataset also includes snow_depth_cm. Heavy snow traps livestock and prevents them from reaching pasture, which can compound the effects of cold and drought.\nUsing the pattern from the cells above, investigate whether snow depth adds any additional explanatory power:\n\nWhat is the correlation between snow depth and mortality?\nDoes it add information beyond what temperature already captures?\nTry a scatter plot of snow depth vs. mortality, coloured by drought index.\n\nModify the cells below and record what you find.\n\n# Calculate the correlation between snow depth and mortality\ncorr_snow = df[\"mortality_pct\"].corr(df[\"snow_depth_cm\"])\nprint(f\"Correlation between snow depth and mortality: {corr_snow:.3f}\")\n\n# Also check whether snow depth and winter temperature are correlated with each other\ncorr_snow_temp = df[\"snow_depth_cm\"].corr(df[\"winter_temp_c\"])\nprint(f\"Correlation between snow depth and winter temperature: {corr_snow_temp:.3f}\")\n\n\n# Your scatter plot — modify as you like\nfig, ax = plt.subplots(figsize=(9, 6))\n\nscatter = ax.scatter(\n    df[\"snow_depth_cm\"],\n    df[\"mortality_pct\"],\n    c=df[\"summer_drought_idx\"],\n    cmap=\"YlOrRd\",\n    alpha=0.45,\n    s=14\n)\n\nplt.colorbar(scatter, ax=ax, label=\"Summer drought index\")\nax.set_xlabel(\"Snow depth (cm)\", fontsize=12)\nax.set_ylabel(\"Mortality (%)\", fontsize=12)\nax.set_title(\"Snow depth vs. mortality\", fontsize=13, fontweight=\"bold\")\n\nplt.tight_layout()\nplt.show()\n\nDoes snow depth appear to add useful information, or does it largely overlap with what winter temperature already tells you?\nBased on all the correlations you have now calculated, which two variables would you choose as inputs to a prediction model — and why?\nBased on the correlations you calculated, which two variables would you choose as inputs to a prediction model — and why? Does snow depth add useful information, or does it largely overlap with temperature?",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "finding_cause.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/finding_cause.html#what-you-have-done-in-this-notebook",
-    "href": "labs/03/notebooks/finding_cause.html#what-you-have-done-in-this-notebook",
-    "title": "The Dzud — Finding the Cause",
-    "section": "What you have done in this notebook",
-    "text": "What you have done in this notebook\nYou tested three variables against livestock mortality, measured their correlations, checked whether they were independent of each other, and visualised the combined effect of the two strongest predictors.\nThe key findings: - Winter temperature is the strongest single predictor of mortality - Summer drought is an independent second predictor — it adds real information that temperature alone misses - The worst dzud events occur when both conditions coincide - Snow depth is correlated with temperature and adds less independent information\nIn the next notebook you will use these two variables to train a linear regression model — one that can take a winter temperature and a drought reading as inputs and output a predicted mortality percentage for any aimag.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4540,7 +4574,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "finding_cause.ipynb"
+      "Finding the Cause (finding_cause.ipynb)"
     ]
   },
   {
@@ -4548,12 +4582,12 @@
     "href": "labs/03/notebooks/regression.html",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "",
-    "text": "In the previous two notebooks you found the disasters and identified their causes. You know that winter temperature is the strongest predictor of livestock mortality, and that summer drought adds independent explanatory power on top of it.\nNow comes the question that makes this practically useful: can a machine learn that relationship from historical data and use it to make predictions about years it has never seen?\nThat is linear regression — and it is also, at its core, the same idea behind every model you will work with this week, including the micro:bit gesture detector on Thursday.\nBy the end of this notebook you will have trained two models, compared their accuracy, and used the better one to predict what would happen to a Mongolian herding family given a specific forecast of winter temperature and summer drought.",
+    "text": "By the end of this notebook you will have trained two models, compared their accuracy, and used the better one to predict what would happen to a Mongolian herding family given a specific forecast of winter temperature and summer drought.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
@@ -4561,12 +4595,12 @@
     "href": "labs/03/notebooks/regression.html#step-1-load-the-data-and-imports",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 1: Load the data and imports",
-    "text": "Step 1: Load the data and imports\nWe add one new import today: scikit-learn, the most widely used machine learning library in Python. We will use just two things from it — a LinearRegression model and a function to split data into training and test sets.\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import r2_score, mean_absolute_error\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
+    "text": "Step 1: Load the data and imports\nWe are going to train the machine using scikit-learn, the most widely used machine learning library in Python. We will use just two things from it: a LinearRegression model and a function to split data into training and test sets.\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_absolute_error\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
@@ -4574,12 +4608,12 @@
     "href": "labs/03/notebooks/regression.html#step-2-the-idea-behind-linear-regression",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 2: The idea behind linear regression",
-    "text": "Step 2: The idea behind linear regression\nBefore writing any model code, it is worth understanding what linear regression actually does.\nIn the previous notebook you found that colder winters tend to produce higher mortality. If you drew a straight line through that scatter plot that best fits the data, you would have a linear regression model. Given a new winter temperature value, the line tells you the predicted mortality.\nThe line has two properties: - A slope — how much mortality changes for each one-degree change in temperature - An intercept — where the line crosses the y-axis (the predicted mortality at 0°C)\nA model with two input variables (temperature and drought) fits a flat plane through the data instead of a line — the same idea, one dimension higher.\nScikit-learn finds the slope and intercept automatically by minimising the total distance between the line (or plane) and all the actual data points. You do not need to calculate this by hand.\nWhat do you think will happen to the predicted mortality if winter temperature goes down by 5°C? What about if summer drought index goes up from 0.2 to 0.8?\nBefore training the model: if winter temperature drops by 5°C, what do you predict happens to mortality? What if the summer drought index rises from 0.2 to 0.8? Write your prediction — you can check it against the model’s coefficients later.",
+    "text": "Step 2: The idea behind linear regression\nBefore writing any model code, it is worth understanding what linear regression actually does.\nIn the previous notebook you found that colder winters tend to produce higher mortality. If you drew a straight line through that scatter plot that best fits the data, you would have a linear regression model. Given a new winter temperature value, the line tells you the predicted mortality.\nThe line has two properties: - A slope — how much mortality changes for each one-degree change in temperature - An intercept — where the line crosses the y-axis (the predicted mortality at 0°C)\nA model with two input variables (temperature and drought) fits a flat plane through the data instead of a line — the same idea, one dimension higher.\nBefore training the model: if winter temperature drops by 5°C, what do you predict happens to mortality? What if the summer drought index rises from 0.2 to 0.8? Write your prediction — you can check it against the model’s coefficients later.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
@@ -4587,25 +4621,25 @@
     "href": "labs/03/notebooks/regression.html#step-3-prepare-the-data",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 3: Prepare the data",
-    "text": "Step 3: Prepare the data\nBefore training, we need to decide on three things: 1. Which columns are our inputs (features) — the variables the model will learn from 2. Which column is our output (target) — the value the model will try to predict 3. How to split the data into a training set (data the model learns from) and a test set (data we hold back to evaluate it)\nKeeping the test set hidden during training is critical. If we evaluated the model on data it had already seen, we would have no idea how well it generalises to genuinely new situations.\n\n# Input features and target\nX = df[[\"winter_temp_c\"]]          # start with one variable only\ny = df[\"mortality_pct\"]\n\n# Split: 80% for training, 20% held back for testing\n# random_state=42 ensures everyone gets the same split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nprint(f\"Training rows: {len(X_train)}\")\nprint(f\"Test rows:     {len(X_test)}\")\nprint(f\"\\nThe model will learn from {len(X_train)} aimag-years\")\nprint(f\"and be evaluated on {len(X_test)} aimag-years it has never seen\")",
+    "text": "Step 3: Prepare the data\nBefore training, we need to decide on three things: 1. Which columns are our inputs (features) — the variables the model will learn from 2. Which column is our output (target) — the value the model will try to predict 3. How to split the data into a training set (data the model learns from) and a test set (data we hold back to evaluate it)\nKeeping the test set hidden during training is critical. If we evaluated the model on data it had already seen, we would have no idea how well it generalizes to genuinely new situations.\n\n# Input features and target\nX = df[[\"winter_temp_c\"]]          # start with one variable only\ny = df[\"mortality_pct\"]\n\n# Split: 80% for training, 20% held back for testing\n# random_state=42 ensures everyone gets the same split\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nprint(f\"Training rows: {len(X_train)}\")\nprint(f\"Test rows:     {len(X_test)}\")\nprint(f\"\\nThe model will learn from {len(X_train)} aimag-years\")\nprint(f\"and be evaluated on {len(X_test)} aimag-years it has never seen\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
     "objectID": "labs/03/notebooks/regression.html#step-4-train-the-first-model-temperature-only",
     "href": "labs/03/notebooks/regression.html#step-4-train-the-first-model-temperature-only",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 4: Train the first model — temperature only",
-    "text": "Step 4: Train the first model — temperature only\nThree lines of code to train a model. That is all scikit-learn requires.\nThe fit call is where the learning happens — it finds the slope and intercept that best describes the relationship between winter temperature and mortality in the training data.\n\nmodel_1 = LinearRegression()\nmodel_1.fit(X_train, y_train)\n\nprint(f\"Model learned:\")\nprint(f\"  Slope (per 1°C change in winter temp): {model_1.coef_[0]:.3f}\")\nprint(f\"  Intercept:                             {model_1.intercept_:.3f}\")\nprint()\nprint(f\"Interpretation: for every 1°C colder the winter is,\")\nprint(f\"the model predicts mortality increases by {abs(model_1.coef_[0]):.2f} percentage points\")\n\nThe slope tells you something directly interpretable: each additional degree of winter cold is associated with a specific increase in predicted mortality.\nDoes that number feel intuitively reasonable given what you saw in the scatter plots?\nThe model learned a specific slope — how much mortality increases per degree of cold. Does that number feel intuitively reasonable based on the scatter plots you saw earlier? Is it larger or smaller than you expected?",
+    "section": "Step 4: Train the first model: temperature only",
+    "text": "Step 4: Train the first model: temperature only\nThree lines of code to train a model. That is all scikit-learn requires.\nThe fit call is where the learning happens — it finds the slope and intercept that best describes the relationship between winter temperature and mortality in the training data.\n\nmodel_1 = LinearRegression()\nmodel_1.fit(X_train, y_train)\n\nprint(f\"Model learned:\")\nprint(f\"  Slope (per 1°C change in winter temp): {model_1.coef_[0]:.3f}\")\nprint(f\"  Intercept:                             {model_1.intercept_:.3f}\")\nprint()\nprint(f\"Interpretation: for every 1°C colder the winter is,\")\nprint(f\"the model predicts mortality increases by {abs(model_1.coef_[0]):.2f} percentage points\")\n\nThe model learned a specific slope — how much mortality increases per degree of cold. Does that number feel intuitively reasonable based on the scatter plots you saw earlier? Is it larger or smaller than you expected?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
@@ -4613,103 +4647,51 @@
     "href": "labs/03/notebooks/regression.html#step-5-evaluate-the-first-model",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 5: Evaluate the first model",
-    "text": "Step 5: Evaluate the first model\nTraining a model is straightforward. The harder question is: how good is it?\nWe evaluate on the test set — the 20% of data the model has never seen.\nTwo metrics: - R² (R-squared): how much of the variation in mortality does the model explain? Ranges from 0 (explains nothing) to 1 (explains everything perfectly). An R² of 0.7 means the model accounts for 70% of the variation. - MAE (Mean Absolute Error): on average, how many percentage points is the model’s prediction off from the real value?\n\ny_pred_1 = model_1.predict(X_test)\n\nr2_1  = r2_score(y_test, y_pred_1)\nmae_1 = mean_absolute_error(y_test, y_pred_1)\n\nprint(f\"Model 1 — temperature only\")\nprint(f\"  R²:  {r2_1:.3f}  (explains {r2_1*100:.1f}% of the variation in mortality)\")\nprint(f\"  MAE: {mae_1:.2f} percentage points average error\")\n\nAn R² in the range of 0.65–0.75 is a reasonable result for a single-variable model on noisy real-world data. The MAE tells you something more concrete — on average, the model’s prediction is off by that many percentage points.\nFor context, in a year like 2001 when average national mortality was around 23%, an MAE of several percentage points represents a meaningful margin of error for a herder trying to decide whether to move their animals or seek insurance support.",
+    "text": "Step 5: Evaluate the first model\nTraining a model is straightforward. The harder question is: how good is it?\nWe evaluate on the test set — the 20% of data the model has never seen.\nWe use MAE (Mean Absolute Error): on average, how many percentage points is the model’s prediction off from the real value? A lower MAE means the model is more accurate.\n\ny_pred_1 = model_1.predict(X_test)\n\nmae_1 = mean_absolute_error(y_test, y_pred_1)\n\nprint(f\"Model 1 — temperature only\")\nprint(f\"  MAE: {mae_1:.2f} percentage points average error\")\n\nThe MAE tells you something concrete — on average, the model’s prediction is off by that many percentage points.\nFor context, in a year like 2001 when average national mortality was around 23%, an MAE of several percentage points represents a meaningful margin of error for a herder trying to decide whether to move their animals or seek insurance support.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/regression.html#step-6-visualise-the-first-models-predictions",
-    "href": "labs/03/notebooks/regression.html#step-6-visualise-the-first-models-predictions",
+    "objectID": "labs/03/notebooks/regression.html#step-6-train-the-second-model-with-both-temperature-and-drought",
+    "href": "labs/03/notebooks/regression.html#step-6-train-the-second-model-with-both-temperature-and-drought",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 6: Visualise the first model’s predictions",
-    "text": "Step 6: Visualise the first model’s predictions\nA good way to inspect a model is to plot its predictions against the actual values. If the model were perfect, every point would lie on the diagonal. Points above the diagonal are cases where the model under-predicted mortality; points below are over-predictions.\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\n# Left: predicted vs actual\nax = axes[0]\nax.scatter(y_test, y_pred_1, alpha=0.45, s=18, color=\"steelblue\")\nlims = [0, max(y_test.max(), y_pred_1.max()) + 2]\nax.plot(lims, lims, \"k--\", linewidth=1, label=\"Perfect prediction\")\nax.set_xlabel(\"Actual mortality (%)\", fontsize=11)\nax.set_ylabel(\"Predicted mortality (%)\", fontsize=11)\nax.set_title(f\"Model 1: temperature only\\nR² = {r2_1:.3f}\", fontsize=12, fontweight=\"bold\")\nax.legend(fontsize=9)\n\n# Right: the regression line over the training data\nax = axes[1]\ntemp_range = np.linspace(df[\"winter_temp_c\"].min(), df[\"winter_temp_c\"].max(), 200).reshape(-1, 1)\npred_line  = model_1.predict(temp_range)\n\nax.scatter(df[\"winter_temp_c\"], df[\"mortality_pct\"],\n           alpha=0.2, s=12, color=\"steelblue\", label=\"Observed data\")\nax.plot(temp_range, pred_line, color=\"firebrick\", linewidth=2, label=\"Regression line\")\nax.set_xlabel(\"Winter temperature (°C)\", fontsize=11)\nax.set_ylabel(\"Mortality (%)\", fontsize=11)\nax.set_title(\"The fitted regression line\", fontsize=12, fontweight=\"bold\")\nax.legend(fontsize=9)\n\nplt.tight_layout()\nplt.show()\n\nLook at the predicted vs. actual chart on the left. The points should follow the diagonal broadly, but with noticeable scatter — especially at higher mortality values.\nThe wide spread at the top right is the model struggling with the catastrophic dzud years. What might explain why the temperature-only model has more trouble predicting the worst outcomes?\nLook at the predicted vs. actual chart. Where does the model struggle most — at low mortality values, high values, or both? Why do you think the temperature-only model has more trouble predicting the worst dzud years?",
+    "section": "Step 6: Train the second model with both temperature and drought",
+    "text": "Step 6: Train the second model with both temperature and drought\nNow we add the summer drought index as a second input feature. The change to the code is minimal — we just add the second column to X. Scikit-learn handles the rest.\n\n# Two input features this time\nX2 = df[[\"winter_temp_c\", \"summer_drought_idx\"]]\n\nX2_train, X2_test, y2_train, y2_test = train_test_split(\n    X2, y, test_size=0.2, random_state=42   # same random_state = same split\n)\n\nmodel_2 = LinearRegression()\nmodel_2.fit(X2_train, y2_train)\n\nprint(f\"Model 2 learned:\")\nprint(f\"  Coefficient for winter_temp_c:        {model_2.coef_[0]:.3f}\")\nprint(f\"  Coefficient for summer_drought_idx:   {model_2.coef_[1]:.3f}\")\nprint(f\"  Intercept:                            {model_2.intercept_:.3f}\")\nprint()\nprint(f\"Interpretation:\")\nprint(f\"  Each 1°C colder  → mortality increases by {abs(model_2.coef_[0]):.2f} pp\")\nprint(f\"  Each 0.1 increase in drought index → mortality increases by {model_2.coef_[1]*0.1:.2f} pp\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/regression.html#step-7-train-the-second-model-temperature-and-drought",
-    "href": "labs/03/notebooks/regression.html#step-7-train-the-second-model-temperature-and-drought",
+    "objectID": "labs/03/notebooks/regression.html#step-7-evaluate-the-second-model",
+    "href": "labs/03/notebooks/regression.html#step-7-evaluate-the-second-model",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 7: Train the second model — temperature and drought",
-    "text": "Step 7: Train the second model — temperature and drought\nNow we add the summer drought index as a second input feature. The change to the code is minimal — we just add the second column to X. Scikit-learn handles the rest.\n\n# Two input features this time\nX2 = df[[\"winter_temp_c\", \"summer_drought_idx\"]]\n\nX2_train, X2_test, y2_train, y2_test = train_test_split(\n    X2, y, test_size=0.2, random_state=42   # same random_state = same split\n)\n\nmodel_2 = LinearRegression()\nmodel_2.fit(X2_train, y2_train)\n\nprint(f\"Model 2 learned:\")\nprint(f\"  Coefficient for winter_temp_c:        {model_2.coef_[0]:.3f}\")\nprint(f\"  Coefficient for summer_drought_idx:   {model_2.coef_[1]:.3f}\")\nprint(f\"  Intercept:                            {model_2.intercept_:.3f}\")\nprint()\nprint(f\"Interpretation:\")\nprint(f\"  Each 1°C colder  → mortality increases by {abs(model_2.coef_[0]):.2f} pp\")\nprint(f\"  Each 0.1 increase in drought index → mortality increases by {model_2.coef_[1]*0.1:.2f} pp\")",
+    "section": "Step 7: Evaluate the second model",
+    "text": "Step 7: Evaluate the second model\nLet’s measure whether adding drought genuinely improves the model.\n\ny_pred_2 = model_2.predict(X2_test)\n\nmae_2 = mean_absolute_error(y2_test, y_pred_2)\n\nprint(f\"Model 1 — temperature only\")\nprint(f\"  MAE: {mae_1:.2f} percentage points average error\")\nprint()\nprint(f\"Model 2 — temperature + drought\")\nprint(f\"  MAE: {mae_2:.2f} percentage points average error\")\nprint()\nmae_improvement = mae_1 - mae_2\nprint(f\"Adding drought index reduced the average error by {mae_improvement:.2f} percentage points\")\n\nThe MAE should decrease when drought is added — meaning the model’s predictions are closer to the real values on average. A lower MAE means a more useful model.\nWas the improvement from adding drought larger or smaller than you expected? Does it change your view of how important the summer drought variable is compared to winter temperature?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/regression.html#step-8-evaluate-the-second-model",
-    "href": "labs/03/notebooks/regression.html#step-8-evaluate-the-second-model",
+    "objectID": "labs/03/notebooks/regression.html#step-8-make-a-prediction",
+    "href": "labs/03/notebooks/regression.html#step-8-make-a-prediction",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 8: Evaluate the second model",
-    "text": "Step 8: Evaluate the second model\nLet’s measure whether adding drought genuinely improves the model.\n\ny_pred_2 = model_2.predict(X2_test)\n\nr2_2  = r2_score(y2_test, y_pred_2)\nmae_2 = mean_absolute_error(y2_test, y_pred_2)\n\nprint(f\"Model 1 — temperature only\")\nprint(f\"  R²:  {r2_1:.3f}   MAE: {mae_1:.2f} pp\")\nprint()\nprint(f\"Model 2 — temperature + drought\")\nprint(f\"  R²:  {r2_2:.3f}   MAE: {mae_2:.2f} pp\")\nprint()\nr2_improvement  = (r2_2 - r2_1) * 100\nmae_improvement = mae_1 - mae_2\nprint(f\"Adding drought index:\")\nprint(f\"  R² improved by  {r2_improvement:.1f} percentage points\")\nprint(f\"  MAE improved by {mae_improvement:.2f} percentage points\")\n\nThe R² should improve meaningfully when drought is added — the model now explains more of the variation in mortality. The MAE should decrease, meaning predictions are closer to the actual values on average.\nIs the improvement larger or smaller than you expected? Does it change your view of how important the summer drought variable is relative to winter temperature?\nWas the improvement from adding drought larger or smaller than you expected? Does it change your view of how important the summer drought variable is compared to winter temperature?",
+    "section": "Step 8: Make a prediction",
+    "text": "Step 8: Make a prediction\nThe model is now a tool. Given a forecast of winter temperature and summer drought, it can output a predicted mortality percentage — before the winter even arrives.\nLet’s use it to answer a concrete question: what does the model predict for three different scenarios a Mongolian herder might face?\n\nscenarios = pd.DataFrame({\n    \"scenario\":          [\"Mild winter, no drought\",\n                          \"Cold winter, no drought\",\n                          \"Cold winter, severe drought\"],\n    \"winter_temp_c\":     [-16.0, -24.0, -24.0],\n    \"summer_drought_idx\": [ 0.10,  0.15,  0.75]\n})\n\nscenarios[\"predicted_mortality_pct\"] = model_2.predict(\n    scenarios[[\"winter_temp_c\", \"summer_drought_idx\"]]\n).round(1)\n\nprint(scenarios[[\"scenario\", \"winter_temp_c\", \"summer_drought_idx\",\n                 \"predicted_mortality_pct\"]].to_string(index=False))\n\nLook at the difference between the second and third scenarios — the same cold winter, but one is preceded by drought and one is not.\nNow try building your own scenario!\n\nmy_winter_temp = -20 #@param {type:\"slider\", min:-30, max:-10, step:1}\nmy_drought = 0.4 #@param {type:\"slider\", min:0.0, max:1.0, step:0.05}\nherd_size = 2000 #@param {type:\"slider\", min:500, max:5000, step:500}\n\nmy_scenario = pd.DataFrame({\n    \"winter_temp_c\":      [my_winter_temp],\n    \"summer_drought_idx\": [my_drought]\n})\n\nprediction = model_2.predict(my_scenario)[0]\nprint(f\"Winter temperature:   {my_winter_temp}°C\")\nprint(f\"Summer drought index: {my_drought}\")\nprint(f\"Predicted mortality:  {prediction:.1f}%\")\nprint()\n\npredicted_losses = int(herd_size * prediction / 100)\nprint(f\"For a herder with {herd_size:,} animals,\")\nprint(f\"that is approximately {predicted_losses:,} animals lost.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/regression.html#step-9-side-by-side-comparison",
-    "href": "labs/03/notebooks/regression.html#step-9-side-by-side-comparison",
-    "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 9: Side-by-side comparison",
-    "text": "Step 9: Side-by-side comparison\n\nfig, axes = plt.subplots(1, 2, figsize=(14, 5))\n\nfor ax, y_pred, title in zip(\n    axes,\n    [y_pred_1, y_pred_2],\n    [f\"Model 1: temperature only\\nR² = {r2_1:.3f}, MAE = {mae_1:.2f} pp\",\n     f\"Model 2: temperature + drought\\nR² = {r2_2:.3f}, MAE = {mae_2:.2f} pp\"]\n):\n    ax.scatter(y_test, y_pred, alpha=0.45, s=18, color=\"steelblue\")\n    lims = [0, max(y_test.max(), max(y_pred)) + 2]\n    ax.plot(lims, lims, \"k--\", linewidth=1, label=\"Perfect prediction\")\n    ax.set_xlabel(\"Actual mortality (%)\", fontsize=11)\n    ax.set_ylabel(\"Predicted mortality (%)\", fontsize=11)\n    ax.set_title(title, fontsize=11, fontweight=\"bold\")\n    ax.set_xlim(lims); ax.set_ylim(lims)\n    ax.legend(fontsize=9)\n\nplt.suptitle(\"Predicted vs. actual mortality — model comparison\", \n             fontsize=13, fontweight=\"bold\", y=1.02)\nplt.tight_layout()\nplt.show()\n\nThe right chart should show points sitting closer to the diagonal — particularly at the high end, where the temperature-only model struggled most.\nThe improvement at the extremes is especially important: those are the catastrophic dzud years, where accurate prediction has the most practical value for herders and government planners.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "regression.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/regression.html#step-10-make-a-prediction",
-    "href": "labs/03/notebooks/regression.html#step-10-make-a-prediction",
-    "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 10: Make a prediction",
-    "text": "Step 10: Make a prediction\nThe model is now a tool. Given a forecast of winter temperature and summer drought, it can output a predicted mortality percentage — before the winter even arrives.\nLet’s use it to answer a concrete question: what does the model predict for three different scenarios a Mongolian herder might face?\n\nscenarios = pd.DataFrame({\n    \"scenario\":          [\"Mild winter, no drought\",\n                          \"Cold winter, no drought\",\n                          \"Cold winter, severe drought\"],\n    \"winter_temp_c\":     [-16.0, -24.0, -24.0],\n    \"summer_drought_idx\": [ 0.10,  0.15,  0.75]\n})\n\nscenarios[\"predicted_mortality_pct\"] = model_2.predict(\n    scenarios[[\"winter_temp_c\", \"summer_drought_idx\"]]\n).round(1)\n\nprint(scenarios[[\"scenario\", \"winter_temp_c\", \"summer_drought_idx\",\n                 \"predicted_mortality_pct\"]].to_string(index=False))\n\nLook at the difference between the second and third scenarios — the same cold winter, but one is preceded by drought and one is not.\nNow try building your own scenario. What inputs would you give the model to produce the highest possible predicted mortality? What about the lowest? Are the model’s predictions plausible given what you have learned about dzud?\n\n# Build your own scenario — change these values and re-run\nmy_winter_temp  = -20.0    # typical Mongolian winter is around -18 to -22\nmy_drought      =  0.40    # 0 = no drought, 1 = severe drought\n\nmy_scenario = pd.DataFrame({\n    \"winter_temp_c\":     [my_winter_temp],\n    \"summer_drought_idx\": [my_drought]\n})\n\nprediction = model_2.predict(my_scenario)[0]\nprint(f\"Winter temperature:  {my_winter_temp}°C\")\nprint(f\"Summer drought index: {my_drought}\")\nprint(f\"Predicted mortality:  {prediction:.1f}%\")\nprint()\n\n# Put that in context with a hypothetical herd\nherd_size = 2_000\npredicted_losses = int(herd_size * prediction / 100)\nprint(f\"For a herder with {herd_size:,} animals,\")\nprint(f\"that is approximately {predicted_losses:,} animals lost.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "regression.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/regression.html#step-11-the-same-idea-a-different-kind-of-data",
-    "href": "labs/03/notebooks/regression.html#step-11-the-same-idea-a-different-kind-of-data",
-    "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "Step 11: The same idea — a different kind of data",
-    "text": "Step 11: The same idea — a different kind of data\nYou have just built a model that takes numerical inputs and predicts a numerical output. The process was:\n\nCollect labeled examples (historical aimag-years with known outcomes)\nSplit into training and test sets\nFit a model to the training data\nEvaluate on the test set\nUse the model to predict on new, unseen inputs\n\nOn Thursday you will do exactly the same thing with your micro:bit — but instead of aimag climate data, the inputs will be accelerometer readings from your wrist, and instead of predicting mortality, the model will predict which gesture you are making.\nThe tools will be different (CreateAI rather than scikit-learn), the data will be different (motion rather than climate), and the output will be different (a category rather than a number). But the underlying loop — label examples, train, evaluate, predict — is identical.\nThat loop is the core of supervised machine learning. You have now run through it completely.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "regression.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/regression.html#what-you-have-done-across-these-three-notebooks",
-    "href": "labs/03/notebooks/regression.html#what-you-have-done-across-these-three-notebooks",
-    "title": "The Dzud — Teaching a Machine to Predict Disaster",
-    "section": "What you have done across these three notebooks",
-    "text": "What you have done across these three notebooks\nAcross the Day 3 sequence you have worked through a complete data science and machine learning workflow on a real-world problem:\n\nLoaded and explored a multi-dimensional dataset (Notebook 1)\nIdentified the variables that explain an outcome through correlation and visualisation (Notebook 2)\nTrained two linear regression models, compared their accuracy with R² and MAE, and used the better model to make predictions on new scenarios (Notebook 3)\n\nThe problem — predicting livestock disaster in Mongolia — is one that researchers and international insurance programmes have worked on for years using exactly these methods. You have replicated the core of that analysis in three notebooks.\nTomorrow you will take the same supervised learning concept and apply it to physical movement data. The jump from climate data to accelerometer data is smaller than it looks.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
@@ -4717,12 +4699,12 @@
     "href": "labs/03/notebooks/regression.html#check-your-understanding",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Check Your Understanding",
-    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “Why do we keep a test set separate from the training data?”, “options”: [ { “key”: “a”, “text”: “To make the model train faster” }, { “key”: “b”, “text”: “To evaluate how well the model generalises to data it has never seen” }, { “key”: “c”, “text”: “To reduce the total amount of data needed” }, { “key”: “d”, “text”: “To improve the slope calculation” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the R² score measure?”, “options”: [ { “key”: “a”, “text”: “The slope of the regression line” }, { “key”: “b”, “text”: “The average prediction error in the same units as the output” }, { “key”: “c”, “text”: “How much of the variation in the outcome the model explains” }, { “key”: “d”, “text”: “The number of input variables in the model” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “A model with a lower MAE is making predictions that are, on average, closer to the actual values.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Why did Model 2 (temperature + drought) outperform Model 1 (temperature only)?”, “options”: [ { “key”: “a”, “text”: “It was trained on more rows of data” }, { “key”: “b”, “text”: “Drought adds independent information that temperature alone does not capture” }, { “key”: “c”, “text”: “Temperature was given less weight in Model 2” }, { “key”: “d”, “text”: “Model 2 trained for a longer time” } ], “answer”: “b”, “submitted_answer”: “” }",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “Why do we keep a test set separate from the training data?”, “options”: [ { “key”: “a”, “text”: “To make the model train faster” }, { “key”: “b”, “text”: “To evaluate how well the model generalizes to data it has never seen” }, { “key”: “c”, “text”: “To reduce the total amount of data needed” }, { “key”: “d”, “text”: “To improve the slope calculation” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Model 1 has an MAE of 4.2 and Model 2 has an MAE of 3.1. Which model is better?”, “options”: [ { “key”: “a”, “text”: “Model 1, because a higher MAE means it learned more” }, { “key”: “b”, “text”: “Model 2, because a lower MAE means smaller prediction errors” }, { “key”: “c”, “text”: “They are the same — the difference is too small to matter” }, { “key”: “d”, “text”: “Model 1, because it uses fewer variables” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “A model with a lower MAE is making predictions that are, on average, closer to the actual values.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Why did Model 2 (temperature + drought) outperform Model 1 (temperature only)?”, “options”: [ { “key”: “a”, “text”: “It was trained on more rows of data” }, { “key”: “b”, “text”: “Drought adds independent information that temperature alone does not capture” }, { “key”: “c”, “text”: “Temperature was given less weight in Model 2” }, { “key”: “d”, “text”: “Model 2 trained for a longer time” } ], “answer”: “b”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "regression.ipynb"
+      "Linear Regression (regression.ipynb)"
     ]
   },
   {
