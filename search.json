@@ -2780,7 +2780,7 @@
     "href": "labs/04/slides.html#recap",
     "title": "Day 4: AI in the Physical World",
     "section": "Recap",
-    "text": "Recap\n\nWhat did we learn?",
+    "text": "Recap\n\nUsed scikit-learn, Python’s machine learning library\nLinear Regression - identify patterns through data\nBuilt an AI model using data about the Dzud",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2788,11 +2788,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#exploring-patterns-in-data",
-    "href": "labs/04/slides.html#exploring-patterns-in-data",
+    "objectID": "labs/04/slides.html#ai-in-the-physical-world",
+    "href": "labs/04/slides.html#ai-in-the-physical-world",
     "title": "Day 4: AI in the Physical World",
-    "section": "Exploring Patterns in Data",
-    "text": "Exploring Patterns in Data\n\nBring in diagrams from https://microbit.org/teach/lessons/exploring-patterns-in-data/",
+    "section": "AI in the Physical World",
+    "text": "AI in the Physical World\n\nToday, we’ll bring what we’ve learned into the physical world\nLearn how AI models work in fitness trackers and other devices\nDo all of this using a micro:bit",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2864,7 +2864,7 @@
     "href": "labs/04/slides.html#introducing-the-microbit-wearable-1",
     "title": "Day 4: AI in the Physical World",
     "section": "Introducing the micro:bit Wearable!",
-    "text": "Introducing the micro:bit Wearable!\n\nTBD: diagram of wearable and receiver",
+    "text": "Introducing the micro:bit Wearable!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2872,11 +2872,47 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#our-plan---pull-in-screenshots-from-createai-starter-animation",
-    "href": "labs/04/slides.html#our-plan---pull-in-screenshots-from-createai-starter-animation",
+    "objectID": "labs/04/slides.html#our-plan-1",
+    "href": "labs/04/slides.html#our-plan-1",
     "title": "Day 4: AI in the Physical World",
-    "section": "Our Plan - pull in screenshots from CreateAI starter animation",
-    "text": "Our Plan - pull in screenshots from CreateAI starter animation\n\nConnect the micro:bits\nCollect accelerometer data\nUse this data to train a model\nTest our model\n(Tomorrow) Use the model in code",
+    "section": "Our Plan",
+    "text": "Our Plan",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#our-plan-2",
+    "href": "labs/04/slides.html#our-plan-2",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#our-plan-3",
+    "href": "labs/04/slides.html#our-plan-3",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#our-plan-4",
+    "href": "labs/04/slides.html#our-plan-4",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2888,7 +2924,7 @@
     "href": "labs/04/slides.html#hands-on",
     "title": "Day 4: AI in the Physical World",
     "section": "Hands-on",
-    "text": "Hands-on\n\nGet into pairs\nPickup two micro:bits (one with and one without wearable)\nWait for instructions! (We are going to do this together)",
+    "text": "Hands-on\n\nFind someone to work with! (Pairs)\nPickup two micro:bits (one with and one without wearable)\n\nIt doesn’t matter who gets which one to start\n\nWait for instructions! (We are going to do this together)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2896,11 +2932,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#steps---connect-the-microbits",
-    "href": "labs/04/slides.html#steps---connect-the-microbits",
+    "objectID": "labs/04/slides.html#what-is-diverse-data",
+    "href": "labs/04/slides.html#what-is-diverse-data",
     "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Connect the micro:bits",
-    "text": "Steps - Connect the micro:bits\n\nGo to createai.microbit.org - has to be using Chrome browser\nCreate a project: “My First Project”\nClick on “Connect using micro:bit radio instead”\nConnect the collector (wearable) micro:bit and click “Next”\nSelect the micro:bit connection from the the popup\nDisconnect and very gently insert the battery wire\n(Pause to make sure everyone sees smiley face)\nNext, connect the receiver micro:bit and click “Next”\nSelect the connection again from the popup\nPut the wearable on one of your wrists (don’t worry who is first, you’ll both have a turn to collect data)\nCheck that the graphs are moving correctly! Yes, you are connected and ready to record!",
+    "section": "What is Diverse Data?",
+    "text": "What is Diverse Data?\n\nAI models learn patterns from the data they are trained on\nIf training data only reflects a narrow group, the model only works well for that group\nDiverse data includes variation in people, environments, styles, and conditions\nThe more diverse the data, the more fairly and reliably the model performs",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2908,11 +2944,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#steps---recording-data",
-    "href": "labs/04/slides.html#steps---recording-data",
+    "objectID": "labs/04/slides.html#without-diverse-data-facial-recognition",
+    "href": "labs/04/slides.html#without-diverse-data-facial-recognition",
     "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Recording Data",
-    "text": "Steps - Recording Data\n\nCreate an action: “Waving”\nRecord and repeat three times\nPass the wearable to your partner. Have them record a different action. You can pick which action. Make sure your band is tight and don’t hit anyone!\n(Pause to make sure everyone has two actions)\nLet’s do another two. (One per person)\n(Pause to make sure everyone has four actions)",
+    "section": "Without Diverse Data: Facial Recognition",
+    "text": "Without Diverse Data: Facial Recognition\n\nIn 2018, researcher Joy Buolamwini studied commercial facial recognition tools\nShe found they worked well for lighter-skinned men…\n…but had error rates up to 35% higher for darker-skinned women\nWhy? The models were trained mostly on lighter-skinned male faces\nThey simply hadn’t seen enough diverse examples to learn properly",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2920,11 +2956,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#steps---train-the-model",
-    "href": "labs/04/slides.html#steps---train-the-model",
+    "objectID": "labs/04/slides.html#without-diverse-data-voice-assistants",
+    "href": "labs/04/slides.html#without-diverse-data-voice-assistants",
     "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Train the Model",
-    "text": "Steps - Train the Model\n\nWhen ready, click on the “Train model” button",
+    "section": "Without Diverse Data: Voice Assistants",
+    "text": "Without Diverse Data: Voice Assistants\n\nEarly voice assistants (Siri, Alexa) struggled with non-standard accents and dialects\nThey were trained mostly on a narrow range of voices\nPeople with regional accents, non-native speakers, or less common dialects were often misunderstood\nThis is slowly improving — but only because companies added more diverse training data",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2932,11 +2968,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#steps---test-the-model",
-    "href": "labs/04/slides.html#steps---test-the-model",
+    "objectID": "labs/04/slides.html#testing-diversity-of-our-data",
+    "href": "labs/04/slides.html#testing-diversity-of-our-data",
     "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Test the Model",
-    "text": "Steps - Test the Model\n\nTake turns and test your actions. How well did the model learn? What happened if you just let your hand do nothing?",
+    "section": "Testing Diversity of our Data",
+    "text": "Testing Diversity of our Data\n\nTake off the micro:bits and leave both of them on the table\nMake sure you are in the “Testing Model” screen\nSwap desks with another pair close to you\nTake turns to put on their micro:bit and test their actions",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2944,11 +2980,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#discussion---what-did-you-find",
-    "href": "labs/04/slides.html#discussion---what-did-you-find",
+    "objectID": "labs/04/slides.html#disconnecting-the-microbit",
+    "href": "labs/04/slides.html#disconnecting-the-microbit",
     "title": "Day 4: AI in the Physical World",
-    "section": "Discussion - What did you find?",
-    "text": "Discussion - What did you find?\n\nWhat worked well?\nWhat didn’t work well? Or what did it get wrong?\nHow did it do on the actions that your partner recorded?",
+    "section": "Disconnecting the micro:bit",
+    "text": "Disconnecting the micro:bit\n\nDisconnect your receiver micro:bit and leave on the desk\nLeave your wearable micro:bit connected to the battery pack\n\nI will disconnect this for you. (These can be easy to break)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2956,59 +2992,11 @@
     ]
   },
   {
-    "objectID": "labs/04/slides.html#steps---add-some-more-data",
-    "href": "labs/04/slides.html#steps---add-some-more-data",
+    "objectID": "labs/04/slides.html#tomorrow",
+    "href": "labs/04/slides.html#tomorrow",
     "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Add Some More Data",
-    "text": "Steps - Add Some More Data\n\nClick “Edit Data Samples” button\nAdd an action for being still (if you don’t already have one)\nEither re-record or add a new action. Try to have four or five.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#diversity-in-data",
-    "href": "labs/04/slides.html#diversity-in-data",
-    "title": "Day 4: AI in the Physical World",
-    "section": "Diversity in Data",
-    "text": "Diversity in Data\n\nWhy is diversity important?\nTBD a slide or two on this, maybe some examples from AI failures - three good points here: https://microbit.org/teach/lessons/strengthening-models-through-adding-diverse-data/",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#steps---swap-with-another-group",
-    "href": "labs/04/slides.html#steps---swap-with-another-group",
-    "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Swap with another group",
-    "text": "Steps - Swap with another group\n\nTake off the micro:bits and leave both of them on the table\nMake sure you are in the “Testing Model” screen\nSwap desks with another pair close to you\nTake turns to put on their micro:bit and test their actions",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#diversity-discussion",
-    "href": "labs/04/slides.html#diversity-discussion",
-    "title": "Day 4: AI in the Physical World",
-    "section": "Diversity Discussion",
-    "text": "Diversity Discussion\n\nWhat did you find?\nDid they work as you expected?",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 4",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/04/slides.html#steps---disconnecting-the-microbit",
-    "href": "labs/04/slides.html#steps---disconnecting-the-microbit",
-    "title": "Day 4: AI in the Physical World",
-    "section": "Steps - Disconnecting the micro:bit",
-    "text": "Steps - Disconnecting the micro:bit\n\nDisconnect your receiver micro:bit and leave on the desk\nLeave your wearable micro:bit connected to the battery pack. I will disconnect this for you. (These can be easy to break)",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nWrite Python code that uses our AI models in a mini-app\nFor example, step counter or a fitness tracker\nMini-project, show and share",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
