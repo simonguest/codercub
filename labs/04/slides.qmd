@@ -1,6 +1,5 @@
 ---
 title: "Day 4: AI in the Physical World"
-author: "Simon Guest"
 format:
   revealjs:
     slide-number: true
@@ -17,11 +16,15 @@ format:
 
 ## Recap
 
-- What did we learn?
+- Used scikit-learn, Python's machine learning library
+- Linear Regression - identify patterns through data
+- Built an AI model using data about the Dzud
 
-## Exploring Patterns in Data
+## AI in the Physical World
 
-- Bring in diagrams from https://microbit.org/teach/lessons/exploring-patterns-in-data/
+- Today, we'll bring what we've learned into the physical world
+- Learn how AI models work in fitness trackers and other devices
+- Do all of this using a **micro:bit**
 
 # What is a micro:bit?
 
@@ -44,7 +47,7 @@ format:
 
 ![](images/accelerometer.jpg){fig-align="center"}
 
-# *If the micro:bit is plugged in, how do we move it around?*
+# *But...  If the micro:bit is plugged in, how do we move it around?*
 
 ## Introducing the micro:bit Wearable!
 
@@ -52,28 +55,38 @@ format:
 
 ## Introducing the micro:bit Wearable!
 
-- TBD: diagram of wearable and receiver
+![](images/wearable_radio.jpg){fig-align="center"}
 
 # Our Plan
 
-## Our Plan - pull in screenshots from CreateAI starter animation
+## Our Plan
 
-1. Connect the micro:bits
-2. Collect accelerometer data
-3. Use this data to train a model
-4. Test our model
-5. (Tomorrow) Use the model in code
+![](images/step_connect_microbit.png){fig-align="center"}
+
+## Our Plan
+
+![](images/step_collect_data.png){fig-align="center"}
+
+## Our Plan
+
+![](images/step_train_model.png){fig-align="center"}
+
+## Our Plan
+
+![](images/step_test_model.png){fig-align="center"}
 
 ## Hands-on
 
-- Get into pairs
+- Find someone to work with! (Pairs)
 - Pickup two micro:bits (one with and one without wearable)
-- Wait for instructions! (We are going to do this together) 
+  - It doesn't matter who gets which one to start
+- Wait for instructions! (We are going to do this together)
 
-## Steps - Connect the micro:bits
+# Walkthrough
 
-- Go to [createai.microbit.org](https://createai.microbit.org) - has to be using Chrome browser
-- Create a project: "My First Project"
+Visit [https://createai.microbit.org](https://createai.microbit.org){.external target="blank"}
+
+<!-- - Create a project: "My First Project"
 - Click on "Connect using micro:bit radio instead"
 - Connect the collector (wearable) micro:bit and click "Next"
 - Select the micro:bit connection from the the popup
@@ -82,62 +95,88 @@ format:
 - Next, connect the receiver micro:bit and click "Next"
 - Select the connection again from the popup
 - Put the wearable on one of your wrists (don't worry who is first, you'll both have a turn to collect data)
-- Check that the graphs are moving correctly! Yes, you are connected and ready to record!
+- Check that the graphs are moving correctly! Yes, you are connected and ready to record! -->
 
-## Steps - Recording Data
+# Walkthrough
 
-- Create an action: "Waving"
+Record an Action. (Make sure your band is tight!)
+
+<!-- - Create an action: "Waving"
 - Record and repeat three times
 - Pass the wearable to your partner. Have them record a different action. You can pick which action. Make sure your band is tight and don't hit anyone!
 - (Pause to make sure everyone has two actions)
 - Let's do another two. (One per person)
-- (Pause to make sure everyone has four actions)
+- (Pause to make sure everyone has four actions) -->
 
-## Steps - Train the Model
+# Hands-On
 
-- When ready, click on the "Train model" button
+Go ahead and record 4 or 5 actions. Take turns in wearing the wearable.
 
-## Steps - Test the Model
+# Hands-On
 
-- Take turns and test your actions. How well did the model learn? What happened if you just let your hand do nothing?
+When you have all the actions, click on the "Train model" button.
 
-## Discussion - What did you find?
+# Hands-On
 
-- What worked well?
-- What didn't work well? Or what did it get wrong?
-- How did it do on the actions that your partner recorded?
+Take turns and test your actions. How well did the model learn? What happened if you just let your hand do nothing?
 
-## Steps - Add Some More Data
+# Discussion
 
-- Click "Edit Data Samples" button
-- Add an action for being still (if you don't already have one)
-- Either re-record or add a new action. Try to have four or five.
+What worked well? What didn't work well? Or what did it get wrong?
 
-## Diversity in Data
+# Hands-On
 
-- Why is diversity important?
-- TBD a slide or two on this, maybe some examples from AI failures - three good points here: https://microbit.org/teach/lessons/strengthening-models-through-adding-diverse-data/
+Click "Edit Data Samples" button to add more data. Add an action for being still (if you don't already have one).
 
-## Steps - Swap with another group
+# Diverse Data
+
+## What is Diverse Data?
+
+- AI models learn patterns from the data they are trained on
+- If training data only reflects a narrow group, the model only works well for that group
+- **Diverse data** includes variation in people, environments, styles, and conditions
+- The more diverse the data, the more fairly and reliably the model performs
+
+## Without Diverse Data: Facial Recognition
+
+- In 2018, researcher Joy Buolamwini studied commercial facial recognition tools
+- She found they worked well for lighter-skinned men...
+- ...but had error rates up to **35% higher** for darker-skinned women
+- Why? The models were trained mostly on lighter-skinned male faces
+- They simply hadn't seen enough diverse examples to learn properly
+
+## Without Diverse Data: Voice Assistants
+
+- Early voice assistants (Siri, Alexa) struggled with non-standard accents and dialects
+- They were trained mostly on a narrow range of voices
+- People with regional accents, non-native speakers, or less common dialects were often misunderstood
+- This is slowly improving — but only because companies added more diverse training data
+
+## Testing Diversity of our Data
 
 - Take off the micro:bits and leave both of them on the table
 - Make sure you are in the "Testing Model" screen
 - Swap desks with another pair close to you
 - Take turns to put on their micro:bit and test their actions
 
-## Diversity Discussion
+# Discussion
 
-- What did you find?
-- Did they work as you expected?
+What did you find? Did they work as you expected?
 
-# Summary
+# Reflection
 
-- Summary of what we've covered today
-- What we will do tomorrow
+What did you learn today? Was using AI easier or harder than you thought?
 
-## Steps - Disconnecting the micro:bit
+## Disconnecting the micro:bit
 
 - Disconnect your receiver micro:bit and leave on the desk
-- Leave your wearable micro:bit connected to the battery pack. I will disconnect this for you. (These can be easy to break)
+- Leave your wearable micro:bit connected to the battery pack
+  - I will disconnect this for you. (These can be easy to break)
+
+## Tomorrow
+
+- Write Python code that uses our AI models in a mini-app
+- For example, step counter or a fitness tracker
+- Mini-project, show and share
 
 
