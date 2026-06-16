@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exploring Data with Pandas and Matplotlib – Summer of Code 2026</title>
+<title>Visualizing Data with Matplotlib – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../labs/02/notebooks/air_quality.html" rel="next">
-<link href="../../../labs/02/slides.html" rel="prev">
+<link href="../../../labs/02/notebooks/pandas.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas_matplotlib.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas_matplotlib.html">pandas_matplotlib.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/matplotlib.html">Using Matplotlib (matplotlib.ipynb)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -375,13 +375,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/01/notebooks/hello_world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">hello_world.ipynb</span></a>
+ <span class="menu-text">Hello World! (hello_world.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/01/notebooks/ai_in_action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ai_in_action.ipynb</span></a>
+ <span class="menu-text">AI in Action (ai_in_action.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -414,20 +414,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/02/notebooks/pandas_matplotlib.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">pandas_matplotlib.ipynb</span></a>
+  <a href="../../../labs/02/notebooks/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Pandas (pandas.ipynb)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/02/notebooks/matplotlib.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Using Matplotlib (matplotlib.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/air_quality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">air_quality.ipynb</span></a>
+ <span class="menu-text">Exploring Air Quality (air_quality.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">correlation.ipynb</span></a>
+ <span class="menu-text">Introducing Correlation (correlation.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -767,9 +773,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas_matplotlib.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas_matplotlib.html">pandas_matplotlib.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/matplotlib.html">Using Matplotlib (matplotlib.ipynb)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exploring Data with Pandas and Matplotlib</h1>
+<h1 class="title">Visualizing Data with Matplotlib</h1>
 </div>
 
 
@@ -786,124 +792,142 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, you’ll learn how to work with data using two powerful Python libraries: <strong>Pandas</strong> and <strong>Matplotlib</strong>.</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/02/notebooks/pandas_matplotlib.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K12"> </a></p>
+<p>Numbers in a table are useful — but charts make patterns <em>much</em> easier to see. In this notebook you’ll learn how to turn data into visualizations using <strong>Matplotlib</strong>.</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/02/notebooks/matplotlib.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K12"> </a></p>
 <section id="what-youll-learn" class="level2">
 <h2 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h2>
 <ul>
-<li>What a <strong>DataFrame</strong> is and how to create one</li>
-<li>How to explore and inspect data with Pandas</li>
-<li>How to create charts and visualizations with Matplotlib</li>
+<li>How to create <strong>line charts</strong> to show change over time</li>
+<li>How to create <strong>bar charts</strong> to compare values side by side</li>
+<li>How to create <strong>scatter plots</strong> to explore relationships between two variables</li>
 </ul>
 </section>
-<section id="part-1-hello-pandas" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-hello-pandas">Part 1: Hello, Pandas!</h2>
-<p><strong>Pandas</strong> is a Python library for working with structured data — like spreadsheets or tables.</p>
-<p>The key building block is a <strong>DataFrame</strong> — think of it as a table with rows and columns, just like a spreadsheet.</p>
-<p>Let’s create a DataFrame using average monthly temperatures in New York City:</p>
-<div id="cell-create-dataframe" class="cell">
+<section id="setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up">Setting Up</h2>
+<p>We’ll use the same NYC temperature data from the Pandas notebook. Let’s import both libraries and recreate the DataFrame:</p>
+<div id="cell-setup" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'month'</span>: [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>, <span class="st">'Jun'</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Jul'</span>, <span class="st">'Aug'</span>, <span class="st">'Sep'</span>, <span class="st">'Oct'</span>, <span class="st">'Nov'</span>, <span class="st">'Dec'</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'avg_temp_c'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">15</span>, <span class="dv">9</span>, <span class="dv">3</span>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'month'</span>: [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>, <span class="st">'Jun'</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Jul'</span>, <span class="st">'Aug'</span>, <span class="st">'Sep'</span>, <span class="st">'Oct'</span>, <span class="st">'Nov'</span>, <span class="st">'Dec'</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'avg_temp_c'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">15</span>, <span class="dv">9</span>, <span class="dv">3</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"DataFrame loaded"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="what-is-a-series" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-a-series">What is a Series?</h2>
-<p>A <strong>Series</strong> is a single column of data — like one column pulled from your DataFrame.</p>
-<p>You can access a column by name using square brackets <code>[]</code>. Let’s look at just the temperature column:</p>
-<div id="cell-series-example" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> df[<span class="st">'avg_temp_c'</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(temperatures)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="exploring-your-data" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-your-data">Exploring Your Data</h2>
-<p>Pandas has some handy methods for getting a quick look at your data:</p>
-<ul>
-<li><code>df.head()</code> — shows the first 5 rows</li>
-<li><code>df.describe()</code> — shows summary statistics like min, max, and average</li>
-<li><code>df.shape</code> — tells you how many rows and columns you have</li>
-</ul>
-<p>Run each cell below to see what they do:</p>
-<div id="cell-explore-head" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="cell-explore-describe" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="cell-explore-shape" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"This dataset has </span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> rows and </span><span class="sc">{</span>df<span class="sc">.</span>shape[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> columns."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>What did you notice from <code>df.describe()</code>? What was the hottest average month? What was the coldest?</p>
-</section>
-<section id="part-2-making-charts-with-matplotlib" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-making-charts-with-matplotlib">Part 2: Making Charts with Matplotlib</h2>
-<p>Numbers in a table are useful, but charts make patterns <em>much</em> easier to see!</p>
-<p><strong>Matplotlib</strong> is a Python library for creating charts and visualizations.</p>
-<p>The most common chart types are: - <strong>Line chart</strong> — great for showing change over time - <strong>Bar chart</strong> — great for comparing values side by side</p>
-<p>Let’s plot our temperature data as a line chart:</p>
+<section id="part-1-line-charts" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-line-charts">Part 1: Line Charts</h2>
+<p>A <strong>line chart</strong> is ideal for showing how something changes over time, such as temperature across the months of a year.</p>
+<p>Let’s plot our temperature data:</p>
 <div id="cell-line-chart" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.plot(df[<span class="st">'month'</span>], df[<span class="st">'avg_temp_c'</span>], marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Average Monthly Temperature — New York City'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Temperature (°C)'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.plot(df[<span class="st">'month'</span>], df[<span class="st">'avg_temp_c'</span>], marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'steelblue'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Average Monthly Temperature — New York City'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Temperature (°C)'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now let’s show the same data as a <strong>bar chart</strong>. Months below freezing (0°C) will appear in a different colour:</p>
+</section>
+<section id="part-2-bar-charts" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-bar-charts">Part 2: Bar Charts</h2>
+<p>A <strong>bar chart</strong> is great for comparing values side by side. Let’s show the same data as bars, and color any cold months (below 10°C) differently:</p>
 <div id="cell-bar-chart" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'steelblue'</span> <span class="cf">if</span> t <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="st">'slateblue'</span> <span class="cf">for</span> t <span class="kw">in</span> df[<span class="st">'avg_temp_c'</span>]]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">'month'</span>], df[<span class="st">'avg_temp_c'</span>], color<span class="op">=</span>colors)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Average Monthly Temperature — New York City'</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Temperature (°C)'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'steelblue'</span> <span class="cf">if</span> t <span class="op">&gt;=</span> <span class="dv">10</span> <span class="cf">else</span> <span class="st">'slateblue'</span> <span class="cf">for</span> t <span class="kw">in</span> df[<span class="st">'avg_temp_c'</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.bar(df[<span class="st">'month'</span>], df[<span class="st">'avg_temp_c'</span>], color<span class="op">=</span>colors)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Average Monthly Temperature — New York City'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Temperature (°C)'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span><span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>, linewidth<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="explore-different-cities" class="level2">
 <h2 class="anchored" data-anchor-id="explore-different-cities">Explore Different Cities</h2>
 <p>Use the dropdown below to pick a different city and see how the temperature pattern changes!</p>
 <div id="cell-experiment" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>CITY <span class="op">=</span> <span class="st">"Sydney"</span> <span class="co">#@param ["New York", "Sydney", "London", "Nairobi"]</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>city_data <span class="op">=</span> {</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"New York"</span>:  [<span class="dv">0</span>,  <span class="dv">1</span>,  <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">15</span>,  <span class="dv">9</span>,  <span class="dv">3</span>],</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sydney"</span>:    [<span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">24</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">25</span>],</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"London"</span>:    [<span class="dv">6</span>,  <span class="dv">6</span>,  <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">17</span>, <span class="dv">13</span>,  <span class="dv">9</span>,  <span class="dv">6</span>],</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nairobi"</span>:   [<span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">21</span>]</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>, <span class="st">'Jun'</span>, <span class="st">'Jul'</span>, <span class="st">'Aug'</span>, <span class="st">'Sep'</span>, <span class="st">'Oct'</span>, <span class="st">'Nov'</span>, <span class="st">'Dec'</span>]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> city_data[CITY]</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>plt.plot(months, temps, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'coral'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Average Monthly Temperature — </span><span class="sc">{</span>CITY<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Temperature (°C)'</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>CITY <span class="op">=</span> <span class="st">"Sydney"</span> <span class="co">#@param ["New York", "Sydney", "London", "Nairobi"]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>city_data <span class="op">=</span> {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"New York"</span>:  [<span class="dv">0</span>,  <span class="dv">1</span>,  <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">18</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">15</span>,  <span class="dv">9</span>,  <span class="dv">3</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sydney"</span>:    [<span class="dv">26</span>, <span class="dv">26</span>, <span class="dv">24</span>, <span class="dv">21</span>, <span class="dv">18</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">25</span>],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"London"</span>:    [<span class="dv">6</span>,  <span class="dv">6</span>,  <span class="dv">9</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">17</span>, <span class="dv">13</span>,  <span class="dv">9</span>,  <span class="dv">6</span>],</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Nairobi"</span>:   [<span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">21</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>months <span class="op">=</span> [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>, <span class="st">'Jun'</span>, <span class="st">'Jul'</span>, <span class="st">'Aug'</span>, <span class="st">'Sep'</span>, <span class="st">'Oct'</span>, <span class="st">'Nov'</span>, <span class="st">'Dec'</span>]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> city_data[CITY]</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.plot(months, temps, marker<span class="op">=</span><span class="st">'o'</span>, color<span class="op">=</span><span class="st">'coral'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Average Monthly Temperature — </span><span class="sc">{</span>CITY<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Temperature (°C)'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What differences did you notice between cities? Which city has the most stable temperature year-round? Why do you think that is?</p>
 </section>
+<section id="part-3-scatter-plots" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-scatter-plots">Part 3: Scatter Plots</h2>
+<p>A <strong>scatter plot</strong> puts one variable on the x-axis and another on the y-axis, with one dot per data point. It’s the fastest way to see whether two variables move together.</p>
+<p>For example: if students who study more hours tend to score higher, the dots will form an upward slope. If there’s no relationship, the dots will be scattered randomly.</p>
+<p>Let’s plot hours studied against exam scores for a class of students:</p>
+<div id="cell-scatter-chart" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>study_data <span class="op">=</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'hours_studied'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>],</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'exam_score'</span>:    [<span class="dv">42</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">58</span>, <span class="dv">65</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">91</span>, <span class="dv">95</span>]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_study <span class="op">=</span> pd.DataFrame(study_data)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_study[<span class="st">'hours_studied'</span>], df_study[<span class="st">'exam_score'</span>],</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">'steelblue'</span>, s<span class="op">=</span><span class="dv">80</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Hours Studied vs. Exam Score'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Hours Studied'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Exam Score'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Look at the shape of the dots:</p>
+<ul>
+<li>Do they slope upward, downward, or are they scattered randomly?</li>
+<li>Are the dots tightly grouped, or spread out loosely?</li>
+<li>Are there any students who don’t fit the pattern?</li>
+</ul>
+<p>Your turn! What if some students studied lots but scored low?</p>
+<p>Try changing a few values in exam_score and re-run — what happens to the pattern?</p>
+<p>You can also try changing the color, or the dot size (s=80)</p>
+<div id="cell-scatter-exercise" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>study_data <span class="op">=</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'hours_studied'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'exam_score'</span>:    [<span class="dv">42</span>, <span class="dv">50</span>, <span class="dv">55</span>, <span class="dv">58</span>, <span class="dv">65</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">72</span>, <span class="dv">75</span>, <span class="dv">78</span>, <span class="dv">82</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">91</span>, <span class="dv">95</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_study <span class="op">=</span> pd.DataFrame(study_data)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(df_study[<span class="st">'hours_studied'</span>], df_study[<span class="st">'exam_score'</span>],</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span><span class="st">'steelblue'</span>, s<span class="op">=</span><span class="dv">80</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Hours Studied vs. Exam Score'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Hours Studied'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Exam Score'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Scatter plots are a key tool in data science for spotting <strong>relationships between variables</strong> and putting a number on how strong those relationships are.</p>
+<p>Describe the scatter plot in your own words. What pattern did you see? What do you think would happen to the dots if studying had no effect on exam scores at all?</p>
+</section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
-<p>{ “question_type”: “multiple_choice”, “question”: “What is a Pandas DataFrame?”, “options”: [ { “key”: “a”, “text”: “A single column of data” }, { “key”: “b”, “text”: “A table of data with rows and columns” }, { “key”: “c”, “text”: “A type of chart” }, { “key”: “d”, “text”: “A Python function for reading files” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “Which Pandas method shows the first 5 rows of a DataFrame?”, “options”: [ { “key”: “a”, “text”: “df.show()” }, { “key”: “b”, “text”: “df.top()” }, { “key”: “c”, “text”: “df.first()” }, { “key”: “d”, “text”: “df.head()” } ], “answer”: “d”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “Which chart type is best for showing how a value changes over time?”, “options”: [ { “key”: “a”, “text”: “Line chart” }, { “key”: “b”, “text”: “Bar chart” }, { “key”: “c”, “text”: “Scatter plot” }, { “key”: “d”, “text”: “Histogram” } ], “answer”: “a”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “true_false”, “question”: “Matplotlib is used to load and clean data.”, “answer”: “False”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “multiple_choice”, “question”: “What does a scatter plot show?”, “options”: [ { “key”: “a”, “text”: “How data changes over time” }, { “key”: “b”, “text”: “The total of each category” }, { “key”: “c”, “text”: “The relationship between two variables” }, { “key”: “d”, “text”: “How many values fall in each range” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 
 
 </section>
@@ -1324,13 +1348,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/02/slides.html" class="pagination-link" aria-label="Slides">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
+      <a href="../../../labs/02/notebooks/pandas.html" class="pagination-link" aria-label="Using Pandas (pandas.ipynb)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using Pandas (pandas.ipynb)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/02/notebooks/air_quality.html" class="pagination-link" aria-label="air_quality.ipynb">
-        <span class="nav-page-text">air_quality.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/02/notebooks/air_quality.html" class="pagination-link" aria-label="Exploring Air Quality (air_quality.ipynb)">
+        <span class="nav-page-text">Exploring Air Quality (air_quality.ipynb)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

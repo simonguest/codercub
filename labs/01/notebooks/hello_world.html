@@ -345,7 +345,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">hello_world.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Hello World! (hello_world.ipynb)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -404,13 +404,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/01/notebooks/hello_world.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">hello_world.ipynb</span></a>
+ <span class="menu-text">Hello World! (hello_world.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/01/notebooks/ai_in_action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ai_in_action.ipynb</span></a>
+ <span class="menu-text">AI in Action (ai_in_action.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -443,20 +443,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/02/notebooks/pandas_matplotlib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">pandas_matplotlib.ipynb</span></a>
+  <a href="../../../labs/02/notebooks/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Pandas (pandas.ipynb)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/02/notebooks/matplotlib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Matplotlib (matplotlib.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/air_quality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">air_quality.ipynb</span></a>
+ <span class="menu-text">Exploring Air Quality (air_quality.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">correlation.ipynb</span></a>
+ <span class="menu-text">Introducing Correlation (correlation.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -796,7 +802,7 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">hello_world.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/01/notebooks/hello_world.html">Hello World! (hello_world.ipynb)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Hello World Notebook!</h1>
 </div>
@@ -834,39 +840,48 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="markdown-cells-support-rich-formatting">Markdown Cells Support Rich Formatting</h2>
 <p>You can use: - <strong>Bold</strong> and <em>italic</em> text - Lists (like this one!) - <a href="https://jupyter.org">Links</a> - <code>inline code</code> - And even LaTeX math: <span class="math inline">\(E = mc^2\)</span></p>
 <p>This makes notebooks great for explaining your code!</p>
-<div id="knxl71cxbhk" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can perform calculations across cells</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x <span class="op">+</span> y</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"x (</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">) + y (</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>z<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <div id="5jonrz68f1k" class="cell" data-outputid="fe69690f-6509-4ebf-bc68-d6321f2c013f">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notebooks make it easy to import and use libraries</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random number and calculate its square root</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sqrt_num <span class="op">=</span> math.sqrt(num)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The square root of </span><span class="sc">{</span>num<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>sqrt_num<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notebooks make it easy to import and use libraries</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random number and calculate its square root</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sqrt_num <span class="op">=</span> math.sqrt(num)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The square root of </span><span class="sc">{</span>num<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>sqrt_num<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>If you aren’t sure how to use a method, Juypter K-12 will give you helpful hints whenever you type a period (.) or an opening parentheses ((). Try typing <code>math.sqrt(</code> on line 3 in the next cell and watch what happens after the . and (</p>
+<div id="34553465-c3d1-4214-bf1f-bb6b3eab4359" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The output of a code cell is often text, but it can also be tables, images, graphs, and other types. Run the following code as an example:</p>
 <div id="pzpkkpigauh" class="cell" data-outputid="3d1591df-a84a-4ca2-f03f-bd8732a82a28">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizations appear inline!</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>y_values <span class="op">=</span> np.sin(x_values)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, y_values)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sine Wave'</span>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'sin(x)'</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>y_values <span class="op">=</span> np.sin(x_values)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, y_values)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sine Wave'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'sin(x)'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You just created a chart using Python! What do you notice about the sine wave? What happens to the values as x gets larger?</p>
+<p>You can click on the “eye” icon in a code cell to hide/show the code. Try with this cell…</p>
+<div id="86623ac1-6ed4-4f38-85d4-7b4224148921" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Click on the "eye" icon to hide the code in this cell</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And sometimes, code cells are hidden by default like this one. Try unhiding this by clicking the “eye” icon again…</p>
+<div id="c6785b1e-0fac-4c3e-a0ab-fa01f7b07a21" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nice! You unhid this cell to see all its secrets!</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This cell is hidden, but you can unhide it"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="interactive-form-fields" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-form-fields">Interactive Form Fields</h2>
@@ -874,12 +889,12 @@ window.Quarto = {
 <p>Add <code>#@param</code> after a variable to turn it into a text box, a dropdown, a slider, or a checkbox.</p>
 <p>Try changing the values below and re-running the cell:</p>
 <div id="cell-form-example" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>NAME <span class="op">=</span> <span class="st">"World"</span> <span class="co">#@param</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>GREETING <span class="op">=</span> <span class="st">"Hello"</span> <span class="co">#@param ["Hello", "Hi", "Hey", "Greetings"]</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>TIMES <span class="op">=</span> <span class="dv">1</span> <span class="co">#@param {type:"slider", min:1, max:5, step:1}</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(TIMES):</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>GREETING<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>NAME<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>NAME <span class="op">=</span> <span class="st">"World"</span> <span class="co">#@param</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>GREETING <span class="op">=</span> <span class="st">"Hello"</span> <span class="co">#@param ["Hello", "Hi", "Hey", "Greetings"]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>TIMES <span class="op">=</span> <span class="dv">1</span> <span class="co">#@param {type:"slider", min:1, max:5, step:1}</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(TIMES):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>GREETING<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>NAME<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="what-happens-when-theres-an-error" class="level2">
@@ -887,8 +902,8 @@ window.Quarto = {
 <p>Run the cell below to see how notebooks handle errors.</p>
 <p>The error appears in the output, but other cells continue to work.</p>
 <div id="35z7elhwq3f" class="cell" data-outputid="4a4bd1d6-3a89-452a-d31f-2f2f9da57267">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will cause an error</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will cause an error</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="check-your-understanding" class="level2">
@@ -1321,8 +1336,8 @@ window.Quarto = {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/01/notebooks/ai_in_action.html" class="pagination-link" aria-label="ai_in_action.ipynb">
-        <span class="nav-page-text">ai_in_action.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/01/notebooks/ai_in_action.html" class="pagination-link" aria-label="AI in Action (ai_in_action.ipynb)">
+        <span class="nav-page-text">AI in Action (ai_in_action.ipynb)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

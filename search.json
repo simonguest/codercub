@@ -715,107 +715,120 @@
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html",
-    "href": "labs/02/notebooks/pandas_matplotlib.html",
-    "title": "Exploring Data with Pandas and Matplotlib",
+    "objectID": "labs/02/notebooks/pandas.html",
+    "href": "labs/02/notebooks/pandas.html",
+    "title": "Exploring Data with Pandas",
     "section": "",
-    "text": "In this notebook, you’ll learn how to work with data using two powerful Python libraries: Pandas and Matplotlib.",
+    "text": "In this notebook you’ll learn how to work with structured data using Pandas. This is one of the most widely used tools in data science and AI.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#what-youll-learn",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#what-youll-learn",
-    "title": "Exploring Data with Pandas and Matplotlib",
+    "objectID": "labs/02/notebooks/pandas.html#what-youll-learn",
+    "href": "labs/02/notebooks/pandas.html#what-youll-learn",
+    "title": "Exploring Data with Pandas",
     "section": "What You’ll Learn",
-    "text": "What You’ll Learn\n\nWhat a DataFrame is and how to create one\nHow to explore and inspect data with Pandas\nHow to create charts and visualizations with Matplotlib",
+    "text": "What You’ll Learn\n\nWhat a DataFrame is and how to create one\nHow to inspect data with head(), describe(), and shape\nHow to filter rows to find specific data\nHow to sort a DataFrame by any column\nHow to load a CSV file into Pandas",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#part-1-hello-pandas",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#part-1-hello-pandas",
-    "title": "Exploring Data with Pandas and Matplotlib",
+    "objectID": "labs/02/notebooks/pandas.html#part-1-hello-pandas",
+    "href": "labs/02/notebooks/pandas.html#part-1-hello-pandas",
+    "title": "Exploring Data with Pandas",
     "section": "Part 1: Hello, Pandas!",
-    "text": "Part 1: Hello, Pandas!\nPandas is a Python library for working with structured data — like spreadsheets or tables.\nThe key building block is a DataFrame — think of it as a table with rows and columns, just like a spreadsheet.\nLet’s create a DataFrame using average monthly temperatures in New York City:\n\nimport pandas as pd\n\ndata = {\n    'month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',\n               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],\n    'avg_temp_c': [0, 1, 6, 12, 18, 23, 26, 25, 21, 15, 9, 3]\n}\n\ndf = pd.DataFrame(data)\ndf",
+    "text": "Part 1: Hello, Pandas!\nPandas is a Python library for working with structured data, such as spreadsheets or tables.\nThe key building block is a DataFrame. Think of a DataFrame as a table with rows and columns, just like a spreadsheet.\nLet’s create a DataFrame using average monthly temperatures in New York City:\n\nimport pandas as pd\n\ndata = {\n    'month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',\n               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],\n    'avg_temp_c': [0, 1, 6, 12, 18, 23, 26, 25, 21, 15, 9, 3]\n}\n\ndf = pd.DataFrame(data)\ndf",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#what-is-a-series",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#what-is-a-series",
-    "title": "Exploring Data with Pandas and Matplotlib",
+    "objectID": "labs/02/notebooks/pandas.html#what-is-a-series",
+    "href": "labs/02/notebooks/pandas.html#what-is-a-series",
+    "title": "Exploring Data with Pandas",
     "section": "What is a Series?",
-    "text": "What is a Series?\nA Series is a single column of data — like one column pulled from your DataFrame.\nYou can access a column by name using square brackets []. Let’s look at just the temperature column:\n\ntemperatures = df['avg_temp_c']\nprint(temperatures)",
+    "text": "What is a Series?\nA Series is a single column of data, like one column pulled from your DataFrame.\nYou can access a column by name using square brackets []. Let’s look at just the temperature column:\n\ntemperatures = df['avg_temp_c']\nprint(temperatures)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#exploring-your-data",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#exploring-your-data",
-    "title": "Exploring Data with Pandas and Matplotlib",
+    "objectID": "labs/02/notebooks/pandas.html#exploring-your-data",
+    "href": "labs/02/notebooks/pandas.html#exploring-your-data",
+    "title": "Exploring Data with Pandas",
     "section": "Exploring Your Data",
     "text": "Exploring Your Data\nPandas has some handy methods for getting a quick look at your data:\n\ndf.head() — shows the first 5 rows\ndf.describe() — shows summary statistics like min, max, and average\ndf.shape — tells you how many rows and columns you have\n\nRun each cell below to see what they do:\n\ndf.head()\n\n\ndf.describe()\n\n\nprint(f\"This dataset has {df.shape[0]} rows and {df.shape[1]} columns.\")\n\nWhat did you notice from df.describe()? What was the hottest average month? What was the coldest?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#part-2-making-charts-with-matplotlib",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#part-2-making-charts-with-matplotlib",
-    "title": "Exploring Data with Pandas and Matplotlib",
-    "section": "Part 2: Making Charts with Matplotlib",
-    "text": "Part 2: Making Charts with Matplotlib\nNumbers in a table are useful, but charts make patterns much easier to see!\nMatplotlib is a Python library for creating charts and visualizations.\nThe most common chart types are: - Line chart — great for showing change over time - Bar chart — great for comparing values side by side\nLet’s plot our temperature data as a line chart:\n\nimport matplotlib.pyplot as plt\n\nplt.figure(figsize=(10, 5))\nplt.plot(df['month'], df['avg_temp_c'], marker='o', color='steelblue', linewidth=2)\nplt.title('Average Monthly Temperature — New York City')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nNow let’s show the same data as a bar chart. Months below freezing (0°C) will appear in a different colour:\n\ncolors = ['steelblue' if t &gt;= 0 else 'slateblue' for t in df['avg_temp_c']]\n\nplt.figure(figsize=(10, 5))\nplt.bar(df['month'], df['avg_temp_c'], color=colors)\nplt.title('Average Monthly Temperature — New York City')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.axhline(y=0, color='black', linewidth=0.8)\nplt.show()",
+    "objectID": "labs/02/notebooks/pandas.html#part-2-filtering-data",
+    "href": "labs/02/notebooks/pandas.html#part-2-filtering-data",
+    "title": "Exploring Data with Pandas",
+    "section": "Part 2: Filtering Data",
+    "text": "Part 2: Filtering Data\nOne of Pandas’ most useful features is filtering, which enables you to select only the rows that match a condition.\nThe syntax looks like this:\ndf[df['column_name'] &gt; value]\nThink of it as asking: “Give me all the rows where this column meets this condition.”\nLet’s find all months where the average temperature is above 15°C:\n\nwarm_months = df[df['avg_temp_c'] &gt; 15]\nwarm_months\n\nYou can use any comparison operator:\n\n&gt; greater than\n&lt; less than\n== equal to (note the double equals!)\n&gt;= greater than or equal to\n\n\n# ✏️ YOUR TURN: find months where the temperature is below 5°C\n# Try changing the number, or flip the &gt; to &lt; to find cold months\n\ncold_months = df[df['avg_temp_c'] &lt; 5]\ncold_months",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#explore-different-cities",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#explore-different-cities",
-    "title": "Exploring Data with Pandas and Matplotlib",
-    "section": "Explore Different Cities",
-    "text": "Explore Different Cities\nUse the dropdown below to pick a different city and see how the temperature pattern changes!\n\nCITY = \"Sydney\" #@param [\"New York\", \"Sydney\", \"London\", \"Nairobi\"]\n\ncity_data = {\n    \"New York\":  [0,  1,  6, 12, 18, 23, 26, 25, 21, 15,  9,  3],\n    \"Sydney\":    [26, 26, 24, 21, 18, 15, 14, 15, 17, 20, 22, 25],\n    \"London\":    [6,  6,  9, 12, 15, 18, 20, 20, 17, 13,  9,  6],\n    \"Nairobi\":   [22, 23, 23, 22, 21, 19, 18, 19, 21, 22, 21, 21]\n}\n\nmonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']\ntemps = city_data[CITY]\n\nplt.figure(figsize=(10, 5))\nplt.plot(months, temps, marker='o', color='coral', linewidth=2)\nplt.title(f'Average Monthly Temperature — {CITY}')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nWhat differences did you notice between cities? Which city has the most stable temperature year-round? Why do you think that is?",
+    "objectID": "labs/02/notebooks/pandas.html#part-3-sorting-data",
+    "href": "labs/02/notebooks/pandas.html#part-3-sorting-data",
+    "title": "Exploring Data with Pandas",
+    "section": "Part 3: Sorting Data",
+    "text": "Part 3: Sorting Data\nYou can sort a DataFrame by any column using df.sort_values().\nBy default it sorts from smallest to largest. Add ascending=False to flip the order:\n\n# Sort months from warmest to coldest\ndf.sort_values('avg_temp_c', ascending=False)\n\n\n# YOUR TURN: sort from coldest to warmest\n# Hint: change ascending=False to ascending=True\n\ndf.sort_values('avg_temp_c', ascending=False)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas_matplotlib.html#check-your-understanding",
-    "href": "labs/02/notebooks/pandas_matplotlib.html#check-your-understanding",
-    "title": "Exploring Data with Pandas and Matplotlib",
+    "objectID": "labs/02/notebooks/pandas.html#part-4-loading-from-a-csv",
+    "href": "labs/02/notebooks/pandas.html#part-4-loading-from-a-csv",
+    "title": "Exploring Data with Pandas",
+    "section": "Part 4: Loading from a CSV",
+    "text": "Part 4: Loading from a CSV\nSo far you’ve created DataFrames by typing the data directly into Python. In the real world, data usually lives in a file, most commonly a CSV (comma-separated values) file.\nA CSV file looks like this:\nmonth,avg_temp_c,precipitation_mm,sunny_days\nJan,0,94,8\nFeb,1,88,9\n...\nEach row is a new line and values are separated by commas. Loading it into Pandas takes just one line:\ndf = pd.read_csv('nyc_weather.csv')\nSince we’re working in the browser, we’ll load it from the web, but the idea is exactly the same:\n\nimport httpx\nimport io\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/nyc_weather.csv\"\n\nresponse = httpx.get(url)\ndf_weather = pd.read_csv(io.StringIO(response.text))\ndf_weather\n\n\n# What new columns does the CSV have?\ndf_weather.describe()\n\n\n# YOUR TURN: try filtering or sorting by one of the new columns\n# For example: find months with more than 100mm of precipitation\n\nwet_months = df_weather[df_weather['precipitation_mm'] &gt; 100]\nwet_months\n\nWhat new columns does the CSV have that our original DataFrame didn’t? Try filtering or sorting by one of them — what did you find?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Pandas (pandas.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/02/notebooks/pandas.html#check-your-understanding",
+    "href": "labs/02/notebooks/pandas.html#check-your-understanding",
+    "title": "Exploring Data with Pandas",
     "section": "Check Your Understanding",
-    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What is a Pandas DataFrame?”, “options”: [ { “key”: “a”, “text”: “A single column of data” }, { “key”: “b”, “text”: “A table of data with rows and columns” }, { “key”: “c”, “text”: “A type of chart” }, { “key”: “d”, “text”: “A Python function for reading files” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which Pandas method shows the first 5 rows of a DataFrame?”, “options”: [ { “key”: “a”, “text”: “df.show()” }, { “key”: “b”, “text”: “df.top()” }, { “key”: “c”, “text”: “df.first()” }, { “key”: “d”, “text”: “df.head()” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Matplotlib is used to load and clean data.”, “answer”: “False”, “submitted_answer”: “” }",
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What is a Pandas DataFrame?”, “options”: [ { “key”: “a”, “text”: “A single column of data” }, { “key”: “b”, “text”: “A table of data with rows and columns” }, { “key”: “c”, “text”: “A type of chart” }, { “key”: “d”, “text”: “A Python function for reading files” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which Pandas method shows the first 5 rows of a DataFrame?”, “options”: [ { “key”: “a”, “text”: “df.show()” }, { “key”: “b”, “text”: “df.top()” }, { “key”: “c”, “text”: “df.first()” }, { “key”: “d”, “text”: “df.head()” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which of the following correctly filters a DataFrame to rows where ‘score’ is greater than 80?”, “options”: [ { “key”: “a”, “text”: “df.filter(‘score’ &gt; 80)” }, { “key”: “b”, “text”: “df[‘score’ &gt; 80]” }, { “key”: “c”, “text”: “df[df[‘score’] &gt; 80]” }, { “key”: “d”, “text”: “df.where(score &gt; 80)” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Calling df.sort_values() permanently changes the order of the original DataFrame.”, “answer”: “False”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "pandas_matplotlib.ipynb"
+      "Using Pandas (pandas.ipynb)"
     ]
   },
   {
@@ -828,7 +841,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -841,7 +854,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -849,12 +862,12 @@
     "href": "labs/02/notebooks/correlation.html#step-1-load-the-data",
     "title": "Introducing Correlation",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -862,12 +875,12 @@
     "href": "labs/02/notebooks/correlation.html#step-2-your-first-scatter-plot",
     "title": "Introducing Correlation",
     "section": "Step 2: Your first scatter plot",
-    "text": "Step 2: Your first scatter plot\nA scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together.\nWe will put temperature on the x-axis and PM2.5 on the y-axis. Before you run the cell, make a prediction: what shape do you expect to see?\nBefore you run the scatter plot: what do you predict it will look like? Do you think the dots will slope upward, downward, or be flat? Will they be tightly grouped or spread out?\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df['temp_c'],\n    df['pm25'],\n    alpha=0.3,       # transparency so overlapping points are visible\n    s=12,            # dot size\n    color='steelblue'\n)\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 — Ulaanbaatar 2019–2021', fontsize=13, fontweight='bold')\n\nplt.tight_layout()\nplt.show()\n\nLook at the overall shape of the cloud of points.\n\nDoes it slope upward, downward, or is it flat?\nAre the points tightly clustered, or spread out loosely?\nAre there any days that don’t fit the pattern?\n\nDescribe what you see in the scatter plot. Does it slope up or down? Are the points tightly clustered or spread out? Were there any days that didn’t fit the pattern?",
+    "text": "Step 2: Your first scatter plot\nA scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together. We will put temperature on the x-axis and PM2.5 on the y-axis.\nBefore you run the cell, make a prediction: what shape do you expect to see?\nBefore you run the scatter plot: what do you predict it will look like? Do you think the dots will slope upward, downward, or be flat? Will they be tightly grouped or spread out?\n\nimport matplotlib.pyplot as plt\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(\n    df['temp_c'],\n    df['pm25'],\n    alpha=0.3,       # transparency so overlapping points are visible\n    s=12,            # dot size\n    color='steelblue'\n)\n\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Temperature vs. PM2.5 — Ulaanbaatar 2019–2021', fontsize=13, fontweight='bold')\n\nplt.tight_layout()\nplt.show()\n\nLook at the overall shape of the cloud of points.\n\nDoes it slope upward, downward, or is it flat?\nAre the points tightly clustered, or spread out loosely?\nAre there any days that don’t fit the pattern?\n\nDescribe what you see in the scatter plot. Does it slope up or down? Are the points tightly clustered or spread out? Were there any days that didn’t fit the pattern?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -880,7 +893,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -893,20 +906,20 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/correlation.html#step-5-your-turn",
-    "href": "labs/02/notebooks/correlation.html#step-5-your-turn",
+    "objectID": "labs/02/notebooks/correlation.html#step-5-going-deeper",
+    "href": "labs/02/notebooks/correlation.html#step-5-going-deeper",
     "title": "Introducing Correlation",
-    "section": "Step 5: Your turn",
-    "text": "Step 5: Your turn\nThe cell below is set up to plot temperature against PM2.5 — the same chart you already made.\nTry changing the variables on the x or y axis to investigate other relationships in the data.\nSome questions to try: - Does wind speed affect pollution? Plot wind_speed_ms on the x-axis against pm25 on the y-axis. Is the correlation stronger or weaker than temperature? - How closely do PM2.5 and PM10 track each other? Try plotting one against the other. - Does the temperature correlation look the same if you only look at Winter days? Add a filter: df_test = df[df['season'] == 'Winter'] and re-run.\nChange one thing at a time, re-run the cell, and note what you find.\n\n# Change these two variables to explore other relationships\nx_column = 'temp_c'     # try: 'wind_speed_ms', 'pm10'\ny_column = 'pm25'       # try: 'pm10', 'pm25'\n\n# Change this if you want to filter to one season\ndf_test = df                           # or: df[df['season'] == 'Winter']\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(df_test[x_column], df_test[y_column], alpha=0.3, s=12, color='steelblue')\nax.set_xlabel(x_column, fontsize=12)\nax.set_ylabel(y_column, fontsize=12)\nax.set_title(f'{x_column} vs. {y_column}', fontsize=13, fontweight='bold')\n\ncorr = df_test[x_column].corr(df_test[y_column])\nax.text(0.03, 0.93, f'Correlation: {corr:.2f}', transform=ax.transAxes,\n        fontsize=11, bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.8))\n\nplt.tight_layout()\nplt.show()",
+    "section": "Step 5: Going Deeper",
+    "text": "Step 5: Going Deeper\nYou’ve confirmed a strong overall correlation between temperature and PM2.5. Let’s run three targeted investigations to test the limits of that relationship.\n\nInvestigation 1 — Does wind speed matter?\nThe dataset also contains wind_speed_ms. You might expect that on windier days, pollution would be dispersed and PM2.5 would drop.\nBefore you run: predict whether wind speed will show a stronger or weaker correlation than temperature.\nWrite your prediction: will wind speed show a stronger, weaker, or similar correlation with PM2.5 compared to temperature? Why?\n\nimport matplotlib.pyplot as plt \n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nax.scatter(df['wind_speed_ms'], df['pm25'], alpha=0.3, s=12, color='steelblue')\nax.set_xlabel('Wind Speed (m/s)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title('Wind Speed vs. PM2.5 — Ulaanbaatar 2019–2021', fontsize=13, fontweight='bold')\n\ncorr = df['wind_speed_ms'].corr(df['pm25'])\nax.text(0.03, 0.93, f'Correlation: {corr:.2f}', transform=ax.transAxes,\n        fontsize=11, bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.8))\n\nplt.tight_layout()\nplt.show()\n\nThe correlation is close to 0.00 — wind speed barely predicts PM2.5 at all.\nThis makes sense when you think about the source: coal burning for heating is a fixed daily need. Whether it is windy or calm outside, families still burn the same amount of coal to stay warm. The pollution is produced regardless, and wind does not reduce it enough to show up clearly in the data.\nWas the wind speed result what you predicted? What does a near-zero correlation tell you about wind as a factor in Ulaanbaatar’s pollution?\n\n\nInvestigation 2 — Explore other variable pairs\nUse the dropdowns to try different combinations of variables. A good starting point: how closely do PM2.5 and PM10 track each other?\n\nX_COLUMN = \"pm10\"  #@param [\"temp_c\", \"wind_speed_ms\", \"pm10\"]\nY_COLUMN = \"pm25\"  #@param [\"pm25\", \"pm10\", \"temp_c\", \"wind_speed_ms\"]\n\nfig, ax = plt.subplots(figsize=(9, 6))\nax.scatter(df[X_COLUMN], df[Y_COLUMN], alpha=0.3, s=12, color='steelblue')\nax.set_xlabel(X_COLUMN, fontsize=12)\nax.set_ylabel(Y_COLUMN, fontsize=12)\nax.set_title(f'{X_COLUMN} vs. {Y_COLUMN}', fontsize=13, fontweight='bold')\n\ncorr = df[X_COLUMN].corr(df[Y_COLUMN])\nax.text(0.03, 0.93, f'Correlation: {corr:.2f}', transform=ax.transAxes,\n        fontsize=11, bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.8))\n\nplt.tight_layout()\nplt.show()\n\nWhich variable pair had the strongest correlation? Which had the weakest? Why do you think PM2.5 and PM10 are so closely linked?\n\n\nInvestigation 3 — Does the temperature correlation hold within a single season?\nThe overall correlation between temperature and PM2.5 is −0.85. But that is calculated across all four seasons at once — winter days are cold and polluted, summer days are warm and clean.\nWhat happens if you only look at Winter days? Use the dropdown to filter to one season and watch what happens to the correlation.\n\nSEASON = \"All\"  #@param [\"All\", \"Winter\", \"Spring\", \"Summer\", \"Autumn\"]\n\ndf_filtered = df if SEASON == \"All\" else df[df['season'] == SEASON]\n\nfig, ax = plt.subplots(figsize=(9, 6))\nax.scatter(df_filtered['temp_c'], df_filtered['pm25'],\n           alpha=0.3, s=12, color='steelblue')\nax.set_xlabel('Temperature (°C)', fontsize=12)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=12)\nax.set_title(f'Temperature vs. PM2.5 — {SEASON}', fontsize=13, fontweight='bold')\n\ncorr = df_filtered['temp_c'].corr(df_filtered['pm25'])\nax.text(0.03, 0.93, f'Correlation: {corr:.2f}  (n={len(df_filtered)})',\n        transform=ax.transAxes, fontsize=11,\n        bbox=dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.8))\n\nplt.tight_layout()\nplt.show()\n\nWhat happened to the correlation when you switched to Winter only? Were you surprised by the result?\nWithin Winter, the correlation drops to nearly 0.00 — temperature stops being a useful predictor of PM2.5 on any given day.\nThis reveals something important: temperature is not causing the pollution directly. It is a marker for winter — and winter is when families burn coal for heating. Whether it is −10°C or −25°C on a particular day, the coal is burning either way. The real mechanism is the heating behaviour that winter brings, not the temperature itself.\nThis is a classic example of the difference between correlation and causation: two variables can move together strongly overall, while one is not actually causing the other.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -919,7 +932,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -932,7 +945,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -945,7 +958,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "correlation.ipynb"
+      "Introducing Correlation (correlation.ipynb)"
     ]
   },
   {
@@ -958,7 +971,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "hello_world.ipynb"
+      "Hello World! (hello_world.ipynb)"
     ]
   },
   {
@@ -966,12 +979,12 @@
     "href": "labs/01/notebooks/hello_world.html#markdown-cells-support-rich-formatting",
     "title": "Hello World Notebook!",
     "section": "Markdown Cells Support Rich Formatting",
-    "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()\n\nYou just created a chart using Python! What do you notice about the sine wave? What happens to the values as x gets larger?",
+    "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\nIf you aren’t sure how to use a method, Juypter K-12 will give you helpful hints whenever you type a period (.) or an opening parentheses ((). Try typing math.sqrt( on line 3 in the next cell and watch what happens after the . and (\n\nimport math\n\n\nThe output of a code cell is often text, but it can also be tables, images, graphs, and other types. Run the following code as an example:\n\n!import matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()\n\nYou just created a chart using Python! What do you notice about the sine wave? What happens to the values as x gets larger?\nYou can click on the “eye” icon in a code cell to hide/show the code. Try with this cell…\n\n# Click on the \"eye\" icon to hide the code in this cell\nprint(\"Hello!\")\n\nAnd sometimes, code cells are hidden by default like this one. Try unhiding this by clicking the “eye” icon again…\n\n# Nice! You unhid this cell to see all its secrets!\nprint(\"This cell is hidden, but you can unhide it\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "hello_world.ipynb"
+      "Hello World! (hello_world.ipynb)"
     ]
   },
   {
@@ -984,7 +997,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "hello_world.ipynb"
+      "Hello World! (hello_world.ipynb)"
     ]
   },
   {
@@ -997,7 +1010,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "hello_world.ipynb"
+      "Hello World! (hello_world.ipynb)"
     ]
   },
   {
@@ -1010,7 +1023,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "hello_world.ipynb"
+      "Hello World! (hello_world.ipynb)"
     ]
   },
   {
@@ -2539,7 +2552,31 @@
     "href": "labs/02/slides.html#recap",
     "title": "Day 2: Working With Data",
     "section": "Recap",
-    "text": "Recap\n\nTBD",
+    "text": "Recap\n\nWhat is AI?\nIs it AI or not?\nTypes of AI: Supervised ML, Computer Vision, and Generative AI\nUsing Notebooks\n“AI in Action” Notebook",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#start-with-data-1",
+    "href": "labs/02/slides.html#start-with-data-1",
+    "title": "Day 2: Working With Data",
+    "section": "Start With Data!",
+    "text": "Start With Data!\n\nTraditional software: a programmer writes every rule by hand\nAI/ML: you feed the system examples, and it finds the patterns itself\nThink of teaching a child to recognize a dog — not by listing rules, but by showing thousands of pictures\nThose examples are the data",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#no-data-no-ai",
+    "href": "labs/02/slides.html#no-data-no-ai",
+    "title": "Day 2: Working With Data",
+    "section": "No Data, No AI",
+    "text": "No Data, No AI\n\nSpam filter → millions of emails labelled “spam” or “not spam”\nMusic App recommendations → millions of listening sessions\nChatGPT → a large chunk of the entire internet\nMore data + better data = smarter model\nToday we learn to work with data, because that’s where AI starts",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -2563,7 +2600,7 @@
     "href": "labs/02/slides.html#a-brief-history-of-pandas",
     "title": "Day 2: Working With Data",
     "section": "A Brief History of Pandas",
-    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at an investment firm\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
+    "text": "A Brief History of Pandas\n\nCreated by Wes McKinney in 2008 while working at a bank\nHe was frustrated that existing tools made data analysis too slow and painful\nReleased as open source — now downloaded hundreds of millions of times a year\nThe name comes from “Panel Data”, an economics term for multi-dimensional datasets",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -2575,7 +2612,7 @@
     "href": "labs/02/slides.html#key-pandas-concepts",
     "title": "Day 2: Working With Data",
     "section": "Key Pandas Concepts",
-    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more\n\nimport pandas as pd\ndf = pd.read_csv(\"data.csv\")\ndf.head()",
+    "text": "Key Pandas Concepts\n\nDataFrame — a table of data with rows and columns, like a spreadsheet\nSeries — a single column of data\nCan read CSV files, Excel files, databases, JSON, and more",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -2599,7 +2636,7 @@
     "href": "labs/02/slides.html#a-brief-history-of-matplotlib",
     "title": "Day 2: Working With Data",
     "section": "A Brief History of Matplotlib",
-    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB — without needing MATLAB\nHunter passed away in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
+    "text": "A Brief History of Matplotlib\n\nCreated by John D. Hunter in 2003, originally for neuroscience research\nHe wanted Python to produce charts like MATLAB, without needing MATLAB\nHunter died in 2012, but the project continues as a major open-source effort\nToday it underpins many other visualization libraries (Seaborn, Pandas plots, etc.)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -2611,19 +2648,7 @@
     "href": "labs/02/slides.html#key-matplotlib-concepts",
     "title": "Day 2: Working With Data",
     "section": "Key Matplotlib Concepts",
-    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib\n\nimport matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 7, 2])\nplt.show()",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 2",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "href": "labs/02/slides.html#ulaanbaatars-air-quality",
-    "title": "Day 2: Working With Data",
-    "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi",
+    "text": "Key Matplotlib Concepts\n\nFigure — the entire canvas for your chart\nAxes — the plot area where your data is actually drawn\nUsually paired with Pandas: load data with Pandas, visualize it with Matplotlib",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -2635,7 +2660,7 @@
     "href": "labs/02/slides.html#ulaanbaatars-air-quality-1",
     "title": "Day 2: Working With Data",
     "section": "Ulaanbaatar’s Air Quality",
-    "text": "Ulaanbaatar’s Air Quality\n\nTBD: Before/After satellite photos",
+    "text": "Ulaanbaatar’s Air Quality\n\nUlaanbaatar regularly records PM2.5 levels 30–40× the WHO safe limit\nWorse than Beijing, worse than Delhi\nLet’s find out more…",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -2643,11 +2668,47 @@
     ]
   },
   {
-    "objectID": "labs/02/slides.html#tbd",
-    "href": "labs/02/slides.html#tbd",
+    "objectID": "labs/02/slides.html#ulaanbaatars-air-quality-2",
+    "href": "labs/02/slides.html#ulaanbaatars-air-quality-2",
     "title": "Day 2: Working With Data",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "section": "Ulaanbaatar’s Air Quality",
+    "text": "Ulaanbaatar’s Air Quality\nhttps://www.youtube.com/watch?v=xySwAUt6ojQ",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#what-is-correlation",
+    "href": "labs/02/slides.html#what-is-correlation",
+    "title": "Day 2: Working With Data",
+    "section": "What is Correlation?",
+    "text": "What is Correlation?\n\nWhen two variables tend to move together, we say they are correlated\nMore hours of sleep → better test scores = positive correlation\nHigher temperature → lower PM2.5 in Ulaanbaatar = negative correlation\nWe measure the strength and direction with a number: the correlation coefficient",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#the-correlation-coefficient",
+    "href": "labs/02/slides.html#the-correlation-coefficient",
+    "title": "Day 2: Working With Data",
+    "section": "The Correlation Coefficient",
+    "text": "The Correlation Coefficient\n\nAlways falls between -1 and +1\n\n+1 = perfect positive relationship (both always move together)\n0 = no relationship at all\n-1 = perfect inverse relationship (one goes up, the other always goes down)\n\nBut be careful: correlation doesn’t mean causation!\nIce cream sales and sunburn rates are both high in summer! Does ice cream cause sunburn?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/02/slides.html#tomorrow",
+    "href": "labs/02/slides.html#tomorrow",
+    "title": "Day 2: Working With Data",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nIntroduce sklearn\nTrain our first AI model!\nExplore a dataset about Dzud",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -4024,7 +4085,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "ai_in_action.ipynb"
+      "AI in Action (ai_in_action.ipynb)"
     ]
   },
   {
@@ -4037,7 +4098,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "ai_in_action.ipynb"
+      "AI in Action (ai_in_action.ipynb)"
     ]
   },
   {
@@ -4050,7 +4111,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "ai_in_action.ipynb"
+      "AI in Action (ai_in_action.ipynb)"
     ]
   },
   {
@@ -4063,7 +4124,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "ai_in_action.ipynb"
+      "AI in Action (ai_in_action.ipynb)"
     ]
   },
   {
@@ -4076,7 +4137,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "ai_in_action.ipynb"
+      "AI in Action (ai_in_action.ipynb)"
     ]
   },
   {
@@ -4089,7 +4150,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "ai_in_action.ipynb"
+      "AI in Action (ai_in_action.ipynb)"
     ]
   },
   {
@@ -4102,7 +4163,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4115,7 +4176,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4123,12 +4184,12 @@
     "href": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
     "title": "Exploring Air Quality",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4141,7 +4202,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4154,7 +4215,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4162,12 +4223,12 @@
     "href": "labs/02/notebooks/air_quality.html#step-4-plot-a-full-year-of-pollution",
     "title": "Exploring Air Quality",
     "section": "Step 4: Plot a full year of pollution",
-    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nWhat shape do you see?\nDescribe the pattern in your own words before reading on.\nThe chart should show a clear U-shape: very high pollution at the start of the year (winter), dropping dramatically in spring, staying low through summer, then rising steeply again in autumn and winter.\nThis pattern has a specific cause — but what is it? That’s what the rest of today’s investigation is about.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?\n\nDescribe the shape of the chart in your own words. When is pollution highest? When is it lowest? What do you think might cause this pattern?",
+    "text": "Step 4: Plot a full year of pollution\nNow for the main question: what does a whole year of pollution look like?\nWe’ll use matplotlib to draw a line chart of PM2.5 across every day of 2019.\n\nimport matplotlib.pyplot as plt\n\n# Filter to just 2019\ndf_2019 = df[df['year'] == 2019].copy()\n\n# Convert the date column to a proper datetime type so the x-axis looks nice\ndf_2019['date'] = pd.to_datetime(df_2019['date'])\n\n# Create the plot\nfig, ax = plt.subplots(figsize=(14, 5))\n\nax.plot(df_2019['date'], df_2019['pm25'], color='steelblue', linewidth=1.2, alpha=0.9)\n\n# Add a horizontal line for the WHO daily safe limit\nax.axhline(y=15, color='green', linestyle='--', linewidth=1.5, label='WHO safe limit (15 µg/m³)')\n\n# Labels and title\nax.set_title('Daily PM2.5 in Ulaanbaatar — 2019', fontsize=15, fontweight='bold', pad=12)\nax.set_xlabel('Date', fontsize=11)\nax.set_ylabel('PM2.5 (µg/m³)', fontsize=11)\nax.legend(fontsize=10)\n\nplt.tight_layout()\nplt.show()\n\nWhat shape do you see?\nDescribe the pattern in your own words before reading on.\n\nNotice the green dashed line. That’s the WHO daily safe limit of 15 µg/m³. How many days in 2019 were below that line?\n\nDescribe the shape of the chart in your own words. When is pollution highest? When is it lowest? What do you think might cause this pattern?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4180,7 +4241,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4193,7 +4254,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4206,7 +4267,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4219,7 +4280,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
@@ -4232,71 +4293,112 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "air_quality.ipynb"
+      "Exploring Air Quality (air_quality.ipynb)"
     ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html",
-    "href": "labs/02/notebooks/pandas.html",
-    "title": "Exploring Data with Pandas",
+    "objectID": "labs/02/notebooks/matplotlib.html",
+    "href": "labs/02/notebooks/matplotlib.html",
+    "title": "Visualizing Data with Matplotlib",
     "section": "",
-    "text": "In this notebook you’ll learn how to work with structured data using Pandas. This is one of the most widely used tools in data science and AI."
+    "text": "Numbers in a table are useful — but charts make patterns much easier to see. In this notebook you’ll learn how to turn data into visualizations using Matplotlib.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#what-youll-learn",
-    "href": "labs/02/notebooks/pandas.html#what-youll-learn",
-    "title": "Exploring Data with Pandas",
+    "objectID": "labs/02/notebooks/matplotlib.html#what-youll-learn",
+    "href": "labs/02/notebooks/matplotlib.html#what-youll-learn",
+    "title": "Visualizing Data with Matplotlib",
     "section": "What You’ll Learn",
-    "text": "What You’ll Learn\n\nWhat a DataFrame is and how to create one\nHow to inspect data with head(), describe(), and shape\nHow to filter rows to find specific data\nHow to sort a DataFrame by any column\nHow to load a CSV file into Pandas"
+    "text": "What You’ll Learn\n\nHow to create line charts to show change over time\nHow to create bar charts to compare values side by side\nHow to create scatter plots to explore relationships between two variables",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#part-1-hello-pandas",
-    "href": "labs/02/notebooks/pandas.html#part-1-hello-pandas",
-    "title": "Exploring Data with Pandas",
-    "section": "Part 1: Hello, Pandas!",
-    "text": "Part 1: Hello, Pandas!\nPandas is a Python library for working with structured data, such as spreadsheets or tables.\nThe key building block is a DataFrame. Think of a DataFrame as a table with rows and columns, just like a spreadsheet.\nLet’s create a DataFrame using average monthly temperatures in New York City:\n\nimport pandas as pd\n\ndata = {\n    'month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',\n               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],\n    'avg_temp_c': [0, 1, 6, 12, 18, 23, 26, 25, 21, 15, 9, 3]\n}\n\ndf = pd.DataFrame(data)\ndf"
+    "objectID": "labs/02/notebooks/matplotlib.html#setting-up",
+    "href": "labs/02/notebooks/matplotlib.html#setting-up",
+    "title": "Visualizing Data with Matplotlib",
+    "section": "Setting Up",
+    "text": "Setting Up\nWe’ll use the same NYC temperature data from the Pandas notebook. Let’s import both libraries and recreate the DataFrame:\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndata = {\n    'month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',\n               'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],\n    'avg_temp_c': [0, 1, 6, 12, 18, 23, 26, 25, 21, 15, 9, 3]\n}\n\ndf = pd.DataFrame(data)\nprint(\"DataFrame loaded\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#what-is-a-series",
-    "href": "labs/02/notebooks/pandas.html#what-is-a-series",
-    "title": "Exploring Data with Pandas",
-    "section": "What is a Series?",
-    "text": "What is a Series?\nA Series is a single column of data, like one column pulled from your DataFrame.\nYou can access a column by name using square brackets []. Let’s look at just the temperature column:\n\ntemperatures = df['avg_temp_c']\nprint(temperatures)"
+    "objectID": "labs/02/notebooks/matplotlib.html#part-1-line-charts",
+    "href": "labs/02/notebooks/matplotlib.html#part-1-line-charts",
+    "title": "Visualizing Data with Matplotlib",
+    "section": "Part 1: Line Charts",
+    "text": "Part 1: Line Charts\nA line chart is ideal for showing how something changes over time, such as temperature across the months of a year.\nLet’s plot our temperature data:\n\nplt.figure(figsize=(10, 5))\nplt.plot(df['month'], df['avg_temp_c'], marker='o', color='steelblue', linewidth=2)\nplt.title('Average Monthly Temperature — New York City')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#exploring-your-data",
-    "href": "labs/02/notebooks/pandas.html#exploring-your-data",
-    "title": "Exploring Data with Pandas",
-    "section": "Exploring Your Data",
-    "text": "Exploring Your Data\nPandas has some handy methods for getting a quick look at your data:\n\ndf.head() — shows the first 5 rows\ndf.describe() — shows summary statistics like min, max, and average\ndf.shape — tells you how many rows and columns you have\n\nRun each cell below to see what they do:\n\ndf.head()\n\n\ndf.describe()\n\n\nprint(f\"This dataset has {df.shape[0]} rows and {df.shape[1]} columns.\")\n\nWhat did you notice from df.describe()? What was the hottest average month? What was the coldest?"
+    "objectID": "labs/02/notebooks/matplotlib.html#part-2-bar-charts",
+    "href": "labs/02/notebooks/matplotlib.html#part-2-bar-charts",
+    "title": "Visualizing Data with Matplotlib",
+    "section": "Part 2: Bar Charts",
+    "text": "Part 2: Bar Charts\nA bar chart is great for comparing values side by side. Let’s show the same data as bars, and color any cold months (below 10°C) differently:\n\ncolors = ['steelblue' if t &gt;= 10 else 'slateblue' for t in df['avg_temp_c']]\n\nplt.figure(figsize=(10, 5))\nplt.bar(df['month'], df['avg_temp_c'], color=colors)\nplt.title('Average Monthly Temperature — New York City')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.axhline(y=0, color='black', linewidth=0.8)\nplt.show()",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#part-2-filtering-data",
-    "href": "labs/02/notebooks/pandas.html#part-2-filtering-data",
-    "title": "Exploring Data with Pandas",
-    "section": "Part 2: Filtering Data",
-    "text": "Part 2: Filtering Data\nOne of Pandas’ most useful features is filtering, which enables you to select only the rows that match a condition.\nThe syntax looks like this:\ndf[df['column_name'] &gt; value]\nThink of it as asking: “Give me all the rows where this column meets this condition.”\nLet’s find all months where the average temperature is above 15°C:\n\nwarm_months = df[df['avg_temp_c'] &gt; 15]\nwarm_months\n\nYou can use any comparison operator:\n\n&gt; greater than\n&lt; less than\n== equal to (note the double equals!)\n&gt;= greater than or equal to\n\n\n# ✏️ YOUR TURN: find months where the temperature is below 5°C\n# Try changing the number, or flip the &gt; to &lt; to find cold months\n\ncold_months = df[df['avg_temp_c'] &lt; 5]\ncold_months"
+    "objectID": "labs/02/notebooks/matplotlib.html#explore-different-cities",
+    "href": "labs/02/notebooks/matplotlib.html#explore-different-cities",
+    "title": "Visualizing Data with Matplotlib",
+    "section": "Explore Different Cities",
+    "text": "Explore Different Cities\nUse the dropdown below to pick a different city and see how the temperature pattern changes!\n\nCITY = \"Sydney\" #@param [\"New York\", \"Sydney\", \"London\", \"Nairobi\"]\n\ncity_data = {\n    \"New York\":  [0,  1,  6, 12, 18, 23, 26, 25, 21, 15,  9,  3],\n    \"Sydney\":    [26, 26, 24, 21, 18, 15, 14, 15, 17, 20, 22, 25],\n    \"London\":    [6,  6,  9, 12, 15, 18, 20, 20, 17, 13,  9,  6],\n    \"Nairobi\":   [22, 23, 23, 22, 21, 19, 18, 19, 21, 22, 21, 21]\n}\n\nmonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']\ntemps = city_data[CITY]\n\nplt.figure(figsize=(10, 5))\nplt.plot(months, temps, marker='o', color='coral', linewidth=2)\nplt.title(f'Average Monthly Temperature — {CITY}')\nplt.xlabel('Month')\nplt.ylabel('Temperature (°C)')\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nWhat differences did you notice between cities? Which city has the most stable temperature year-round? Why do you think that is?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#part-3-sorting-data",
-    "href": "labs/02/notebooks/pandas.html#part-3-sorting-data",
-    "title": "Exploring Data with Pandas",
-    "section": "Part 3: Sorting Data",
-    "text": "Part 3: Sorting Data\nYou can sort a DataFrame by any column using df.sort_values().\nBy default it sorts from smallest to largest. Add ascending=False to flip the order:\n\n# Sort months from warmest to coldest\ndf.sort_values('avg_temp_c', ascending=False)\n\n\n# YOUR TURN: sort from coldest to warmest\n# Hint: change ascending=False to ascending=True\n\ndf.sort_values('avg_temp_c', ascending=False)"
+    "objectID": "labs/02/notebooks/matplotlib.html#part-3-scatter-plots",
+    "href": "labs/02/notebooks/matplotlib.html#part-3-scatter-plots",
+    "title": "Visualizing Data with Matplotlib",
+    "section": "Part 3: Scatter Plots",
+    "text": "Part 3: Scatter Plots\nA scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per data point. It’s the fastest way to see whether two variables move together.\nFor example: if students who study more hours tend to score higher, the dots will form an upward slope. If there’s no relationship, the dots will be scattered randomly.\nLet’s plot hours studied against exam scores for a class of students:\n\nstudy_data = {\n    'hours_studied': [1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 7, 8, 8, 9, 10],\n    'exam_score':    [42, 50, 55, 58, 65, 63, 70, 72, 75, 78, 82, 85, 88, 91, 95]\n}\ndf_study = pd.DataFrame(study_data)\n\nplt.figure(figsize=(8, 5))\nplt.scatter(df_study['hours_studied'], df_study['exam_score'],\n            color='steelblue', s=80, alpha=0.8)\nplt.title('Hours Studied vs. Exam Score')\nplt.xlabel('Hours Studied')\nplt.ylabel('Exam Score')\nplt.grid(True, linestyle='--', alpha=0.4)\nplt.show()\n\nLook at the shape of the dots:\n\nDo they slope upward, downward, or are they scattered randomly?\nAre the dots tightly grouped, or spread out loosely?\nAre there any students who don’t fit the pattern?\n\nYour turn! What if some students studied lots but scored low?\nTry changing a few values in exam_score and re-run — what happens to the pattern?\nYou can also try changing the color, or the dot size (s=80)\n\nstudy_data = {\n    'hours_studied': [1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 7, 8, 8, 9, 10],\n    'exam_score':    [42, 50, 55, 58, 65, 63, 70, 72, 75, 78, 82, 85, 88, 91, 95]\n}\ndf_study = pd.DataFrame(study_data)\n\nplt.figure(figsize=(8, 5))\nplt.scatter(df_study['hours_studied'], df_study['exam_score'],\n            color='steelblue', s=80, alpha=0.8)\nplt.title('Hours Studied vs. Exam Score')\nplt.xlabel('Hours Studied')\nplt.ylabel('Exam Score')\nplt.grid(True, linestyle='--', alpha=0.4)\nplt.show()\n\nScatter plots are a key tool in data science for spotting relationships between variables and putting a number on how strong those relationships are.\nDescribe the scatter plot in your own words. What pattern did you see? What do you think would happen to the dots if studying had no effect on exam scores at all?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
-    "objectID": "labs/02/notebooks/pandas.html#part-4-loading-from-a-csv",
-    "href": "labs/02/notebooks/pandas.html#part-4-loading-from-a-csv",
-    "title": "Exploring Data with Pandas",
-    "section": "Part 4: Loading from a CSV",
-    "text": "Part 4: Loading from a CSV\nSo far you’ve created DataFrames by typing the data directly into Python. In the real world, data usually lives in a file, most commonly a CSV (comma-separated values) file.\nA CSV file looks like this:\nmonth,avg_temp_c,precipitation_mm,sunny_days\nJan,0,94,8\nFeb,1,88,9\n...\nEach row is a new line and values are separated by commas. Loading it into Pandas takes just one line:\ndf = pd.read_csv('nyc_weather.csv')\nSince we’re working in the browser, we’ll load it from the web, but the idea is exactly the same:\n\nimport httpx\nimport io\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/nyc_weather.csv\"\n\nresponse = httpx.get(url)\ndf_weather = pd.read_csv(io.StringIO(response.text))\ndf_weather\n\n\n# What new columns does the CSV have?\ndf_weather.describe()\n\n\n# YOUR TURN: try filtering or sorting by one of the new columns\n# For example: find months with more than 100mm of precipitation\n\nwet_months = df_weather[df_weather['precipitation_mm'] &gt; 100]\nwet_months\n\nWhat new columns does the CSV have that our original DataFrame didn’t? Try filtering or sorting by one of them — what did you find?"
-  },
-  {
-    "objectID": "labs/02/notebooks/pandas.html#check-your-understanding",
-    "href": "labs/02/notebooks/pandas.html#check-your-understanding",
-    "title": "Exploring Data with Pandas",
+    "objectID": "labs/02/notebooks/matplotlib.html#check-your-understanding",
+    "href": "labs/02/notebooks/matplotlib.html#check-your-understanding",
+    "title": "Visualizing Data with Matplotlib",
     "section": "Check Your Understanding",
-    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “What is a Pandas DataFrame?”, “options”: [ { “key”: “a”, “text”: “A single column of data” }, { “key”: “b”, “text”: “A table of data with rows and columns” }, { “key”: “c”, “text”: “A type of chart” }, { “key”: “d”, “text”: “A Python function for reading files” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which Pandas method shows the first 5 rows of a DataFrame?”, “options”: [ { “key”: “a”, “text”: “df.show()” }, { “key”: “b”, “text”: “df.top()” }, { “key”: “c”, “text”: “df.first()” }, { “key”: “d”, “text”: “df.head()” } ], “answer”: “d”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which of the following correctly filters a DataFrame to rows where ‘score’ is greater than 80?”, “options”: [ { “key”: “a”, “text”: “df.filter(‘score’ &gt; 80)” }, { “key”: “b”, “text”: “df[‘score’ &gt; 80]” }, { “key”: “c”, “text”: “df[df[‘score’] &gt; 80]” }, { “key”: “d”, “text”: “df.where(score &gt; 80)” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Calling df.sort_values() permanently changes the order of the original DataFrame.”, “answer”: “False”, “submitted_answer”: “” }"
+    "text": "Check Your Understanding\n{ “question_type”: “multiple_choice”, “question”: “Which chart type is best for showing how a value changes over time?”, “options”: [ { “key”: “a”, “text”: “Line chart” }, { “key”: “b”, “text”: “Bar chart” }, { “key”: “c”, “text”: “Scatter plot” }, { “key”: “d”, “text”: “Histogram” } ], “answer”: “a”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Matplotlib is used to load and clean data.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does a scatter plot show?”, “options”: [ { “key”: “a”, “text”: “How data changes over time” }, { “key”: “b”, “text”: “The total of each category” }, { “key”: “c”, “text”: “The relationship between two variables” }, { “key”: “d”, “text”: “How many values fall in each range” } ], “answer”: “c”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Notebooks",
+      "Using Matplotlib (matplotlib.ipynb)"
+    ]
   },
   {
     "objectID": "labs/03/notebooks/finding_cause.html",
