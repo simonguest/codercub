@@ -108,12 +108,12 @@
     "href": "labs/08/notebooks/word2vec.html",
     "title": "Word2Vec",
     "section": "",
-    "text": "Word2Vec trains a small neural network to predict which words appear near each other. The hidden-layer weights become word embeddings — vectors that place similar words close together in space.\nThis notebook builds a skip-gram Word2Vec model from scratch using NumPy, then visualises the learned embeddings with PCA.\n  \nFirst, we define our corpus - this is the data that we will train on.\n\ncorpus = [\n  \"the dog barks loudly\",\n  \"the cat meows softly\",\n  \"the dog chases the cat\",\n  \"the cat sleeps quietly\",\n  \"the dog runs fast\",\n  \"the bird flies high\",\n  \"the bird sings beautifully\",\n  \"the fish swims fast\",\n  \"the fish lives in water\",\n  \"dogs and cats are pets\",\n  \"birds and fish are animals\",\n  \"dogs love to run\",\n  \"cats love to sleep\",\n  \"birds love to sing\",\n  \"fish love to swim\",\n  \"the dog and cat play together\",\n  \"animals need food and water\",\n  \"pets live with people\",\n  \"wild birds fly freely\",\n  \"big dogs run fast\",\n]\n\nall_words = [w for sentence in corpus for w in sentence.split()]\nvocab = sorted(set(all_words))\nword_to_idx = {w: i for i, w in enumerate(vocab)}\nidx_to_word = {i: w for w, i in word_to_idx.items()}\nvocab_size = len(vocab)\nprint(f\"Vocabulary: {vocab_size} words: {', '.join(vocab)}\")\n\nNow we generate the training pairs. These are pairs of words as they are next to each other in the corpus.\n\ndef generate_pairs(corpus, window_size=2):\n  pairs = []\n  for sentence in corpus:\n    indices = [word_to_idx[w] for w in sentence.split()]\n    for i, center in enumerate(indices):\n      for j in range(max(0, i - window_size), min(len(indices), i + window_size + 1)):\n        if i != j:\n          pairs.append((center, indices[j]))\n  return pairs\n\npairs = generate_pairs(corpus)\nprint(f\"Training pairs: {len(pairs)}\\n\")\nprint(f\"Example pair: {pairs[16:17]}\")\n\nLet’s do some training!\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.decomposition import PCA\n\n# --- Model weights ---\nembedding_dim = 10\nlearning_rate = 0.05\nepochs = 300\n\nnp.random.seed(42)\nW1 = np.random.randn(vocab_size, embedding_dim) * 0.1  # input embeddings\nW2 = np.random.randn(embedding_dim, vocab_size) * 0.1  # output weights\n\ndef softmax(x):\n  e = np.exp(x - np.max(x))\n  return e / e.sum()\n\n# --- Training loop ---\nprint(\"Training...\")\nfor epoch in range(epochs):\n  total_loss = 0\n  for center_idx, context_idx in pairs:\n    h = W1[center_idx]              # embedding lookup\n    y_hat = softmax(h @ W2)         # predicted distribution\n    total_loss -= np.log(y_hat[context_idx] + 1e-10)\n\n    error = y_hat.copy()\n    error[context_idx] -= 1         # cross-entropy + softmax gradient\n\n    dW2 = np.outer(h, error)\n    dW1 = W2 @ error\n    W2 -= learning_rate * dW2\n    W1[center_idx] -= learning_rate * dW1\n\n  if (epoch + 1) % 60 == 0:\n    print(f\"  Epoch {epoch+1}/{epochs}  loss: {total_loss / len(pairs):.4f}\")\n\nprint(\"Training complete!\")\n\nLet’s test by looking up words that are similar to each other…\n\n# --- Nearest-neighbour lookup ---\ndef cosine_sim(a, b):\n    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-10))\n\ndef most_similar(word, n=10):\n    vec = W1[word_to_idx[word]]\n    sims = sorted([(w, cosine_sim(vec, W1[word_to_idx[w]])) for w in vocab if w != word], key=lambda x: -x[1])\n    return sims[:n]\n\nprint()\nWORD = \"dog\" #@param [\"dog\", \"cat\", \"bird\", \"fish\", \"run\", \"water\"]\n#for word in [\"dog\", \"cat\", \"bird\", \"fish\", \"run\", \"water\"]:\nresult = \"\\n\".join(f\"{w} ({s:.2f})\" for w, s in most_similar(WORD))\nprint(f\"Similar to '{WORD}':\\n{result}\")\n\nBefore looking at the scatter plot, take a moment to record what you noticed.\nLook at the words listed as most similar to ‘dog’. Do the results make sense? Try changing the WORD parameter to ‘cat’, ‘bird’, or ‘water’. Write down what you notice about which words end up close together and why the model might have learned that.\nFinally, let’s view all of the corpus on a 2D scatter plot…\n\n# --- PCA visualisation ---\nembeddings = np.array([W1[word_to_idx[w]] for w in vocab])\ncoords = PCA(n_components=2).fit_transform(embeddings)\n\nplt.figure(figsize=(10, 8))\nplt.scatter(coords[:, 0], coords[:, 1], s=40, alpha=0.6)\nfor i, word in enumerate(vocab):\n    plt.annotate(word, (coords[i, 0], coords[i, 1]), fontsize=9,\n                 xytext=(4, 4), textcoords=\"offset points\")\nplt.title(\"Word2Vec Embeddings (PCA projection)\")\nplt.xlabel(\"Component 1\")\nplt.ylabel(\"Component 2\")\nplt.tight_layout()\nplt.show()\n\n{ “question_type”: “freeform”, “question”: “What technique is used to reduce the 10-dimensional word vectors down to 2 dimensions for the scatter plot?”, “answer”: “PCA”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “In Word2Vec, what becomes the embedding (vector) for each word?”, “options”: [ { “key”: “a”, “text”: “The frequency of the word in the corpus” }, { “key”: “b”, “text”: “The hidden-layer weights of the neural network” }, { “key”: “c”, “text”: “The length of the word in characters” }, { “key”: “d”, “text”: “A random vector assigned at the start” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Words that appear near the same words in sentences will tend to end up with similar embeddings after training.”, “answer”: “True”, “submitted_answer”: “” }",
+    "text": "Word2Vec trains a small neural network to predict which words appear near each other. The hidden-layer weights become word embeddings — vectors that place similar words close together in space.\nThis notebook builds a skip-gram Word2Vec model from scratch using NumPy, then visualises the learned embeddings with PCA.\n  \nFirst, we define our corpus - this is the data that we will train on.\n\ncorpus = [\n  \"the dog barks loudly\",\n  \"the cat meows softly\",\n  \"the dog chases the cat\",\n  \"the cat sleeps quietly\",\n  \"the dog runs fast\",\n  \"the bird flies high\",\n  \"the bird sings beautifully\",\n  \"the fish swims fast\",\n  \"the fish lives in water\",\n  \"dogs and cats are pets\",\n  \"birds and fish are animals\",\n  \"dogs love to run\",\n  \"cats love to sleep\",\n  \"birds love to sing\",\n  \"fish love to swim\",\n  \"the dog and cat play together\",\n  \"animals need food and water\",\n  \"pets live with people\",\n  \"wild birds fly freely\",\n  \"big dogs run fast\",\n]\n\nall_words = [w for sentence in corpus for w in sentence.split()]\nvocab = sorted(set(all_words))\nword_to_idx = {w: i for i, w in enumerate(vocab)}\nidx_to_word = {i: w for w, i in word_to_idx.items()}\nvocab_size = len(vocab)\nprint(f\"Vocabulary: {vocab_size} words: {', '.join(vocab)}\")\n\nNow we generate the training pairs. These are pairs of words as they are next to each other in the corpus.\n\ndef generate_pairs(corpus, window_size=2):\n  pairs = []\n  for sentence in corpus:\n    indices = [word_to_idx[w] for w in sentence.split()]\n    for i, center in enumerate(indices):\n      for j in range(max(0, i - window_size), min(len(indices), i + window_size + 1)):\n        if i != j:\n          pairs.append((center, indices[j]))\n  return pairs\n\npairs = generate_pairs(corpus)\nprint(f\"Training pairs: {len(pairs)}\\n\")\nprint(f\"Example pair: {pairs[16:17]}\")\n\nLet’s do some training!\n\nimport numpy as npimport matplotlib.pyplot as pltfrom sklearn.decomposition import PCA# --- Model weights ---embedding_dim = 10learning_rate = 0.05epochs = 300np.random.seed(42)W1 = np.random.randn(vocab_size, embedding_dim) * 0.1  # input embeddingsW2 = np.random.randn(embedding_dim, vocab_size) * 0.1  # output weightsdef softmax(x):  e = np.exp(x - np.max(x))  return e / e.sum()# --- Training loop ---print(\"Training...\")for epoch in range(epochs):  lr = learning_rate * (1 - epoch / epochs)  # decay: large steps early, small steps late  total_loss = 0  for center_idx, context_idx in pairs:    h = W1[center_idx]              # embedding lookup    y_hat = softmax(h @ W2)         # predicted distribution    total_loss -= np.log(y_hat[context_idx] + 1e-10)    error = y_hat.copy()    error[context_idx] -= 1         # cross-entropy + softmax gradient    dW2 = np.outer(h, error)    dW1 = W2 @ error    W2 -= lr * dW2    W1[center_idx] -= lr * dW1  if (epoch + 1) % 60 == 0:    print(f\"  Epoch {epoch+1}/{epochs}  loss: {total_loss / len(pairs):.4f}\")print(\"Training complete!\")\n\nLet’s test by looking up words that are similar to each other…\n\n# --- Nearest-neighbour lookup ---\ndef cosine_sim(a, b):\n    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-10))\n\ndef most_similar(word, n=10):\n    vec = W1[word_to_idx[word]]\n    sims = sorted([(w, cosine_sim(vec, W1[word_to_idx[w]])) for w in vocab if w != word], key=lambda x: -x[1])\n    return sims[:n]\n\nprint()\nWORD = \"dog\" #@param [\"dog\", \"cat\", \"bird\", \"fish\", \"run\", \"water\"]\n#for word in [\"dog\", \"cat\", \"bird\", \"fish\", \"run\", \"water\"]:\nresult = \"\\n\".join(f\"{w} ({s:.2f})\" for w, s in most_similar(WORD))\nprint(f\"Similar to '{WORD}':\\n{result}\")\n\nBefore looking at the scatter plot, take a moment to record what you noticed.\nLook at the words listed as most similar to ‘dog’. Do the results make sense? Try changing the WORD parameter to ‘cat’, ‘bird’, or ‘water’. Write down what you notice about which words end up close together and why the model might have learned that.\nFinally, let’s view all of the corpus on a 2D scatter plot…\n\n# --- PCA visualisation ---\nembeddings = np.array([W1[word_to_idx[w]] for w in vocab])\ncoords = PCA(n_components=2).fit_transform(embeddings)\n\nplt.figure(figsize=(10, 8))\nplt.scatter(coords[:, 0], coords[:, 1], s=40, alpha=0.6)\nfor i, word in enumerate(vocab):\n    plt.annotate(word, (coords[i, 0], coords[i, 1]), fontsize=9,\n                 xytext=(4, 4), textcoords=\"offset points\")\nplt.title(\"Word2Vec Embeddings (PCA projection)\")\nplt.xlabel(\"Component 1\")\nplt.ylabel(\"Component 2\")\nplt.tight_layout()\nplt.show()\n\n{ “question_type”: “multiple_choice”, “question”: “On the scatter plot, where would you expect ‘dog’ and ‘cat’ to appear relative to each other?”, “options”: [ { “key”: “a”, “text”: “Close together, because they appear near similar words in the training sentences” }, { “key”: “b”, “text”: “Far apart, because they are different animals” }, { “key”: “c”, “text”: “In the same spot, because the model treats all animals the same” }, { “key”: “d”, “text”: “At random positions, because the model doesn’t understand meaning” } ], “answer”: “a”, “submitted_answer”: ““}\n{ “question_type”: “multiple_choice”, “question”: “Why does Word2Vec learn that ‘dog’ and ‘cat’ are similar?”, “options”: [ { “key”: “a”, “text”: “Because they both have three letters” }, { “key”: “b”, “text”: “Because they appear near the same words in the training sentences (like ‘the’, ‘love’, ‘and’)” }, { “key”: “c”, “text”: “Because the programmer told the model they were similar” }, { “key”: “d”, “text”: “Because they both appear at the start of sentences” } ], “answer”: “b”, “submitted_answer”: ““}\n{ “question_type”: “true_false”, “question”: “Words that appear near the same words in sentences will tend to end up with similar embeddings after training.”, “answer”: “True”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "word2vec.ipynb"
+      "Word2Vec (word2vec.ipynb)"
     ]
   },
   {
@@ -152,7 +152,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "tosh_qaychi_qogoz.ipynb"
+      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
     ]
   },
   {
@@ -165,7 +165,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "tosh_qaychi_qogoz.ipynb"
+      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
     ]
   },
   {
@@ -178,7 +178,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "tosh_qaychi_qogoz.ipynb"
+      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
     ]
   },
   {
@@ -191,7 +191,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "tosh_qaychi_qogoz.ipynb"
+      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
     ]
   },
   {
@@ -204,7 +204,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "tosh_qaychi_qogoz.ipynb"
+      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
     ]
   },
   {
@@ -3195,11 +3195,95 @@
     ]
   },
   {
-    "objectID": "labs/08/slides.html#tbd",
-    "href": "labs/08/slides.html#tbd",
-    "title": "Day 8",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "objectID": "labs/08/slides.html#recap",
+    "href": "labs/08/slides.html#recap",
+    "title": "Day 8: Generative AI",
+    "section": "Recap",
+    "text": "Recap\n\nLearned two more CV algorithms (Gesture Recognition and Image Segmentation)\nPlayed Tosh, Qaychi, Qog’oz with the computer\nCreated some mini-apps of our own!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#what-is-generative-ai",
+    "href": "labs/08/slides.html#what-is-generative-ai",
+    "title": "Day 8: Generative AI",
+    "section": "What is Generative AI?",
+    "text": "What is Generative AI?\n\nTraditional AI classifies or detects\n\nIt answers yes/no questions about data it has seen before\n\nGenerative AI can create new content:\n\nText, images, music, code — things it has never seen before",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#what-is-generative-ai-1",
+    "href": "labs/08/slides.html#what-is-generative-ai-1",
+    "title": "Day 8: Generative AI",
+    "section": "What is Generative AI?",
+    "text": "What is Generative AI?\n\nModern generative AI is built on Large Language Models (LLMs)\n\nNeural networks trained on enormous amounts of text\n\nA key breakthrough was the Transformer (2017)\n\nThis taught models how words relate to each other across long passages",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#word-embeddings",
+    "href": "labs/08/slides.html#word-embeddings",
+    "title": "Day 8: Generative AI",
+    "section": "Word Embeddings",
+    "text": "Word Embeddings\n\nNeural networks work with numbers, not words\n\nEvery word must first be converted into a list of numbers called a vector\n\nThese vectors are called word embeddings\n\nThey place words in a kind of mathematical space where similar words end up close together\n\nFor example, “dog” and “cat” will be nearby, while “dog” and “skyscraper” will be far apart\nWord2Vec (2013) learns these embeddings, by looking at which words appear near each other in real text",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#chatting-with-models-1",
+    "href": "labs/08/slides.html#chatting-with-models-1",
+    "title": "Day 8: Generative AI",
+    "section": "Chatting With Models",
+    "text": "Chatting With Models\n\nOpenAI provides a Python SDK\n\nSend messages to AI models directly from your code\n\nEvery conversation is built from a list of messages\n\nEach have a role (system, user, or assistant) and some content\n\nThe system role is like backstage instructions\n\nIt tells the model how to behave before the user says anything\n\nThe model reads the whole list of messages and generates the next reply",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#introducing-streaming-1",
+    "href": "labs/08/slides.html#introducing-streaming-1",
+    "title": "Day 8: Generative AI",
+    "section": "Introducing Streaming",
+    "text": "Introducing Streaming\n\nLLMs generate text one token (word fragment) at a time\n\nThe last demo waited until all tokens are ready before showing anything\n\nStreaming sends each token to your program the moment it is generated\n\nThe response appears word-by-word, just like ChatGPT\n\nThis makes the experience feel much faster even though the total generation time is the same",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#structured-output-1",
+    "href": "labs/08/slides.html#structured-output-1",
+    "title": "Day 8: Generative AI",
+    "section": "Structured Output",
+    "text": "Structured Output\n\nBy default, models return plain text — but the exact wording is unpredictable:\n“Ulaanbaatar” vs. “The capital is Ulaanbaatar!” vs. “Ulaanbaatar, of course!”\nThis makes it hard to use AI output inside another program\nStructured output lets you define a Python class (using Pydantic) that describes exactly what fields you want back\n\nThe model is required to fill them in\n\nThe result is clean, predictable data you can use directly in code",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 8",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/08/slides.html#tomorrow",
+    "href": "labs/08/slides.html#tomorrow",
+    "title": "Day 8: Generative AI",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nContinue learning about Generative AI\nInvestigate creating images with models\nSee how AI models can describe an image",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
@@ -4919,7 +5003,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Painter (gesture_painter.ipynb)"
     ]
   },
   {
@@ -4932,7 +5016,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Painter (gesture_painter.ipynb)"
     ]
   },
   {
@@ -4945,7 +5029,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Painter (gesture_painter.ipynb)"
     ]
   },
   {
@@ -4958,7 +5042,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Painter (gesture_painter.ipynb)"
     ]
   },
   {
