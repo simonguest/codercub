@@ -1,6 +1,5 @@
 ---
-title: "Day 8"
-author: "Simon Guest"
+title: "Day 8: Generative AI"
 format:
   revealjs:
     slide-number: true
@@ -15,8 +14,116 @@ format:
 
 ---
 
-## TBD
+## Recap
 
-```python
-print("Hello world")
-```
+- Learned two more CV algorithms (Gesture Recognition and Image Segmentation)
+- Played Tosh, Qaychi, Qog'oz with the computer
+- Created some mini-apps of our own!
+
+# Generative AI
+
+## What is Generative AI?
+
+- Traditional AI *classifies* or *detects*
+  - It answers yes/no questions about data it has seen before
+- Generative AI can *create* new content: 
+  - Text, images, music, code — things it has never seen before
+
+## What is Generative AI?
+
+- Modern generative AI is built on **Large Language Models (LLMs)**
+  - Neural networks trained on enormous amounts of text
+- A key breakthrough was the **Transformer** (2017)
+  - This taught models how words *relate* to each other across long passages
+
+## Word Embeddings
+
+- Neural networks work with numbers, not words
+  - Every word must first be converted into a list of numbers called a **vector**
+- These vectors are called **word embeddings**
+  - They place words in a kind of mathematical space where similar words end up close together
+- For example, "dog" and "cat" will be nearby, while "dog" and "skyscraper" will be far apart
+- **Word2Vec** (2013) learns these embeddings, by looking at which words appear near each other in real text
+
+# Demo
+
+Word2Vec Notebook
+
+# Hands-On
+
+Word2Vec Notebook
+
+# Chatting With Models
+
+## Chatting With Models
+
+- OpenAI provides a **Python SDK**
+  - Send messages to AI models directly from your code
+- Every conversation is built from a list of **messages**
+  - Each have a `role` (`system`, `user`, or `assistant`) and some `content`
+- The **system** role is like backstage instructions
+  - It tells the model how to behave before the user says anything
+- The model reads the whole list of messages and generates the next reply
+
+# Demo
+
+Using OpenAI Notebook
+
+# Hands-On
+
+Using OpenAI Notebook
+
+# "Why do we have to wait for the answer?"
+
+# Introducing Streaming
+
+## Introducing Streaming
+
+- LLMs generate text one **token** (word fragment) at a time
+  - The last demo waited until *all* tokens are ready before showing anything
+- **Streaming** sends each token to your program the moment it is generated
+  - The response appears word-by-word, just like ChatGPT
+- This makes the experience feel much faster even though the total generation time is the same
+
+# Demo
+
+OpenAI SDK with Streaming
+
+# Hands-On
+
+OpenAI SDK with Streaming
+
+# Structured Output
+
+## Structured Output
+
+- By default, models return **plain text** — but the exact wording is unpredictable: 
+ - "Ulaanbaatar" vs. "The capital is Ulaanbaatar!" vs. "Ulaanbaatar, of course!"
+- This makes it hard to use AI output inside another program
+- **Structured output** lets you define a Python class (using Pydantic) that describes exactly what fields you want back
+  - The model is required to fill them in
+- The result is clean, predictable data you can use directly in code
+
+# Demo
+
+Using Structured Output
+
+# Hands-On
+
+Using Structured Output
+
+# Going Beyond GPS Coordinates
+
+# Demo
+
+Using Structured Output for Piano and 3D Scenes
+
+# Hands-On
+
+Using Structured Output for Piano and 3D Scenes
+
+## Tomorrow
+
+- Continue learning about Generative AI
+- Investigate creating images with models
+- See how AI models can describe an image

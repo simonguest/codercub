@@ -113,9 +113,9 @@ website:
                   href: labs/07/notebooks/gesture_recognition.ipynb
                 - text: "Image Segmentation (image_segmentation.ipynb)"
                   href: labs/07/notebooks/image_segmentation.ipynb
-                - text: "tosh_qaychi_qogoz.ipynb"
+                - text: "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
                   href: labs/07/notebooks/tosh_qaychi_qogoz.ipynb
-                - text: "gesture_painter.ipynb"
+                - text: "Gesture Painter (gesture_painter.ipynb)"
                   href: labs/07/notebooks/gesture_painter.ipynb
 
         - section: "Day 8"
@@ -125,7 +125,7 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "word2vec.ipynb"
+                - text: "Word2Vec (word2vec.ipynb)"
                   href: labs/08/notebooks/word2vec.ipynb
                 - text: "openai_sdk.ipynb"
                   href: labs/08/notebooks/openai_sdk.ipynb
