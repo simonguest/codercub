@@ -97,7 +97,7 @@ Face Detection Notebook
 
 Face Detection Notebook
 
-***
+# Object Detection
 
 ## Object Detection
 
@@ -105,8 +105,16 @@ Face Detection Notebook
 - Detects **multiple objects** and draws bounding boxes around each one
 - Examples:
   - Self-driving cars spotting pedestrians and vehicles in real time
-  - Security cameras flagging suspicious activity
   - Counting inventory in a warehouse automatically
+  - Accessibility tool for people with vision impairments
+
+# Demo
+
+Object Detection Notebook
+
+# Hands-On
+
+Object Detection Notebook
 
 ## Pose Estimation
 
@@ -116,17 +124,33 @@ Face Detection Notebook
   - Fitness apps checking your squat form
   - Video games that respond to your movement (no controller needed)
   - Physical therapy tools tracking patient recovery
-- We'll use MediaPipe for this in our notebooks
 
-## Gesture Recognition
+# Demo
 
-- TBD
+Pose Estimation Notebook
 
-## Image Segmentation
+# Hands-On
 
-- **Question**: "Which pixel belongs to which object?"
-- Goes beyond bounding boxes — labels **every single pixel**
-- Examples:
-  - Medical imaging — precisely outlining a tumor for surgeons
-  - Photo apps removing backgrounds with one tap
-  - Autonomous vehicles painting a full picture of the road scene
+Pose Estimation Notebook
+
+# Fun With Poses
+
+## Fun With Poses
+
+- How about if didn't show the camera view?
+- And instead, just plotted the body joint positions...
+- In a 3D Scene?
+
+# Demo
+
+3D Pose Avatar Notebook
+
+# Hands-On
+
+3D Pose Avatar Notebook
+
+## Tomorrow
+
+- Continue learning about computer vision
+- Gesture recognition and Image Segmentation
+- Two other mini-apps

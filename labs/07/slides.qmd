@@ -14,8 +14,15 @@ format:
 
 ---
 
-## TBD
+## Gesture Recognition
 
-```python
-print("Hello world")
-```
+- TBD
+
+## Image Segmentation
+
+- **Question**: "Which pixel belongs to which object?"
+- Goes beyond bounding boxes — labels **every single pixel**
+- Examples:
+  - Medical imaging — precisely outlining a tumor for surgeons
+  - Photo apps removing backgrounds with one tap
+  - Autonomous vehicles painting a full picture of the road scene
