@@ -1934,7 +1934,7 @@
   {
     "objectID": "labs/07/slides.html#tbd",
     "href": "labs/07/slides.html#tbd",
-    "title": "Day 7",
+    "title": "Day 7: Computer Vision",
     "section": "TBD",
     "text": "TBD\nprint(\"Hello world\")",
     "crumbs": [
@@ -3006,7 +3006,7 @@
   {
     "objectID": "labs/06/slides.html#what-is-a-neural-network",
     "href": "labs/06/slides.html#what-is-a-neural-network",
-    "title": "Day 6",
+    "title": "Day 6: Computer Vision",
     "section": "What Is a Neural Network?",
     "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
     "crumbs": [
@@ -3016,33 +3016,9 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#how-does-a-network-learn",
-    "href": "labs/06/slides.html#how-does-a-network-learn",
-    "title": "Day 6",
-    "section": "How Does a Network Learn?",
-    "text": "How Does a Network Learn?\n\nLearning = finding the right weights through repetition\nForward pass: data flows through the network → produces a prediction\nLoss function: measures how wrong the prediction was\nBackpropagation: traces the error back and nudges each weight\nRepeat thousands of times on labeled training data → accuracy improves",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#neural-network-demo",
-    "href": "labs/06/slides.html#neural-network-demo",
-    "title": "Day 6",
-    "section": "Neural Network Demo",
-    "text": "Neural Network Demo",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "labs/06/slides.html#will-i-do-well-on-my-test",
     "href": "labs/06/slides.html#will-i-do-well-on-my-test",
-    "title": "Day 6",
+    "title": "Day 6: Computer Vision",
     "section": "Will I Do Well on My Test?",
     "text": "Will I Do Well on My Test?",
     "crumbs": [
@@ -3052,11 +3028,47 @@
     ]
   },
   {
+    "objectID": "labs/06/slides.html#computer-vision-is-everywhere-1",
+    "href": "labs/06/slides.html#computer-vision-is-everywhere-1",
+    "title": "Day 6: Computer Vision",
+    "section": "Computer Vision is Everywhere",
+    "text": "Computer Vision is Everywhere",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#computer-vision-is-everywhere-2",
+    "href": "labs/06/slides.html#computer-vision-is-everywhere-2",
+    "title": "Day 6: Computer Vision",
+    "section": "Computer Vision is Everywhere",
+    "text": "Computer Vision is Everywhere",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#computer-vision-is-everywhere-3",
+    "href": "labs/06/slides.html#computer-vision-is-everywhere-3",
+    "title": "Day 6: Computer Vision",
+    "section": "Computer Vision is Everywhere",
+    "text": "Computer Vision is Everywhere",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/06/slides.html#how-do-computers-see-1",
     "href": "labs/06/slides.html#how-do-computers-see-1",
-    "title": "Day 6",
+    "title": "Day 6: Computer Vision",
     "section": "How Do Computers See?",
-    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?\nAnswer: Convolutional Neural Networks (CNNs)\n\nSpecialized networks designed to process grid-like data",
+    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -3064,11 +3076,11 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#a-brief-history-of-computer-vision",
-    "href": "labs/06/slides.html#a-brief-history-of-computer-vision",
-    "title": "Day 6",
-    "section": "A Brief History of Computer Vision",
-    "text": "A Brief History of Computer Vision\n\n1989: LeCun trains first CNN to read handwritten digits\n2012: AlexNet wins the ImageNet challenge by a huge margin\n\nError rate dropped from ~26% → ~15% overnight\nKicked off the modern deep learning era\n\n2015: Real-time object detection becomes practical (YOLO)\n2017–present: CV is everywhere — phones, cars, hospitals, social media",
+    "objectID": "labs/06/slides.html#how-do-computers-see-2",
+    "href": "labs/06/slides.html#how-do-computers-see-2",
+    "title": "Day 6: Computer Vision",
+    "section": "How Do Computers See?",
+    "text": "How Do Computers See?\n\nAnswer: A special type of neural network called a Convolutional Neural Network or a CNN\n\nTakes in an image\nDetects edges, corners, and other shapes\nReturns results on what it sees and where",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -3076,11 +3088,23 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#image-classification",
-    "href": "labs/06/slides.html#image-classification",
-    "title": "Day 6",
-    "section": "Image Classification",
-    "text": "Image Classification\n\nQuestion: “What is in this image?”\nThe model assigns a single label to the entire photo\nExamples:\n\nIs this a cat or a dog?\nWhat disease does this X-ray suggest?\nWhich product is this on the shelf?\n\nThe first major CV task conquered by deep learning",
+    "objectID": "labs/06/slides.html#how-do-computers-see-3",
+    "href": "labs/06/slides.html#how-do-computers-see-3",
+    "title": "Day 6: Computer Vision",
+    "section": "How Do Computers See?",
+    "text": "How Do Computers See?\n\nMany types of computer vision algorithms:\n\nFace Detection (is there a face in the picture?)\nObject Detection (what is in this image and where?)\nPose Estimation (where are the body parts?)\nGesture Recognition (what hand gesture is this?)\nImage Segmentation (what pixel belongs to what object?)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#face-detection",
+    "href": "labs/06/slides.html#face-detection",
+    "title": "Day 6: Computer Vision",
+    "section": "Face Detection",
+    "text": "Face Detection\n\nQuestion: “Is there a face in this image, and where is it?”\nDetects faces and draws bounding boxes around each one\nNot facial recognition!\nUsed in:\n\nCamera autofocus algorithms\nSecurity cameras detecting people in the scene\nCounting people attending an event",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -3090,7 +3114,7 @@
   {
     "objectID": "labs/06/slides.html#object-detection",
     "href": "labs/06/slides.html#object-detection",
-    "title": "Day 6",
+    "title": "Day 6: Computer Vision",
     "section": "Object Detection",
     "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
     "crumbs": [
@@ -3102,7 +3126,7 @@
   {
     "objectID": "labs/06/slides.html#pose-estimation",
     "href": "labs/06/slides.html#pose-estimation",
-    "title": "Day 6",
+    "title": "Day 6: Computer Vision",
     "section": "Pose Estimation",
     "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
     "crumbs": [
@@ -3112,9 +3136,21 @@
     ]
   },
   {
+    "objectID": "labs/06/slides.html#gesture-recognition",
+    "href": "labs/06/slides.html#gesture-recognition",
+    "title": "Day 6: Computer Vision",
+    "section": "Gesture Recognition",
+    "text": "Gesture Recognition\n\nTBD",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/06/slides.html#image-segmentation",
     "href": "labs/06/slides.html#image-segmentation",
-    "title": "Day 6",
+    "title": "Day 6: Computer Vision",
     "section": "Image Segmentation",
     "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
     "crumbs": [
@@ -4700,25 +4736,12 @@
     "href": "labs/06/notebooks/face_detection.html",
     "title": "Face Detection with Computer Vision",
     "section": "",
-    "text": "In this notebook, you’ll use a neural network to detect faces in real time using your webcam. You’ll learn how computers “see” and locate faces in an image — and think about how this technology is used in the real world.",
+    "text": "In this notebook, you’ll use a neural network to detect faces in real time using your webcam. You’ll learn how computers “see” and locate faces in an image, and think about how this technology is used in the real world.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "face_detection.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/face_detection.html#learning-objectives",
-    "href": "labs/06/notebooks/face_detection.html#learning-objectives",
-    "title": "Face Detection with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain the difference between face detection and face recognition\nUse Python to detect faces in a live webcam feed\nRead and interpret bounding box data returned by a detector\nUnderstand what a confidence score means in AI detection\nReflect on ethical uses of face detection technology",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "face_detection.ipynb"
+      "Face Detection (face_detection.ipynb)"
     ]
   },
   {
@@ -4726,12 +4749,12 @@
     "href": "labs/06/notebooks/face_detection.html#what-is-face-detection",
     "title": "Face Detection with Computer Vision",
     "section": "What Is Face Detection?",
-    "text": "What Is Face Detection?\nFace detection is the task of finding where faces are located in an image or video frame. The output is a bounding box — a rectangle drawn around each face — plus a confidence score that says how certain the model is.\nThis is not the same as face recognition, which tries to identify who a person is. Face detection only says: “there is a face at this location.” It has no idea who you are.\n\nReal-World Applications\n\nPhone cameras auto-focus on faces when you line up a shot\nSecurity systems alert staff when a person enters a restricted area\nVideo filters (Snapchat, TikTok) track your face position in real time\nMedical imaging tools find regions of interest in scans for further analysis\n\nUnder the hood, modern face detectors are small neural networks trained on millions of face images — exactly the kind of networks you learned about today.",
+    "text": "What Is Face Detection?\nFace detection is the task of finding where faces are located in an image or video frame. The output is a bounding box — a rectangle drawn around each face — plus a confidence score that says how certain the model is.\nThis is not the same as face recognition, which tries to identify who a person is. Face detection only says: “there is a face at this location.” It has no idea who you are.\nUnder the hood, modern face detectors are small neural networks trained on millions of face images. These are the same kind of networks you learned about today.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "face_detection.ipynb"
+      "Face Detection (face_detection.ipynb)"
     ]
   },
   {
@@ -4739,12 +4762,12 @@
     "href": "labs/06/notebooks/face_detection.html#step-1-live-face-detection",
     "title": "Face Detection with Computer Vision",
     "section": "Step 1: Live Face Detection",
-    "text": "Step 1: Live Face Detection\nThis platform uses BlazeFace — a lightweight neural network from Google that detects faces in real time. Each face it finds is returned as a dictionary with these fields:\n\n\n\nField\nMeaning\n\n\n\n\nx, y\nTop-left corner of the bounding box (pixels)\n\n\nw, h\nWidth and height of the bounding box (pixels)\n\n\nconfidence\nHow certain the model is (0.0 – 1.0)\n\n\n\nRun the cell below — your browser will ask for webcam access, click Allow. The detector will run continuously and draw a box around any face it finds. Click Stop (■) in the toolbar when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 1: Live Face Detection\nThis platform uses BlazeFace: a lightweight neural network from Google that detects faces in real time. Each face it finds is returned as a dictionary with these fields:\n\n\n\nField\nMeaning\n\n\n\n\nx, y\nTop-left corner of the bounding box (pixels)\n\n\nw, h\nWidth and height of the bounding box (pixels)\n\n\nconfidence\nHow certain the model is (0.0 – 1.0)\n\n\n\nRun the cell below — your browser will ask for webcam access, click Allow.\nThe detector will run continuously and draw a box around any face it finds.\nClick Stop (■) in the toolbar when you’re ready to move on.\n\nimport cv\nimport graphics\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "face_detection.ipynb"
+      "Face Detection (face_detection.ipynb)"
     ]
   },
   {
@@ -4752,12 +4775,12 @@
     "href": "labs/06/notebooks/face_detection.html#step-2-explore-the-detection-data",
     "title": "Face Detection with Computer Vision",
     "section": "Step 2: Explore the Detection Data",
-    "text": "Step 2: Explore the Detection Data\nThe cell below runs the same live detection loop, but also prints the raw numbers for every face it finds — updated once per second.\nTry moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} face(s) detected ---\")\n            for i, face in enumerate(detections):\n                print(f\"  Face {i + 1}: x={face['x']}, y={face['y']}  \"\n                      f\"size={face['w']}x{face['h']}  confidence={face['confidence']:.1%}\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 2: Explore the Detection Data\nThe cell below runs the same live detection loop, but also prints the raw numbers for every face it finds, updated constantly.\nTry moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 240 == 0:\n            print(f\"--- {len(detections)} face(s) detected ---\")\n            for i, face in enumerate(detections):\n                print(f\"  Face {i + 1}: x={face['x']}, y={face['y']}  \"\n                      f\"size={face['w']}x{face['h']}  confidence={face['confidence']:.1%}\")\n        frame += 1\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "face_detection.ipynb"
+      "Face Detection (face_detection.ipynb)"
     ]
   },
   {
@@ -4765,25 +4788,12 @@
     "href": "labs/06/notebooks/face_detection.html#step-3-experiment-confidence-threshold",
     "title": "Face Detection with Computer Vision",
     "section": "Step 3: Experiment — Confidence Threshold",
-    "text": "Step 3: Experiment — Confidence Threshold\nA confidence threshold filters out detections the model isn’t sure about.\n\nHigh threshold (e.g., 0.90) → only very certain detections pass through\nLow threshold (e.g., 0.20) → more detections, including uncertain ones\n\nSet the slider to your desired threshold, then run the cell. The loop will filter detections in real time using that value. Try a very high threshold — can you make the detector lose track of your face?\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nCONFIDENCE_THRESHOLD = 0.7 #@param {type:\"slider\", min:0.1, max:1.0, step:0.05}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        filtered = [d for d in detections if d['confidence'] &gt;= CONFIDENCE_THRESHOLD]\n        canvas.draw_bounding_boxes(filtered)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 3: Experiment — Confidence Threshold\nA confidence threshold filters out detections the model isn’t sure about.\n\nHigh threshold (e.g., 0.90) → only very certain detections pass through\nLow threshold (e.g., 0.20) → more detections, including uncertain ones\n\nSet the slider to your desired threshold, then run the cell. The loop will filter detections in real time using that value. Try a very high threshold. Can you make the detector lose track of your face?\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\n\nCONFIDENCE_THRESHOLD = 0.7 #@param {type:\"slider\", min:0.1, max:1.0, step:0.05}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        filtered = [d for d in detections if d['confidence'] &gt;= CONFIDENCE_THRESHOLD]\n        canvas.draw_bounding_boxes(filtered)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nFace detection is used in schools, airports, stadiums, and social media platforms. Where do you think it’s helpful? Are there places where you’d want limits on how it’s used — and why?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "face_detection.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/face_detection.html#reflect",
-    "href": "labs/06/notebooks/face_detection.html#reflect",
-    "title": "Face Detection with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nTake a moment to record your observations and thoughts in the journal cells below.\nWhat did you notice when you changed the confidence threshold? Did the detector ever get it wrong — missing your face, or detecting something that wasn’t a face?\nFace detection is used in schools, airports, stadiums, and social media platforms. Where do you think it’s helpful? Are there places where you’d want limits on how it’s used — and why?",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "face_detection.ipynb"
+      "Face Detection (face_detection.ipynb)"
     ]
   },
   {
@@ -4796,7 +4806,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "face_detection.ipynb"
+      "Face Detection (face_detection.ipynb)"
     ]
   },
   {
