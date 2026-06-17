@@ -208,55 +208,198 @@
     ]
   },
   {
-    "objectID": "labs/07/notebooks/gesture_painter.html",
-    "href": "labs/07/notebooks/gesture_painter.html",
-    "title": "Gesture Painter",
+    "objectID": "labs/07/notebooks/gesture_recognition.html",
+    "href": "labs/07/notebooks/gesture_recognition.html",
+    "title": "Gesture Recognition with Computer Vision",
     "section": "",
-    "text": "Paint on a canvas using only your hand — no mouse, no stylus, no touching anything. Your index fingertip becomes a brush, tracked in real time by the gesture detector.",
+    "text": "In this notebook, you’ll use a neural network to recognize hand gestures in real time. The model tracks 21 landmarks per hand and classifies the shape into one of 8 named gestures — all without any special hardware.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Recognition (gesture_recognition.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/gesture_painter.html#gesture-controls",
-    "href": "labs/07/notebooks/gesture_painter.html#gesture-controls",
-    "title": "Gesture Painter",
-    "section": "Gesture Controls",
-    "text": "Gesture Controls\n\n\n\n\n\n\n\nGesture\nAction\n\n\n\n\nPointing Up (index finger extended)\nDraw — your fingertip leaves a trail\n\n\nOpen Palm\nLift pen — move without drawing\n\n\nClosed Fist\nClear — wipes the canvas clean\n\n\n\n\nHow It Works\nEach frame, the app reads the position of your index fingertip (cv.HAND.INDEX_FINGER_TIP). When the gesture is Pointing_Up, it draws a line from the previous fingertip position to the current one. All line segments are stored in a list and redrawn every frame on top of the live camera feed — so your painting persists as the video updates underneath.\nChoose your brush color and size below, then run the cell.",
+    "objectID": "labs/07/notebooks/gesture_recognition.html#learning-objectives",
+    "href": "labs/07/notebooks/gesture_recognition.html#learning-objectives",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how gesture recognition builds on hand landmark detection\nUse Python to detect hand gestures and read landmark positions\nDistinguish between left and right hands using the handedness field\nReflect on real-world applications of gesture-based interfaces",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Recognition (gesture_recognition.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/gesture_painter.html#paint",
-    "href": "labs/07/notebooks/gesture_painter.html#paint",
-    "title": "Gesture Painter",
-    "section": "Paint!",
-    "text": "Paint!\nSet your brush color and size, then run the cell. To change the brush mid-session: click Stop (■), adjust the controls, and run again.\nClick Stop when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nBRUSH_COLOR = \"#ff4500\" #@param [\"#ff4500\", \"#00bfff\", \"#00ff88\", \"#ffff00\", \"#ffffff\", \"#ff69b4\"]\nBRUSH_SIZE  = 6         #@param {type:\"slider\", min:2, max:20, step:1}\n\ncanvas   = graphics.canvas()\ncamera   = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\nctx      = canvas.get_context('2d')\n\nstrokes        = []\nlast_pos       = None\nclear_cooldown = 0\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n\n        if detections:\n            hand    = detections[0]\n            tip     = hand['landmarks'][cv.HAND.INDEX_FINGER_TIP]\n            gesture = hand['gesture']\n\n            if clear_cooldown &gt; 0:\n                clear_cooldown -= 1\n                last_pos = None\n            elif gesture == 'Pointing_Up':\n                if last_pos:\n                    strokes.append((last_pos[0], last_pos[1],\n                                    tip['x'], tip['y'], BRUSH_COLOR, BRUSH_SIZE))\n                last_pos = (tip['x'], tip['y'])\n            elif gesture == 'Closed_Fist':\n                strokes.clear()\n                ctx.clear_rect(0, 0, 9999, 9999)\n                last_pos       = None\n                clear_cooldown = 30\n            else:\n                last_pos = None\n        else:\n            last_pos = None\n\n        for x1, y1, x2, y2, col, sz in strokes:\n            ctx.stroke_style = col\n            ctx.line_width   = sz\n            ctx.begin_path()\n            ctx.move_to(x1, y1)\n            ctx.line_to(x2, y2)\n            ctx.stroke()\n\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nWhat did you create? What’s one thing you’d change or add to make this a more powerful drawing tool?",
+    "objectID": "labs/07/notebooks/gesture_recognition.html#what-is-gesture-recognition",
+    "href": "labs/07/notebooks/gesture_recognition.html#what-is-gesture-recognition",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "What Is Gesture Recognition?",
+    "text": "What Is Gesture Recognition?\nGesture recognition combines two ideas:\n\nHand landmark detection — locating 21 key points on each hand (fingertips, joints, wrist)\nGesture classification — analyzing the shape of those landmarks to name the gesture\n\nThis platform uses MediaPipe Gesture Recognizer, which can identify these 8 gestures:\n\n\n\nGesture\nDescription\n\n\n\n\nNone\nNo recognized gesture\n\n\nClosed_Fist\nAll fingers curled in\n\n\nOpen_Palm\nAll fingers extended, palm facing forward\n\n\nPointing_Up\nIndex finger extended upward\n\n\nThumb_Down\nThumbs down\n\n\nThumb_Up\nThumbs up\n\n\nVictory\nIndex and middle fingers extended (V sign)\n\n\nILoveYou\nASL “I love you” sign\n\n\n\n\nReal-World Applications\n\nAccessibility tools let people control devices without touching a keyboard or mouse\nPresentation software advances slides with a swipe gesture\nSmart home systems turn lights on or off based on a hand signal\nSign language translation tools interpret hand shapes as words",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Recognition (gesture_recognition.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/gesture_painter.html#ideas-to-extend-this-app",
-    "href": "labs/07/notebooks/gesture_painter.html#ideas-to-extend-this-app",
-    "title": "Gesture Painter",
-    "section": "Ideas to Extend This App",
-    "text": "Ideas to Extend This App\n\nColor switching — assign different colors to different gestures (e.g. Victory → blue, Thumb_Up → yellow)\nTwo-hand mode — use num_hands=2 so each hand paints independently\nStamps — detect Thumb_Up and paste an image at the fingertip position using graphics.draw_image()\nEraser — Open_Palm in eraser mode could draw a filled white circle to erase strokes\nUndo — keep track of how many strokes were added per gesture and remove the last group on a specific gesture",
+    "objectID": "labs/07/notebooks/gesture_recognition.html#step-1-live-gesture-detection",
+    "href": "labs/07/notebooks/gesture_recognition.html#step-1-live-gesture-detection",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Step 1: Live Gesture Detection",
+    "text": "Step 1: Live Gesture Detection\nThe cell below starts your camera and runs gesture detection in real time. Hold your hand up and try different gestures — the model will draw landmarks on your hand and print the detected gesture once per second.\nMake sure there is enough light so the camera can clearly see your hand. Click Allow for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} hand(s) detected ---\")\n            for hand in detections:\n                print(f\"  {hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "gesture_painter.ipynb"
+      "Gesture Recognition (gesture_recognition.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_recognition.html#step-2-explore-hand-landmarks",
+    "href": "labs/07/notebooks/gesture_recognition.html#step-2-explore-hand-landmarks",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Step 2: Explore Hand Landmarks",
+    "text": "Step 2: Explore Hand Landmarks\nBeyond the gesture name, the detector gives you the exact position of every joint. We access individual landmarks using cv.HAND constants — for example, cv.HAND.INDEX_FINGER_TIP.\nThe cell below prints the index fingertip and wrist position once per second alongside the live hand overlay. Try different hand shapes and watch the coordinates change.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            for hand in detections:\n                tip   = hand['landmarks'][cv.HAND.INDEX_FINGER_TIP]\n                wrist = hand['landmarks'][cv.HAND.WRIST]\n                print(f\"{hand['handedness']} hand — {hand['gesture']}\")\n                print(f\"  Index fingertip: ({tip['x']}, {tip['y']})\")\n                print(f\"  Wrist          : ({wrist['x']}, {wrist['y']})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Gesture Recognition (gesture_recognition.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
+    "href": "labs/07/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Step 3: Experiment — Gesture Challenge",
+    "text": "Step 3: Experiment — Gesture Challenge\nUse the dropdown to choose a target gesture, then run the cell and try to make that gesture. The output will tell you what gesture it’s currently seeing and whether it matches your target.\nCan you hit MATCH! on every gesture in the list? Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nTARGET_GESTURE = \"Thumb_Up\" #@param [\"None\", \"Closed_Fist\", \"Open_Palm\", \"Pointing_Up\", \"Thumb_Down\", \"Thumb_Up\", \"Victory\", \"ILoveYou\"]\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            if detections:\n                for hand in detections:\n                    matched = hand['gesture'] == TARGET_GESTURE\n                    result  = \"MATCH!\" if matched else \"not yet...\"\n                    print(f\"{hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%}) — {result}\")\n            else:\n                print(\"No hands detected — hold your hand up to the camera.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Gesture Recognition (gesture_recognition.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_recognition.html#reflect",
+    "href": "labs/07/notebooks/gesture_recognition.html#reflect",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nWhich gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?\nGesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Gesture Recognition (gesture_recognition.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_recognition.html#check-for-understanding",
+    "href": "labs/07/notebooks/gesture_recognition.html#check-for-understanding",
+    "title": "Gesture Recognition with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “multiple_choice”, “question”: “How many different gestures can the MediaPipe Gesture Recognizer detect?”, “options”: [ { “key”: “a”, “text”: “4” }, { “key”: “b”, “text”: “6” }, { “key”: “c”, “text”: “8” }, { “key”: “d”, “text”: “12” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The gesture detector can tell whether a detected hand is the left or right hand.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “How many landmarks does MediaPipe track per hand?”, “options”: [ { “key”: “a”, “text”: “5 (one per finger)” }, { “key”: “b”, “text”: “10” }, { “key”: “c”, “text”: “21” }, { “key”: “d”, “text”: “33” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The gesture detector can only track one hand at a time.”, “answer”: “False”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Gesture Recognition (gesture_recognition.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html",
+    "href": "labs/06/notebooks/pose_landmarks.html",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll use a neural network to detect the position of 33 body landmarks in real time. By tracking joints like shoulders, elbows, and wrists, we can understand how a person is moving — without knowing who they are.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#what-is-pose-estimation",
+    "href": "labs/06/notebooks/pose_landmarks.html#what-is-pose-estimation",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "What Is Pose Estimation?",
+    "text": "What Is Pose Estimation?\nPose estimation detects the position of specific points on a person’s body — called landmarks or keypoints. The result is a skeleton-like overlay showing where joints are located in the image.\nThis platform uses MediaPipe Pose, which tracks 33 landmarks including: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, and ankles.\nEach landmark has: - x, y — position on screen (pixels) - z — estimated depth (how far the point is from the camera) - visibility — how confident the model is that this point is visible (0.0 – 1.0)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#step-1-live-pose-detection",
+    "href": "labs/06/notebooks/pose_landmarks.html#step-1-live-pose-detection",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Step 1: Live Pose Detection",
+    "text": "Step 1: Live Pose Detection\nThe cell below starts your camera and draws a skeleton overlay on your body in real time. Step back so your full upper body is visible — the model works best when it can see your shoulders, arms, and head.\nClick Allow when your browser asks for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#step-2-explore-landmark-data",
+    "href": "labs/06/notebooks/pose_landmarks.html#step-2-explore-landmark-data",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Step 2: Explore Landmark Data",
+    "text": "Step 2: Explore Landmark Data\nThe cell below runs the same live skeleton overlay, but also prints the coordinates of key joints once per second. We access each landmark using cv.POSE constants — for example, cv.POSE.LEFT_WRIST.\nMove your arms, lean in, or step back and watch the numbers change.\n\nTip: In image coordinates, y=0 is the top of the screen and increases downward.\n\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\nkey_points = [\n    (\"Nose\",           cv.POSE.NOSE),\n    (\"Left Shoulder\",  cv.POSE.LEFT_SHOULDER),\n    (\"Right Shoulder\", cv.POSE.RIGHT_SHOULDER),\n    (\"Left Wrist\",     cv.POSE.LEFT_WRIST),\n    (\"Right Wrist\",    cv.POSE.RIGHT_WRIST),\n]\n\nframe = 0\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        if frame % 30 == 0:\n            if poses:\n                pose = poses[0]\n                print(\"--- Key landmarks ---\")\n                for name, idx in key_points:\n                    lm = pose[idx]\n                    print(f\"  {name:16}: x={lm['x']}, y={lm['y']}  (visible: {lm['visibility']:.0%})\")\n            else:\n                print(\"No pose detected — step back so more of your body is visible.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#step-3-experiment-arm-raise-detector",
+    "href": "labs/06/notebooks/pose_landmarks.html#step-3-experiment-arm-raise-detector",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Step 3: Experiment — Arm Raise Detector",
+    "text": "Step 3: Experiment — Arm Raise Detector\nNow let’s write logic on top of the landmark data. If your wrist is higher than your shoulder, your arm is raised. Since y=0 is the top of the screen, a higher position means a smaller y value.\nRun the cell, then try raising one or both arms. Watch the status update in the output. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        if frame % 30 == 0:\n            if poses:\n                pose       = poses[0]\n                l_wrist    = pose[cv.POSE.LEFT_WRIST]\n                l_shoulder = pose[cv.POSE.LEFT_SHOULDER]\n                r_wrist    = pose[cv.POSE.RIGHT_WRIST]\n                r_shoulder = pose[cv.POSE.RIGHT_SHOULDER]\n                left_raised  = l_wrist['y'] &lt; l_shoulder['y']\n                right_raised = r_wrist['y'] &lt; r_shoulder['y']\n                print(f\"Left arm: {'RAISED' if left_raised else 'at side'}  |  \"\n                      f\"Right arm: {'RAISED' if right_raised else 'at side'}\")\n            else:\n                print(\"No pose detected.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#reflect",
+    "href": "labs/06/notebooks/pose_landmarks.html#reflect",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nImagine you could only see the skeleton data — no video, no face, no identity. What could you still figure out about the person? What couldn’t you tell?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/06/notebooks/pose_landmarks.html#check-for-understanding",
+    "href": "labs/06/notebooks/pose_landmarks.html#check-for-understanding",
+    "title": "Pose Landmarks with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “true_false”, “question”: “MediaPipe Pose tracks 33 landmarks on the human body.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the visibility value tell you about a landmark?”, “options”: [ { “key”: “a”, “text”: “Whether the landmark is currently moving” }, { “key”: “b”, “text”: “How confident the model is that the landmark is visible” }, { “key”: “c”, “text”: “The color of the landmark on screen” }, { “key”: “d”, “text”: “How far the person is from the camera in meters” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “In image coordinates, a smaller y value means the point is higher on the screen.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which constant would you use to get the position of a person’s left wrist?”, “options”: [ { “key”: “a”, “text”: “cv.POSE.LEFT_HAND” }, { “key”: “b”, “text”: “cv.POSE.LEFT_WRIST” }, { “key”: “c”, “text”: “cv.POSE.WRIST_LEFT” }, { “key”: “d”, “text”: “cv.POSE.LEFT_PALM” } ], “answer”: “b”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Pose Estimation (pose_landmarks.ipynb)"
     ]
   },
   {
@@ -269,20 +412,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "object_detection.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/object_detection.html#learning-objectives",
-    "href": "labs/06/notebooks/object_detection.html#learning-objectives",
-    "title": "Object Detection with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how object detection extends face detection to many object categories\nUse Python to detect and label objects in a live webcam feed\nFilter detections by confidence score\nReflect on real-world uses of multi-class object detection",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "object_detection.ipynb"
+      "Object Detection (object_detection.ipynb)"
     ]
   },
   {
@@ -290,12 +420,12 @@
     "href": "labs/06/notebooks/object_detection.html#from-face-detection-to-object-detection",
     "title": "Object Detection with Computer Vision",
     "section": "From Face Detection to Object Detection",
-    "text": "From Face Detection to Object Detection\nIn the face detection notebook, the model was trained to find one thing: faces. An object detector is more general — it’s trained to find dozens of different object categories at once.\nThis platform uses EfficientDet-Lite0, a compact but powerful model trained on the COCO dataset. COCO contains 80 everyday object categories, including:\n\nPeople, chairs, laptops, phones, cups, books\nCars, bikes, dogs, cats, birds\nAnd many more…\n\nEach detection still returns a bounding box and a confidence score — but now also includes a label telling you what was found.\n\nReal-World Applications\n\nSelf-driving cars detect pedestrians, vehicles, traffic signs, and cyclists simultaneously\nRetail stores count products on shelves and track inventory automatically\nAccessibility tools describe the contents of a scene to visually impaired users",
+    "text": "From Face Detection to Object Detection\nIn the face detection notebook, the model was trained to find one thing: faces. An object detector is more general — it’s trained to find dozens of different object categories at once.\nThis platform uses EfficientDet-Lite0, a compact but powerful model trained on the COCO dataset. COCO contains 80 everyday object categories, including:\n\nPeople, chairs, laptops, phones, cups, books\nCars, bikes, dogs, cats, birds\nAnd many more…\n\nEach detection still returns a bounding box and a confidence score — but now also includes a label telling you what was found.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "object_detection.ipynb"
+      "Object Detection (object_detection.ipynb)"
     ]
   },
   {
@@ -303,12 +433,12 @@
     "href": "labs/06/notebooks/object_detection.html#step-1-live-object-detection",
     "title": "Object Detection with Computer Vision",
     "section": "Step 1: Live Object Detection",
-    "text": "Step 1: Live Object Detection\nThe cell below starts your camera and runs the object detector in real time. Bounding boxes will appear around anything the model recognizes, labeled with the object type.\nPoint the camera around the room to see what it finds. Click Allow when your browser asks for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 1: Live Object Detection\nThe cell below starts your camera and runs the object detector in real time. Bounding boxes will appear around anything the model recognizes, labeled with the object type.\nPoint the camera around the room to see what it finds. Click Allow when your browser asks for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "object_detection.ipynb"
+      "Object Detection (object_detection.ipynb)"
     ]
   },
   {
@@ -316,12 +446,12 @@
     "href": "labs/06/notebooks/object_detection.html#step-2-explore-detection-data",
     "title": "Object Detection with Computer Vision",
     "section": "Step 2: Explore Detection Data",
-    "text": "Step 2: Explore Detection Data\nThe cell below runs the same live loop but also prints the raw detection data once per second. Each detection has a type (the object label), position, size, and confidence score.\nTry pointing the camera at different objects around the room and watch the output update. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} object(s) detected ---\")\n            for i, obj in enumerate(detections):\n                print(f\"  {obj['type']}: ({obj['x']}, {obj['y']})  \"\n                      f\"size={obj['w']}x{obj['h']}  confidence={obj['confidence']:.1%}\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 2: Explore Detection Data\nThe cell below runs the same live loop but also prints the raw detection data once per second. Each detection has a type (the object label), position, size, and confidence score.\nTry pointing the camera at different objects around the room and watch the output update. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 240 == 0:\n            print(f\"--- {len(detections)} object(s) detected ---\")\n            for i, obj in enumerate(detections):\n                print(f\"  {obj['type']}: ({obj['x']}, {obj['y']})  \"\n                      f\"size={obj['w']}x{obj['h']}  confidence={obj['confidence']:.1%}\")\n        frame += 1\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "object_detection.ipynb"
+      "Object Detection (object_detection.ipynb)"
     ]
   },
   {
@@ -329,25 +459,12 @@
     "href": "labs/06/notebooks/object_detection.html#step-3-experiment-confidence-threshold",
     "title": "Object Detection with Computer Vision",
     "section": "Step 3: Experiment — Confidence Threshold",
-    "text": "Step 3: Experiment — Confidence Threshold\nA confidence threshold controls how certain the model must be before a detection is shown.\n\nA low threshold finds more objects, but some may be wrong\nA high threshold only shows objects the model is very sure about\n\nSet the slider to your desired threshold, then run the cell. The loop filters detections in real time using that value. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nCONFIDENCE_THRESHOLD = 0.5 #@param {type:\"slider\", min:0.1, max:1.0, step:0.05}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        filtered = [d for d in detections if d['confidence'] &gt;= CONFIDENCE_THRESHOLD]\n        canvas.draw_bounding_boxes(filtered)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 3: Experiment — Confidence Threshold\nA confidence threshold controls how certain the model must be before a detection is shown.\n\nA low threshold finds more objects, but some may be wrong\nA high threshold only shows objects the model is very sure about\n\nSet the slider to your desired threshold, then run the cell. The loop filters detections in real time using that value. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\n\nCONFIDENCE_THRESHOLD = 0.5 #@param {type:\"slider\", min:0.1, max:1.0, step:0.05}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_object_detector(camera)\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        filtered = [d for d in detections if d['confidence'] &gt;= CONFIDENCE_THRESHOLD]\n        canvas.draw_bounding_boxes(filtered)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nWhat objects did the detector find? Were there any surprises — things it labeled incorrectly or missed entirely?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "object_detection.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/object_detection.html#reflect",
-    "href": "labs/06/notebooks/object_detection.html#reflect",
-    "title": "Object Detection with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nRecord your observations in the journal cells below.\nWhat objects did the detector find? Were there any surprises — things it labeled incorrectly or missed entirely?\nObject detection is used in self-driving cars, security cameras, and automated warehouses. Pick one application and describe both a benefit and a potential risk.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "object_detection.ipynb"
+      "Object Detection (object_detection.ipynb)"
     ]
   },
   {
@@ -360,111 +477,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "object_detection.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html",
-    "href": "labs/06/notebooks/gesture_recognition.html",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "",
-    "text": "In this notebook, you’ll use a neural network to recognize hand gestures in real time. The model tracks 21 landmarks per hand and classifies the shape into one of 8 named gestures — all without any special hardware.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#learning-objectives",
-    "href": "labs/06/notebooks/gesture_recognition.html#learning-objectives",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how gesture recognition builds on hand landmark detection\nUse Python to detect hand gestures and read landmark positions\nDistinguish between left and right hands using the handedness field\nReflect on real-world applications of gesture-based interfaces",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#what-is-gesture-recognition",
-    "href": "labs/06/notebooks/gesture_recognition.html#what-is-gesture-recognition",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "What Is Gesture Recognition?",
-    "text": "What Is Gesture Recognition?\nGesture recognition combines two ideas:\n\nHand landmark detection — locating 21 key points on each hand (fingertips, joints, wrist)\nGesture classification — analyzing the shape of those landmarks to name the gesture\n\nThis platform uses MediaPipe Gesture Recognizer, which can identify these 8 gestures:\n\n\n\nGesture\nDescription\n\n\n\n\nNone\nNo recognized gesture\n\n\nClosed_Fist\nAll fingers curled in\n\n\nOpen_Palm\nAll fingers extended, palm facing forward\n\n\nPointing_Up\nIndex finger extended upward\n\n\nThumb_Down\nThumbs down\n\n\nThumb_Up\nThumbs up\n\n\nVictory\nIndex and middle fingers extended (V sign)\n\n\nILoveYou\nASL “I love you” sign\n\n\n\n\nReal-World Applications\n\nAccessibility tools let people control devices without touching a keyboard or mouse\nPresentation software advances slides with a swipe gesture\nSmart home systems turn lights on or off based on a hand signal\nSign language translation tools interpret hand shapes as words",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#step-1-live-gesture-detection",
-    "href": "labs/06/notebooks/gesture_recognition.html#step-1-live-gesture-detection",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Step 1: Live Gesture Detection",
-    "text": "Step 1: Live Gesture Detection\nThe cell below starts your camera and runs gesture detection in real time. Hold your hand up and try different gestures — the model will draw landmarks on your hand and print the detected gesture once per second.\nMake sure there is enough light so the camera can clearly see your hand. Click Allow for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            print(f\"--- {len(detections)} hand(s) detected ---\")\n            for hand in detections:\n                print(f\"  {hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#step-2-explore-hand-landmarks",
-    "href": "labs/06/notebooks/gesture_recognition.html#step-2-explore-hand-landmarks",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Step 2: Explore Hand Landmarks",
-    "text": "Step 2: Explore Hand Landmarks\nBeyond the gesture name, the detector gives you the exact position of every joint. We access individual landmarks using cv.HAND constants — for example, cv.HAND.INDEX_FINGER_TIP.\nThe cell below prints the index fingertip and wrist position once per second alongside the live hand overlay. Try different hand shapes and watch the coordinates change.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            for hand in detections:\n                tip   = hand['landmarks'][cv.HAND.INDEX_FINGER_TIP]\n                wrist = hand['landmarks'][cv.HAND.WRIST]\n                print(f\"{hand['handedness']} hand — {hand['gesture']}\")\n                print(f\"  Index fingertip: ({tip['x']}, {tip['y']})\")\n                print(f\"  Wrist          : ({wrist['x']}, {wrist['y']})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
-    "href": "labs/06/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Step 3: Experiment — Gesture Challenge",
-    "text": "Step 3: Experiment — Gesture Challenge\nUse the dropdown to choose a target gesture, then run the cell and try to make that gesture. The output will tell you what gesture it’s currently seeing and whether it matches your target.\nCan you hit MATCH! on every gesture in the list? Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nTARGET_GESTURE = \"Thumb_Up\" #@param [\"None\", \"Closed_Fist\", \"Open_Palm\", \"Pointing_Up\", \"Thumb_Down\", \"Thumb_Up\", \"Victory\", \"ILoveYou\"]\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            if detections:\n                for hand in detections:\n                    matched = hand['gesture'] == TARGET_GESTURE\n                    result  = \"MATCH!\" if matched else \"not yet...\"\n                    print(f\"{hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%}) — {result}\")\n            else:\n                print(\"No hands detected — hold your hand up to the camera.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#reflect",
-    "href": "labs/06/notebooks/gesture_recognition.html#reflect",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nRecord your observations in the journal cells below.\nWhich gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?\nGesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/gesture_recognition.html#check-for-understanding",
-    "href": "labs/06/notebooks/gesture_recognition.html#check-for-understanding",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Check for Understanding",
-    "text": "Check for Understanding\n{ “question_type”: “multiple_choice”, “question”: “How many different gestures can the MediaPipe Gesture Recognizer detect?”, “options”: [ { “key”: “a”, “text”: “4” }, { “key”: “b”, “text”: “6” }, { “key”: “c”, “text”: “8” }, { “key”: “d”, “text”: “12” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The gesture detector can tell whether a detected hand is the left or right hand.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “How many landmarks does MediaPipe track per hand?”, “options”: [ { “key”: “a”, “text”: “5 (one per finger)” }, { “key”: “b”, “text”: “10” }, { “key”: “c”, “text”: “21” }, { “key”: “d”, “text”: “33” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The gesture detector can only track one hand at a time.”, “answer”: “False”, “submitted_answer”: “” }",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "gesture_recognition.ipynb"
+      "Object Detection (object_detection.ipynb)"
     ]
   },
   {
@@ -1932,11 +1945,23 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#tbd",
-    "href": "labs/07/slides.html#tbd",
+    "objectID": "labs/07/slides.html#gesture-recognition",
+    "href": "labs/07/slides.html#gesture-recognition",
     "title": "Day 7: Computer Vision",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "section": "Gesture Recognition",
+    "text": "Gesture Recognition\n\nTBD",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#image-segmentation",
+    "href": "labs/07/slides.html#image-segmentation",
+    "title": "Day 7: Computer Vision",
+    "section": "Image Segmentation",
+    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -3112,11 +3137,11 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#object-detection",
-    "href": "labs/06/slides.html#object-detection",
+    "objectID": "labs/06/slides.html#object-detection-1",
+    "href": "labs/06/slides.html#object-detection-1",
     "title": "Day 6: Computer Vision",
     "section": "Object Detection",
-    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nSecurity cameras flagging suspicious activity\nCounting inventory in a warehouse automatically",
+    "text": "Object Detection\n\nQuestion: “What is in this image, and where is it?”\nDetects multiple objects and draws bounding boxes around each one\nExamples:\n\nSelf-driving cars spotting pedestrians and vehicles in real time\nCounting inventory in a warehouse automatically\nAccessibility tool for people with vision impairments",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -3128,7 +3153,7 @@
     "href": "labs/06/slides.html#pose-estimation",
     "title": "Day 6: Computer Vision",
     "section": "Pose Estimation",
-    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery\n\nWe’ll use MediaPipe for this in our notebooks",
+    "text": "Pose Estimation\n\nQuestion: “Where are the body parts?”\nDetects key landmarks on a person — joints, hands, face points\nExamples:\n\nFitness apps checking your squat form\nVideo games that respond to your movement (no controller needed)\nPhysical therapy tools tracking patient recovery",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -3136,11 +3161,11 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#gesture-recognition",
-    "href": "labs/06/slides.html#gesture-recognition",
+    "objectID": "labs/06/slides.html#fun-with-poses-1",
+    "href": "labs/06/slides.html#fun-with-poses-1",
     "title": "Day 6: Computer Vision",
-    "section": "Gesture Recognition",
-    "text": "Gesture Recognition\n\nTBD",
+    "section": "Fun With Poses",
+    "text": "Fun With Poses\n\nHow about if didn’t show the camera view?\nAnd instead, just plotted the body joint positions…\nIn a 3D Scene?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -3148,11 +3173,11 @@
     ]
   },
   {
-    "objectID": "labs/06/slides.html#image-segmentation",
-    "href": "labs/06/slides.html#image-segmentation",
+    "objectID": "labs/06/slides.html#tomorrow",
+    "href": "labs/06/slides.html#tomorrow",
     "title": "Day 6: Computer Vision",
-    "section": "Image Segmentation",
-    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nContinue learning about computer vision\nGesture recognition and Image Segmentation\nTwo other mini-apps",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -4775,7 +4800,7 @@
     "href": "labs/06/notebooks/face_detection.html#step-2-explore-the-detection-data",
     "title": "Face Detection with Computer Vision",
     "section": "Step 2: Explore the Detection Data",
-    "text": "Step 2: Explore the Detection Data\nThe cell below runs the same live detection loop, but also prints the raw numbers for every face it finds, updated constantly.\nTry moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 240 == 0:\n            print(f\"--- {len(detections)} face(s) detected ---\")\n            for i, face in enumerate(detections):\n                print(f\"  Face {i + 1}: x={face['x']}, y={face['y']}  \"\n                      f\"size={face['w']}x{face['h']}  confidence={face['confidence']:.1%}\")\n        frame += 1\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 2: Explore the Detection Data\nThe cell below runs the same live detection loop, but also prints the raw numbers for every face it finds, updated constantly.\nTry moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_face_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_bounding_boxes(detections)\n        if frame % 240 == 0:\n            print(f\"--- {len(detections)} face(s) detected ---\")\n            for i, face in enumerate(detections):\n                print(f\"  Face {i + 1}: x={face['x']}, y={face['y']}  \"\n                      f\"size={face['w']}x{face['h']}  confidence={face['confidence']:.1%}\")\n        frame += 1\n        time.sleep(0.001)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -4810,289 +4835,237 @@
     ]
   },
   {
-    "objectID": "labs/06/notebooks/image_segmentation.html",
-    "href": "labs/06/notebooks/image_segmentation.html",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "",
-    "text": "In this notebook, you’ll explore image segmentation — the most detailed form of computer vision. Instead of drawing a box around something, segmentation labels every single pixel in the frame, letting us recolor hair, replace backgrounds, and change clothing colors in real time.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#learning-objectives",
-    "href": "labs/06/notebooks/image_segmentation.html#learning-objectives",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how image segmentation differs from object detection\nUse Python to segment body parts and apply color effects in a live webcam feed\nReplace a video background using a single line of code\nReflect on how segmentation is used in everyday apps and medical imaging",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#what-is-image-segmentation",
-    "href": "labs/06/notebooks/image_segmentation.html#what-is-image-segmentation",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "What Is Image Segmentation?",
-    "text": "What Is Image Segmentation?\nYou’ve seen how object detection draws bounding boxes — rectangles around objects. Segmentation goes much further: it assigns a class label to every pixel in the image.\nThis platform uses MediaPipe Selfie Multi-Class Segmenter, which classifies pixels into 6 categories:\n\n\n\nClass\nWhat it covers\n\n\n\n\nBACKGROUND\nEverything behind the person\n\n\nHAIR\nHair on the head\n\n\nBODY_SKIN\nExposed skin on arms and hands\n\n\nFACE_SKIN\nSkin on the face\n\n\nCLOTHES\nClothing worn by the person\n\n\nOTHERS\nAccessories, glasses, etc.\n\n\n\n\nReal-World Applications\n\nVideo calls (Zoom, Teams) use background segmentation to blur or replace your background\nPhoto apps let you change hair color or apply filters to just your face\nMedical imaging outlines tumors or organs with pixel-perfect accuracy for surgeons\nFilm production composites actors onto virtual sets without a green screen",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#step-1-explore-segment-classes",
-    "href": "labs/06/notebooks/image_segmentation.html#step-1-explore-segment-classes",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Step 1: Explore Segment Classes",
-    "text": "Step 1: Explore Segment Classes\nThe cell below starts your camera and segmenter, then prints the segment classes it can see in the frame once per second. Make sure your face, hair, and shoulders are visible.\nClick Allow for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\nframe = 0\ntry:\n    while True:\n        if frame % 30 == 0:\n            segments = segmenter.get_segments()\n            print(\"Segments visible:\", segments)\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#step-2-recolor-your-hair",
-    "href": "labs/06/notebooks/image_segmentation.html#step-2-recolor-your-hair",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Step 2: Recolor Your Hair",
-    "text": "Step 2: Recolor Your Hair\nThe cv.color_segment() function fills a segment class with a solid color at a given opacity. The original video still shows through — the color is an overlay blended on top.\nRun the cell to color your hair pink in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, cv.SEGMENT.HAIR, \"#ff69b4\", opacity=0.7)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#step-3-replace-your-background",
-    "href": "labs/06/notebooks/image_segmentation.html#step-3-replace-your-background",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Step 3: Replace Your Background",
-    "text": "Step 3: Replace Your Background\nThe cv.apply_image_to_segment() function replaces a segment with an image file, clipped precisely to that segment’s shape.\nRun the cell to replace your background with a sample image in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, \"/sample_files/cat.png\", opacity=0.9)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
-    "href": "labs/06/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Step 4: Experiment — Color Any Segment",
-    "text": "Step 4: Experiment — Color Any Segment\nUse the controls below to choose which body part to recolor, what color to apply, and how strong the effect is. Set your values, run the cell, and see the result live.\nStop the cell, adjust the controls, and run again to try something different. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nSEGMENT = \"HAIR\"    #@param [\"HAIR\", \"BODY_SKIN\", \"FACE_SKIN\", \"CLOTHES\"]\nCOLOR   = \"#ff69b4\" #@param [\"#ff69b4\", \"#00bfff\", \"#00ff88\", \"#ff4500\", \"#ffffff\", \"#ffff00\"]\nOPACITY = 0.6       #@param {type:\"slider\", min:0.1, max:1.0, step:0.1}\n\nsegment_map = {\n    \"HAIR\":      cv.SEGMENT.HAIR,\n    \"BODY_SKIN\": cv.SEGMENT.BODY_SKIN,\n    \"FACE_SKIN\": cv.SEGMENT.FACE_SKIN,\n    \"CLOTHES\":   cv.SEGMENT.CLOTHES,\n}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, segment_map[SEGMENT], COLOR, opacity=OPACITY)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#reflect",
-    "href": "labs/06/notebooks/image_segmentation.html#reflect",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nRecord your observations in the journal cells below.\nHow precise were the segment boundaries? Did you notice any areas where the model struggled — for example, at the edges of your hair or where your clothing meets your skin?\nVirtual background replacement is now built into most video call apps. What are the benefits? Are there any situations where this technology could be misused or misleading?",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/image_segmentation.html#check-for-understanding",
-    "href": "labs/06/notebooks/image_segmentation.html#check-for-understanding",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Check for Understanding",
-    "text": "Check for Understanding\n{ “question_type”: “multiple_choice”, “question”: “What makes image segmentation more detailed than object detection?”, “options”: [ { “key”: “a”, “text”: “Segmentation is faster to run” }, { “key”: “b”, “text”: “Segmentation labels every pixel, not just bounding boxes” }, { “key”: “c”, “text”: “Segmentation only works on people” }, { “key”: “d”, “text”: “Segmentation doesn’t use neural networks” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Image segmentation draws bounding boxes around each detected person.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which segment class would you use to recolor someone’s hair?”, “options”: [ { “key”: “a”, “text”: “cv.SEGMENT.FACE_SKIN” }, { “key”: “b”, “text”: “cv.SEGMENT.BODY_SKIN” }, { “key”: “c”, “text”: “cv.SEGMENT.HAIR” }, { “key”: “d”, “text”: “cv.SEGMENT.OTHERS” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “You can only apply color to one segment class per frame.”, “answer”: “False”, “submitted_answer”: “” }",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "image_segmentation.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html",
-    "href": "labs/06/notebooks/pose_landmarks.html",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "",
-    "text": "In this notebook, you’ll use a neural network to detect the position of 33 body landmarks in real time. By tracking joints like shoulders, elbows, and wrists, we can understand how a person is moving — without knowing who they are.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#learning-objectives",
-    "href": "labs/06/notebooks/pose_landmarks.html#learning-objectives",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain what pose estimation is and how it differs from face or object detection\nUse Python to detect and draw body landmarks from a live webcam feed\nAccess individual landmark coordinates using named constants\nWrite simple logic based on body position (e.g., detecting a raised arm)\nReflect on the applications and privacy implications of pose tracking",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#what-is-pose-estimation",
-    "href": "labs/06/notebooks/pose_landmarks.html#what-is-pose-estimation",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "What Is Pose Estimation?",
-    "text": "What Is Pose Estimation?\nPose estimation detects the position of specific points on a person’s body — called landmarks or keypoints. The result is a skeleton-like overlay showing where joints are located in the image.\nThis platform uses MediaPipe Pose, which tracks 33 landmarks including: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, and ankles.\nEach landmark has: - x, y — position on screen (pixels) - z — estimated depth (how far the point is from the camera) - visibility — how confident the model is that this point is visible (0.0 – 1.0)\n\nReal-World Applications\n\nFitness apps analyze your exercise form and count reps automatically\nVideo games let you control characters with your body movements\nPhysical therapy tools track patient progress and flag unsafe movements\nAnimation studios use pose capture to bring characters to life\n\nNotice that none of these need to know who you are — just how you’re positioned.",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#step-1-live-pose-detection",
-    "href": "labs/06/notebooks/pose_landmarks.html#step-1-live-pose-detection",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "Step 1: Live Pose Detection",
-    "text": "Step 1: Live Pose Detection\nThe cell below starts your camera and draws a skeleton overlay on your body in real time. Step back so your full upper body is visible — the model works best when it can see your shoulders, arms, and head.\nClick Allow when your browser asks for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#step-2-explore-landmark-data",
-    "href": "labs/06/notebooks/pose_landmarks.html#step-2-explore-landmark-data",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "Step 2: Explore Landmark Data",
-    "text": "Step 2: Explore Landmark Data\nThe cell below runs the same live skeleton overlay, but also prints the coordinates of key joints once per second. We access each landmark using cv.POSE constants — for example, cv.POSE.LEFT_WRIST.\nMove your arms, lean in, or step back and watch the numbers change.\n\nTip: In image coordinates, y=0 is the top of the screen and increases downward.\n\nClick Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\nkey_points = [\n    (\"Nose\",           cv.POSE.NOSE),\n    (\"Left Shoulder\",  cv.POSE.LEFT_SHOULDER),\n    (\"Right Shoulder\", cv.POSE.RIGHT_SHOULDER),\n    (\"Left Wrist\",     cv.POSE.LEFT_WRIST),\n    (\"Right Wrist\",    cv.POSE.RIGHT_WRIST),\n]\n\nframe = 0\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        if frame % 30 == 0:\n            if poses:\n                pose = poses[0]\n                print(\"--- Key landmarks ---\")\n                for name, idx in key_points:\n                    lm = pose[idx]\n                    print(f\"  {name:16}: x={lm['x']}, y={lm['y']}  (visible: {lm['visibility']:.0%})\")\n            else:\n                print(\"No pose detected — step back so more of your body is visible.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#step-3-experiment-arm-raise-detector",
-    "href": "labs/06/notebooks/pose_landmarks.html#step-3-experiment-arm-raise-detector",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "Step 3: Experiment — Arm Raise Detector",
-    "text": "Step 3: Experiment — Arm Raise Detector\nNow let’s write logic on top of the landmark data. If your wrist is higher than your shoulder, your arm is raised. Since y=0 is the top of the screen, a higher position means a smaller y value.\nRun the cell, then try raising one or both arms. Watch the status update in the output. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        if frame % 30 == 0:\n            if poses:\n                pose       = poses[0]\n                l_wrist    = pose[cv.POSE.LEFT_WRIST]\n                l_shoulder = pose[cv.POSE.LEFT_SHOULDER]\n                r_wrist    = pose[cv.POSE.RIGHT_WRIST]\n                r_shoulder = pose[cv.POSE.RIGHT_SHOULDER]\n                left_raised  = l_wrist['y'] &lt; l_shoulder['y']\n                right_raised = r_wrist['y'] &lt; r_shoulder['y']\n                print(f\"Left arm: {'RAISED' if left_raised else 'at side'}  |  \"\n                      f\"Right arm: {'RAISED' if right_raised else 'at side'}\")\n            else:\n                print(\"No pose detected.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#reflect",
-    "href": "labs/06/notebooks/pose_landmarks.html#reflect",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nRecord your observations in the journal cells below.\nImagine you could only see the skeleton data — no video, no face, no identity. What could you still figure out about the person? What couldn’t you tell?\nFitness apps, games, and therapy tools all use pose estimation. Pick one application and describe how it would use landmark data. What are the benefits? Could there be any privacy concerns?",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/06/notebooks/pose_landmarks.html#check-for-understanding",
-    "href": "labs/06/notebooks/pose_landmarks.html#check-for-understanding",
-    "title": "Pose Landmarks with Computer Vision",
-    "section": "Check for Understanding",
-    "text": "Check for Understanding\n{ “question_type”: “true_false”, “question”: “MediaPipe Pose tracks 33 landmarks on the human body.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the visibility value tell you about a landmark?”, “options”: [ { “key”: “a”, “text”: “Whether the landmark is currently moving” }, { “key”: “b”, “text”: “How confident the model is that the landmark is visible” }, { “key”: “c”, “text”: “The color of the landmark on screen” }, { “key”: “d”, “text”: “How far the person is from the camera in meters” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “In image coordinates, a smaller y value means the point is higher on the screen.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which constant would you use to get the position of a person’s left wrist?”, “options”: [ { “key”: “a”, “text”: “cv.POSE.LEFT_HAND” }, { “key”: “b”, “text”: “cv.POSE.LEFT_WRIST” }, { “key”: “c”, “text”: “cv.POSE.WRIST_LEFT” }, { “key”: “d”, “text”: “cv.POSE.LEFT_PALM” } ], “answer”: “b”, “submitted_answer”: “” }",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Notebooks",
-      "pose_landmarks.ipynb"
-    ]
-  },
-  {
-    "objectID": "labs/07/notebooks/pose_avatar.html",
-    "href": "labs/07/notebooks/pose_avatar.html",
+    "objectID": "labs/06/notebooks/pose_avatar.html",
+    "href": "labs/06/notebooks/pose_avatar.html",
     "title": "3D Pose Avatar",
     "section": "",
     "text": "In this miniapp, your body controls a 3D figure in real time. Pose landmark coordinates are mapped into a 3D scene — as you move, the avatar moves with you.",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 7",
+      "Day 6",
       "Notebooks",
-      "pose_avatar.ipynb"
+      "3D Pose Avatar (pose_avatar.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/pose_avatar.html#from-2d-landmarks-to-3d-space",
-    "href": "labs/07/notebooks/pose_avatar.html#from-2d-landmarks-to-3d-space",
+    "objectID": "labs/06/notebooks/pose_avatar.html#from-2d-landmarks-to-3d-space",
+    "href": "labs/06/notebooks/pose_avatar.html#from-2d-landmarks-to-3d-space",
     "title": "3D Pose Avatar",
     "section": "From 2D Landmarks to 3D Space",
-    "text": "From 2D Landmarks to 3D Space\nThe pose detector gives us x and y coordinates for each joint in camera pixel space. To place them in a 3D scene we rescale and offset them:\nscene_x = (landmark_x / canvas_width  - 0.5) * 5        # -2.5 to +2.5\nscene_y = -(landmark_y / canvas_height - 0.5) * 4 + 1.5 # shifted up above the ground\nEach joint becomes a sphere in the scene, colored by body region. Joints with low visibility (occluded or out of frame) are hidden below the scene floor.\n\nIntroducing scene3d\nThe scene3d module creates an interactive 3D scene powered by BabylonJS. You get a free-orbit camera (drag to rotate, scroll to zoom), a ground plane, and simple shapes. The @scene.on_frame decorator registers a function called every render tick — that’s where we update the avatar positions each frame.",
+    "text": "From 2D Landmarks to 3D Space\nThe pose detector gives us x and y coordinates for each joint in camera pixel space. To place them in a 3D scene we rescale and offset them:\nscene_x = (landmark_x / canvas_width  - 0.5) * 5       \nscene_y = -(landmark_y / canvas_height - 0.5) * 4 + 1.5 \nEach joint becomes a sphere in the scene, colored by body region. Joints with low visibility (occluded or out of frame) are hidden below the scene floor.\n\nIntroducing scene3d\nThe scene3d module creates an interactive 3D scene powered by BabylonJS. You get a free-orbit camera (drag to rotate, scroll to zoom), a ground plane, and simple shapes. The @scene.on_frame decorator registers a function called every render tick — that’s where we update the avatar positions each frame.",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 7",
+      "Day 6",
       "Notebooks",
-      "pose_avatar.ipynb"
+      "3D Pose Avatar (pose_avatar.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/pose_avatar.html#step-1-live-pose-preview",
-    "href": "labs/07/notebooks/pose_avatar.html#step-1-live-pose-preview",
+    "objectID": "labs/06/notebooks/pose_avatar.html#step-1-live-pose-preview",
+    "href": "labs/06/notebooks/pose_avatar.html#step-1-live-pose-preview",
     "title": "3D Pose Avatar",
     "section": "Step 1: Live Pose Preview",
     "text": "Step 1: Live Pose Preview\nFirst confirm the pose detector is tracking you correctly. Step back so your full upper body is visible and check that the skeleton overlay looks right.\nClick Stop (■) when you’re ready to launch the 3D scene.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\n\ntry:\n    while True:\n        poses = detector.get_detections()\n        canvas.draw_poses(poses)\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 7",
+      "Day 6",
       "Notebooks",
-      "pose_avatar.ipynb"
+      "3D Pose Avatar (pose_avatar.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/pose_avatar.html#step-2-3d-avatar",
-    "href": "labs/07/notebooks/pose_avatar.html#step-2-3d-avatar",
+    "objectID": "labs/06/notebooks/pose_avatar.html#step-2-3d-avatar",
+    "href": "labs/06/notebooks/pose_avatar.html#step-2-3d-avatar",
     "title": "3D Pose Avatar",
     "section": "Step 2: 3D Avatar",
     "text": "Step 2: 3D Avatar\nThe cell below shows a small camera preview (top) and a full 3D scene (below). Each sphere represents a joint — move your arms, tilt your head, and watch the avatar respond.\nDrag the 3D scene to orbit the camera, scroll to zoom in or out.\nClick Stop (■) when you’re done.\n\nimport cv\nimport scene3d\n\ncamera   = cv.start_camera()\ndetector = cv.start_pose_detector(camera)\n\nscene = scene3d.Scene()\nscene.set_sky('#0d1b2a')\nscene.set_ground(length=12, width=12)\n\nJOINTS = {\n    'NOSE':           ('#ffffff', 1.25),\n    'LEFT_SHOULDER':  ('#4488ff', 1.00),\n    'RIGHT_SHOULDER': ('#4488ff', 1.00),\n    'LEFT_ELBOW':     ('#44aaff', 0.5),\n    'RIGHT_ELBOW':    ('#44aaff', 0.5),\n    'LEFT_WRIST':     ('#88ccff', 1.0),\n    'RIGHT_WRIST':    ('#88ccff', 1.0),\n    'LEFT_HIP':       ('#ff8844', 1.0),\n    'RIGHT_HIP':      ('#ff8844', 1.0),\n}\n\nspheres = {}\nfor name, (color, size) in JOINTS.items():\n    s = scene3d.Shapes.Sphere(diameter=size, segments=8)\n    s.set_color(color)\n    s.set_position(0, -10, 0)\n    scene.add(s)\n    spheres[name] = s\n\ndef to_3d(lm):\n    x = (lm['x'] / 320 - 0.5) * 5\n    y = -(lm['y'] / 600 - 0.5) * 8 + 1.5\n    return x, y, 0\n\n@scene.on_frame\ndef update(dt):\n    poses = detector.get_detections()\n    if poses:\n        pose = poses[0]\n        for name, sphere in spheres.items():\n            lm = pose[getattr(cv.POSE, name)]\n            if lm['visibility'] &gt; 0.5:\n                sphere.set_position(*to_3d(lm))\n            else:\n                sphere.set_position(0, -10, 0)\n\nscene.run()\n\nWhat would make this avatar feel more alive or useful? What would you build if you could control a 3D character with your body?",
     "crumbs": [
       "Future Intelligence Lab",
-      "Day 7",
+      "Day 6",
       "Notebooks",
-      "pose_avatar.ipynb"
+      "3D Pose Avatar (pose_avatar.ipynb)"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/pose_avatar.html#ideas-to-extend-this-app",
-    "href": "labs/07/notebooks/pose_avatar.html#ideas-to-extend-this-app",
+    "objectID": "labs/06/notebooks/pose_avatar.html#ideas-to-extend-this-app",
+    "href": "labs/06/notebooks/pose_avatar.html#ideas-to-extend-this-app",
     "title": "3D Pose Avatar",
     "section": "Ideas to Extend This App",
     "text": "Ideas to Extend This App\n\nBones — add a thin Box between each pair of joints (shoulder→elbow, elbow→wrist) and update its position each frame\nReactions — change a sphere’s color when a wrist rises above the shoulder (arm raised)\nSquat counter — track when the hips drop below a threshold and count reps, displayed on the 3D scene’s HUD\nMore joints — add knees and ankles by stepping further back so the full body is visible\nParticles — spawn a short-lived sphere at the wrist each frame for a motion trail effect",
     "crumbs": [
       "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "3D Pose Avatar (pose_avatar.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_painter.html",
+    "href": "labs/07/notebooks/gesture_painter.html",
+    "title": "Gesture Painter",
+    "section": "",
+    "text": "Paint on a canvas using only your hand — no mouse, no stylus, no touching anything. Your index fingertip becomes a brush, tracked in real time by the gesture detector.",
+    "crumbs": [
+      "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "pose_avatar.ipynb"
+      "gesture_painter.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_painter.html#gesture-controls",
+    "href": "labs/07/notebooks/gesture_painter.html#gesture-controls",
+    "title": "Gesture Painter",
+    "section": "Gesture Controls",
+    "text": "Gesture Controls\n\n\n\n\n\n\n\nGesture\nAction\n\n\n\n\nPointing Up (index finger extended)\nDraw — your fingertip leaves a trail\n\n\nOpen Palm\nLift pen — move without drawing\n\n\nClosed Fist\nClear — wipes the canvas clean\n\n\n\n\nHow It Works\nEach frame, the app reads the position of your index fingertip (cv.HAND.INDEX_FINGER_TIP). When the gesture is Pointing_Up, it draws a line from the previous fingertip position to the current one. All line segments are stored in a list and redrawn every frame on top of the live camera feed — so your painting persists as the video updates underneath.\nChoose your brush color and size below, then run the cell.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "gesture_painter.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_painter.html#paint",
+    "href": "labs/07/notebooks/gesture_painter.html#paint",
+    "title": "Gesture Painter",
+    "section": "Paint!",
+    "text": "Paint!\nSet your brush color and size, then run the cell. To change the brush mid-session: click Stop (■), adjust the controls, and run again.\nClick Stop when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nBRUSH_COLOR = \"#ff4500\" #@param [\"#ff4500\", \"#00bfff\", \"#00ff88\", \"#ffff00\", \"#ffffff\", \"#ff69b4\"]\nBRUSH_SIZE  = 6         #@param {type:\"slider\", min:2, max:20, step:1}\n\ncanvas   = graphics.canvas()\ncamera   = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\nctx      = canvas.get_context('2d')\n\nstrokes        = []\nlast_pos       = None\nclear_cooldown = 0\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n\n        if detections:\n            hand    = detections[0]\n            tip     = hand['landmarks'][cv.HAND.INDEX_FINGER_TIP]\n            gesture = hand['gesture']\n\n            if clear_cooldown &gt; 0:\n                clear_cooldown -= 1\n                last_pos = None\n            elif gesture == 'Pointing_Up':\n                if last_pos:\n                    strokes.append((last_pos[0], last_pos[1],\n                                    tip['x'], tip['y'], BRUSH_COLOR, BRUSH_SIZE))\n                last_pos = (tip['x'], tip['y'])\n            elif gesture == 'Closed_Fist':\n                strokes.clear()\n                ctx.clear_rect(0, 0, 9999, 9999)\n                last_pos       = None\n                clear_cooldown = 30\n            else:\n                last_pos = None\n        else:\n            last_pos = None\n\n        for x1, y1, x2, y2, col, sz in strokes:\n            ctx.stroke_style = col\n            ctx.line_width   = sz\n            ctx.begin_path()\n            ctx.move_to(x1, y1)\n            ctx.line_to(x2, y2)\n            ctx.stroke()\n\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nWhat did you create? What’s one thing you’d change or add to make this a more powerful drawing tool?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "gesture_painter.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/gesture_painter.html#ideas-to-extend-this-app",
+    "href": "labs/07/notebooks/gesture_painter.html#ideas-to-extend-this-app",
+    "title": "Gesture Painter",
+    "section": "Ideas to Extend This App",
+    "text": "Ideas to Extend This App\n\nColor switching — assign different colors to different gestures (e.g. Victory → blue, Thumb_Up → yellow)\nTwo-hand mode — use num_hands=2 so each hand paints independently\nStamps — detect Thumb_Up and paste an image at the fingertip position using graphics.draw_image()\nEraser — Open_Palm in eraser mode could draw a filled white circle to erase strokes\nUndo — keep track of how many strokes were added per gesture and remove the last group on a specific gesture",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "gesture_painter.ipynb"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html",
+    "href": "labs/07/notebooks/image_segmentation.html",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "",
+    "text": "In this notebook, you’ll explore image segmentation — the most detailed form of computer vision. Instead of drawing a box around something, segmentation labels every single pixel in the frame, letting us recolor hair, replace backgrounds, and change clothing colors in real time.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#learning-objectives",
+    "href": "labs/07/notebooks/image_segmentation.html#learning-objectives",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how image segmentation differs from object detection\nUse Python to segment body parts and apply color effects in a live webcam feed\nReplace a video background using a single line of code\nReflect on how segmentation is used in everyday apps and medical imaging",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#what-is-image-segmentation",
+    "href": "labs/07/notebooks/image_segmentation.html#what-is-image-segmentation",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "What Is Image Segmentation?",
+    "text": "What Is Image Segmentation?\nYou’ve seen how object detection draws bounding boxes — rectangles around objects. Segmentation goes much further: it assigns a class label to every pixel in the image.\nThis platform uses MediaPipe Selfie Multi-Class Segmenter, which classifies pixels into 6 categories:\n\n\n\nClass\nWhat it covers\n\n\n\n\nBACKGROUND\nEverything behind the person\n\n\nHAIR\nHair on the head\n\n\nBODY_SKIN\nExposed skin on arms and hands\n\n\nFACE_SKIN\nSkin on the face\n\n\nCLOTHES\nClothing worn by the person\n\n\nOTHERS\nAccessories, glasses, etc.\n\n\n\n\nReal-World Applications\n\nVideo calls (Zoom, Teams) use background segmentation to blur or replace your background\nPhoto apps let you change hair color or apply filters to just your face\nMedical imaging outlines tumors or organs with pixel-perfect accuracy for surgeons\nFilm production composites actors onto virtual sets without a green screen",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#step-1-explore-segment-classes",
+    "href": "labs/07/notebooks/image_segmentation.html#step-1-explore-segment-classes",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 1: Explore Segment Classes",
+    "text": "Step 1: Explore Segment Classes\nThe cell below starts your camera and segmenter, then prints the segment classes it can see in the frame once per second. Make sure your face, hair, and shoulders are visible.\nClick Allow for webcam access, then click Stop (■) when you’re ready to move on.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\nframe = 0\ntry:\n    while True:\n        if frame % 30 == 0:\n            segments = segmenter.get_segments()\n            print(\"Segments visible:\", segments)\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#step-2-recolor-your-hair",
+    "href": "labs/07/notebooks/image_segmentation.html#step-2-recolor-your-hair",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 2: Recolor Your Hair",
+    "text": "Step 2: Recolor Your Hair\nThe cv.color_segment() function fills a segment class with a solid color at a given opacity. The original video still shows through — the color is an overlay blended on top.\nRun the cell to color your hair pink in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, cv.SEGMENT.HAIR, \"#ff69b4\", opacity=0.7)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#step-3-replace-your-background",
+    "href": "labs/07/notebooks/image_segmentation.html#step-3-replace-your-background",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 3: Replace Your Background",
+    "text": "Step 3: Replace Your Background\nThe cv.apply_image_to_segment() function replaces a segment with an image file, clipped precisely to that segment’s shape.\nRun the cell to replace your background with a sample image in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, \"/sample_files/cat.png\", opacity=0.9)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
+    "href": "labs/07/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Step 4: Experiment — Color Any Segment",
+    "text": "Step 4: Experiment — Color Any Segment\nUse the controls below to choose which body part to recolor, what color to apply, and how strong the effect is. Set your values, run the cell, and see the result live.\nStop the cell, adjust the controls, and run again to try something different. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nSEGMENT = \"HAIR\"    #@param [\"HAIR\", \"BODY_SKIN\", \"FACE_SKIN\", \"CLOTHES\"]\nCOLOR   = \"#ff69b4\" #@param [\"#ff69b4\", \"#00bfff\", \"#00ff88\", \"#ff4500\", \"#ffffff\", \"#ffff00\"]\nOPACITY = 0.6       #@param {type:\"slider\", min:0.1, max:1.0, step:0.1}\n\nsegment_map = {\n    \"HAIR\":      cv.SEGMENT.HAIR,\n    \"BODY_SKIN\": cv.SEGMENT.BODY_SKIN,\n    \"FACE_SKIN\": cv.SEGMENT.FACE_SKIN,\n    \"CLOTHES\":   cv.SEGMENT.CLOTHES,\n}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, segment_map[SEGMENT], COLOR, opacity=OPACITY)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#reflect",
+    "href": "labs/07/notebooks/image_segmentation.html#reflect",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Reflect",
+    "text": "Reflect\nRecord your observations in the journal cells below.\nHow precise were the segment boundaries? Did you notice any areas where the model struggled — for example, at the edges of your hair or where your clothing meets your skin?\nVirtual background replacement is now built into most video call apps. What are the benefits? Are there any situations where this technology could be misused or misleading?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
+    ]
+  },
+  {
+    "objectID": "labs/07/notebooks/image_segmentation.html#check-for-understanding",
+    "href": "labs/07/notebooks/image_segmentation.html#check-for-understanding",
+    "title": "Image Segmentation with Computer Vision",
+    "section": "Check for Understanding",
+    "text": "Check for Understanding\n{ “question_type”: “multiple_choice”, “question”: “What makes image segmentation more detailed than object detection?”, “options”: [ { “key”: “a”, “text”: “Segmentation is faster to run” }, { “key”: “b”, “text”: “Segmentation labels every pixel, not just bounding boxes” }, { “key”: “c”, “text”: “Segmentation only works on people” }, { “key”: “d”, “text”: “Segmentation doesn’t use neural networks” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “Image segmentation draws bounding boxes around each detected person.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “Which segment class would you use to recolor someone’s hair?”, “options”: [ { “key”: “a”, “text”: “cv.SEGMENT.FACE_SKIN” }, { “key”: “b”, “text”: “cv.SEGMENT.BODY_SKIN” }, { “key”: “c”, “text”: “cv.SEGMENT.HAIR” }, { “key”: “d”, “text”: “cv.SEGMENT.OTHERS” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “You can only apply color to one segment class per frame.”, “answer”: “False”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Notebooks",
+      "Image Segmentation (image_segmentation.ipynb)"
     ]
   },
   {

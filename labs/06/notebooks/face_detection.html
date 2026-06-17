@@ -565,25 +565,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/06/notebooks/object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">object_detection.ipynb</span></a>
+ <span class="menu-text">Object Detection (object_detection.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/06/notebooks/pose_landmarks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">pose_landmarks.ipynb</span></a>
+ <span class="menu-text">Pose Estimation (pose_landmarks.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/06/notebooks/gesture_recognition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">gesture_recognition.ipynb</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../labs/06/notebooks/image_segmentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">image_segmentation.ipynb</span></a>
+  <a href="../../../labs/06/notebooks/pose_avatar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3D Pose Avatar (pose_avatar.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -616,6 +610,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../labs/07/notebooks/gesture_recognition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gesture Recognition (gesture_recognition.ipynb)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/07/notebooks/image_segmentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Segmentation (image_segmentation.ipynb)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tosh_qaychi_qogoz.ipynb</span></a>
   </div>
@@ -624,12 +630,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../../labs/07/notebooks/gesture_painter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gesture_painter.ipynb</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../labs/07/notebooks/pose_avatar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">pose_avatar.ipynb</span></a>
   </div>
 </li>
       </ul>
@@ -860,26 +860,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="cell-explore-data" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        canvas.draw_bounding_boxes(detections)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">240</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span><span class="bu">len</span>(detections)<span class="sc">}</span><span class="ss"> face(s) detected ---"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, face <span class="kw">in</span> <span class="bu">enumerate</span>(detections):</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  Face </span><span class="sc">{</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">: x=</span><span class="sc">{</span>face[<span class="st">'x'</span>]<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>face[<span class="st">'y'</span>]<span class="sc">}</span><span class="ss">  "</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                      <span class="ss">f"size=</span><span class="sc">{</span>face[<span class="st">'w'</span>]<span class="sc">}</span><span class="ss">x</span><span class="sc">{</span>face[<span class="st">'h'</span>]<span class="sc">}</span><span class="ss">  confidence=</span><span class="sc">{</span>face[<span class="st">'confidence'</span>]<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        canvas.draw_bounding_boxes(detections)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">240</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span><span class="bu">len</span>(detections)<span class="sc">}</span><span class="ss"> face(s) detected ---"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i, face <span class="kw">in</span> <span class="bu">enumerate</span>(detections):</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  Face </span><span class="sc">{</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">: x=</span><span class="sc">{</span>face[<span class="st">'x'</span>]<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>face[<span class="st">'y'</span>]<span class="sc">}</span><span class="ss">  "</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                      <span class="ss">f"size=</span><span class="sc">{</span>face[<span class="st">'w'</span>]<span class="sc">}</span><span class="ss">x</span><span class="sc">{</span>face[<span class="st">'h'</span>]<span class="sc">}</span><span class="ss">  confidence=</span><span class="sc">{</span>face[<span class="st">'confidence'</span>]<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.001</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="step-3-experiment-confidence-threshold" class="level2">
@@ -1345,8 +1347,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/06/notebooks/object_detection.html" class="pagination-link" aria-label="object_detection.ipynb">
-        <span class="nav-page-text">object_detection.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/06/notebooks/object_detection.html" class="pagination-link" aria-label="Object Detection (object_detection.ipynb)">
+        <span class="nav-page-text">Object Detection (object_detection.ipynb)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

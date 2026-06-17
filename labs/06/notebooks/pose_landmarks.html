@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/06/notebooks/gesture_recognition.html" rel="next">
+<link href="../../../labs/06/notebooks/pose_avatar.html" rel="next">
 <link href="../../../labs/06/notebooks/object_detection.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/pose_landmarks.html">pose_landmarks.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/pose_landmarks.html">Pose Estimation (pose_landmarks.ipynb)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -565,25 +565,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/06/notebooks/object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">object_detection.ipynb</span></a>
+ <span class="menu-text">Object Detection (object_detection.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/06/notebooks/pose_landmarks.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">pose_landmarks.ipynb</span></a>
+ <span class="menu-text">Pose Estimation (pose_landmarks.ipynb)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/06/notebooks/gesture_recognition.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">gesture_recognition.ipynb</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../labs/06/notebooks/image_segmentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">image_segmentation.ipynb</span></a>
+  <a href="../../../labs/06/notebooks/pose_avatar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3D Pose Avatar (pose_avatar.ipynb)</span></a>
   </div>
 </li>
       </ul>
@@ -616,6 +610,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../labs/07/notebooks/gesture_recognition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gesture Recognition (gesture_recognition.ipynb)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/07/notebooks/image_segmentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Segmentation (image_segmentation.ipynb)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../labs/07/notebooks/tosh_qaychi_qogoz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">tosh_qaychi_qogoz.ipynb</span></a>
   </div>
@@ -624,12 +630,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../../labs/07/notebooks/gesture_painter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gesture_painter.ipynb</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../labs/07/notebooks/pose_avatar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">pose_avatar.ipynb</span></a>
   </div>
 </li>
       </ul>
@@ -779,7 +779,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/pose_landmarks.html">pose_landmarks.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/pose_landmarks.html">Pose Estimation (pose_landmarks.ipynb)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Pose Landmarks with Computer Vision</h1>
 </div>
@@ -800,32 +800,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>In this notebook, you’ll use a neural network to detect the position of 33 body landmarks in real time. By tracking joints like shoulders, elbows, and wrists, we can understand <em>how</em> a person is moving — without knowing <em>who</em> they are.</p>
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/06/notebooks/pose_landmarks.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this notebook, you will be able to:</p>
-<ul>
-<li>Explain what pose estimation is and how it differs from face or object detection</li>
-<li>Use Python to detect and draw body landmarks from a live webcam feed</li>
-<li>Access individual landmark coordinates using named constants</li>
-<li>Write simple logic based on body position (e.g., detecting a raised arm)</li>
-<li>Reflect on the applications and privacy implications of pose tracking</li>
-</ul>
-</section>
 <section id="what-is-pose-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-pose-estimation">What Is Pose Estimation?</h2>
 <p><strong>Pose estimation</strong> detects the position of specific points on a person’s body — called <strong>landmarks</strong> or <strong>keypoints</strong>. The result is a skeleton-like overlay showing where joints are located in the image.</p>
 <p>This platform uses <strong>MediaPipe Pose</strong>, which tracks <strong>33 landmarks</strong> including: nose, eyes, ears, shoulders, elbows, wrists, hips, knees, and ankles.</p>
 <p>Each landmark has: - <code>x</code>, <code>y</code> — position on screen (pixels) - <code>z</code> — estimated depth (how far the point is from the camera) - <code>visibility</code> — how confident the model is that this point is visible (0.0 – 1.0)</p>
-<section id="real-world-applications" class="level3">
-<h3 class="anchored" data-anchor-id="real-world-applications">Real-World Applications</h3>
-<ul>
-<li><strong>Fitness apps</strong> analyze your exercise form and count reps automatically</li>
-<li><strong>Video games</strong> let you control characters with your body movements</li>
-<li><strong>Physical therapy</strong> tools track patient progress and flag unsafe movements</li>
-<li><strong>Animation</strong> studios use pose capture to bring characters to life</li>
-</ul>
-<p>Notice that none of these need to know <em>who</em> you are — just <em>how</em> you’re positioned.</p>
-</section>
 </section>
 <section id="step-1-live-pose-detection" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-live-pose-detection">Step 1: Live Pose Detection</h2>
@@ -941,7 +920,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="reflect">Reflect</h2>
 <p>Record your observations in the journal cells below.</p>
 <p>Imagine you could only see the skeleton data — no video, no face, no identity. What could you still figure out about the person? What couldn’t you tell?</p>
-<p>Fitness apps, games, and therapy tools all use pose estimation. Pick one application and describe how it would use landmark data. What are the benefits? Could there be any privacy concerns?</p>
 </section>
 <section id="check-for-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-for-understanding">Check for Understanding</h2>
@@ -1369,13 +1347,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/06/notebooks/object_detection.html" class="pagination-link" aria-label="object_detection.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">object_detection.ipynb</span>
+      <a href="../../../labs/06/notebooks/object_detection.html" class="pagination-link" aria-label="Object Detection (object_detection.ipynb)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Object Detection (object_detection.ipynb)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/06/notebooks/gesture_recognition.html" class="pagination-link" aria-label="gesture_recognition.ipynb">
-        <span class="nav-page-text">gesture_recognition.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/06/notebooks/pose_avatar.html" class="pagination-link" aria-label="3D Pose Avatar (pose_avatar.ipynb)">
+        <span class="nav-page-text">3D Pose Avatar (pose_avatar.ipynb)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
