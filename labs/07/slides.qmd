@@ -14,15 +14,79 @@ format:
 
 ---
 
+## Recap
+
+- Learned about neural networks and how they work
+- Used **Face Detection**, **Object Detection**, and **Pose Estimation** CV algorithms
+- Mapped Pose Landmarks to a 3D scene
+
+# Two More CV Algorithms
+
 ## Gesture Recognition
 
-- TBD
+- **Question**: "Where gesture am I making with my hands?"
+- Detects **key landmarks** on a hand — wrist, palm, fingers
+- Categorizes into one of 8 different gestures: closed fist, open palm, victory, etc.
+- Examples:
+  - Game or device control with hands
+  - Sign language detection
+  - Virtual art applications
+
+# Demo
+
+Gesture Recognition Notebook
+
+# Hands-On
+
+Gesture Recognition Notebook
+
+# Demo
+
+Gesture Painter Notebook
+
+# Hands-On
+
+Gesture Painter Notebook
+
+# Demo
+
+Tosh, Qaychi, Qog'oz Notebook
+
+# Hands-On
+
+Tosh, Qaychi, Qog'oz Notebook
+
+# Image Segmentation
 
 ## Image Segmentation
 
 - **Question**: "Which pixel belongs to which object?"
 - Goes beyond bounding boxes — labels **every single pixel**
 - Examples:
-  - Medical imaging — precisely outlining a tumor for surgeons
   - Photo apps removing backgrounds with one tap
+  - Virtual wardrobe or hair/make-up
   - Autonomous vehicles painting a full picture of the road scene
+
+# Demo
+
+Image Segmentation Notebook
+
+# Hands-On
+
+Image Segmentation Notebook
+
+# Create Your Own
+
+## Create Your Own
+
+- For the rest of today, create your own mini-app
+- Pick any of the 5 CV algorithms
+- Copy/paste the examples
+- Add more Python code to make it your own
+- Ask for help if you are stuck!
+
+## Tomorrow
+
+- Introduce Generative AI
+- Customize a chat bot of our own
+- Learn how chatbots can create music and 3D!
