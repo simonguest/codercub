@@ -89,9 +89,12 @@ website:
             - text: "Slides"
               href: labs/06/slides.qmd
               target: blank
+            - text: "Neural Network Demo"
+              href: labs/06/slides.html#/will-i-do-well-on-my-test
+              target: blank
             - section: "Notebooks"
               contents:
-                - text: "face_detection.ipynb"
+                - text: "Face Detection (face_detection.ipynb)"
                   href: labs/06/notebooks/face_detection.ipynb
                 - text: "object_detection.ipynb"
                   href: labs/06/notebooks/object_detection.ipynb

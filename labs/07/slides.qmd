@@ -1,6 +1,5 @@
 ---
-title: "Day 7"
-author: "Simon Guest"
+title: "Day 7: Computer Vision"
 format:
   revealjs:
     slide-number: true

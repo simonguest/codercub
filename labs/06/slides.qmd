@@ -1,6 +1,5 @@
 ---
-title: "Day 6"
-author: "Simon Guest"
+title: "Day 6: Computer Vision"
 format:
   revealjs:
     slide-number: true
@@ -25,21 +24,35 @@ format:
 - Each connection has a **weight** — how much does one neuron influence the next?
 - Stack enough layers and the network can learn almost anything
 
-## How Does a Network Learn?
-
-- Learning = finding the right weights through repetition
-- **Forward pass**: data flows through the network → produces a prediction
-- **Loss function**: measures how wrong the prediction was
-- **Backpropagation**: traces the error back and nudges each weight
-- Repeat thousands of times on labeled training data → accuracy improves
-
-## Neural Network Demo
+# Neural Network Demo
 
 ## Will I Do Well on My Test?
 
 ```{=html}
 <iframe src="../components/nn.html" allowtransparency="true" width="100%" height="600px" style="border:none; background:transparent;"></iframe>
 ```
+
+# Hands-On
+
+Try out the neural network yourself
+
+# Reflection
+
+Did the neural network produce the results you expected?
+
+# Computer Vision is Everywhere
+
+## Computer Vision is Everywhere
+
+![](images/autofocus.png){fig-align="center"}
+
+## Computer Vision is Everywhere
+
+![](images/self_driving_car.png){fig-align="center"}
+
+## Computer Vision is Everywhere
+
+![](images/xray.png){fig-align="center"}
 
 # How Do Computers See?
 
@@ -49,27 +62,42 @@ format:
 - Each pixel is a number from 0–255 (or 3 numbers for color: R, G, B)
 - A 640×480 photo = nearly **1 million numbers**
 - The challenge: how do we find meaning in all those numbers?
-- Answer: **Convolutional Neural Networks (CNNs)**
-  - Specialized networks designed to process grid-like data
 
-## A Brief History of Computer Vision
+## How Do Computers See?
 
-- **1989**: LeCun trains first CNN to read handwritten digits
-- **2012**: AlexNet wins the ImageNet challenge by a huge margin
-  - Error rate dropped from ~26% → ~15% overnight
-  - Kicked off the modern deep learning era
-- **2015**: Real-time object detection becomes practical (YOLO)
-- **2017–present**: CV is everywhere — phones, cars, hospitals, social media
+- Answer: A special type of neural network called a **Convolutional Neural Network** or a **CNN**
+  - Takes in an image
+  - Detects edges, corners, and other shapes
+  - Returns results on what it sees and where
 
-## Image Classification
+## How Do Computers See?
 
-- **Question**: "What is in this image?"
-- The model assigns a **single label** to the entire photo
-- Examples:
-  - Is this a cat or a dog?
-  - What disease does this X-ray suggest?
-  - Which product is this on the shelf?
-- The first major CV task conquered by deep learning
+- Many types of computer vision algorithms:
+  - **Face Detection** (is there a face in the picture?)
+  - **Object Detection** (what is in this image and where?)
+  - **Pose Estimation** (where are the body parts?)
+  - **Gesture Recognition** (what hand gesture is this?)
+  - **Image Segmentation **(what pixel belongs to what object?)
+
+## Face Detection
+
+- **Question**: "Is there a face in this image, and *where* is it?"
+- Detects **faces** and draws bounding boxes around each one
+- Not facial recognition!
+- Used in:
+  - Camera autofocus algorithms
+  - Security cameras detecting people in the scene
+  - Counting people attending an event
+
+# Demo
+
+Face Detection Notebook
+
+# Hands-On
+
+Face Detection Notebook
+
+***
 
 ## Object Detection
 
@@ -89,6 +117,10 @@ format:
   - Video games that respond to your movement (no controller needed)
   - Physical therapy tools tracking patient recovery
 - We'll use MediaPipe for this in our notebooks
+
+## Gesture Recognition
+
+- TBD
 
 ## Image Segmentation
 
