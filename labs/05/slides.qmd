@@ -1,6 +1,5 @@
 ---
-title: "Day 5"
-author: "Simon Guest"
+title: "Day 5: AI in the Physical World"
 format:
   revealjs:
     slide-number: true
@@ -17,26 +16,37 @@ format:
 
 ## Recap
 
-- TBD - cover everything that we did yesterday
+- Used the micro:bit and Create AI
+- Trained and tested a series of actions
+- Learned about the importance of diverse data
 
-## Plan for Today
+## Our Plan
 
-- Take our trained models from yesterday and make a mini app from it!
+![](images/step_code.png){fig-align="center"}
 
-## Steps
+## Our Plan
 
-- Get back into your same pairs
-- Use the same laptop as you did yesterday and go to [createai.microbit.org](https://createai.microbit.org)
-- You'll have to connect again. Remember to use the micro:bit radio option.
+![](images/step_use.png){fig-align="center"}
+
+## Our Plan
+
+- Work with the same person as yesterday
+- Pick up a wearable micro:bit and a radio micro:bit
+- Use the same laptop as you did yesterday
+  - (Your actions will saved on this machine)
+- Go to [https://createai.microbit.org](https://createai.microbit.org)
+- Wait for instructions!
+
+# Demo
+
+Connect, Test Actions, and Edit in MakeCode
+
+<!-- - You'll have to connect again. Remember to use the micro:bit radio option.
 - And the first micro:bit to connect is the wearable
 - After connecting, a quick test to make sure that the actions are still being recognized
-- (Pause for the class to catchup)
+- (Pause for the class to catchup) -->
 
-## Steps
-
-- Click "Edit in MakeCode"
-- In MakeCode, switch to JavaScript and then drop-down button for Python
-- You'll have something like the following:
+## On Start Functions
 
 ```
 def on_on_start():
@@ -50,9 +60,7 @@ ml.on_start(ml.event.writing, on_on_start2)
 # ...and so on for other actions
 ```
 
-- This is all running in a simulator as you code
-- Try selecting the ML event on the left. Does the icon change?
-- Try adding some additional code:
+## On Start Functions
 
 ```
 def on_on_start2():
@@ -61,28 +69,38 @@ def on_on_start2():
 ml.on_start(ml.event.writing, on_on_start2)
 ```
 
-## Steps
+# Hands-on
 
-- When you want to test it on your micro:bit...
+Connect, Test Actions, and Edit in MakeCode
+
+# Demo
+
+Downloading to your micro:bit
+
+<!-- - When you want to test it on your micro:bit...
 - Click on the download button
 - Follow the prompts to disconnect the radio micro:bit
 - Plug in the wearable micro:bit. You can keep the battery connected.
 - Wait for the model to download
 - Disconnect the wearable from the USB
-- Test your code!
+- Test your code! -->
 
-## Project Time
+# Hands-on
 
-- Next hour will be free-form project!
-- Ideas of what you can create:
-  - Exercise app - count the number of arm raises
-    - Display on the LED when you press a button
-  - Light clapper - clap to switch on / off the LEDs or play a sound
-  - Safe driving app - detect between holding the steering wheel and texting on your phone
-  - (Advanced) Create a 2nd project in Makecode and develop a radio app 
-    - Movements from the wearable get displayed on the laptop
-  
-## Reflect and Share
+Downloading to your micro:bit
 
-- What did you build?
-- How did you find the experience?
+# Project Time!
+
+## What Will You Create?
+
+- Fitness tracker
+  - Count the number of arm raises and display on the LED
+- Clapper
+  - Clap to switch on / off the LEDs or play a sound
+- Safe driving app
+  - Detect between holding the steering wheel and texting
+- Or your own idea!
+
+# Reflect and Share
+
+What did you build? How does it work?
