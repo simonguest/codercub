@@ -1946,9 +1946,9 @@
   {
     "objectID": "labs/05/slides.html#recap",
     "href": "labs/05/slides.html#recap",
-    "title": "Day 5",
+    "title": "Day 5: AI in the Physical World",
     "section": "Recap",
-    "text": "Recap\n\nTBD - cover everything that we did yesterday",
+    "text": "Recap\n\nUsed the micro:bit and Create AI\nTrained and tested a series of actions\nLearned about the importance of diverse data",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -1956,11 +1956,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#plan-for-today",
-    "href": "labs/05/slides.html#plan-for-today",
-    "title": "Day 5",
-    "section": "Plan for Today",
-    "text": "Plan for Today\n\nTake our trained models from yesterday and make a mini app from it!",
+    "objectID": "labs/05/slides.html#our-plan",
+    "href": "labs/05/slides.html#our-plan",
+    "title": "Day 5: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -1968,11 +1968,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#steps",
-    "href": "labs/05/slides.html#steps",
-    "title": "Day 5",
-    "section": "Steps",
-    "text": "Steps\n\nGet back into your same pairs\nUse the same laptop as you did yesterday and go to createai.microbit.org\nYou’ll have to connect again. Remember to use the micro:bit radio option.\nAnd the first micro:bit to connect is the wearable\nAfter connecting, a quick test to make sure that the actions are still being recognized\n(Pause for the class to catchup)",
+    "objectID": "labs/05/slides.html#our-plan-1",
+    "href": "labs/05/slides.html#our-plan-1",
+    "title": "Day 5: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -1980,11 +1980,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#steps-1",
-    "href": "labs/05/slides.html#steps-1",
-    "title": "Day 5",
-    "section": "Steps",
-    "text": "Steps\n\nClick “Edit in MakeCode”\nIn MakeCode, switch to JavaScript and then drop-down button for Python\nYou’ll have something like the following:\n\ndef on_on_start():\n    basic.show_icon(IconNames.HOUSE)\nml.on_start(ml.event.waving, on_on_start)\n\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\nml.on_start(ml.event.writing, on_on_start2)\n\n# ...and so on for other actions\n\nThis is all running in a simulator as you code\nTry selecting the ML event on the left. Does the icon change?\nTry adding some additional code:\n\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\n    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)\nml.on_start(ml.event.writing, on_on_start2)",
+    "objectID": "labs/05/slides.html#our-plan-2",
+    "href": "labs/05/slides.html#our-plan-2",
+    "title": "Day 5: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan\n\nWork with the same person as yesterday\nPick up a wearable micro:bit and a radio micro:bit\nUse the same laptop as you did yesterday\n\n(Your actions will saved on this machine)\n\nGo to https://createai.microbit.org\nWait for instructions!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -1992,11 +1992,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#steps-2",
-    "href": "labs/05/slides.html#steps-2",
-    "title": "Day 5",
-    "section": "Steps",
-    "text": "Steps\n\nWhen you want to test it on your micro:bit…\nClick on the download button\nFollow the prompts to disconnect the radio micro:bit\nPlug in the wearable micro:bit. You can keep the battery connected.\nWait for the model to download\nDisconnect the wearable from the USB\nTest your code!",
+    "objectID": "labs/05/slides.html#on-start-functions",
+    "href": "labs/05/slides.html#on-start-functions",
+    "title": "Day 5: AI in the Physical World",
+    "section": "On Start Functions",
+    "text": "On Start Functions\ndef on_on_start():\n    basic.show_icon(IconNames.HOUSE)\nml.on_start(ml.event.waving, on_on_start)\n\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\nml.on_start(ml.event.writing, on_on_start2)\n\n# ...and so on for other actions",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -2004,11 +2004,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#project-time",
-    "href": "labs/05/slides.html#project-time",
-    "title": "Day 5",
-    "section": "Project Time",
-    "text": "Project Time\n\nNext hour will be free-form project!\nIdeas of what you can create:\n\nExercise app - count the number of arm raises\n\nDisplay on the LED when you press a button\n\nLight clapper - clap to switch on / off the LEDs or play a sound\nSafe driving app - detect between holding the steering wheel and texting on your phone\n(Advanced) Create a 2nd project in Makecode and develop a radio app\n\nMovements from the wearable get displayed on the laptop",
+    "objectID": "labs/05/slides.html#on-start-functions-1",
+    "href": "labs/05/slides.html#on-start-functions-1",
+    "title": "Day 5: AI in the Physical World",
+    "section": "On Start Functions",
+    "text": "On Start Functions\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\n    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)\nml.on_start(ml.event.writing, on_on_start2)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -2016,11 +2016,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#reflect-and-share",
-    "href": "labs/05/slides.html#reflect-and-share",
-    "title": "Day 5",
-    "section": "Reflect and Share",
-    "text": "Reflect and Share\n\nWhat did you build?\nHow did you find the experience?",
+    "objectID": "labs/05/slides.html#what-will-you-create",
+    "href": "labs/05/slides.html#what-will-you-create",
+    "title": "Day 5: AI in the Physical World",
+    "section": "What Will You Create?",
+    "text": "What Will You Create?\n\nFitness tracker\n\nCount the number of arm raises and display on the LED\n\nClapper\n\nClap to switch on / off the LEDs or play a sound\n\nSafe driving app\n\nDetect between holding the steering wheel and texting\n\nOr your own idea!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
