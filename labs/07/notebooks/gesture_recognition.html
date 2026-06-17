@@ -800,16 +800,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>In this notebook, you’ll use a neural network to recognize hand gestures in real time. The model tracks <strong>21 landmarks</strong> per hand and classifies the shape into one of <strong>8 named gestures</strong> — all without any special hardware.</p>
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/07/notebooks/gesture_recognition.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this notebook, you will be able to:</p>
-<ul>
-<li>Explain how gesture recognition builds on hand landmark detection</li>
-<li>Use Python to detect hand gestures and read landmark positions</li>
-<li>Distinguish between left and right hands using the <code>handedness</code> field</li>
-<li>Reflect on real-world applications of gesture-based interfaces</li>
-</ul>
-</section>
 <section id="what-is-gesture-recognition" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-gesture-recognition">What Is Gesture Recognition?</h2>
 <p><strong>Gesture recognition</strong> combines two ideas:</p>
@@ -860,15 +850,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<section id="real-world-applications" class="level3">
-<h3 class="anchored" data-anchor-id="real-world-applications">Real-World Applications</h3>
-<ul>
-<li><strong>Accessibility tools</strong> let people control devices without touching a keyboard or mouse</li>
-<li><strong>Presentation software</strong> advances slides with a swipe gesture</li>
-<li><strong>Smart home systems</strong> turn lights on or off based on a hand signal</li>
-<li><strong>Sign language translation</strong> tools interpret hand shapes as words</li>
-</ul>
-</section>
 </section>
 <section id="step-1-live-gesture-detection" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-live-gesture-detection">Step 1: Live Gesture Detection</h2>
@@ -969,10 +950,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="reflect" class="level2">
-<h2 class="anchored" data-anchor-id="reflect">Reflect</h2>
-<p>Record your observations in the journal cells below.</p>
 <p>Which gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?</p>
 <p>Gesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems.</p>
 </section>

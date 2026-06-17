@@ -798,7 +798,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Paint on a canvas using only your hand — no mouse, no stylus, no touching anything. Your index fingertip becomes a brush, tracked in real time by the gesture detector.</p>
+<p>Paint on a canvas using only your hand. No mouse, no stylus, no touching anything! Your index fingertip becomes a brush, tracked in real time by the gesture detector.</p>
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/07/notebooks/gesture_painter.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
 <section id="gesture-controls" class="level2">
 <h2 class="anchored" data-anchor-id="gesture-controls">Gesture Controls</h2>
@@ -830,7 +830,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <section id="how-it-works" class="level3">
 <h3 class="anchored" data-anchor-id="how-it-works">How It Works</h3>
-<p>Each frame, the app reads the position of your <strong>index fingertip</strong> (<code>cv.HAND.INDEX_FINGER_TIP</code>). When the gesture is <code>Pointing_Up</code>, it draws a line from the previous fingertip position to the current one. All line segments are stored in a list and redrawn every frame on top of the live camera feed — so your painting persists as the video updates underneath.</p>
+<p>Each frame, the app reads the position of your <strong>index fingertip</strong> (<code>cv.HAND.INDEX_FINGER_TIP</code>). When the gesture is <code>Pointing_Up</code>, it draws a line from the previous fingertip position to the current one.</p>
+<p>All line segments are stored in a list and redrawn every frame on top of the live camera feed, so your painting persists as the video updates underneath.</p>
 <p>Choose your brush color and size below, then run the cell.</p>
 </section>
 </section>

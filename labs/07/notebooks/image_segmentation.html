@@ -800,16 +800,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>In this notebook, you’ll explore <strong>image segmentation</strong> — the most detailed form of computer vision. Instead of drawing a box around something, segmentation labels <strong>every single pixel</strong> in the frame, letting us recolor hair, replace backgrounds, and change clothing colors in real time.</p>
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/07/notebooks/image_segmentation.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<section id="learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>By the end of this notebook, you will be able to:</p>
-<ul>
-<li>Explain how image segmentation differs from object detection</li>
-<li>Use Python to segment body parts and apply color effects in a live webcam feed</li>
-<li>Replace a video background using a single line of code</li>
-<li>Reflect on how segmentation is used in everyday apps and medical imaging</li>
-</ul>
-</section>
 <section id="what-is-image-segmentation" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-image-segmentation">What Is Image Segmentation?</h2>
 <p>You’ve seen how object detection draws <strong>bounding boxes</strong> — rectangles around objects. Segmentation goes much further: it assigns a <strong>class label to every pixel</strong> in the image.</p>
@@ -848,15 +838,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<section id="real-world-applications" class="level3">
-<h3 class="anchored" data-anchor-id="real-world-applications">Real-World Applications</h3>
-<ul>
-<li><strong>Video calls</strong> (Zoom, Teams) use background segmentation to blur or replace your background</li>
-<li><strong>Photo apps</strong> let you change hair color or apply filters to just your face</li>
-<li><strong>Medical imaging</strong> outlines tumors or organs with pixel-perfect accuracy for surgeons</li>
-<li><strong>Film production</strong> composites actors onto virtual sets without a green screen</li>
-</ul>
-</section>
 </section>
 <section id="step-1-explore-segment-classes" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-explore-segment-classes">Step 1: Explore Segment Classes</h2>
@@ -923,7 +904,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, <span class="st">"/sample_files/cat.png"</span>, opacity<span class="op">=</span><span class="fl">0.9</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, <span class="st">"/sample_files/cat.jpg"</span>, opacity<span class="op">=</span><span class="fl">0.9</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    segmenter.stop()</span>
@@ -964,10 +945,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="reflect" class="level2">
-<h2 class="anchored" data-anchor-id="reflect">Reflect</h2>
-<p>Record your observations in the journal cells below.</p>
 <p>How precise were the segment boundaries? Did you notice any areas where the model struggled — for example, at the edges of your hair or where your clothing meets your skin?</p>
 <p>Virtual background replacement is now built into most video call apps. What are the benefits? Are there any situations where this technology could be misused or misleading?</p>
 </section>

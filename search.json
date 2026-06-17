@@ -221,24 +221,11 @@
     ]
   },
   {
-    "objectID": "labs/07/notebooks/gesture_recognition.html#learning-objectives",
-    "href": "labs/07/notebooks/gesture_recognition.html#learning-objectives",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how gesture recognition builds on hand landmark detection\nUse Python to detect hand gestures and read landmark positions\nDistinguish between left and right hands using the handedness field\nReflect on real-world applications of gesture-based interfaces",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 7",
-      "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
-    ]
-  },
-  {
     "objectID": "labs/07/notebooks/gesture_recognition.html#what-is-gesture-recognition",
     "href": "labs/07/notebooks/gesture_recognition.html#what-is-gesture-recognition",
     "title": "Gesture Recognition with Computer Vision",
     "section": "What Is Gesture Recognition?",
-    "text": "What Is Gesture Recognition?\nGesture recognition combines two ideas:\n\nHand landmark detection — locating 21 key points on each hand (fingertips, joints, wrist)\nGesture classification — analyzing the shape of those landmarks to name the gesture\n\nThis platform uses MediaPipe Gesture Recognizer, which can identify these 8 gestures:\n\n\n\nGesture\nDescription\n\n\n\n\nNone\nNo recognized gesture\n\n\nClosed_Fist\nAll fingers curled in\n\n\nOpen_Palm\nAll fingers extended, palm facing forward\n\n\nPointing_Up\nIndex finger extended upward\n\n\nThumb_Down\nThumbs down\n\n\nThumb_Up\nThumbs up\n\n\nVictory\nIndex and middle fingers extended (V sign)\n\n\nILoveYou\nASL “I love you” sign\n\n\n\n\nReal-World Applications\n\nAccessibility tools let people control devices without touching a keyboard or mouse\nPresentation software advances slides with a swipe gesture\nSmart home systems turn lights on or off based on a hand signal\nSign language translation tools interpret hand shapes as words",
+    "text": "What Is Gesture Recognition?\nGesture recognition combines two ideas:\n\nHand landmark detection — locating 21 key points on each hand (fingertips, joints, wrist)\nGesture classification — analyzing the shape of those landmarks to name the gesture\n\nThis platform uses MediaPipe Gesture Recognizer, which can identify these 8 gestures:\n\n\n\nGesture\nDescription\n\n\n\n\nNone\nNo recognized gesture\n\n\nClosed_Fist\nAll fingers curled in\n\n\nOpen_Palm\nAll fingers extended, palm facing forward\n\n\nPointing_Up\nIndex finger extended upward\n\n\nThumb_Down\nThumbs down\n\n\nThumb_Up\nThumbs up\n\n\nVictory\nIndex and middle fingers extended (V sign)\n\n\nILoveYou\nASL “I love you” sign",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -277,20 +264,7 @@
     "href": "labs/07/notebooks/gesture_recognition.html#step-3-experiment-gesture-challenge",
     "title": "Gesture Recognition with Computer Vision",
     "section": "Step 3: Experiment — Gesture Challenge",
-    "text": "Step 3: Experiment — Gesture Challenge\nUse the dropdown to choose a target gesture, then run the cell and try to make that gesture. The output will tell you what gesture it’s currently seeing and whether it matches your target.\nCan you hit MATCH! on every gesture in the list? Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nTARGET_GESTURE = \"Thumb_Up\" #@param [\"None\", \"Closed_Fist\", \"Open_Palm\", \"Pointing_Up\", \"Thumb_Down\", \"Thumb_Up\", \"Victory\", \"ILoveYou\"]\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            if detections:\n                for hand in detections:\n                    matched = hand['gesture'] == TARGET_GESTURE\n                    result  = \"MATCH!\" if matched else \"not yet...\"\n                    print(f\"{hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%}) — {result}\")\n            else:\n                print(\"No hands detected — hold your hand up to the camera.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 7",
-      "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
-    ]
-  },
-  {
-    "objectID": "labs/07/notebooks/gesture_recognition.html#reflect",
-    "href": "labs/07/notebooks/gesture_recognition.html#reflect",
-    "title": "Gesture Recognition with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nRecord your observations in the journal cells below.\nWhich gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?\nGesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems.",
+    "text": "Step 3: Experiment — Gesture Challenge\nUse the dropdown to choose a target gesture, then run the cell and try to make that gesture. The output will tell you what gesture it’s currently seeing and whether it matches your target.\nCan you hit MATCH! on every gesture in the list? Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nTARGET_GESTURE = \"Thumb_Up\" #@param [\"None\", \"Closed_Fist\", \"Open_Palm\", \"Pointing_Up\", \"Thumb_Down\", \"Thumb_Up\", \"Victory\", \"ILoveYou\"]\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            if detections:\n                for hand in detections:\n                    matched = hand['gesture'] == TARGET_GESTURE\n                    result  = \"MATCH!\" if matched else \"not yet...\"\n                    print(f\"{hand['handedness']} hand: {hand['gesture']} ({hand['confidence']:.1%}) — {result}\")\n            else:\n                print(\"No hands detected — hold your hand up to the camera.\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nWhich gestures were easiest to get a high confidence score on? Which were hardest? Why do you think some gestures are more reliably detected than others?\nGesture recognition could let people control computers, TVs, or lights without touching anything. Describe one application where this would be especially helpful — and one situation where it might cause unintended problems.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -1945,11 +1919,11 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#gesture-recognition",
-    "href": "labs/07/slides.html#gesture-recognition",
+    "objectID": "labs/07/slides.html#recap",
+    "href": "labs/07/slides.html#recap",
     "title": "Day 7: Computer Vision",
-    "section": "Gesture Recognition",
-    "text": "Gesture Recognition\n\nTBD",
+    "section": "Recap",
+    "text": "Recap\n\nLearned about neural networks and how they work\nUsed Face Detection, Object Detection, and Pose Estimation CV algorithms\nMapped Pose Landmarks to a 3D scene",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -1957,11 +1931,47 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#image-segmentation",
-    "href": "labs/07/slides.html#image-segmentation",
+    "objectID": "labs/07/slides.html#gesture-recognition",
+    "href": "labs/07/slides.html#gesture-recognition",
+    "title": "Day 7: Computer Vision",
+    "section": "Gesture Recognition",
+    "text": "Gesture Recognition\n\nQuestion: “Where gesture am I making with my hands?”\nDetects key landmarks on a hand — wrist, palm, fingers\nCategorizes into one of 8 different gestures: closed fist, open palm, victory, etc.\nExamples:\n\nGame or device control with hands\nSign language detection\nVirtual art applications",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#image-segmentation-1",
+    "href": "labs/07/slides.html#image-segmentation-1",
     "title": "Day 7: Computer Vision",
     "section": "Image Segmentation",
-    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nMedical imaging — precisely outlining a tumor for surgeons\nPhoto apps removing backgrounds with one tap\nAutonomous vehicles painting a full picture of the road scene",
+    "text": "Image Segmentation\n\nQuestion: “Which pixel belongs to which object?”\nGoes beyond bounding boxes — labels every single pixel\nExamples:\n\nPhoto apps removing backgrounds with one tap\nVirtual wardrobe or hair/make-up\nAutonomous vehicles painting a full picture of the road scene",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#create-your-own-1",
+    "href": "labs/07/slides.html#create-your-own-1",
+    "title": "Day 7: Computer Vision",
+    "section": "Create Your Own",
+    "text": "Create Your Own\n\nFor the rest of today, create your own mini-app\nPick any of the 5 CV algorithms\nCopy/paste the examples\nAdd more Python code to make it your own\nAsk for help if you are stuck!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#tomorrow",
+    "href": "labs/07/slides.html#tomorrow",
+    "title": "Day 7: Computer Vision",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nIntroduce Generative AI\nCustomize a chat bot of our own\nLearn how chatbots can create music and 3D!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -4904,7 +4914,7 @@
     "href": "labs/07/notebooks/gesture_painter.html",
     "title": "Gesture Painter",
     "section": "",
-    "text": "Paint on a canvas using only your hand — no mouse, no stylus, no touching anything. Your index fingertip becomes a brush, tracked in real time by the gesture detector.",
+    "text": "Paint on a canvas using only your hand. No mouse, no stylus, no touching anything! Your index fingertip becomes a brush, tracked in real time by the gesture detector.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -4917,7 +4927,7 @@
     "href": "labs/07/notebooks/gesture_painter.html#gesture-controls",
     "title": "Gesture Painter",
     "section": "Gesture Controls",
-    "text": "Gesture Controls\n\n\n\n\n\n\n\nGesture\nAction\n\n\n\n\nPointing Up (index finger extended)\nDraw — your fingertip leaves a trail\n\n\nOpen Palm\nLift pen — move without drawing\n\n\nClosed Fist\nClear — wipes the canvas clean\n\n\n\n\nHow It Works\nEach frame, the app reads the position of your index fingertip (cv.HAND.INDEX_FINGER_TIP). When the gesture is Pointing_Up, it draws a line from the previous fingertip position to the current one. All line segments are stored in a list and redrawn every frame on top of the live camera feed — so your painting persists as the video updates underneath.\nChoose your brush color and size below, then run the cell.",
+    "text": "Gesture Controls\n\n\n\n\n\n\n\nGesture\nAction\n\n\n\n\nPointing Up (index finger extended)\nDraw — your fingertip leaves a trail\n\n\nOpen Palm\nLift pen — move without drawing\n\n\nClosed Fist\nClear — wipes the canvas clean\n\n\n\n\nHow It Works\nEach frame, the app reads the position of your index fingertip (cv.HAND.INDEX_FINGER_TIP). When the gesture is Pointing_Up, it draws a line from the previous fingertip position to the current one.\nAll line segments are stored in a list and redrawn every frame on top of the live camera feed, so your painting persists as the video updates underneath.\nChoose your brush color and size below, then run the cell.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -4965,24 +4975,11 @@
     ]
   },
   {
-    "objectID": "labs/07/notebooks/image_segmentation.html#learning-objectives",
-    "href": "labs/07/notebooks/image_segmentation.html#learning-objectives",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Learning Objectives",
-    "text": "Learning Objectives\nBy the end of this notebook, you will be able to:\n\nExplain how image segmentation differs from object detection\nUse Python to segment body parts and apply color effects in a live webcam feed\nReplace a video background using a single line of code\nReflect on how segmentation is used in everyday apps and medical imaging",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 7",
-      "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
-    ]
-  },
-  {
     "objectID": "labs/07/notebooks/image_segmentation.html#what-is-image-segmentation",
     "href": "labs/07/notebooks/image_segmentation.html#what-is-image-segmentation",
     "title": "Image Segmentation with Computer Vision",
     "section": "What Is Image Segmentation?",
-    "text": "What Is Image Segmentation?\nYou’ve seen how object detection draws bounding boxes — rectangles around objects. Segmentation goes much further: it assigns a class label to every pixel in the image.\nThis platform uses MediaPipe Selfie Multi-Class Segmenter, which classifies pixels into 6 categories:\n\n\n\nClass\nWhat it covers\n\n\n\n\nBACKGROUND\nEverything behind the person\n\n\nHAIR\nHair on the head\n\n\nBODY_SKIN\nExposed skin on arms and hands\n\n\nFACE_SKIN\nSkin on the face\n\n\nCLOTHES\nClothing worn by the person\n\n\nOTHERS\nAccessories, glasses, etc.\n\n\n\n\nReal-World Applications\n\nVideo calls (Zoom, Teams) use background segmentation to blur or replace your background\nPhoto apps let you change hair color or apply filters to just your face\nMedical imaging outlines tumors or organs with pixel-perfect accuracy for surgeons\nFilm production composites actors onto virtual sets without a green screen",
+    "text": "What Is Image Segmentation?\nYou’ve seen how object detection draws bounding boxes — rectangles around objects. Segmentation goes much further: it assigns a class label to every pixel in the image.\nThis platform uses MediaPipe Selfie Multi-Class Segmenter, which classifies pixels into 6 categories:\n\n\n\nClass\nWhat it covers\n\n\n\n\nBACKGROUND\nEverything behind the person\n\n\nHAIR\nHair on the head\n\n\nBODY_SKIN\nExposed skin on arms and hands\n\n\nFACE_SKIN\nSkin on the face\n\n\nCLOTHES\nClothing worn by the person\n\n\nOTHERS\nAccessories, glasses, etc.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -5021,7 +5018,7 @@
     "href": "labs/07/notebooks/image_segmentation.html#step-3-replace-your-background",
     "title": "Image Segmentation with Computer Vision",
     "section": "Step 3: Replace Your Background",
-    "text": "Step 3: Replace Your Background\nThe cv.apply_image_to_segment() function replaces a segment with an image file, clipped precisely to that segment’s shape.\nRun the cell to replace your background with a sample image in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, \"/sample_files/cat.png\", opacity=0.9)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
+    "text": "Step 3: Replace Your Background\nThe cv.apply_image_to_segment() function replaces a segment with an image file, clipped precisely to that segment’s shape.\nRun the cell to replace your background with a sample image in real time. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.apply_image_to_segment(canvas, segmenter, cv.SEGMENT.BACKGROUND, \"/sample_files/cat.jpg\", opacity=0.9)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -5034,20 +5031,7 @@
     "href": "labs/07/notebooks/image_segmentation.html#step-4-experiment-color-any-segment",
     "title": "Image Segmentation with Computer Vision",
     "section": "Step 4: Experiment — Color Any Segment",
-    "text": "Step 4: Experiment — Color Any Segment\nUse the controls below to choose which body part to recolor, what color to apply, and how strong the effect is. Set your values, run the cell, and see the result live.\nStop the cell, adjust the controls, and run again to try something different. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nSEGMENT = \"HAIR\"    #@param [\"HAIR\", \"BODY_SKIN\", \"FACE_SKIN\", \"CLOTHES\"]\nCOLOR   = \"#ff69b4\" #@param [\"#ff69b4\", \"#00bfff\", \"#00ff88\", \"#ff4500\", \"#ffffff\", \"#ffff00\"]\nOPACITY = 0.6       #@param {type:\"slider\", min:0.1, max:1.0, step:0.1}\n\nsegment_map = {\n    \"HAIR\":      cv.SEGMENT.HAIR,\n    \"BODY_SKIN\": cv.SEGMENT.BODY_SKIN,\n    \"FACE_SKIN\": cv.SEGMENT.FACE_SKIN,\n    \"CLOTHES\":   cv.SEGMENT.CLOTHES,\n}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, segment_map[SEGMENT], COLOR, opacity=OPACITY)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 7",
-      "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
-    ]
-  },
-  {
-    "objectID": "labs/07/notebooks/image_segmentation.html#reflect",
-    "href": "labs/07/notebooks/image_segmentation.html#reflect",
-    "title": "Image Segmentation with Computer Vision",
-    "section": "Reflect",
-    "text": "Reflect\nRecord your observations in the journal cells below.\nHow precise were the segment boundaries? Did you notice any areas where the model struggled — for example, at the edges of your hair or where your clothing meets your skin?\nVirtual background replacement is now built into most video call apps. What are the benefits? Are there any situations where this technology could be misused or misleading?",
+    "text": "Step 4: Experiment — Color Any Segment\nUse the controls below to choose which body part to recolor, what color to apply, and how strong the effect is. Set your values, run the cell, and see the result live.\nStop the cell, adjust the controls, and run again to try something different. Click Stop (■) when you’re done.\n\nimport cv\nimport graphics\nimport time\n\nSEGMENT = \"HAIR\"    #@param [\"HAIR\", \"BODY_SKIN\", \"FACE_SKIN\", \"CLOTHES\"]\nCOLOR   = \"#ff69b4\" #@param [\"#ff69b4\", \"#00bfff\", \"#00ff88\", \"#ff4500\", \"#ffffff\", \"#ffff00\"]\nOPACITY = 0.6       #@param {type:\"slider\", min:0.1, max:1.0, step:0.1}\n\nsegment_map = {\n    \"HAIR\":      cv.SEGMENT.HAIR,\n    \"BODY_SKIN\": cv.SEGMENT.BODY_SKIN,\n    \"FACE_SKIN\": cv.SEGMENT.FACE_SKIN,\n    \"CLOTHES\":   cv.SEGMENT.CLOTHES,\n}\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\nsegmenter = cv.start_segmenter(camera)\n\ntry:\n    while True:\n        cv.color_segment(canvas, segmenter, segment_map[SEGMENT], COLOR, opacity=OPACITY)\n        time.sleep(0.033)\nfinally:\n    segmenter.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nHow precise were the segment boundaries? Did you notice any areas where the model struggled — for example, at the edges of your hair or where your clothing meets your skin?\nVirtual background replacement is now built into most video call apps. What are the benefits? Are there any situations where this technology could be misused or misleading?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
