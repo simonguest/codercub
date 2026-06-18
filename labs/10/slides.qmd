@@ -1,6 +1,5 @@
 ---
-title: "Day 10"
-author: "Simon Guest"
+title: "Day 10: Final Project"
 format:
   revealjs:
     slide-number: true
@@ -15,8 +14,30 @@ format:
 
 ---
 
-## TBD
+## We've Covered A Lot!
 
-```python
-print("Hello world")
-```
+- Working with data in Python using Pandas and Matplotlib
+- Supervised ML using scikit-learn to create a regression model
+- Trained models for physical hardware using the micro:bits
+- Neural Networks and how computer vision works
+- Generative models for creating text, structure, and images
+
+# Wow, Great Job!
+
+# What Will You Build?
+
+## What Will You Build?
+
+- Explore more datasets in Python **or**
+- Re-train the micro:bits to build something more complex **or**
+- Create a new game/app using computer vision **or**
+- Use one of the generative models to create new content **or**
+- Something completely different!
+
+## Today's Class
+
+- Starting now, for ~90 minutes, build your own project
+- Create a new notebook (demo)
+- Remember you can copy/paste code from other notebooks
+- Ask for help if you need it! I'll float around the room
+- After ~90 minutes, "show and share" (optional) 
