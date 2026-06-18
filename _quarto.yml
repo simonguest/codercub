@@ -113,8 +113,8 @@ website:
                   href: labs/07/notebooks/gesture_recognition.ipynb
                 - text: "Image Segmentation"
                   href: labs/07/notebooks/image_segmentation.ipynb
-                - text: "Tosh, Qaychi, Qog'oz"
-                  href: labs/07/notebooks/tosh_qaychi_qogoz.ipynb
+                - text: "Rock, Paper, Scissors"
+                  href: labs/07/notebooks/rock_paper_scissors.ipynb
                 - text: "Gesture Painter"
                   href: labs/07/notebooks/gesture_painter.ipynb
 

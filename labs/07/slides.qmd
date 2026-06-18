@@ -50,11 +50,11 @@ Gesture Painter Notebook
 
 # Demo
 
-Tosh, Qaychi, Qog'oz Notebook
+Rock, Paper, Scissors Notebook
 
 # Hands-On
 
-Tosh, Qaychi, Qog'oz Notebook
+Rock, Paper, Scissors Notebook
 
 # Image Segmentation
 

@@ -17,7 +17,7 @@ format:
 ## Recap
 
 - Learned two more CV algorithms (Gesture Recognition and Image Segmentation)
-- Played Tosh, Qaychi, Qog'oz with the computer
+- Played Rock, Paper, Scissors with the computer
 - Created some mini-apps of our own!
 
 # Generative AI
