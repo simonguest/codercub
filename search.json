@@ -143,68 +143,68 @@
     ]
   },
   {
-    "objectID": "labs/07/notebooks/tosh_qaychi_qogoz.html",
-    "href": "labs/07/notebooks/tosh_qaychi_qogoz.html",
-    "title": "Tosh, Qaychi, Qog’oz",
+    "objectID": "labs/07/notebooks/rock_paper_scissors.html",
+    "href": "labs/07/notebooks/rock_paper_scissors.html",
+    "title": "Rock, Paper, Scissors",
     "section": "",
-    "text": "Tosh, Qaychi, Qog’oz (Rock, Scissors, Paper) is a game deeply embedded in Mongolian culture — played to resolve disputes, make decisions, and just have fun. In this miniapp, your webcam becomes the game controller: hold up a hand gesture and the computer picks its move.",
+    "text": "In this miniapp, your webcam becomes the game controller: hold up a hand gesture and the computer picks its move.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz"
+      "Rock, Paper, Scissors"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/tosh_qaychi_qogoz.html#how-it-works",
-    "href": "labs/07/notebooks/tosh_qaychi_qogoz.html#how-it-works",
-    "title": "Tosh, Qaychi, Qog’oz",
+    "objectID": "labs/07/notebooks/rock_paper_scissors.html#how-it-works",
+    "href": "labs/07/notebooks/rock_paper_scissors.html#how-it-works",
+    "title": "Rock, Paper, Scissors",
     "section": "How It Works",
-    "text": "How It Works\nThree gestures map to the three moves:\n\n\n\nGesture\nMongolian\nMeaning\n\n\n\n\nClosed fist\nTosh\nRock\n\n\nV-sign (Victory)\nQaychi\nScissors\n\n\nOpen palm\nQog’oz\nPaper\n\n\n\nThe rules are the same as always: - Tosh crushes Qaychi - Qaychi cuts Qog’oz - Qog’oz covers Tosh\nHold a gesture steady for about 1 second to register your play. A charge bar shows your progress while you hold, and there’s a short pause between rounds so you can see the result.",
+    "text": "How It Works\nThree gestures map to the three moves:\n\n\n\nGesture\nMove\n\n\n\n\nClosed fist\nRock\n\n\nV-sign (Victory)\nScissors\n\n\nOpen palm\nPaper\n\n\n\nThe rules are the same as always: - Rock crushes Scissors - Scissors cuts Paper - Paper covers Rock\nHold a gesture steady for about 1 second to register your play. A charge bar shows your progress while you hold, and there’s a short pause between rounds so you can see the result.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz"
+      "Rock, Paper, Scissors"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/tosh_qaychi_qogoz.html#step-1-practice-your-gestures",
-    "href": "labs/07/notebooks/tosh_qaychi_qogoz.html#step-1-practice-your-gestures",
-    "title": "Tosh, Qaychi, Qog’oz",
+    "objectID": "labs/07/notebooks/rock_paper_scissors.html#step-1-practice-your-gestures",
+    "href": "labs/07/notebooks/rock_paper_scissors.html#step-1-practice-your-gestures",
+    "title": "Rock, Paper, Scissors",
     "section": "Step 1: Practice Your Gestures",
     "text": "Step 1: Practice Your Gestures\nRun the cell below to see what the detector recognizes for each gesture. Try all three moves and check the output to confirm they’re being picked up correctly.\nClick Stop (■) when you’re ready to play.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nVALID = {'Closed_Fist', 'Victory', 'Open_Palm'}\n\nframe = 0\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n        if frame % 30 == 0:\n            for hand in detections:\n                if hand['gesture'] in VALID:\n                    print(f\"  {hand['handedness']}: {hand['gesture']} ({hand['confidence']:.0%})\")\n        frame += 1\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz"
+      "Rock, Paper, Scissors"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/tosh_qaychi_qogoz.html#step-2-play",
-    "href": "labs/07/notebooks/tosh_qaychi_qogoz.html#step-2-play",
-    "title": "Tosh, Qaychi, Qog’oz",
+    "objectID": "labs/07/notebooks/rock_paper_scissors.html#step-2-play",
+    "href": "labs/07/notebooks/rock_paper_scissors.html#step-2-play",
+    "title": "Rock, Paper, Scissors",
     "section": "Step 2: Play!",
-    "text": "Step 2: Play!\nRun the cell below and hold any of the three gestures steady for about 1 second. The charge bar fills as you hold — when it’s full, the computer makes its move and the result appears. There’s a short pause between rounds so you can read the result before the next round starts.\nYour score carries across rounds until you click Stop (■).\n\nimport cv\nimport graphics\nimport time\nimport random\n\nVALID        = {'Closed_Fist': 'Tosh', 'Victory': 'Qaychi', 'Open_Palm': \"Qog'oz\"}\nBEATS        = {'Closed_Fist': 'Victory', 'Victory': 'Open_Palm', 'Open_Palm': 'Closed_Fist'}\nHOLD         = 40   # frames to hold (~1.3 sec at 30fps)\nPAUSE_FRAMES = 60   # pause between rounds (~2 sec)\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nheld, count = None, 0\nresult_line = \"Hold a gesture steady to play!\"\nscore = [0, 0]\npause = 0\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n\n        if pause &gt; 0:\n            pause -= 1\n        else:\n            gesture = detections[0]['gesture'] if detections else None\n            if gesture in VALID:\n                count = count + 1 if gesture == held else 1\n                held  = gesture\n                if count &gt;= HOLD:\n                    comp = random.choice(list(VALID))\n                    if gesture == comp:\n                        msg = \"Tie!\"\n                    elif BEATS[gesture] == comp:\n                        msg = \"You win!\"\n                        score[0] += 1\n                    else:\n                        msg = \"Computer wins!\"\n                        score[1] += 1\n                    result_line = f\"{VALID[gesture]}  vs  {VALID[comp]}  —  {msg}\"\n                    held, count = None, 0\n                    pause = PAUSE_FRAMES\n            else:\n                held, count = None, 0\n\n        ctx = canvas.get_context('2d')\n        ctx.fill_style = 'rgba(0,0,0,0.7)'\n        ctx.fill_rect(0, 0, 800, 84)\n        ctx.fill_style = '#ffffff'\n        ctx.font = 'bold 22px sans-serif'\n        ctx.fill_text(result_line, 12, 28)\n        ctx.font = '18px sans-serif'\n        ctx.fill_text(f\"You: {score[0]}   Computer: {score[1]}\", 12, 54)\n        if pause &gt; 0:\n            ctx.fill_text(\"Get ready...\", 12, 78)\n        elif held:\n            bars = int(count / HOLD * 10)\n            ctx.fill_text(f\"Holding {VALID[held]}... {'#' * bars}{'.' * (10 - bars)}\", 12, 78)\n\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nWhat would you add or change to make this game more fun? (Think about sound effects, a countdown, a best-of-3 mode, or showing the computer’s move as an image.)",
+    "text": "Step 2: Play!\nRun the cell below and hold any of the three gestures steady for about 1 second. The charge bar fills as you hold — when it’s full, the computer makes its move and the result appears. There’s a short pause between rounds so you can read the result before the next round starts.\nYour score carries across rounds until you click Stop (■).\n\nimport cv\nimport graphics\nimport time\nimport random\n\nVALID        = {'Closed_Fist': 'Rock', 'Victory': 'Scissors', 'Open_Palm': 'Paper'}\nBEATS        = {'Closed_Fist': 'Victory', 'Victory': 'Open_Palm', 'Open_Palm': 'Closed_Fist'}\nHOLD         = 40   # frames to hold (~1.3 sec at 30fps)\nPAUSE_FRAMES = 60   # pause between rounds (~2 sec)\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_gesture_detector(camera)\n\nheld, count = None, 0\nresult_line = \"Hold a gesture steady to play!\"\nscore = [0, 0]\npause = 0\n\ntry:\n    while True:\n        detections = detector.get_detections()\n        canvas.draw_hands(detections)\n\n        if pause &gt; 0:\n            pause -= 1\n        else:\n            gesture = detections[0]['gesture'] if detections else None\n            if gesture in VALID:\n                count = count + 1 if gesture == held else 1\n                held  = gesture\n                if count &gt;= HOLD:\n                    comp = random.choice(list(VALID))\n                    if gesture == comp:\n                        msg = \"Tie!\"\n                    elif BEATS[gesture] == comp:\n                        msg = \"You win!\"\n                        score[0] += 1\n                    else:\n                        msg = \"Computer wins!\"\n                        score[1] += 1\n                    result_line = f\"{VALID[gesture]}  vs  {VALID[comp]}  —  {msg}\"\n                    held, count = None, 0\n                    pause = PAUSE_FRAMES\n            else:\n                held, count = None, 0\n\n        ctx = canvas.get_context('2d')\n        ctx.fill_style = 'rgba(0,0,0,0.7)'\n        ctx.fill_rect(0, 0, 800, 84)\n        ctx.fill_style = '#ffffff'\n        ctx.font = 'bold 22px sans-serif'\n        ctx.fill_text(result_line, 12, 28)\n        ctx.font = '18px sans-serif'\n        ctx.fill_text(f\"You: {score[0]}   Computer: {score[1]}\", 12, 54)\n        if pause &gt; 0:\n            ctx.fill_text(\"Get ready...\", 12, 78)\n        elif held:\n            bars = int(count / HOLD * 10)\n            ctx.fill_text(f\"Holding {VALID[held]}... {'#' * bars}{'.' * (10 - bars)}\", 12, 78)\n\n        time.sleep(0.033)\nfinally:\n    detector.stop()\n    camera.stop()\n    print(\"Camera stopped.\")\n\nWhat would you add or change to make this game more fun? (Think about sound effects, a countdown, a best-of-3 mode, or showing the computer’s move as an image.)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz"
+      "Rock, Paper, Scissors"
     ]
   },
   {
-    "objectID": "labs/07/notebooks/tosh_qaychi_qogoz.html#ideas-to-extend-this-app",
-    "href": "labs/07/notebooks/tosh_qaychi_qogoz.html#ideas-to-extend-this-app",
-    "title": "Tosh, Qaychi, Qog’oz",
+    "objectID": "labs/07/notebooks/rock_paper_scissors.html#ideas-to-extend-this-app",
+    "href": "labs/07/notebooks/rock_paper_scissors.html#ideas-to-extend-this-app",
+    "title": "Rock, Paper, Scissors",
     "section": "Ideas to Extend This App",
     "text": "Ideas to Extend This App\n\nSound effects — play a chime on a win using import audio; audio.play('/sample_files/chime.wav')\nCountdown — show “3… 2… 1… Show!” on the canvas before reading the gesture\nBest of 3 — track rounds and announce an overall winner after 3 games\nTwo-player mode — use both hands (num_hands=2) and compare them directly\nWin streak — track and display the longest winning streak",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz"
+      "Rock, Paper, Scissors"
     ]
   },
   {
@@ -3199,7 +3199,7 @@
     "href": "labs/08/slides.html#recap",
     "title": "Day 8: Generative AI",
     "section": "Recap",
-    "text": "Recap\n\nLearned two more CV algorithms (Gesture Recognition and Image Segmentation)\nPlayed Tosh, Qaychi, Qog’oz with the computer\nCreated some mini-apps of our own!",
+    "text": "Recap\n\nLearned two more CV algorithms (Gesture Recognition and Image Segmentation)\nPlayed Rock, Paper, Scissors with the computer\nCreated some mini-apps of our own!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
