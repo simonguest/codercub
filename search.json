@@ -113,7 +113,7 @@
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "Word2Vec (word2vec.ipynb)"
+      "Word2Vec"
     ]
   },
   {
@@ -121,12 +121,12 @@
     "href": "labs/08/notebooks/structured_output_mesh.html",
     "title": "Structured Output: Mesh Generator",
     "section": "",
-    "text": "In this example, we use structured output to generate a 3D scene from a text description. The AI returns a structured list of mesh objects that are then rendered in a 3D scene viewer.\n  \n\nimport openai\nimport os\nfrom typing import Optional, Literal\nfrom pydantic import BaseModel\n\nclass Mesh(BaseModel):\n    type: Literal[\"Box\", \"Sphere\", \"Cylinder\"]\n    position: list[float] = [0.0, 0.0, 0.0]\n    rotation: list[float] = [0.0, 0.0, 0.0]\n    color: Optional[str] = None\n    width: float = 1.0\n    height: float = 1.0\n    depth: float = 1.0\n    diameter: float = 1.0\n\nclass SceneDescription(BaseModel):\n    meshes: list[Mesh]\n\nOPENROUTER_API_KEY = os.environ[\"OPENROUTER_API_KEY\"]\n\nclient = openai.OpenAI(\n  base_url='https://openrouter.ai/api/v1',\n  api_key=OPENROUTER_API_KEY\n)\n\nMODEL = \"openai/gpt-5-nano\" #@param [\"openai/gpt-5-nano\"]\n\nSYSTEM_PROMPT = \"\"\"\nYou are a 3D scene designer. Generate scenes using simple 3D mesh primitives.\n\nCOORDINATE SYSTEM\n- Y is up. The ground plane is at Y=0.\n- A Box with height H has its center at Y = H/2 to sit flush on the ground.\n- Z increases away from the default camera position (which looks from negative Z).\n\nSHAPES AND PARAMS\n- Box: width (X), height (Y), depth (Z). Default 1 each.\n- Sphere: diameter. Default 1.\n- Cylinder: diameter, height. Default 1 each. Oriented vertically.\n\nCOLORS\n- RGB Hex code strings: e.g., \"#ff0000\" for red.\n\"\"\"\n\nresponse = client.beta.chat.completions.parse(\n  model=MODEL,\n  messages=[\n    {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n    {\"role\": \"user\", \"content\": \"Generate me a house in the middle of a forest\"},\n  ],\n  response_format=SceneDescription\n)\n\nprint(\"Response received\")\n\nLet’s take a look at the meshes received by the model:\n\nprint(response.choices[0].message.parsed.meshes)\n\nAnd bring these meshes into a 3D scene…\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.CLOUDS)\nscene.import_meshes(response.choices[0].message.parsed.meshes)\n\nYou just used AI to generate a 3D scene from a text description — take a moment to reflect.\nWhat other scene would you want the AI to generate? Why was structured output necessary for this example — what do you think would have gone wrong if the model had returned a plain text description of the scene instead?\n{ “question_type”: “freeform”, “question”: “What Python library is used to define the Mesh and SceneDescription classes?”, “answer”: “pydantic”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does using Literal[\\\"Box\\\", \\\"Sphere\\\", \\\"Cylinder\\\"] for the type field in the Mesh class do?”, “options”: [ { “key”: “a”, “text”: “It makes the field optional” }, { “key”: “b”, “text”: “It restricts the field to only those three allowed values” }, { “key”: “c”, “text”: “It converts the value to lowercase” }, { “key”: “d”, “text”: “It sets a default value of \"Box\"” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The SceneDescription class contains a list of Mesh objects.”, “answer”: “True”, “submitted_answer”: “” }",
+    "text": "In this example, we use structured output to generate a 3D scene from a text description. The AI returns a structured list of mesh objects that are then rendered in a 3D scene viewer.\n  \n\nimport openai\nimport os\nfrom typing import Optional, Literal\nfrom pydantic import BaseModel\n\nclass Mesh(BaseModel):\n    type: Literal[\"Box\", \"Sphere\", \"Cylinder\"]\n    position: list[float] = [0.0, 0.0, 0.0]\n    rotation: list[float] = [0.0, 0.0, 0.0]\n    color: Optional[str] = None\n    width: float = 1.0\n    height: float = 1.0\n    depth: float = 1.0\n    diameter: float = 1.0\n\nclass SceneDescription(BaseModel):\n    meshes: list[Mesh]\n\nOPENROUTER_API_KEY = os.environ[\"OPENROUTER_API_KEY\"]\n\nclient = openai.OpenAI(\n  base_url='https://openrouter.ai/api/v1',\n  api_key=OPENROUTER_API_KEY\n)\n\nMODEL = \"openai/gpt-5-nano\" #@param [\"openai/gpt-5-nano\"]\n\nSYSTEM_PROMPT = \"\"\"\nYou are a 3D scene designer. Generate scenes using simple 3D mesh primitives.\n\nCOORDINATE SYSTEM\n- Y is up. The ground plane is at Y=0.\n- A Box with height H has its center at Y = H/2 to sit flush on the ground.\n- Z increases away from the default camera position (which looks from negative Z).\n\nSHAPES AND PARAMS\n- Box: width (X), height (Y), depth (Z). Default 1 each.\n- Sphere: diameter. Default 1.\n- Cylinder: diameter, height. Default 1 each. Oriented vertically.\n\nCOLORS\n- RGB Hex code strings: e.g., \"#ff0000\" for red.\n\"\"\"\n\nresponse = client.beta.chat.completions.parse(\n  model=MODEL,\n  messages=[\n    {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n    {\"role\": \"user\", \"content\": \"Generate me a house in the middle of a forest\"},\n  ],\n  response_format=SceneDescription\n)\n\nprint(\"Response received\")\n\nLet’s take a look at the meshes received by the model:\n\nprint(response.choices[0].message.parsed.meshes)\n\nAnd bring these meshes into a 3D scene…\n\nimport scene3d\n\nscene = scene3d.Scene()\nscene.set_sky(scene3d.Sky.CLOUDS)\nscene.import_meshes(response.choices[0].message.parsed.meshes)\n\nYou just used AI to generate a 3D scene from a text description!\nWhat other scene would you want the AI to generate? Why was structured output necessary for this example — what do you think would have gone wrong if the model had returned a plain text description of the scene instead?\n{ “question_type”: “freeform”, “question”: “What Python library is used to define the Mesh and SceneDescription classes?”, “answer”: “pydantic”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does using Literal[\\\"Box\\\", \\\"Sphere\\\", \\\"Cylinder\\\"] for the type field in the Mesh class do?”, “options”: [ { “key”: “a”, “text”: “It makes the field optional” }, { “key”: “b”, “text”: “It restricts the field to only those three allowed values” }, { “key”: “c”, “text”: “It converts the value to lowercase” }, { “key”: “d”, “text”: “It sets a default value of \"Box\"” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The SceneDescription class contains a list of Mesh objects.”, “answer”: “True”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "structured_output_mesh.ipynb"
+      "Mesh Generator"
     ]
   },
   {
@@ -139,7 +139,7 @@
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "openai_streaming.ipynb"
+      "OpenAI Streaming"
     ]
   },
   {
@@ -152,7 +152,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
+      "Tosh, Qaychi, Qog'oz"
     ]
   },
   {
@@ -165,7 +165,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
+      "Tosh, Qaychi, Qog'oz"
     ]
   },
   {
@@ -178,7 +178,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
+      "Tosh, Qaychi, Qog'oz"
     ]
   },
   {
@@ -191,7 +191,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
+      "Tosh, Qaychi, Qog'oz"
     ]
   },
   {
@@ -204,7 +204,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
+      "Tosh, Qaychi, Qog'oz"
     ]
   },
   {
@@ -217,7 +217,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
+      "Gesture Recognition"
     ]
   },
   {
@@ -230,7 +230,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
+      "Gesture Recognition"
     ]
   },
   {
@@ -243,7 +243,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
+      "Gesture Recognition"
     ]
   },
   {
@@ -256,7 +256,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
+      "Gesture Recognition"
     ]
   },
   {
@@ -269,7 +269,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
+      "Gesture Recognition"
     ]
   },
   {
@@ -282,7 +282,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Recognition (gesture_recognition.ipynb)"
+      "Gesture Recognition"
     ]
   },
   {
@@ -295,7 +295,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -308,7 +308,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -321,7 +321,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -334,7 +334,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -347,7 +347,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -360,7 +360,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -373,7 +373,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Pose Estimation (pose_landmarks.ipynb)"
+      "Pose Estimation"
     ]
   },
   {
@@ -386,7 +386,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Object Detection (object_detection.ipynb)"
+      "Object Detection"
     ]
   },
   {
@@ -399,7 +399,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Object Detection (object_detection.ipynb)"
+      "Object Detection"
     ]
   },
   {
@@ -412,7 +412,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Object Detection (object_detection.ipynb)"
+      "Object Detection"
     ]
   },
   {
@@ -425,7 +425,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Object Detection (object_detection.ipynb)"
+      "Object Detection"
     ]
   },
   {
@@ -438,7 +438,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Object Detection (object_detection.ipynb)"
+      "Object Detection"
     ]
   },
   {
@@ -451,7 +451,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Object Detection (object_detection.ipynb)"
+      "Object Detection"
     ]
   },
   {
@@ -464,7 +464,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -477,7 +477,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -490,7 +490,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -503,7 +503,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -516,7 +516,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -529,7 +529,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -542,7 +542,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -555,7 +555,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -568,7 +568,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -581,7 +581,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn (sklearn.ipynb)"
+      "Using Scikit-learn"
     ]
   },
   {
@@ -594,7 +594,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -607,7 +607,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -620,7 +620,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -633,7 +633,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -646,7 +646,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -659,7 +659,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -672,7 +672,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -685,7 +685,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -698,7 +698,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding Disasters (finding_disasters.ipynb)"
+      "Finding Disasters"
     ]
   },
   {
@@ -711,7 +711,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -724,7 +724,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -737,7 +737,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -750,7 +750,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -763,7 +763,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -776,7 +776,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -789,7 +789,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -802,7 +802,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -815,7 +815,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Pandas (pandas.ipynb)"
+      "Using Pandas"
     ]
   },
   {
@@ -828,7 +828,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -841,7 +841,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -854,7 +854,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -867,7 +867,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -880,7 +880,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -893,7 +893,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -906,7 +906,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -919,7 +919,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -932,7 +932,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -945,7 +945,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Introducing Correlation (correlation.ipynb)"
+      "Introducing Correlation"
     ]
   },
   {
@@ -958,7 +958,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "Hello World! (hello_world.ipynb)"
+      "Hello World!"
     ]
   },
   {
@@ -971,7 +971,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "Hello World! (hello_world.ipynb)"
+      "Hello World!"
     ]
   },
   {
@@ -984,7 +984,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "Hello World! (hello_world.ipynb)"
+      "Hello World!"
     ]
   },
   {
@@ -997,7 +997,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "Hello World! (hello_world.ipynb)"
+      "Hello World!"
     ]
   },
   {
@@ -1010,7 +1010,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "Hello World! (hello_world.ipynb)"
+      "Hello World!"
     ]
   },
   {
@@ -3271,7 +3271,7 @@
     "href": "labs/08/slides.html#structured-output-1",
     "title": "Day 8: Generative AI",
     "section": "Structured Output",
-    "text": "Structured Output\n\nBy default, models return plain text — but the exact wording is unpredictable:\n“Ulaanbaatar” vs. “The capital is Ulaanbaatar!” vs. “Ulaanbaatar, of course!”\nThis makes it hard to use AI output inside another program\nStructured output lets you define a Python class (using Pydantic) that describes exactly what fields you want back\n\nThe model is required to fill them in\n\nThe result is clean, predictable data you can use directly in code",
+    "text": "Structured Output\n\nBy default, models return plain text — but the exact wording is unpredictable:\n“Ulaanbaatar” vs. “The capital is Ulaanbaatar!” vs. “Ulaanbaatar, of course!”\nThis makes it hard to use AI output inside another program\nStructured output lets you define a Python class (using Pydantic) that describes exactly what fields you want back\n\nThe model is required to fill them in\n\nThe result is clean, predictable data you can use in code",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
@@ -3283,7 +3283,7 @@
     "href": "labs/08/slides.html#tomorrow",
     "title": "Day 8: Generative AI",
     "section": "Tomorrow",
-    "text": "Tomorrow\n\nContinue learning about Generative AI\nInvestigate creating images with models\nSee how AI models can describe an image",
+    "text": "Tomorrow\n\nContinue learning about Generative AI techniques\nInvestigate creating images with models\nSee how AI models can describe an image",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
@@ -4288,7 +4288,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "AI in Action (ai_in_action.ipynb)"
+      "AI in Action"
     ]
   },
   {
@@ -4301,7 +4301,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "AI in Action (ai_in_action.ipynb)"
+      "AI in Action"
     ]
   },
   {
@@ -4314,7 +4314,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "AI in Action (ai_in_action.ipynb)"
+      "AI in Action"
     ]
   },
   {
@@ -4327,7 +4327,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "AI in Action (ai_in_action.ipynb)"
+      "AI in Action"
     ]
   },
   {
@@ -4340,7 +4340,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "AI in Action (ai_in_action.ipynb)"
+      "AI in Action"
     ]
   },
   {
@@ -4353,7 +4353,7 @@
       "Future Intelligence Lab",
       "Day 1",
       "Notebooks",
-      "AI in Action (ai_in_action.ipynb)"
+      "AI in Action"
     ]
   },
   {
@@ -4366,7 +4366,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4379,7 +4379,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4392,7 +4392,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4405,7 +4405,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4418,7 +4418,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4431,7 +4431,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4444,7 +4444,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4457,7 +4457,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4470,7 +4470,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4483,7 +4483,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4496,7 +4496,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Exploring Air Quality (air_quality.ipynb)"
+      "Exploring Air Quality"
     ]
   },
   {
@@ -4509,7 +4509,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4522,7 +4522,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4535,7 +4535,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4548,7 +4548,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4561,7 +4561,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4574,7 +4574,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4587,7 +4587,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4600,7 +4600,7 @@
       "Future Intelligence Lab",
       "Day 2",
       "Notebooks",
-      "Using Matplotlib (matplotlib.ipynb)"
+      "Using Matplotlib"
     ]
   },
   {
@@ -4613,7 +4613,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4626,7 +4626,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4639,7 +4639,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4652,7 +4652,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4665,7 +4665,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4678,7 +4678,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4691,7 +4691,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4704,7 +4704,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4717,7 +4717,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Finding the Cause (finding_cause.ipynb)"
+      "Finding the Cause"
     ]
   },
   {
@@ -4730,7 +4730,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4743,7 +4743,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4756,7 +4756,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4769,7 +4769,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4782,7 +4782,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4795,7 +4795,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4808,7 +4808,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4821,7 +4821,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4834,7 +4834,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4847,7 +4847,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression (regression.ipynb)"
+      "Linear Regression"
     ]
   },
   {
@@ -4860,7 +4860,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Face Detection (face_detection.ipynb)"
+      "Face Detection"
     ]
   },
   {
@@ -4873,7 +4873,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Face Detection (face_detection.ipynb)"
+      "Face Detection"
     ]
   },
   {
@@ -4886,7 +4886,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Face Detection (face_detection.ipynb)"
+      "Face Detection"
     ]
   },
   {
@@ -4899,7 +4899,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Face Detection (face_detection.ipynb)"
+      "Face Detection"
     ]
   },
   {
@@ -4912,7 +4912,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Face Detection (face_detection.ipynb)"
+      "Face Detection"
     ]
   },
   {
@@ -4925,7 +4925,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "Face Detection (face_detection.ipynb)"
+      "Face Detection"
     ]
   },
   {
@@ -4938,7 +4938,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "3D Pose Avatar (pose_avatar.ipynb)"
+      "3D Pose Avatar"
     ]
   },
   {
@@ -4951,7 +4951,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "3D Pose Avatar (pose_avatar.ipynb)"
+      "3D Pose Avatar"
     ]
   },
   {
@@ -4964,7 +4964,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "3D Pose Avatar (pose_avatar.ipynb)"
+      "3D Pose Avatar"
     ]
   },
   {
@@ -4977,7 +4977,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "3D Pose Avatar (pose_avatar.ipynb)"
+      "3D Pose Avatar"
     ]
   },
   {
@@ -4990,7 +4990,7 @@
       "Future Intelligence Lab",
       "Day 6",
       "Notebooks",
-      "3D Pose Avatar (pose_avatar.ipynb)"
+      "3D Pose Avatar"
     ]
   },
   {
@@ -5003,7 +5003,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Painter (gesture_painter.ipynb)"
+      "Gesture Painter"
     ]
   },
   {
@@ -5016,7 +5016,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Painter (gesture_painter.ipynb)"
+      "Gesture Painter"
     ]
   },
   {
@@ -5029,7 +5029,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Painter (gesture_painter.ipynb)"
+      "Gesture Painter"
     ]
   },
   {
@@ -5042,7 +5042,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Gesture Painter (gesture_painter.ipynb)"
+      "Gesture Painter"
     ]
   },
   {
@@ -5055,7 +5055,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5068,7 +5068,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5081,7 +5081,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5094,7 +5094,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5107,7 +5107,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5120,7 +5120,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5133,7 +5133,7 @@
       "Future Intelligence Lab",
       "Day 7",
       "Notebooks",
-      "Image Segmentation (image_segmentation.ipynb)"
+      "Image Segmentation"
     ]
   },
   {
@@ -5146,7 +5146,7 @@
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "openai_sdk.ipynb"
+      "Using the OpenAI SDK"
     ]
   },
   {
@@ -5159,7 +5159,7 @@
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "structured_output.ipynb"
+      "Structured Output"
     ]
   },
   {
@@ -5167,12 +5167,12 @@
     "href": "labs/08/notebooks/structured_output_piano.html",
     "title": "Structured Output",
     "section": "",
-    "text": "In this next example, we use structured output to generate the notes for Happy Birthday and then play them via the audio library.\n  \n\nimport openai\nimport os\nimport audio\nfrom pydantic import BaseModel\n\nclass Note(BaseModel):\n  note: str    # scientific pitch notation, e.g. \"C4\", \"F#3\", \"Bb5\"\n  duration: float  # duration in seconds\n\nclass Melody(BaseModel):\n  notes: list[Note]\n\nOPENROUTER_API_KEY = os.environ[\"OPENROUTER_API_KEY\"]\n\nclient = openai.OpenAI(\n  base_url='https://openrouter.ai/api/v1',\n  api_key=OPENROUTER_API_KEY\n)\n\nMODEL = \"openai/gpt-5-nano\" #@param [\"openai/gpt-5-nano\"]\n\nresponse = client.beta.chat.completions.parse(\n  model=MODEL,\n  messages=[\n    {\"role\": \"system\", \"content\": \"You are a music teacher. Return melodies as sequences of notes using scientific pitch notation (e.g. C4, F#3, Bb5) with durations in seconds.\"},\n    {\"role\": \"user\", \"content\": \"Generate the melody for Happy Birthday.\"},\n  ],\n  response_format=Melody\n)\n\nmelody = response.choices[0].message.parsed\nprint(melody)\n\naudio.play_notes([(n.note, n.duration) for n in melody.notes]) \n\nYou just used AI to generate and play a melody — take a moment to reflect.\nWhat other song would you want the AI to generate? Why was structured output necessary for this example — what do you think would have gone wrong if the model had returned a plain text response instead?\n{ “question_type”: “freeform”, “question”: “What notation system is used to represent note names like ‘C4’ or ‘F#3’?”, “answer”: “scientific pitch notation”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the duration field in the Note class represent?”, “options”: [ { “key”: “a”, “text”: “The volume of the note” }, { “key”: “b”, “text”: “The pitch of the note” }, { “key”: “c”, “text”: “How long the note is played, in seconds” }, { “key”: “d”, “text”: “The instrument that plays the note” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The Melody class contains a list of Note objects.”, “answer”: “True”, “submitted_answer”: “” }",
+    "text": "In this next example, we use structured output to generate the notes for Happy Birthday and then play them via the audio library.\n  \n\nimport openai\nimport os\nfrom pydantic import BaseModel\n\nclass Note(BaseModel):\n  note: str    # scientific pitch notation, e.g. \"C4\", \"F#3\", \"Bb5\"\n  duration: float  # duration in seconds\n\nclass Melody(BaseModel):\n  notes: list[Note]\n\nOPENROUTER_API_KEY = os.environ[\"OPENROUTER_API_KEY\"]\n\nclient = openai.OpenAI(\n  base_url='https://openrouter.ai/api/v1',\n  api_key=OPENROUTER_API_KEY\n)\n\nMODEL = \"openai/gpt-5-nano\" #@param [\"openai/gpt-5-nano\"]\n\nresponse = client.beta.chat.completions.parse(\n  model=MODEL,\n  messages=[\n    {\"role\": \"system\", \"content\": \"You are a music teacher. Return melodies as sequences of notes using scientific pitch notation (e.g. C4, F#3, Bb5) with durations in seconds.\"},\n    {\"role\": \"user\", \"content\": \"Generate the melody for Happy Birthday.\"},\n  ],\n  response_format=Melody\n)\n\nmelody = response.choices[0].message.parsed\nprint(melody)\n\nAnd now, let’s play the notes!\n\nimport audio\n\naudio.play_notes([(n.note, n.duration) for n in melody.notes]) \n\nYou just used AI to generate and play a melody!\nWhat other song would you want the AI to generate? Why was structured output necessary for this example. What do you think would have gone wrong if the model had returned a plain text response instead?\n{ “question_type”: “freeform”, “question”: “What notation system is used to represent note names like ‘C4’ or ‘F#3’?”, “answer”: “scientific pitch notation”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does the duration field in the Note class represent?”, “options”: [ { “key”: “a”, “text”: “The volume of the note” }, { “key”: “b”, “text”: “The pitch of the note” }, { “key”: “c”, “text”: “How long the note is played, in seconds” }, { “key”: “d”, “text”: “The instrument that plays the note” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “The Melody class contains a list of Note objects.”, “answer”: “True”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 8",
       "Notebooks",
-      "structured_output_piano.ipynb"
+      "Structured Output (Piano)"
     ]
   },
   {
