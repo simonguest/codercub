@@ -144,14 +144,16 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "image_generation.ipynb"
+                - text: "Image Generation"
                   href: labs/09/notebooks/image_generation.ipynb
-                - text: "image_to_image.ipynb"
+                - text: "Image-to-Image"
                   href: labs/09/notebooks/image_to_image.ipynb
-                - text: "vlm.ipynb"
+                - text: "VLM (Vision Language Model)"
                   href: labs/09/notebooks/vlm.ipynb
-                - text: "vlm_reasoning.ipynb"
+                - text: "Reasoning with VLMs"
                   href: labs/09/notebooks/vlm_reasoning.ipynb
+                - text: "VLMs as Assistive Technology"
+                  href: labs/09/notebooks/vlm_assistive.ipynb
         - section: "Day 10"
           contents:
             - text: "Slides"
