@@ -9,7 +9,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "vlm_reasoning.ipynb"
+      "Reasoning with VLMs"
     ]
   },
   {
@@ -22,7 +22,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "vlm_reasoning.ipynb"
+      "Reasoning with VLMs"
     ]
   },
   {
@@ -35,7 +35,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "vlm_reasoning.ipynb"
+      "Reasoning with VLMs"
     ]
   },
   {
@@ -48,7 +48,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "vlm_reasoning.ipynb"
+      "Reasoning with VLMs"
     ]
   },
   {
@@ -56,12 +56,25 @@
     "href": "labs/09/notebooks/vlm_reasoning.html#step-4-reading-text",
     "title": "Visual Reasoning with a VLM",
     "section": "Step 4: Reading Text",
-    "text": "Step 4: Reading Text\nVLMs can read and transcribe text from images — this is called OCR (Optical Character Recognition). For best results, retake your photo pointing at something with visible text: a book, a sign, a poster, or a screen.\n\nask_vlm(data_url, \"Read and transcribe all text that is visible in this image. If there is no text, say so.\")\n\nThink about all the tasks the VLM just completed: reasoning, counting, and reading text.\nWhich task impressed you most? Where did the model make a mistake or struggle? What other visual reasoning task would you want to try?\n{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only describe images — it cannot count objects or answer specific questions about them.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does OCR stand for?”, “options”: [ { “key”: “a”, “text”: “Optical Color Recognition” }, { “key”: “b”, “text”: “Output Content Rendering” }, { “key”: “c”, “text”: “Optical Character Recognition” }, { “key”: “d”, “text”: “Object and Caption Recognition” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What type of model is used in this notebook to answer questions about images?”, “answer”: “Vision Language Model (VLM)”, “submitted_answer”: “” }",
+    "text": "Step 4: Reading Text\nVLMs can read and transcribe text from images — this is called OCR (Optical Character Recognition). For best results, retake your photo pointing at something with visible text: a book, a sign, a poster, or a screen.\n\nask_vlm(data_url, \"Read and transcribe all text that is visible in this image. If there is no text, say so.\")\n\nThink about all the tasks the VLM just completed: reasoning, counting, and reading text.\nWhich task impressed you most? Where did the model make a mistake or struggle? What other visual reasoning task would you want to try?\n{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only describe images — it cannot count objects or answer specific questions about them.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What does OCR stand for?”, “options”: [ { “key”: “a”, “text”: “Optical Color Recognition” }, { “key”: “b”, “text”: “Output Content Rendering” }, { “key”: “c”, “text”: “Optical Character Recognition” }, { “key”: “d”, “text”: “Object and Caption Recognition” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What does VLM stand for?”, “answer”: “Vision Language Model”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "vlm_reasoning.ipynb"
+      "Reasoning with VLMs"
+    ]
+  },
+  {
+    "objectID": "labs/09/notebooks/vlm.html",
+    "href": "labs/09/notebooks/vlm.html",
+    "title": "Using a VLM",
+    "section": "",
+    "text": "In this notebook, we use a VLM (Vision Language Model) to capture an image from the camera, send it to the model and ask “What do you see in this image?”\n  \n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\n\nw = canvas.get_width()\nh = canvas.get_height()\nctx = canvas.get_context('2d')\n\nfor count in [\"3\", \"2\", \"1\"]:\n  ctx.fill_style = \"rgba(0, 0, 0, 0.5)\"\n  ctx.fill_rect(0, 0, w, h)\n  ctx.font = \"bold 200px sans-serif\"\n  ctx.fill_style = \"white\"\n  ctx.text_align = \"center\"\n  ctx.text_baseline = \"middle\"\n  ctx.fill_text(count, w / 2, h / 2)\n  time.sleep(1)\n  canvas.clear()\n\ndata_url = cv.capture_frame(camera)\ncamera.stop()\nprint(data_url[:500])\n\nNow that we have the image captured, let’s give it to the model…\n\nfrom openai import OpenAI\nimport os\n\nclient = OpenAI(\n  base_url=\"https://openrouter.ai/api/v1\",\n  api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)\n\nresponse = client.chat.completions.create(\n  model=\"qwen/qwen3-vl-8b-instruct\",\n  messages=[\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\"url\": data_url},\n        },\n        {\n          \"type\": \"text\",\n          \"text\": \"What do you see in this image?\",\n        },\n      ],\n    }\n  ],\n  stream=True\n)\n\nfor chunk in response:\n  # Each chunk contains a delta with the new content\n  if chunk.choices[0].delta.content is not None:\n    token = chunk.choices[0].delta.content\n    print(token, end='', flush=True)\n\nNow that the model has described your image, take a moment to reflect.\nHow accurate was the model’s description of your image? What details did it get right or miss? What other question would you want to ask the model about the image?\n{ “question_type”: “freeform”, “question”: “What does VLM stand for?”, “answer”: “Vision Language Model”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “How is the captured image sent to the VLM in this notebook?”, “options”: [ { “key”: “a”, “text”: “As a file path on the server” }, { “key”: “b”, “text”: “As a base64-encoded data URL” }, { “key”: “c”, “text”: “As a public web URL” }, { “key”: “d”, “text”: “As a grid of pixel colour values” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only process text — it cannot understand images.”, “answer”: “False”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "VLM (Vision Language Model)"
     ]
   },
   {
@@ -74,7 +87,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "image_to_image.ipynb"
+      "Image-to-Image"
     ]
   },
   {
@@ -87,7 +100,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "image_to_image.ipynb"
+      "Image-to-Image"
     ]
   },
   {
@@ -95,12 +108,12 @@
     "href": "labs/09/notebooks/image_to_image.html#step-2-transform-the-image",
     "title": "Image-to-Image Transformation",
     "section": "Step 2: Transform the Image",
-    "text": "Step 2: Transform the Image\nNow we send the captured photo to an image editing model along with a style instruction. The model uses your photo as a starting point — preserving the content — and renders it in a completely different style.\nChoose a transformation from the dropdown and run the cell.\n\nTRANSFORMATION = \"Transform this into an oil painting\" #@param [\"Transform this into an oil painting\", \"Convert this into watercolor art\", \"Redraw this in anime style\", \"Make this look like a pencil sketch\", \"Transform this into pixel art\"]\n\nprint(f\"Applying: {TRANSFORMATION}...\")\n\nresponse = client.chat.completions.create(\n    model=\"black-forest-labs/flux.2-klein-4b\",\n    messages=[{\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image_url\", \"image_url\": {\"url\": data_url}},\n            {\"type\": \"text\", \"text\": TRANSFORMATION}\n        ]\n    }],\n    extra_body={\"modalities\": [\"image\"]}\n)\n\ntransformed_url = response.choices[0].message.images[0][\"image_url\"][\"url\"]\ndisplay_image(transformed_url)\n\nCompare the original photo with the transformed version.\nHow well did the model preserve the content of your photo while changing the style? What details changed that you didn’t expect? Which transformation did you find most impressive, and why?\n{ “question_type”: “true_false”, “question”: “An image-to-image model takes an existing image as input and can transform it based on a text instruction.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What makes image-to-image generation different from text-to-image generation?”, “options”: [ { “key”: “a”, “text”: “It doesn’t use the diffusion process” }, { “key”: “b”, “text”: “It takes an existing image as additional input alongside the text instruction” }, { “key”: “c”, “text”: “It can only produce black and white output” }, { “key”: “d”, “text”: “It generates images much faster” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “In this notebook, what two inputs are sent to the image model to produce the transformation?”, “answer”: “a photo (image) and a text instruction”, “submitted_answer”: “” }",
+    "text": "Step 2: Transform the Image\nNow we send the captured photo to an image editing model along with a style instruction. The model uses your photo as a starting point — preserving the content — and renders it in a completely different style.\nChoose a transformation from the dropdown and run the cell.\n\nTRANSFORMATION = \"Transform this into an oil painting\" #@param [\"Transform this into an oil painting\", \"Convert this into watercolor art\", \"Redraw this in anime style\", \"Make this look like a pencil sketch\", \"Transform this into pixel art\"]\n\nprint(f\"Applying: {TRANSFORMATION}...\")\n\nresponse = client.chat.completions.create(\n    model=\"black-forest-labs/flux.2-klein-4b\",\n    messages=[{\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image_url\", \"image_url\": {\"url\": data_url}},\n            {\"type\": \"text\", \"text\": TRANSFORMATION}\n        ]\n    }],\n    extra_body={\"modalities\": [\"image\"]}\n)\n\ntransformed_url = response.choices[0].message.images[0][\"image_url\"][\"url\"]\ndisplay_image(transformed_url)\n\nCompare the original photo with the transformed version.\nHow well did the model preserve the content of your photo while changing the style? What details changed that you didn’t expect? Which transformation did you find most impressive, and why?\n{ “question_type”: “true_false”, “question”: “An image-to-image model takes an existing image as input and can transform it based on a text instruction.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What makes image-to-image generation different from text-to-image generation?”, “options”: [ { “key”: “a”, “text”: “It doesn’t use the diffusion process” }, { “key”: “b”, “text”: “It takes an existing image as additional input alongside the text instruction” }, { “key”: “c”, “text”: “It can only produce black and white output” }, { “key”: “d”, “text”: “It generates images much faster” } ], “answer”: “b”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "image_to_image.ipynb"
+      "Image-to-Image"
     ]
   },
   {
@@ -1907,11 +1920,131 @@
     ]
   },
   {
-    "objectID": "labs/09/slides.html#tbd",
-    "href": "labs/09/slides.html#tbd",
-    "title": "Day 9",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "objectID": "labs/09/slides.html#recap",
+    "href": "labs/09/slides.html#recap",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Recap",
+    "text": "Recap\n\nIntroduced to Generative AI\nUsed the OpenAI SDK to chat with a model\nExplored structured output for piano and 3D scenes",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#introducing-the-diffuser",
+    "href": "labs/09/slides.html#introducing-the-diffuser",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Introducing the Diffuser",
+    "text": "Introducing the Diffuser\n\nTraining\n\nDuring training, random noise is added to images in steps\nModel learns to predict what noise was added (forward diffusion process)\n\nGeneration (process runs in reverse)\n\nStart with pure random noise\nModel estimates what noise should be removed to create a realistic image\nUsing the text prompt, the model steers the process towards images that match the description",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#introducing-the-diffuser-1",
+    "href": "labs/09/slides.html#introducing-the-diffuser-1",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Introducing the Diffuser",
+    "text": "Introducing the Diffuser",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#prompting-for-images",
+    "href": "labs/09/slides.html#prompting-for-images",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Prompting for Images",
+    "text": "Prompting for Images\n\nKey components to include in prompts:\n\nSubject: What you want\nStyle/Medium: photorealistic, oil painting, digital art\nLighting: studio lighting, dramatic shadows, soft diffused\nComposition: close-up, wide-angle, rule of thirds\nQuality: highly detailed, 4K, sharp focus\nTechnical specs: 85mm lens, f/1.8, bokeh",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#image-to-image",
+    "href": "labs/09/slides.html#image-to-image",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Image to Image",
+    "text": "Image to Image\n\nSimilar process to image generation, but the input is an image instead of text\nOften used to transform or restyle existing images\nModel requires an input image and a guiding text prompt\n\nExample: “Turn this image into an anime drawing”",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#generative-ai-for-image-understanding-1",
+    "href": "labs/09/slides.html#generative-ai-for-image-understanding-1",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Generative AI for Image Understanding",
+    "text": "Generative AI for Image Understanding\n\nGenerative AI models can also identify and understand the content of images\nThese types of models are called VLMs or Vision Language Models",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#vlms-vs.-cnns",
+    "href": "labs/09/slides.html#vlms-vs.-cnns",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "VLMs vs. CNNs",
+    "text": "VLMs vs. CNNs\n\nEarlier this week, we used CNNs for our computer vision models\nCNNs are basic detectors for objects, poses, segments, etc.\nVLMs produce more descriptive language about what they see in images",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#more-with-vlms",
+    "href": "labs/09/slides.html#more-with-vlms",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "More with VLMs",
+    "text": "More with VLMs\n\nNot only can VLMs describe images, but you can also ask questions about the image\n\n“Read the text in the image”\n“How many people in this image have red shirts?”\n“Is the person in this image wearing glasses?”\n\nThis concept is known as reasoning and can be very powerful",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#using-assistive-vlms",
+    "href": "labs/09/slides.html#using-assistive-vlms",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Using Assistive VLMs",
+    "text": "Using Assistive VLMs\n\nMillions of people around the world live with visual impairments.\nAssistive technology — screen readers, braille displays, and now AI — helps them navigate daily life independently.\nCombined with audio output, VLMs can help transcribe scenes and other details",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#using-assistive-vlms-1",
+    "href": "labs/09/slides.html#using-assistive-vlms-1",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Using Assistive VLMs",
+    "text": "Using Assistive VLMs\n\nA VLM-powered seeing assistant has three steps:\n\nCapture: The camera takes a photo of the surroundings\nDescribe: The VLM generates a short, clear description\nSpeak: Text-to-speech reads the description aloud",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/09/slides.html#tomorrow",
+    "href": "labs/09/slides.html#tomorrow",
+    "title": "Day 9: Generative AI (Images)",
+    "section": "Tomorrow",
+    "text": "Tomorrow\n\nOur Last Day!\nWhich means our Final Project!!!\nYou get the chance to use anything that we’ve learned over the past 2 weeks!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 9",
@@ -5185,7 +5318,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "image_generation.ipynb"
+      "Image Generation"
     ]
   },
   {
@@ -5198,7 +5331,7 @@
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "image_generation.ipynb"
+      "Image Generation"
     ]
   },
   {
@@ -5206,25 +5339,59 @@
     "href": "labs/09/notebooks/image_generation.html#part-2-style-modifiers",
     "title": "Image Generation and Prompt Engineering",
     "section": "Part 2: Style Modifiers",
-    "text": "Part 2: Style Modifiers\nOne of the most powerful prompt engineering techniques is adding style modifiers — words that tell the model how to render the scene, not just what to show.\nCompare these two prompts: - A cat sitting on a chair - A cat sitting on a chair, oil painting style\nThe subject is identical, but the visual result is completely different. Try it below — use the same prompt from Part 1 and experiment with different styles.\n\nPROMPT = \"A Mongolian Bankhar dog running across the steppe at sunset\" #@param\nSTYLE = \"oil painting\" #@param [\"oil painting\", \"watercolor\", \"anime\", \"photorealistic\", \"pixel art\"]\n\nstyled_prompt = f\"{PROMPT}, {STYLE} style\"\nprint(f\"Sending prompt: {styled_prompt}\")\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[{\"role\": \"user\", \"content\": styled_prompt}],\n    extra_body={\"modalities\": [\"image\"]}\n)\n\nimage_url = response.choices[0].message.images[0][\"image_url\"][\"url\"]\ndisplay_image(image_url)\n\nCompare the styled image with the one from Part 1.\nHow did adding a style modifier change the result? Which style did you find most interesting, and why? What other style words might you want to try?\n{ “question_type”: “true_false”, “question”: “Text-to-image models use the diffusion process to generate images from a text prompt.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What is the effect of adding a style modifier like ‘watercolor’ to an image generation prompt?”, “options”: [ { “key”: “a”, “text”: “It changes the subject of the image” }, { “key”: “b”, “text”: “It controls the size of the generated image” }, { “key”: “c”, “text”: “It changes how the image looks while keeping the same subject” }, { “key”: “d”, “text”: “It makes the model run faster” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What term describes words added to a prompt — like ‘oil painting’ or ‘anime’ — that control the visual style of the generated image?”, “answer”: “style modifiers”, “submitted_answer”: “” }",
+    "text": "Part 2: Style Modifiers\nOne of the most powerful prompt engineering techniques is adding style modifiers — words that tell the model how to render the scene, not just what to show.\nCompare these two prompts: - A cat sitting on a chair - A cat sitting on a chair, oil painting style\nThe subject is identical, but the visual result is completely different. Try it below — use the same prompt from Part 1 and experiment with different styles.\n\nPROMPT = \"A Mongolian Bankhar dog running across the steppe at sunset\" #@param\nSTYLE = \"oil painting\" #@param [\"oil painting\", \"watercolor\", \"anime\", \"photorealistic\", \"pixel art\"]\nLIGHTING = \"studio lighting\" #@param [\"studio lighting\", \"dramatic shadows\", \"soft diffused\"]\nCOMPOSITION = \"close up\" #@param [\"close up\", \"wide-angle\", \"rule of thirds\"]\n\nstyled_prompt = f\"{PROMPT}, {STYLE} style, {LIGHTING}, {COMPOSITION}\"\nprint(f\"Sending prompt: {styled_prompt}\")\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[{\"role\": \"user\", \"content\": styled_prompt}],\n    extra_body={\"modalities\": [\"image\"]}\n)\n\nimage_url = response.choices[0].message.images[0][\"image_url\"][\"url\"]\ndisplay_image(image_url)\n\nCompare the styled image with the one from Part 1.\nHow did adding a style modifier change the result? Which style did you find most interesting, and why? What other style words might you want to try?\n{ “question_type”: “true_false”, “question”: “Text-to-image models use the diffusion process to generate images from a text prompt.”, “answer”: “True”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “What is the effect of adding a style modifier like ‘watercolor’ to an image generation prompt?”, “options”: [ { “key”: “a”, “text”: “It changes the subject of the image” }, { “key”: “b”, “text”: “It controls the size of the generated image” }, { “key”: “c”, “text”: “It changes how the image looks while keeping the same subject” }, { “key”: “d”, “text”: “It makes the model run faster” } ], “answer”: “c”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What term describes words added to a prompt — like ‘oil painting’ or ‘anime’ — that control the visual style of the generated image?”, “answer”: “style modifiers”, “submitted_answer”: “” }",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "image_generation.ipynb"
+      "Image Generation"
     ]
   },
   {
-    "objectID": "labs/09/notebooks/vlm.html",
-    "href": "labs/09/notebooks/vlm.html",
-    "title": "VLM Test",
+    "objectID": "labs/09/notebooks/text-to-image-sd-1.5.html",
+    "href": "labs/09/notebooks/text-to-image-sd-1.5.html",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
     "section": "",
-    "text": "In this notebook, we use a VLM (Vision Language Model) to capture an image from the camera, send it to the model and ask “What do you see in this image?”\n  \n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\n\nw = canvas.get_width()\nh = canvas.get_height()\nctx = canvas.get_context('2d')\n\nfor count in [\"3\", \"2\", \"1\"]:\n  ctx.fill_style = \"rgba(0, 0, 0, 0.5)\"\n  ctx.fill_rect(0, 0, w, h)\n  ctx.font = \"bold 200px sans-serif\"\n  ctx.fill_style = \"white\"\n  ctx.text_align = \"center\"\n  ctx.text_baseline = \"middle\"\n  ctx.fill_text(count, w / 2, h / 2)\n  time.sleep(1)\n  canvas.clear()\n\ndata_url = cv.capture_frame(camera)\ncamera.stop()\nprint(data_url[:500])\n\nNow that we have the image captured, let’s give it to the model…\n\nfrom openai import OpenAI\nimport os\n\nclient = OpenAI(\n  base_url=\"https://openrouter.ai/api/v1\",\n  api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)\n\nresponse = client.chat.completions.create(\n  model=\"qwen/qwen3-vl-8b-instruct\",\n  messages=[\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\"url\": data_url},\n        },\n        {\n          \"type\": \"text\",\n          \"text\": \"What do you see in this image?\",\n        },\n      ],\n    }\n  ],\n  stream=True\n)\n\nfor chunk in response:\n  # Each chunk contains a delta with the new content\n  if chunk.choices[0].delta.content is not None:\n    token = chunk.choices[0].delta.content\n    print(token, end='', flush=True)\n\nNow that the model has described your image, take a moment to reflect.\nHow accurate was the model’s description of your image? What details did it get right or miss? What other question would you want to ask the model about the image?\n{ “question_type”: “freeform”, “question”: “What does VLM stand for?”, “answer”: “Vision Language Model”, “submitted_answer”: “” }\n{ “question_type”: “multiple_choice”, “question”: “How is the captured image sent to the VLM in this notebook?”, “options”: [ { “key”: “a”, “text”: “As a file path on the server” }, { “key”: “b”, “text”: “As a base64-encoded data URL” }, { “key”: “c”, “text”: “As a public web URL” }, { “key”: “d”, “text”: “As a grid of pixel colour values” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only process text — it cannot understand images.”, “answer”: “False”, “submitted_answer”: “” }",
+    "text": "import torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\n/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: \nError while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.\nYou are not authenticated with the Hugging Face Hub in this notebook.\nIf the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKeyword arguments {'generator': &lt;torch._C.Generator object at 0x7c30c9746a30&gt;} are not expected by StableDiffusionPipeline and will be ignored."
+  },
+  {
+    "objectID": "labs/09/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
+    "href": "labs/09/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "Show Intermediate Steps",
+    "text": "Show Intermediate Steps\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\nSEED = -1 #@param {type:\"integer\"}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n    generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()"
+  },
+  {
+    "objectID": "labs/09/notebooks/text-to-image-sd-1.5.html#show-final-image",
+    "href": "labs/09/notebooks/text-to-image-sd-1.5.html#show-final-image",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "Show Final Image",
+    "text": "Show Final Image\n\nplt.figure(figsize=(8, 8))\nplt.imshow(result)\nplt.axis('off')\nplt.title('Final Generated Image')\nplt.savefig('final_result.png', dpi=150, bbox_inches='tight')\nplt.show()"
+  },
+  {
+    "objectID": "labs/09/notebooks/vlm_assistive.html",
+    "href": "labs/09/notebooks/vlm_assistive.html",
+    "title": "VLMs as Assistive Technology",
+    "section": "",
+    "text": "Vision Language Models can do more than answer questions — they can help people with visual impairments understand their surroundings. In this notebook, we build a simple seeing assistant: the camera captures a photo every few seconds, sends it to a VLM, and reads the description aloud.\nfrom openai import OpenAI\nimport os\nimport audio\n\nclient = OpenAI(\n    base_url=\"https://openrouter.ai/api/v1\",\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)\n\nVLM_MODEL = \"qwen/qwen3-vl-8b-instruct\"\n\nVOICE_MAP = {\n    \"Female (US)\": audio.Voice.EN_US.FEMALE,\n    \"Male (US)\": audio.Voice.EN_US.MALE,\n    \"Female (UK)\": audio.Voice.EN_GB.FEMALE,\n    \"Male (UK)\": audio.Voice.EN_GB.MALE,\n    \"Female (AU)\": audio.Voice.EN_AU.FEMALE,\n}\n\ndef describe_scene(image_url):\n    response = client.chat.completions.create(\n        model=VLM_MODEL,\n        messages=[{\n            \"role\": \"user\",\n            \"content\": [\n                {\"type\": \"image_url\", \"image_url\": {\"url\": image_url}},\n                {\"type\": \"text\", \"text\": \"You are an assistive AI for someone who cannot see. Describe what is in front of the camera in 1-2 short sentences. Be direct, specific, and clear.\"},\n            ]\n        }],\n        stream=False\n    )\n    return response.choices[0].message.content.strip()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 9",
       "Notebooks",
-      "vlm.ipynb"
+      "VLMs as Assistive Technology"
+    ]
+  },
+  {
+    "objectID": "labs/09/notebooks/vlm_assistive.html#run-the-seeing-assistant",
+    "href": "labs/09/notebooks/vlm_assistive.html#run-the-seeing-assistant",
+    "title": "VLMs as Assistive Technology",
+    "section": "Run the Seeing Assistant",
+    "text": "Run the Seeing Assistant\nAdjust the settings below, then run the cell. Point your camera at different objects or areas around you — the assistant will capture what it sees and read a description aloud.\n\nimport cv\nimport graphics\nimport time\n\nINTERVAL = 5 #@param {type:\"slider\", min:3, max:10, step:1}\nCAPTURES = 3 #@param {type:\"slider\", min:1, max:6, step:1}\nVOICE = \"Female (US)\" #@param [\"Female (US)\", \"Male (US)\", \"Female (UK)\", \"Male (UK)\", \"Female (AU)\"]\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ntime.sleep(2)\n\nvoice = VOICE_MAP[VOICE]\n\nfor i in range(CAPTURES):\n    if i &gt; 0:\n        time.sleep(INTERVAL)\n    data_url = cv.capture_frame(camera)\n    description = describe_scene(data_url)\n    print(f\"[{i + 1}/{CAPTURES}] {description}\")\n    audio.speak(description, voice=voice)\n\ncamera.stop()\nprint(\"Done.\")\n\nThink about what it would be like to rely on this kind of assistant every day.\nDid the descriptions give you enough information to understand your surroundings? What would make them more useful? How might you change the prompt to better help someone who is visually impaired?\n{ “question_type”: “multiple_choice”, “question”: “What is the main role of the VLM in the assistive tool built in this notebook?”, “options”: [ { “key”: “a”, “text”: “To control the camera zoom” }, { “key”: “b”, “text”: “To describe what the camera sees in words” }, { “key”: “c”, “text”: “To translate speech into different languages” }, { “key”: “d”, “text”: “To store images in the cloud” } ], “answer”: “b”, “submitted_answer”: “” }\n{ “question_type”: “true_false”, “question”: “In this notebook, the VLM streams tokens one at a time to produce the spoken description.”, “answer”: “False”, “submitted_answer”: “” }\n{ “question_type”: “freeform”, “question”: “What Python function is called to speak the VLM’s description aloud?”, “answer”: “audio.speak”, “submitted_answer”: “” }",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "VLMs as Assistive Technology"
     ]
   }
 ]

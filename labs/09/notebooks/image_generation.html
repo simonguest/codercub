@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">image_generation.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Image Generation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -727,25 +727,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/image_generation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">image_generation.ipynb</span></a>
+ <span class="menu-text">Image Generation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/image_to_image.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">image_to_image.ipynb</span></a>
+ <span class="menu-text">Image-to-Image</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/vlm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">vlm.ipynb</span></a>
+ <span class="menu-text">VLM (Vision Language Model)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/vlm_reasoning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">vlm_reasoning.ipynb</span></a>
+ <span class="menu-text">Reasoning with VLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/09/notebooks/vlm_assistive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VLMs as Assistive Technology</span></a>
   </div>
 </li>
       </ul>
@@ -779,7 +785,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">image_generation.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Image Generation</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Image Generation and Prompt Engineering</h1>
 </div>
@@ -800,7 +806,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>In this notebook, we generate images from text prompts using a diffusion model, and explore how the words we choose — including style modifiers — change what the model creates.</p>
 <p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/09/notebooks/image_generation.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<div id="cell-setup" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div id="cell-setup" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> base64</span>
@@ -849,18 +855,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="cell-generate-styled" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PROMPT <span class="op">=</span> <span class="st">"A Mongolian Bankhar dog running across the steppe at sunset"</span> <span class="co">#@param</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>STYLE <span class="op">=</span> <span class="st">"oil painting"</span> <span class="co">#@param ["oil painting", "watercolor", "anime", "photorealistic", "pixel art"]</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>styled_prompt <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>PROMPT<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>STYLE<span class="sc">}</span><span class="ss"> style"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sending prompt: </span><span class="sc">{</span>styled_prompt<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>MODEL,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: styled_prompt}],</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    extra_body<span class="op">=</span>{<span class="st">"modalities"</span>: [<span class="st">"image"</span>]}</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>image_url <span class="op">=</span> response.choices[<span class="dv">0</span>].message.images[<span class="dv">0</span>][<span class="st">"image_url"</span>][<span class="st">"url"</span>]</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>display_image(image_url)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>LIGHTING <span class="op">=</span> <span class="st">"studio lighting"</span> <span class="co">#@param ["studio lighting", "dramatic shadows", "soft diffused"]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>COMPOSITION <span class="op">=</span> <span class="st">"close up"</span> <span class="co">#@param ["close up", "wide-angle", "rule of thirds"]</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>styled_prompt <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>PROMPT<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>STYLE<span class="sc">}</span><span class="ss"> style, </span><span class="sc">{</span>LIGHTING<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>COMPOSITION<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sending prompt: </span><span class="sc">{</span>styled_prompt<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>MODEL,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: styled_prompt}],</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    extra_body<span class="op">=</span>{<span class="st">"modalities"</span>: [<span class="st">"image"</span>]}</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>image_url <span class="op">=</span> response.choices[<span class="dv">0</span>].message.images[<span class="dv">0</span>][<span class="st">"image_url"</span>][<span class="st">"url"</span>]</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>display_image(image_url)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Compare the styled image with the one from Part 1.</p>
 <p>How did adding a style modifier change the result? Which style did you find most interesting, and why? What other style words might you want to try?</p>
@@ -1292,8 +1300,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/09/notebooks/image_to_image.html" class="pagination-link" aria-label="image_to_image.ipynb">
-        <span class="nav-page-text">image_to_image.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/09/notebooks/image_to_image.html" class="pagination-link" aria-label="Image-to-Image">
+        <span class="nav-page-text">Image-to-Image</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

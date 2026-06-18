@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/10/slides.html" rel="next">
+<link href="../../../labs/09/notebooks/vlm_assistive.html" rel="next">
 <link href="../../../labs/09/notebooks/vlm.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/vlm_reasoning.html">vlm_reasoning.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/vlm_reasoning.html">Reasoning with VLMs</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -727,25 +727,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/image_generation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">image_generation.ipynb</span></a>
+ <span class="menu-text">Image Generation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/image_to_image.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">image_to_image.ipynb</span></a>
+ <span class="menu-text">Image-to-Image</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/vlm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">vlm.ipynb</span></a>
+ <span class="menu-text">VLM (Vision Language Model)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/vlm_reasoning.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">vlm_reasoning.ipynb</span></a>
+ <span class="menu-text">Reasoning with VLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/09/notebooks/vlm_assistive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VLMs as Assistive Technology</span></a>
   </div>
 </li>
       </ul>
@@ -779,7 +785,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/vlm_reasoning.html">vlm_reasoning.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/vlm_reasoning.html">Reasoning with VLMs</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Visual Reasoning with a VLM</h1>
 </div>
@@ -899,7 +905,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Which task impressed you most? Where did the model make a mistake or struggle? What other visual reasoning task would you want to try?</p>
 <p>{ “question_type”: “true_false”, “question”: “A Vision Language Model (VLM) can only describe images — it cannot count objects or answer specific questions about them.”, “answer”: “False”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “multiple_choice”, “question”: “What does OCR stand for?”, “options”: [ { “key”: “a”, “text”: “Optical Color Recognition” }, { “key”: “b”, “text”: “Output Content Rendering” }, { “key”: “c”, “text”: “Optical Character Recognition” }, { “key”: “d”, “text”: “Object and Caption Recognition” } ], “answer”: “c”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “freeform”, “question”: “What type of model is used in this notebook to answer questions about images?”, “answer”: “Vision Language Model (VLM)”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “freeform”, “question”: “What does VLM stand for?”, “answer”: “Vision Language Model”, “submitted_answer”: “” }</p>
 
 
 </section>
@@ -1320,13 +1326,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/09/notebooks/vlm.html" class="pagination-link" aria-label="vlm.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">vlm.ipynb</span>
+      <a href="../../../labs/09/notebooks/vlm.html" class="pagination-link" aria-label="VLM (Vision Language Model)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">VLM (Vision Language Model)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/10/slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/09/notebooks/vlm_assistive.html" class="pagination-link" aria-label="VLMs as Assistive Technology">
+        <span class="nav-page-text">VLMs as Assistive Technology</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

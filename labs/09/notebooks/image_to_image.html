@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_to_image.html">image_to_image.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_to_image.html">Image-to-Image</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -727,25 +727,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/image_generation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">image_generation.ipynb</span></a>
+ <span class="menu-text">Image Generation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/image_to_image.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">image_to_image.ipynb</span></a>
+ <span class="menu-text">Image-to-Image</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/vlm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">vlm.ipynb</span></a>
+ <span class="menu-text">VLM (Vision Language Model)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/09/notebooks/vlm_reasoning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">vlm_reasoning.ipynb</span></a>
+ <span class="menu-text">Reasoning with VLMs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/09/notebooks/vlm_assistive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VLMs as Assistive Technology</span></a>
   </div>
 </li>
       </ul>
@@ -779,7 +785,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_to_image.html">image_to_image.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/09/slides.html">Day 9</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_generation.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/09/notebooks/image_to_image.html">Image-to-Image</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Image-to-Image Transformation</h1>
 </div>
@@ -880,7 +886,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>How well did the model preserve the content of your photo while changing the style? What details changed that you didn’t expect? Which transformation did you find most impressive, and why?</p>
 <p>{ “question_type”: “true_false”, “question”: “An image-to-image model takes an existing image as input and can transform it based on a text instruction.”, “answer”: “True”, “submitted_answer”: “” }</p>
 <p>{ “question_type”: “multiple_choice”, “question”: “What makes image-to-image generation different from text-to-image generation?”, “options”: [ { “key”: “a”, “text”: “It doesn’t use the diffusion process” }, { “key”: “b”, “text”: “It takes an existing image as additional input alongside the text instruction” }, { “key”: “c”, “text”: “It can only produce black and white output” }, { “key”: “d”, “text”: “It generates images much faster” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “freeform”, “question”: “In this notebook, what two inputs are sent to the image model to produce the transformation?”, “answer”: “a photo (image) and a text instruction”, “submitted_answer”: “” }</p>
 
 
 </section>
@@ -1301,13 +1306,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/09/notebooks/image_generation.html" class="pagination-link" aria-label="image_generation.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">image_generation.ipynb</span>
+      <a href="../../../labs/09/notebooks/image_generation.html" class="pagination-link" aria-label="Image Generation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Image Generation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/09/notebooks/vlm.html" class="pagination-link" aria-label="vlm.ipynb">
-        <span class="nav-page-text">vlm.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/09/notebooks/vlm.html" class="pagination-link" aria-label="VLM (Vision Language Model)">
+        <span class="nav-page-text">VLM (Vision Language Model)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
