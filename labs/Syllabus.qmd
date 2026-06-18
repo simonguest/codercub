@@ -142,11 +142,30 @@
 | Recap (5 min) | scikit-learn, dzud dataset, linear regression. How does training a model in Python relate to today? | 0:00–0:05 | Plant the connection early |
 | micro:bit Overview (20 min) | Slides: what a micro:bit is (front and back), what an accelerometer measures (X, Y, Z), the wearable + radio setup that allows wireless movement. Explain the two-device workflow: wearable collects data wirelessly via radio; receiver connects to the laptop. | 0:05–0:25 | Show hardware physically |
 | Pair Up & Distribute Hardware (10 min) | Students find a partner. Each pair picks up one wearable micro:bit (with battery) and one radio micro:bit. | 0:25–0:35 | One of each per pair |
-| CreateAI Walkthrough (20 min) | Instructor-led: open createai.microbit.org, connect using micro:bit radio, connect the wearable first, then the receiver. Verify that accelerometer graphs move correctly. | 0:35–0:55 | Walk through live with class |
-| Record Actions (20 min) | Guided: each person records 2 actions (e.g. waving, writing). Partners take turns wearing the wearable. Aim for 4–5 actions total per pair. | 0:55–1:15 | Band must be snug |
+| CreateAI Walkthrough (20 min) | Instructor-led: open createai.microbit.org, connect using micro:bit radio, connect the wearable first, then the receiver. Verify that accelerometer graphs move correctly. See step-by-step below. | 0:35–0:55 | Walk through live with class |
+| Record Actions (20 min) | Guided: each person records 2 actions (e.g. waving, writing). Partners take turns wearing the wearable. Aim for 4–5 actions total per pair. See step-by-step below. | 0:55–1:15 | Band must be snug |
 | Train & Test Model (15 min) | Click "Train model." Take turns testing each action. Discussion: what worked well? What did it get wrong? | 1:15–1:30 | |
 | Diverse Data Discussion (20 min) | Slides: what is diverse data and why it matters. Case studies: facial recognition error rates for darker-skinned women (Joy Buolamwini, 2018), voice assistant struggles with non-standard accents. Hands-on: swap desks with another pair, test their model on your own wrist. | 1:30–1:50 | Key concept — don't rush |
 | Discussion & Wrap-Up (10 min) | What did you find when testing another pair's model? What would you do differently? Preview: tomorrow you write Python code that responds to detected gestures. | 1:50–2:00 | |
+
+#### CreateAI Connection — Step-by-Step
+
+1. Create a project: "My First Project"
+2. Click "Connect using micro:bit radio instead"
+3. Connect the **wearable** (collector) micro:bit and click "Next"; select the connection from the popup
+4. Disconnect the USB cable, then **very gently** insert the battery wire — pause until everyone sees the smiley face
+5. Connect the **receiver** micro:bit and click "Next"; select the connection from the popup
+6. Put the wearable on one wrist (it doesn't matter who goes first — both partners will have a turn)
+7. Check that the accelerometer graphs are moving — you are connected and ready to record!
+
+#### Recording Actions — Step-by-Step
+
+1. Create an action: "Waving"
+2. Record and repeat three times
+3. Pass the wearable to your partner; they record a different action of their choice — make sure the band is tight!
+4. Pause until everyone has two actions
+5. Each person records one more action (any action they choose)
+6. Pause until everyone has four actions total, then continue to free hands-on time
 
 #### Resources & Tools
 
@@ -173,13 +192,29 @@
 | Segment | Details | Time | Notes |
 |---------|---------|------|-------|
 | Recap (5 min) | micro:bit wearable, CreateAI, recording actions, diverse data. | 0:00–0:05 | |
-| Reconnect & Test Actions (15 min) | Pick up the same micro:bits and same laptop as Day 4. Reconnect to CreateAI using the radio option. Quick test to confirm actions are still recognized. | 0:05–0:20 | Saved per machine |
+| Reconnect & Test Actions (15 min) | Pick up the same micro:bits and same laptop as Day 4. Reconnect to CreateAI using the radio option. Quick test to confirm actions are still recognized. See step-by-step below. | 0:05–0:20 | Saved per machine |
 | MakeCode Demo (15 min) | Instructor demo: open the project in MakeCode. Show `on_start` event handlers — each action triggers a different icon or sound. Demonstrate adding `music.play` to an action. | 0:20–0:35 | Slides with code snippets |
 | MakeCode Hands-On (20 min) | Students code their own `on_start` handlers for each of their actions. | 0:35–0:55 | |
-| Download to micro:bit Demo (10 min) | Instructor demo: click download, follow prompts to disconnect the radio micro:bit and reconnect the wearable for flashing. | 0:55–1:05 | |
+| Download to micro:bit Demo (10 min) | Instructor demo: click download, follow prompts to disconnect the radio micro:bit and reconnect the wearable for flashing. See step-by-step below. | 0:55–1:05 | |
 | Download to micro:bit Hands-On (10 min) | Students flash their own wearable micro:bits with the trained model + code. | 1:05–1:15 | |
 | Project Time (35 min) | Students build their mini-project. Options: fitness tracker (count arm raises on LED), clapper (clap to toggle LEDs/sound), safe driving app (detect steering vs. texting), or original idea. | 1:15–1:50 | Float and support |
 | Reflect & Share (10 min) | Each group: what did you build? How does it work? | 1:50–2:00 | Celebrate creative use |
+
+#### Reconnecting to CreateAI — Step-by-Step
+
+1. Connect to createai.microbit.org — remember to use the micro:bit **radio** option
+2. The **wearable** micro:bit connects first
+3. After connecting, do a quick test to confirm all Day 4 actions are still being recognised
+4. Pause and wait for the whole class to catch up before moving on
+
+#### Downloading to micro:bit — Step-by-Step
+
+1. Click the download button in MakeCode
+2. Follow the prompts to **disconnect** the radio micro:bit
+3. **Plug in the wearable** micro:bit via USB (you can leave the battery connected)
+4. Wait for the model to finish downloading
+5. Disconnect the wearable from USB
+6. Test your code!
 
 #### Resources & Tools
 
