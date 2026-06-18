@@ -40,9 +40,9 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Hello World! (hello_world.ipynb)"
+                - text: "Hello World!"
                   href: labs/01/notebooks/hello_world.ipynb
-                - text: "AI in Action (ai_in_action.ipynb)"
+                - text: "AI in Action"
                   href: labs/01/notebooks/ai_in_action.ipynb
         - section: "Day 2"
           contents:
@@ -51,13 +51,13 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Using Pandas (pandas.ipynb)"
+                - text: "Using Pandas"
                   href: labs/02/notebooks/pandas.ipynb
-                - text: "Using Matplotlib (matplotlib.ipynb)"
+                - text: "Using Matplotlib"
                   href: labs/02/notebooks/matplotlib.ipynb
-                - text: "Exploring Air Quality (air_quality.ipynb)"
+                - text: "Exploring Air Quality"
                   href: labs/02/notebooks/air_quality.ipynb
-                - text: "Introducing Correlation (correlation.ipynb)"
+                - text: "Introducing Correlation"
                   href: labs/02/notebooks/correlation.ipynb
         - section: "Day 3"
           contents:
@@ -66,13 +66,13 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Using Scikit-learn (sklearn.ipynb)"
+                - text: "Using Scikit-learn"
                   href: labs/03/notebooks/sklearn.ipynb
-                - text: "Finding Disasters (finding_disasters.ipynb)"
+                - text: "Finding Disasters"
                   href: labs/03/notebooks/finding_disasters.ipynb
-                - text: "Finding the Cause (finding_cause.ipynb)"
+                - text: "Finding the Cause"
                   href: labs/03/notebooks/finding_cause.ipynb
-                - text: "Linear Regression (regression.ipynb)"
+                - text: "Linear Regression"
                   href: labs/03/notebooks/regression.ipynb
         - section: "Day 4"
           contents:
@@ -94,13 +94,13 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Face Detection (face_detection.ipynb)"
+                - text: "Face Detection"
                   href: labs/06/notebooks/face_detection.ipynb
-                - text: "Object Detection (object_detection.ipynb)"
+                - text: "Object Detection"
                   href: labs/06/notebooks/object_detection.ipynb
-                - text: "Pose Estimation (pose_landmarks.ipynb)"
+                - text: "Pose Estimation"
                   href: labs/06/notebooks/pose_landmarks.ipynb
-                - text: "3D Pose Avatar (pose_avatar.ipynb)"
+                - text: "3D Pose Avatar"
                   href: labs/06/notebooks/pose_avatar.ipynb
         - section: "Day 7"
           contents:
@@ -109,13 +109,13 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Gesture Recognition (gesture_recognition.ipynb)"
+                - text: "Gesture Recognition"
                   href: labs/07/notebooks/gesture_recognition.ipynb
-                - text: "Image Segmentation (image_segmentation.ipynb)"
+                - text: "Image Segmentation"
                   href: labs/07/notebooks/image_segmentation.ipynb
-                - text: "Tosh, Qaychi, Qog'oz (tosh_qaychi_qogoz.ipynb)"
+                - text: "Tosh, Qaychi, Qog'oz"
                   href: labs/07/notebooks/tosh_qaychi_qogoz.ipynb
-                - text: "Gesture Painter (gesture_painter.ipynb)"
+                - text: "Gesture Painter"
                   href: labs/07/notebooks/gesture_painter.ipynb
 
         - section: "Day 8"
@@ -125,17 +125,17 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Word2Vec (word2vec.ipynb)"
+                - text: "Word2Vec"
                   href: labs/08/notebooks/word2vec.ipynb
-                - text: "openai_sdk.ipynb"
+                - text: "Using the OpenAI SDK"
                   href: labs/08/notebooks/openai_sdk.ipynb
-                - text: "openai_streaming.ipynb"
+                - text: "OpenAI Streaming"
                   href: labs/08/notebooks/openai_streaming.ipynb
-                - text: "structured_output.ipynb"
+                - text: "Structured Output"
                   href: labs/08/notebooks/structured_output.ipynb
-                - text: "structured_output_piano.ipynb"
+                - text: "Structured Output (Piano)"
                   href: labs/08/notebooks/structured_output_piano.ipynb
-                - text: "structured_output_mesh.ipynb"
+                - text: "Mesh Generator"
                   href: labs/08/notebooks/structured_output_mesh.ipynb
         - section: "Day 9"
           contents:
