@@ -634,9 +634,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> next_color():</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> idx</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> (idx <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="bu">len</span>(colors)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    sphere.set_color(colors[idx])</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> idx</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  idx <span class="op">=</span> (idx <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="bu">len</span>(colors)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  sphere.set_color(colors[idx])</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>scene.on_key(scene3d.Key.SPACE, next_color)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
@@ -722,16 +722,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_hud():</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> player.get_position()</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'x = </span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss">   z = </span><span class="sc">{</span>z<span class="sc">:.1f}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  x, y, z <span class="op">=</span> player.get_position()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="ss">f'x = </span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss">   z = </span><span class="sc">{</span>z<span class="sc">:.1f}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> move(dx, dz):</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> player.get_position()</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    player.set_position(x <span class="op">+</span> dx, y, z <span class="op">+</span> dz)</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    draw_hud()</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  x, y, z <span class="op">=</span> player.get_position()</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  player.set_position(x <span class="op">+</span> dx, y, z <span class="op">+</span> dz)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>  draw_hud()</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>scene.on_key(scene3d.Key.LEFT,  <span class="kw">lambda</span>: move(<span class="op">-</span>STEP, <span class="dv">0</span>))</span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>scene.on_key(scene3d.Key.RIGHT, <span class="kw">lambda</span>: move( STEP, <span class="dv">0</span>))</span>
@@ -772,13 +772,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>color_idx <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> move(dx, dz):</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> player.get_position()</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    player.set_position(x <span class="op">+</span> dx, y, z <span class="op">+</span> dz)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  x, y, z <span class="op">=</span> player.get_position()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  player.set_position(x <span class="op">+</span> dx, y, z <span class="op">+</span> dz)</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cycle_color():</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> color_idx</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    color_idx <span class="op">=</span> (color_idx <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="bu">len</span>(colors)</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    player.set_color(colors[color_idx])</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> color_idx</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  color_idx <span class="op">=</span> (color_idx <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="bu">len</span>(colors)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  player.set_color(colors[color_idx])</span>
 <span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>scene.on_key(<span class="st">'a'</span>, <span class="kw">lambda</span>: move(<span class="op">-</span>STEP, <span class="dv">0</span>))</span>
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>scene.on_key(<span class="st">'d'</span>, <span class="kw">lambda</span>: move( STEP, <span class="dv">0</span>))</span>
@@ -825,30 +825,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>found <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_hud():</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="st">'Reach the gold sphere! — W/A/S/D or arrow keys'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found:</span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#f5a623'</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'24px sans-serif'</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="st">'You made it!'</span>, <span class="dv">10</span>, <span class="dv">62</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="st">'Reach the gold sphere! — W/A/S/D or arrow keys'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> found:</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#f5a623'</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'24px sans-serif'</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="st">'You made it!'</span>, <span class="dv">10</span>, <span class="dv">62</span>)</span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> check_goal():</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> found</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> found:</span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    px, _, pz <span class="op">=</span> player.get_position()</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    gx, _, gz <span class="op">=</span> goal.get_position()</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">abs</span>(px <span class="op">-</span> gx) <span class="op">&lt;=</span> STEP <span class="kw">and</span> <span class="bu">abs</span>(pz <span class="op">-</span> gz) <span class="op">&lt;=</span> STEP:</span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>        found <span class="op">=</span> <span class="va">True</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>        player.set_color(<span class="st">'#f5a623'</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> found</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> found:</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  px, _, pz <span class="op">=</span> player.get_position()</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  gx, _, gz <span class="op">=</span> goal.get_position()</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">abs</span>(px <span class="op">-</span> gx) <span class="op">&lt;=</span> STEP <span class="kw">and</span> <span class="bu">abs</span>(pz <span class="op">-</span> gz) <span class="op">&lt;=</span> STEP:</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>    found <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    player.set_color(<span class="st">'#f5a623'</span>)</span>
 <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> move(dx, dz):</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> player.get_position()</span>
-<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>    player.set_position(x <span class="op">+</span> dx, y, z <span class="op">+</span> dz)</span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    check_goal()</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    draw_hud()</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  x, y, z <span class="op">=</span> player.get_position()</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  player.set_position(x <span class="op">+</span> dx, y, z <span class="op">+</span> dz)</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>  check_goal()</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  draw_hud()</span>
 <span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>scene.on_key(<span class="st">'a'</span>,              <span class="kw">lambda</span>: move(<span class="op">-</span>STEP, <span class="dv">0</span>))</span>
 <span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>scene.on_key(<span class="st">'d'</span>,              <span class="kw">lambda</span>: move( STEP, <span class="dv">0</span>))</span>

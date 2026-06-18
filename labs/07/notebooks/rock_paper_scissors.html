@@ -851,19 +851,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> hand[<span class="st">'gesture'</span>] <span class="kw">in</span> VALID:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>hand[<span class="st">'confidence'</span>]<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        frame <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    canvas.draw_hands(detections)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">30</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> hand <span class="kw">in</span> detections:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> hand[<span class="st">'gesture'</span>] <span class="kw">in</span> VALID:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>hand[<span class="st">'handedness'</span>]<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>hand[<span class="st">'gesture'</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>hand[<span class="st">'confidence'</span>]<span class="sc">:.0%}</span><span class="ss">)"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.033</span>)</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  detector.stop()</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  camera.stop()</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="step-2-play" class="level2">
@@ -891,52 +891,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>pause <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        canvas.draw_hands(detections)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    detections <span class="op">=</span> detector.get_detections()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    canvas.draw_hands(detections)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            pause <span class="op">-=</span> <span class="dv">1</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            gesture <span class="op">=</span> detections[<span class="dv">0</span>][<span class="st">'gesture'</span>] <span class="cf">if</span> detections <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> gesture <span class="kw">in</span> VALID:</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span> <span class="cf">if</span> gesture <span class="op">==</span> held <span class="cf">else</span> <span class="dv">1</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                held  <span class="op">=</span> gesture</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> count <span class="op">&gt;=</span> HOLD:</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                    comp <span class="op">=</span> random.choice(<span class="bu">list</span>(VALID))</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> gesture <span class="op">==</span> comp:</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"Tie!"</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> BEATS[gesture] <span class="op">==</span> comp:</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"You win!"</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                        score[<span class="dv">0</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                        msg <span class="op">=</span> <span class="st">"Computer wins!"</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                        score[<span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                    result_line <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>VALID[gesture]<span class="sc">}</span><span class="ss">  vs  </span><span class="sc">{</span>VALID[comp]<span class="sc">}</span><span class="ss">  —  </span><span class="sc">{</span>msg<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                    held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                    pause <span class="op">=</span> PAUSE_FRAMES</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>      pause <span class="op">-=</span> <span class="dv">1</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      gesture <span class="op">=</span> detections[<span class="dv">0</span>][<span class="st">'gesture'</span>] <span class="cf">if</span> detections <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> gesture <span class="kw">in</span> VALID:</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        count <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span> <span class="cf">if</span> gesture <span class="op">==</span> held <span class="cf">else</span> <span class="dv">1</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        held  <span class="op">=</span> gesture</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> count <span class="op">&gt;=</span> HOLD:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>          comp <span class="op">=</span> random.choice(<span class="bu">list</span>(VALID))</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> gesture <span class="op">==</span> comp:</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> <span class="st">"Tie!"</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>          <span class="cf">elif</span> BEATS[gesture] <span class="op">==</span> comp:</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> <span class="st">"You win!"</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            score[<span class="dv">0</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>          <span class="cf">else</span>:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            msg <span class="op">=</span> <span class="st">"Computer wins!"</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            score[<span class="dv">1</span>] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>          result_line <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>VALID[gesture]<span class="sc">}</span><span class="ss">  vs  </span><span class="sc">{</span>VALID[comp]<span class="sc">}</span><span class="ss">  —  </span><span class="sc">{</span>msg<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>          held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>          pause <span class="op">=</span> PAUSE_FRAMES</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        held, count <span class="op">=</span> <span class="va">None</span>, <span class="dv">0</span></span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'rgba(0,0,0,0.7)'</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">84</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'bold 22px sans-serif'</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(result_line, <span class="dv">12</span>, <span class="dv">28</span>)</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="ss">f"You: </span><span class="sc">{</span>score[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">   Computer: </span><span class="sc">{</span>score[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">54</span>)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>            ctx.fill_text(<span class="st">"Get ready..."</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> held:</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>            bars <span class="op">=</span> <span class="bu">int</span>(count <span class="op">/</span> HOLD <span class="op">*</span> <span class="dv">10</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>            ctx.fill_text(<span class="ss">f"Holding </span><span class="sc">{</span>VALID[held]<span class="sc">}</span><span class="ss">... </span><span class="sc">{</span><span class="st">'#'</span> <span class="op">*</span> bars<span class="sc">}{</span><span class="st">'.'</span> <span class="op">*</span> (<span class="dv">10</span> <span class="op">-</span> bars)<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    ctx <span class="op">=</span> canvas.get_context(<span class="st">'2d'</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'rgba(0,0,0,0.7)'</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    ctx.fill_rect(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">800</span>, <span class="dv">84</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'bold 22px sans-serif'</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(result_line, <span class="dv">12</span>, <span class="dv">28</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'18px sans-serif'</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f"You: </span><span class="sc">{</span>score[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">   Computer: </span><span class="sc">{</span>score[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">54</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pause <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>      ctx.fill_text(<span class="st">"Get ready..."</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> held:</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>      bars <span class="op">=</span> <span class="bu">int</span>(count <span class="op">/</span> HOLD <span class="op">*</span> <span class="dv">10</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>      ctx.fill_text(<span class="ss">f"Holding </span><span class="sc">{</span>VALID[held]<span class="sc">}</span><span class="ss">... </span><span class="sc">{</span><span class="st">'#'</span> <span class="op">*</span> bars<span class="sc">}{</span><span class="st">'.'</span> <span class="op">*</span> (<span class="dv">10</span> <span class="op">-</span> bars)<span class="sc">}</span><span class="ss">"</span>, <span class="dv">12</span>, <span class="dv">78</span>)</span>
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        time.sleep(<span class="fl">0.033</span>)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.033</span>)</span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    detector.stop()</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    camera.stop()</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  detector.stop()</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  camera.stop()</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What would you add or change to make this game more fun? (Think about sound effects, a countdown, a best-of-3 mode, or showing the computer’s move as an image.)</p>
 </section>

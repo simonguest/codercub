@@ -814,7 +814,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a small diffusion model</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> <span class="st">"stable-diffusion-v1-5/stable-diffusion-v1-5"</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> StableDiffusionPipeline.from_pretrained(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    model_id,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  model_id,</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Move to GPU if available</span></span>
@@ -931,21 +931,21 @@ If the error persists, please let us know by opening an issue on GitHub (https:/
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>intermediate_images <span class="op">=</span> []</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> callback_fn(step, timestep, latents):</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Capture intermediate denoising steps"""</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Decode latents to image every few steps</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> step <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> step <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> torch.no_grad():</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Decode the latent representation to an image</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            image <span class="op">=</span> pipe.vae.decode(latents <span class="op">/</span> pipe.vae.config.scaling_factor, return_dict<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            image <span class="op">=</span> pipe.image_processor.postprocess(image, output_type<span class="op">=</span><span class="st">"pil"</span>)[<span class="dv">0</span>]</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            intermediate_images.append((step, image))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""Capture intermediate denoising steps"""</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Decode latents to image every few steps</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> step <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> step <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Decode the latent representation to an image</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>      image <span class="op">=</span> pipe.vae.decode(latents <span class="op">/</span> pipe.vae.config.scaling_factor, return_dict<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      image <span class="op">=</span> pipe.image_processor.postprocess(image, output_type<span class="op">=</span><span class="st">"pil"</span>)[<span class="dv">0</span>]</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>      intermediate_images.append((step, image))</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pipe(</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    PROMPT,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    num_inference_steps<span class="op">=</span>STEPS,</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    callback<span class="op">=</span>callback_fn,</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    callback_steps<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  PROMPT,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  num_inference_steps<span class="op">=</span>STEPS,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  callback<span class="op">=</span>callback_fn,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  callback_steps<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>).images[<span class="dv">0</span>]</span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the denoising process</span></span>
@@ -956,13 +956,13 @@ If the error persists, please let us know by opening an issue on GitHub (https:/
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="ss">f'Real Diffusion Model Denoising Process</span><span class="ch">\n</span><span class="ss">Prompt: "</span><span class="sc">{</span>PROMPT<span class="sc">}</span><span class="ss">"'</span>)</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, step_idx <span class="kw">in</span> <span class="bu">enumerate</span>(step_indices):</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    row <span class="op">=</span> idx <span class="op">//</span> <span class="dv">5</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>    col <span class="op">=</span> idx <span class="op">%</span> <span class="dv">5</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    step_num, img <span class="op">=</span> intermediate_images[step_idx]</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>  row <span class="op">=</span> idx <span class="op">//</span> <span class="dv">5</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  col <span class="op">=</span> idx <span class="op">%</span> <span class="dv">5</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  step_num, img <span class="op">=</span> intermediate_images[step_idx]</span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    axes[row, col].imshow(img)</span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    axes[row, col].axis(<span class="st">'off'</span>)</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    axes[row, col].set_title(<span class="ss">f'Step </span><span class="sc">{</span>step_num<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>STEPS<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  axes[row, col].imshow(img)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  axes[row, col].axis(<span class="st">'off'</span>)</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>  axes[row, col].set_title(<span class="ss">f'Step </span><span class="sc">{</span>step_num<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>STEPS<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'diffusion_process.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>

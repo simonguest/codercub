@@ -655,14 +655,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_tree(scene, x, z):</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span><span class="fl">1.5</span>, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    trunk.set_color(<span class="st">'#8B4513'</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    trunk.set_position(x, <span class="fl">0.75</span>, z)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    scene.add(trunk)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">2.0</span>, segments<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    leaves.set_color(<span class="st">'#228B22'</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    leaves.set_position(x, <span class="fl">2.0</span>, z)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    scene.add(leaves)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span><span class="fl">1.5</span>, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  trunk.set_color(<span class="st">'#8B4513'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  trunk.set_position(x, <span class="fl">0.75</span>, z)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  scene.add(trunk)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">2.0</span>, segments<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  leaves.set_color(<span class="st">'#228B22'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  leaves.set_position(x, <span class="fl">2.0</span>, z)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  scene.add(leaves)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>make_tree(scene, <span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>)</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>make_tree(scene, <span class="dv">3</span>, <span class="dv">0</span>)</span>
@@ -734,15 +734,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_tree(scene, x, z, height<span class="op">=</span><span class="fl">1.5</span>):</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span>height, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    trunk.set_color(<span class="st">'#8B4513'</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    trunk.set_position(x, height <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    scene.add(trunk)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    leaf_diameter <span class="op">=</span> height <span class="op">*</span> <span class="fl">1.4</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>leaf_diameter, segments<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    leaves.set_color(<span class="st">'#228B22'</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    leaves.set_position(x, height <span class="op">+</span> leaf_diameter <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    scene.add(leaves)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span>height, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  trunk.set_color(<span class="st">'#8B4513'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  trunk.set_position(x, height <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  scene.add(trunk)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  leaf_diameter <span class="op">=</span> height <span class="op">*</span> <span class="fl">1.4</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>leaf_diameter, segments<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  leaves.set_color(<span class="st">'#228B22'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  leaves.set_position(x, height <span class="op">+</span> leaf_diameter <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  scene.add(leaves)</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>make_tree(scene, <span class="op">-</span><span class="dv">4</span>, <span class="dv">0</span>, height<span class="op">=</span><span class="fl">1.0</span>)</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>make_tree(scene, <span class="dv">0</span>, <span class="dv">0</span>, height<span class="op">=</span><span class="fl">2.0</span>)</span>
@@ -765,21 +765,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">8</span>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_tree(scene, x, z, height<span class="op">=</span><span class="fl">1.5</span>):</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span>height, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    trunk.set_color(<span class="st">'#8B4513'</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    trunk.set_position(x, height <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    scene.add(trunk)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    leaf_diameter <span class="op">=</span> height <span class="op">*</span> <span class="fl">1.4</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>leaf_diameter, segments<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    leaves.set_color(<span class="st">'#228B22'</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    leaves.set_position(x, height <span class="op">+</span> leaf_diameter <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    scene.add(leaves)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span>height, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  trunk.set_color(<span class="st">'#8B4513'</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  trunk.set_position(x, height <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  scene.add(trunk)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  leaf_diameter <span class="op">=</span> height <span class="op">*</span> <span class="fl">1.4</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>leaf_diameter, segments<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  leaves.set_color(<span class="st">'#228B22'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  leaves.set_position(x, height <span class="op">+</span> leaf_diameter <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  scene.add(leaves)</span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12</span>):</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> random.uniform(<span class="fl">1.0</span>, <span class="fl">3.5</span>)</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    make_tree(scene, x, z, height<span class="op">=</span>h)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> random.uniform(<span class="fl">1.0</span>, <span class="fl">3.5</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  make_tree(scene, x, z, height<span class="op">=</span>h)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>{ “question_type”: “freeform”, “question”: “In one sentence, describe the main benefit of grouping code into a function.”, “answer”: “write once reuse”, “submitted_answer”: “” }</p>
 </section>
@@ -801,21 +801,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">8</span>)</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_tree(scene, x, z, height<span class="op">=</span><span class="fl">1.5</span>):</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span>height, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    trunk.set_color(<span class="st">'#8B4513'</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    trunk.set_position(x, height <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    scene.add(trunk)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    leaf_diameter <span class="op">=</span> height <span class="op">*</span> <span class="fl">1.4</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>leaf_diameter, segments<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    leaves.set_color(<span class="st">'#228B22'</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    leaves.set_position(x, height <span class="op">+</span> leaf_diameter <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    scene.add(leaves)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  trunk <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.3</span>, height<span class="op">=</span>height, tessellation<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  trunk.set_color(<span class="st">'#8B4513'</span>)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  trunk.set_position(x, height <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  scene.add(trunk)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  leaf_diameter <span class="op">=</span> height <span class="op">*</span> <span class="fl">1.4</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  leaves <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>leaf_diameter, segments<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  leaves.set_color(<span class="st">'#228B22'</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  leaves.set_position(x, height <span class="op">+</span> leaf_diameter <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  scene.add(leaves)</span>
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(TREE_COUNT):</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> random.uniform(<span class="fl">1.0</span>, <span class="fl">3.5</span>)</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    make_tree(scene, x, z, height<span class="op">=</span>h)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>  h <span class="op">=</span> random.uniform(<span class="fl">1.0</span>, <span class="fl">3.5</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>  make_tree(scene, x, z, height<span class="op">=</span>h)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Think about a 3D scene you’d like to build — a city with buildings, a reef with coral, a campsite with tents and campfires.</p>
 <p>What function would you define? What would you name it, and what parameters would it take? Describe what goes inside the function and how you’d call it to populate your scene.</p>

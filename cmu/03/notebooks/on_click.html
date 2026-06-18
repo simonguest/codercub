@@ -682,13 +682,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>click_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_sphere_click():</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> click_count</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    click_count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    sphere.set_color(colors[click_count <span class="op">%</span> <span class="bu">len</span>(colors)])</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'Clicks: </span><span class="sc">{</span>click_count<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> click_count</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  click_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  sphere.set_color(colors[click_count <span class="op">%</span> <span class="bu">len</span>(colors)])</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="ss">f'Clicks: </span><span class="sc">{</span>click_count<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>sphere <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.5</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>sphere.set_color(<span class="st">'#4488ff'</span>)</span>
@@ -718,12 +718,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">'Click any shape!'</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> show(text):</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> message</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    message <span class="op">=</span> text</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(message, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> message</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  message <span class="op">=</span> text</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(message, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>box.set_color(<span class="st">'#e94560'</span>)</span>
@@ -766,25 +766,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_hud():</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="st">'Clicks: '</span> <span class="op">+</span> <span class="st">'  |  '</span>.join(<span class="bu">str</span>(c) <span class="cf">for</span> c <span class="kw">in</span> clicks), <span class="dv">10</span>, <span class="dv">28</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="st">'Clicks: '</span> <span class="op">+</span> <span class="st">'  |  '</span>.join(<span class="bu">str</span>(c) <span class="cf">for</span> c <span class="kw">in</span> clicks), <span class="dv">10</span>, <span class="dv">28</span>)</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_handler(idx):</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> handler():</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        clicks[idx] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        spheres[idx].set_color(random.choice(palette))</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        update_hud()</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handler</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> handler():</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    clicks[idx] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    spheres[idx].set_color(random.choice(palette))</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    update_hud()</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> handler</span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    s.set_color(palette[i])</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    s.set_position(i <span class="op">*</span> <span class="dv">3</span> <span class="op">-</span> <span class="dv">6</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    s.on_click(make_handler(i))</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    spheres.append(s)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  s.set_color(palette[i])</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>  s.set_position(i <span class="op">*</span> <span class="dv">3</span> <span class="op">-</span> <span class="dv">6</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  s.on_click(make_handler(i))</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  spheres.append(s)</span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>update_hud()</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

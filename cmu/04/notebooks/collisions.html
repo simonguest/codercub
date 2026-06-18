@@ -641,17 +641,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> on_hit():</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    box.set_color(<span class="st">'#44cc88'</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="st">'Hit!'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  box.set_color(<span class="st">'#44cc88'</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="st">'Hit!'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>ball.on_collide(box, on_hit)   <span class="co"># registered after add(), before run()</span></span>
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> ball.get_position()</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    ball.set_position(x <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> dt, y, z)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  x, y, z <span class="op">=</span> ball.get_position()</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  ball.set_position(x <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> dt, y, z)</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -715,33 +715,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>colors  <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#4488ff'</span>, <span class="st">'#44cc88'</span>, <span class="st">'#cc44ff'</span>]</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>targets <span class="op">=</span> []</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, color <span class="kw">in</span> <span class="bu">enumerate</span>(colors):</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    b.set_color(color)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    b.set_position(<span class="op">-</span><span class="dv">3</span> <span class="op">+</span> i <span class="op">*</span> <span class="dv">3</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    targets.append(b)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  b.set_color(color)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  b.set_position(<span class="op">-</span><span class="dv">3</span> <span class="op">+</span> i <span class="op">*</span> <span class="dv">3</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  scene.add(b)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  targets.append(b)</span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>hit_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_handler(idx):</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> handler():</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>        <span class="kw">global</span> hit_count</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        hit_count <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>        targets[idx].set_color(<span class="st">'#ffffff'</span>)</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        ctx.clear()</span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="ss">f'Targets hit: </span><span class="sc">{</span>hit_count<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handler</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> handler():</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> hit_count</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    hit_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    targets[idx].set_color(<span class="st">'#ffffff'</span>)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'Targets hit: </span><span class="sc">{</span>hit_count<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> handler</span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(targets)):</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    ball.on_collide(targets[i], make_handler(i))</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  ball.on_collide(targets[i], make_handler(i))</span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    x, y, z <span class="op">=</span> ball.get_position()</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    ball.set_position(x <span class="op">+</span> <span class="fl">3.5</span> <span class="op">*</span> dt, y, z)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  x, y, z <span class="op">=</span> ball.get_position()</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  ball.set_position(x <span class="op">+</span> <span class="fl">3.5</span> <span class="op">*</span> dt, y, z)</span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
@@ -775,41 +775,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>coin_positions <span class="op">=</span> [(<span class="op">-</span><span class="dv">6</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>), (<span class="dv">0</span>, <span class="op">-</span><span class="dv">3</span>), (<span class="dv">3</span>, <span class="dv">3</span>), (<span class="dv">6</span>, <span class="dv">0</span>)]</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>coins <span class="op">=</span> []</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cx, cz <span class="kw">in</span> coin_positions:</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.7</span>, height<span class="op">=</span><span class="fl">0.2</span>, tessellation<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    c.set_color(<span class="st">'#f5a623'</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    c.set_position(cx, <span class="fl">0.1</span>, cz)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    scene.add(c)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    coins.append(c)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.7</span>, height<span class="op">=</span><span class="fl">0.2</span>, tessellation<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  c.set_color(<span class="st">'#f5a623'</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  c.set_position(cx, <span class="fl">0.1</span>, cz)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  scene.add(c)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  coins.append(c)</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_hud():</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'Score: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span><span class="bu">len</span>(coins)<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="ss">f'Score: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span><span class="bu">len</span>(coins)<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_collector(idx):</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> collect():</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>        <span class="kw">global</span> score</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>        score <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>        coins[idx].set_scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)   <span class="co"># hide the collected coin</span></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>        draw_hud()</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> collect</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> collect():</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> score</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    score <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    coins[idx].set_scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)   <span class="co"># hide the collected coin</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    draw_hud()</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> collect</span>
 <span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coins)):</span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    player.on_collide(coins[i], make_collector(i))</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  player.on_collide(coins[i], make_collector(i))</span>
 <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
 <span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> math.sin(t <span class="op">*</span> <span class="fl">0.7</span>) <span class="op">*</span> <span class="dv">6</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> math.cos(t <span class="op">*</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">4</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>    player.set_position(x, <span class="fl">0.4</span>, z)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> t</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  t <span class="op">+=</span> dt</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> math.sin(t <span class="op">*</span> <span class="fl">0.7</span>) <span class="op">*</span> <span class="dv">6</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> math.cos(t <span class="op">*</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  player.set_position(x, <span class="fl">0.4</span>, z)</span>
 <span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>draw_hud()</span>
 <span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -842,45 +842,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>coins <span class="op">=</span> []</span>
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>random.seed(<span class="dv">42</span>)</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(NUM_COINS):</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.7</span>, height<span class="op">=</span><span class="fl">0.2</span>, tessellation<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    c.set_color(<span class="st">'#f5a623'</span>)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    c.set_position(random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>), <span class="fl">0.1</span>, random.uniform(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    scene.add(c)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    coins.append(c)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">0.7</span>, height<span class="op">=</span><span class="fl">0.2</span>, tessellation<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  c.set_color(<span class="st">'#f5a623'</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  c.set_position(random.uniform(<span class="op">-</span><span class="dv">8</span>, <span class="dv">8</span>), <span class="fl">0.1</span>, random.uniform(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  scene.add(c)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  coins.append(c)</span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_hud():</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'Score: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>NUM_COINS<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> score <span class="op">==</span> NUM_COINS:</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#f5a623'</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'26px sans-serif'</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="st">'All collected!'</span>, <span class="dv">10</span>, <span class="dv">62</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'22px sans-serif'</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="ss">f'Score: </span><span class="sc">{</span>score<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>NUM_COINS<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> score <span class="op">==</span> NUM_COINS:</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#f5a623'</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'26px sans-serif'</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="st">'All collected!'</span>, <span class="dv">10</span>, <span class="dv">62</span>)</span>
 <span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_collector(idx):</span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> collect():</span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        <span class="kw">global</span> score</span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        score <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        coins[idx].set_scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>        draw_hud()</span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> collect</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> collect():</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> score</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    score <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    coins[idx].set_scale(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    draw_hud()</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> collect</span>
 <span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(coins)):</span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    player.on_collide(coins[i], make_collector(i))</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>  player.on_collide(coins[i], make_collector(i))</span>
 <span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">0.0</span></span>
 <span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
 <span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
-<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
-<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> math.sin(t <span class="op">*</span> SPEED) <span class="op">*</span> <span class="dv">8</span></span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> math.cos(t <span class="op">*</span> SPEED <span class="op">*</span> <span class="fl">0.7</span>) <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    player.set_position(x, <span class="fl">0.4</span>, z)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> t</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>  t <span class="op">+=</span> dt</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> math.sin(t <span class="op">*</span> SPEED) <span class="op">*</span> <span class="dv">8</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> math.cos(t <span class="op">*</span> SPEED <span class="op">*</span> <span class="fl">0.7</span>) <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>  player.set_position(x, <span class="fl">0.4</span>, z)</span>
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>draw_hud()</span>
 <span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

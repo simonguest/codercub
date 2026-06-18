@@ -628,10 +628,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, color <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="st">'#e94560'</span>), (<span class="dv">0</span>, <span class="st">'#f5a623'</span>), (<span class="dv">3</span>, <span class="st">'#44cc88'</span>)]:</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    s.set_color(color)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  s.set_color(color)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(BRIGHTNESS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -646,10 +646,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>MOOD <span class="op">=</span> <span class="st">'sunset'</span> <span class="co">#@param ["daylight", "sunset", "moonlight", "underground"]</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>moods <span class="op">=</span> {</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'daylight'</span>:    (<span class="st">'#ffffff'</span>, <span class="dv">90</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'sunset'</span>:      (<span class="st">'#ff9955'</span>, <span class="dv">55</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'moonlight'</span>:   (<span class="st">'#aabbff'</span>, <span class="dv">25</span>),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'underground'</span>: (<span class="st">'#334422'</span>, <span class="dv">18</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'daylight'</span>:    (<span class="st">'#ffffff'</span>, <span class="dv">90</span>),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'sunset'</span>:      (<span class="st">'#ff9955'</span>, <span class="dv">55</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'moonlight'</span>:   (<span class="st">'#aabbff'</span>, <span class="dv">25</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'underground'</span>: (<span class="st">'#334422'</span>, <span class="dv">18</span>),</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>color, brightness <span class="op">=</span> moods[MOOD]</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -660,10 +660,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">4</span>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, z <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">3</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>), (<span class="fl">1.5</span>, <span class="dv">3</span>)]:</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    b.set_material(scene3d.Material.Marble.Gray)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.6</span>, z)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  b.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  b.set_position(x, <span class="fl">0.6</span>, z)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  scene.add(b)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_color(color)</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(brightness)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -691,10 +691,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(<span class="dv">15</span>)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, color <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="st">'#e94560'</span>), (<span class="dv">0</span>, <span class="st">'#f5a623'</span>), (<span class="dv">3</span>, <span class="st">'#44cc88'</span>)]:</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    s.set_color(color)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  s.set_color(color)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  s.set_position(x, <span class="fl">0.6</span>, <span class="dv">0</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Point light overhead — set_visible shows its position as a glowing sphere</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">0</span>)</span>
@@ -763,10 +763,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(<span class="dv">10</span>)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, z <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">3</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>), (<span class="fl">1.5</span>, <span class="dv">3</span>)]:</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    b.set_material(scene3d.Material.Marble.Gray)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.6</span>, z)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  b.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  b.set_position(x, <span class="fl">0.6</span>, z)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  scene.add(b)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>)</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>light.set_color(<span class="st">'#ff8844'</span>)</span>
@@ -777,11 +777,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> math.sin(t) <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> math.cos(t) <span class="op">*</span> <span class="dv">4</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    light.set_position(x, <span class="dv">4</span>, z)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="kw">global</span> t</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  t <span class="op">+=</span> dt</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> math.sin(t) <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> math.cos(t) <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  light.set_position(x, <span class="dv">4</span>, z)</span>
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -807,10 +807,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(AMBIENT)</span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x, z <span class="kw">in</span> [(<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>), (<span class="dv">0</span>, <span class="dv">0</span>), (<span class="dv">3</span>, <span class="dv">0</span>), (<span class="op">-</span><span class="fl">1.5</span>, <span class="dv">3</span>), (<span class="fl">1.5</span>, <span class="dv">3</span>)]:</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    b.set_material(scene3d.Material.Marble.Gray)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    b.set_position(x, <span class="fl">0.6</span>, z)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    scene.add(b)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="fl">1.2</span>, depth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  b.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  b.set_position(x, <span class="fl">0.6</span>, z)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  scene.add(b)</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>light1 <span class="op">=</span> scene.add_light(<span class="op">-</span><span class="dv">4</span>, LIGHT_HEIGHT, <span class="dv">0</span>)</span>
 <span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>light1.set_color(LIGHT1_COLOR)</span>

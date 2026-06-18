@@ -742,8 +742,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A short melody</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>melody <span class="op">=</span> [</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'C4'</span>, <span class="fl">0.25</span>), (<span class="st">'E4'</span>, <span class="fl">0.25</span>), (<span class="st">'G4'</span>, <span class="fl">0.25</span>), (<span class="st">'C5'</span>, <span class="fl">0.25</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'G4'</span>, <span class="fl">0.25</span>), (<span class="st">'E4'</span>, <span class="fl">0.25</span>), (<span class="st">'C4'</span>, <span class="fl">0.5</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  (<span class="st">'C4'</span>, <span class="fl">0.25</span>), (<span class="st">'E4'</span>, <span class="fl">0.25</span>), (<span class="st">'G4'</span>, <span class="fl">0.25</span>), (<span class="st">'C5'</span>, <span class="fl">0.25</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  (<span class="st">'G4'</span>, <span class="fl">0.25</span>), (<span class="st">'E4'</span>, <span class="fl">0.25</span>), (<span class="st">'C4'</span>, <span class="fl">0.5</span>),</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>]</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>audio.play_notes(melody)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
@@ -800,20 +800,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>x_pos  <span class="op">=</span> [<span class="op">-</span><span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">3</span>]</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_handler(sound):</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> handler():</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        audio.play(<span class="ss">f'/sample_files/</span><span class="sc">{</span>sound<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        ctx.clear()</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        ctx.fill_text(<span class="ss">f'Played: </span><span class="sc">{</span>sound<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handler</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> handler():</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    audio.play(<span class="ss">f'/sample_files/</span><span class="sc">{</span>sound<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'Played: </span><span class="sc">{</span>sound<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> handler</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    s.set_color(colors[i])</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    s.set_position(x_pos[i], <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    s.on_click(make_handler(sounds[i]))</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  s.set_color(colors[i])</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  s.set_position(x_pos[i], <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  s.on_click(make_handler(sounds[i]))</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
 <span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
@@ -863,28 +863,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>spheres <span class="op">=</span> []</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_hud():</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    ctx.clear()</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    ctx.fill_text(<span class="ss">f'Notes played: </span><span class="sc">{</span>total_clicks<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  ctx.clear()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  ctx.fill_style <span class="op">=</span> <span class="st">'#ffffff'</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  ctx.font <span class="op">=</span> <span class="st">'20px sans-serif'</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  ctx.fill_text(<span class="ss">f'Notes played: </span><span class="sc">{</span>total_clicks<span class="sc">}</span><span class="ss">'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_handler(idx):</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> handler():</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="kw">global</span> total_clicks</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>        total_clicks <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>        audio.play_note(notes[idx], NOTE_DURATION)</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>        draw_hud()</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> total_clicks <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>            audio.speak(<span class="ss">f'Nice! </span><span class="sc">{</span>total_clicks<span class="sc">}</span><span class="ss"> notes played.'</span>)</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> handler</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> handler():</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> total_clicks</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    total_clicks <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    audio.play_note(notes[idx], NOTE_DURATION)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    draw_hud()</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> total_clicks <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>      audio.speak(<span class="ss">f'Nice! </span><span class="sc">{</span>total_clicks<span class="sc">}</span><span class="ss"> notes played.'</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> handler</span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    s.set_color(colors[i])</span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    s.set_position(i <span class="op">*</span> <span class="fl">3.5</span> <span class="op">-</span> <span class="dv">7</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    s.on_click(make_handler(i))</span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    scene.add(s)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    spheres.append(s)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">1.2</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  s.set_color(colors[i])</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  s.set_position(i <span class="op">*</span> <span class="fl">3.5</span> <span class="op">-</span> <span class="dv">7</span>, <span class="fl">0.7</span>, <span class="dv">0</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  s.on_click(make_handler(i))</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>  spheres.append(s)</span>
 <span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>draw_hud()</span>
 <span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

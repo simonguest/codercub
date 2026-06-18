@@ -635,19 +635,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'#e94560'</span>, <span class="st">'#f5a623'</span>, <span class="st">'#4488ff'</span>, <span class="st">'#44cc88'</span>, <span class="st">'#cc44ff'</span>]</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_object(scene, x, z):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    size <span class="op">=</span> random.uniform(<span class="fl">0.5</span>, <span class="fl">2.5</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> size <span class="op">&gt;</span> <span class="fl">1.5</span>:</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        shape <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span>size, height<span class="op">=</span>size <span class="op">*</span> <span class="fl">1.5</span>, depth<span class="op">=</span>size)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        shape <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>size, segments<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    shape.set_color(random.choice(colors))</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    shape.set_position(x, size <span class="op">/</span> <span class="dv">2</span>, z)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    scene.add(shape)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  size <span class="op">=</span> random.uniform(<span class="fl">0.5</span>, <span class="fl">2.5</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> size <span class="op">&gt;</span> <span class="fl">1.5</span>:</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    shape <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span>size, height<span class="op">=</span>size <span class="op">*</span> <span class="fl">1.5</span>, depth<span class="op">=</span>size)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    shape <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>size, segments<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  shape.set_color(random.choice(colors))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  shape.set_position(x, size <span class="op">/</span> <span class="dv">2</span>, z)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  scene.add(shape)</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(COUNT):</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    make_object(scene, x, z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  z <span class="op">=</span> random.uniform(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  make_object(scene, x, z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
