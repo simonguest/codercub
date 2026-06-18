@@ -3424,11 +3424,35 @@
     ]
   },
   {
-    "objectID": "labs/10/slides.html#tbd",
-    "href": "labs/10/slides.html#tbd",
-    "title": "Day 10",
-    "section": "TBD",
-    "text": "TBD\nprint(\"Hello world\")",
+    "objectID": "labs/10/slides.html#weve-covered-a-lot",
+    "href": "labs/10/slides.html#weve-covered-a-lot",
+    "title": "Day 10: Final Project",
+    "section": "We’ve Covered A Lot!",
+    "text": "We’ve Covered A Lot!\n\nWorking with data in Python using Pandas and Matplotlib\nSupervised ML using scikit-learn to create a regression model\nTrained models for physical hardware using the micro:bits\nNeural Networks and how computer vision works\nGenerative models for creating text, structure, and images",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#what-will-you-build-1",
+    "href": "labs/10/slides.html#what-will-you-build-1",
+    "title": "Day 10: Final Project",
+    "section": "What Will You Build?",
+    "text": "What Will You Build?\n\nExplore more datasets in Python or\nRe-train the micro:bits to build something more complex or\nCreate a new game/app using computer vision or\nUse one of the generative models to create new content or\nSomething completely different!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 10",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/10/slides.html#todays-class",
+    "href": "labs/10/slides.html#todays-class",
+    "title": "Day 10: Final Project",
+    "section": "Today’s Class",
+    "text": "Today’s Class\n\nStarting now, for ~90 minutes, build your own project\nCreate a new notebook (demo)\nRemember you can copy/paste code from other notebooks\nAsk for help if you need it! I’ll float around the room\nAfter ~90 minutes, “show and share” (optional)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 10",
