@@ -30,6 +30,8 @@ website:
       contents:
         - text: "Syllabus"
           href: labs/Syllabus.qmd
+        - text: "Teacher PD"
+          href: labs/pd.qmd
         - section: "Day 1"
           contents:
             - text: "Slides"

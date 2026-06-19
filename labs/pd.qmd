@@ -1,0 +1,330 @@
+---
+title: "**Future Intelligence Lab:** Teacher PD"
+author: "Simon Guest"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    embed-resources: true
+    theme: [default, ../theme/dark.scss]
+    logo: ../theme/codercub.jpg
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+
+---
+
+# Welcome! {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## This Session
+
+**We have 2 hours! Here's how we'll spend them:**
+
+| Time | Segment |
+|------|---------|
+| 0:00–0:10 | Why I developed this course |
+| 0:10–0:20 | The two-week arc |
+| 0:20–0:45 | Jupyter K-12 (the platform) |
+| 0:45–1:40 | Four modules (test hands-on activities) |
+| 1:40–2:00 | Wrap-up + Q&A |
+
+---
+
+## Why This Course?
+
+- High school students are **already using AI**, but rarely understand it
+- Most AI education focuses on one domain; this course covers **four**
+- Students leave able to **build things with AI**, not just consume it
+- Real datasets, real hardware, real APIs: no toy examples
+
+---
+
+## What Students Will Leave With
+
+- A working mental model of **how machines learn from data**
+- Experience training a real model on **hardware**
+- Confidence running **computer vision** algorithms on live video
+- The ability to call a **language model from Python** and make it do something useful
+- A capstone project they built themselves
+
+---
+
+## Who Is This Course For?
+
+- High school students. **Basic Python is a plus**, but also suitable for students with less experience
+- Students won't feel frustrated if they don't know Python, but if they do, they'll be able to do more
+- Students who are curious about AI but haven't seen inside it
+- The course is intentionally **broad over deep**. Four modules in two weeks means we prioritize exposure and excitement over exhaustive mastery
+
+---
+
+# The Two-Week Arc {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## At a Glance
+
+::: {style="font-size: 0.8em;"}
+| Days | Module | Focus |
+|------|--------|-------|
+| Day 1 | Intro | AI concepts survey, types of AI |
+| Days 2–3 | Module 1: Working with Data | pandas, matplotlib, scikit-learn |
+| Days 4–5 | Module 2: Physical Computing | micro:bit, gesture ML, MakeCode |
+| Days 6–7 | Module 3: Computer Vision | Neural networks, 5 CV algorithms |
+| Days 8–9 | Module 4: Generative AI | LLMs, image generation, VLMs |
+| Day 10 | Capstone | Final project + show & share |
+:::
+
+---
+
+## How the Modules Connect
+
+Each module builds on the last:
+
+- **Module 1**: students train a regression model in Python
+- **Module 2**: students train a gesture model on hardware (same idea, different form)
+- **Module 3**: students use pre-trained neural networks (understanding what's under the hood)
+- **Module 4**: students call powerful pre-trained models via API (applying everything)
+- (The progression is: **build intuition → train something → use the trained thing → build with it**)
+
+---
+
+## The Mongolian Thread
+
+Week 1 uses datasets from Mongolia, by design:
+
+- **Day 2:** Ulaanbaatar air quality: PM2.5 levels 30–40× the WHO safe limit
+- **Day 3:** Dzud livestock mortality: can we predict a catastrophic winter event?
+
+## The Mongolian Thread
+
+Why Mongolia?
+
+- Striking, unfamiliar data that isn't the usual US/EU context
+- Real stakes. These datasets describe real harm
+- Students can relate to the context before they're asked to analyze
+
+---
+
+# Jupyter K-12 {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## What Is a Jupyter Notebook?
+
+- Every activity in this course runs in a notebook. 
+- No installation required: Students open a link in Chrome.
+- A notebook is a document that **mixes code and explanation** in a single file.
+- **Code cells**: write and run Python; output appears immediately below
+- **Markdown cells**: text, headings, images, and formatted explanations
+
+---
+
+## Why Notebooks for AI Education?
+
+- Students see **code and output together**. No switching between files
+- Instructors can **demo live** and students follow along cell by cell
+- Partial completion is meaningful: A student who runs half a notebook has learned half the lesson
+- Output can be **text, charts, images, audio, 3d scenes, or live video**: all in the same document
+
+---
+
+## Activity: Introduce Notebooks!
+
+Let's walk through the same notebook students open on Day 1:
+
+1. Open `labs/01/notebooks/hello_world.ipynb` in Jupyter K-12
+2. Run the first few code cells: notice variables persist across cells
+3. Find the hidden cell and use the **eye icon** to reveal it
+4. Try the `#@param` form fields: change `NAME` and `GREETING` and re-run
+5. Scroll to the **Check Your Understanding** section at the end
+
+---
+
+## Jupyter K-12: Debrief
+
+- How is this different from tools you've used before (Word, Google Docs, PowerPoint)?
+- How might the eye icon change how you deliver a demo?
+
+---
+
+# Module 1: Working with Data {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## Module 1: Days 2 & 3
+
+**Day 2: Working with Data**
+
+Students load a real Ulaanbaatar air quality dataset and use pandas and matplotlib to investigate why the city has some of the worst air pollution on the planet.
+
+**Day 3: How Machines Learn**
+
+Students load a dzud disaster dataset, find which climate variables correlate with livestock mortality, then train a linear regression model using scikit-learn to predict future events.
+
+By the end: students have trained their first ML model in Python.
+
+---
+
+## Activity: Air Quality Investigation
+
+**What students do on Day 2 (you'll try a version now):**
+
+1. Open the air quality notebook in Jupyter K-12
+2. Load the Ulaanbaatar AQI dataset with pandas (`.head()`, `.describe()`, `.info()`)
+3. Plot PM2.5 levels over time with matplotlib
+4. Identify the seasonal pattern: what time of year is worst, and why?
+5. Calculate a correlation coefficient between temperature and PM2.5
+
+---
+
+## Module 1: Debrief
+
+- What did you notice in the data?
+- Did the correlation coefficient match your intuition?
+- How would you frame this investigation for a student who has never used pandas?
+
+---
+
+# Module 2: Physical Computing {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## Module 2: Days 4 & 5
+
+**Day 4: AI in the Physical World**
+
+Students connect a BBC micro:bit wearable via radio to CreateAI, record 4–5 gesture actions, and train a gesture recognition model. Then they swap with another pair to test whether the model generalises.
+
+**Day 5: Coding the Response**
+
+Students write MakeCode Python event handlers that respond to each detected gesture, flash the model to the wearable, and build a mini-project (fitness tracker, clapper, safe driving app, or original idea).
+
+---
+
+## Activity: Gesture Recording
+
+**What students do on Day 4:**
+
+1. Pair up: one wearable micro:bit, one radio receiver per pair
+2. Connect to CreateAI via the radio option
+3. Connect the **wearable** first, then the **receiver**
+4. Record 4–5 gesture actions (e.g. waving, writing, shaking)
+5. Click "Train model" and test each action
+6. Swap with another pair: does their model recognize *your* gestures?
+
+---
+
+# Module 3: Computer Vision {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## Module 3: Days 6 & 7
+
+**Day 6: How Computers See**
+
+Students explore how neural networks work (interactive browser demo), then run five pre-trained computer vision algorithms: face detection, object detection, pose estimation, and a 3D pose avatar.
+
+**Day 7: CV Mini-Project**
+
+Students add gesture recognition and image segmentation, then combine any of the five CV algorithms with their own Python logic to build an original mini-app.
+
+---
+
+## Five CV Algorithms
+
+::: {style="font-size: 0.8em;"}
+| Algorithm | What it does |
+|-----------|-------------|
+| Face detection | Finds faces: bounding boxes, not identity |
+| Object detection | Finds multiple objects and labels them |
+| Pose estimation | Maps 33 body landmarks in real time |
+| Gesture recognition | Classifies 8 hand poses |
+| Image segmentation | Labels every pixel: enables background removal |
+:::
+
+Each algorithm has its own notebook. Students run them on live webcam video.
+
+---
+
+## Activity: Pose Estimation
+
+**What students do on Day 6 (you'll try a version now):**
+
+1. Open the pose estimation notebook in Jupyter K-12
+2. Run the notebook: your webcam will activate
+3. Move around and observe the 33 landmarks being tracked
+4. Then open the 3D pose avatar notebook: the camera view disappears, replaced by joint positions in a live 3D scene
+5. Reflect: what could you build with this?
+
+---
+
+## Module 3: Debrief
+
+- What surprised you about how accurate the landmark tracking was?
+- What did it get wrong?
+- What mini-app would you have built in the 25-minute project time?
+
+---
+
+# Module 4: Generative AI {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## Module 4: Days 8 & 9
+
+**Day 8: Language Models**
+
+Students explore word embeddings (King − Man + Woman ≈ Queen), then call a language model from Python using the OpenAI SDK. They apply streaming and structured output to build more useful programs: including generating a piano melody and a 3D scene.
+
+**Day 9: Images and Vision Language Models**
+
+Students generate images from text prompts using a diffusion model, restyle photos with image-to-image, and query a Vision Language Model (VLM) with their own images: ending with a three-step seeing assistant.
+
+---
+
+## Activity: OpenAI SDK + Structured Output
+
+**What students do on Day 8 (you'll try a version now):**
+
+1. Open the OpenAI SDK notebook
+2. Send a basic chat message to a language model
+3. Modify the system prompt: observe how it changes the model's behavior
+4. Open the structured output notebook
+5. Use Pydantic to ask the model to return a structured response (e.g. a list of items with fields)
+6. Try the piano notebook: ask the model to compose a short melody as structured data
+
+---
+
+## Module 4: Debrief
+
+- How did changing the system prompt change the model's behaviour?
+- What did structured output unlock that plain text couldn't?
+- How would you explain a diffusion model to a 16-year-old in one sentence?
+
+---
+
+# Wrap-Up {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+
+## Day 10: Capstone
+
+- Students choose what to build:
+  - Explore more datasets with pandas and matplotlib
+  - Re-train micro:bits for a more complex project
+  - Create a new game or app using CV algorithms
+  - Use a generative model to create text, images, or structured data
+  - **Combine two or more module types**
+- The capstone is open-ended by design: the point is student agency, not a prescribed deliverable.
+
+---
+
+## Key Takeaways
+
+- The four modules are a **coherent progression**, not four separate topics
+- **Real data and real stakes** do the motivational work
+- Students don't need to master each tool; they need to **see what's possible**
+- The hands-on activities are the lesson (slides are the scaffolding for the class)
+- **Failure is a teaching moment**: the gesture model that doesn't generalize, the VLM that hallucinates, the prompt that produces nonsense
+
+---
+
+## Resources
+
+- Syllabus: `labs/Syllabus.qmd`
+- All notebooks: `labs/01/` through `labs/09/`
+- Jupyter K-12 platform: `jupyter-k12.org`
+- createai.microbit.org
+- OpenRouter API keys: contact the course coordinator
+
+---
+
+## Questions?
