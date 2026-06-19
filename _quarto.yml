@@ -166,6 +166,8 @@ website:
       collapse-level: 99
       search: true
       contents:
+        - text: "Syllabus"
+          href: cmu/Syllabus.qmd
         - section: "Day 1"
           contents:
             - text: "Slides"

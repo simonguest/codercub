@@ -1,0 +1,169 @@
+# Learning Python in 3D
+
+## Curriculum Plan
+
+## At a Glance
+
+| Day | Module | Focus |
+|-----|--------|-------|
+| Day 1 | Python Basics | Variables, functions, colors & materials |
+| Day 2 | Logic & Loops | Custom functions, if statements, for loops & random numbers |
+| Day 3 | Events & Animation | Animations, click & key events, grouping & getters |
+| Day 4 | Game Mechanics | Camera, lighting, sound, HUD & collisions |
+| Day 5 | Final Project | Build your own 3D experience from scratch |
+
+---
+
+## Day 1 — Python Basics
+
+### Variables, Functions, Colors & Materials
+
+#### Learning Objectives
+
+- Create and use variables to hold simple values and 3D objects
+- Call functions with parameters to create and place shapes in 3D space
+- Apply hex color codes to shapes and scene backgrounds
+- Use pre-built materials and sky environments to create realistic scenes
+- Define constants (ALL_CAPS) to organize colors and materials across a scene
+
+#### Notebooks
+
+| Notebook | What Students Learn |
+|----------|---------------------|
+| Hello World (`cmu/01/notebooks/hello_world.ipynb`) | How Jupyter-K12 notebooks work; code and markdown cells; interactive form fields; a first look at a 3D scene |
+| Variables (`cmu/01/notebooks/variables.ipynb`) | Creating variables with `=`; holding numbers, text, and 3D objects; one variable controlling multiple things |
+| Functions (`cmu/01/notebooks/functions.ipynb`) | Calling functions; parameters and defaults; `set_position`, `set_scale`, and `set_rotation` |
+| Colors (`cmu/01/notebooks/colors.ipynb`) | Hex color codes; red/green/blue mixing; `set_color` and `set_sky` |
+| Materials (`cmu/01/notebooks/materials.ipynb`) | PBR material constants; sky environments; `set_material`, `set_glossiness`, `set_tiling`; ALL_CAPS constants |
+| Let's Experiment (`cmu/01/notebooks/experiment.ipynb`) | Open-ended creative scene applying Day 1 concepts |
+
+#### Resources & Tools
+
+- Jupyter-K12 platform (jupyter-k12.org)
+- Curriculum page (simonguest.github.io/codercub)
+- Day 1 slides (`cmu/01/slides.qmd`)
+
+---
+
+## Day 2 — Logic & Loops
+
+### Custom Functions, If Statements, For Loops & Random Numbers
+
+#### Learning Objectives
+
+- Define custom functions with `def` to package repeated steps under a single name
+- Add parameters with default values to make functions flexible
+- Write `if` statements to make decisions based on conditions
+- Use comparison operators (`<`, `>`, `<=`, `>=`, `==`, `!=`) correctly
+- Repeat code with `for` loops using `range()`, and with `while` loops until a condition changes
+- Generate variety with `random.randint`, `random.uniform`, and `random.choice`
+
+#### Notebooks
+
+| Notebook | What Students Learn |
+|----------|---------------------|
+| Custom Functions (`cmu/02/notebooks/custom_functions.ipynb`) | `def` keyword; parameters; default values; combining functions with loops to build a forest |
+| If Statements (`cmu/02/notebooks/if_statements.ipynb`) | Condition/body structure; colon and indentation; six comparison operators; `=` vs. `==` |
+| For Loops (`cmu/02/notebooks/for_loops.ipynb`) | `for i in range(n):`; using `i` to vary each iteration; `while` loops; when to use each |
+| Random Numbers (`cmu/02/notebooks/random_numbers.ipynb`) | `randint`, `uniform`, `choice`; seeds for reproducible layouts; randomness in animation |
+| Let's Experiment (`cmu/02/notebooks/experiment.ipynb`) | Open-ended creative scene applying Day 2 concepts |
+
+#### Resources & Tools
+
+- Jupyter-K12 platform
+- Day 2 slides (`cmu/02/slides.qmd`)
+
+---
+
+## Day 3 — Events & Animation
+
+### Animations, Click & Key Events, Grouping & Getters
+
+#### Learning Objectives
+
+- Use `@scene.on_frame` to animate objects smoothly using delta time (`dt`)
+- Register click handlers with `on_click` using both lambda functions and named functions
+- Handle keyboard input with `scene.on_key` using `Key` constants and letter strings
+- Group multiple shapes into a compound object with `scene3d.Group`
+- Read object state with `get_position`, `get_rotation`, and `get_scale`
+
+#### Notebooks
+
+| Notebook | What Students Learn |
+|----------|---------------------|
+| Animations (`cmu/03/notebooks/animations.ipynb`) | `@scene.on_frame`; delta time and frame-rate independence; decorators; animating multiple objects |
+| On Click (`cmu/03/notebooks/on_click.ipynb`) | Event handlers; lambda vs. named functions; multiple independent click handlers |
+| On Key (`cmu/03/notebooks/on_key.ipynb`) | `scene.on_key`; `Key` constants; letter keys; WASD movement pattern |
+| Grouping (`cmu/03/notebooks/grouping.ipynb`) | `scene3d.Group`; relative child positions; remote pivot point; orbital animation |
+| Getters (`cmu/03/notebooks/getters.ipynb`) | `get_position`, `get_rotation`, `get_scale`; tuple unpacking; using the mesh as source of truth |
+| Let's Experiment (`cmu/03/notebooks/experiment.ipynb`) | Open-ended creative scene applying Day 3 concepts |
+
+#### Resources & Tools
+
+- Jupyter-K12 platform
+- Day 3 slides (`cmu/03/slides.qmd`)
+
+---
+
+## Day 4 — Game Mechanics
+
+### Camera, Lighting, Sound, HUD & Collisions
+
+#### Learning Objectives
+
+- Control camera position, orientation, and tracking with `scene.camera`
+- Adjust ambient light and add colored point lights to set mood and atmosphere
+- Play sound effects, musical notes, melodies, and speech using the `audio` module
+- Draw text and shapes on a 2D overlay canvas to build a live-updating HUD
+- Detect mesh overlaps with `on_collide` and implement collectible game mechanics
+
+#### Notebooks
+
+| Notebook | What Students Learn |
+|----------|---------------------|
+| Camera (`cmu/04/notebooks/camera.ipynb`) | `set_position`, `look_at`, `set_distance`; `follow` and `follow(None)`; method chaining; `reset` |
+| Lighting (`cmu/04/notebooks/lighting.ipynb`) | `scene.ambient` brightness and color; `scene.add_light`; `set_visible` as a positioning tool; animated lights |
+| Sound (`cmu/04/notebooks/sound.ipynb`) | `audio.play`; `play_note` and chords; `play_notes` for sequences; `speak` with voice options; `await play_async` for background music |
+| HUD (`cmu/04/notebooks/hud.ipynb`) | `scene.get_context('2d')`; `fill_text` and `fill_rect`; progress bar formula; clear-and-redraw pattern |
+| Collisions (`cmu/04/notebooks/collisions.ipynb`) | Bounding box detection; `on_collide` registration rules; fires-once behavior; hiding collectibles with `set_scale(0, 0, 0)` |
+| Let's Experiment (`cmu/04/notebooks/experiment.ipynb`) | Open-ended creative scene applying Day 4 concepts |
+
+#### Resources & Tools
+
+- Jupyter-K12 platform
+- Day 4 slides (`cmu/04/slides.qmd`)
+
+---
+
+## Day 5 — Final Project
+
+### Build Your Own 3D Experience
+
+#### Learning Objectives
+
+- Apply concepts from Days 1–4 to design and build an original 3D scene or game
+- Make independent decisions about structure, mechanics, and visual design
+- Optionally present their project and explain what it does and how it works
+
+#### Project Ideas
+
+Students may build anything they like using what they've learned. Some starting points:
+
+- **Coin collector game** — move a player with WASD, collect coins before the timer runs out, show score and health on a HUD, play sounds on pickup
+- **Procedural world** — use loops and random numbers to generate a landscape, define a function to place trees or buildings, add materials and lighting for atmosphere
+- **Interactive solar system** — use groups to orbit moons around planets, let the camera follow a planet, add click handlers that speak planet names out loud
+- **Rhythm instrument** — build a row of clickable shapes that each play a different note, display a score on the HUD, and announce milestones with `audio.speak`
+
+#### Notebooks
+
+| Notebook | What Students Learn |
+|----------|---------------------|
+| Final Project (`cmu/05/notebooks/final_project.ipynb`) | Guided prompts to help students plan, start, and iterate on their own 3D project |
+
+#### Resources & Tools
+
+- All notebooks from Days 1–4 as reference
+- Jupyter-K12 platform
+- Day 5 slides (`cmu/05/slides.qmd`)
+
+> **Instructor Notes:** Encourage students to start from an existing notebook and copy/paste code as a foundation rather than starting from scratch. End the session with an optional "show and share" — celebrate creative use and personal ideas over technical complexity.
