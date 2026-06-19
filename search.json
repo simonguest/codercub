@@ -3257,6 +3257,162 @@
     "text": "This site contains notebooks and resources for the Learning Python in 3D course, where you’ll learn Python fundamentals through hands-on 3D graphics projects.\nUse the left-hand side bar to select the day and activity."
   },
   {
+    "objectID": "cmu/04/slides.html#lets-get-started",
+    "href": "cmu/04/slides.html#lets-get-started",
+    "title": "Day 4: Game Mechanics",
+    "section": "Let’s Get Started",
+    "text": "Let’s Get Started\n\nYesterday your scenes moved, responded, and reacted\nToday you’ll add the final layer — the mechanics that make a scene feel like a game\n\nControl the camera to frame your scene dramatically\nShape the mood with dynamic lighting\nAdd sound effects, music, and speech\nBuild a HUD to display score, health, and timers\nDetect when objects collide",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/04/slides.html#camera",
+    "href": "cmu/04/slides.html#camera",
+    "title": "Day 4: Game Mechanics",
+    "section": "Camera",
+    "text": "Camera\n\nscene.camera gives full control over the viewpoint\n\nset_position(x, y, z) — teleport the camera anywhere in the scene\nlook_at(mesh) or look_at(x, y, z) — point it at an object or coordinate\nset_distance(n) — zoom in or out from the current target\n\nfollow(mesh) tracks a moving object every frame — follow(None) stops it",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/04/slides.html#lighting",
+    "href": "cmu/04/slides.html#lighting",
+    "title": "Day 4: Game Mechanics",
+    "section": "Lighting",
+    "text": "Lighting\n\nEvery scene starts with a hemispheric ambient light\n\nscene.ambient.set_brightness(30) — dim for atmosphere (scale 0–100)\nscene.ambient.set_color('#ff9955') — tint the whole scene warm, cool, or eerie\n\nscene.add_light(x, y, z) adds a point light — shines in all directions like a bulb\n\nlight.set_color('#4488ff') — colored lights dramatically change the mood\nlight.set_visible(True) — shows a glowing marker while you’re positioning it",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/04/slides.html#sound",
+    "href": "cmu/04/slides.html#sound",
+    "title": "Day 4: Game Mechanics",
+    "section": "Sound",
+    "text": "Sound\n\naudio.play('/sample_files/laser.wav') — plays a pre-loaded sound file\naudio.play_note('C4', 0.4) — plays a musical note for a set duration\n\nPass a list for a chord: audio.play_note(['C4', 'E4', 'G4'], 1.0)\n\naudio.speak('Nice work!') — text-to-speech, with optional voice and language\nUse await audio.play_async(...) to play background music while a scene runs",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/04/slides.html#hud",
+    "href": "cmu/04/slides.html#hud",
+    "title": "Day 4: Game Mechanics",
+    "section": "HUD",
+    "text": "HUD\n\nctx = scene.get_context('2d') — a 2D canvas that floats above the 3D scene\n\nctx.fill_text('Score: 0', x, y) — draw text at any screen position\nctx.fill_rect(x, y, width, height) — draw solid rectangles for panels and bars\n\nProgress bar formula: fill_width = bar_max_width * (value / max_value)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/04/slides.html#collisions",
+    "href": "cmu/04/slides.html#collisions",
+    "title": "Day 4: Game Mechanics",
+    "section": "Collisions",
+    "text": "Collisions\n\nmesh.on_collide(other, handler) fires the first time two meshes overlap\n\nUses bounding box detection — an invisible box fitted around each mesh\nRegister after both meshes are added to the scene, before scene.run()\n\nFires once per overlap — perfect for collectibles that can only be picked up once\n\nHide a collected object: coin.set_scale(0, 0, 0) — collapses its bounding box too",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/04/slides.html#tomorrow-final-project",
+    "href": "cmu/04/slides.html#tomorrow-final-project",
+    "title": "Day 4: Game Mechanics",
+    "section": "Tomorrow: Final Project",
+    "text": "Tomorrow: Final Project\n\nEverything you’ve learned — all in one scene\nYou choose what to build\nVariables, functions, loops, events, animation, sound, lighting, camera, collisions\nMake it your own!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/02/slides.html#lets-get-started",
+    "href": "cmu/02/slides.html#lets-get-started",
+    "title": "Day 2: Logic and Loops",
+    "section": "Let’s Get Started",
+    "text": "Let’s Get Started\n\nYesterday you built a 3D scene with shapes, colors, and materials\nToday you’ll make your scenes smarter and more dynamic\n\nWrite your own functions to avoid repeating code\nAdd decision-making with if statements\nGenerate entire worlds with loops\nUse randomness to make scenes feel alive",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/02/slides.html#custom-functions",
+    "href": "cmu/02/slides.html#custom-functions",
+    "title": "Day 2: Logic and Loops",
+    "section": "Custom Functions",
+    "text": "Custom Functions\n\nYou’ve been calling functions. Let’s now you’ll write your own!\nUse def to define a function once, then call it anywhere:\n\ndef make_tree(scene, x, z): — define the steps once\nmake_tree(scene, -3, 0) — place a tree with a single line\n\nWithout functions, adding ten trees means ten copies of the same code",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/02/slides.html#if-statements",
+    "href": "cmu/02/slides.html#if-statements",
+    "title": "Day 2: Logic and Loops",
+    "section": "If Statements",
+    "text": "If Statements\n\nAn if statement lets your program make decisions\n\nThe indented body only runs when the condition is True\n\nStructure: if condition: followed by an indented body\n\nif y &lt; 0: — reset a falling ball when it hits the ground\nif size &gt; 3: — shrink a sphere when it grows too large\n\nSix comparison operators: &lt; &gt; &lt;= &gt;= == !=",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/02/slides.html#for-loops-and-while-loops",
+    "href": "cmu/02/slides.html#for-loops-and-while-loops",
+    "title": "Day 2: Logic and Loops",
+    "section": "For Loops and While Loops",
+    "text": "For Loops and While Loops\n\nA for loop repeats code a set number of times\n\nfor i in range(10): — runs the body 10 times, i goes 0 → 9\nUse i to vary position, size, or color on each pass\n\nA while loop repeats until a condition becomes False\n\nwhile height &lt; 5: — keep stacking boxes until the tower is tall enough\n\nRule of thumb: use for when you know the count, while when you don’t",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/02/slides.html#random-numbers",
+    "href": "cmu/02/slides.html#random-numbers",
+    "title": "Day 2: Logic and Loops",
+    "section": "Random Numbers",
+    "text": "Random Numbers\n\nThe random module makes scenes feel alive and unpredictable\n\nrandom.randint(1, 8) — a random whole number between 1 and 8\nrandom.uniform(-8, 8) — a random decimal anywhere in a range\nrandom.choice(colors) — pick one item at random from a list\n\nCombine with loops to scatter objects across an entire scene",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/02/slides.html#tomorrow-events-and-animation",
+    "href": "cmu/02/slides.html#tomorrow-events-and-animation",
+    "title": "Day 2: Logic and Loops",
+    "section": "Tomorrow: Events and Animation",
+    "text": "Tomorrow: Events and Animation\n\nHandling key presses and mouse clicks\nAnimating objects in real time\nGrouping objects together\nReading object state with getters",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 2",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "cmu/01/slides.html#why-python-in-3d",
     "href": "cmu/01/slides.html#why-python-in-3d",
     "title": "Day 1: Learning Python in 3D",
@@ -3373,6 +3529,126 @@
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#lets-get-started",
+    "href": "cmu/03/slides.html#lets-get-started",
+    "title": "Day 3: Events and Animation",
+    "section": "Let’s Get Started",
+    "text": "Let’s Get Started\n\nYesterday you used logic and loops to generate 3D worlds\nToday your scenes come alive — they move, respond, and react\n\nAnimate objects smoothly using a per-frame callback\nRespond to mouse clicks and keyboard input\nGroup shapes into compound objects that move as one\nRead object state back to make smarter decisions",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#animations",
+    "href": "cmu/03/slides.html#animations",
+    "title": "Day 3: Events and Animation",
+    "section": "Animations",
+    "text": "Animations\n\n@scene.on_frame runs your function automatically on every rendered frame\n\nReceives dt — the time in seconds since the last frame (delta time)\nx += speed * dt — multiply by dt for smooth, frame-rate-independent motion\n\nOne callback can update as many objects as you need",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#on-click",
+    "href": "cmu/03/slides.html#on-click",
+    "title": "Day 3: Events and Animation",
+    "section": "On Click",
+    "text": "On Click\n\nEvery mesh supports on_click(handler) — the handler runs when the mesh is clicked\n\nsphere.on_click(lambda: sphere.set_color('#e94560')) — one-liner with lambda\nUse a named function when the handler needs more than one step\n\nAn event handler is a function that runs when something happens, not immediately\n\nRegister before scene.run() — each mesh can have its own independent handler",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#on-key",
+    "href": "cmu/03/slides.html#on-key",
+    "title": "Day 3: Events and Animation",
+    "section": "On Key",
+    "text": "On Key\n\nscene.on_key(key, handler) runs a function each time a key is pressed\n\nUse Key constants for special keys: Key.LEFT, Key.RIGHT, Key.SPACE\nUse plain strings for letter keys: scene.on_key('w', move_forward)\n\nRegistering any key handler automatically disables the default camera arrow keys\n\nMouse orbit and scroll-wheel zoom continue to work as normal",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#grouping",
+    "href": "cmu/03/slides.html#grouping",
+    "title": "Day 3: Events and Animation",
+    "section": "Grouping",
+    "text": "Grouping\n\nA Group wraps multiple shapes into a single moveable unit\n\nAdd shapes with group.add(shape), then add the group with scene.add(group)\ngroup.set_rotation(y=45) — rotates every shape inside together\n\nChild positions are relative to the group’s center — the pivot point for all rotations\n\nA moon offset from the group center orbits the planet when the group rotates\nRotating the shape directly would just spin it in place",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#getters",
+    "href": "cmu/03/slides.html#getters",
+    "title": "Day 3: Events and Animation",
+    "section": "Getters",
+    "text": "Getters\n\nEvery mesh remembers its current state — read it back at any time\n\nget_position() → (x, y, z) · get_rotation() → degrees · get_scale() → factors\nUnpack all three at once: x, y, z = ball.get_position()\n\nEssential inside animation loops: read the current position, update it, write it back\n\nThe mesh is the source of truth — no need to track position in a separate variable",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/03/slides.html#tomorrow-game-mechanics",
+    "href": "cmu/03/slides.html#tomorrow-game-mechanics",
+    "title": "Day 3: Events and Animation",
+    "section": "Tomorrow: Game Mechanics",
+    "text": "Tomorrow: Game Mechanics\n\nCamera control: placing and tracking the view\nDynamic lighting: point lights, color, and mood\nSound: effects, music, and speech\nHUD: drawing score, timers, and progress bars\nCollisions: detecting when objects touch",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/05/slides.html#weve-covered-a-lot",
+    "href": "cmu/05/slides.html#weve-covered-a-lot",
+    "title": "Day 5: Final Project",
+    "section": "We’ve Covered A Lot!",
+    "text": "We’ve Covered A Lot!\n\nDay 1: Variables, functions, colors, and materials\nDay 2: Custom functions, if statements, loops, and random numbers\nDay 3: Animations, click and key events, grouping, and getters\nDay 4: Camera, lighting, sound, HUD, and collisions",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/05/slides.html#what-will-you-build-1",
+    "href": "cmu/05/slides.html#what-will-you-build-1",
+    "title": "Day 5: Final Project",
+    "section": "What Will You Build?",
+    "text": "What Will You Build?\n\nA coin collector game: move a player with WASD, collect coins before the timer runs out, show score and health on a HUD, play sounds on pickup\nA procedural world: use loops and random numbers to generate a landscape, write a function to place trees or buildings, add materials and lighting for atmosphere\nAn interactive solar system: use groups to orbit moons around planets, animate everything, let the camera follow a planet, add click handlers that speak planet names\nOr something else?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "cmu/05/slides.html#todays-class",
+    "href": "cmu/05/slides.html#todays-class",
+    "title": "Day 5: Final Project",
+    "section": "Today’s Class",
+    "text": "Today’s Class\n\nStarting now, build your own project\nCreate a new notebook (demo)\nRemember you can copy/paste code from other notebooks\nAsk for help if you need it! I’ll float around the room\nAt the end of class, “show and share” (optional)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 5",
       "Slides"
     ]
   },
