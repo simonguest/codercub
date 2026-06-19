@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solar System Demo – Summer of Code 2026</title>
+<title>Hello World Notebook! – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,6 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
+<link href="../../../cmu/01/notebooks/variables.html" rel="next">
+<link href="../../../cmu/01/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -108,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -314,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Solar System Demo</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../cmu/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../cmu/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../cmu/01/notebooks/hello_world.html">Hello World!</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -360,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../cmu/01/notebooks/hello_world.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../cmu/01/notebooks/hello_world.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Hello World!</span></a>
   </div>
 </li>
@@ -598,9 +629,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../cmu/01/slides.html">Day 1</a></li><li class="breadcrumb-item"><a href="../../../cmu/01/notebooks/hello_world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../cmu/01/notebooks/hello_world.html">Hello World!</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Solar System Demo</h1>
+<h1 class="title">Hello World Notebook!</h1>
 </div>
 
 
@@ -617,131 +648,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A live preview of what you’ll be able to build by the end of this course — eight planets orbiting the sun, Saturn’s rings, the Moon circling Earth, dramatic lighting, and Bach playing in the background.</p>
-<p>Press <strong>▶</strong> to run the cell, then sit back and watch.</p>
-<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/cmu/00/notebooks/space_demo.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"> </a></p>
-<div id="cell-space-demo" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d, audio, math</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(scene3d.Sky.DEEP_SPACE)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(<span class="dv">35</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sun light (no sphere — the planets are the stars of the show)</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sun_light <span class="op">=</span> scene.add_light(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sun_light.set_color(<span class="st">'#ffeeaa'</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sun_light.set_brightness(<span class="dv">5</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Planets: (material, orbital_radius, speed, diameter, initial_angle)</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>planet_data <span class="op">=</span> [</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Mercury,  <span class="dv">9</span>,  <span class="fl">2.0</span>,  <span class="fl">1.5</span>,  <span class="fl">0.0</span>),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Venus,   <span class="dv">14</span>,  <span class="fl">1.3</span>,  <span class="fl">2.5</span>,  <span class="fl">1.2</span>),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Earth,   <span class="dv">20</span>,  <span class="fl">0.9</span>,  <span class="fl">2.5</span>,  <span class="fl">2.5</span>),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Mars,    <span class="dv">27</span>,  <span class="fl">0.65</span>, <span class="fl">2.0</span>,  <span class="fl">0.8</span>),</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Jupiter, <span class="dv">44</span>,  <span class="fl">0.3</span>,  <span class="fl">9.0</span>,  <span class="fl">3.8</span>),</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Uranus,  <span class="dv">68</span>,  <span class="fl">0.15</span>, <span class="fl">5.5</span>,  <span class="fl">1.5</span>),</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    (scene3d.Material.Planets.Neptune, <span class="dv">80</span>,  <span class="fl">0.10</span>, <span class="fl">5.5</span>,  <span class="fl">4.2</span>),</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>planets <span class="op">=</span> []</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mat, r, speed, dia, angle0 <span class="kw">in</span> planet_data:</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>dia, segments<span class="op">=</span><span class="dv">24</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    p.set_material(mat)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    p.set_position(r <span class="op">*</span> math.cos(angle0), <span class="dv">0</span>, r <span class="op">*</span> math.sin(angle0))</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    p.set_glossiness(<span class="dv">0</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    scene.add(p)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    planets.append((p, r, speed, angle0))</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Saturn with rings</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>saturn_group <span class="op">=</span> scene3d.Group()</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>saturn_body <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">8.0</span>, segments<span class="op">=</span><span class="dv">24</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>saturn_body.set_material(scene3d.Material.Planets.Saturn)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>saturn_ring <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">17.0</span>, height<span class="op">=</span><span class="fl">0.3</span>, tessellation<span class="op">=</span><span class="dv">32</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">#saturn_ring.set_color('#c8a464')</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>saturn_ring.set_material(scene3d.Material.Gravel.LightGray)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>saturn_ring.set_tiling(<span class="dv">5</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>saturn_ring.set_rotation(x<span class="op">=</span><span class="dv">72</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>saturn_group.add(saturn_body)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>saturn_group.add(saturn_ring)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>scene.add(saturn_group)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Moon orbiting Earth</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>moon <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="fl">0.8</span>, segments<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>moon.set_material(scene3d.Material.Planets.Moon)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>scene.add(moon)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Title HUD</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>ctx <span class="op">=</span> scene.get_context(<span class="st">'2d'</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>ctx.fill_style <span class="op">=</span> <span class="st">'rgba(255,255,255,0.85)'</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>ctx.font <span class="op">=</span> <span class="st">'bold 22px sans-serif'</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>ctx.fill_text(<span class="st">'Solar System  —  Python with 3D'</span>, <span class="dv">14</span>, <span class="dv">38</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>SATURN_R     <span class="op">=</span> <span class="dv">56</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>SATURN_SPEED <span class="op">=</span> <span class="fl">0.2</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>SATURN_A0    <span class="op">=</span> <span class="fl">2.8</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Camera visits each planet in sequence, smoothly panning between them</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>VISIT     <span class="op">=</span> [<span class="dv">2</span>,   <span class="dv">3</span>,   <span class="dv">4</span>,   <span class="op">-</span><span class="dv">1</span>,  <span class="dv">5</span>,   <span class="dv">6</span>,   <span class="dv">1</span>,   <span class="dv">0</span>  ]  <span class="co"># -1 = Saturn</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>ORBIT_R   <span class="op">=</span> [<span class="dv">10</span>,  <span class="dv">8</span>,   <span class="dv">20</span>,  <span class="dv">24</span>,  <span class="dv">12</span>,  <span class="dv">12</span>,  <span class="dv">8</span>,   <span class="dv">6</span>  ]  <span class="co"># camera orbit radius per planet</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>ORBIT_H   <span class="op">=</span> [<span class="dv">6</span>,   <span class="dv">5</span>,   <span class="dv">12</span>,  <span class="dv">14</span>,  <span class="dv">7</span>,   <span class="dv">7</span>,   <span class="dv">5</span>,   <span class="dv">4</span>  ]  <span class="co"># camera height per planet</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>PHASE_DUR <span class="op">=</span> <span class="dv">10</span>                                          <span class="co"># seconds per planet</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>cam <span class="op">=</span> {<span class="st">'lx'</span>: <span class="fl">15.0</span>, <span class="st">'ly'</span>: <span class="fl">0.0</span>, <span class="st">'lz'</span>: <span class="fl">0.0</span>, <span class="st">'r'</span>: <span class="fl">30.0</span>, <span class="st">'h'</span>: <span class="fl">12.0</span>, <span class="st">'ang'</span>: <span class="fl">0.0</span>}</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate(dt):</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> t</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    t <span class="op">+=</span> dt</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p, r, speed, angle0 <span class="kw">in</span> planets:</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        angle <span class="op">=</span> angle0 <span class="op">+</span> t <span class="op">*</span> speed <span class="op">*</span> <span class="fl">0.22</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        p.set_position(r <span class="op">*</span> math.cos(angle), <span class="dv">0</span>, r <span class="op">*</span> math.sin(angle))</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    sa <span class="op">=</span> SATURN_A0 <span class="op">+</span> t <span class="op">*</span> SATURN_SPEED <span class="op">*</span> <span class="fl">0.22</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    saturn_group.set_position(</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>        SATURN_R <span class="op">*</span> math.cos(sa), <span class="dv">0</span>,</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>        SATURN_R <span class="op">*</span> math.sin(sa)</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    earth <span class="op">=</span> planets[<span class="dv">2</span>][<span class="dv">0</span>]</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    ex, ey, ez <span class="op">=</span> earth.get_position()</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    ma <span class="op">=</span> t <span class="op">*</span> <span class="fl">3.5</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    moon.set_position(ex <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> math.cos(ma), <span class="dv">0</span>, ez <span class="op">+</span> <span class="dv">5</span> <span class="op">*</span> math.sin(ma))</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine which planet to focus on and desired orbit params</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    phase_idx  <span class="op">=</span> <span class="bu">int</span>(t <span class="op">/</span> PHASE_DUR) <span class="op">%</span> <span class="bu">len</span>(VISIT)</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    planet_idx <span class="op">=</span> VISIT[phase_idx]</span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>    desired_r  <span class="op">=</span> ORBIT_R[phase_idx]</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    desired_h  <span class="op">=</span> ORBIT_H[phase_idx]</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> planet_idx <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        tx, ty, tz <span class="op">=</span> saturn_group.get_position()</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>        tx, ty, tz <span class="op">=</span> planets[planet_idx][<span class="dv">0</span>].get_position()</span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Smoothly pan look-at and adjust orbit radius toward the new target</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>    look_blend  <span class="op">=</span> <span class="bu">min</span>(<span class="fl">1.0</span>, dt <span class="op">*</span> <span class="fl">2.5</span>)</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    orbit_blend <span class="op">=</span> <span class="bu">min</span>(<span class="fl">1.0</span>, dt <span class="op">*</span> <span class="fl">1.2</span>)</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    cam[<span class="st">'lx'</span>] <span class="op">+=</span> (tx <span class="op">-</span> cam[<span class="st">'lx'</span>]) <span class="op">*</span> look_blend</span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    cam[<span class="st">'ly'</span>] <span class="op">+=</span> (ty <span class="op">-</span> cam[<span class="st">'ly'</span>]) <span class="op">*</span> look_blend</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    cam[<span class="st">'lz'</span>] <span class="op">+=</span> (tz <span class="op">-</span> cam[<span class="st">'lz'</span>]) <span class="op">*</span> look_blend</span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    cam[<span class="st">'r'</span>]  <span class="op">+=</span> (desired_r <span class="op">-</span> cam[<span class="st">'r'</span>])  <span class="op">*</span> orbit_blend</span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    cam[<span class="st">'h'</span>]  <span class="op">+=</span> (desired_h <span class="op">-</span> cam[<span class="st">'h'</span>])  <span class="op">*</span> orbit_blend</span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>    cam[<span class="st">'ang'</span>] <span class="op">+=</span> dt <span class="op">*</span> <span class="fl">0.22</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    scene.camera.set_position(</span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>        cam[<span class="st">'lx'</span>] <span class="op">+</span> cam[<span class="st">'r'</span>] <span class="op">*</span> math.cos(cam[<span class="st">'ang'</span>]),</span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>        cam[<span class="st">'h'</span>],</span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>        cam[<span class="st">'lz'</span>] <span class="op">+</span> cam[<span class="st">'r'</span>] <span class="op">*</span> math.sin(cam[<span class="st">'ang'</span>])</span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>    ).look_at(cam[<span class="st">'lx'</span>], cam[<span class="st">'ly'</span>], cam[<span class="st">'lz'</span>])</span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="cf">await</span> audio.play_async(<span class="st">'/sample_files/music_bach.wav'</span>)</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is an example of the Jupyter .ipynb document format</p>
+<p><a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/cmu/01/notebooks/hello_world.ipynb"> <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K12"> </a></p>
+<div id="0be30300" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="2b24a738-da29-46ff-fbd4-aab0e8e141ae">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is an executable cell</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div id="838a8a8c" class="cell" data-outputid="05733f84-8900-48d0-955d-2b0ac5a5f73a">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting variables in Python</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="63b53c88" class="cell" data-outputid="92402db8-4b6f-4e15-a4a7-44bf34b957f6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables persist after being set in previously executed cells</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="markdown-cells-support-rich-formatting" class="level2">
+<h2 class="anchored" data-anchor-id="markdown-cells-support-rich-formatting">Markdown Cells Support Rich Formatting</h2>
+<p>You can use: - <strong>Bold</strong> and <em>italic</em> text - Lists (like this one!) - <a href="https://jupyter.org">Links</a> - <code>inline code</code> - And even LaTeX math: <span class="math inline">\(E = mc^2\)</span></p>
+<p>This makes notebooks great for explaining your code!</p>
+<div id="5jonrz68f1k" class="cell" data-outputid="fe69690f-6509-4ebf-bc68-d6321f2c013f">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Notebooks make it easy to import and use libraries</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random number and calculate its square root</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> random.randint(<span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sqrt_num <span class="op">=</span> math.sqrt(num)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The square root of </span><span class="sc">{</span>num<span class="sc">}</span><span class="ss"> is </span><span class="sc">{</span>sqrt_num<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If you aren’t sure how to use a method, Juypter K-12 will give you helpful hints whenever you type a period (.) or an opening parentheses ((). Try typing <code>math.sqrt(</code> on line 3 in the next cell and watch what happens after the . and (</p>
+<div id="34553465-c3d1-4214-bf1f-bb6b3eab4359" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can click on the “eye” icon in a code cell to hide/show the code. Try with this cell…</p>
+<div id="86623ac1-6ed4-4f38-85d4-7b4224148921" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Click on the "eye" icon to hide the code in this cell</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And sometimes, code cells are hidden by default like this one. Try unhiding this by clicking the “eye” icon again…</p>
+<div id="c6785b1e-0fac-4c3e-a0ab-fa01f7b07a21" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nice! You unhid this cell to see all its secrets!</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"This cell is hidden, but you can unhide it"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="interactive-form-fields" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-form-fields">Interactive Form Fields</h2>
+<p>Notebooks support <strong>form fields</strong> — interactive controls that let you change values without editing code.</p>
+<p>Add <code>#@param</code> after a variable to turn it into a text box, a dropdown, a slider, or a checkbox.</p>
+<p>Try changing the values below and re-running the cell:</p>
+<div id="cell-form-example" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>NAME <span class="op">=</span> <span class="st">"World"</span> <span class="co">#@param</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>GREETING <span class="op">=</span> <span class="st">"Hello"</span> <span class="co">#@param ["Hello", "Hi", "Hey", "Greetings"]</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>TIMES <span class="op">=</span> <span class="dv">1</span> <span class="co">#@param {type:"slider", min:1, max:5, step:1}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(TIMES):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>GREETING<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>NAME<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="what-happens-when-theres-an-error" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-when-theres-an-error">What Happens When There’s an Error?</h2>
+<p>Run the cell below to see how notebooks handle errors.</p>
+<p>The error appears in the output, but other cells continue to work.</p>
+<div id="35z7elhwq3f" class="cell" data-outputid="4a4bd1d6-3a89-452a-d31f-2f2f9da57267">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will cause an error</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">10</span> <span class="op">/</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="a-sneak-peek-at-whats-coming" class="level2">
+<h2 class="anchored" data-anchor-id="a-sneak-peek-at-whats-coming">A Sneak Peek at What’s Coming</h2>
+<p>The cell below is hidden — but run it anyway! You’ll see the kind of 3D scene you’ll be building by the end of this week.</p>
+<p>Once the scene appears, try navigating it with your mouse: - <strong>Left mouse button + drag</strong> — rotate the scene - <strong>Scroll wheel</strong> — zoom in and out - <strong>Right mouse button + drag</strong> — pan the camera</p>
+<div id="cell-3d-teaser" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scene3d</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(scene3d.Sky.DEEP_SPACE)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ground <span class="op">=</span> scene.set_ground(length<span class="op">=</span><span class="dv">20</span>, width<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ground.set_material(scene3d.Material.Gravel.LightGray)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">8</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>planet <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span><span class="dv">3</span>, segments<span class="op">=</span><span class="dv">32</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>planet.set_material(scene3d.Material.Planets.Earth)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>planet.set_position(<span class="dv">0</span>, <span class="fl">1.5</span>, <span class="dv">0</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>scene.add(planet)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="fl">1.5</span>, height<span class="op">=</span><span class="fl">2.5</span>, depth<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>box.set_material(scene3d.Material.Bricks.DarkClay)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>box.set_position(<span class="op">-</span><span class="dv">4</span>, <span class="fl">1.25</span>, <span class="dv">0</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>scene.add(box)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>cylinder <span class="op">=</span> scene3d.Shapes.Cylinder(diameter<span class="op">=</span><span class="fl">1.2</span>, height<span class="op">=</span><span class="dv">2</span>, tessellation<span class="op">=</span><span class="dv">24</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>cylinder.set_material(scene3d.Material.Marble.Gray)</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>cylinder.set_glossiness(<span class="fl">0.7</span>)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>cylinder.set_position(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>scene.add(cylinder)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>What’s one thing about Python notebooks that surprised you?</p>
+<p>And after seeing the 3D scene above, what would you like to build this week?</p>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
+<p>{ “question_type”: “multiple_choice”, “question”: “What type of cell lets you write and run Python code?”, “options”: [ { “key”: “a”, “text”: “Markdown cell” }, { “key”: “b”, “text”: “Code cell” }, { “key”: “c”, “text”: “Text cell” }, { “key”: “d”, “text”: “Output cell” } ], “answer”: “b”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “A variable set in one cell can be used in cells you run later.”, “answer”: “True”, “submitted_answer”: “” }</p>
+<p>{ “question_type”: “true_false”, “question”: “When one cell causes an error, all other cells in the notebook stop working.”, “answer”: “False”, “submitted_answer”: “” }</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1157,6 +1172,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../cmu/01/slides.html" class="pagination-link" aria-label="Slides">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../cmu/01/notebooks/variables.html" class="pagination-link" aria-label="Variables">
+        <span class="nav-page-text">Variables</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
