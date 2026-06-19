@@ -185,7 +185,7 @@ website:
                   href: cmu/01/notebooks/colors.ipynb
                 - text: "Materials"
                   href: cmu/01/notebooks/materials.ipynb
-                - text: "Let's Experiment!"
+                - text: "Now Experiment!"
                   href: cmu/01/notebooks/experiment.ipynb
         - section: "Day 2"
           contents:
@@ -194,15 +194,15 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "for_loops.ipynb"
+                - text: "For Loops and While Loops"
                   href: cmu/02/notebooks/for_loops.ipynb
-                - text: "if_statements.ipynb"
+                - text: "The if Statement"
                   href: cmu/02/notebooks/if_statements.ipynb
-                - text: "random_numbers.ipynb"
+                - text: "Random Numbers"
                   href: cmu/02/notebooks/random_numbers.ipynb
-                - text: "custom_functions.ipynb"
+                - text: "Creating Your Own Functions"
                   href: cmu/02/notebooks/custom_functions.ipynb
-                - text: "experiment.ipynb"
+                - text: "Now Experiment!"
                   href: cmu/02/notebooks/experiment.ipynb
         - section: "Day 3"
           contents:
@@ -211,17 +211,17 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "getters.ipynb"
+                - text: "Getters — Reading Object Properties"
                   href: cmu/03/notebooks/getters.ipynb
-                - text: "on_click.ipynb"
+                - text: "On Click — Event Handling"
                   href: cmu/03/notebooks/on_click.ipynb
-                - text: "on_key.ipynb"
+                - text: "On Key — Keyboard Events"
                   href: cmu/03/notebooks/on_key.ipynb
-                - text: "grouping.ipynb"
+                - text: "Grouping Shapes"
                   href: cmu/03/notebooks/grouping.ipynb
-                - text: "animations.ipynb"
+                - text: "Animations"
                   href: cmu/03/notebooks/animations.ipynb
-                - text: "experiment.ipynb"
+                - text: "Now Experiment!"
                   href: cmu/03/notebooks/experiment.ipynb
         - section: "Day 4"
           contents:
@@ -230,15 +230,15 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "hud.ipynb"
+                - text: "HUD — Heads-Up Display"
                   href: cmu/04/notebooks/hud.ipynb
-                - text: "sound.ipynb"
+                - text: "Sound — Audio, Music, and Speech"
                   href: cmu/04/notebooks/sound.ipynb
-                - text: "lighting.ipynb"
+                - text: "Lighting"
                   href: cmu/04/notebooks/lighting.ipynb
-                - text: "camera.ipynb"
+                - text: "Camera Control"
                   href: cmu/04/notebooks/camera.ipynb
-                - text: "collisions.ipynb"
+                - text: "Collisions"
                   href: cmu/04/notebooks/collisions.ipynb
         - section: "Day 5"
           contents:
@@ -247,5 +247,5 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "final_project.ipynb"
+                - text: "Final Project"
                   href: cmu/05/notebooks/final_project.ipynb
