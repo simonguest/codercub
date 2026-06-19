@@ -1,0 +1,78 @@
+---
+title: "Day 3: Events and Animation"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    embed-resources: true
+    theme: [default, ../../theme/dark.scss]
+    logo: ../../theme/codercub.jpg
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+
+---
+
+## Let's Get Started
+
+- Yesterday you used logic and loops to generate 3D worlds
+- Today your scenes come alive — they move, respond, and react
+  - Animate objects smoothly using a per-frame callback
+  - Respond to mouse clicks and keyboard input
+  - Group shapes into compound objects that move as one
+  - Read object state back to make smarter decisions
+
+## Animations
+
+- `@scene.on_frame` runs your function automatically on every rendered frame
+  - Receives `dt` — the time in seconds since the last frame (delta time)
+  - `x += speed * dt` — multiply by `dt` for smooth, frame-rate-independent motion
+- One callback can update as many objects as you need
+
+## On Click
+
+- Every mesh supports `on_click(handler)` — the handler runs when the mesh is clicked
+  - `sphere.on_click(lambda: sphere.set_color('#e94560'))` — one-liner with lambda
+  - Use a named function when the handler needs more than one step
+- An **event handler** is a function that runs *when something happens*, not immediately
+  - Register before `scene.run()` — each mesh can have its own independent handler
+
+## On Key
+
+- `scene.on_key(key, handler)` runs a function each time a key is pressed
+  - Use `Key` constants for special keys: `Key.LEFT`, `Key.RIGHT`, `Key.SPACE`
+  - Use plain strings for letter keys: `scene.on_key('w', move_forward)`
+- Registering any key handler **automatically disables** the default camera arrow keys
+  - Mouse orbit and scroll-wheel zoom continue to work as normal
+
+## Grouping
+
+- A `Group` wraps multiple shapes into a single moveable unit
+  - Add shapes with `group.add(shape)`, then add the group with `scene.add(group)`
+  - `group.set_rotation(y=45)` — rotates every shape inside together
+- Child positions are **relative to the group's center** — the pivot point for all rotations
+  - A moon offset from the group center *orbits* the planet when the group rotates
+  - Rotating the shape directly would just spin it in place
+
+## Getters
+
+- Every mesh remembers its current state — read it back at any time
+  - `get_position()` → `(x, y, z)` · `get_rotation()` → degrees · `get_scale()` → factors
+  - Unpack all three at once: `x, y, z = ball.get_position()`
+- Essential inside animation loops: read the current position, update it, write it back
+  - The mesh is the source of truth — no need to track position in a separate variable
+
+# Hands-On
+
+Explore the "Animations", "On Click", "On Key", "Grouping", "Getters", and "Let's Experiment" notebooks
+
+Ask for help if you need it!
+
+## Tomorrow: Game Mechanics
+
+- Camera control: placing and tracking the view
+- Dynamic lighting: point lights, color, and mood
+- Sound: effects, music, and speech
+- HUD: drawing score, timers, and progress bars
+- Collisions: detecting when objects touch

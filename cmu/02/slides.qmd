@@ -1,0 +1,71 @@
+---
+title: "Day 2: Logic and Loops"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    embed-resources: true
+    theme: [default, ../../theme/dark.scss]
+    logo: ../../theme/codercub.jpg
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+
+---
+
+## Let's Get Started
+
+- Yesterday you built a 3D scene with shapes, colors, and materials
+- Today you'll make your scenes smarter and more dynamic
+  - Write your own functions to avoid repeating code
+  - Add decision-making with if statements
+  - Generate entire worlds with loops
+  - Use randomness to make scenes feel alive
+
+## Custom Functions
+
+- You've been *calling* functions. Let's now you'll *write* your own!
+- Use `def` to define a function once, then call it anywhere:
+  - `def make_tree(scene, x, z):` — define the steps once
+  - `make_tree(scene, -3, 0)` — place a tree with a single line
+- Without functions, adding ten trees means ten copies of the same code
+
+## If Statements
+
+- An **if statement** lets your program make decisions
+  - The indented body only runs when the condition is **True**
+- Structure: `if condition:` followed by an indented body
+  - `if y < 0:` — reset a falling ball when it hits the ground
+  - `if size > 3:` — shrink a sphere when it grows too large
+- **Six comparison operators**: `<` `>` `<=` `>=` `==` `!=`
+
+## For Loops and While Loops
+
+- A **for loop** repeats code a set number of times
+  - `for i in range(10):` — runs the body 10 times, `i` goes 0 → 9
+  - Use `i` to vary position, size, or color on each pass
+- A **while loop** repeats until a condition becomes False
+  - `while height < 5:` — keep stacking boxes until the tower is tall enough
+- Rule of thumb: use `for` when you know the count, `while` when you don't
+
+## Random Numbers
+
+- The `random` module makes scenes feel alive and unpredictable
+  - `random.randint(1, 8)` — a random whole number between 1 and 8
+  - `random.uniform(-8, 8)` — a random decimal anywhere in a range
+  - `random.choice(colors)` — pick one item at random from a list
+- Combine with loops to scatter objects across an entire scene
+
+# Hands-On
+
+Explore the "Custom Functions", "If Statements", "For Loops", "Random Numbers", and "Let's Experiment" notebooks
+
+Ask for help if you need it!
+
+## Tomorrow: Events and Animation
+
+- Handling key presses and mouse clicks
+- Animating objects in real time
+- Grouping objects together
+- Reading object state with getters

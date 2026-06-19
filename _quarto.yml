@@ -170,6 +170,7 @@ website:
           contents:
             - text: "Slides"
               href: cmu/01/slides.qmd
+              target: blank
             - section: "Notebooks"
               contents:
                 - text: "Hello World!"
@@ -186,6 +187,9 @@ website:
                   href: cmu/01/notebooks/experiment.ipynb
         - section: "Day 2"
           contents:
+            - text: "Slides"
+              href: cmu/02/slides.qmd
+              target: blank
             - section: "Notebooks"
               contents:
                 - text: "for_loops.ipynb"
@@ -200,6 +204,9 @@ website:
                   href: cmu/02/notebooks/experiment.ipynb
         - section: "Day 3"
           contents:
+            - text: "Slides"
+              href: cmu/03/slides.qmd
+              target: blank
             - section: "Notebooks"
               contents:
                 - text: "getters.ipynb"
@@ -216,6 +223,9 @@ website:
                   href: cmu/03/notebooks/experiment.ipynb
         - section: "Day 4"
           contents:
+            - text: "Slides"
+              href: cmu/04/slides.qmd
+              target: blank
             - section: "Notebooks"
               contents:
                 - text: "hud.ipynb"
@@ -230,6 +240,9 @@ website:
                   href: cmu/04/notebooks/collisions.ipynb
         - section: "Day 5"
           contents:
+            - text: "Slides"
+              href: cmu/05/slides.qmd
+              target: blank
             - section: "Notebooks"
               contents:
                 - text: "final_project.ipynb"

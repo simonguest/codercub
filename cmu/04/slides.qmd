@@ -1,0 +1,78 @@
+---
+title: "Day 4: Game Mechanics"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    embed-resources: true
+    theme: [default, ../../theme/dark.scss]
+    logo: ../../theme/codercub.jpg
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+
+---
+
+## Let's Get Started
+
+- Yesterday your scenes moved, responded, and reacted
+- Today you'll add the final layer — the mechanics that make a scene feel like a game
+  - Control the camera to frame your scene dramatically
+  - Shape the mood with dynamic lighting
+  - Add sound effects, music, and speech
+  - Build a HUD to display score, health, and timers
+  - Detect when objects collide
+
+## Camera
+
+- `scene.camera` gives full control over the viewpoint
+  - `set_position(x, y, z)` — teleport the camera anywhere in the scene
+  - `look_at(mesh)` or `look_at(x, y, z)` — point it at an object or coordinate
+  - `set_distance(n)` — zoom in or out from the current target
+- `follow(mesh)` tracks a moving object every frame — `follow(None)` stops it
+
+## Lighting
+
+- Every scene starts with a **hemispheric ambient light**
+  - `scene.ambient.set_brightness(30)` — dim for atmosphere (scale 0–100)
+  - `scene.ambient.set_color('#ff9955')` — tint the whole scene warm, cool, or eerie
+- `scene.add_light(x, y, z)` adds a **point light** — shines in all directions like a bulb
+  - `light.set_color('#4488ff')` — colored lights dramatically change the mood
+  - `light.set_visible(True)` — shows a glowing marker while you're positioning it
+
+## Sound
+
+- `audio.play('/sample_files/laser.wav')` — plays a pre-loaded sound file
+- `audio.play_note('C4', 0.4)` — plays a musical note for a set duration
+  - Pass a list for a chord: `audio.play_note(['C4', 'E4', 'G4'], 1.0)`
+- `audio.speak('Nice work!')` — text-to-speech, with optional voice and language
+- Use `await audio.play_async(...)` to play background music while a scene runs
+
+## HUD
+
+- `ctx = scene.get_context('2d')` — a 2D canvas that floats above the 3D scene
+  - `ctx.fill_text('Score: 0', x, y)` — draw text at any screen position
+  - `ctx.fill_rect(x, y, width, height)` — draw solid rectangles for panels and bars
+- Progress bar formula: `fill_width = bar_max_width * (value / max_value)`
+
+## Collisions
+
+- `mesh.on_collide(other, handler)` fires the first time two meshes overlap
+  - Uses **bounding box** detection — an invisible box fitted around each mesh
+  - Register after both meshes are added to the scene, before `scene.run()`
+- Fires **once** per overlap — perfect for collectibles that can only be picked up once
+  - Hide a collected object: `coin.set_scale(0, 0, 0)` — collapses its bounding box too
+
+# Hands-On
+
+Explore the "Camera", "Lighting", "Sound", "HUD", "Collisions", and "Let's Experiment" notebooks
+
+Ask for help if you need it!
+
+## Tomorrow: Final Project
+
+- Everything you've learned — all in one scene
+- You choose what to build
+- Variables, functions, loops, events, animation, sound, lighting, camera, collisions
+- Make it your own!

@@ -1,0 +1,43 @@
+---
+title: "Day 5: Final Project"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    embed-resources: true
+    theme: [default, ../../theme/dark.scss]
+    logo: ../../theme/codercub.jpg
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+
+---
+
+## We've Covered A Lot!
+
+- **Day 1**: Variables, functions, colors, and materials
+- **Day 2**: Custom functions, if statements, loops, and random numbers
+- **Day 3**: Animations, click and key events, grouping, and getters
+- **Day 4**: Camera, lighting, sound, HUD, and collisions
+
+# Wow, Great Job!
+
+# Today, You Get to Build a Final Project!
+
+# What Will You Build?
+
+## What Will You Build?
+
+- **A coin collector game**: move a player with WASD, collect coins before the timer runs out, show score and health on a HUD, play sounds on pickup
+- **A procedural world**: use loops and random numbers to generate a landscape, write a function to place trees or buildings, add materials and lighting for atmosphere
+- **An interactive solar system**: use groups to orbit moons around planets, animate everything, let the camera follow a planet, add click handlers that speak planet names
+- Or something else?
+
+## Today's Class
+
+- Starting now, build your own project
+- Create a new notebook (demo)
+- Remember you can copy/paste code from other notebooks
+- Ask for help if you need it! I'll float around the room
+- At the end of class, "show and share" (optional) 
