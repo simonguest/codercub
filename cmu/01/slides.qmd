@@ -1,0 +1,129 @@
+---
+title: "Day 1: Learning Python in 3D"
+author: "Simon Guest"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    embed-resources: true
+    theme: [default, ../../theme/dark.scss]
+    logo: ../../theme/codercub.jpg
+    highlight-style: dracula
+    title-slide-attributes:
+      data-background-gradient: "linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"
+
+---
+
+# Hello, I'm Simon!
+
+## Why Python in 3D?
+
+- Most coding lessons produce text output. Boring!
+- **In this course, your code appears in a real 3D world**
+  - Place objects in space, paint them with color, add realistic textures
+  - A hands-on foundation for game development, simulations, and 3D design
+- Python is the language behind visual effects, scientific tools, and games
+  - Now you'll use it to build something you can see and explore
+
+## What Makes This Different
+
+- Traditional Python: `print("Hello World")`
+- This course: a 3D scene you can rotate, zoom, and interact with
+- Every concept you learn shows up visually
+  - Change a variable → the shape changes
+  - Change a function parameter → the shape moves or grows
+  - Change a hex code → the color updates instantly
+
+## Your Journey
+
+::: {style="font-size: 0.8em;"}
+| Day | Topic | What You'll Build |
+|-----|-------|-------------------|
+| Day 1 | Python Basics | A 3D scene with shapes, colors & materials |
+| Day 2 | Logic & Loops | A procedurally generated 3D world |
+| Day 3 | Events & Animation | An interactive scene you can control |
+| Day 4 | Game Mechanics | Camera, sound, lighting & collisions |
+| Day 5 | Final Project | Your own 3D experience from scratch |
+:::
+
+
+# Introducing Python Notebooks
+
+## What is a Python Notebook?
+
+- An **interactive document** that combines:
+  - Python code that can be executed
+  - Rich text explanations (markdown)
+  - Visualizations and outputs
+- Think of it as a **computational story**
+  - Tell a story with code, data, and explanations
+
+## Introducing Jupyter-K12
+
+- Notebook platform designed for students
+- Extra features for in-classroom use
+- Created by me :)
+- You are the first students in the world to use this!
+
+# Demo
+
+"Hello World" Notebook
+
+# Hands-On
+
+Open the Curriculum Page 
+
+[https://simonguest.github.io/codercub](https://simonguest.github.io/codercub)
+
+Find the "Hello World" Notebook in Day 1
+
+Click on this button: <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K12"/>
+
+Run all of the code in the notebook
+
+## Let's Get Started
+
+- What we will learn today
+  - Variables
+  - Functions
+  - Colors and Materials
+
+## Variables
+
+- A **variable** is a name you attach to something you create
+  - `scene` holds your 3D world — `sphere` holds an object inside it
+- Variables let you work with objects anywhere in your code
+  - `scene.add(sphere)` uses both at once
+- Without variables, Python forgets what you created the moment you made it
+
+## Functions
+
+- A **function** is a named action that does a specific job
+- You call it by name, with **parameters** to customize the result:
+  - `Sphere(diameter=1, segments=16)` — creates a sphere
+  - `set_position(x, y, z)` — moves it anywhere in 3D space
+  - `set_scale(x, y, z)` — stretches or squashes it along any axis
+- Change a parameter → you get a different result
+
+## Colors and Materials
+
+- **Colors** are hex codes — six digits blending red, green, and blue
+  - `#ff0000` = red · `#00ff00` = green · `#0000ff` = blue
+  - `sphere.set_color('#e94560')` paints any shape
+- **Materials** add realistic textures beyond flat color
+  - `Material.Bricks.DarkClay`, `Material.Planets.Earth`, `Material.Marble.Gray`
+  - `Sky.CLOUDS`, `Sky.DEEP_SPACE`, `Sky.PURE_SKY`
+- Use **constants** (ALL_CAPS names) to define colors and materials once, reuse everywhere
+
+# Hands-On
+
+Explore the "Variables", "Functions", "Colors", "Materials", and "Let's Experiment" notebooks
+
+Ask for help if you need it!
+
+## Tomorrow: Logic and Loops
+
+- Creating custom functions
+- For Loops and If Statements
+- Random Numbers

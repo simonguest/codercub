@@ -168,17 +168,21 @@ website:
       contents:
         - section: "Day 1"
           contents:
+            - text: "Slides"
+              href: cmu/01/slides.qmd
             - section: "Notebooks"
               contents:
-                - text: "variables.ipynb"
+                - text: "Hello World!"
+                  href: cmu/01/notebooks/hello_world.ipynb
+                - text: "Variables"
                   href: cmu/01/notebooks/variables.ipynb
-                - text: "functions.ipynb"
+                - text: "Functions"
                   href: cmu/01/notebooks/functions.ipynb
-                - text: "colors.ipynb"
+                - text: "Colors"
                   href: cmu/01/notebooks/colors.ipynb
-                - text: "materials.ipynb"
+                - text: "Materials"
                   href: cmu/01/notebooks/materials.ipynb
-                - text: "experiment.ipynb"
+                - text: "Let's Experiment!"
                   href: cmu/01/notebooks/experiment.ipynb
         - section: "Day 2"
           contents:
