@@ -713,7 +713,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                          x  y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>x</code> and <code>y</code> values position the <strong>bottom-left</strong> of the first character. So <code>y=20</code> means the baseline of the text is 20 pixels from the top edge.</p>
 <p><code>ctx.font</code> sets the size and typeface: <code>'20px sans-serif'</code>, <code>'14px monospace'</code>. Change it before each <code>fill_text</code> call to use different sizes in the same HUD.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “In the 2D overlay canvas, where is the point (0, 0)?”, “options”: [ { “key”: “a”, “text”: “Center of the canvas” }, { “key”: “b”, “text”: “Bottom-left corner” }, { “key”: “c”, “text”: “Top-left corner” }, { “key”: “d”, “text”: “Top-right corner” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 </section>
 <section id="drawing-rectangles" class="level2">
 <h2 class="anchored" data-anchor-id="drawing-rectangles">Drawing Rectangles</h2>
@@ -761,7 +760,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#             |  y of top-left corner</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#             x of top-left corner</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For <code>stroke_rect</code>, set <code>ctx.stroke_style</code> (a color) and <code>ctx.line_width</code> (pixels) before calling it — otherwise you get the default black 1-pixel border.</p>
-<p>{ “question_type”: “true_false”, “question”: “ctx.fill_rect(10, 20, 100, 40) draws a rectangle whose top-left corner is at x=10, y=20.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="building-a-progress-bar" class="level2">
 <h2 class="anchored" data-anchor-id="building-a-progress-bar">Building a Progress Bar</h2>
@@ -847,7 +845,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Try changing <code>health = 70</code> to other values in the cell above and re-running.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “A health bar has bar_max_width = 200. The player has 45 out of 100 health. How wide should the filled bar be?”, “options”: [ { “key”: “a”, “text”: “45 pixels” }, { “key”: “b”, “text”: “90 pixels” }, { “key”: “c”, “text”: “155 pixels” }, { “key”: “d”, “text”: “200 pixels” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="a-live-updating-hud" class="level2">
 <h2 class="anchored" data-anchor-id="a-live-updating-hud">A Live, Updating HUD</h2>
@@ -914,7 +911,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    ...</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    draw_hud(t)          <span class="co"># called every frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Separating <code>draw_hud</code> into its own function keeps the animation callback clean and makes it easy to add more HUD elements later — just add lines inside <code>draw_hud</code>.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “Why does draw_hud() call ctx.clear() at the start of every frame?”, “options”: [ { “key”: “a”, “text”: “To save memory” }, { “key”: “b”, “text”: “To prevent old drawn elements from staying on screen” }, { “key”: “c”, “text”: “Because fill_rect only works after clear()” }, { “key”: “d”, “text”: “To reset the canvas coordinate system” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

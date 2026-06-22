@@ -726,8 +726,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>{ “question_type”: “multiple_choice”, “question”: “If sphere.get_position() returns (3, 5, -2), what does pos[1] equal?”, “options”: [ { “key”: “a”, “text”: “3” }, { “key”: “b”, “text”: “5” }, { “key”: “-2”, “text”: “-2” }, { “key”: “d”, “text”: “(3, 5, -2)” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “get_position() returns the position you last set with set_position().”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="getters-in-animation" class="level2">
 <h2 class="anchored" data-anchor-id="getters-in-animation">Getters in Animation</h2>
@@ -776,8 +774,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notice the line <code>x, y, z = ball.get_position()</code> in the animation. It reads back all three coordinates at once and unpacks them into separate variables.</p>
 <p>This means: - You only track <code>velocity</code> as a separate variable — the position lives <em>inside the mesh</em> - You only modify <code>y</code>, then pass all three back to <code>set_position</code> unchanged for <code>x</code> and <code>z</code> - If you later move the ball sideways too, the same pattern still works — no extra variables needed</p>
 <p>Getters let the mesh be the source of truth for its own state.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “In the bouncing ball example, why is get_position() used inside the animation loop?”, “options”: [ { “key”: “a”, “text”: “To make the ball move faster” }, { “key”: “b”, “text”: “To read the ball’s current position before updating it” }, { “key”: “c”, “text”: “To set the ball’s color” }, { “key”: “d”, “text”: “get_position is required before every set_position call” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “freeform”, “question”: “Write one line of Python that reads the current scale of a mesh called ‘box’ and stores it in a variable called ‘scl’.”, “answer”: “scl = box.get_scale()”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

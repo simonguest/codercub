@@ -729,8 +729,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Never</strong> write <code>x += 0.05</code> — that ties your animation speed to the frame rate. <strong>Always</strong> write <code>x += speed * dt</code> so it’s consistent everywhere.</p>
 </blockquote>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does ‘dt’ represent in the on_frame callback?”, “options”: [ { “key”: “a”, “text”: “The total time since scene.run() was called” }, { “key”: “b”, “text”: “The number of frames rendered so far” }, { “key”: “c”, “text”: “The time in seconds since the last frame” }, { “key”: “d”, “text”: “The desired frame rate” } ], “answer”: “c”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “Writing ‘x += speed * dt’ makes the animation run at the same apparent speed on fast and slow computers.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="what-is-a-decorator" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-a-decorator">What Is a Decorator?</h2>
@@ -755,7 +753,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">@staticmethod</span>        <span class="co"># mark as a static method</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In every case the idea is the same: instead of calling a registration function manually, you place <code>@something</code> above your function and Python does the registration for you.</p>
 <p>For now, all you need to remember is: <strong><code>@scene.on_frame</code> tells Python to call your function every frame.</strong></p>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does the ‘@’ symbol do in ‘<span class="citation" data-cites="scene.on_frame">@scene.on_frame</span>’?”, “options”: [ { “key”: “a”, “text”: “It marks the function as private” }, { “key”: “b”, “text”: “It automatically passes the function to scene.on_frame” }, { “key”: “c”, “text”: “It makes the function run once immediately” }, { “key”: “d”, “text”: “It is just a comment and has no effect” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="animating-multiple-objects" class="level2">
 <h2 class="anchored" data-anchor-id="animating-multiple-objects">Animating Multiple Objects</h2>
@@ -794,7 +791,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “true_false”, “question”: “You can only animate one object per on_frame callback — you need a separate callback for each object.”, “answer”: “False”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

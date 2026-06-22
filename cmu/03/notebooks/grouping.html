@@ -715,8 +715,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>craft.set_position(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>) <span class="co"># moves ALL shapes inside together</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Key rules: - Shapes are added to the <strong>group</strong> with <code>craft.add()</code>, <em>not</em> directly to the scene. - The <strong>group</strong> is added to the scene with <code>scene.add(craft)</code>. - Individual shapes keep their positions <strong>relative to the group’s center</strong>. - A transform on the group moves/rotates everything inside — a transform on an individual shape moves only that shape within the group.</p>
 <p>The group’s center is the origin <code>(0, 0, 0)</code> by default. That’s the pivot point for all rotations.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “After adding two shapes to a Group, you call group.set_rotation(y=45). What rotates?”, “options”: [ { “key”: “a”, “text”: “Only the first shape added” }, { “key”: “b”, “text”: “Only the last shape added” }, { “key”: “c”, “text”: “Both shapes together, as one unit” }, { “key”: “d”, “text”: “Nothing — you must call set_rotation on each shape” } ], “answer”: “c”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “When using a Group, you add shapes to the group AND also separately add them to the scene.”, “answer”: “False”, “submitted_answer”: “” }</p>
 </section>
 <section id="groups-and-animation-a-remote-pivot-point" class="level2">
 <h2 class="anchored" data-anchor-id="groups-and-animation-a-remote-pivot-point">Groups and Animation — A Remote Pivot Point</h2>
@@ -752,8 +750,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “Why does rotating moon_group make the moon travel in a circle around the planet?”, “options”: [ { “key”: “a”, “text”: “The moon has a circular mesh” }, { “key”: “b”, “text”: “The moon is offset from the group’s center, so rotating the group swings it in an arc” }, { “key”: “c”, “text”: “set_rotation always produces circular motion” }, { “key”: “d”, “text”: “The planet attracts the moon with gravity” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “If you called moon.set_rotation(y=angle) every frame instead of moon_group.set_rotation(y=angle), what would happen?”, “options”: [ { “key”: “a”, “text”: “The moon would orbit the planet exactly as before” }, { “key”: “b”, “text”: “The moon would spin in place at (4, 0, 0) without moving” }, { “key”: “c”, “text”: “The moon would fly off in a straight line” }, { “key”: “d”, “text”: “Both the planet and moon would rotate” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

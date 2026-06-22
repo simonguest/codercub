@@ -706,7 +706,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>The handler must be registered <strong>before</strong> the mesh is added to the scene with <code>scene.add()</code>. The handler is <em>registered</em> when you call <code>on_click</code>, but it doesn’t <em>run</em> until a click occurs. You can think of it as leaving a note: <em>“If this is ever clicked, do this.”</em></p>
 <p>Lambda is great for simple single-line actions. For anything more complex, use a named function.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “When does the function passed to on_click actually run?”, “options”: [ { “key”: “a”, “text”: “Immediately when on_click is called” }, { “key”: “b”, “text”: “When scene.run() is called” }, { “key”: “c”, “text”: “Every frame, just like on_frame” }, { “key”: “d”, “text”: “When the user clicks the mesh” } ], “answer”: “d”, “submitted_answer”: “” }</p>
 </section>
 <section id="named-functions-for-more-complex-handlers" class="level2">
 <h2 class="anchored" data-anchor-id="named-functions-for-more-complex-handlers">Named Functions for More Complex Handlers</h2>
@@ -744,7 +743,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “true_false”, “question”: “A lambda is the only way to pass a handler to on_click — named functions cannot be used.”, “answer”: “False”, “submitted_answer”: “” }</p>
 </section>
 <section id="multiple-objects-multiple-handlers" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-objects-multiple-handlers">Multiple Objects, Multiple Handlers</h2>
@@ -788,8 +786,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>show(<span class="st">'Click any shape!'</span>)</span>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “If you call on_click on three different meshes, what happens when the user clicks one of them?”, “options”: [ { “key”: “a”, “text”: “All three handlers run” }, { “key”: “b”, “text”: “Only the handler for the clicked mesh runs” }, { “key”: “c”, “text”: “The first handler registered always runs” }, { “key”: “d”, “text”: “on_click only works for one mesh at a time” } ], “answer”: “b”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “freeform”, “question”: “In one sentence, describe what an ‘event handler’ is.”, “answer”: “a function that runs when an event occurs”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

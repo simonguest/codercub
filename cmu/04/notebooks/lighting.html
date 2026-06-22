@@ -710,7 +710,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_color(color)</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>scene.ambient.set_brightness(brightness)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “true_false”, “question”: “scene.ambient.set_brightness(0) makes the scene completely dark.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="adding-a-point-light" class="level2">
 <h2 class="anchored" data-anchor-id="adding-a-point-light">Adding a Point Light</h2>
@@ -751,7 +750,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">False</span>)  <span class="co"># hide for the final scene</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>set_visible</code> only affects the indicator. The light itself — its brightness, color, and influence on every surface — stays exactly the same either way.</p>
 <p>Try changing <code>set_visible(True)</code> to <code>set_visible(False)</code> in the cell above and re-running.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does light.set_visible(True) do?”, “options”: [ { “key”: “a”, “text”: “Turns the light on” }, { “key”: “b”, “text”: “Shows a small glowing sphere at the light’s position” }, { “key”: “c”, “text”: “Makes the light only affect visible meshes” }, { “key”: “d”, “text”: “Makes the light pulse on and off” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="light-color" class="level2">
 <h2 class="anchored" data-anchor-id="light-color">Light Color</h2>
@@ -786,7 +784,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>light.set_brightness(<span class="dv">100</span>)</span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>light.set_visible(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “A gray marble sphere is lit only by a pure red point light (ambient brightness = 0). What color does the sphere appear?”, “options”: [ { “key”: “a”, “text”: “Gray, because the material color overrides the light” }, { “key”: “b”, “text”: “Black, because the sphere absorbs red light” }, { “key”: “c”, “text”: “Red, because the light color tints the surface” }, { “key”: “d”, “text”: “White, because marble is always white” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 </section>
 <section id="animated-lights" class="level2">
 <h2 class="anchored" data-anchor-id="animated-lights">Animated Lights</h2>
@@ -827,7 +824,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “To make a point light orbit around the scene, you would:”, “options”: [ { “key”: “a”, “text”: “Call scene.add_light() multiple times per frame” }, { “key”: “b”, “text”: “Call light.set_position() each frame using math.sin and math.cos” }, { “key”: “c”, “text”: “Call scene.camera.follow(light)” }, { “key”: “d”, “text”: “Call light.set_visible(True) each frame” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

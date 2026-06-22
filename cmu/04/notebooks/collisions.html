@@ -731,7 +731,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>The handler can be a lambda or a named function — exactly like <code>on_click</code>.</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “When must you call on_collide to register a collision handler?”, “options”: [ { “key”: “a”, “text”: “Before adding either mesh to the scene” }, { “key”: “b”, “text”: “After adding both meshes to the scene, but before scene.run()” }, { “key”: “c”, “text”: “Inside the <span class="citation" data-cites="scene.on_frame">@scene.on_frame</span> callback” }, { “key”: “d”, “text”: “After scene.run() is called” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="multiple-collision-targets" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-collision-targets">Multiple Collision Targets</h2>
@@ -790,7 +789,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>ctx.fill_text(<span class="st">'Targets hit: 0'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “true_false”, “question”: “You can register multiple on_collide handlers on the same mesh — one for each object it might hit.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="fires-once-a-feature-not-a-limitation" class="level2">
 <h2 class="anchored" data-anchor-id="fires-once-a-feature-not-a-limitation">Fires Once — A Feature, Not a Limitation</h2>
@@ -856,7 +854,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>draw_hud()</span>
 <span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “A ball collides with a box, triggering the handler. The ball stays touching the box. What happens next?”, “options”: [ { “key”: “a”, “text”: “The handler fires again every frame the objects stay touching” }, { “key”: “b”, “text”: “The handler fires once more when the ball moves away” }, { “key”: “c”, “text”: “The handler does not fire again — on_collide fires once per overlap” }, { “key”: “d”, “text”: “The scene stops until the ball moves away” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

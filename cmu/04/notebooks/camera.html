@@ -715,7 +715,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Methods can be <strong>chained</strong> because each one returns <code>scene.camera</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">8</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">8</span>).look_at(box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>{ “question_type”: “multiple_choice”, “question”: “scene.camera.set_position(0, 14, 0).look_at(0, 0, 0) places the camera:”, “options”: [ { “key”: “a”, “text”: “In front of the scene at eye level” }, { “key”: “b”, “text”: “Directly above the scene, looking down” }, { “key”: “c”, “text”: “Behind the scene, looking forward” }, { “key”: “d”, “text”: “To the right of the scene” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="set_distance-zooming-in-and-out" class="level2">
 <h2 class="anchored" data-anchor-id="set_distance-zooming-in-and-out"><code>set_distance</code> — Zooming In and Out</h2>
@@ -745,7 +744,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>scene.camera.set_position(<span class="dv">0</span>, CAMERA_HEIGHT, <span class="op">-</span>CAMERA_DISTANCE).look_at(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “true_false”, “question”: “scene.camera.set_distance(5) moves the camera closer to its current target.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="follow-tracking-a-moving-object" class="level2">
 <h2 class="anchored" data-anchor-id="follow-tracking-a-moving-object"><code>follow</code> — Tracking a Moving Object</h2>
@@ -789,7 +787,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does scene.camera.follow(None) do?”, “options”: [ { “key”: “a”, “text”: “Pauses the animation” }, { “key”: “b”, “text”: “Makes the camera look at the origin” }, { “key”: “c”, “text”: “Stops the camera from tracking the mesh it was following” }, { “key”: “d”, “text”: “Removes the camera from the scene” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 </section>
 <section id="method-chaining-and-reset" class="level2">
 <h2 class="anchored" data-anchor-id="method-chaining-and-reset">Method Chaining and <code>reset()</code></h2>
@@ -821,7 +818,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Uncomment the line below and re-run to jump back to the default view:</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># scene.camera.reset()</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “What does scene.camera.reset() do?”, “options”: [ { “key”: “a”, “text”: “Deletes all camera settings permanently” }, { “key”: “b”, “text”: “Returns the camera to the default start position and angle” }, { “key”: “c”, “text”: “Freezes the camera so the mouse no longer works” }, { “key”: “d”, “text”: “Resets the entire scene, including all shapes” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

@@ -863,7 +863,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Let’s do some training!</p>
 <div id="10ef1ca5-decb-4562-8fa6-0564f3cd72a3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> npimport matplotlib.pyplot <span class="im">as</span> pltfrom sklearn.decomposition <span class="im">import</span> PCA<span class="co"># --- Model weights ---embedding_dim = 10learning_rate = 0.05epochs = 300np.random.seed(42)W1 = np.random.randn(vocab_size, embedding_dim) * 0.1  # input embeddingsW2 = np.random.randn(embedding_dim, vocab_size) * 0.1  # output weightsdef softmax(x):  e = np.exp(x - np.max(x))  return e / e.sum()# --- Training loop ---print("Training...")for epoch in range(epochs):  lr = learning_rate * (1 - epoch / epochs)  # decay: large steps early, small steps late  total_loss = 0  for center_idx, context_idx in pairs:    h = W1[center_idx]              # embedding lookup    y_hat = softmax(h @ W2)         # predicted distribution    total_loss -= np.log(y_hat[context_idx] + 1e-10)    error = y_hat.copy()    error[context_idx] -= 1         # cross-entropy + softmax gradient    dW2 = np.outer(h, error)    dW1 = W2 @ error    W2 -= lr * dW2    W1[center_idx] -= lr * dW1  if (epoch + 1) % 60 == 0:    print(f"  Epoch {epoch+1}/{epochs}  loss: {total_loss / len(pairs):.4f}")print("Training complete!")</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Model weights ---</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>embedding_dim <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>learning_rate <span class="op">=</span> <span class="fl">0.05</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="dv">300</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>W1 <span class="op">=</span> np.random.randn(vocab_size, embedding_dim) <span class="op">*</span> <span class="fl">0.1</span>  <span class="co"># input embeddings</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>W2 <span class="op">=</span> np.random.randn(embedding_dim, vocab_size) <span class="op">*</span> <span class="fl">0.1</span>  <span class="co"># output weights</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> softmax(x):</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  e <span class="op">=</span> np.exp(x <span class="op">-</span> np.<span class="bu">max</span>(x))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> e <span class="op">/</span> e.<span class="bu">sum</span>()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Training loop ---</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training..."</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(epochs):</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  lr <span class="op">=</span> learning_rate <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> epoch <span class="op">/</span> epochs)  <span class="co"># decay: large steps early, small steps late</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  total_loss <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> center_idx, context_idx <span class="kw">in</span> pairs:</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> W1[center_idx]              <span class="co"># embedding lookup</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> softmax(h <span class="op">@</span> W2)         <span class="co"># predicted distribution</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    total_loss <span class="op">-=</span> np.log(y_hat[context_idx] <span class="op">+</span> <span class="fl">1e-10</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    error <span class="op">=</span> y_hat.copy()</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    error[context_idx] <span class="op">-=</span> <span class="dv">1</span>         <span class="co"># cross-entropy + softmax gradient</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    dW2 <span class="op">=</span> np.outer(h, error)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    dW1 <span class="op">=</span> W2 <span class="op">@</span> error</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    W2 <span class="op">-=</span> lr <span class="op">*</span> dW2</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    W1[center_idx] <span class="op">-=</span> lr <span class="op">*</span> dW1</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (epoch <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">60</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>epochs<span class="sc">}</span><span class="ss">  loss: </span><span class="sc">{</span>total_loss <span class="op">/</span> <span class="bu">len</span>(pairs)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Training complete!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s test by looking up words that are similar to each other…</p>
 <div id="31915f13-37a6-440c-bdb7-70ca6e812cf2" class="cell">
@@ -901,9 +939,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “On the scatter plot, where would you expect ‘dog’ and ‘cat’ to appear relative to each other?”, “options”: [ { “key”: “a”, “text”: “Close together, because they appear near similar words in the training sentences” }, { “key”: “b”, “text”: “Far apart, because they are different animals” }, { “key”: “c”, “text”: “In the same spot, because the model treats all animals the same” }, { “key”: “d”, “text”: “At random positions, because the model doesn’t understand meaning” } ], “answer”: “a”, “submitted_answer”: ““}</p>
-<p>{ “question_type”: “multiple_choice”, “question”: “Why does Word2Vec learn that ‘dog’ and ‘cat’ are similar?”, “options”: [ { “key”: “a”, “text”: “Because they both have three letters” }, { “key”: “b”, “text”: “Because they appear near the same words in the training sentences (like ‘the’, ‘love’, ‘and’)” }, { “key”: “c”, “text”: “Because the programmer told the model they were similar” }, { “key”: “d”, “text”: “Because they both appear at the start of sentences” } ], “answer”: “b”, “submitted_answer”: ““}</p>
-<p>{ “question_type”: “true_false”, “question”: “Words that appear near the same words in sentences will tend to end up with similar embeddings after training.”, “answer”: “True”, “submitted_answer”: “” }</p>
 
 
 

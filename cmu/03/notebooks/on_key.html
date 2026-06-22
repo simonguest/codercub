@@ -733,7 +733,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>For letter keys, pass a plain string: <code>scene.on_key('w', fn)</code>.</p>
 <p>The registration rules are the same as <code>on_click</code> and <code>on_collide</code>: - Register <strong>after</strong> meshes are added to the scene - Register <strong>before</strong> <code>scene.run()</code> - The canvas is <strong>auto-focused</strong> — keys respond immediately, no clicking needed</p>
-<p>{ “question_type”: “true_false”, “question”: “You need to click on the scene canvas before keyboard events will work.”, “answer”: “False”, “submitted_answer”: “” }</p>
 </section>
 <section id="moving-with-arrow-keys" class="level2">
 <h2 class="anchored" data-anchor-id="moving-with-arrow-keys">Moving with Arrow Keys</h2>
@@ -783,7 +782,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>draw_hud()</span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “When you register any on_key handler, what happens to the default camera arrow-key controls?”, “options”: [ { “key”: “a”, “text”: “They still work alongside your handlers” }, { “key”: “b”, “text”: “They are automatically disabled” }, { “key”: “c”, “text”: “They only work when Shift is held” }, { “key”: “d”, “text”: “Mouse orbit is also disabled” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="letter-keys" class="level2">
 <h2 class="anchored" data-anchor-id="letter-keys">Letter Keys</h2>
@@ -835,8 +833,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “How do you register a handler for the letter ‘w’ key?”, “options”: [ { “key”: “a”, “text”: “scene.on_key(scene3d.Key.W, fn)” }, { “key”: “b”, “text”: “scene.on_key(Key.LETTER_W, fn)” }, { “key”: “c”, “text”: “scene.on_key(‘w’, fn)” }, { “key”: “d”, “text”: “scene.on_key(87, fn)” } ], “answer”: “c”, “submitted_answer”: “” }</p>
-<p>{ “question_type”: “true_false”, “question”: “A scene can have both arrow key handlers (Key.LEFT etc.) and letter key handlers (‘a’, ‘w’ etc.) registered at the same time.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>

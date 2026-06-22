@@ -725,7 +725,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>audio.play(<span class="st">'/sample_files/laser.wav'</span>)  <span class="co"># ← code stops here until done</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Done!'</span>)                          <span class="co"># ← only runs after the sound ends</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is useful for short effects you want to hear before continuing. Later you’ll see how to play sounds <em>in the background</em> so the scene keeps running at the same time.</p>
-<p>{ “question_type”: “true_false”, “question”: “audio.play() returns immediately and lets the rest of the code continue while the sound plays.”, “answer”: “False”, “submitted_answer”: “” }</p>
 </section>
 <section id="playing-notes" class="level2">
 <h2 class="anchored" data-anchor-id="playing-notes">Playing Notes</h2>
@@ -792,7 +791,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Finish with a C major chord — all three notes at once</span></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>audio.play_note([<span class="st">'C4'</span>, <span class="st">'E4'</span>, <span class="st">'G4'</span>], <span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “Which line plays three notes at exactly the same time (a chord)?”, “options”: [ { “key”: “a”, “text”: “audio.play_notes([(‘C4’, 0.3), (‘E4’, 0.3), (‘G4’, 0.3)])” }, { “key”: “b”, “text”: “audio.play_note(‘C4’, 0.3) then audio.play_note(‘E4’, 0.3)” }, { “key”: “c”, “text”: “audio.play_note([‘C4’, ‘E4’, ‘G4’], 1.0)” }, { “key”: “d”, “text”: “audio.play(‘C4’, ‘E4’, ‘G4’)” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 </section>
 <section id="background-music" class="level2">
 <h2 class="anchored" data-anchor-id="background-music">Background Music</h2>
@@ -862,7 +860,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>ctx.fill_text(<span class="st">'Click a sphere!'</span>, <span class="dv">10</span>, <span class="dv">30</span>)</span>
 <span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “true_false”, “question”: “You can call audio.play() inside an on_click handler to play a sound when a shape is clicked.”, “answer”: “True”, “submitted_answer”: “” }</p>
 </section>
 <section id="text-to-speech" class="level2">
 <h2 class="anchored" data-anchor-id="text-to-speech">Text-to-Speech</h2>
@@ -882,7 +879,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>audio.speak(<span class="st">'Bonjour! Je parle avec une voix francaise.'</span>, voice<span class="op">=</span>audio.Voice.FR_FR.MALE)</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>audio.speak(<span class="st">'Hola! Esta es una voz espanola.'</span>, voice<span class="op">=</span>audio.Voice.ES_ES.FEMALE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>{ “question_type”: “multiple_choice”, “question”: “Which call makes the computer speak in a British male voice?”, “options”: [ { “key”: “a”, “text”: “audio.speak(‘Hello’, language=‘British’)” }, { “key”: “b”, “text”: “audio.speak(‘Hello’, voice=audio.Voice.EN_GB.MALE)” }, { “key”: “c”, “text”: “audio.speak_british(‘Hello’, gender=‘male’)” }, { “key”: “d”, “text”: “audio.speak(‘Hello’, accent=‘EN_GB’)” } ], “answer”: “b”, “submitted_answer”: “” }</p>
 </section>
 <section id="try-it-yourself" class="level2">
 <h2 class="anchored" data-anchor-id="try-it-yourself">Try It Yourself</h2>
