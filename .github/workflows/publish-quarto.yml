@@ -21,6 +21,9 @@ jobs:
         with:
           version: 1.8.26
 
+      - name: Install Python dependencies
+        run: pip install nbformat
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
