@@ -7,6 +7,8 @@ project:
     - "!LICENSE.md"
 format:
   html:
+    ipynb-filters: 
+      - filters/preprocess_notebook.py
     theme:
       light: [flatly, theme/site.scss]
       dark: [darkly, theme/site.scss]
