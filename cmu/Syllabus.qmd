@@ -30,7 +30,7 @@
 
 | Notebook | What Students Learn |
 |----------|---------------------|
-| Hello World (`cmu/01/notebooks/hello_world.ipynb`) | How Jupyter-K12 notebooks work; code and markdown cells; interactive form fields; a first look at a 3D scene |
+| Hello World (`cmu/01/notebooks/hello_world.ipynb`) | How Codetto notebooks work; code and markdown cells; interactive form fields; a first look at a 3D scene |
 | Variables (`cmu/01/notebooks/variables.ipynb`) | Creating variables with `=`; holding numbers, text, and 3D objects; one variable controlling multiple things |
 | Functions (`cmu/01/notebooks/functions.ipynb`) | Calling functions; parameters and defaults; `set_position`, `set_scale`, and `set_rotation` |
 | Colors (`cmu/01/notebooks/colors.ipynb`) | Hex color codes; red/green/blue mixing; `set_color` and `set_sky` |
@@ -39,7 +39,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform (jupyter-k12.org)
+- Codetto platform (codetto.app)
 - Curriculum page (simonguest.github.io/codercub)
 - Day 1 slides (`cmu/01/slides.qmd`)
 
@@ -70,7 +70,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Day 2 slides (`cmu/02/slides.qmd`)
 
 ---
@@ -100,7 +100,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Day 3 slides (`cmu/03/slides.qmd`)
 
 ---
@@ -130,7 +130,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Day 4 slides (`cmu/04/slides.qmd`)
 
 ---
@@ -163,7 +163,7 @@ Students may build anything they like using what they've learned. Some starting 
 #### Resources & Tools
 
 - All notebooks from Days 1–4 as reference
-- Jupyter-K12 platform
+- Codetto platform
 - Day 5 slides (`cmu/05/slides.qmd`)
 
 > **Instructor Notes:** Encourage students to start from an existing notebook and copy/paste code as a foundation rather than starting from scratch. End the session with an optional "show and share" — celebrate creative use and personal ideas over technical complexity.

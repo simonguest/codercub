@@ -1,6 +1,6 @@
-# Skill: Create Jupyter K-12 Notebook
+# Skill: Create Codetto Notebook
 
-You are creating a `.ipynb` notebook for the **Jupyter K-12** platform — a browser-based Jupyter client for K-12 students that runs Python via Pyodide (in-browser, no server). This skill covers all platform-specific extensions beyond standard `.ipynb` format.
+You are creating a `.ipynb` notebook for the **Codetto** platform — a browser-based Jupyter client for K-12 students that runs Python via Pyodide (in-browser, no server). This skill covers all platform-specific extensions beyond standard `.ipynb` format.
 
 ## Notebook file format
 
@@ -633,9 +633,9 @@ Keep code cells short (under 20 lines). Prefer multiple small cells over one lar
 
 ---
 
-## "Open in Jupyter-K12" Badge
+## "Open in Codetto" Badge
 
-In the first markdown cell, after the heading and description, you should add an "Open in Jupyter-K12 badge", a self-referencing link to the hosted version of the notebook. This makes it easy for students to open notebooks from their CMS.
+In the first markdown cell, after the heading and description, you should add an "Open in Codetto badge", a self-referencing link to the hosted version of the notebook. This makes it easy for students to open notebooks from their CMS.
 
 The structure of the href should include the simonguest/codercub repo and a link to the .ipynb file following the same path.
 
@@ -646,8 +646,8 @@ Example:
 
 This is an example of the Jupyter .ipynb document format
 
-<a target="_blank" href="https://jupyter-k12.org?github=simonguest/codercub/blob/main/labs/02/notebooks/hello_world.ipynb">
-  <img src="https://img.shields.io/badge/Open_in-Jupyter_K--12-blue" alt="Open In Jupyter K-12"/>
+<a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/02/notebooks/hello_world.ipynb">
+  <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"/>
 </a>
 ```
 

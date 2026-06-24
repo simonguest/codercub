@@ -24,7 +24,7 @@
 - Articulate what AI is and name 3+ real-world examples they interact with daily
 - Distinguish between supervised ML, computer vision, and generative AI
 - Preview all four modules and understand how the two weeks connect
-- Run a Jupyter K-12 notebook and interact with all three types of AI hands-on
+- Run a Codetto notebook and interact with all three types of AI hands-on
 
 #### Session Schedule (2 hours)
 
@@ -35,15 +35,15 @@
 | "Does It Use AI?" (15 min) | Class vote on 7 tech examples (ChatGPT, Fitness Tracker, Calculator, Washing Machine, Music App, Smartphone Camera, Video Game) — show of hands. Instructor reveals and explains each, including the "maybe" cases. | 0:25–0:40 | Encourage debate on edge cases |
 | AI Around You (10 min) | Students add their own examples to a Miro board with three pre-labeled zones: No / Maybe / Yes. Reinforces the classification before the deep-dive. | 0:40–0:50 | Miro board set up in advance |
 | Types of AI (20 min) | Detailed slides: supervised ML (regression and classification with forward references to Days 2–5), computer vision (pixels → CNNs → applications), generative AI (LLMs and diffusion models). Ends with the two-week journey map. | 0:50–1:10 | Keep pace brisk |
-| Introducing Notebooks (10 min) | What a notebook is, anatomy of a Jupyter notebook cell, intro to Jupyter-K12 — the platform students will use throughout the course. | 1:10–1:20 | Demo platform live |
-| Hello World + API Key Setup (25 min) | Instructor demos the Hello World notebook live, then students open it and run each cell themselves. Distribute and enter OpenRouter API keys — students paste their key into the Jupyter-K12 environment settings (Settings → scan QR code). | 1:20–1:45 | Pair struggling students |
+| Introducing Notebooks (10 min) | What a notebook is, anatomy of a Jupyter notebook cell, intro to Codetto — the platform students will use throughout the course. | 1:10–1:20 | Demo platform live |
+| Hello World + API Key Setup (25 min) | Instructor demos the Hello World notebook live, then students open it and run each cell themselves. Distribute and enter OpenRouter API keys — students paste their key into the Codetto environment settings (Settings → scan QR code). | 1:20–1:45 | Pair struggling students |
 | AI in Action Notebook (10 min) | Students open the AI in Action notebook and work through three sections: spam detector (Supervised ML), live webcam object detection (Computer Vision), and generative Q&A (Generative AI). | 1:45–1:55 | Requires API key from previous step |
 | Discussion & Wrap-Up (5 min) | What worked? What didn't? Preview: tomorrow we dig into a real Mongolian air quality dataset with pandas. | 1:55–2:00 | |
 
 #### Resources & Tools
 
 - Miro board with three pre-labeled zones (No / Maybe / Yes)
-- Jupyter-K12 platform (jupyter-k12.org)
+- Codetto platform (codetto.app)
 - Hello World notebook (`labs/01/notebooks/hello_world.ipynb`)
 - AI in Action notebook (`labs/01/notebooks/ai_in_action.ipynb`)
 - OpenRouter API keys (one per student, distributed before class)
@@ -77,7 +77,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Ulaanbaatar AQI dataset (`labs/02/notebooks/ulaanbaatar_aqi_2019_2021.csv`)
 - pandas notebook (`labs/02/notebooks/pandas.ipynb`)
 - matplotlib notebook (`labs/02/notebooks/matplotlib.ipynb`)
@@ -114,7 +114,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - scikit-learn notebook (`labs/03/notebooks/sklearn.ipynb`)
 - Dzud dataset (`labs/03/notebooks/mongolia_dzud_1990_2013.csv`)
 - Finding Disasters notebook (`labs/03/notebooks/finding_disasters.ipynb`)
@@ -252,7 +252,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - In-browser neural network demo (`labs/components/nn.html`)
 - Face Detection notebook (`labs/06/notebooks/face_detection.ipynb`)
 - Object Detection notebook (`labs/06/notebooks/object_detection.ipynb`)
@@ -286,7 +286,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Gesture Recognition notebook (`labs/07/notebooks/gesture_recognition.ipynb`)
 - Gesture Painter notebook (`labs/07/notebooks/gesture_painter.ipynb`)
 - Rock, Paper, Scissors notebook (`labs/07/notebooks/rock_paper_scissors.ipynb`)
@@ -320,7 +320,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Word2Vec notebook (`labs/08/notebooks/word2vec.ipynb`)
 - OpenAI SDK notebook (`labs/08/notebooks/openai_sdk.ipynb`)
 - Streaming notebook (`labs/08/notebooks/openai_streaming.ipynb`)
@@ -359,7 +359,7 @@
 
 #### Resources & Tools
 
-- Jupyter-K12 platform
+- Codetto platform
 - Image Generation notebook (`labs/09/notebooks/image_generation.ipynb`)
 - Image-to-Image notebook (`labs/09/notebooks/image_to_image.ipynb`)
 - VLM notebook (`labs/09/notebooks/vlm.ipynb`)
@@ -391,5 +391,5 @@
 #### Resources & Tools
 
 - All notebooks from Days 1–9 as reference
-- Jupyter-K12 platform
+- Codetto platform
 - OpenRouter API keys

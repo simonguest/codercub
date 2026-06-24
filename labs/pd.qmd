@@ -25,7 +25,7 @@ format:
 |------|---------|
 | 0:00–0:10 | Why I developed this course |
 | 0:10–0:20 | The two-week arc |
-| 0:20–0:45 | Jupyter K-12 (the platform) |
+| 0:20–0:45 | Codetto (the platform) |
 | 0:45–1:40 | Four modules (test hands-on activities) |
 | 1:40–2:00 | Wrap-up + Q&A |
 
@@ -105,7 +105,7 @@ Why Mongolia?
 
 ---
 
-# Jupyter K-12 {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
+# Codetto {background-gradient="linear-gradient(135deg, #0a0e1a 0%, #0d2137 60%, #1a1f35 100%)"}
 
 ## What Is a Jupyter Notebook?
 
@@ -130,7 +130,7 @@ Why Mongolia?
 
 Let's walk through the same notebook students open on Day 1:
 
-1. Open `labs/01/notebooks/hello_world.ipynb` in Jupyter K-12
+1. Open `labs/01/notebooks/hello_world.ipynb` in Codetto
 2. Run the first few code cells: notice variables persist across cells
 3. Find the hidden cell and use the **eye icon** to reveal it
 4. Try the `#@param` form fields: change `NAME` and `GREETING` and re-run
@@ -138,7 +138,7 @@ Let's walk through the same notebook students open on Day 1:
 
 ---
 
-## Jupyter K-12: Debrief
+## Codetto: Debrief
 
 - How is this different from tools you've used before (Word, Google Docs, PowerPoint)?
 - How might the eye icon change how you deliver a demo?
@@ -165,7 +165,7 @@ By the end: students have trained their first ML model in Python.
 
 **What students do on Day 2 (you'll try a version now):**
 
-1. Open the air quality notebook in Jupyter K-12
+1. Open the air quality notebook in Codetto
 2. Load the Ulaanbaatar AQI dataset with pandas (`.head()`, `.describe()`, `.info()`)
 3. Plot PM2.5 levels over time with matplotlib
 4. Identify the seasonal pattern: what time of year is worst, and why?
@@ -242,7 +242,7 @@ Each algorithm has its own notebook. Students run them on live webcam video.
 
 **What students do on Day 6 (you'll try a version now):**
 
-1. Open the pose estimation notebook in Jupyter K-12
+1. Open the pose estimation notebook in Codetto
 2. Run the notebook: your webcam will activate
 3. Move around and observe the 33 landmarks being tracked
 4. Then open the 3D pose avatar notebook: the camera view disappears, replaced by joint positions in a live 3D scene
@@ -321,7 +321,7 @@ Students generate images from text prompts using a diffusion model, restyle phot
 
 - Syllabus: `labs/Syllabus.qmd`
 - All notebooks: `labs/01/` through `labs/09/`
-- Jupyter K-12 platform: `jupyter-k12.org`
+- Codetto platform: `codetto.app`
 - createai.microbit.org
 - OpenRouter API keys: contact the course coordinator
 
