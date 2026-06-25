@@ -70,6 +70,56 @@ Named values substituted at runtime using `{{VARIABLE}}` syntax in markdown and 
 
 Use globals in cell source: `Hello, {{STUDENT_NAME}}!`
 
+### Description
+
+Short summary shown below the notebook title on the index card. Also searched by the index search box. If absent, the description area is blank.
+
+```json
+"metadata": {
+  "description": "Learn to draw shapes and patterns with Python's turtle module."
+}
+```
+
+### Color
+
+Hex color string for the left accent border on the index card. Defaults to `#42a5f5` (blue) if absent. Set this to give each notebook or unit a distinct visual identity.
+
+```json
+"metadata": {
+  "color": "#e53935"
+}
+```
+
+Common choices: `#e53935` red · `#43a047` green · `#fb8c00` orange · `#8e24aa` purple · `#00897b` teal · `#1e88e5` blue.
+
+### Progress
+
+Integer `0–100` shown as a circular progress indicator on the index card. Hidden if absent. Omit the field for notebooks where progress tracking is not relevant; set to `0` to show the indicator starting at zero.
+
+```json
+"metadata": {
+  "progress": 0
+}
+```
+
+### Image
+
+Base64 data URL used as the background image on the index card. Overrides the default ruled-notebook SVG placeholder for both light and dark themes. Use a JPEG for photos, PNG for graphics with transparency.
+
+```json
+"metadata": {
+  "image": "data:image/jpeg;base64,/9j/4AAQ…"
+}
+```
+
+To generate the base64 string from a file:
+
+```bash
+base64 -i image.jpg | tr -d '\n'
+```
+
+Then prefix with `data:image/jpeg;base64,` (or `data:image/png;base64,` for PNG). Keep images small — 50–100 KB is reasonable; very large images bloat the notebook file and slow index load.
+
 ---
 
 ## Standard cell types
@@ -110,6 +160,28 @@ Use globals in cell source: `Hello, {{STUDENT_NAME}}!`
 ## Platform-specific cell types
 
 These are activated by the `tags` array in `cell.metadata`.
+
+### Invisible cell (`any cell type` + `"hidden"` tag)
+
+A cell tagged `"hidden"` is completely absent from the rendered page — the student never sees it, even in edit mode. Use this for setup cells that run silently in the background (e.g. installing packages, defining helper functions) when you don't want even a collapsed editor visible.
+
+```json
+{
+  "cell_type": "code",
+  "execution_count": null,
+  "id": "cell-setup-hidden",
+  "metadata": {
+    "tags": ["hidden"]
+  },
+  "outputs": [],
+  "source": [
+    "import micropip\n",
+    "await micropip.install('some-package')"
+  ]
+}
+```
+
+Contrast with `hide_code`: `hide_code` collapses the editor but the cell is still visible and the student can reveal the code. `hidden` makes the cell completely invisible.
 
 ### Hidden code cell (`code` + `"hide_code"` tag)
 
