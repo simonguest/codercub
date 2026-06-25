@@ -1031,7 +1031,7 @@
     "href": "cmu/05/notebooks/final_project.html",
     "title": "Final Project",
     "section": "",
-    "text": "This is a blank notebook that you can use to create your final project! Click the button to create this notebook.\n  \nNote: If you’ve already created your final project notebook, visit Jupyter-k12 and open it from your list of notebooks instead.\n\nimport scene3d\n\nscene = scene3d.Scene()\n\n# What are you going to create?!",
+    "text": "This is a blank notebook that you can use to create your final project! Click the button to create this notebook.\nNote: If you’ve already created your final project notebook, visit Jupyter-k12 and open it from your list of notebooks instead.\n  \n\nimport scene3d\n\nscene = scene3d.Scene()\n\n# What are you going to create?!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
