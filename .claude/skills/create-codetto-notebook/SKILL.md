@@ -120,6 +120,29 @@ base64 -i image.jpg | tr -d '\n'
 
 Then prefix with `data:image/jpeg;base64,` (or `data:image/png;base64,` for PNG). Keep images small — 50–100 KB is reasonable; very large images bloat the notebook file and slow index load.
 
+### Course
+
+Assigns the notebook to a named course. When any notebooks in the index have a `course` value, a Course dropdown appears in the toolbar. Selecting a course filters across all folders, showing only notebooks in that course.
+
+```json
+"metadata": {
+  "course": "Python Basics"
+}
+```
+
+### Module
+
+Assigns the notebook to a module within a course. The Module dropdown appears only after a course is selected, and narrows the view to notebooks matching both course and module.
+
+```json
+"metadata": {
+  "course": "Python Basics",
+  "module": "Unit 3: Loops"
+}
+```
+
+Both fields are optional. Neither has any independent existence — the index derives the available options at runtime from the metadata values across all notebooks.
+
 ---
 
 ## Standard cell types
