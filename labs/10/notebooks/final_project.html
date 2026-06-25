@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>OpenAI Streaming – Summer of Code 2026</title>
+<title>Final Project – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/08/notebooks/structured_output.html" rel="next">
-<link href="../../../labs/08/notebooks/openai_sdk.html" rel="prev">
+<link href="../../../labs/10/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/openai_streaming.html">OpenAI Streaming</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Final Project</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -680,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/08/notebooks/openai_streaming.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/08/notebooks/openai_streaming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">OpenAI Streaming</span></a>
   </div>
 </li>
@@ -790,7 +789,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/10/notebooks/final_project.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/10/notebooks/final_project.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Final Project</span></a>
   </div>
 </li>
@@ -808,9 +807,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/openai_streaming.html">OpenAI Streaming</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Final Project</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">OpenAI Streaming</h1>
+<h1 class="title">Final Project</h1>
 </div>
 
 
@@ -827,37 +826,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In the last notebook, you probably noticed that it took a long time for the reply to be generated. This is because each token is being generated separately, but the answer isn’t being shown until the last token.</p>
-<p>In this notebook, we enable <code>stream=True</code>. This means that we can capture and print each token as it’s being generated, without having to wait until the end.</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/08/notebooks/openai_streaming.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<div id="612d23fa-1d90-401c-86ea-410ccdef339e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">"openai/gpt-oss-120b:free"</span> <span class="co">#@param ["openai/gpt-oss-120b:free"]</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span>MODEL,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an expert in dogs, based in Mongolia. Your role is to provide helpful information to students who want to learn more about keeping dogs at home. Answer in a concise but friendly manner."</span>},</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"How many times a day should I feed my Mongolian Bankhar, and what food is best?"</span>},</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ], </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  stream<span class="op">=</span><span class="va">True</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> response:</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Each chunk contains a delta with the new content</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is a blank notebook that you can use to create your final project!</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/final_project.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
+<div id="056ca8a3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are you going to create?!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that you’ve seen streaming in action, reflect on the experience.</p>
-<p>How did the streaming response feel compared to waiting for the full answer at once? Can you think of a real application — like a chatbot or a writing tool — where streaming would make a big difference to the user experience?</p>
 
 
 
@@ -1277,14 +1250,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/08/notebooks/openai_sdk.html" class="pagination-link" aria-label="Using the OpenAI SDK">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using the OpenAI SDK</span>
+      <a href="../../../labs/10/slides.html" class="pagination-link" aria-label="Slides">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/08/notebooks/structured_output.html" class="pagination-link" aria-label="Structured Output">
-        <span class="nav-page-text">Structured Output</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
