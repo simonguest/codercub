@@ -441,7 +441,7 @@
     "href": "labs/03/notebooks/regression.html#step-1-load-the-data-and-imports",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
     "section": "Step 1: Load the data and imports",
-    "text": "Step 1: Load the data and imports\nWe are going to train the machine using scikit-learn, the most widely used machine learning library in Python. We will use just two things from it: a LinearRegression model and a function to split data into training and test sets.\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_absolute_error\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
+    "text": "Step 1: Load the data and imports\nWe are going to train the machine using scikit-learn, the most widely used machine learning library in Python. We will use just two things from it: a LinearRegression model and a function to split data into training and test sets.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import mean_absolute_error\n\ndf = pd.read_csv('/notebook_files/mongolia_dzud_1990_2013.csv')\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -571,7 +571,7 @@
     "href": "labs/03/notebooks/finding_cause.html#step-1-load-the-data",
     "title": "The Dzud — Finding the Cause",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
+    "text": "Step 1: Load the data\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\ndf = pd.read_csv('/notebook_files/mongolia_dzud_1990_2013.csv')\n\nprint(f\"Loaded {len(df)} rows\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -805,7 +805,7 @@
     "href": "labs/02/notebooks/air_quality.html#step-1-load-the-data",
     "title": "Exploring Air Quality",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "text": "Step 1: Load the data\nWe’ll use pandas — Python’s most popular data analysis library — to load our dataset.\nThe dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.\n\nimport pandas as pd\n\ndf = pd.read_csv('/notebook_files/ulaanbaatar_aqi_2019_2021.csv')\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -5392,7 +5392,7 @@
     "href": "labs/02/notebooks/correlation.html#step-1-load-the-data",
     "title": "Introducing Correlation",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\nimport io\nimport httpx\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/ulaanbaatar_aqi_2019_2021.csv\"\n\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
+    "text": "Step 1: Load the data\nWe start the same way as before — loading the dataset and importing our libraries.\n\nimport pandas as pd\n\ndf = pd.read_csv('/notebook_files/ulaanbaatar_aqi_2019_2021.csv')\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Date range: {df['date'].min()} to {df['date'].max()}\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -5587,7 +5587,7 @@
     "href": "labs/02/notebooks/pandas.html#part-4-loading-from-a-csv",
     "title": "Exploring Data with Pandas",
     "section": "Part 4: Loading from a CSV",
-    "text": "Part 4: Loading from a CSV\nSo far you’ve created DataFrames by typing the data directly into Python. In the real world, data usually lives in a file, most commonly a CSV (comma-separated values) file.\nA CSV file looks like this:\nmonth,avg_temp_c,precipitation_mm,sunny_days\nJan,0,94,8\nFeb,1,88,9\n...\nEach row is a new line and values are separated by commas. Loading it into Pandas takes just one line:\ndf = pd.read_csv('nyc_weather.csv')\nSince we’re working in the browser, we’ll load it from the web, but the idea is exactly the same:\n\nimport httpx\nimport io\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/02/notebooks/nyc_weather.csv\"\n\nresponse = httpx.get(url)\ndf_weather = pd.read_csv(io.StringIO(response.text))\ndf_weather\n\n\n# What new columns does the CSV have?\ndf_weather.describe()\n\n\n# YOUR TURN: try filtering or sorting by one of the new columns\n# For example: find months with more than 100mm of precipitation\n\nwet_months = df_weather[df_weather['precipitation_mm'] &gt; 100]\nwet_months\n\nWhat new columns does the CSV have that our original DataFrame didn’t? Try filtering or sorting by one of them — what did you find?",
+    "text": "Part 4: Loading from a CSV\nSo far you’ve created DataFrames by typing the data directly into Python. In the real world, data usually lives in a file, most commonly a CSV (comma-separated values) file.\nA CSV file looks like this:\nmonth,avg_temp_c,precipitation_mm,sunny_days\nJan,0,94,8\nFeb,1,88,9\n...\nEach row is a new line and values are separated by commas. Loading it into Pandas takes just one line:\ndf = pd.read_csv('/notebook_files/nyc_weather.csv')\n(The notebook_files directory specifies files that are attached to this notebook.)\n\ndf_weather = pd.read_csv(\"/notebook_files/nyc_weather.csv\")\ndf_weather\n\n\n# What new columns does the CSV have?\ndf_weather.describe()\n\n\n# YOUR TURN: try filtering or sorting by one of the new columns\n# For example: find months with more than 100mm of precipitation\n\nwet_months = df_weather[df_weather['precipitation_mm'] &gt; 100]\nwet_months\n\nWhat new columns does the CSV have that our original DataFrame didn’t? Try filtering or sorting by one of them — what did you find?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 2",
@@ -5626,7 +5626,7 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-1-load-the-data",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe use httpx to fetch the CSV directly from the web, then read it into pandas via io.StringIO — a way of treating the downloaded text as if it were a file on disk.\n\nimport httpx\nimport io\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\nurl = \"https://raw.githubusercontent.com/simonguest/codercub/main/labs/03/notebooks/mongolia_dzud_1990_2013.csv\"\nresponse = httpx.get(url)\ndf = pd.read_csv(io.StringIO(response.text))\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Years covered: {df['year'].min()} to {df['year'].max()}\")\nprint(f\"Aimags: {df['aimag'].nunique()}\")\ndf.head()",
+    "text": "Step 1: Load the data\nWe use httpx to fetch the CSV directly from the web, then read it into pandas via io.StringIO — a way of treating the downloaded text as if it were a file on disk.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv('/notebook_files/mongolia_dzud_1990_2013.csv')\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Years covered: {df['year'].min()} to {df['year'].max()}\")\nprint(f\"Aimags: {df['aimag'].nunique()}\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
