@@ -143,6 +143,59 @@ Assigns the notebook to a module within a course. The Module dropdown appears on
 
 Both fields are optional. Neither has any independent existence — the index derives the available options at runtime from the metadata values across all notebooks.
 
+### Embedded files (pre-attaching files to a notebook)
+
+Files can be pre-embedded in a notebook by populating `notebook.metadata.files`. Each entry is a base64-encoded file object. When the notebook loads, all attached files are automatically mounted in the Pyodide filesystem at `/notebook_files/<name>` and are immediately available to Python code.
+
+Students and teachers can also add and remove files themselves via the **Resources panel** (bookshelf icon in the notebook header) — they do not need to edit the JSON.
+
+**Schema:**
+
+```json
+"metadata": {
+  "files": [
+    {
+      "name": "temperatures.csv",
+      "mimeType": "text/csv",
+      "size": 1024,
+      "data": "<base64-encoded content>"
+    }
+  ]
+}
+```
+
+**Fields:**
+- `name` — filename used as the path in `/notebook_files/`; must be unique within the notebook; use only alphanumeric characters, `.`, `_`, `-` (no spaces)
+- `mimeType` — MIME type of the file (e.g. `"text/csv"`, `"image/png"`, `"audio/wav"`)
+- `size` — raw byte count of the file **before** base64 encoding (used for the size display and limit checks)
+- `data` — base64-encoded file content (**without** the `data:...;base64,` prefix)
+
+**Limits:** 5 MB per file, 20 MB total across all files in the notebook.
+
+**Supported types:** images (`image/jpeg`, `image/png`, `image/gif`, `image/svg+xml`, `image/webp`, `image/bmp`), audio (`audio/wav`, `audio/mpeg`, `audio/ogg`, `audio/mp4`, `audio/flac`, `audio/aac`), `text/csv`, `text/plain`, `application/json`.
+
+**To generate the base64 string from a file:**
+
+```bash
+base64 -i mydata.csv | tr -d '\n'
+```
+
+**Accessing files in Python:**
+
+```python
+# Read a CSV
+with open('/notebook_files/temperatures.csv') as f:
+    print(f.read())
+
+# Load with pandas
+import pandas as pd
+df = pd.read_csv('/notebook_files/temperatures.csv')
+
+# Open an image
+from PIL import Image
+img = Image.open('/notebook_files/photo.jpg')
+```
+
 ---
 
 ## Standard cell types
@@ -349,7 +402,7 @@ These modules are always available without `pip install`.
 
 ### `audio` — play sound files
 
-Files in `/sample_files/` are pre-loaded at startup.
+Files in `/sample_files/` are pre-loaded at startup. Files attached to the notebook (via the Resources panel or embedded in `metadata.files`) are available at `/notebook_files/` — use them the same way.
 
 - **Images:** `abstract.jpg`, `cat.jpg`, `city.jpg`, `codercub.jpg`, `dog.jpg`, `earth.jpg`, `fabric.jpg`, `forest.jpg`, `undersea.jpg`
 - **Sounds:** `clang.wav`, `coin_pickup.wav`, `correct.wav`, `door.wav`, `gameover.wav`, `incorrect.wav`, `laser.wav`, `pop.wav`, `thud.wav`, `wood.wav`, `zap.wav`
