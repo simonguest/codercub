@@ -618,7 +618,7 @@ def animate(dt):
 scene.run()                      # blocks Python in event loop; Stop button works
 ```
 
-**Shapes:** `Shapes.Box(width, height, depth)`, `Shapes.Sphere(diameter, segments)`, `Shapes.Cylinder(diameter, height, tessellation)`.
+**Shapes:** `Shapes.Box(width, height, depth)`, `Shapes.Sphere(diameter, segments)`, `Shapes.Cylinder(diameter, height, tessellation)`, `Shapes.Plane(width, height)`, `Shapes.Cone(diameter, height, tessellation)`, `Shapes.Torus(diameter, thickness, tessellation)`, `Shapes.Text(text, size, depth, resolution)`.
 
 **Mesh methods:** `set_position(x, y, z)`, `set_rotation(x, y, z)` (degrees), `set_scale(x, y, z)`, `set_color(hex)`, `set_texture(source)`, `set_material(constant)`, `set_glossiness(value)`, `set_tiling(u, v=None)`, `on_click(fn)`, `on_collide(other_mesh, fn)`. All keyword arguments default to 0 (or 1 for scale), so `set_rotation(y=45)` is valid. `set_ground` returns a `Mesh` so all these methods work on the ground too.
 
@@ -725,7 +725,7 @@ The student can still use mouse orbit and scroll-wheel zoom on top of any camera
 
 | Field | Values | Default |
 |---|---|---|
-| `type` | `"Box"` \| `"Sphere"` \| `"Cylinder"` | required |
+| `type` | `"Box"` \| `"Sphere"` \| `"Cylinder"` \| `"Plane"` \| `"Cone"` \| `"Torus"` | required |
 | `position` | `[x, y, z]` | `[0, 0, 0]` |
 | `rotation` | `[x, y, z]` degrees | `[0, 0, 0]` |
 | `scale` | `[x, y, z]` | `[1, 1, 1]` |
@@ -733,7 +733,10 @@ The student can still use mouse orbit and scroll-wheel zoom on top of any camera
 | `material` | dotted string e.g. `"Grass.Bright"` | none |
 | `width` / `height` / `depth` | floats (Box) | 1 |
 | `diameter` / `segments` | float / int (Sphere) | 1 / 16 |
-| `diameter` / `height` / `tessellation` | floats / int (Cylinder) | 1 / 1 / 24 |
+| `diameter` / `height` / `tessellation` | floats / int (Cylinder / Cone) | 1 / 1 / 24 |
+| `width` / `height` | floats (Plane) | 1 |
+| `diameter` / `thickness` / `tessellation` | floats / int (Torus) | 1 / 0.5 / 16 |
+| `text` / `size` / `depth` | string / floats (Text) | required / 1 / 0.2 |
 
 Unknown `type` values and unrecognised `material` strings are silently skipped. Use with OpenAI structured output.
 

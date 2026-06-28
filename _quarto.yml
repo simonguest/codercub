@@ -184,6 +184,8 @@ website:
               contents:
                 - text: "Hello World!"
                   href: cmu/01/notebooks/hello_world.ipynb
+                - text: "Coordinates"
+                  href: cmu/01/notebooks/coordinates.ipynb
                 - text: "Variables"
                   href: cmu/01/notebooks/variables.ipynb
                 - text: "Functions"

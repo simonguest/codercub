@@ -82,7 +82,25 @@ Click on this button: <img src="https://img.shields.io/badge/Open_in-Codetto-blu
 
 Run all of the code in the notebook
 
-## Let's Get Started
+# Coordinates
+
+## Coordinates
+
+- You'll need to learn the coordinate system to build 3D scenes
+- X, Y, Z
+  - X: Left (-X) to Right (+X)
+  - Y: Up (+Y) to Down (-Y)
+  - Z: Far (+Z) to Near (-Z)
+
+# Demo
+
+"Coordinates" Notebook
+
+# Hands-On
+
+"Coordinates" Handbook
+
+## Let's Learn Some Python!
 
 - What we will learn today
   - Variables
