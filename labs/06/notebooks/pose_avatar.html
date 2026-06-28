@@ -878,46 +878,45 @@ scene_y = -(landmark_y / canvas_height - 0.5) * 4 + 1.5 </code></pre>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0d1b2a'</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>scene.set_ground(length<span class="op">=</span><span class="dv">12</span>, width<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>JOINTS <span class="op">=</span> {</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'NOSE'</span>:           (<span class="st">'#ffffff'</span>, <span class="fl">1.25</span>),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_SHOULDER'</span>:  (<span class="st">'#4488ff'</span>, <span class="fl">1.00</span>),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_SHOULDER'</span>: (<span class="st">'#4488ff'</span>, <span class="fl">1.00</span>),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_ELBOW'</span>:     (<span class="st">'#44aaff'</span>, <span class="fl">0.5</span>),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_ELBOW'</span>:    (<span class="st">'#44aaff'</span>, <span class="fl">0.5</span>),</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_WRIST'</span>:     (<span class="st">'#88ccff'</span>, <span class="fl">1.0</span>),</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_WRIST'</span>:    (<span class="st">'#88ccff'</span>, <span class="fl">1.0</span>),</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_HIP'</span>:       (<span class="st">'#ff8844'</span>, <span class="fl">1.0</span>),</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_HIP'</span>:      (<span class="st">'#ff8844'</span>, <span class="fl">1.0</span>),</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>spheres <span class="op">=</span> {}</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (color, size) <span class="kw">in</span> JOINTS.items():</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>size, segments<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  s.set_color(color)</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  s.set_position(<span class="dv">0</span>, <span class="op">-</span><span class="dv">10</span>, <span class="dv">0</span>)</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  spheres[name] <span class="op">=</span> s</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_3d(lm):</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> (lm[<span class="st">'x'</span>] <span class="op">/</span> <span class="dv">320</span> <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="op">-</span>(lm[<span class="st">'y'</span>] <span class="op">/</span> <span class="dv">600</span> <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="fl">1.5</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x, y, <span class="dv">0</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(dt):</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  poses <span class="op">=</span> detector.get_detections()</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> poses:</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    pose <span class="op">=</span> poses[<span class="dv">0</span>]</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, sphere <span class="kw">in</span> spheres.items():</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>      lm <span class="op">=</span> pose[<span class="bu">getattr</span>(cv.POSE, name)]</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> lm[<span class="st">'visibility'</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>:</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        sphere.set_position(<span class="op">*</span>to_3d(lm))</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        sphere.set_position(<span class="dv">0</span>, <span class="op">-</span><span class="dv">10</span>, <span class="dv">0</span>)</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>JOINTS <span class="op">=</span> {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'NOSE'</span>:           (<span class="st">'#ffffff'</span>, <span class="fl">1.25</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_SHOULDER'</span>:  (<span class="st">'#4488ff'</span>, <span class="fl">1.00</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_SHOULDER'</span>: (<span class="st">'#4488ff'</span>, <span class="fl">1.00</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_ELBOW'</span>:     (<span class="st">'#44aaff'</span>, <span class="fl">0.5</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_ELBOW'</span>:    (<span class="st">'#44aaff'</span>, <span class="fl">0.5</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_WRIST'</span>:     (<span class="st">'#88ccff'</span>, <span class="fl">1.0</span>),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_WRIST'</span>:    (<span class="st">'#88ccff'</span>, <span class="fl">1.0</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">'LEFT_HIP'</span>:       (<span class="st">'#ff8844'</span>, <span class="fl">1.0</span>),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">'RIGHT_HIP'</span>:      (<span class="st">'#ff8844'</span>, <span class="fl">1.0</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>spheres <span class="op">=</span> {}</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, (color, size) <span class="kw">in</span> JOINTS.items():</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  s <span class="op">=</span> scene3d.Shapes.Sphere(diameter<span class="op">=</span>size, segments<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  s.set_color(color)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  s.set_position(<span class="dv">0</span>, <span class="op">-</span><span class="dv">10</span>, <span class="dv">0</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  scene.add(s)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  spheres[name] <span class="op">=</span> s</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> to_3d(lm):</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  x <span class="op">=</span> (lm[<span class="st">'x'</span>] <span class="op">/</span> <span class="dv">320</span> <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> <span class="op">-</span>(lm[<span class="st">'y'</span>] <span class="op">/</span> <span class="dv">600</span> <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">8</span> <span class="op">+</span> <span class="fl">1.5</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x, y, <span class="dv">0</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="at">@scene.on_frame</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(dt):</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  poses <span class="op">=</span> detector.get_detections()</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> poses:</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    pose <span class="op">=</span> poses[<span class="dv">0</span>]</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, sphere <span class="kw">in</span> spheres.items():</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>      lm <span class="op">=</span> pose[<span class="bu">getattr</span>(cv.POSE, name)]</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> lm[<span class="st">'visibility'</span>] <span class="op">&gt;</span> <span class="fl">0.5</span>:</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        sphere.set_position(<span class="op">*</span>to_3d(lm))</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>      <span class="cf">else</span>:</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        sphere.set_position(<span class="dv">0</span>, <span class="op">-</span><span class="dv">10</span>, <span class="dv">0</span>)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>scene.run()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What would make this avatar feel more alive or useful? What would you build if you could control a 3D character with your body?</p>
 </section>
