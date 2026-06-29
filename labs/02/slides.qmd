@@ -24,13 +24,6 @@ format:
 
 # Start With Data!
 
-## Start With Data!
-
-- Traditional software: a programmer writes every rule by hand
-- AI/ML: you feed the system **examples**, and it finds the patterns itself
-- Think of teaching a child to recognize a dog — not by listing rules, but by showing thousands of pictures
-- Those examples are the **data**
-
 ## No Data, No AI
 
 - Spam filter → millions of emails labelled "spam" or "not spam"
@@ -68,8 +61,6 @@ The "Using Pandas" Notebook (pandas.ipynb)
 
 The "Using Pandas" Notebook (pandas.ipynb)
 
-# Beyond Boring Tables!
-
 # Introducing Matplotlib
 
 ## What is Matplotlib?
@@ -99,6 +90,45 @@ The "Using Matplotlib" Notebook (matplotlib.ipynb)
 
 The "Using Matplotlib" Notebook (matplotlib.ipynb)
 
+# Practice
+
+Complete the exercises in the "Practice: Pandas and Matplotlib" Notebook (practice.ipynb)
+
+# Introducing Correlation
+
+## What is Correlation?
+
+- When two variables tend to move together, we say they are **correlated**
+- More hours of sleep → better test scores = **positive correlation**
+- More traffic → slower average speed = **negative correlation**
+- We measure the strength and direction with a number
+  - The **correlation coefficient**
+
+## The Correlation Coefficient
+
+- Always falls between **-1** and **+1**
+  - **+1** = perfect positive relationship (both always move together)
+  - **0** = no relationship at all
+  - **-1** = perfect inverse relationship (one goes up, the other always goes down)
+
+## The Correlation Coefficient
+
+- But be careful: correlation doesn't mean **causation**!
+- Ice cream sales and sunburn rates are both high in summer
+  - So, does ice cream cause sunburn? :)
+
+# Demo
+
+Open the "Does Ice Cream Cause Sunburn?" Notebook
+
+# Hands-On
+
+Open and complete the "Does Ice Cream Cause Sunburn?" Notebook
+
+# Reflection
+
+What did you learn? What was the hidden variable — and what does that tell us about data?
+
 # Ulaanbaatar's Air Quality
 
 ## Ulaanbaatar's Air Quality
@@ -117,45 +147,15 @@ Your job today is to figure out why, using pandas and matplotlib!
 
 # Demo
 
-Open and run the "Exploring Air Quality" Notebook (air_quality.ipynb)
+Open and run the "Exploring Air Quality" Notebook
 
 # Hands-On
 
-Open and run the "Exploring Air Quality" Notebook (air_quality.ipynb)
+Open and run the "Exploring Air Quality" Notebook
 
 # Reflection
 
-What did you learn? Did anything surprise you?
-
-# Introducing Correlation
-
-## What is Correlation?
-
-- When two variables tend to move together, we say they are **correlated**
-- More hours of sleep → better test scores = **positive correlation**
-- Higher temperature → lower PM2.5 in Ulaanbaatar = **negative correlation**
-- We measure the strength and direction with a number: the **correlation coefficient**
-
-## The Correlation Coefficient
-
-- Always falls between **-1** and **+1**
-  - **+1** = perfect positive relationship (both always move together)
-  - **0** = no relationship at all
-  - **-1** = perfect inverse relationship (one goes up, the other always goes down)
-- But be careful: correlation doesn't mean **causation**!
-- Ice cream sales and sunburn rates are both high in summer! Does ice cream cause sunburn?
-
-# Demo
-
-Open and run the "Correlation" Notebook (correlation.ipynb)
-
-# Hands-On
-
-Open and run the "Correlation" Notebook (correlation.ipynb)
-
-# Reflection
-
-What did you learn? Did anything surprise you?
+What correlations did you find? Do you think temperature is the *cause* of Ulaanbaatar's pollution, or just a marker for something else?
 
 ## Tomorrow
 

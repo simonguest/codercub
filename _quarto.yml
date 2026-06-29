@@ -59,9 +59,13 @@ website:
                   href: labs/02/notebooks/pandas.ipynb
                 - text: "Using Matplotlib"
                   href: labs/02/notebooks/matplotlib.ipynb
+                - text: "Pandas and Matplotlib Practice"
+                  href: labs/02/notebooks/practice.ipynb
+                - text: "Does Ice Cream Cause Sunburn?"
+                  href: labs/02/notebooks/correlation_vs_causation.ipynb
                 - text: "Exploring Air Quality"
                   href: labs/02/notebooks/air_quality.ipynb
-                - text: "Introducing Correlation"
+                - text: "Air Quality Data Correlation"
                   href: labs/02/notebooks/correlation.ipynb
         - section: "Day 3"
           contents:
