@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using OpenAI APIs – Summer of Code 2026</title>
+<title>Practice: Pandas and Matplotlib – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/08/notebooks/openai_streaming.html" rel="next">
-<link href="../../../labs/08/notebooks/word2vec.html" rel="prev">
+<link href="../../../labs/02/notebooks/correlation_vs_causation.html" rel="next">
+<link href="../../../labs/02/notebooks/matplotlib.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/openai_sdk.html">Using the OpenAI SDK</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/practice.html">Pandas and Matplotlib Practice</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -432,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/02/notebooks/practice.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/02/notebooks/practice.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Pandas and Matplotlib Practice</span></a>
   </div>
 </li>
@@ -686,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/08/notebooks/openai_sdk.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/08/notebooks/openai_sdk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using the OpenAI SDK</span></a>
   </div>
 </li>
@@ -820,9 +820,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/openai_sdk.html">Using the OpenAI SDK</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/practice.html">Pandas and Matplotlib Practice</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Using OpenAI APIs</h1>
+<h1 class="title">Practice: Pandas and Matplotlib</h1>
 </div>
 
 
@@ -839,57 +839,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, we use the Python OpenAI SDK to call OpenAI models via OpenRouter. This allows us to interact with LLMs via code.</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/08/notebooks/openai_sdk.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<p>In this first example, we call an OpenAI model to discover the provinces in Mongolia that start with the letter B. Notice the two <code>role</code>s in the code.</p>
-<p>The <code>system</code> role defines how the model should interact. The <code>user</code> role is the user asking the question.</p>
-<div id="8b473f4b-b1e2-4fe7-8c84-4bff78f9015e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<p>You’ve learned how to load, filter, and sort data with Pandas, and how to turn data into charts with Matplotlib. Now it’s time to put those skills together.</p>
+<p>In this notebook you’ll work with a dataset of popular mobile games. Three exercises are waiting for you. Read each one carefully and write your own code to complete it!</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/02/notebooks/practice.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
+<section id="the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
+<p>Run the cell below to load the dataset. Take a moment to look at the columns before moving on:</p>
+<ul>
+<li><strong><code>name</code></strong> — the game title</li>
+<li><strong><code>genre</code></strong> — Action, Puzzle, RPG, Racing, or Strategy</li>
+<li><strong><code>rating</code></strong> — player rating out of 10</li>
+<li><strong><code>weekly_players_k</code></strong> — average weekly active players (in thousands)</li>
+<li><strong><code>is_free</code></strong> — True if the game is free to play, False if it costs money</li>
+</ul>
+<div id="cell-data" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">"openai/gpt-oss-120b:free"</span> <span class="co">#@param ["openai/gpt-oss-120b:free"]</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span>MODEL,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help students with their geography lessons."</span>},</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"How many provinces (aimags) in Mongolia start with the letter B?"</span>},</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'name'</span>: [<span class="st">'Pixel Quest'</span>, <span class="st">'Speed Racer X'</span>, <span class="st">"Dragon's Keep"</span>, <span class="st">'Blaster Force'</span>, <span class="st">'Mind Maze'</span>, <span class="st">'League of Stars'</span>, <span class="st">'Turbo Dash'</span>, <span class="st">'Shadow Realm'</span>, <span class="st">'Cosmic Defender'</span>, <span class="st">'Word Wizard'</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'genre'</span>: [<span class="st">'Puzzle'</span>, <span class="st">'Racing'</span>, <span class="st">'RPG'</span>, <span class="st">'Action'</span>, <span class="st">'Puzzle'</span>, <span class="st">'Strategy'</span>, <span class="st">'Racing'</span>, <span class="st">'RPG'</span>,<span class="st">'Action'</span>, <span class="st">'Puzzle'</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'rating'</span>: [<span class="fl">8.5</span>, <span class="fl">7.2</span>, <span class="fl">9.1</span>, <span class="fl">7.8</span>, <span class="fl">8.9</span>, <span class="fl">6.5</span>, <span class="fl">8.2</span>, <span class="fl">7.6</span>, <span class="fl">9.3</span>, <span class="fl">6.8</span>],</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'weekly_players_k'</span>: [<span class="dv">420</span>, <span class="dv">185</span>, <span class="dv">620</span>, <span class="dv">310</span>, <span class="dv">550</span>, <span class="dv">120</span>, <span class="dv">290</span>, <span class="dv">225</span>, <span class="dv">785</span>, <span class="dv">95</span>],</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'is_free'</span>: [<span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">True</span>, <span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We can customize the <code>system</code> role to take on a character or persona, as shown in this example:</p>
-<div id="7e5eb339-53ea-4096-952a-0a788b5c8fa5" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">"openai/gpt-oss-120b:free"</span> <span class="co">#@param ["openai/gpt-oss-120b:free"]</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span>MODEL,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an expert in dogs, based in Mongolia. Your role is to provide helpful information to students who want to learn more about keeping dogs at home. Answer in a concise but friendly manner."</span>},</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"How many times a day should I feed my Mongolian Bankhar, and what food is best?"</span>},</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exercise-1-find-the-top-rated-games" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-find-the-top-rated-games">Exercise 1: Find the Top-Rated Games</h2>
+<p>Filter the dataset to show only games with a <strong>rating of 8.0 or above</strong>, then sort them from <strong>highest to lowest rating</strong>.</p>
+<p>Print the result. How many games made the cut?</p>
+<div id="cell-ex1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 1: filter to rating &gt;= 8.0, then sort from highest to lowest</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that you’ve seen both examples, take a moment to reflect on what you observed.</p>
-<p>How did changing the <code>system</code> role change the response from the model? If you could design your own AI assistant, what persona or instructions would you put in the system role?</p>
+<p>Which game came out on top? Were any of the results surprising?</p>
+</section>
+<section id="exercise-2-rating-bar-chart" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-rating-bar-chart">Exercise 2: Rating Bar Chart</h2>
+<p>Create a <strong>bar chart</strong> showing the rating of every game, sorted from lowest to highest rating so the bars form a rising staircase.</p>
+<p>Color each bar based on its rating: - <strong>Green</strong> if the rating is 8.0 or above - <strong>Steelblue</strong> if the rating is below 8.0</p>
+<p>Add a title and label both axes.</p>
+<p>Hints:</p>
+<ol type="1">
+<li>Sort the DataFrame first with <code>sort_values()</code>, then build your color list.</li>
+<li>Use <code>plt.xticks(rotation='vertical')</code> to display the game titles vertically.</li>
+</ol>
+<div id="cell-ex2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 2: bar chart of game ratings, colored green (&gt;= 8.0) or steelblue (&lt; 8.0)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Looking at the chart, which genre seems to have the highest-rated games? Can you tell just from the colors?</p>
+</section>
+<section id="exercise-3-players-vs.-rating" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-players-vs.-rating">Exercise 3: Players vs.&nbsp;Rating</h2>
+<p>Create a <strong>scatter plot</strong> with <code>weekly_players_k</code> on the x-axis and <code>rating</code> on the y-axis.</p>
+<p>Plot <strong>free games</strong> and <strong>paid games</strong> as separate groups in different colors, and include a legend so readers can tell them apart.</p>
+<p>Add a title and label both axes.</p>
+<p>Hint: filter the DataFrame into two groups (<code>df[df['is_free'] == True]</code> and <code>df[df['is_free'] == False]</code>), then call <code>ax.scatter()</code> twice — once for each group.</p>
+<div id="cell-ex3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exercise 3: scatter plot of weekly_players_k vs rating, free vs paid in different colors</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Is there a pattern between a game being free and how many weekly players it has? Does a higher rating always mean more players?</p>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1307,13 +1325,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/08/notebooks/word2vec.html" class="pagination-link" aria-label="Word2Vec">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Word2Vec</span>
+      <a href="../../../labs/02/notebooks/matplotlib.html" class="pagination-link" aria-label="Using Matplotlib">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using Matplotlib</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/08/notebooks/openai_streaming.html" class="pagination-link" aria-label="OpenAI Streaming">
-        <span class="nav-page-text">OpenAI Streaming</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/02/notebooks/correlation_vs_causation.html" class="pagination-link" aria-label="Does Ice Cream Cause Sunburn?">
+        <span class="nav-page-text">Does Ice Cream Cause Sunburn?</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

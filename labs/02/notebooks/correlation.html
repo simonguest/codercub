@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introducing Correlation – Summer of Code 2026</title>
+<title>Air Quality Data Correlation – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation.html">Introducing Correlation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation.html">Air Quality Data Correlation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -432,6 +432,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../labs/02/notebooks/practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas and Matplotlib Practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/02/notebooks/correlation_vs_causation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Does Ice Cream Cause Sunburn?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/air_quality.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Air Quality</span></a>
   </div>
@@ -439,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/correlation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Introducing Correlation</span></a>
+ <span class="menu-text">Air Quality Data Correlation</span></a>
   </div>
 </li>
       </ul>
@@ -808,9 +820,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation.html">Introducing Correlation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation.html">Air Quality Data Correlation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introducing Correlation</h1>
+<h1 class="title">Air Quality Data Correlation</h1>
 </div>
 
 
@@ -849,27 +861,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-2-your-first-scatter-plot" class="level2">
 <h2 class="anchored" data-anchor-id="step-2-your-first-scatter-plot">Step 2: Your first scatter plot</h2>
 <p>A scatter plot puts one variable on the x-axis and another on the y-axis, with one dot per row of data. It is the fastest way to see whether two variables move together. We will put temperature on the x-axis and PM2.5 on the y-axis.</p>
-<p>Before you run the cell, make a prediction: what shape do you expect to see?</p>
-<p>Before you run the scatter plot: what do you predict it will look like? Do you think the dots will slope upward, downward, or be flat? Will they be tightly grouped or spread out?</p>
+<p>You can look back at the other notebooks (Matplotlib and Ice Cream/Sunburn one to learn how to create scatter plots.)</p>
 <div id="423e00d8" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  df[<span class="st">'temp_c'</span>],</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  df[<span class="st">'pm25'</span>],</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  alpha<span class="op">=</span><span class="fl">0.3</span>,       <span class="co"># transparency so overlapping points are visible</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  s<span class="op">=</span><span class="dv">12</span>,            <span class="co"># dot size</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  color<span class="op">=</span><span class="st">'steelblue'</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Temperature vs. PM2.5 — Ulaanbaatar 2019–2021'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with temp_c on the x-axis and pm25 on the y-axis</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Label both axes, add a title, and use alpha=0.3 and s=12 for the dots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Look at the overall shape of the cloud of points.</p>
 <ul>
@@ -879,174 +874,93 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Describe what you see in the scatter plot. Does it slope up or down? Are the points tightly clustered or spread out? Were there any days that didn’t fit the pattern?</p>
 </section>
-<section id="step-3-colour-the-points-by-season" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-colour-the-points-by-season">Step 3: Colour the points by season</h2>
-<p>The scatter plot shows a clear slope, but it mixes together data from all four seasons. Let’s colour each point by season so we can see whether the pattern is consistent throughout the year, or whether one season is driving the whole relationship.</p>
-<div id="7a94cc5a" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>season_colors <span class="op">=</span> {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Winter'</span>: <span class="st">'#4477AA'</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Spring'</span>: <span class="st">'#66BB6A'</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Summer'</span>: <span class="st">'#FFA726'</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Autumn'</span>: <span class="st">'#AB47BC'</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> season, color <span class="kw">in</span> season_colors.items():</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  subset <span class="op">=</span> df[df[<span class="st">'season'</span>] <span class="op">==</span> season]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  ax.scatter(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    subset[<span class="st">'temp_c'</span>],</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    subset[<span class="st">'pm25'</span>],</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.4</span>,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>color,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span>season</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Temperature vs. PM2.5 by Season'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>ax.legend(title<span class="op">=</span><span class="st">'Season'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The four seasons should now appear as distinct clusters.</p>
-<ul>
-<li>Where do the Winter points sit on the chart?</li>
-<li>Where do the Summer points sit?</li>
-<li>Do Spring and Autumn overlap, or are they clearly separated?</li>
-</ul>
-<p>Notice that the downward slope is not caused by one unusual season pulling the average down. Each season sits in its own region of the chart, and the overall slope emerges from the progression across all four.</p>
-<p>Where do the Winter points appear on the chart compared to the Summer points? Do Spring and Autumn overlap, or are they clearly separated? What does the position of each season’s cluster tell you?</p>
-</section>
-<section id="step-4-putting-a-number-on-the-relationship" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-putting-a-number-on-the-relationship">Step 4: Putting a number on the relationship</h2>
+<section id="step-3-putting-a-number-on-the-relationship" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-putting-a-number-on-the-relationship">Step 3: Putting a number on the relationship</h2>
 <p>The scatter plot shows that colder temperatures tend to go with higher pollution. But how strong is that relationship exactly?</p>
-<p>A <strong>correlation coefficient</strong> measures the strength and direction of a relationship between two variables. It always falls between -1 and +1:</p>
-<ul>
-<li><strong>-1</strong> means a perfect inverse relationship: as one variable goes up, the other always goes down</li>
-<li><strong>0</strong> means no relationship at all</li>
-<li><strong>+1</strong> means a perfect direct relationship: both variables always move together</li>
-</ul>
-<p>In pandas, you can calculate it with a single line.</p>
+<p>Let’s calculate the <strong>correlation coefficient</strong> to find out.</p>
+<p>Write the code below to calculate the correlation coefficient between pm25 and temp_c.&nbsp;You can refer back to the Sunburn notebook if you need a reminder.</p>
 <div id="d8be7662" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> df[<span class="st">'pm25'</span>].corr(df[<span class="st">'temp_c'</span>])</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Correlation between temperature and PM2.5: </span><span class="sc">{</span>correlation<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the correlation coefficient between pm25 and temp_c and print it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>A value close to -0.85 is a strong negative correlation. In practical terms it means:</p>
 <ul>
-<li>The relationship is reliable — cold days are almost always more polluted</li>
-<li>But it is not perfect — temperature is not the only factor at play</li>
+<li>The relationship is reliable: cold days are almost always more polluted</li>
+<li>But it is not perfect. Temperature is not the only factor at play</li>
 <li>Something else must explain the remaining variation</li>
 </ul>
 <p>That “something else” is worth investigating. The dataset contains other variables that might also play a role: <code>wind_speed_ms</code> and <code>pm10</code> for example.</p>
 </section>
-<section id="step-5-going-deeper" class="level2">
-<h2 class="anchored" data-anchor-id="step-5-going-deeper">Step 5: Going Deeper</h2>
+<section id="step-4-going-deeper" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-going-deeper">Step 4: Going Deeper</h2>
 <p>You’ve confirmed a strong overall correlation between temperature and PM2.5. Let’s run three targeted investigations to test the limits of that relationship.</p>
 <section id="investigation-1-does-wind-speed-matter" class="level3">
-<h3 class="anchored" data-anchor-id="investigation-1-does-wind-speed-matter">Investigation 1 — Does wind speed matter?</h3>
+<h3 class="anchored" data-anchor-id="investigation-1-does-wind-speed-matter">Investigation 1: Does wind speed matter?</h3>
 <p>The dataset also contains <code>wind_speed_ms</code>. You might expect that on windier days, pollution would be dispersed and PM2.5 would drop.</p>
-<p><strong>Before you run:</strong> predict whether wind speed will show a stronger or weaker correlation than temperature.</p>
-<p>Write your prediction: will wind speed show a stronger, weaker, or similar correlation with PM2.5 compared to temperature? Why?</p>
+<p>Write the code to generate a scatter plot with wind_speed_ms on the x-axis and pm25 on the y-axis. Also calculate the correlation coefficient.</p>
 <div id="2f8e25e6" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">'wind_speed_ms'</span>], df[<span class="st">'pm25'</span>], alpha<span class="op">=</span><span class="fl">0.3</span>, s<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Wind Speed (m/s)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Wind Speed vs. PM2.5 — Ulaanbaatar 2019–2021'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df[<span class="st">'wind_speed_ms'</span>].corr(df[<span class="st">'pm25'</span>])</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.03</span>, <span class="fl">0.93</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with wind_speed_ms on the x-axis and pm25 on the y-axis</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and display the correlation coefficient on the chart</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The correlation is close to <strong>0.00</strong> — wind speed barely predicts PM2.5 at all.</p>
+<p>What did you discover? If the correlation is close to <strong>0.00</strong>, it shows that wind speed barely predicts PM2.5 at all.</p>
 <p>This makes sense when you think about the source: coal burning for heating is a fixed daily need. Whether it is windy or calm outside, families still burn the same amount of coal to stay warm. The pollution is produced regardless, and wind does not reduce it enough to show up clearly in the data.</p>
-<p>Was the wind speed result what you predicted? What does a near-zero correlation tell you about wind as a factor in Ulaanbaatar’s pollution?</p>
 </section>
 <section id="investigation-2-explore-other-variable-pairs" class="level3">
-<h3 class="anchored" data-anchor-id="investigation-2-explore-other-variable-pairs">Investigation 2 — Explore other variable pairs</h3>
+<h3 class="anchored" data-anchor-id="investigation-2-explore-other-variable-pairs">Investigation 2: Explore other variable pairs</h3>
 <p>Use the dropdowns to try different combinations of variables. A good starting point: how closely do PM2.5 and PM10 track each other?</p>
 <div id="4153c780" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_COLUMN <span class="op">=</span> <span class="st">"pm10"</span>  <span class="co">#@param ["temp_c", "wind_speed_ms", "pm10"]</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Y_COLUMN <span class="op">=</span> <span class="st">"pm25"</span>  <span class="co">#@param ["pm25", "pm10", "temp_c", "wind_speed_ms"]</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(df[X_COLUMN], df[Y_COLUMN], alpha<span class="op">=</span><span class="fl">0.3</span>, s<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(X_COLUMN, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(Y_COLUMN, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'</span><span class="sc">{</span>X_COLUMN<span class="sc">}</span><span class="ss"> vs. </span><span class="sc">{</span>Y_COLUMN<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df[X_COLUMN].corr(df[Y_COLUMN])</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.03</span>, <span class="fl">0.93</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>))</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot with pm25 on the x-axis and pm10 on the y-axis</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate and display the correlation coefficient on the chart</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Which variable pair had the strongest correlation? Which had the weakest? Why do you think PM2.5 and PM10 are so closely linked?</p>
 </section>
 <section id="investigation-3-does-the-temperature-correlation-hold-within-a-single-season" class="level3">
-<h3 class="anchored" data-anchor-id="investigation-3-does-the-temperature-correlation-hold-within-a-single-season">Investigation 3 — Does the temperature correlation hold within a single season?</h3>
+<h3 class="anchored" data-anchor-id="investigation-3-does-the-temperature-correlation-hold-within-a-single-season">Investigation 3: Does the temperature correlation hold within a single season?</h3>
 <p>The overall correlation between temperature and PM2.5 is −0.85. But that is calculated across all four seasons at once — winter days are cold and polluted, summer days are warm and clean.</p>
 <p><strong>What happens if you only look at Winter days?</strong> Use the dropdown to filter to one season and watch what happens to the correlation.</p>
 <div id="49027d1d" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>SEASON <span class="op">=</span> <span class="st">"All"</span>  <span class="co">#@param ["All", "Winter", "Spring", "Summer", "Autumn"]</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df <span class="cf">if</span> SEASON <span class="op">==</span> <span class="st">"All"</span> <span class="cf">else</span> df[df[<span class="st">'season'</span>] <span class="op">==</span> SEASON]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(df_filtered[<span class="st">'temp_c'</span>], df_filtered[<span class="st">'pm25'</span>],</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       alpha<span class="op">=</span><span class="fl">0.3</span>, s<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'Temperature vs. PM2.5 — </span><span class="sc">{</span>SEASON<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df_filtered[<span class="st">'temp_c'</span>].corr(df_filtered[<span class="st">'pm25'</span>])</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.03</span>, <span class="fl">0.93</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">  (n=</span><span class="sc">{</span><span class="bu">len</span>(df_filtered)<span class="sc">}</span><span class="ss">)'</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">11</span>,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>))</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>SEASON <span class="op">=</span> <span class="st">"All"</span>  <span class="co">#@param ["All", "Winter", "Spring", "Summer", "Autumn"]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df_filtered <span class="op">=</span> df <span class="cf">if</span> SEASON <span class="op">==</span> <span class="st">"All"</span> <span class="cf">else</span> df[df[<span class="st">'season'</span>] <span class="op">==</span> SEASON]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(df_filtered[<span class="st">'temp_c'</span>], df_filtered[<span class="st">'pm25'</span>],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       alpha<span class="op">=</span><span class="fl">0.3</span>, s<span class="op">=</span><span class="dv">12</span>, color<span class="op">=</span><span class="st">'steelblue'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f'Temperature vs. PM2.5 — </span><span class="sc">{</span>SEASON<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df_filtered[<span class="st">'temp_c'</span>].corr(df_filtered[<span class="st">'pm25'</span>])</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.03</span>, <span class="fl">0.93</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">  (n=</span><span class="sc">{</span><span class="bu">len</span>(df_filtered)<span class="sc">}</span><span class="ss">)'</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>ax.transAxes, fontsize<span class="op">=</span><span class="dv">11</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>))</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What happened to the correlation when you switched to Winter only? Were you surprised by the result?</p>
-<p>Within Winter, the correlation drops to nearly <strong>0.00</strong> — temperature stops being a useful predictor of PM2.5 on any given day.</p>
-<p>This reveals something important: temperature is not <em>causing</em> the pollution directly. It is a <strong>marker</strong> for winter — and winter is when families burn coal for heating. Whether it is −10°C or −25°C on a particular day, the coal is burning either way. The real mechanism is the heating behaviour that winter brings, not the temperature itself.</p>
-<p>This is a classic example of the difference between <strong>correlation</strong> and <strong>causation</strong>: two variables can move together strongly overall, while one is not actually causing the other.</p>
+<p>In Winter and Summer, the correlation drops to nearly <strong>0.00</strong>. In both these seasons, temperature stops being a useful predictor of PM2.5 on any given day.</p>
+<p>In Spring and Autumn, there is a stronger correlation between changing temperatures and increased pollution.</p>
+<p>This reveals something important: temperature is not directly <em>causing</em> the pollution directly. It is a <strong>marker</strong> for winter, and winter is when families burn coal for heating. Whether it is −10°C or −25°C on a particular day, the coal is burning either way. The real mechanism is the heating behavior that winter brings, not the temperature itself.</p>
+<p>Just like the sunburn example, this shows the difference between <strong>correlation</strong> and <strong>causation</strong>: two variables can move together strongly overall, while one is not actually causing the other.</p>
 </section>
 </section>
-<section id="step-6-what-have-you-found" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-what-have-you-found">Step 6: What have you found?</h2>
-<p>You now have a specific, evidence-backed answer to today’s question.</p>
+<section id="step-5-what-have-you-found" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-what-have-you-found">Step 5: What have you found?</h2>
+<p>You now have an evidence-backed answer to today’s question!</p>
 <p>Take a moment to write your conclusion:</p>
 <ol type="1">
 <li>What is the relationship between temperature and PM2.5 in Ulaanbaatar?</li>
 <li>How confident are you in this conclusion, based on the correlation value?</li>
 <li>What other variable in the dataset had the strongest relationship with PM2.5?</li>
-<li>Is temperature the only cause of high winter pollution, or just a reliable indicator of it? What is the actual mechanism? (Hint: think about how people heat their homes in -30°C winters.)</li>
+<li>Is temperature the only cause of high winter pollution, or just a reliable indicator of it?</li>
 </ol>
 <p>Write your answers in the cell below — double-click to edit it.</p>
 <p><em>Write your conclusions here.</em></p>
-<ol type="1">
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-</ol>
 </section>
-<section id="where-this-is-heading" class="level2">
-<h2 class="anchored" data-anchor-id="where-this-is-heading">Where this is heading</h2>
+<section id="why-is-this-important" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-this-important">Why is this important?</h2>
 <p>You have now done something that data scientists do every day: used a scatter plot and a correlation coefficient to identify which variable best predicts an outcome.</p>
-<p>The next step — which you will explore in tomorrow’s session — is to let a machine learn that relationship automatically from the data, and then use it to make predictions on days it has never seen before.</p>
-<p>The question will change from “does temperature predict pollution?” to “given today’s temperature, what PM2.5 level would a model predict for tomorrow?” That is the core idea behind linear regression, and it is also the core idea behind what the micro:bit will do with your movement data later this week.</p>
+<p>The next step (which we will explore tomorrow) is to let a machine learn that relationship automatically from the data, and then use it to make predictions on days it has never seen before.</p>
 </section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using OpenAI APIs – Summer of Code 2026</title>
+<title>Does Ice Cream Cause Sunburn? – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/08/notebooks/openai_streaming.html" rel="next">
-<link href="../../../labs/08/notebooks/word2vec.html" rel="prev">
+<link href="../../../labs/02/notebooks/air_quality.html" rel="next">
+<link href="../../../labs/02/notebooks/practice.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/openai_sdk.html">Using the OpenAI SDK</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation_vs_causation.html">Does Ice Cream Cause Sunburn?</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -438,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/02/notebooks/correlation_vs_causation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/02/notebooks/correlation_vs_causation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Does Ice Cream Cause Sunburn?</span></a>
   </div>
 </li>
@@ -686,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/08/notebooks/openai_sdk.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/08/notebooks/openai_sdk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using the OpenAI SDK</span></a>
   </div>
 </li>
@@ -820,9 +820,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/08/slides.html">Day 8</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/word2vec.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/08/notebooks/openai_sdk.html">Using the OpenAI SDK</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/02/slides.html">Day 2</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/pandas.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/02/notebooks/correlation_vs_causation.html">Does Ice Cream Cause Sunburn?</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Using OpenAI APIs</h1>
+<h1 class="title">Does Ice Cream Cause Sunburn?</h1>
 </div>
 
 
@@ -839,57 +839,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, we use the Python OpenAI SDK to call OpenAI models via OpenRouter. This allows us to interact with LLMs via code.</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/08/notebooks/openai_sdk.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<p>In this first example, we call an OpenAI model to discover the provinces in Mongolia that start with the letter B. Notice the two <code>role</code>s in the code.</p>
-<p>The <code>system</code> role defines how the model should interact. The <code>user</code> role is the user asking the question.</p>
-<div id="8b473f4b-b1e2-4fe7-8c84-4bff78f9015e" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<p>Data sometimes reveals surprising patterns. Two things that seem completely unrelated can move together perfectly. In this notebook you’ll investigate a suspicious correlation and figure out what’s really going on.</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/02/notebooks/correlation_vs_causation.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
+<section id="step-1-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-the-data">Step 1: The Data</h2>
+<p>A city health department tracked three things every month for a year:</p>
+<ul>
+<li><strong><code>temp_c</code></strong> — average temperature in °C</li>
+<li><strong><code>ice_cream_sales</code></strong> — average weekly ice cream sales (units)</li>
+<li><strong><code>sunburn_cases</code></strong> — average weekly sunburn cases reported at local clinics</li>
+</ul>
+<p>Run the cell below to load the data.</p>
+<div id="cell-data" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">"openai/gpt-oss-120b:free"</span> <span class="co">#@param ["openai/gpt-oss-120b:free"]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'month'</span>: [<span class="st">'Jan'</span>, <span class="st">'Feb'</span>, <span class="st">'Mar'</span>, <span class="st">'Apr'</span>, <span class="st">'May'</span>, <span class="st">'Jun'</span>, <span class="st">'Jul'</span>, <span class="st">'Aug'</span>, <span class="st">'Sep'</span>, <span class="st">'Oct'</span>, <span class="st">'Nov'</span>, <span class="st">'Dec'</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'temp_c'</span>: [<span class="dv">3</span>,  <span class="dv">4</span>,  <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">23</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">20</span>, <span class="dv">14</span>,  <span class="dv">8</span>,  <span class="dv">4</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'ice_cream_sales'</span>: [<span class="dv">120</span>, <span class="dv">145</span>, <span class="dv">290</span>, <span class="dv">440</span>, <span class="dv">690</span>, <span class="dv">900</span>, <span class="dv">1060</span>, <span class="dv">990</span>, <span class="dv">720</span>, <span class="dv">400</span>, <span class="dv">215</span>, <span class="dv">135</span>],</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'sunburn_cases'</span>: [<span class="dv">8</span>,  <span class="dv">11</span>,  <span class="dv">28</span>,  <span class="dv">52</span>,  <span class="dv">95</span>, <span class="dv">148</span>, <span class="dv">182</span>, <span class="dv">167</span>, <span class="dv">102</span>,  <span class="dv">45</span>,  <span class="dv">20</span>,  <span class="dv">10</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span>MODEL,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help students with their geography lessons."</span>},</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"How many provinces (aimags) in Mongolia start with the letter B?"</span>},</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We can customize the <code>system</code> role to take on a character or persona, as shown in this example:</p>
-<div id="7e5eb339-53ea-4096-952a-0a788b5c8fa5" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   api_key<span class="op">=</span>os.environ[<span class="st">"OPENROUTER_API_KEY"</span>]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">"openai/gpt-oss-120b:free"</span> <span class="co">#@param ["openai/gpt-oss-120b:free"]</span></span>
+</section>
+<section id="step-2-a-suspicious-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-a-suspicious-pattern">Step 2: A Suspicious Pattern</h2>
+<p>Let’s plot ice cream sales against sunburn cases to see if there’s a relationship.</p>
+<p><strong>Before you run:</strong> what do you expect to see — an upward slope, a downward slope, or random scatter?</p>
+<p>Write your prediction: do you think ice cream sales and sunburn cases will be correlated? Why or why not?</p>
+<div id="cell-scatter-ice-sunburn" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">'ice_cream_sales'</span>], df[<span class="st">'sunburn_cases'</span>],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>           color<span class="op">=</span><span class="st">'steelblue'</span>, s<span class="op">=</span><span class="dv">80</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ax.annotate(row[<span class="st">'month'</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    (row[<span class="st">'ice_cream_sales'</span>], row[<span class="st">'sunburn_cases'</span>]),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    textcoords<span class="op">=</span><span class="st">'offset points'</span>, xytext<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), fontsize<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span>MODEL,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are an expert in dogs, based in Mongolia. Your role is to provide helpful information to students who want to learn more about keeping dogs at home. Answer in a concise but friendly manner."</span>},</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"How many times a day should I feed my Mongolian Bankhar, and what food is best?"</span>},</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df[<span class="st">'ice_cream_sales'</span>].corr(df[<span class="st">'sunburn_cases'</span>])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.04</span>, <span class="fl">0.92</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ice Cream Sales (units/week)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Sunburn Cases (per week)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Ice Cream Sales vs. Sunburn Cases'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Now that you’ve seen both examples, take a moment to reflect on what you observed.</p>
-<p>How did changing the <code>system</code> role change the response from the model? If you could design your own AI assistant, what persona or instructions would you put in the system role?</p>
+<p>The correlation is very strong. Does that mean buying ice cream causes sunburn? Write your reaction — does this result make sense to you, or does something feel off?</p>
+</section>
+<section id="step-3-investigating-temperature" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-investigating-temperature">Step 3: Investigating Temperature</h2>
+<p>The dataset also contains <code>temp_c</code>. A hunch: maybe temperature is driving <em>both</em> ice cream sales and sunburn cases at the same time — and ice cream and sunburn are just along for the ride.</p>
+<p>Let’s test that by plotting temperature against each variable separately.</p>
+<section id="temperature-vs.-ice-cream-sales" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-vs.-ice-cream-sales">Temperature vs.&nbsp;Ice Cream Sales</h3>
+<div id="cell-temp-icecream-scatter" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">'temp_c'</span>], df[<span class="st">'ice_cream_sales'</span>],</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           color<span class="op">=</span><span class="st">'coral'</span>, s<span class="op">=</span><span class="dv">80</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ax.annotate(row[<span class="st">'month'</span>],</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                (row[<span class="st">'temp_c'</span>], row[<span class="st">'ice_cream_sales'</span>]),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">'offset points'</span>, xytext<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df[<span class="st">'temp_c'</span>].corr(df[<span class="st">'ice_cream_sales'</span>])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.04</span>, <span class="fl">0.92</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Ice Cream Sales (units/week)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Temperature vs. Ice Cream Sales'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="temperature-vs.-sunburn-cases" class="level3">
+<h3 class="anchored" data-anchor-id="temperature-vs.-sunburn-cases">Temperature vs.&nbsp;Sunburn Cases</h3>
+<div id="cell-temp-sunburn-scatter" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(df[<span class="st">'temp_c'</span>], df[<span class="st">'sunburn_cases'</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>           color<span class="op">=</span><span class="st">'goldenrod'</span>, s<span class="op">=</span><span class="dv">80</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    ax.annotate(row[<span class="st">'month'</span>],</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                (row[<span class="st">'temp_c'</span>], row[<span class="st">'sunburn_cases'</span>]),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                textcoords<span class="op">=</span><span class="st">'offset points'</span>, xytext<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>corr <span class="op">=</span> df[<span class="st">'temp_c'</span>].corr(df[<span class="st">'sunburn_cases'</span>])</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">0.04</span>, <span class="fl">0.92</span>, <span class="ss">f'Correlation: </span><span class="sc">{</span>corr<span class="sc">:.2f}</span><span class="ss">'</span>, transform<span class="op">=</span>ax.transAxes,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        fontsize<span class="op">=</span><span class="dv">11</span>, bbox<span class="op">=</span><span class="bu">dict</span>(boxstyle<span class="op">=</span><span class="st">'round,pad=0.4'</span>, facecolor<span class="op">=</span><span class="st">'white'</span>, alpha<span class="op">=</span><span class="fl">0.85</span>))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temperature (°C)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Sunburn Cases (per week)'</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Temperature vs. Sunburn Cases'</span>, fontsize<span class="op">=</span><span class="dv">13</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>What correlation values did you get for temperature vs.&nbsp;ice cream, and temperature vs.&nbsp;sunburn? How do they compare to the ice cream vs.&nbsp;sunburn value from Step 2?</p>
+</section>
+</section>
+<section id="step-4-the-reveal-a-hidden-third-variable" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-the-reveal-a-hidden-third-variable">Step 4: The Reveal — A Hidden Third Variable</h2>
+<p>Here’s what the data is actually telling us:</p>
+<ul>
+<li>High temperature → more ice cream sales (hot days = more ice cream)</li>
+<li>High temperature → more sunburn cases (hot days = more sun exposure)</li>
+<li>Ice cream and sunburn both follow temperature — so they end up correlated with <em>each other</em></li>
+</ul>
+<p><strong>Temperature is a confounding variable</strong> — a hidden third factor that drives both variables at once and makes them look connected when they aren’t.</p>
+<p>Ice cream doesn’t cause sunburn. The relationship is an illusion created by the season.</p>
+<p>This is one of the most important ideas in data science:</p>
+<blockquote class="blockquote">
+<p><strong>Correlation does not imply causation.</strong></p>
+</blockquote>
+<p>Two variables can move together perfectly without either one causing the other. Before drawing conclusions from a correlation, always ask: <em>could a third variable explain both?</em></p>
+<p>In one or two sentences, explain the ice cream / sunburn result to someone who has never heard of a confounding variable. What is <em>actually</em> causing both to rise and fall together?</p>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1307,13 +1389,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/08/notebooks/word2vec.html" class="pagination-link" aria-label="Word2Vec">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Word2Vec</span>
+      <a href="../../../labs/02/notebooks/practice.html" class="pagination-link" aria-label="Pandas and Matplotlib Practice">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Pandas and Matplotlib Practice</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/08/notebooks/openai_streaming.html" class="pagination-link" aria-label="OpenAI Streaming">
-        <span class="nav-page-text">OpenAI Streaming</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/02/notebooks/air_quality.html" class="pagination-link" aria-label="Exploring Air Quality">
+        <span class="nav-page-text">Exploring Air Quality</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

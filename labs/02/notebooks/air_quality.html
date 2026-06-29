@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../labs/02/notebooks/correlation.html" rel="next">
-<link href="../../../labs/02/notebooks/matplotlib.html" rel="prev">
+<link href="../../../labs/02/notebooks/correlation_vs_causation.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -432,6 +432,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../labs/02/notebooks/practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas and Matplotlib Practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/02/notebooks/correlation_vs_causation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Does Ice Cream Cause Sunburn?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/air_quality.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exploring Air Quality</span></a>
   </div>
@@ -439,7 +451,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/02/notebooks/correlation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introducing Correlation</span></a>
+ <span class="menu-text">Air Quality Data Correlation</span></a>
   </div>
 </li>
       </ul>
@@ -832,13 +844,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ulaanbaatar, the capital of Mongolia, is one of the most polluted cities on Earth, but only at certain times of year.</p>
 <p>In this notebook you’ll: 1. Load a real dataset of daily air quality measurements 2. Explore its shape and contents 3. Plot a full year of pollution to uncover the pattern</p>
 <blockquote class="blockquote">
-<p><strong>Your mission:</strong> By the end of this notebook, you should be able to answer: <em>“When is the air dangerous — and when is it safe?”</em></p>
+<p><strong>Your mission:</strong> By the end of this notebook, you should be able to answer: <em>“When is the air dangerous and when is it safe?”</em></p>
 </blockquote>
 <p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/02/notebooks/air_quality.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
 </section>
 <section id="step-1-load-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="step-1-load-the-data">Step 1: Load the data</h2>
-<p>We’ll use <strong>pandas</strong> — Python’s most popular data analysis library — to load our dataset.</p>
 <p>The dataset contains daily air quality readings from Ulaanbaatar, covering 2019 to 2021. Each row is one day. Each column is one measurement or label.</p>
 <div id="e07bc2b5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -862,7 +873,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column names and data types</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>🔍 Look at the columns:</strong> - <code>date</code> — the day of the measurement - <code>temp_c</code> — temperature in Celsius - <code>pm25</code> — fine particulate matter (µg/m³) — the main measure of air pollution - <code>aqi_category</code> — a label describing how dangerous the air is that day</p>
+<p><strong>Look at the columns:</strong> - <code>date</code> — the day of the measurement - <code>temp_c</code> — temperature in Celsius - <code>pm25</code> — fine particulate matter (µg/m³) — the main measure of air pollution - <code>aqi_category</code> — a label describing how dangerous the air is that day</p>
 <blockquote class="blockquote">
 <p><strong>PM2.5</strong> refers to tiny particles smaller than 2.5 micrometres. They’re small enough to enter your lungs and bloodstream. The WHO considers anything above 15 µg/m³ unsafe for daily exposure.</p>
 </blockquote>
@@ -917,50 +928,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="step-5-add-some-color">Step 5: Add some color</h2>
 <p>The line chart shows the pattern, but let’s make it easier to read by <strong>coloring each day by its AQI category</strong> — so we can immediately see which days are dangerous.</p>
 <div id="4952c485" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Colour map for AQI categories</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>aqi_colors <span class="op">=</span> {</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Good'</span>: <span class="st">'#00e400'</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Moderate'</span>: <span class="st">'#ffff00'</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Unhealthy for Sensitive Groups'</span>: <span class="st">'#ff7e00'</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Unhealthy'</span>: <span class="st">'#ff0000'</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Very Unhealthy'</span>: <span class="st">'#8f3f97'</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Hazardous'</span>: <span class="st">'#7e0023'</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Colour map for AQI categories</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>aqi_colors <span class="op">=</span> {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Good'</span>: <span class="st">'#00e400'</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Moderate'</span>: <span class="st">'#ffff00'</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Unhealthy for Sensitive Groups'</span>: <span class="st">'#ff7e00'</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Unhealthy'</span>: <span class="st">'#ff0000'</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Very Unhealthy'</span>: <span class="st">'#8f3f97'</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">'Hazardous'</span>: <span class="st">'#7e0023'</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot each day as a coloured vertical bar</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df_2019.iterrows():</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  color <span class="op">=</span> aqi_colors.get(row[<span class="st">'aqi_category'</span>], <span class="st">'gray'</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ax.bar(row[<span class="st">'date'</span>], row[<span class="st">'pm25'</span>], color<span class="op">=</span>color, width<span class="op">=</span><span class="fl">1.0</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co"># WHO limit line</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">15</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">'WHO safe limit (15 µg/m³)'</span>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>legend_elements <span class="op">=</span> [Patch(facecolor<span class="op">=</span>aqi_colors[cat], label<span class="op">=</span>cat) <span class="cf">for</span> cat <span class="kw">in</span> aqi_colors]</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>legend_elements, fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Date'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot each day as a coloured vertical bar</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df_2019.iterrows():</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  color <span class="op">=</span> aqi_colors.get(row[<span class="st">'aqi_category'</span>], <span class="st">'gray'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  ax.bar(row[<span class="st">'date'</span>], row[<span class="st">'pm25'</span>], color<span class="op">=</span>color, width<span class="op">=</span><span class="fl">1.0</span>, alpha<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># WHO limit line</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span><span class="dv">15</span>, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>, label<span class="op">=</span><span class="st">'WHO safe limit (15 µg/m³)'</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Legend</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>legend_elements <span class="op">=</span> [Patch(facecolor<span class="op">=</span>aqi_colors[cat], label<span class="op">=</span>cat) <span class="cf">for</span> cat <span class="kw">in</span> aqi_colors]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>ax.legend(handles<span class="op">=</span>legend_elements, fontsize<span class="op">=</span><span class="dv">8</span>, loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Daily PM2.5 in Ulaanbaatar — 2019 (coloured by AQI category)'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">'bold'</span>, pad<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Date'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'PM2.5 (µg/m³)'</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>What do you notice now?</strong> - Which color dominates January and February? - Are there <em>any</em> green or yellow days in winter? - How long does the “safe” window in summer last?</p>
 <p>Look at the coloured chart. Which AQI category dominates January and February? How many roughly safe (green or yellow) days are there in winter? How long does the clean window in summer last?</p>
 </section>
-<section id="step-6-your-turn-try-2020-and-2021" class="level2">
-<h2 class="anchored" data-anchor-id="step-6-your-turn-try-2020-and-2021">Step 6: Your turn — try 2020 and 2021</h2>
+<section id="step-6-your-turn-explore-2020-and-2021" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-your-turn-explore-2020-and-2021">Step 6: Your turn: Explore 2020 and 2021</h2>
 <p>The cells above only showed 2019. Now it’s your turn to explore the other years.</p>
 <p><strong>Modify the code below</strong> to plot 2020 instead of 2019. Then try 2021.</p>
 <p>Does the pattern look the same? Is the pollution getting better or worse over time?</p>
 <div id="983233b5" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ✏️ YOUR TURN: change 2019 to 2020 or 2021 and re-run</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>YEAR <span class="op">=</span> <span class="dv">2019</span> <span class="co">#@param [2019,2020,2021]</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_your_year <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2019</span>].copy()   <span class="co"># &lt;-- change this year</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df_your_year <span class="op">=</span> df[df[<span class="st">'year'</span>] <span class="op">==</span> YEAR].copy()</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df_your_year[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df_your_year[<span class="st">'date'</span>])</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
@@ -1000,13 +1012,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Discussion questions:</strong> 1. Is the shape the same in all three years? What does that tell you about the <em>cause</em>? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes — days that were far worse than the surrounding days? What might cause those?</p>
+<p><strong>Discussion questions:</strong> 1. Is the shape the same in all three years? What does that tell you about the <em>cause</em>? 2. Look at the yearly averages shown on each chart. Is the air quality improving? 3. Can you spot any unusual spikes? i.e., days that were far worse than the surrounding days? What might cause those?</p>
 <p>Compare the three years. Is the seasonal pattern the same each year? Are the yearly averages getting better or worse? Did you spot any unusual spikes — and what might have caused them?</p>
 </section>
 <section id="what-youve-learned" class="level2">
 <h2 class="anchored" data-anchor-id="what-youve-learned">What you’ve learned</h2>
 <p>In this notebook you: - Loaded a CSV dataset from the web using <code>pd.read_csv()</code> - Explored its structure with <code>.head()</code>, <code>.info()</code>, and <code>.describe()</code> - Created a <strong>line chart</strong> and a <strong>coloured bar chart</strong> using matplotlib - Compared patterns across three years</p>
-<p><strong>The pattern you found</strong> — extreme winter pollution, clean summers — is one of the most well-documented environmental problems in Central Asia. The cause is coal heating in Ulaanbaatar’s <em>ger districts</em> (traditional tent communities), where hundreds of thousands of families burn coal through -30°C winters with no central heating.</p>
+<p><strong>The pattern you found</strong> — extreme winter pollution, clean summers — is one of the most well-documented environmental problems in Central Asia. In the next notebook, we’ll look at the correlation between the data to try and predict why.</p>
 </section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
@@ -1430,13 +1442,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/02/notebooks/matplotlib.html" class="pagination-link" aria-label="Using Matplotlib">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using Matplotlib</span>
+      <a href="../../../labs/02/notebooks/correlation_vs_causation.html" class="pagination-link" aria-label="Does Ice Cream Cause Sunburn?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Does Ice Cream Cause Sunburn?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/02/notebooks/correlation.html" class="pagination-link" aria-label="Introducing Correlation">
-        <span class="nav-page-text">Introducing Correlation</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/02/notebooks/correlation.html" class="pagination-link" aria-label="Air Quality Data Correlation">
+        <span class="nav-page-text">Air Quality Data Correlation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
