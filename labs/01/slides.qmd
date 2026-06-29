@@ -387,6 +387,8 @@ Run all of the code in the notebook
 
 # Demo
 
+Navigating around in Codetto
+
 Configuring the OPENROUTER_API_KEY
 
 # Hands-On
@@ -407,12 +409,21 @@ Open the "AI in Action" Notebook
 
 Run through all of the cells!
 
-# Discussion
+# Rest of Class
 
-What worked? What didn't work?
+## Rest of Class
+
+- Review and edit current notebooks **or**
+- Explore notebooks from 3D Course
 
 ## Tomorrow
 
 - Use a lot of data in Python!
 - **pandas** and **matplotlib**
 - Using weather data from Ulaanbaatar
+
+# Discussion
+
+Questions? What worked well? What didn't?
+
+# DigiPen Student Project Showcase
