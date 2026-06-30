@@ -484,8 +484,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/03/notebooks/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using Scikit-learn</span></a>
+  <a href="../../../labs/03/notebooks/sklearn_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Scikit-learn (Regression)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/03/notebooks/sklearn_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Scikit-learn (Classification)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/labs/03/notebooks/sklearn_practice.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">World Cup Challenge</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -503,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Regression</span></a>
+ <span class="menu-text">Dzud Linear Regression</span></a>
   </div>
 </li>
       </ul>
@@ -943,7 +955,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>TOPIC <span class="op">=</span> <span class="st">"How do solar panels work?"</span> <span class="co">#@param {type:"string"}</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>STYLE <span class="op">=</span> <span class="st">"simple"</span> <span class="co">#@param ["simple", "detailed", "funny"]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>STYLE <span class="op">=</span> <span class="st">"simple"</span> <span class="co">#@param ["simple", "detailed", "funny", "incorrect"]</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>

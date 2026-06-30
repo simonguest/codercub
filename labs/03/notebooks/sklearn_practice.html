@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Final Project – Summer of Code 2026</title>
+<title>World Cup Challenge – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/10/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -315,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Final Project</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">World Cup Challenge</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -813,7 +812,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/10/notebooks/final_project.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/10/notebooks/final_project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Final Project</span></a>
   </div>
 </li>
@@ -831,9 +830,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Final Project</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Final Project</h1>
+<h1 class="title">World Cup Challenge</h1>
 </div>
 
 
@@ -850,13 +849,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is a blank notebook that you can use to create your final project!</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/final_project.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<div id="056ca8a3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are you going to create?!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In this notebook you’ll apply what you’ve learned about scikit-learn to a real-world question: <em>can we predict match outcomes from World Cup stats?</em></p>
+<p>You’ll complete <strong>two exercises</strong>: - <strong>Exercise 1 — Regression:</strong> predict how many goals a team scores from their shots on target - <strong>Exercise 2 — Classification:</strong> predict whether a team advances to the knockout stage</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/03/notebooks/sklearn_practice.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
+<section id="the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset">The Dataset</h2>
+<p>Each row is a team’s group-stage performance from recent World Cup tournaments. - <code>shots_on_target</code> — shots that required the goalkeeper to make a save - <code>possession_pct</code> — share of time the team controlled the ball - <code>goals_scored</code> — total goals in the group stage - <code>advanced</code> — 1 if the team reached the knockout round, 0 if eliminated</p>
+<p>Run the cell to load the data:</p>
+<div id="cell-create-data" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'team'</span>: [<span class="st">'Spain'</span>,    <span class="st">'Japan'</span>,   <span class="st">'Australia'</span>, <span class="st">'Morocco'</span>,  <span class="st">'USA'</span>, <span class="st">'Germany'</span>,  <span class="st">'Brazil'</span>,  <span class="st">'Argentina'</span>, <span class="st">'England'</span>,  <span class="st">'France'</span>, <span class="st">'Canada'</span>,   <span class="st">'Mexico'</span>,  <span class="st">'Nigeria'</span>,   <span class="st">'S. Korea'</span>, <span class="st">'Saudi Arabia'</span>, <span class="st">'Portugal'</span>, <span class="st">'Netherlands'</span>, <span class="st">'Cameroon'</span>, <span class="st">'Colombia'</span>, <span class="st">'Croatia'</span>],</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'shots_on_target'</span>: [<span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">5</span>,  <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">6</span>, <span class="dv">7</span>,  <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">3</span>,  <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">3</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'possession_pct'</span>: [<span class="dv">64</span>, <span class="dv">42</span>, <span class="dv">45</span>, <span class="dv">38</span>, <span class="dv">52</span>,  <span class="dv">58</span>, <span class="dv">60</span>, <span class="dv">55</span>, <span class="dv">56</span>, <span class="dv">53</span>,  <span class="dv">48</span>, <span class="dv">50</span>, <span class="dv">44</span>, <span class="dv">46</span>, <span class="dv">38</span>,  <span class="dv">57</span>, <span class="dv">54</span>, <span class="dv">43</span>, <span class="dv">51</span>, <span class="dv">49</span>],</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">'goals_scored'</span>: [<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>,  <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>,  <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,  <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>],</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">'advanced'</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,  <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,  <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,  <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="exercise-1-regression-predicting-goals-scored" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-regression-predicting-goals-scored">Exercise 1: Regression — Predicting Goals Scored</h2>
+<p><strong>Question:</strong> Can a model predict how many goals a team scores based on their shots on target?</p>
+<p>Follow the steps below. Fill in each <code>___</code> with your own code.</p>
+<section id="step-1-prepare-features-and-labels" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-prepare-features-and-labels">Step 1: Prepare Features and Labels</h3>
+<ul>
+<li><code>X</code> is the <strong>feature</strong> — <code>shots_on_target</code> (use double brackets to keep it as a table)</li>
+<li><code>y</code> is the <strong>label</strong> — <code>goals_scored</code></li>
+</ul>
+<div id="cell-ex1-step1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[[___]]   <span class="co"># </span><span class="al">TODO</span><span class="co">: put 'shots_on_target' inside the double brackets</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[___]     <span class="co"># </span><span class="al">TODO</span><span class="co">: put 'goals_scored' inside the single brackets</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Features (X):"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.head())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Labels (y):"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-2-train-the-model" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-train-the-model">Step 2: Train the Model</h3>
+<p>Import <code>LinearRegression</code> from sklearn and fit it to your data.</p>
+<div id="cell-ex1-step2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> ___  <span class="co"># </span><span class="al">TODO</span><span class="co">: add LinearRegression</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> ___()        <span class="co"># </span><span class="al">TODO</span><span class="co">: create the model</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>model.___(X, y)      <span class="co"># </span><span class="al">TODO</span><span class="co">: fit (train) the model</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model trained!"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Each extra shot on target adds </span><span class="sc">{</span>model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> goals on average"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-3-make-a-prediction" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-make-a-prediction">Step 3: Make a Prediction</h3>
+<p>Use the slider to set shots on target, then run the cell to see the model’s prediction.</p>
+<div id="cell-ex1-step3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>SHOTS_ON_TARGET <span class="op">=</span> <span class="dv">5</span> <span class="co">#@param {type:"slider", min:1, max:12, step:1}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>new_match <span class="op">=</span> pd.DataFrame({<span class="st">'shots_on_target'</span>: [SHOTS_ON_TARGET]})</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model.___(new_match)   <span class="co"># </span><span class="al">TODO</span><span class="co">: make a prediction</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"With </span><span class="sc">{</span>SHOTS_ON_TARGET<span class="sc">}</span><span class="ss"> shots on target:"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Predicted goals: </span><span class="sc">{</span>prediction[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-4-visualize" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-visualize">Step 4: Visualize</h3>
+<p>Run the cell below to see your model’s regression line against the real data:</p>
+<div id="cell-ex1-step4" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x_vals <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">13</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_line <span class="op">=</span> pd.DataFrame({<span class="st">'shots_on_target'</span>: x_vals})</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y_line <span class="op">=</span> model.predict(x_line)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(df[<span class="st">'shots_on_target'</span>], df[<span class="st">'goals_scored'</span>], color<span class="op">=</span><span class="st">'steelblue'</span>, s<span class="op">=</span><span class="dv">80</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'Actual'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x_vals, y_line, color<span class="op">=</span><span class="st">'crimson'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">'Model prediction'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.scatter([SHOTS_ON_TARGET], [prediction[<span class="dv">0</span>]], color<span class="op">=</span><span class="st">'gold'</span>, s<span class="op">=</span><span class="dv">200</span>, zorder<span class="op">=</span><span class="dv">6</span>, marker<span class="op">=</span><span class="st">'*'</span>, label<span class="op">=</span><span class="st">'Your prediction'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Shots on Target vs Goals Scored'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Shots on Target'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Goals Scored'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Look at the regression line. Are there any teams where the model’s prediction is very different from their actual goals? What might explain those differences?</p>
+<hr>
+</section>
+</section>
+<section id="exercise-2-classification-did-the-team-advance" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-classification-did-the-team-advance">Exercise 2: Classification — Did the Team Advance?</h2>
+<p><strong>Question:</strong> Can a model predict whether a team reached the knockout stage, based on shots on target <em>and</em> possession?</p>
+<p>This is a <strong>classification</strong> task. The answer is a category: advanced (1) or eliminated (0).</p>
+<section id="step-1-prepare-features-and-labels-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-prepare-features-and-labels-1">Step 1: Prepare Features and Labels</h3>
+<p>This time <code>X</code> has <strong>two</strong> columns — <code>shots_on_target</code> and <code>possession_pct</code>. - <code>y</code> should be the <code>advanced</code> column (1 = advanced, 0 = eliminated)</p>
+<div id="cell-ex2-step1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X2 <span class="op">=</span> df[[___, ___]]  <span class="co"># </span><span class="al">TODO</span><span class="co">: add 'shots_on_target' and 'possession_pct'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> df[___]         <span class="co"># </span><span class="al">TODO</span><span class="co">: add 'advanced'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Features (X2):"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X2.head())</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Labels (y2):"</span>, y2.values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-2-train-the-model-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-train-the-model-1">Step 2: Train the Model</h3>
+<p>Import <code>KNeighborsClassifier</code> and fit it. We’ll use <code>n_neighbors=3</code> — the model finds the 3 most similar teams and takes a majority vote.</p>
+<div id="cell-ex2-step2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> ___  <span class="co"># </span><span class="al">TODO</span><span class="co">: add KNeighborsClassifier</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>model2 <span class="op">=</span> ___(n_neighbors<span class="op">=</span><span class="dv">3</span>)   <span class="co"># </span><span class="al">TODO</span><span class="co">: create the classifier</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model2.___(X2, y2)            <span class="co"># </span><span class="al">TODO</span><span class="co">: fit it</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> model2.score(X2, y2)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model trained!"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training accuracy: </span><span class="sc">{</span>accuracy <span class="op">*</span> <span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-3-make-a-prediction-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-make-a-prediction-1">Step 3: Make a Prediction</h3>
+<p>Adjust both sliders to describe a team, then run the cell to predict whether they advance.</p>
+<div id="cell-ex2-step3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>SHOTS_ON_TARGET <span class="op">=</span> <span class="dv">5</span> <span class="co">#@param {type:"slider", min:1, max:12, step:1}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>POSSESSION_PCT  <span class="op">=</span> <span class="dv">50</span> <span class="co">#@param {type:"slider", min:30, max:75, step:1}</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>new_team <span class="op">=</span> pd.DataFrame({<span class="st">'shots_on_target'</span>: [SHOTS_ON_TARGET], <span class="st">'possession_pct'</span>: [POSSESSION_PCT]})</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>prediction2 <span class="op">=</span> model2.___(new_team)   <span class="co"># </span><span class="al">TODO</span><span class="co">: predict the result</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="st">"Advanced to knockout stage"</span> <span class="cf">if</span> prediction2[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">"Eliminated in group stage"</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Shots on target: </span><span class="sc">{</span>SHOTS_ON_TARGET<span class="sc">}</span><span class="ss">,  Possession: </span><span class="sc">{</span>POSSESSION_PCT<span class="sc">}</span><span class="ss">%"</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prediction: </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="step-4-visualize-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-visualize-1">Step 4: Visualize</h3>
+<p>Run the cell below to see all teams on a chart — green dots advanced, red dots were eliminated. The star shows where your team falls:</p>
+<div id="cell-ex2-step4" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>x_min, x_max <span class="op">=</span> <span class="dv">0</span>, <span class="dv">13</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>y_min, y_max <span class="op">=</span> <span class="dv">25</span>, <span class="dv">75</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x_min, x_max, <span class="dv">200</span>), np.linspace(y_min, y_max, <span class="dv">200</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> model2.predict(pd.DataFrame({<span class="st">'shots_on_target'</span>: xx.ravel(), <span class="st">'possession_pct'</span>: yy.ravel()}))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Z.reshape(xx.shape)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.15</span>, levels<span class="op">=</span>[<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">1.5</span>], colors<span class="op">=</span>[<span class="st">'#e57373'</span>, <span class="st">'#81c784'</span>])</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>ax.contour(xx, yy, Z, levels<span class="op">=</span>[<span class="fl">0.5</span>], colors<span class="op">=</span>[<span class="st">'gray'</span>], linewidths<span class="op">=</span><span class="dv">1</span>, linestyles<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>advanced_df  <span class="op">=</span> df[df[<span class="st">'advanced'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>eliminated_df <span class="op">=</span> df[df[<span class="st">'advanced'</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>ax.scatter(advanced_df[<span class="st">'shots_on_target'</span>],  advanced_df[<span class="st">'possession_pct'</span>],  color<span class="op">=</span><span class="st">'#2e7d32'</span>, s<span class="op">=</span><span class="dv">80</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'Advanced'</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>ax.scatter(eliminated_df[<span class="st">'shots_on_target'</span>], eliminated_df[<span class="st">'possession_pct'</span>], color<span class="op">=</span><span class="st">'#c62828'</span>, s<span class="op">=</span><span class="dv">80</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'Eliminated'</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    ax.annotate(row[<span class="st">'team'</span>], (row[<span class="st">'shots_on_target'</span>], row[<span class="st">'possession_pct'</span>]),</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                fontsize<span class="op">=</span><span class="dv">7</span>, ha<span class="op">=</span><span class="st">'left'</span>, va<span class="op">=</span><span class="st">'bottom'</span>, xytext<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>), textcoords<span class="op">=</span><span class="st">'offset points'</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>star_color <span class="op">=</span> <span class="st">'#2e7d32'</span> <span class="cf">if</span> prediction2[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'#c62828'</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>ax.scatter(SHOTS_ON_TARGET, POSSESSION_PCT, color<span class="op">=</span>star_color, s<span class="op">=</span><span class="dv">250</span>, marker<span class="op">=</span><span class="st">'*'</span>, zorder<span class="op">=</span><span class="dv">6</span>, label<span class="op">=</span><span class="st">'Your team'</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Shots on Target'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Possession (%)'</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'World Cup: Advanced vs Eliminated'</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(x_min, x_max)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(y_min, y_max)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Germany had 58% possession but was eliminated. Morocco had only 38% possession but advanced. What does this tell you about which feature matters more for predicting advancement? How could you test your theory?</p>
+</section>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1272,15 +1448,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../labs/10/slides.html" class="pagination-link" aria-label="Slides">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

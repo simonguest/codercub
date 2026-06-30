@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/03/notebooks/finding_disasters.html" rel="next">
+<link href="../../../labs/03/notebooks/sklearn_classification.html" rel="next">
 <link href="../../../labs/03/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -316,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Using Scikit-learn</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_regression.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_regression.html">Using Scikit-learn (Regression)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -484,8 +484,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/03/notebooks/sklearn.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Using Scikit-learn</span></a>
+  <a href="../../../labs/03/notebooks/sklearn_regression.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Using Scikit-learn (Regression)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/03/notebooks/sklearn_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using Scikit-learn (Classification)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../labs/labs/03/notebooks/sklearn_practice.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">World Cup Challenge</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -503,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../labs/03/notebooks/regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linear Regression</span></a>
+ <span class="menu-text">Dzud Linear Regression</span></a>
   </div>
 </li>
       </ul>
@@ -820,7 +832,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn.html">Using Scikit-learn</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_regression.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_regression.html">Using Scikit-learn (Regression)</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Predicting with scikit-learn</h1>
 </div>
@@ -839,17 +851,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In this notebook, you’ll train your first machine learning model using <strong>scikit-learn</strong> — the most popular Python library for machine learning.</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/03/notebooks/sklearn.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<section id="what-youll-learn" class="level2">
-<h2 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h2>
-<ul>
-<li>What scikit-learn is and what it’s used for</li>
-<li>The three-step sklearn workflow: <strong>prepare → fit → predict</strong></li>
-<li>How to train a linear regression model on a simple dataset</li>
-<li>How to visualize your model’s predictions</li>
-</ul>
-</section>
+<p>In this notebook, you’ll train your first machine learning model using <strong>scikit-learn</strong>, the most popular Python library for machine learning.</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/03/notebooks/sklearn_regression.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
 <section id="part-1-what-is-scikit-learn" class="level2">
 <h2 class="anchored" data-anchor-id="part-1-what-is-scikit-learn">Part 1: What is scikit-learn?</h2>
 <p><strong>scikit-learn</strong> (imported as <code>sklearn</code>) is a Python library that gives you ready-to-use machine learning models.</p>
@@ -858,16 +861,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="part-2-our-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-our-dataset">Part 2: Our Dataset</h2>
-<p>We’ll start with a simple question: <em>can a machine learn the relationship between hours spent studying and test scores?</em></p>
+<p>We’ll start with the same sample dataset from yesterday and ask the question: <em>can a machine learn the relationship between hours spent studying and test scores?</em></p>
 <p>Here’s data from a group of students:</p>
 <div id="cell-create-data" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>hours  <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> [<span class="dv">45</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">74</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">94</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'hours_studied'</span>: hours, <span class="st">'test_score'</span>: scores})</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"hours_studied"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>],</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"test_score"</span>: [<span class="dv">45</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">63</span>, <span class="dv">70</span>, <span class="dv">74</span>, <span class="dv">80</span>, <span class="dv">85</span>, <span class="dv">88</span>, <span class="dv">94</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="features-and-labels" class="level2">
@@ -904,11 +909,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now that the model has learned the pattern, we can ask it to predict scores for hours it has never seen.</p>
 <p><code>model.predict()</code> takes a feature value and returns its best guess:</p>
 <div id="cell-predict" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>test_hours <span class="op">=</span> pd.DataFrame({<span class="st">'hours_studied'</span>: [<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">11</span>]})</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> model.predict(test_hours)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> h, p <span class="kw">in</span> <span class="bu">zip</span>([<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">11</span>], predictions):</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"  </span><span class="sc">{</span>h<span class="sc">:2d}</span><span class="ss"> hours studied  →  predicted score: </span><span class="sc">{</span>p<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>HOURS_STUDIED <span class="op">=</span> <span class="dv">1</span> <span class="co">#@param {type:"slider", min:1, max:15, step:1}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hours_studied <span class="op">=</span> pd.DataFrame({<span class="st">'hours_studied'</span>: [HOURS_STUDIED]})</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the model</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model.predict(hours_studied)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the output</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"You studied for </span><span class="sc">{</span>HOURS_STUDIED<span class="sc">}</span><span class="ss"> hours."</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"I predict your score will be </span><span class="sc">{</span>prediction[<span class="dv">0</span>]<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="part-5-seeing-the-models-line" class="level2">
@@ -933,17 +944,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The model predicted a score above 100 for 11 hours. Does that seem realistic? What are the limits of using a straight line to model real-world data like this?</p>
-</section>
-<section id="predict-your-score" class="level2">
-<h2 class="anchored" data-anchor-id="predict-your-score">Predict Your Score</h2>
-<p>Use the slider to choose how many hours you studied, and see what the model predicts:</p>
-<div id="cell-experiment" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>HOURS_STUDIED <span class="op">=</span> <span class="dv">5</span> <span class="co">#@param {type:"slider", min:1, max:15, step:1}</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model.predict(pd.DataFrame({<span class="st">'hours_studied'</span>: [HOURS_STUDIED]}))[<span class="dv">0</span>]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Hours studied: </span><span class="sc">{</span>HOURS_STUDIED<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Predicted score: </span><span class="sc">{</span>prediction<span class="sc">:.1f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
 <section id="check-your-understanding" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
@@ -1372,8 +1372,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/03/notebooks/finding_disasters.html" class="pagination-link" aria-label="Finding Disasters">
-        <span class="nav-page-text">Finding Disasters</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../labs/03/notebooks/sklearn_classification.html" class="pagination-link" aria-label="Using Scikit-learn (Classification)">
+        <span class="nav-page-text">Using Scikit-learn (Classification)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

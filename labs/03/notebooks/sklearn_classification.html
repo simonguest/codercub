@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Final Project – Summer of Code 2026</title>
+<title>Classifying with scikit-learn – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/10/slides.html" rel="prev">
+<link href="../../../labs/labs/03/notebooks/sklearn_practice.ipynb" rel="next">
+<link href="../../../labs/03/notebooks/sklearn_regression.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -315,7 +316,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Final Project</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_regression.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_classification.html">Using Scikit-learn (Classification)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -489,7 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/03/notebooks/sklearn_classification.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/03/notebooks/sklearn_classification.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Using Scikit-learn (Classification)</span></a>
   </div>
 </li>
@@ -813,7 +814,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/10/notebooks/final_project.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/10/notebooks/final_project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Final Project</span></a>
   </div>
 </li>
@@ -831,9 +832,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/final_project.html">Final Project</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/03/slides.html">Day 3</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_regression.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/03/notebooks/sklearn_classification.html">Using Scikit-learn (Classification)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Final Project</h1>
+<h1 class="title">Classifying with scikit-learn</h1>
 </div>
 
 
@@ -850,13 +851,156 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is a blank notebook that you can use to create your final project!</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/final_project.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<div id="056ca8a3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What are you going to create?!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In this notebook, you’ll train a <strong>classification</strong> model. This is a machine learning model that predicts a <em>category</em> instead of a number.</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/03/notebooks/sklearn_classification.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
+<section id="part-1-regression-vs.-classification" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-regression-vs.-classification">Part 1: Regression vs.&nbsp;Classification</h2>
+<p>So far you’ve seen <strong>regression</strong> in scikit-learn. This is predicting a <em>number</em> (like a test score).</p>
+<p><strong>Classification</strong> is different: you predict a <em>category</em>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Type</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Predict a student’s test score</td>
+<td>Regression</td>
+<td>84.5</td>
+</tr>
+<tr class="even">
+<td>Predict whether a student passes</td>
+<td>Classification</td>
+<td>Pass / Fail</td>
+</tr>
+<tr class="odd">
+<td>Predict tomorrow’s temperature</td>
+<td>Regression</td>
+<td>22°C</td>
+</tr>
+<tr class="even">
+<td>Predict whether it will rain</td>
+<td>Classification</td>
+<td>Rain / No Rain</td>
+</tr>
+</tbody>
+</table>
+<p>The good news: sklearn follows the <strong>same three steps</strong> for classification as it does for regression: 1. <strong>Prepare</strong> your features (<code>X</code>) and labels (<code>y</code>) 2. <strong>Fit</strong> — <code>model.fit(X, y)</code> — the model learns from your data 3. <strong>Predict</strong> — <code>model.predict(...)</code> — apply what it learned to new data</p>
+</section>
+<section id="part-2-our-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-our-dataset">Part 2: Our Dataset</h2>
+<p>We’ll ask the question: <em>can a machine predict whether a student passes based on how much they studied AND how much they slept?</em></p>
+<p>This time we have <strong>two features</strong> — hours studied and hours of sleep — and a <strong>label</strong> of Pass (1) or Fail (0):</p>
+<div id="cell-create-data" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'hours_studied'</span>: [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">6</span>],</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">'hours_slept'</span>:   [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">6</span>],</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">'passed'</span>:        [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'result'</span>] <span class="op">=</span> df[<span class="st">'passed'</span>].<span class="bu">map</span>({<span class="dv">1</span>: <span class="st">'Pass'</span>, <span class="dv">0</span>: <span class="st">'Fail'</span>})</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="features-and-labels" class="level2">
+<h2 class="anchored" data-anchor-id="features-and-labels">Features and Labels</h2>
+<p>We split our data into: - <strong>X</strong> — the <em>features</em> (what we know): hours studied <strong>and</strong> hours slept - <strong>y</strong> — the <em>label</em> (what we want to predict): pass or fail</p>
+<p>With two features, our model can look at both study time and sleep together to make a smarter prediction:</p>
+<div id="cell-prepare-data" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[[<span class="st">'hours_studied'</span>, <span class="st">'hours_slept'</span>]]  <span class="co"># two features</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'passed'</span>]                           <span class="co"># 0 = Fail, 1 = Pass</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'X — our features:'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.head())</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">y — our labels (0=Fail, 1=Pass):'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="part-3-training-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-training-a-model">Part 3: Training a Model</h2>
+<p>We’ll use <strong>K-Nearest Neighbors (KNN)</strong>. This is one of the most intuitive classifiers.</p>
+<p>The idea is simple: <em>find the k students in your training data who are most similar to the new student, then vote on the outcome.</em></p>
+<p>With <code>n_neighbors=3</code>, the model looks at the <strong>3 closest students</strong> and takes a majority vote — if 2 out of 3 passed, it predicts Pass:</p>
+<div id="cell-train-model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>model.fit(X, y)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Check how well the model does on the training data</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> model.score(X, y)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Model trained!'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Training accuracy: </span><span class="sc">{</span>accuracy <span class="op">*</span> <span class="dv">100</span><span class="sc">:.1f}</span><span class="ss">%  (how often it gets the right answer)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="part-4-making-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-making-predictions">Part 4: Making Predictions</h2>
+<p>Now we can ask the model to predict whether a <em>new</em> student will pass or fail.</p>
+<p>Use the sliders to set the student’s hours studied and hours slept, then see what the model predicts:</p>
+<div id="cell-predict" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>HOURS_STUDIED <span class="op">=</span> <span class="dv">5</span> <span class="co">#@param {type:"slider", min:1, max:10, step:1}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>HOURS_SLEPT   <span class="op">=</span> <span class="dv">7</span> <span class="co">#@param {type:"slider", min:1, max:10, step:1}</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>new_student <span class="op">=</span> pd.DataFrame({<span class="st">'hours_studied'</span>: [HOURS_STUDIED], <span class="st">'hours_slept'</span>: [HOURS_SLEPT]})</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model.predict(new_student)[<span class="dv">0</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="st">'Pass ✓'</span> <span class="cf">if</span> prediction <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'Fail ✗'</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Student studied for </span><span class="sc">{</span>HOURS_STUDIED<span class="sc">}</span><span class="ss"> hours and slept for </span><span class="sc">{</span>HOURS_SLEPT<span class="sc">}</span><span class="ss"> hours.'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Prediction: </span><span class="sc">{</span>result<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="part-5-seeing-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-seeing-the-data">Part 5: Seeing the Data</h2>
+<p>With two features we can plot each student as a point on a chart — hours studied on one axis, hours slept on the other.</p>
+<p>Green dots are students who <strong>passed</strong>. Red dots are students who <strong>failed</strong>. The star shows where your predicted student falls:</p>
+<div id="cell-visualize" class="cell" data-tags="[&quot;hide_code&quot;]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw decision regions using a mesh</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>x_min, x_max <span class="op">=</span> <span class="dv">0</span>, <span class="dv">11</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>y_min, y_max <span class="op">=</span> <span class="dv">0</span>, <span class="dv">11</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>xx, yy <span class="op">=</span> np.meshgrid(np.linspace(x_min, x_max, <span class="dv">200</span>), np.linspace(y_min, y_max, <span class="dv">200</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> model.predict(pd.DataFrame({<span class="st">'hours_studied'</span>: xx.ravel(), <span class="st">'hours_slept'</span>: yy.ravel()}))</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Z.reshape(xx.shape)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.contourf(xx, yy, Z, alpha<span class="op">=</span><span class="fl">0.15</span>, levels<span class="op">=</span>[<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">1.5</span>], colors<span class="op">=</span>[<span class="st">'#e57373'</span>, <span class="st">'#81c784'</span>])</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.contour(xx, yy, Z, levels<span class="op">=</span>[<span class="fl">0.5</span>], colors<span class="op">=</span>[<span class="st">'gray'</span>], linewidths<span class="op">=</span><span class="dv">1</span>, linestyles<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the training data</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>passed <span class="op">=</span> df[df[<span class="st">'passed'</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>failed <span class="op">=</span> df[df[<span class="st">'passed'</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax.scatter(passed[<span class="st">'hours_studied'</span>], passed[<span class="st">'hours_slept'</span>], color<span class="op">=</span><span class="st">'#2e7d32'</span>, s<span class="op">=</span><span class="dv">80</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'Pass'</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ax.scatter(failed[<span class="st">'hours_studied'</span>], failed[<span class="st">'hours_slept'</span>], color<span class="op">=</span><span class="st">'#c62828'</span>, s<span class="op">=</span><span class="dv">80</span>, zorder<span class="op">=</span><span class="dv">5</span>, label<span class="op">=</span><span class="st">'Fail'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Mark the new student</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>star_color <span class="op">=</span> <span class="st">'#2e7d32'</span> <span class="cf">if</span> prediction <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'#c62828'</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>ax.scatter(HOURS_STUDIED, HOURS_SLEPT, color<span class="op">=</span>star_color, s<span class="op">=</span><span class="dv">250</span>, marker<span class="op">=</span><span class="st">'*'</span>, zorder<span class="op">=</span><span class="dv">6</span>, label<span class="op">=</span><span class="st">'Your student'</span>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Hours Studied'</span>)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Hours Slept'</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Pass / Fail by Hours Studied and Hours Slept'</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(x_min, x_max)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(y_min, y_max)</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Look at the decision boundary (the dashed line). Are there any students whose actual result surprises you given where they fall on the chart? What does this tell you about what it means when a machine learning model is wrong?</p>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check Your Understanding</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1274,11 +1418,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/10/slides.html" class="pagination-link" aria-label="Slides">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
+      <a href="../../../labs/03/notebooks/sklearn_regression.html" class="pagination-link" aria-label="Using Scikit-learn (Regression)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Using Scikit-learn (Regression)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../../labs/labs/03/notebooks/sklearn_practice.ipynb" class="pagination-link" aria-label="World Cup Challenge">
+        <span class="nav-page-text">World Cup Challenge</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

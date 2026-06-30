@@ -424,6 +424,41 @@
     ]
   },
   {
+    "objectID": "labs/03/notebooks/sklearn_practice.html",
+    "href": "labs/03/notebooks/sklearn_practice.html",
+    "title": "World Cup Challenge",
+    "section": "",
+    "text": "In this notebook you’ll apply what you’ve learned about scikit-learn to a real-world question: can we predict match outcomes from World Cup stats?\nYou’ll complete two exercises: - Exercise 1 — Regression: predict how many goals a team scores from their shots on target - Exercise 2 — Classification: predict whether a team advances to the knockout stage"
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_practice.html#the-dataset",
+    "href": "labs/03/notebooks/sklearn_practice.html#the-dataset",
+    "title": "World Cup Challenge",
+    "section": "The Dataset",
+    "text": "The Dataset\nEach row is a team’s group-stage performance from recent World Cup tournaments. - shots_on_target — shots that required the goalkeeper to make a save - possession_pct — share of time the team controlled the ball - goals_scored — total goals in the group stage - advanced — 1 if the team reached the knockout round, 0 if eliminated\nRun the cell to load the data:\n\nimport pandas as pd\n\ndata = {\n  'team': ['Spain',    'Japan',   'Australia', 'Morocco',  'USA', 'Germany',  'Brazil',  'Argentina', 'England',  'France', 'Canada',   'Mexico',  'Nigeria',   'S. Korea', 'Saudi Arabia', 'Portugal', 'Netherlands', 'Cameroon', 'Colombia', 'Croatia'],\n  'shots_on_target': [8, 5, 4, 6, 5,  3, 7, 9, 6, 7,  2, 4, 5, 4, 3,  8, 6, 2, 5, 3],\n  'possession_pct': [64, 42, 45, 38, 52,  58, 60, 55, 56, 53,  48, 50, 44, 46, 38,  57, 54, 43, 51, 49],\n  'goals_scored': [3, 2, 1, 2, 2,  1, 3, 4, 2, 3,  0, 1, 1, 1, 1,  3, 2, 0, 2, 0],\n  'advanced': [1, 1, 0, 1, 1,  0, 1, 1, 1, 1,  0, 0, 0, 1, 0,  1, 1, 0, 0, 0]\n}\n\ndf = pd.DataFrame(data)\ndf"
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_practice.html#exercise-1-regression-predicting-goals-scored",
+    "href": "labs/03/notebooks/sklearn_practice.html#exercise-1-regression-predicting-goals-scored",
+    "title": "World Cup Challenge",
+    "section": "Exercise 1: Regression — Predicting Goals Scored",
+    "text": "Exercise 1: Regression — Predicting Goals Scored\nQuestion: Can a model predict how many goals a team scores based on their shots on target?\nFollow the steps below. Fill in each ___ with your own code.\n\nStep 1: Prepare Features and Labels\n\nX is the feature — shots_on_target (use double brackets to keep it as a table)\ny is the label — goals_scored\n\n\nX = df[[___]]   # TODO: put 'shots_on_target' inside the double brackets\ny = df[___]     # TODO: put 'goals_scored' inside the single brackets\n\nprint(\"Features (X):\")\nprint(X.head())\nprint(\"\\nLabels (y):\")\nprint(y.values)\n\n\n\nStep 2: Train the Model\nImport LinearRegression from sklearn and fit it to your data.\n\nfrom sklearn.linear_model import ___  # TODO: add LinearRegression\n\nmodel = ___()        # TODO: create the model\nmodel.___(X, y)      # TODO: fit (train) the model\n\nprint(\"Model trained!\")\nprint(f\"Each extra shot on target adds {model.coef_[0]:.2f} goals on average\")\n\n\n\nStep 3: Make a Prediction\nUse the slider to set shots on target, then run the cell to see the model’s prediction.\n\nSHOTS_ON_TARGET = 5 #@param {type:\"slider\", min:1, max:12, step:1}\n\nnew_match = pd.DataFrame({'shots_on_target': [SHOTS_ON_TARGET]})\nprediction = model.___(new_match)   # TODO: make a prediction\n\nprint(f\"With {SHOTS_ON_TARGET} shots on target:\")\nprint(f\"Predicted goals: {prediction[0]:.1f}\")\n\n\n\nStep 4: Visualize\nRun the cell below to see your model’s regression line against the real data:\n\nimport matplotlib.pyplot as plt\n\nx_vals = list(range(0, 13))\nx_line = pd.DataFrame({'shots_on_target': x_vals})\ny_line = model.predict(x_line)\n\nplt.figure(figsize=(9, 5))\nplt.scatter(df['shots_on_target'], df['goals_scored'], color='steelblue', s=80, zorder=5, label='Actual')\nplt.plot(x_vals, y_line, color='crimson', linewidth=2, label='Model prediction')\nplt.scatter([SHOTS_ON_TARGET], [prediction[0]], color='gold', s=200, zorder=6, marker='*', label='Your prediction')\nplt.title('Shots on Target vs Goals Scored')\nplt.xlabel('Shots on Target')\nplt.ylabel('Goals Scored')\nplt.legend()\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nLook at the regression line. Are there any teams where the model’s prediction is very different from their actual goals? What might explain those differences?"
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_practice.html#exercise-2-classification-did-the-team-advance",
+    "href": "labs/03/notebooks/sklearn_practice.html#exercise-2-classification-did-the-team-advance",
+    "title": "World Cup Challenge",
+    "section": "Exercise 2: Classification — Did the Team Advance?",
+    "text": "Exercise 2: Classification — Did the Team Advance?\nQuestion: Can a model predict whether a team reached the knockout stage, based on shots on target and possession?\nThis is a classification task. The answer is a category: advanced (1) or eliminated (0).\n\nStep 1: Prepare Features and Labels\nThis time X has two columns — shots_on_target and possession_pct. - y should be the advanced column (1 = advanced, 0 = eliminated)\n\nX2 = df[[___, ___]]  # TODO: add 'shots_on_target' and 'possession_pct'\ny2 = df[___]         # TODO: add 'advanced'\n\nprint(\"Features (X2):\")\nprint(X2.head())\nprint(\"\\nLabels (y2):\", y2.values)\n\n\n\nStep 2: Train the Model\nImport KNeighborsClassifier and fit it. We’ll use n_neighbors=3 — the model finds the 3 most similar teams and takes a majority vote.\n\nfrom sklearn.neighbors import ___  # TODO: add KNeighborsClassifier\n\nmodel2 = ___(n_neighbors=3)   # TODO: create the classifier\nmodel2.___(X2, y2)            # TODO: fit it\n\naccuracy = model2.score(X2, y2)\nprint(\"Model trained!\")\nprint(f\"Training accuracy: {accuracy * 100:.1f}%\")\n\n\n\nStep 3: Make a Prediction\nAdjust both sliders to describe a team, then run the cell to predict whether they advance.\n\nSHOTS_ON_TARGET = 5 #@param {type:\"slider\", min:1, max:12, step:1}\nPOSSESSION_PCT  = 50 #@param {type:\"slider\", min:30, max:75, step:1}\n\nnew_team = pd.DataFrame({'shots_on_target': [SHOTS_ON_TARGET], 'possession_pct': [POSSESSION_PCT]})\nprediction2 = model2.___(new_team)   # TODO: predict the result\n\nresult = \"Advanced to knockout stage\" if prediction2[0] == 1 else \"Eliminated in group stage\"\nprint(f\"Shots on target: {SHOTS_ON_TARGET},  Possession: {POSSESSION_PCT}%\")\nprint(f\"Prediction: {result}\")\n\n\n\nStep 4: Visualize\nRun the cell below to see all teams on a chart — green dots advanced, red dots were eliminated. The star shows where your team falls:\n\nimport numpy as np\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\nx_min, x_max = 0, 13\ny_min, y_max = 25, 75\nxx, yy = np.meshgrid(np.linspace(x_min, x_max, 200), np.linspace(y_min, y_max, 200))\nZ = model2.predict(pd.DataFrame({'shots_on_target': xx.ravel(), 'possession_pct': yy.ravel()}))\nZ = Z.reshape(xx.shape)\nax.contourf(xx, yy, Z, alpha=0.15, levels=[-0.5, 0.5, 1.5], colors=['#e57373', '#81c784'])\nax.contour(xx, yy, Z, levels=[0.5], colors=['gray'], linewidths=1, linestyles='--')\n\nadvanced_df  = df[df['advanced'] == 1]\neliminated_df = df[df['advanced'] == 0]\nax.scatter(advanced_df['shots_on_target'],  advanced_df['possession_pct'],  color='#2e7d32', s=80, zorder=5, label='Advanced')\nax.scatter(eliminated_df['shots_on_target'], eliminated_df['possession_pct'], color='#c62828', s=80, zorder=5, label='Eliminated')\n\nfor _, row in df.iterrows():\n    ax.annotate(row['team'], (row['shots_on_target'], row['possession_pct']),\n                fontsize=7, ha='left', va='bottom', xytext=(4, 3), textcoords='offset points')\n\nstar_color = '#2e7d32' if prediction2[0] == 1 else '#c62828'\nax.scatter(SHOTS_ON_TARGET, POSSESSION_PCT, color=star_color, s=250, marker='*', zorder=6, label='Your team')\n\nax.set_xlabel('Shots on Target')\nax.set_ylabel('Possession (%)')\nax.set_title('World Cup: Advanced vs Eliminated')\nax.set_xlim(x_min, x_max)\nax.set_ylim(y_min, y_max)\nax.legend()\nax.grid(True, linestyle='--', alpha=0.4)\nplt.tight_layout()\nplt.show()\n\nGermany had 58% possession but was eliminated. Morocco had only 38% possession but advanced. What does this tell you about which feature matters more for predicting advancement? How could you test your theory?"
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_practice.html#check-your-understanding",
+    "href": "labs/03/notebooks/sklearn_practice.html#check-your-understanding",
+    "title": "World Cup Challenge",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding"
+  },
+  {
     "objectID": "labs/03/notebooks/regression.html",
     "href": "labs/03/notebooks/regression.html",
     "title": "The Dzud — Teaching a Machine to Predict Disaster",
@@ -433,7 +468,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -446,7 +481,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -459,7 +494,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -472,7 +507,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -485,7 +520,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -498,7 +533,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -511,7 +546,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -524,7 +559,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -537,7 +572,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -550,7 +585,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Linear Regression"
+      "Dzud Linear Regression"
     ]
   },
   {
@@ -1065,7 +1100,7 @@
     "href": "labs/01/notebooks/ai_in_action.html#part-3-generative-ai-ask-an-ai",
     "title": "AI in Action",
     "section": "Part 3: Generative AI — Ask an AI",
-    "text": "Part 3: Generative AI — Ask an AI\nUnlike the spam detector, this AI doesn’t just predict a label — it generates a response. Type any topic, choose a style, and run the cell.\n\nimport openai\nimport os\n\nTOPIC = \"How do solar panels work?\" #@param {type:\"string\"}\nSTYLE = \"simple\" #@param [\"simple\", \"detailed\", \"funny\"]\n\nclient = openai.OpenAI(\n  base_url='https://openrouter.ai/api/v1',\n  api_key=os.environ['OPENROUTER_API_KEY']\n)\n\nresponse = client.chat.completions.create(\n  model='openai/gpt-oss-120b:free',\n  messages=[\n    {'role': 'system', 'content': f'You are a helpful teacher. Explain things in a {STYLE} way. Keep your answer to 3-4 sentences.'},\n    {'role': 'user', 'content': TOPIC},\n  ]\n)\nprint(response.choices[0].message.content)\n\n\nChallenge: Ask it something factual and check if the answer is correct. Can you find something it gets wrong or makes up?\n\nHow did changing the style change the response? Which style was most useful — and why?",
+    "text": "Part 3: Generative AI — Ask an AI\nUnlike the spam detector, this AI doesn’t just predict a label — it generates a response. Type any topic, choose a style, and run the cell.\n\nimport openai\nimport os\n\nTOPIC = \"How do solar panels work?\" #@param {type:\"string\"}\nSTYLE = \"simple\" #@param [\"simple\", \"detailed\", \"funny\", \"incorrect\"]\n\nclient = openai.OpenAI(\n  base_url='https://openrouter.ai/api/v1',\n  api_key=os.environ['OPENROUTER_API_KEY']\n)\n\nresponse = client.chat.completions.create(\n  model='openai/gpt-oss-120b:free',\n  messages=[\n    {'role': 'system', 'content': f'You are a helpful teacher. Explain things in a {STYLE} way. Keep your answer to 3-4 sentences.'},\n    {'role': 'user', 'content': TOPIC},\n  ]\n)\nprint(response.choices[0].message.content)\n\n\nChallenge: Ask it something factual and check if the answer is correct. Can you find something it gets wrong or makes up?\n\nHow did changing the style change the response? Which style was most useful — and why?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 1",
@@ -3728,7 +3763,7 @@
     "href": "labs/03/slides.html#recap",
     "title": "Day 3: How Machines Learn",
     "section": "Recap",
-    "text": "Recap\n\nLearned about Pandas\nCreated charts with Matplotlib\nInvestigated data on Ulaanbaatar’s air quality",
+    "text": "Recap\n\nExplored Pandas\nCreated charts with Matplotlib\nLearned about correlation\nInvestigated data on Ulaanbaatar’s air quality",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -3740,7 +3775,43 @@
     "href": "labs/03/slides.html#what-is-scikit-learn",
     "title": "Day 3: How Machines Learn",
     "section": "What is scikit-learn?",
-    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of Pandas — works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression — predicting a number (price, temperature, score)\nClassification — predicting a category (spam/not spam, yes/no)\nClustering — finding hidden groups in data",
+    "text": "What is scikit-learn?\n\nA Python library for machine learning\nBuilt on top of Pandas. It works with DataFrames you already know\nProvides ready-to-use models for:\n\nRegression: Predicting a number (price, temperature, score)\nClassification: Predicting a category (spam/not spam, yes/no)\n…and many more",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#the-history-of-scikit-learn",
+    "href": "labs/03/slides.html#the-history-of-scikit-learn",
+    "title": "Day 3: How Machines Learn",
+    "section": "The History of scikit-learn",
+    "text": "The History of scikit-learn\n\nIn 2007, a student named David Cournapeau built the first version as a summer coding project\nHe made it free and open source so anyone in the world could use it and improve it\nToday, hundreds of volunteers around the world maintain it\nUsed by Spotify, NASA, Booking.com, and thousands of research teams\nYou’re using the same tools as professional data scientists",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#support-for-linear-regression",
+    "href": "labs/03/slides.html#support-for-linear-regression",
+    "title": "Day 3: How Machines Learn",
+    "section": "Support for Linear Regression",
+    "text": "Support for Linear Regression\n\nscikit-learn supports Linear Regression\nIt draws the best-fit straight line through your data points\nOnce the line is drawn, you can predict new values\n“Linear” just means the relationship is a straight line",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/03/slides.html#support-for-linear-regression-1",
+    "href": "labs/03/slides.html#support-for-linear-regression-1",
+    "title": "Day 3: How Machines Learn",
+    "section": "Support for Linear Regression",
+    "text": "Support for Linear Regression",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -3788,31 +3859,7 @@
     "href": "labs/03/slides.html#lets-train-our-model-1",
     "title": "Day 3: How Machines Learn",
     "section": "Let’s Train Our Model!",
-    "text": "Let’s Train Our Model!\n\nWinter temperature is the strongest predictor of livestock mortality\nA prior summer drought increases mortality\nCan a machine learn that relationship?\nAnd then predict mortality for future years?\nThis is called linear regression",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#what-is-linear-regression",
-    "href": "labs/03/slides.html#what-is-linear-regression",
-    "title": "Day 3: How Machines Learn",
-    "section": "What is Linear Regression?",
-    "text": "What is Linear Regression?\n\nIt draws the best-fit straight line through your data points\nOnce the line is drawn, you can predict new values\n“Linear” just means the relationship is a straight line",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/03/slides.html#what-is-linear-regression-1",
-    "href": "labs/03/slides.html#what-is-linear-regression-1",
-    "title": "Day 3: How Machines Learn",
-    "section": "What is Linear Regression?",
-    "text": "What is Linear Regression?",
+    "text": "Let’s Train Our Model!\n\nWinter temperature is the strongest predictor of livestock mortality\nA prior summer drought increases mortality\nCan a machine learn that relationship?\nAnd then predict mortality for future years?\nWe’ll use linear regression for this.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -3836,7 +3883,7 @@
     "href": "labs/03/slides.html#tomorrow",
     "title": "Day 3: How Machines Learn",
     "section": "Tomorrow",
-    "text": "Tomorrow\n\nUse the same approach for hardware\nExplore micro:bit boards\nUse AI to detect waving, putting your hand up, and other commands!",
+    "text": "Tomorrow\n\nUse the same approach, but for hardware\nExplore micro:bit boards\nUse AI to detect waving, putting your hand up, and other commands!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -5871,7 +5918,7 @@
     "href": "labs/03/notebooks/finding_disasters.html#step-1-load-the-data",
     "title": "The Dzud — Finding the Disasters",
     "section": "Step 1: Load the data",
-    "text": "Step 1: Load the data\nWe use httpx to fetch the CSV directly from the web, then read it into pandas via io.StringIO — a way of treating the downloaded text as if it were a file on disk.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv('/notebook_files/mongolia_dzud_1990_2013.csv')\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Years covered: {df['year'].min()} to {df['year'].max()}\")\nprint(f\"Aimags: {df['aimag'].nunique()}\")\ndf.head()",
+    "text": "Step 1: Load the data\nWe use the read_csv method to import the dataset from an attached CSV file.\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\ndf = pd.read_csv('/notebook_files/mongolia_dzud_1990_2013.csv')\n\nprint(f\"Loaded {len(df)} rows and {len(df.columns)} columns\")\nprint(f\"Years covered: {df['year'].min()} to {df['year'].max()}\")\nprint(f\"Aimags: {df['aimag'].nunique()}\")\ndf.head()",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
@@ -5971,34 +6018,125 @@
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html",
-    "href": "labs/03/notebooks/sklearn.html",
+    "objectID": "labs/03/notebooks/sklearn_classification.html",
+    "href": "labs/03/notebooks/sklearn_classification.html",
+    "title": "Classifying with scikit-learn",
+    "section": "",
+    "text": "In this notebook, you’ll train a classification model. This is a machine learning model that predicts a category instead of a number.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#part-1-regression-vs.-classification",
+    "href": "labs/03/notebooks/sklearn_classification.html#part-1-regression-vs.-classification",
+    "title": "Classifying with scikit-learn",
+    "section": "Part 1: Regression vs. Classification",
+    "text": "Part 1: Regression vs. Classification\nSo far you’ve seen regression in scikit-learn. This is predicting a number (like a test score).\nClassification is different: you predict a category.\n\n\n\nTask\nType\nOutput\n\n\n\n\nPredict a student’s test score\nRegression\n84.5\n\n\nPredict whether a student passes\nClassification\nPass / Fail\n\n\nPredict tomorrow’s temperature\nRegression\n22°C\n\n\nPredict whether it will rain\nClassification\nRain / No Rain\n\n\n\nThe good news: sklearn follows the same three steps for classification as it does for regression: 1. Prepare your features (X) and labels (y) 2. Fit — model.fit(X, y) — the model learns from your data 3. Predict — model.predict(...) — apply what it learned to new data",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#part-2-our-dataset",
+    "href": "labs/03/notebooks/sklearn_classification.html#part-2-our-dataset",
+    "title": "Classifying with scikit-learn",
+    "section": "Part 2: Our Dataset",
+    "text": "Part 2: Our Dataset\nWe’ll ask the question: can a machine predict whether a student passes based on how much they studied AND how much they slept?\nThis time we have two features — hours studied and hours of sleep — and a label of Pass (1) or Fail (0):\n\nimport pandas as pd\n\ndata = {\n  'hours_studied': [2, 3, 1, 7, 5, 6, 8, 9, 4, 7, 3, 6, 8, 2, 5, 4, 9, 1, 7, 6],\n  'hours_slept':   [4, 5, 8, 4, 7, 8, 6, 7, 6, 7, 3, 5, 8, 7, 9, 4, 5, 5, 9, 6],\n  'passed':        [0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1]\n}\n\ndf = pd.DataFrame(data)\ndf['result'] = df['passed'].map({1: 'Pass', 0: 'Fail'})\ndf",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#features-and-labels",
+    "href": "labs/03/notebooks/sklearn_classification.html#features-and-labels",
+    "title": "Classifying with scikit-learn",
+    "section": "Features and Labels",
+    "text": "Features and Labels\nWe split our data into: - X — the features (what we know): hours studied and hours slept - y — the label (what we want to predict): pass or fail\nWith two features, our model can look at both study time and sleep together to make a smarter prediction:\n\nX = df[['hours_studied', 'hours_slept']]  # two features\ny = df['passed']                           # 0 = Fail, 1 = Pass\n\nprint('X — our features:')\nprint(X.head())\nprint('\\ny — our labels (0=Fail, 1=Pass):')\nprint(y.values)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#part-3-training-a-model",
+    "href": "labs/03/notebooks/sklearn_classification.html#part-3-training-a-model",
+    "title": "Classifying with scikit-learn",
+    "section": "Part 3: Training a Model",
+    "text": "Part 3: Training a Model\nWe’ll use K-Nearest Neighbors (KNN). This is one of the most intuitive classifiers.\nThe idea is simple: find the k students in your training data who are most similar to the new student, then vote on the outcome.\nWith n_neighbors=3, the model looks at the 3 closest students and takes a majority vote — if 2 out of 3 passed, it predicts Pass:\n\nfrom sklearn.neighbors import KNeighborsClassifier\n\nmodel = KNeighborsClassifier(n_neighbors=3)\nmodel.fit(X, y)\n\n# Check how well the model does on the training data\naccuracy = model.score(X, y)\nprint('Model trained!')\nprint(f'Training accuracy: {accuracy * 100:.1f}%  (how often it gets the right answer)')",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#part-4-making-predictions",
+    "href": "labs/03/notebooks/sklearn_classification.html#part-4-making-predictions",
+    "title": "Classifying with scikit-learn",
+    "section": "Part 4: Making Predictions",
+    "text": "Part 4: Making Predictions\nNow we can ask the model to predict whether a new student will pass or fail.\nUse the sliders to set the student’s hours studied and hours slept, then see what the model predicts:\n\nHOURS_STUDIED = 5 #@param {type:\"slider\", min:1, max:10, step:1}\nHOURS_SLEPT   = 7 #@param {type:\"slider\", min:1, max:10, step:1}\n\nnew_student = pd.DataFrame({'hours_studied': [HOURS_STUDIED], 'hours_slept': [HOURS_SLEPT]})\nprediction = model.predict(new_student)[0]\nresult = 'Pass ✓' if prediction == 1 else 'Fail ✗'\n\nprint(f'Student studied for {HOURS_STUDIED} hours and slept for {HOURS_SLEPT} hours.')\nprint(f'Prediction: {result}')",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#part-5-seeing-the-data",
+    "href": "labs/03/notebooks/sklearn_classification.html#part-5-seeing-the-data",
+    "title": "Classifying with scikit-learn",
+    "section": "Part 5: Seeing the Data",
+    "text": "Part 5: Seeing the Data\nWith two features we can plot each student as a point on a chart — hours studied on one axis, hours slept on the other.\nGreen dots are students who passed. Red dots are students who failed. The star shows where your predicted student falls:\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfig, ax = plt.subplots(figsize=(9, 6))\n\n# Draw decision regions using a mesh\nx_min, x_max = 0, 11\ny_min, y_max = 0, 11\nxx, yy = np.meshgrid(np.linspace(x_min, x_max, 200), np.linspace(y_min, y_max, 200))\nZ = model.predict(pd.DataFrame({'hours_studied': xx.ravel(), 'hours_slept': yy.ravel()}))\nZ = Z.reshape(xx.shape)\nax.contourf(xx, yy, Z, alpha=0.15, levels=[-0.5, 0.5, 1.5], colors=['#e57373', '#81c784'])\nax.contour(xx, yy, Z, levels=[0.5], colors=['gray'], linewidths=1, linestyles='--')\n\n# Plot the training data\npassed = df[df['passed'] == 1]\nfailed = df[df['passed'] == 0]\nax.scatter(passed['hours_studied'], passed['hours_slept'], color='#2e7d32', s=80, zorder=5, label='Pass')\nax.scatter(failed['hours_studied'], failed['hours_slept'], color='#c62828', s=80, zorder=5, label='Fail')\n\n# Mark the new student\nstar_color = '#2e7d32' if prediction == 1 else '#c62828'\nax.scatter(HOURS_STUDIED, HOURS_SLEPT, color=star_color, s=250, marker='*', zorder=6, label='Your student')\n\nax.set_xlabel('Hours Studied')\nax.set_ylabel('Hours Slept')\nax.set_title('Pass / Fail by Hours Studied and Hours Slept')\nax.set_xlim(x_min, x_max)\nax.set_ylim(y_min, y_max)\nax.legend()\nax.grid(True, linestyle='--', alpha=0.4)\nplt.tight_layout()\nplt.show()\n\nLook at the decision boundary (the dashed line). Are there any students whose actual result surprises you given where they fall on the chart? What does this tell you about what it means when a machine learning model is wrong?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_classification.html#check-your-understanding",
+    "href": "labs/03/notebooks/sklearn_classification.html#check-your-understanding",
+    "title": "Classifying with scikit-learn",
+    "section": "Check Your Understanding",
+    "text": "Check Your Understanding",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 3",
+      "Notebooks",
+      "Using Scikit-learn (Classification)"
+    ]
+  },
+  {
+    "objectID": "labs/03/notebooks/sklearn_regression.html",
+    "href": "labs/03/notebooks/sklearn_regression.html",
     "title": "Predicting with scikit-learn",
     "section": "",
-    "text": "In this notebook, you’ll train your first machine learning model using scikit-learn — the most popular Python library for machine learning.",
+    "text": "In this notebook, you’ll train your first machine learning model using scikit-learn, the most popular Python library for machine learning.",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#what-youll-learn",
-    "href": "labs/03/notebooks/sklearn.html#what-youll-learn",
-    "title": "Predicting with scikit-learn",
-    "section": "What You’ll Learn",
-    "text": "What You’ll Learn\n\nWhat scikit-learn is and what it’s used for\nThe three-step sklearn workflow: prepare → fit → predict\nHow to train a linear regression model on a simple dataset\nHow to visualize your model’s predictions",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "Using Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/sklearn.html#part-1-what-is-scikit-learn",
-    "href": "labs/03/notebooks/sklearn.html#part-1-what-is-scikit-learn",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#part-1-what-is-scikit-learn",
+    "href": "labs/03/notebooks/sklearn_regression.html#part-1-what-is-scikit-learn",
     "title": "Predicting with scikit-learn",
     "section": "Part 1: What is scikit-learn?",
     "text": "Part 1: What is scikit-learn?\nscikit-learn (imported as sklearn) is a Python library that gives you ready-to-use machine learning models.\nIt works alongside the tools you already know: Pandas organizes your data, Matplotlib visualizes it, and sklearn learns from it.\nEvery sklearn model follows the same three steps: 1. Prepare your data into features (X) and labels (y) 2. Fit — model.fit(X, y) — the model finds the pattern in your data 3. Predict — model.predict(...) — use the learned pattern on new data",
@@ -6006,25 +6144,25 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#part-2-our-dataset",
-    "href": "labs/03/notebooks/sklearn.html#part-2-our-dataset",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#part-2-our-dataset",
+    "href": "labs/03/notebooks/sklearn_regression.html#part-2-our-dataset",
     "title": "Predicting with scikit-learn",
     "section": "Part 2: Our Dataset",
-    "text": "Part 2: Our Dataset\nWe’ll start with a simple question: can a machine learn the relationship between hours spent studying and test scores?\nHere’s data from a group of students:\n\nimport pandas as pd\n\nhours  = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nscores = [45, 52, 58, 63, 70, 74, 80, 85, 88, 94]\n\ndf = pd.DataFrame({'hours_studied': hours, 'test_score': scores})\ndf",
+    "text": "Part 2: Our Dataset\nWe’ll start with the same sample dataset from yesterday and ask the question: can a machine learn the relationship between hours spent studying and test scores?\nHere’s data from a group of students:\n\nimport pandas as pd\n\ndata = {\n  \"hours_studied\": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],\n  \"test_score\": [45, 52, 58, 63, 70, 74, 80, 85, 88, 94]\n}\n\ndf = pd.DataFrame(data)\ndf",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#features-and-labels",
-    "href": "labs/03/notebooks/sklearn.html#features-and-labels",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#features-and-labels",
+    "href": "labs/03/notebooks/sklearn_regression.html#features-and-labels",
     "title": "Predicting with scikit-learn",
     "section": "Features and Labels",
     "text": "Features and Labels\nBefore training, we split our data into two parts: - X — the feature (what we know): hours studied - y — the label (what we want to predict): test score\nWe can pull these directly from our DataFrame. Notice we use double brackets df[['hours_studied']] for X — that keeps it as a table (one column), which is what sklearn expects:\n\nX = df[['hours_studied']]   # double brackets → keeps it as a table\ny = df['test_score']         # single brackets → a simple list of values\n\nprint(\"X — our feature (hours studied):\")\nprint(X.head())\nprint(\"\\ny — our label (test scores):\")\nprint(y.values)",
@@ -6032,12 +6170,12 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#part-3-training-a-model",
-    "href": "labs/03/notebooks/sklearn.html#part-3-training-a-model",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#part-3-training-a-model",
+    "href": "labs/03/notebooks/sklearn_regression.html#part-3-training-a-model",
     "title": "Predicting with scikit-learn",
     "section": "Part 3: Training a Model",
     "text": "Part 3: Training a Model\nWe’ll use Linear Regression — a model that finds the best straight line through your data points.\nmodel.fit(X, y) is where the learning happens. The model figures out the slope and position of the line that best matches your data:\n\nfrom sklearn.linear_model import LinearRegression\n\nmodel = LinearRegression()\nmodel.fit(X, y)\n\nprint(\"Model trained!\")\nprint(f\"  Slope:     {model.coef_[0]:.2f}  (score increases by this much per hour)\")\nprint(f\"  Intercept: {model.intercept_:.2f}  (predicted score at 0 hours)\")",
@@ -6045,25 +6183,25 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#part-4-making-predictions",
-    "href": "labs/03/notebooks/sklearn.html#part-4-making-predictions",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#part-4-making-predictions",
+    "href": "labs/03/notebooks/sklearn_regression.html#part-4-making-predictions",
     "title": "Predicting with scikit-learn",
     "section": "Part 4: Making Predictions",
-    "text": "Part 4: Making Predictions\nNow that the model has learned the pattern, we can ask it to predict scores for hours it has never seen.\nmodel.predict() takes a feature value and returns its best guess:\n\ntest_hours = pd.DataFrame({'hours_studied': [3, 6, 11]})\npredictions = model.predict(test_hours)\n\nfor h, p in zip([3, 6, 11], predictions):\n  print(f\"  {h:2d} hours studied  →  predicted score: {p:.1f}\")",
+    "text": "Part 4: Making Predictions\nNow that the model has learned the pattern, we can ask it to predict scores for hours it has never seen.\nmodel.predict() takes a feature value and returns its best guess:\n\nHOURS_STUDIED = 1 #@param {type:\"slider\", min:1, max:15, step:1}\n\n# Create a DataFrame\nhours_studied = pd.DataFrame({'hours_studied': [HOURS_STUDIED]})\n\n# Run the model\nprediction = model.predict(hours_studied)\n\n# Display the output\nprint(f\"You studied for {HOURS_STUDIED} hours.\")\nprint(f\"I predict your score will be {prediction[0]:.1f}\")",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#part-5-seeing-the-models-line",
-    "href": "labs/03/notebooks/sklearn.html#part-5-seeing-the-models-line",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#part-5-seeing-the-models-line",
+    "href": "labs/03/notebooks/sklearn_regression.html#part-5-seeing-the-models-line",
     "title": "Predicting with scikit-learn",
     "section": "Part 5: Seeing the Model’s Line",
     "text": "Part 5: Seeing the Model’s Line\nThe best way to understand a linear regression model is to see the line it drew.\nThe blue dots are the real data points. The red line is what the model learned:\n\nimport matplotlib.pyplot as plt\n\nx_vals = list(range(0, 13))\nx_line = pd.DataFrame({'hours_studied': x_vals})\ny_line = model.predict(x_line)\n\nplt.figure(figsize=(9, 5))\nplt.scatter(df['hours_studied'], df['test_score'], color='steelblue', s=80, zorder=5, label='Actual scores')\nplt.plot(x_vals, y_line, color='crimson', linewidth=2, label='Model prediction')\nplt.title('Hours Studied vs Test Score')\nplt.xlabel('Hours Studied')\nplt.ylabel('Test Score')\nplt.legend()\nplt.grid(True, linestyle='--', alpha=0.5)\nplt.show()\n\nThe model predicted a score above 100 for 11 hours. Does that seem realistic? What are the limits of using a straight line to model real-world data like this?",
@@ -6071,25 +6209,12 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
-    "objectID": "labs/03/notebooks/sklearn.html#predict-your-score",
-    "href": "labs/03/notebooks/sklearn.html#predict-your-score",
-    "title": "Predicting with scikit-learn",
-    "section": "Predict Your Score",
-    "text": "Predict Your Score\nUse the slider to choose how many hours you studied, and see what the model predicts:\n\nHOURS_STUDIED = 5 #@param {type:\"slider\", min:1, max:15, step:1}\n\nprediction = model.predict(pd.DataFrame({'hours_studied': [HOURS_STUDIED]}))[0]\nprint(f\"Hours studied: {HOURS_STUDIED}\")\nprint(f\"Predicted score: {prediction:.1f}\")",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 3",
-      "Notebooks",
-      "Using Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "labs/03/notebooks/sklearn.html#check-your-understanding",
-    "href": "labs/03/notebooks/sklearn.html#check-your-understanding",
+    "objectID": "labs/03/notebooks/sklearn_regression.html#check-your-understanding",
+    "href": "labs/03/notebooks/sklearn_regression.html#check-your-understanding",
     "title": "Predicting with scikit-learn",
     "section": "Check Your Understanding",
     "text": "Check Your Understanding",
@@ -6097,7 +6222,7 @@
       "Future Intelligence Lab",
       "Day 3",
       "Notebooks",
-      "Using Scikit-learn"
+      "Using Scikit-learn (Regression)"
     ]
   },
   {
