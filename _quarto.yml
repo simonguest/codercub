@@ -74,13 +74,17 @@ website:
               target: blank
             - section: "Notebooks"
               contents:
-                - text: "Using Scikit-learn"
-                  href: labs/03/notebooks/sklearn.ipynb
+                - text: "Using Scikit-learn (Regression)"
+                  href: labs/03/notebooks/sklearn_regression.ipynb
+                - text: "Using Scikit-learn (Classification)"
+                  href: labs/03/notebooks/sklearn_classification.ipynb
+                - text: "World Cup Challenge"
+                  href: labs/labs/03/notebooks/sklearn_practice.ipynb
                 - text: "Finding Disasters"
                   href: labs/03/notebooks/finding_disasters.ipynb
                 - text: "Finding the Cause"
                   href: labs/03/notebooks/finding_cause.ipynb
-                - text: "Linear Regression"
+                - text: "Dzud Linear Regression"
                   href: labs/03/notebooks/regression.ipynb
         - section: "Day 4"
           contents:

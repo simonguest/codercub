@@ -16,8 +16,9 @@ format:
 
 ## Recap
 
-- Learned about Pandas
+- Explored Pandas
 - Created charts with Matplotlib
+- Learned about correlation
 - Investigated data on Ulaanbaatar's air quality
 
 # But, we did all the work ourselves!
@@ -29,11 +30,32 @@ format:
 ## What is scikit-learn?
 
 - A Python library for **machine learning**
-- Built on top of Pandas — works with DataFrames you already know
+- Built on top of Pandas. It works with DataFrames you already know
 - Provides ready-to-use models for:
-  - **Regression** — predicting a number (price, temperature, score)
-  - **Classification** — predicting a category (spam/not spam, yes/no)
-  - **Clustering** — finding hidden groups in data
+  - **Regression**: Predicting a number (price, temperature, score)
+  - **Classification**: Predicting a category (spam/not spam, yes/no)
+  - ...and many more
+
+## The History of scikit-learn
+
+- In **2007**, a student named David Cournapeau built the first version as a summer coding project
+- He made it **free and open source** so anyone in the world could use it and improve it
+- Today, hundreds of volunteers around the world maintain it
+- Used by **Spotify**, **NASA**, **Booking.com**, and thousands of research teams
+- You're using the same tools as professional data scientists
+
+## Support for Linear Regression
+
+- scikit-learn supports Linear Regression
+- It draws the **best-fit straight line** through your data points
+- Once the line is drawn, you can **predict new values**
+- "Linear" just means the relationship is a straight line
+
+## Support for Linear Regression
+
+::: {style="text-align:center"}
+![](images/linear_regression.jpg){style="width:80%; margin:0"}
+:::
 
 ## Using scikit-learn
 
@@ -45,17 +67,21 @@ format:
 
 # Demo
 
-Open and run the "Using Scikit-learn" Notebook (sklearn.ipynb)
+Open and run the two "Using Scikit-learn" notebooks
 
 # Hands-on
 
-Open and run the "Using Scikit-learn" Notebook (sklearn.ipynb)
+Open and run the two "Using Scikit-learn" notebooks
+
+# Hands-on
+
+Open and run the "World Cup Challenge" notebook
 
 # Reflection
 
 You created your first AI model!
 
-# Let's use some real world data!
+# Let's explore some real world data!
 
 ## Dzud
 
@@ -103,19 +129,7 @@ Open and run the "Finding The Cause" Notebook (finding_cause.ipynb)
 - A prior summer drought increases mortality
 - Can a machine learn that relationship?
 - And then predict mortality for future years?
-- This is called **linear regression**
-
-## What is Linear Regression?
-
-- It draws the **best-fit straight line** through your data points
-- Once the line is drawn, you can **predict new values**
-- "Linear" just means the relationship is a straight line
-
-## What is Linear Regression?
-
-::: {style="text-align:center"}
-![](images/linear_regression.jpg){style="width:80%; margin:0"}
-:::
+- We'll use linear regression for this.
 
 ## Training and Test Datasets
 
@@ -126,18 +140,18 @@ Open and run the "Finding The Cause" Notebook (finding_cause.ipynb)
 
 # Demo
 
-Open and run the "Linear Regression" Notebook (regression.ipynb)
+Open and run the "Dzud Linear Regression" Notebook
 
 # Hands-On
 
-Open and run the "Linear Regression" Notebook (regression.ipynb)
+Open and run the "Dzud Linear Regression" Notebook 
 
 # Reflection
 
-Congratulations! You trained your first AI model!
+Congratulations! You've trained a real AI model!
 
 ## Tomorrow
 
-- Use the same approach for hardware
+- Use the same approach, but for hardware
 - Explore micro:bit boards
 - Use AI to detect waving, putting your hand up, and other commands!
