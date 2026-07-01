@@ -2440,7 +2440,7 @@
     "href": "labs/04/slides.html#recap",
     "title": "Day 4: AI in the Physical World",
     "section": "Recap",
-    "text": "Recap\n\nUsed scikit-learn, Python’s machine learning library\nLinear Regression - identify patterns through data\nBuilt an AI model using data about the Dzud",
+    "text": "Recap\n\nUsed scikit-learn, Python’s machine learning library\nExplored Linear Regression and KNN Classification Models\nApplied them to a “World Cup Challenge”\nLearned about data and models that could predict a Dzud",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
