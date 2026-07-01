@@ -79,7 +79,7 @@ website:
                 - text: "Using Scikit-learn (Classification)"
                   href: labs/03/notebooks/sklearn_classification.ipynb
                 - text: "World Cup Challenge"
-                  href: labs/labs/03/notebooks/sklearn_practice.ipynb
+                  href: labs/03/notebooks/sklearn_practice.ipynb
                 - text: "Finding Disasters"
                   href: labs/03/notebooks/finding_disasters.ipynb
                 - text: "Finding the Cause"
