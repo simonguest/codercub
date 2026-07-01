@@ -17,8 +17,9 @@ format:
 ## Recap
 
 - Used scikit-learn, Python's machine learning library
-- Linear Regression - identify patterns through data
-- Built an AI model using data about the Dzud
+- Explored Linear Regression and KNN Classification Models
+- Applied them to a "World Cup Challenge"
+- Learned about data and models that could predict a Dzud
 
 ## AI in the Physical World
 
