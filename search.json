@@ -2584,7 +2584,7 @@
     "href": "labs/04/slides.html#hands-on",
     "title": "Day 4: AI in the Physical World",
     "section": "Hands-on",
-    "text": "Hands-on\n\nFind someone to work with! (Pairs)\nPickup two micro:bits (one with and one without wearable)\n\nIt doesn’t matter who gets which one to start\n\nWait for instructions! (We are going to do this together)",
+    "text": "Hands-on\n\nFind someone to work with! (Pairs)\nPickup two micro:bits (one with and one without wearable)\n\nIt doesn’t matter who gets which one to start\n\nGet to the “graph” stage",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -2652,11 +2652,71 @@
     ]
   },
   {
+    "objectID": "labs/04/slides.html#our-plan-5",
+    "href": "labs/04/slides.html#our-plan-5",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#our-plan-6",
+    "href": "labs/04/slides.html#our-plan-6",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#our-plan-7",
+    "href": "labs/04/slides.html#our-plan-7",
+    "title": "Day 4: AI in the Physical World",
+    "section": "Our Plan",
+    "text": "Our Plan\n\nWork with the same person as yesterday\nPick up a wearable micro:bit and a radio micro:bit\nUse the same laptop as you did yesterday\n\n(Your actions will saved on this machine)\n\nGo to https://createai.microbit.org\nWait for instructions!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#on-start-functions",
+    "href": "labs/04/slides.html#on-start-functions",
+    "title": "Day 4: AI in the Physical World",
+    "section": "On Start Functions",
+    "text": "On Start Functions\ndef on_on_start():\n    basic.show_icon(IconNames.HOUSE)\nml.on_start(ml.event.waving, on_on_start)\n\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\nml.on_start(ml.event.writing, on_on_start2)\n\n# ...and so on for other actions",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/04/slides.html#on-start-functions-1",
+    "href": "labs/04/slides.html#on-start-functions-1",
+    "title": "Day 4: AI in the Physical World",
+    "section": "On Start Functions",
+    "text": "On Start Functions\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\n    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)\nml.on_start(ml.event.writing, on_on_start2)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 4",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/04/slides.html#tomorrow",
     "href": "labs/04/slides.html#tomorrow",
     "title": "Day 4: AI in the Physical World",
     "section": "Tomorrow",
-    "text": "Tomorrow\n\nWrite Python code that uses our AI models in a mini-app\nFor example, step counter or a fitness tracker\nMini-project, show and share",
+    "text": "Tomorrow\n\nExplore more functions to run on the micro:bit\nCreate a mini-project\n\nFor example, exercise app, step counter, or a fitness tracker\n\nShow and share",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 4",
@@ -3925,7 +3985,7 @@
     "href": "labs/05/slides.html#recap",
     "title": "Day 5: AI in the Physical World",
     "section": "Recap",
-    "text": "Recap\n\nUsed the micro:bit and Create AI\nTrained and tested a series of actions\nLearned about the importance of diverse data",
+    "text": "Recap\n\nLearned about the micro:bit!\nConnected, recorded data, trained a model, and tested a series of actions\nLearned about the importance of diverse data\nUsed MakeCode to play audio on an ML action\nDownloaded the project to the micro:bit",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -3933,11 +3993,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#our-plan",
-    "href": "labs/05/slides.html#our-plan",
+    "objectID": "labs/05/slides.html#project-time-1",
+    "href": "labs/05/slides.html#project-time-1",
     "title": "Day 5: AI in the Physical World",
-    "section": "Our Plan",
-    "text": "Our Plan",
+    "section": "Project Time!",
+    "text": "Project Time!\n\nWork in pairs again (same or different)\nChallenge: Design one of the following mini-apps\nAn hour to work on it\n30-45 minutes to show it to the rest of the class",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -3945,11 +4005,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#our-plan-1",
-    "href": "labs/05/slides.html#our-plan-1",
+    "objectID": "labs/05/slides.html#option-1-microbit-fitness-tracker",
+    "href": "labs/05/slides.html#option-1-microbit-fitness-tracker",
     "title": "Day 5: AI in the Physical World",
-    "section": "Our Plan",
-    "text": "Our Plan",
+    "section": "Option 1: micro:bit Fitness Tracker",
+    "text": "Option 1: micro:bit Fitness Tracker\n\nTrain the micro:bit to detect walking, jumping jacks, push ups, and other exercises\nRecord the movements as variables\nDisplay “LED rewards” when goals are met (e.g., 10 jumping jacks)\nUse the buttons to reset the tracker",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -3957,11 +4017,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#our-plan-2",
-    "href": "labs/05/slides.html#our-plan-2",
+    "objectID": "labs/05/slides.html#option-2-virtual-microbit-piano",
+    "href": "labs/05/slides.html#option-2-virtual-microbit-piano",
     "title": "Day 5: AI in the Physical World",
-    "section": "Our Plan",
-    "text": "Our Plan\n\nWork with the same person as yesterday\nPick up a wearable micro:bit and a radio micro:bit\nUse the same laptop as you did yesterday\n\n(Your actions will saved on this machine)\n\nGo to https://createai.microbit.org\nWait for instructions!",
+    "section": "Option 2: Virtual micro:bit Piano",
+    "text": "Option 2: Virtual micro:bit Piano\n\nTrain the micro:bit to detect seven different movements - different hand or body movements\nFor each unique movement, play a note (A, B, C, D, E, F, or G) and display that note on the LED\nCan you make this accurate enough to play a tune?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -3969,11 +4029,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#on-start-functions",
-    "href": "labs/05/slides.html#on-start-functions",
+    "objectID": "labs/05/slides.html#option-3-ai-microbit-remote-control-lamp",
+    "href": "labs/05/slides.html#option-3-ai-microbit-remote-control-lamp",
     "title": "Day 5: AI in the Physical World",
-    "section": "On Start Functions",
-    "text": "On Start Functions\ndef on_on_start():\n    basic.show_icon(IconNames.HOUSE)\nml.on_start(ml.event.waving, on_on_start)\n\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\nml.on_start(ml.event.writing, on_on_start2)\n\n# ...and so on for other actions",
+    "section": "Option 3: AI micro:bit remote control lamp",
+    "text": "Option 3: AI micro:bit remote control lamp\n\nTrain one micro:bit to detect hand movements such as hand up/down/circles/clapping\nSend the actions from the wearable micro:bit via the radio to a second powered micro:bit\nWhen the second micro:bit receives messages, it turns on/off the lamp (LEDs) and adjusts the brightness\n(This is a more advanced project)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -3981,11 +4041,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#on-start-functions-1",
-    "href": "labs/05/slides.html#on-start-functions-1",
+    "objectID": "labs/05/slides.html#or-your-own-idea",
+    "href": "labs/05/slides.html#or-your-own-idea",
     "title": "Day 5: AI in the Physical World",
-    "section": "On Start Functions",
-    "text": "On Start Functions\ndef on_on_start2():\n    basic.show_icon(IconNames.DUCK)\n    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)\nml.on_start(ml.event.writing, on_on_start2)",
+    "section": "Or Your Own Idea!",
+    "text": "Or Your Own Idea!\n\nYou can also create your own project, if you’d prefer\nRules:\n\nMust train the micro:bit using a minimum of three movements\nNeed to use a combination of three different features - e.g., LEDs, sound, button\nAnd at least one variable in Python!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
@@ -3993,11 +4053,11 @@
     ]
   },
   {
-    "objectID": "labs/05/slides.html#what-will-you-create",
-    "href": "labs/05/slides.html#what-will-you-create",
+    "objectID": "labs/05/slides.html#lets-go",
+    "href": "labs/05/slides.html#lets-go",
     "title": "Day 5: AI in the Physical World",
-    "section": "What Will You Create?",
-    "text": "What Will You Create?\n\nFitness tracker\n\nCount the number of arm raises and display on the LED\n\nClapper\n\nClap to switch on / off the LEDs or play a sound\n\nSafe driving app\n\nDetect between holding the steering wheel and texting\n\nOr your own idea!",
+    "section": "Let’s Go!!!",
+    "text": "Let’s Go!!!\n\nGet back into pairs (same or different)\nChoose which option to make\n\n(Open the slides again on your own machine to see each option again)\n\nWork on your project until 10.15am (1 hour)\nProject presentations\nIf you get stuck, ask for help (and sample code!)",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 5",
