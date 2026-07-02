@@ -16,91 +16,56 @@ format:
 
 ## Recap
 
-- Used the micro:bit and Create AI
-- Trained and tested a series of actions
+- Learned about the micro:bit!
+- Connected, recorded data, trained a model, and tested a series of actions
 - Learned about the importance of diverse data
-
-## Our Plan
-
-![](images/step_code.png){fig-align="center"}
-
-## Our Plan
-
-![](images/step_use.png){fig-align="center"}
-
-## Our Plan
-
-- Work with the same person as yesterday
-- Pick up a wearable micro:bit and a radio micro:bit
-- Use the same laptop as you did yesterday
-  - (Your actions will saved on this machine)
-- Go to [https://createai.microbit.org](https://createai.microbit.org)
-- Wait for instructions!
-
-# Demo
-
-Connect, Test Actions, and Edit in MakeCode
-
-<!-- - You'll have to connect again. Remember to use the micro:bit radio option.
-- And the first micro:bit to connect is the wearable
-- After connecting, a quick test to make sure that the actions are still being recognized
-- (Pause for the class to catchup) -->
-
-## On Start Functions
-
-```
-def on_on_start():
-    basic.show_icon(IconNames.HOUSE)
-ml.on_start(ml.event.waving, on_on_start)
-
-def on_on_start2():
-    basic.show_icon(IconNames.DUCK)
-ml.on_start(ml.event.writing, on_on_start2)
-
-# ...and so on for other actions
-```
-
-## On Start Functions
-
-```
-def on_on_start2():
-    basic.show_icon(IconNames.DUCK)
-    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)
-ml.on_start(ml.event.writing, on_on_start2)
-```
-
-# Hands-on
-
-Connect, Test Actions, and Edit in MakeCode
-
-# Demo
-
-Downloading to your micro:bit
-
-<!-- - When you want to test it on your micro:bit...
-- Click on the download button
-- Follow the prompts to disconnect the radio micro:bit
-- Plug in the wearable micro:bit. You can keep the battery connected.
-- Wait for the model to download
-- Disconnect the wearable from the USB
-- Test your code! -->
-
-# Hands-on
-
-Downloading to your micro:bit
+- Used MakeCode to play audio on an ML action
+- Downloaded the project to the micro:bit
 
 # Project Time!
 
-## What Will You Create?
+## Project Time!
 
-- Fitness tracker
-  - Count the number of arm raises and display on the LED
-- Clapper
-  - Clap to switch on / off the LEDs or play a sound
-- Safe driving app
-  - Detect between holding the steering wheel and texting
-- Or your own idea!
+- Work in pairs again (same or different)
+- Challenge: Design one of the following mini-apps
+- An hour to work on it
+- 30-45 minutes to show it to the rest of the class
 
-# Reflect and Share
+# What Will You Create?
 
-What did you build? How does it work?
+## Option 1: micro:bit Fitness Tracker
+
+- Train the micro:bit to detect walking, jumping jacks, push ups, and other exercises
+- Record the movements as variables
+- Display "LED rewards" when goals are met (e.g., 10 jumping jacks)
+- Use the buttons to reset the tracker
+
+## Option 2: Virtual micro:bit Piano
+
+- Train the micro:bit to detect seven different movements - different hand or body movements
+- For each unique movement, play a note (A, B, C, D, E, F, or G) and display that note on the LED
+- Can you make this accurate enough to play a tune?
+
+## Option 3: AI micro:bit remote control lamp
+
+- Train one micro:bit to detect hand movements such as hand up/down/circles/clapping
+- Send the actions from the wearable micro:bit via the radio to a second powered micro:bit
+- When the second micro:bit receives messages, it turns on/off the lamp (LEDs) and adjusts the brightness
+- (This is a more advanced project)
+
+## Or Your Own Idea!
+
+- You can also create your own project, if you'd prefer
+- Rules:
+  - Must train the micro:bit using a minimum of three movements
+  - Need to use a combination of three different features - e.g., LEDs, sound, button
+  - And at least one variable in Python!
+
+## Let's Go!!!
+
+- Get back into pairs (same or different)
+- Choose which option to make
+  - (Open the slides again on your own machine to see each option again)
+- Work on your project until 10.15am (1 hour)
+- Project presentations
+- If you get stuck, ask for help (and sample code!)

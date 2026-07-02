@@ -76,12 +76,16 @@ format:
 
 ![](images/step_test_model.png){fig-align="center"}
 
+# Demo
+
+Connecting the micro:bit devices
+
 ## Hands-on
 
 - Find someone to work with! (Pairs)
 - Pickup two micro:bits (one with and one without wearable)
   - It doesn't matter who gets which one to start
-- Wait for instructions! (We are going to do this together)
+- Get to the "graph" stage
 
 # Walkthrough
 
@@ -174,10 +178,80 @@ What did you learn today? Was using AI easier or harder than you thought?
 - Leave your wearable micro:bit connected to the battery pack
   - I will disconnect this for you. (These can be easy to break)
 
+## Our Plan
+
+![](images/step_code.png){fig-align="center"}
+
+## Our Plan
+
+![](images/step_use.png){fig-align="center"}
+
+## Our Plan
+
+- Work with the same person as yesterday
+- Pick up a wearable micro:bit and a radio micro:bit
+- Use the same laptop as you did yesterday
+  - (Your actions will saved on this machine)
+- Go to [https://createai.microbit.org](https://createai.microbit.org)
+- Wait for instructions!
+
+# Demo
+
+Connect, Test Actions, and Edit in MakeCode
+
+<!-- - You'll have to connect again. Remember to use the micro:bit radio option.
+- And the first micro:bit to connect is the wearable
+- After connecting, a quick test to make sure that the actions are still being recognized
+- (Pause for the class to catchup) -->
+
+## On Start Functions
+
+```
+def on_on_start():
+    basic.show_icon(IconNames.HOUSE)
+ml.on_start(ml.event.waving, on_on_start)
+
+def on_on_start2():
+    basic.show_icon(IconNames.DUCK)
+ml.on_start(ml.event.writing, on_on_start2)
+
+# ...and so on for other actions
+```
+
+## On Start Functions
+
+```
+def on_on_start2():
+    basic.show_icon(IconNames.DUCK)
+    music.play(music.builtin_playable_sound_effect(soundExpression.slide), music.PlaybackMode.UNTIL_DONE)
+ml.on_start(ml.event.writing, on_on_start2)
+```
+
+# Hands-on
+
+Connect, Test Actions, and Edit in MakeCode
+
+# Demo
+
+Downloading to your micro:bit
+
+<!-- - When you want to test it on your micro:bit...
+- Click on the download button
+- Follow the prompts to disconnect the radio micro:bit
+- Plug in the wearable micro:bit. You can keep the battery connected.
+- Wait for the model to download
+- Disconnect the wearable from the USB
+- Test your code! -->
+
+# Hands-on
+
+Downloading to your micro:bit
+
 ## Tomorrow
 
-- Write Python code that uses our AI models in a mini-app
-- For example, step counter or a fitness tracker
-- Mini-project, show and share
+- Explore more functions to run on the micro:bit
+- Create a mini-project
+  - For example, exercise app, step counter, or a fitness tracker
+- Show and share
 
 
