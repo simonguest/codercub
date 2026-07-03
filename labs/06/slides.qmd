@@ -14,9 +14,18 @@ format:
 
 ---
 
+# Introducing the Neural Network
+
+## Introducing the Neural Network
+
+- A computing system **inspired by the human brain**
+- **1943**: Researchers publish the first mathematical model of a neuron
+- **1958**: Frank Rosenblatt builds the **Perceptron**, the first trainable neural network
+- **2012**: **AlexNet** wins the ImageNet competition, kicking off the deep learning boom
+- **Today**: Neural networks power vision, language, and much more
+
 ## What Is a Neural Network?
 
-- A computing system loosely **inspired by the human brain**
 - Made up of layers of connected **nodes** (neurons)
   - **Input layer**: receives raw data (numbers, pixels, text)
   - **Hidden layers**: find patterns in that data
@@ -40,6 +49,26 @@ Try out the neural network yourself
 
 Did the neural network produce the results you expected?
 
+# scikit-learn vs. Neural Networks
+
+## scikit-learn vs. Neural Networks
+
+- Back on Day 3, your scikit-learn model predicted **Pass / Fail** from two features: `hours_studied` and `hours_slept`
+- Today's neural network just answered the **exact same question**, but works very differently under the hood
+
+## scikit-learn vs. Neural Networks
+
+- **scikit-learn model**: follows a fixed, human-chosen algorithm (e.g. "look at the most similar students in the data"). It tunes itself to your data, but the strategy itself doesn't change
+- **Neural network**: has no built-in strategy. It *invents its own rules* by adjusting weights across layers until predictions fit the data
+- Neural networks can combine features in ways no fixed formula could be written for in advance
+
+## scikit-learn vs. Neural Networks
+
+- With just 2 features: hours studied, hours slept — both approaches work great
+- But what about **1 million features**, one for every pixel in a photo?
+- A fixed algorithm can't scale to that; a neural network's layers can learn to combine pixels into edges, edges into shapes, and shapes into objects
+- That's exactly how computer vision works!
+
 # Computer Vision is Everywhere
 
 ## Computer Vision is Everywhere
@@ -58,15 +87,8 @@ Did the neural network produce the results you expected?
 
 ## How Do Computers See?
 
-- Computers see images as **grids of numbers** — pixels
-- Each pixel is a number from 0–255 (or 3 numbers for color: R, G, B)
-- A 640×480 photo = nearly **1 million numbers**
-- The challenge: how do we find meaning in all those numbers?
-
-## How Do Computers See?
-
-- Answer: A special type of neural network called a **Convolutional Neural Network** or a **CNN**
-  - Takes in an image
+- A special type of neural network called a **Convolutional Neural Network** or a **CNN**
+  - Takes in all of the pixels of an image
   - Detects edges, corners, and other shapes
   - Returns results on what it sees and where
 

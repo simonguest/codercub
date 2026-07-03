@@ -114,6 +114,8 @@ website:
                   href: labs/06/notebooks/pose_landmarks.ipynb
                 - text: "3D Pose Avatar"
                   href: labs/06/notebooks/pose_avatar.ipynb
+                - text: "Rep Counter Challenge!"
+                  href: labs/06/notebooks/rep_counter_challenge.ipynb
         - section: "Day 7"
           contents:
             - text: "Slides"
