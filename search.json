@@ -4342,11 +4342,23 @@
     ]
   },
   {
+    "objectID": "labs/06/slides.html#introducing-the-neural-network-1",
+    "href": "labs/06/slides.html#introducing-the-neural-network-1",
+    "title": "Day 6: Computer Vision",
+    "section": "Introducing the Neural Network",
+    "text": "Introducing the Neural Network\n\nA computing system inspired by the human brain\n1943: Researchers publish the first mathematical model of a neuron\n1958: Frank Rosenblatt builds the Perceptron, the first trainable neural network\n2012: AlexNet wins the ImageNet competition, kicking off the deep learning boom\nToday: Neural networks power vision, language, and much more",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "labs/06/slides.html#what-is-a-neural-network",
     "href": "labs/06/slides.html#what-is-a-neural-network",
     "title": "Day 6: Computer Vision",
     "section": "What Is a Neural Network?",
-    "text": "What Is a Neural Network?\n\nA computing system loosely inspired by the human brain\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
+    "text": "What Is a Neural Network?\n\nMade up of layers of connected nodes (neurons)\n\nInput layer: receives raw data (numbers, pixels, text)\nHidden layers: find patterns in that data\nOutput layer: produces the final prediction\n\nEach connection has a weight — how much does one neuron influence the next?\nStack enough layers and the network can learn almost anything",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -4359,6 +4371,42 @@
     "title": "Day 6: Computer Vision",
     "section": "Will I Do Well on My Test?",
     "text": "Will I Do Well on My Test?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#scikit-learn-vs.-neural-networks-1",
+    "href": "labs/06/slides.html#scikit-learn-vs.-neural-networks-1",
+    "title": "Day 6: Computer Vision",
+    "section": "scikit-learn vs. Neural Networks",
+    "text": "scikit-learn vs. Neural Networks\n\nBack on Day 3, your scikit-learn model predicted Pass / Fail from two features: hours_studied and hours_slept\nToday’s neural network just answered the exact same question, but works very differently under the hood",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#scikit-learn-vs.-neural-networks-2",
+    "href": "labs/06/slides.html#scikit-learn-vs.-neural-networks-2",
+    "title": "Day 6: Computer Vision",
+    "section": "scikit-learn vs. Neural Networks",
+    "text": "scikit-learn vs. Neural Networks\n\nscikit-learn model: follows a fixed, human-chosen algorithm (e.g. “look at the most similar students in the data”). It tunes itself to your data, but the strategy itself doesn’t change\nNeural network: has no built-in strategy. It invents its own rules by adjusting weights across layers until predictions fit the data\nNeural networks can combine features in ways no fixed formula could be written for in advance",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/06/slides.html#scikit-learn-vs.-neural-networks-3",
+    "href": "labs/06/slides.html#scikit-learn-vs.-neural-networks-3",
+    "title": "Day 6: Computer Vision",
+    "section": "scikit-learn vs. Neural Networks",
+    "text": "scikit-learn vs. Neural Networks\n\nWith just 2 features: hours studied, hours slept — both approaches work great\nBut what about 1 million features, one for every pixel in a photo?\nA fixed algorithm can’t scale to that; a neural network’s layers can learn to combine pixels into edges, edges into shapes, and shapes into objects\nThat’s exactly how computer vision works!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -4406,7 +4454,7 @@
     "href": "labs/06/slides.html#how-do-computers-see-1",
     "title": "Day 6: Computer Vision",
     "section": "How Do Computers See?",
-    "text": "How Do Computers See?\n\nComputers see images as grids of numbers — pixels\nEach pixel is a number from 0–255 (or 3 numbers for color: R, G, B)\nA 640×480 photo = nearly 1 million numbers\nThe challenge: how do we find meaning in all those numbers?",
+    "text": "How Do Computers See?\n\nA special type of neural network called a Convolutional Neural Network or a CNN\n\nTakes in all of the pixels of an image\nDetects edges, corners, and other shapes\nReturns results on what it sees and where",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 6",
@@ -4416,18 +4464,6 @@
   {
     "objectID": "labs/06/slides.html#how-do-computers-see-2",
     "href": "labs/06/slides.html#how-do-computers-see-2",
-    "title": "Day 6: Computer Vision",
-    "section": "How Do Computers See?",
-    "text": "How Do Computers See?\n\nAnswer: A special type of neural network called a Convolutional Neural Network or a CNN\n\nTakes in an image\nDetects edges, corners, and other shapes\nReturns results on what it sees and where",
-    "crumbs": [
-      "Future Intelligence Lab",
-      "Day 6",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "labs/06/slides.html#how-do-computers-see-3",
-    "href": "labs/06/slides.html#how-do-computers-see-3",
     "title": "Day 6: Computer Vision",
     "section": "How Do Computers See?",
     "text": "How Do Computers See?\n\nMany types of computer vision algorithms:\n\nFace Detection (is there a face in the picture?)\nObject Detection (what is in this image and where?)\nPose Estimation (where are the body parts?)\nGesture Recognition (what hand gesture is this?)\nImage Segmentation (what pixel belongs to what object?)",
@@ -6501,49 +6537,91 @@
     "href": "labs/06/notebooks/rep_counter_challenge.html",
     "title": "Challenge: Build a Rep Counter",
     "section": "",
-    "text": "You’ve learned how to detect body landmarks in real time. Now it’s your turn to build something of your own: a rep counter that watches a movement you choose and counts each repetition as you do it."
+    "text": "You’ve learned how to detect body landmarks in real time. Now it’s your turn to build something of your own: a rep counter that watches a movement you choose and counts each repetition as you do it.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/06/notebooks/rep_counter_challenge.html#the-challenge",
     "href": "labs/06/notebooks/rep_counter_challenge.html#the-challenge",
     "title": "Challenge: Build a Rep Counter",
     "section": "The Challenge",
-    "text": "The Challenge\nPick a movement: a squat, a jumping jack, an arm raise, or something you invent - and write a program that:\n\nWatches your pose landmarks in real time\nDetects when you complete one repetition of the movement\nCounts and prints each rep as it happens\n\nSounds simple. There’s one bug almost everyone hits on the first try — let’s find it together before you start building."
+    "text": "The Challenge\nPick a movement: a squat, a jumping jack, an arm raise, or something you invent - and write a program that:\n\nWatches your pose landmarks in real time\nDetects when you complete one repetition of the movement\nCounts and prints each rep as it happens\n\nSounds simple. There’s one bug almost everyone hits on the first try — let’s find it together before you start building.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/06/notebooks/rep_counter_challenge.html#why-counting-is-trickier-than-it-sounds",
     "href": "labs/06/notebooks/rep_counter_challenge.html#why-counting-is-trickier-than-it-sounds",
     "title": "Challenge: Build a Rep Counter",
     "section": "Why Counting Is Trickier Than It Sounds",
-    "text": "Why Counting Is Trickier Than It Sounds\nHere’s a tempting first attempt at counting arm raises:\nif wrist_y &lt; shoulder_y:\n    count += 1\nRun something like that and you won’t get one count per raise. You’ll get 30 counts per second for the entire time your arm is up, because the detector checks your pose about 30 times a second, and the condition stays True the whole time your arm is raised.\nTo count reps instead of frames, your program needs to remember what happened last time. Was the arm already up, or was it down? A rep should only count on the transition from down → up."
+    "text": "Why Counting Is Trickier Than It Sounds\nHere’s a tempting first attempt at counting arm raises:\nif wrist_y &lt; shoulder_y:\n    count += 1\nRun something like that and you won’t get one count per raise. You’ll get 30 counts per second for the entire time your arm is up, because the detector checks your pose about 30 times a second, and the condition stays True the whole time your arm is raised.\nTo count reps instead of frames, your program needs to remember what happened last time. Was the arm already up, or was it down? A rep should only count on the transition from down → up.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/06/notebooks/rep_counter_challenge.html#worked-example-arm-raise-counter",
     "href": "labs/06/notebooks/rep_counter_challenge.html#worked-example-arm-raise-counter",
     "title": "Challenge: Build a Rep Counter",
     "section": "Worked Example: Arm Raise Counter",
-    "text": "Worked Example: Arm Raise Counter\nHere’s a complete rep counter for arm raises that solves the transition problem with a state variable. It also draws the live count directly on top of the video feed using canvas.get_context('2d') — the same 2D drawing surface draw_poses uses underneath. Anything drawn with ctx stays on screen until the next frame redraws it, so redrawing it every loop keeps the number in sync with your reps.\nRun it, raise your arm a few times, and watch the count update live on the canvas. Study how state prevents the “30x per second” bug above — you’ll reuse this exact pattern for your own movement.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\nctx = canvas.get_context('2d')\n\nstate = \"down\"   # remembers whether the arm was already up last frame\ncount = 0\n\ntry:\n  while True:\n    poses = detector.get_detections()\n    canvas.draw_poses(poses)\n\n    if poses:\n      pose = poses[0]\n      wrist = pose[cv.POSE.LEFT_WRIST]\n      shoulder = pose[cv.POSE.LEFT_SHOULDER]\n      arm_up = wrist[\"y\"] &lt; shoulder[\"y\"]\n\n      if arm_up:\n        count += 1\n\n      # TODO: Replace the above if statement with this one...\n      \n      # if arm_up and state == \"down\":\n      #   count += 1\n      #   state = \"up\"\n      # elif not arm_up and state == \"up\":\n      #   state = \"down\"\n\n    # draw the live count on top of the video feed\n    ctx.fill_style = \"rgba(0, 0, 0, 0.5)\"\n    ctx.fill_rect(10, 10, 150, 40)\n    ctx.fill_style = \"#ffffff\"\n    ctx.font = \"28px sans-serif\"\n    ctx.fill_text(f\"Reps: {count}\", 20, 38)\n\n    time.sleep(0.033)\nfinally:\n  detector.stop()\n  camera.stop()\n  print(f\"Final count: {count}\")"
+    "text": "Worked Example: Arm Raise Counter\nHere’s a complete rep counter for arm raises that solves the transition problem with a state variable. It also draws the live count directly on top of the video feed using canvas.get_context('2d') — the same 2D drawing surface draw_poses uses underneath. Anything drawn with ctx stays on screen until the next frame redraws it, so redrawing it every loop keeps the number in sync with your reps.\nRun it, raise your arm a few times, and watch the count update live on the canvas. Study how state prevents the “30x per second” bug above — you’ll reuse this exact pattern for your own movement.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\nctx = canvas.get_context('2d')\n\nstate = \"down\"   # remembers whether the arm was already up last frame\ncount = 0\n\ntry:\n  while True:\n    poses = detector.get_detections()\n    canvas.draw_poses(poses)\n\n    if poses:\n      pose = poses[0]\n      wrist = pose[cv.POSE.LEFT_WRIST]\n      shoulder = pose[cv.POSE.LEFT_SHOULDER]\n      arm_up = wrist[\"y\"] &lt; shoulder[\"y\"]\n\n      if arm_up:\n        count += 1\n\n      # TODO: Replace the above if statement with this one...\n      \n      # if arm_up and state == \"down\":\n      #   count += 1\n      #   state = \"up\"\n      # elif not arm_up and state == \"up\":\n      #   state = \"down\"\n\n    # draw the live count on top of the video feed\n    ctx.fill_style = \"rgba(0, 0, 0, 0.5)\"\n    ctx.fill_rect(10, 10, 150, 40)\n    ctx.fill_style = \"#ffffff\"\n    ctx.font = \"28px sans-serif\"\n    ctx.fill_text(f\"Reps: {count}\", 20, 38)\n\n    time.sleep(0.033)\nfinally:\n  detector.stop()\n  camera.stop()\n  print(f\"Final count: {count}\")",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/06/notebooks/rep_counter_challenge.html#your-challenge",
     "href": "labs/06/notebooks/rep_counter_challenge.html#your-challenge",
     "title": "Challenge: Build a Rep Counter",
     "section": "Your Challenge",
-    "text": "Your Challenge\nNow build your own version for a different movement. This could be a squat, a jumping jack, or something you invent. Reuse the state + count pattern from the worked example, but you’ll need to work out for yourself:\n\nWhich landmarks tell you about your movement? (e.g. LEFT_HIP and LEFT_KNEE for a squat)\nWhat condition defines the “down” position vs. the “up” position?\n\nUse the reference table below if you need a refresher on available landmarks.\n\n\n\nBody part\nConstant\n\n\n\n\nShoulders\ncv.POSE.LEFT_SHOULDER, cv.POSE.RIGHT_SHOULDER\n\n\nElbows\ncv.POSE.LEFT_ELBOW, cv.POSE.RIGHT_ELBOW\n\n\nWrists\ncv.POSE.LEFT_WRIST, cv.POSE.RIGHT_WRIST\n\n\nHips\ncv.POSE.LEFT_HIP, cv.POSE.RIGHT_HIP\n\n\nKnees\ncv.POSE.LEFT_KNEE, cv.POSE.RIGHT_KNEE\n\n\nAnkles\ncv.POSE.LEFT_ANKLE, cv.POSE.RIGHT_ANKLE\n\n\n\nRemember: in image coordinates, a smaller y value means higher up on the screen.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\nctx = canvas.get_context('2d')\n\n# TODO 1: name your two states, e.g. \"down\" and \"up\"\nstate = \"down\"\ncount = 0\n\ntry:\n  while True:\n    poses = detector.get_detections()\n    canvas.draw_poses(poses)\n\n    if poses:\n      pose = poses[0]\n\n      # TODO 2: grab the landmark(s) you need for your movement\n      # example: knee = pose[cv.POSE.LEFT_KNEE]\n      #          hip  = pose[cv.POSE.LEFT_HIP]\n\n      # TODO 3: write a condition that's True when you're in the \"up\" position\n      # example: in_up_position = knee[\"y\"] &lt; hip[\"y\"]\n      in_up_position = False   # &lt;-- replace this\n\n      # TODO 4: count the rep on the down -&gt; up transition\n      # copy the if/elif pattern from the worked example above\n\n    # live count, drawn on top of the video feed\n    ctx.fill_style = \"rgba(0, 0, 0, 0.5)\"\n    ctx.fill_rect(10, 10, 150, 40)\n    ctx.fill_style = \"#ffffff\"\n    ctx.font = \"28px sans-serif\"\n    ctx.fill_text(f\"Reps: {count}\", 20, 38)\n\n    time.sleep(0.033)\nfinally:\n  detector.stop()\n  camera.stop()\n  print(f\"Final count: {count}\")\n\nWhich movement did you pick, and what condition or threshold did you land on? Did you hit the “counts too fast” bug before fixing it — what tipped you off that something was wrong?"
+    "text": "Your Challenge\nNow build your own version for a different movement. This could be a squat, a jumping jack, or something you invent. Reuse the state + count pattern from the worked example, but you’ll need to work out for yourself:\n\nWhich landmarks tell you about your movement? (e.g. LEFT_HIP and LEFT_KNEE for a squat)\nWhat condition defines the “down” position vs. the “up” position?\n\nUse the reference table below if you need a refresher on available landmarks.\n\n\n\nBody part\nConstant\n\n\n\n\nShoulders\ncv.POSE.LEFT_SHOULDER, cv.POSE.RIGHT_SHOULDER\n\n\nElbows\ncv.POSE.LEFT_ELBOW, cv.POSE.RIGHT_ELBOW\n\n\nWrists\ncv.POSE.LEFT_WRIST, cv.POSE.RIGHT_WRIST\n\n\nHips\ncv.POSE.LEFT_HIP, cv.POSE.RIGHT_HIP\n\n\nKnees\ncv.POSE.LEFT_KNEE, cv.POSE.RIGHT_KNEE\n\n\nAnkles\ncv.POSE.LEFT_ANKLE, cv.POSE.RIGHT_ANKLE\n\n\n\nRemember: in image coordinates, a smaller y value means higher up on the screen.\n\nimport cv\nimport graphics\nimport time\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera(canvas)\ndetector = cv.start_pose_detector(camera)\nctx = canvas.get_context('2d')\n\n# TODO 1: name your two states, e.g. \"down\" and \"up\"\nstate = \"down\"\ncount = 0\n\ntry:\n  while True:\n    poses = detector.get_detections()\n    canvas.draw_poses(poses)\n\n    if poses:\n      pose = poses[0]\n\n      # TODO 2: grab the landmark(s) you need for your movement\n      # example: knee = pose[cv.POSE.LEFT_KNEE]\n      #          hip  = pose[cv.POSE.LEFT_HIP]\n\n      # TODO 3: write a condition that's True when you're in the \"up\" position\n      # example: in_up_position = knee[\"y\"] &lt; hip[\"y\"]\n      in_up_position = False   # &lt;-- replace this\n\n      # TODO 4: count the rep on the down -&gt; up transition\n      # copy the if/elif pattern from the worked example above\n\n    # live count, drawn on top of the video feed\n    ctx.fill_style = \"rgba(0, 0, 0, 0.5)\"\n    ctx.fill_rect(10, 10, 150, 40)\n    ctx.fill_style = \"#ffffff\"\n    ctx.font = \"28px sans-serif\"\n    ctx.fill_text(f\"Reps: {count}\", 20, 38)\n\n    time.sleep(0.033)\nfinally:\n  detector.stop()\n  camera.stop()\n  print(f\"Final count: {count}\")\n\nWhich movement did you pick, and what condition or threshold did you land on? Did you hit the “counts too fast” bug before fixing it — what tipped you off that something was wrong?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/06/notebooks/rep_counter_challenge.html#ideas-to-extend-this-app",
     "href": "labs/06/notebooks/rep_counter_challenge.html#ideas-to-extend-this-app",
     "title": "Challenge: Build a Rep Counter",
     "section": "Ideas to Extend This App",
-    "text": "Ideas to Extend This App\n\nTwo-move combo: track two different movements at once with separate counters\nSet a goal: change the on-canvas text’s color (or size) once a target rep count is reached\nFeed the 3D avatar: from the pose avatar notebook, change the avatar’s color every 10 reps"
+    "text": "Ideas to Extend This App\n\nTwo-move combo: track two different movements at once with separate counters\nSet a goal: change the on-canvas text’s color (or size) once a target rep count is reached\nFeed the 3D avatar: from the pose avatar notebook, change the avatar’s color every 10 reps",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/06/notebooks/rep_counter_challenge.html#check-for-understanding",
     "href": "labs/06/notebooks/rep_counter_challenge.html#check-for-understanding",
     "title": "Challenge: Build a Rep Counter",
     "section": "Check for Understanding",
-    "text": "Check for Understanding"
+    "text": "Check for Understanding",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 6",
+      "Notebooks",
+      "Rep Counter Challenge!"
+    ]
   },
   {
     "objectID": "labs/07/notebooks/gesture_recognition.html",
