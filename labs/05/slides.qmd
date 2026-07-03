@@ -69,3 +69,17 @@ format:
 - Work on your project until 10.15am (1 hour)
 - Project presentations
 - If you get stuck, ask for help (and sample code!)
+
+# micro:bit CreateAI Project Presentations!
+
+![](../04/images/microbit-front.png)
+
+## End of Week 1!
+
+- Please disconnect and leave the micro:bits on the table
+  - Don't worry about disconnecting the battery
+- Tomorrow = Computer Vision!
+  - Face detection
+  - Object detection
+  - Pose landmarkers
+- A fitness tracker using a webcam
