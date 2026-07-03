@@ -147,10 +147,10 @@ Pose Estimation Notebook
 
 # Hands-On
 
-3D Pose Avatar Notebook
+Rep Counter Challenge Notebook
 
-## Tomorrow
+## Next Week
 
-- Continue learning about computer vision
+- More advanced computer vision!
 - Gesture recognition and Image Segmentation
 - Two other mini-apps
