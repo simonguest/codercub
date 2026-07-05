@@ -2645,7 +2645,7 @@
     "href": "labs/07/slides.html#recap",
     "title": "Day 7: Computer Vision",
     "section": "Recap",
-    "text": "Recap\n\nLearned about neural networks and how they work\nUsed Face Detection, Object Detection, and Pose Estimation CV algorithms\nMapped Pose Landmarks to a 3D scene",
+    "text": "Recap\n\nLearned about neural networks and how they work\nUsed Face Detection, Object Detection, and Pose Estimation CV algorithms\nMapped Pose Landmarks to a 3D scene\nCreated a “rep counter”",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -2677,11 +2677,35 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#create-your-own-1",
-    "href": "labs/07/slides.html#create-your-own-1",
+    "objectID": "labs/07/slides.html#create-your-own-cv-mini-app-1",
+    "href": "labs/07/slides.html#create-your-own-cv-mini-app-1",
     "title": "Day 7: Computer Vision",
-    "section": "Create Your Own",
-    "text": "Create Your Own\n\nFor the rest of today, create your own mini-app\nPick any of the 5 CV algorithms\nCopy/paste the examples\nAdd more Python code to make it your own\nAsk for help if you are stuck!",
+    "section": "Create Your Own CV Mini-App",
+    "text": "Create Your Own CV Mini-App\n\nFor the rest of today, create your own mini-app in your own notebook\nHow do you create your own notebook?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#create-your-own-cv-mini-app-2",
+    "href": "labs/07/slides.html#create-your-own-cv-mini-app-2",
+    "title": "Day 7: Computer Vision",
+    "section": "Create Your Own CV Mini-App",
+    "text": "Create Your Own CV Mini-App\n\nCreate a new notebook\nPick any of the CV algorithms you’ve learned\nCopy/paste the examples to get started\n\nRemember to open them in different tabs\n\nAdd more Python code to make it your own\nAsk for help if you are stuck!",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 7",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "labs/07/slides.html#cv-mini-app-ideas",
+    "href": "labs/07/slides.html#cv-mini-app-ideas",
+    "title": "Day 7: Computer Vision",
+    "section": "CV Mini-App Ideas",
+    "text": "CV Mini-App Ideas\n\nVirtual wardrobe\n\nUsing image segmentation and your own images\n\nExtend the gesture painter\n\nUse different colors or brushes\n\nCell phone detector (use two models)\n\nDetect cell phones in the frame with object detector\nUse image segmentation to color the person red\n\nOr your own idea!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
