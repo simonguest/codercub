@@ -132,7 +132,7 @@ Face Detection Notebook
 
 # Demo
 
-Object Detection Notebook
+Object Detection Notebook - trained on the COCO dataset: [https://cocodataset.org/#explore](https://cocodataset.org/#explore){.external target="_blank"}
 
 # Hands-On
 
