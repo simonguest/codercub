@@ -2705,7 +2705,7 @@
     "href": "labs/07/slides.html#cv-mini-app-ideas",
     "title": "Day 7: Computer Vision",
     "section": "CV Mini-App Ideas",
-    "text": "CV Mini-App Ideas\n\nVirtual wardrobe\n\nUsing image segmentation and your own images\n\nExtend the gesture painter\n\nUse different colors or brushes\n\nCell phone detector (use two models)\n\nDetect cell phones in the frame with object detector\nUse image segmentation to color the person red\n\nOr your own idea!",
+    "text": "CV Mini-App Ideas\n\nClassroom cell phone detector\n\nDetect cell phones with object detector and write “Cell Phone Detected” in Red on the canvas\n\nVirtual wardrobe\n\nUsing image segmentation and your own images\n\nExtend the gesture painter\n\nUse different colors or brushes\n\nOr your own idea!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
