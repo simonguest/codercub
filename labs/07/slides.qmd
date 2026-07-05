@@ -19,6 +19,7 @@ format:
 - Learned about neural networks and how they work
 - Used **Face Detection**, **Object Detection**, and **Pose Estimation** CV algorithms
 - Mapped Pose Landmarks to a 3D scene
+- Created a "rep counter"
 
 # Two More CV Algorithms
 
@@ -75,15 +76,36 @@ Image Segmentation Notebook
 
 Image Segmentation Notebook
 
-# Create Your Own
+# Create Your Own CV Mini-App
 
-## Create Your Own
+## Create Your Own CV Mini-App
 
-- For the rest of today, create your own mini-app
-- Pick any of the 5 CV algorithms
-- Copy/paste the examples
+- For the rest of today, create your own mini-app in your own notebook
+- How do you create your own notebook?
+
+# Demo
+
+Creating your own notebook (and uploading images)
+
+## Create Your Own CV Mini-App
+
+- Create a new notebook
+- Pick any of the CV algorithms you've learned
+- Copy/paste the examples to get started
+  - Remember to open them in different tabs
 - Add more Python code to make it your own
 - Ask for help if you are stuck!
+
+## CV Mini-App Ideas
+
+- Virtual wardrobe
+  - Using image segmentation and your own images
+- Extend the gesture painter
+  - Use different colors or brushes
+- Cell phone detector (use two models)
+  - Detect cell phones in the frame with object detector
+  - Use image segmentation to color the person red
+- Or your own idea!
 
 ## Tomorrow
 
