@@ -98,13 +98,12 @@ Creating your own notebook (and uploading images)
 
 ## CV Mini-App Ideas
 
+- Classroom cell phone detector
+  - Detect cell phones with object detector and write "Cell Phone Detected" in Red on the canvas
 - Virtual wardrobe
   - Using image segmentation and your own images
 - Extend the gesture painter
   - Use different colors or brushes
-- Cell phone detector (use two models)
-  - Detect cell phones in the frame with object detector
-  - Use image segmentation to color the person red
 - Or your own idea!
 
 ## Tomorrow
