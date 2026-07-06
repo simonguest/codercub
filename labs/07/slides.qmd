@@ -76,18 +76,18 @@ Image Segmentation Notebook
 
 Image Segmentation Notebook
 
-# Create Your Own CV Mini-App
+# CV Challenge
 
-## Create Your Own CV Mini-App
+## CV Challenge
 
-- For the rest of today, create your own mini-app in your own notebook
+- For the rest of today, create your own mini CV app in your own notebook
 - How do you create your own notebook?
 
 # Demo
 
 Creating your own notebook (and uploading images)
 
-## Create Your Own CV Mini-App
+## CV Challenge
 
 - Create a new notebook
 - Pick any of the CV algorithms you've learned
@@ -96,7 +96,7 @@ Creating your own notebook (and uploading images)
 - Add more Python code to make it your own
 - Ask for help if you are stuck!
 
-## CV Mini-App Ideas
+## CV Challenge
 
 - Classroom cell phone detector
   - Detect cell phones with object detector and write "Cell Phone Detected" in Red on the canvas
