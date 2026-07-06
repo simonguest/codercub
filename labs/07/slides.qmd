@@ -25,7 +25,7 @@ format:
 
 ## Gesture Recognition
 
-- **Question**: "Where gesture am I making with my hands?"
+- **Question**: "What gesture am I making with my hands?"
 - Detects **key landmarks** on a hand — wrist, palm, fingers
 - Categorizes into one of 8 different gestures: closed fist, open palm, victory, etc.
 - Examples:
