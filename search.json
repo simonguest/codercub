@@ -2677,11 +2677,11 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#create-your-own-cv-mini-app-1",
-    "href": "labs/07/slides.html#create-your-own-cv-mini-app-1",
+    "objectID": "labs/07/slides.html#cv-challenge-1",
+    "href": "labs/07/slides.html#cv-challenge-1",
     "title": "Day 7: Computer Vision",
-    "section": "Create Your Own CV Mini-App",
-    "text": "Create Your Own CV Mini-App\n\nFor the rest of today, create your own mini-app in your own notebook\nHow do you create your own notebook?",
+    "section": "CV Challenge",
+    "text": "CV Challenge\n\nFor the rest of today, create your own mini CV app in your own notebook\nHow do you create your own notebook?",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -2689,11 +2689,11 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#create-your-own-cv-mini-app-2",
-    "href": "labs/07/slides.html#create-your-own-cv-mini-app-2",
+    "objectID": "labs/07/slides.html#cv-challenge-2",
+    "href": "labs/07/slides.html#cv-challenge-2",
     "title": "Day 7: Computer Vision",
-    "section": "Create Your Own CV Mini-App",
-    "text": "Create Your Own CV Mini-App\n\nCreate a new notebook\nPick any of the CV algorithms you’ve learned\nCopy/paste the examples to get started\n\nRemember to open them in different tabs\n\nAdd more Python code to make it your own\nAsk for help if you are stuck!",
+    "section": "CV Challenge",
+    "text": "CV Challenge\n\nCreate a new notebook\nPick any of the CV algorithms you’ve learned\nCopy/paste the examples to get started\n\nRemember to open them in different tabs\n\nAdd more Python code to make it your own\nAsk for help if you are stuck!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
@@ -2701,11 +2701,11 @@
     ]
   },
   {
-    "objectID": "labs/07/slides.html#cv-mini-app-ideas",
-    "href": "labs/07/slides.html#cv-mini-app-ideas",
+    "objectID": "labs/07/slides.html#cv-challenge-3",
+    "href": "labs/07/slides.html#cv-challenge-3",
     "title": "Day 7: Computer Vision",
-    "section": "CV Mini-App Ideas",
-    "text": "CV Mini-App Ideas\n\nClassroom cell phone detector\n\nDetect cell phones with object detector and write “Cell Phone Detected” in Red on the canvas\n\nVirtual wardrobe\n\nUsing image segmentation and your own images\n\nExtend the gesture painter\n\nUse different colors or brushes\n\nOr your own idea!",
+    "section": "CV Challenge",
+    "text": "CV Challenge\n\nClassroom cell phone detector\n\nDetect cell phones with object detector and write “Cell Phone Detected” in Red on the canvas\n\nVirtual wardrobe\n\nUsing image segmentation and your own images\n\nExtend the gesture painter\n\nUse different colors or brushes\n\nOr your own idea!",
     "crumbs": [
       "Future Intelligence Lab",
       "Day 7",
