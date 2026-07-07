@@ -125,6 +125,8 @@ Reasoning with VLMs
 
 Reasoning with VLMs
 
+# Using Assistive VLNs
+
 ## Using Assistive VLMs
 
 - Millions of people around the world live with visual impairments. 
@@ -145,6 +147,18 @@ VLMs as Assistive Technology
 # Hands-On
 
 VLMs as Assistive Technology
+
+# Parking Gate Challenge!
+
+## Parking Gate Challenge!
+
+![](images/parking_detector.jpg){fig-align="center"}
+
+## Parking Gate Challenge
+
+- Write two "license plate" numbers on separate pieces of paper
+- Open the Parking Challenge Notebook
+- Write the code to use a VLM to read the license plates and open the gate!
 
 ## Tomorrow
 
