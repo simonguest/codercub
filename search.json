@@ -6897,35 +6897,65 @@
     "href": "labs/09/notebooks/parking_gate_challenge.html",
     "title": "Challenge: Build a Parking Gate",
     "section": "",
-    "text": "Automatic parking gates like the ones common in Mongolia use a camera to read a car’s license plate. If the plate is recognized, the gate lifts; if not, it stays down. In this notebook you’ll build your own version: a VLM will read a license plate you hold up to the camera, and your code decides whether the gate opens."
+    "text": "Automatic parking gates like the ones common in Mongolia use a camera to read a car’s license plate. If the plate is recognized, the gate lifts; if not, it stays down. In this notebook you’ll build your own version: a VLM will read a license plate you hold up to the camera, and your code decides whether the gate opens.",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "Parking Gate Challenge"
+    ]
   },
   {
     "objectID": "labs/09/notebooks/parking_gate_challenge.html#the-challenge",
     "href": "labs/09/notebooks/parking_gate_challenge.html#the-challenge",
     "title": "Challenge: Build a Parking Gate",
     "section": "The Challenge",
-    "text": "The Challenge\nWrite your license plate number on a piece of paper. Then write code that:\n\nCaptures a photo of your plate from the webcam\nSends it to a VLM and asks it to read the text on the plate\nChecks whether the text it reads matches the expected plate\nOpens the gate if it matches, and keeps it closed if it doesn’t\n\nThe gate graphics and the open_gate() / close_gate() functions are provided for you below — your job is the camera capture and the VLM call, which you’ve already done in vlm.ipynb and vlm_reasoning.ipynb.\n\nfrom openai import OpenAI\nimport os\nimport math\nimport time\n\nclient = OpenAI(\n  base_url=\"https://openrouter.ai/api/v1\",\n  api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)\n\nVLM_MODEL = \"qwen/qwen3-vl-8b-instruct\"\n\nCLOSED_COLOR = \"#e94560\"\nOPEN_COLOR = \"#44cc88\"\nMOVING_COLOR = \"#f5a623\"\n\ndef draw_gate(ctx, w, h, angle, label, color):\n  \"\"\"Draws the barrier arm at the given angle (0 = closed/horizontal, 85 = open/vertical) with a status label.\"\"\"\n  canvas.clear()\n\n  post_x, post_y = 50, h - 40\n  ctx.fill_style = \"#222222\"\n  ctx.fill_rect(post_x - 8, post_y - 70, 16, 70)\n\n  rad = math.radians(angle)\n  length = 700\n  end_x = post_x + length * math.cos(rad)\n  end_y = (post_y - 70) - length * math.sin(rad)\n\n  ctx.stroke_style = color\n  ctx.line_width = 10\n  ctx.begin_path()\n  ctx.move_to(post_x, post_y - 70)\n  ctx.line_to(end_x, end_y)\n  ctx.stroke()\n\n  ctx.fill_style = \"rgba(0, 0, 0, 0.55)\"\n  ctx.fill_rect(w - 190, 10, 180, 40)\n  ctx.fill_style = color\n  ctx.font = \"bold 20px sans-serif\"\n  ctx.text_align = \"left\"\n  ctx.text_baseline = \"middle\"\n  ctx.fill_text(label, w - 175, 30)\n\ndef open_gate(ctx, w, h):\n  \"\"\"Animates the barrier swinging up from closed to open.\"\"\"\n  for angle in range(0, 90, 15):\n    draw_gate(ctx, w, h, angle, \"GATE: OPENING\", MOVING_COLOR)\n    time.sleep(0.08)\n  draw_gate(ctx, w, h, 85, \"GATE: OPEN\", OPEN_COLOR)\n\ndef close_gate(ctx, w, h):\n  \"\"\"Animates the barrier swinging back down to closed.\"\"\"\n  for angle in range(85, -1, -15):\n    draw_gate(ctx, w, h, angle, \"GATE: CLOSING\", MOVING_COLOR)\n    time.sleep(0.08)\n  draw_gate(ctx, w, h, 0, \"GATE: CLOSED\", CLOSED_COLOR)\n\ndef display_countdown(message):\n  ctx.fill_style = \"rgba(0, 0, 0, 0.55)\"\n  ctx.fill_rect(10, 10, 200, 40)\n  ctx.fill_style = \"#ffffff\"\n  ctx.font = \"bold 20px sans-serif\"\n  ctx.text_align = \"left\"\n  ctx.text_baseline = \"middle\"\n  ctx.fill_text(message, 15, 30)"
+    "text": "The Challenge\nWrite your license plate number on a piece of paper. Then write code that:\n\nCaptures a photo of your plate from the webcam\nSends it to a VLM and asks it to read the text on the plate\nChecks whether the text it reads matches the expected plate\nOpens the gate if it matches, and keeps it closed if it doesn’t\n\nThe gate graphics and the open_gate() / close_gate() functions are provided for you below — your job is the camera capture and the VLM call, which you’ve already done in vlm.ipynb and vlm_reasoning.ipynb.\n\nfrom openai import OpenAI\nimport os\nimport math\nimport time\n\nclient = OpenAI(\n  base_url=\"https://openrouter.ai/api/v1\",\n  api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)\n\nVLM_MODEL = \"qwen/qwen3-vl-8b-instruct\"\n\nCLOSED_COLOR = \"#e94560\"\nOPEN_COLOR = \"#44cc88\"\nMOVING_COLOR = \"#f5a623\"\n\ndef draw_gate(ctx, w, h, angle, label, color):\n  \"\"\"Draws the barrier arm at the given angle (0 = closed/horizontal, 85 = open/vertical) with a status label.\"\"\"\n  canvas.clear()\n\n  post_x, post_y = 50, h - 40\n  ctx.fill_style = \"#222222\"\n  ctx.fill_rect(post_x - 8, post_y - 70, 16, 70)\n\n  rad = math.radians(angle)\n  length = 700\n  end_x = post_x + length * math.cos(rad)\n  end_y = (post_y - 70) - length * math.sin(rad)\n\n  ctx.stroke_style = color\n  ctx.line_width = 10\n  ctx.begin_path()\n  ctx.move_to(post_x, post_y - 70)\n  ctx.line_to(end_x, end_y)\n  ctx.stroke()\n\n  ctx.fill_style = \"rgba(0, 0, 0, 0.55)\"\n  ctx.fill_rect(w - 190, 10, 180, 40)\n  ctx.fill_style = color\n  ctx.font = \"bold 20px sans-serif\"\n  ctx.text_align = \"left\"\n  ctx.text_baseline = \"middle\"\n  ctx.fill_text(label, w - 175, 30)\n\ndef open_gate(ctx, w, h):\n  \"\"\"Animates the barrier swinging up from closed to open.\"\"\"\n  for angle in range(0, 90, 15):\n    draw_gate(ctx, w, h, angle, \"GATE: OPENING\", MOVING_COLOR)\n    time.sleep(0.08)\n  draw_gate(ctx, w, h, 85, \"GATE: OPEN\", OPEN_COLOR)\n\ndef close_gate(ctx, w, h):\n  \"\"\"Animates the barrier swinging back down to closed.\"\"\"\n  for angle in range(85, -1, -15):\n    draw_gate(ctx, w, h, angle, \"GATE: CLOSING\", MOVING_COLOR)\n    time.sleep(0.08)\n  draw_gate(ctx, w, h, 0, \"GATE: CLOSED\", CLOSED_COLOR)\n\ndef display_countdown(message):\n  ctx.fill_style = \"rgba(0, 0, 0, 0.55)\"\n  ctx.fill_rect(10, 10, 200, 40)\n  ctx.fill_style = \"#ffffff\"\n  ctx.font = \"bold 20px sans-serif\"\n  ctx.text_align = \"left\"\n  ctx.text_baseline = \"middle\"\n  ctx.fill_text(message, 15, 30)",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "Parking Gate Challenge"
+    ]
   },
   {
     "objectID": "labs/09/notebooks/parking_gate_challenge.html#your-challenge",
     "href": "labs/09/notebooks/parking_gate_challenge.html#your-challenge",
     "title": "Challenge: Build a Parking Gate",
     "section": "Your Challenge",
-    "text": "Your Challenge\nRun the cell below to see the closed gate. Then fill in the four TODOs:\n\nTODO 1: Write the correct instruction for the VLM to read the plate from the scene\nTODO 2: Check whether ALLOWED_PLATE appears in the VLM’s response. If it does, call open_gate(ctx, w, h). If not, print \"Access denied\" and leave the gate closed.\n\n\nimport cv\nimport graphics\n\nALLOWED_PLATE = \"COD3R\" #@param\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera()\nctx = canvas.get_context('2d')\nw = canvas.get_width()\nh = canvas.get_height()\n\n# Draw gate in closed position\ndraw_gate(ctx, w, h, 0, \"GATE: CLOSED\", CLOSED_COLOR)\n\n# Display countdown\nfor count in [\"3\", \"2\", \"1\"]:\n  display_countdown(f\"Scanning plate in {count}\")\n  time.sleep(1)\ndisplay_countdown(\"Scanning...\")\n\nimage_url = cv.capture_frame(camera)\n\n# TODO 1: Fill in the instruction for the VLM\n\nresponse = client.chat.completions.create(\n  model=VLM_MODEL,\n  messages=[{\n    \"role\": \"user\",\n    \"content\": [\n      {\"type\": \"image_url\", \"image_url\": {\"url\": image_url}},\n      {\"type\": \"text\", \"text\": \"INSTRUCTION FOR THE VLM\"},\n    ]\n  }],\n  stream=False\n)\n\nvlm_response = response.choices[0].message.content.strip()\nprint(f\"VLM read: {vlm_response}\")\n\n# TODO 2: If ALLOWED_PLATE appears in vlm_response, open the gate. Otherwise,\n#         keep it closed and print a denied message.\nif False:  # &lt;-- replace this condition\n  open_gate(ctx, w, h)\nelse:\n  draw_gate(ctx, w, h, 0, \"ACCESS DENIED\", CLOSED_COLOR)\n  print(\"Access denied - plate not recognized.\")\n\n# Stop the camera\ncamera.stop()\n\nVLM read: Analyze the image and provide a detailed description of the scene, including the person’s appearance, actions, and the surrounding environment. Describe any visible emotions or body language that might indicate the person’s state of mind. If there are any objects or features in the background or foreground, describe them as well. Avoid making assumptions or adding information not directly visible in the image.\n\nAccess denied - plate not recognized.\n\n\n\nThink about the full pipeline you just built: camera capture, VLM reading, and a plain Python string check.\nDid the VLM read your plate correctly every time? What kinds of mistakes did it make, if any (extra spaces, mixed-up characters, lowercase vs. uppercase)? How would you make the matching check more forgiving of small misreads?"
+    "text": "Your Challenge\nRun the cell below to see the closed gate. Then fill in the four TODOs:\n\nTODO 1: Write the correct instruction for the VLM to read the plate from the scene\nTODO 2: Check whether ALLOWED_PLATE appears in the VLM’s response. If it does, call open_gate(ctx, w, h). If not, print \"Access denied\" and leave the gate closed.\n\n\nimport cv\nimport graphics\n\nALLOWED_PLATE = \"COD3R\" #@param\n\ncanvas = graphics.canvas()\ncamera = cv.start_camera()\nctx = canvas.get_context('2d')\nw = canvas.get_width()\nh = canvas.get_height()\n\n# Draw gate in closed position\ndraw_gate(ctx, w, h, 0, \"GATE: CLOSED\", CLOSED_COLOR)\n\n# Display countdown\nfor count in [\"3\", \"2\", \"1\"]:\n  display_countdown(f\"Scanning plate in {count}\")\n  time.sleep(1)\ndisplay_countdown(\"Scanning...\")\n\nimage_url = cv.capture_frame(camera)\n\n# TODO 1: Fill in the instruction for the VLM\n\nresponse = client.chat.completions.create(\n  model=VLM_MODEL,\n  messages=[{\n    \"role\": \"user\",\n    \"content\": [\n      {\"type\": \"image_url\", \"image_url\": {\"url\": image_url}},\n      {\"type\": \"text\", \"text\": \"INSTRUCTION FOR THE VLM\"},\n    ]\n  }],\n  stream=False\n)\n\nvlm_response = response.choices[0].message.content.strip()\nprint(f\"VLM read: {vlm_response}\")\n\n# TODO 2: If ALLOWED_PLATE appears in vlm_response, open the gate. Otherwise,\n#         keep it closed and print a denied message.\nif False:  # &lt;-- replace this condition\n  open_gate(ctx, w, h)\nelse:\n  draw_gate(ctx, w, h, 0, \"ACCESS DENIED\", CLOSED_COLOR)\n  print(\"Access denied - plate not recognized.\")\n\n# Stop the camera\ncamera.stop()\n\nVLM read: Analyze the image and provide a detailed description of the scene, including the person’s appearance, actions, and the surrounding environment. Describe any visible emotions or body language that might indicate the person’s state of mind. If there are any objects or features in the background or foreground, describe them as well. Avoid making assumptions or adding information not directly visible in the image.\n\nAccess denied - plate not recognized.\n\n\n\nThink about the full pipeline you just built: camera capture, VLM reading, and a plain Python string check.\nDid the VLM read your plate correctly every time? What kinds of mistakes did it make, if any (extra spaces, mixed-up characters, lowercase vs. uppercase)? How would you make the matching check more forgiving of small misreads?",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "Parking Gate Challenge"
+    ]
   },
   {
     "objectID": "labs/09/notebooks/parking_gate_challenge.html#ideas-to-extend-this-app",
     "href": "labs/09/notebooks/parking_gate_challenge.html#ideas-to-extend-this-app",
     "title": "Challenge: Build a Parking Gate",
     "section": "Ideas to Extend This App",
-    "text": "Ideas to Extend This App\n\nAuto re-close: after open_gate(), wait a few seconds and call close_gate() automatically, like a real barrier resetting for the next car\nMultiple allowed plates: check plate_text against a list of allowed plates instead of just one\nLog attempts: keep a Python list of every plate read and whether it was let in, then print it at the end"
+    "text": "Ideas to Extend This App\n\nAuto re-close: after open_gate(), wait a few seconds and call close_gate() automatically, like a real barrier resetting for the next car\nMultiple allowed plates: check plate_text against a list of allowed plates instead of just one\nLog attempts: keep a Python list of every plate read and whether it was let in, then print it at the end",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "Parking Gate Challenge"
+    ]
   },
   {
     "objectID": "labs/09/notebooks/parking_gate_challenge.html#check-for-understanding",
     "href": "labs/09/notebooks/parking_gate_challenge.html#check-for-understanding",
     "title": "Challenge: Build a Parking Gate",
     "section": "Check for Understanding",
-    "text": "Check for Understanding"
+    "text": "Check for Understanding",
+    "crumbs": [
+      "Future Intelligence Lab",
+      "Day 9",
+      "Notebooks",
+      "Parking Gate Challenge"
+    ]
   },
   {
     "objectID": "labs/09/notebooks/vlm.html",
