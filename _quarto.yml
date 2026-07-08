@@ -174,12 +174,7 @@ website:
           contents:
             - text: "Slides"
               href: labs/10/slides.qmd
-              target: blank
-            - section: "Notebooks"
-              contents:
-                - text: "Final Project"
-                  href: labs/10/notebooks/final_project.ipynb
- 
+              target: blank 
     - id: cmu
       style: "docked"
       collapse-level: 99

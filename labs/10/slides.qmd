@@ -16,28 +16,74 @@ format:
 
 ## We've Covered A Lot!
 
-- Working with data in Python using Pandas and Matplotlib
-- Supervised ML using scikit-learn to create a regression model
-- Trained models for physical hardware using the micro:bits
-- Neural Networks and how computer vision works
-- Generative models for creating text, structure, and images
+- Week 1:
+  - Learned about the different types and applications of AI
+  - Working with data in Python using **pandas** and **matplotlib**
+  - Supervised ML using **scikit-learn** to create regression and classifications models
+  - Trained classification models for movement detection using the micro:bit
+
+## We've Covered A Lot!
+
+- Week 2:
+  - Learned about neural networks
+  - Used computer vision models: **Face detection**, **Object detection**, **Pose landmarker**, **Gesture recognition**, and **Image segmentation**
+  - Experimented with prompting techniques using generative AI, including structure for music and 3D applications
+  - Used image models to generate images and VLMs for analyzing images
 
 # Wow, Great Job!
 
-# What Will You Build?
+# Final Project
 
 ## What Will You Build?
 
-- Explore more datasets in Python **or**
-- Re-train the micro:bits to build something more complex **or**
-- Create a new game/app using computer vision **or**
-- Use one of the generative models to create new content **or**
-- Something completely different!
+- Don't want to start from a blank page? Here are some ideas to extend one of these existing notebooks...
+
+## Option 1: Workout Tracker
+
+- Start from: "Rep Counter Challenge!" (Day 6)
+- Extend it: track two movements at once, add sounds, or create an overlay to display training data
+- Stretch: log every rep to a list and chart reps-per-exercise with matplotlib
+
+## Option 2: Rock, Paper, Scissors Tournament
+
+- Start from: "Rock, Paper, Scissors" (Day 7)
+- Extend it: add sound effects on a win, a "3...2...1...Show!" countdown, or best-of-3 rounds
+- Stretch: two-player mode using both hands, and track the longest win streak
+
+## Option 3: Gesture Art Studio
+
+- Start from: "Gesture Painter" (Day 7)
+- Extend it: assign colors to different gestures, add an eraser, or let two hands paint independently
+- Stretch: send your finished painting into "Image-to-Image" (Day 9) and let AI remix it
+
+## Option 4: Smart Gate Logger
+
+- Start from: "Parking Gate Challenge" (Day 9)
+- Extend it: support a list of allowed plates, or auto-close the gate a few seconds after opening
+- Stretch: log every attempt (plate + allowed/denied) and chart entries vs. denials with matplotlib
+
+## Option 5: Reactive 3D Avatar
+
+- Start from: "3D Pose Avatar" (Day 6)
+- Extend it: add bones between joints, change a sphere's color when an arm is raised, or add a squat counter
+- Stretch: use "Mesh Generator" (Day 8) to have AI generate props or a scene around your avatar
+
+## Option 6: AI Seeing Assistant
+
+- Start from: "VLMs as Assistive Technology" (Day 9)
+- Extend it: swap the free-text description for structured output (Pydantic) that returns specific fields (objects seen, hazards, colors)
+- Stretch: log every detection to a dataframe and chart what the assistant "sees" most often
+
+## Or Your Own Idea!
+
+- You can also start completely from scratch, if you'd prefer
+- Mix and match ideas across notebooks and even across weeks
+- The micro:bits are also available, if you'd like to use CreateAI to train new actions
 
 ## Today's Class
 
-- Starting now, for ~90 minutes, build your own project
-- Create a new notebook (demo)
-- Remember you can copy/paste code from other notebooks
-- Ask for help if you need it! I'll float around the room
-- After ~90 minutes, "show and share" (optional) 
+- Choose your project from today's slides
+- Extend an existing notebook (make sure you rename it) or create a new one and start from scratch
+- Copy/paste code from other notebooks
+- Ask for help if you need it!
+- After ~75 minutes, "show and share" (optional)
