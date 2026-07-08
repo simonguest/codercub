@@ -168,6 +168,8 @@ website:
                   href: labs/09/notebooks/vlm_reasoning.ipynb
                 - text: "VLMs as Assistive Technology"
                   href: labs/09/notebooks/vlm_assistive.ipynb
+                - text: "Parking Gate Challenge"
+                  href: labs/09/notebooks/parking_gate_challenge.ipynb
         - section: "Day 10"
           contents:
             - text: "Slides"
