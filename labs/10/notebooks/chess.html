@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Face Detection with Computer Vision – Summer of Code 2026</title>
+<title>chess – Summer of Code 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../labs/06/notebooks/object_detection.html" rel="next">
-<link href="../../../labs/06/slides.html#/will-i-do-well-on-my-test" rel="prev">
+<link href="../../../labs/10/slides.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -316,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Face Detection</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/chess.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/chess.html">Chess Example</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -588,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/06/notebooks/face_detection.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../labs/06/notebooks/face_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Face Detection</span></a>
   </div>
 </li>
@@ -826,7 +825,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../labs/10/notebooks/chess.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../labs/10/notebooks/chess.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chess Example</span></a>
   </div>
 </li>
@@ -841,148 +840,461 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/06/slides.html">Day 6</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/06/notebooks/face_detection.html">Face Detection</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Face Detection with Computer Vision</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../labs/10/slides.html">Day 10</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/chess.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../labs/10/notebooks/chess.html">Chess Example</a></li></ol></nav></header>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<p>In this notebook, you’ll use a neural network to detect faces in real time using your webcam. You’ll learn how computers “see” and locate faces in an image, and think about how this technology is used in the real world.</p>
-<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/06/notebooks/face_detection.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"> </a></p>
-<section id="what-is-face-detection" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-face-detection">What Is Face Detection?</h2>
-<p><strong>Face detection</strong> is the task of finding <em>where</em> faces are located in an image or video frame. The output is a <strong>bounding box</strong> — a rectangle drawn around each face — plus a <strong>confidence score</strong> that says how certain the model is.</p>
-<p>This is <strong>not</strong> the same as <strong>face recognition</strong>, which tries to identify <em>who</em> a person is. Face detection only says: <em>“there is a face at this location.”</em> It has no idea who you are.</p>
-<p>Under the hood, modern face detectors are small neural networks trained on millions of face images. These are the same kind of networks you learned about today.</p>
-</section>
-<section id="step-1-live-face-detection" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-live-face-detection">Step 1: Live Face Detection</h2>
-<p>This platform uses <strong>BlazeFace</strong>: a lightweight neural network from Google that detects faces in real time. Each face it finds is returned as a dictionary with these fields:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Field</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>x</code>, <code>y</code></td>
-<td>Top-left corner of the bounding box (pixels)</td>
-</tr>
-<tr class="even">
-<td><code>w</code>, <code>h</code></td>
-<td>Width and height of the bounding box (pixels)</td>
-</tr>
-<tr class="odd">
-<td><code>confidence</code></td>
-<td>How certain the model is (0.0 – 1.0)</td>
-</tr>
-</tbody>
-</table>
-<p>Run the cell below — your browser will ask for webcam access, click <strong>Allow</strong>.</p>
-<p>The detector will run continuously and draw a box around any face it finds.</p>
-<p>Click <strong>Stop</strong> (■) in the toolbar when you’re ready to move on.</p>
-<div id="cell-live-detection" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<p>This notebook demonstrates how each chess piece moves using the <code>python-chess</code> library. We’ll explore the movement patterns of all six types of chess pieces: pawn, rook, knight, bishop, queen, and king.</p>
+<p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/chess.ipynb"> <img src="https://img.shields.io/badge/Open_in-Codetto-blue" alt="Open In Codetto"></a></p><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/chess.ipynb">
+</a><div id="9f2dc884-1098-4557-8d0f-a25dea00b7d6" class="cell"><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/chess.ipynb">
+</a><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/chess.ipynb"></a><pre class="sourceCode python code-with-copy"><a target="_blank" href="https://codetto.app?github=simonguest/codercub/blob/main/labs/10/notebooks/chess.ipynb"><code class="sourceCode python"><span id="cb1-1"></span></code></a><code class="sourceCode python"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chess
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> chess.svg</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    canvas.draw_bounding_boxes(detections)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  detector.stop()</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  camera.stop()</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new chess board</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>board <span class="op">=</span> chess.Board()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Starting position:"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Starting position:
+</code></pre>
 </div>
-</section>
-<section id="step-2-explore-the-detection-data" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-explore-the-detection-data">Step 2: Explore the Detection Data</h2>
-<p>The cell below runs the same live detection loop, but also prints the raw numbers for every face it finds, updated constantly.</p>
-<p>Try moving closer to the camera, tilting your head, or partially covering your face. Watch how the position, size, and confidence values change in real time.</p>
-<p>Click <strong>Stop</strong> (■) when you’re done.</p>
-<div id="cell-explore-data" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    canvas.draw_bounding_boxes(detections)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> frame <span class="op">%</span> <span class="dv">240</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f"--- </span><span class="sc">{</span><span class="bu">len</span>(detections)<span class="sc">}</span><span class="ss"> face(s) detected ---"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> i, face <span class="kw">in</span> <span class="bu">enumerate</span>(detections):</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"  Face </span><span class="sc">{</span>i <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">: x=</span><span class="sc">{</span>face[<span class="st">'x'</span>]<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>face[<span class="st">'y'</span>]<span class="sc">}</span><span class="ss">  "</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"size=</span><span class="sc">{</span>face[<span class="st">'w'</span>]<span class="sc">}</span><span class="ss">x</span><span class="sc">{</span>face[<span class="st">'h'</span>]<span class="sc">}</span><span class="ss">  confidence=</span><span class="sc">{</span>face[<span class="st">'confidence'</span>]<span class="sc">:.1%}</span><span class="ss">"</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.001</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  detector.stop()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  camera.stop()</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-2-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
 </div>
-</section>
-<section id="step-3-experiment-confidence-threshold" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-experiment-confidence-threshold">Step 3: Experiment — Confidence Threshold</h2>
-<p>A <strong>confidence threshold</strong> filters out detections the model isn’t sure about.</p>
-<ul>
-<li><strong>High threshold</strong> (e.g., 0.90) → only very certain detections pass through</li>
-<li><strong>Low threshold</strong> (e.g., 0.20) → more detections, including uncertain ones</li>
-</ul>
-<p>Set the slider to your desired threshold, then run the cell. The loop will filter detections in real time using that value. Try a very high threshold. Can you make the detector lose track of your face?</p>
-<p>Click <strong>Stop</strong> (■) when you’re done.</p>
-<div id="cell-confidence-experiment" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+</div>
+</div>
+<section id="pawn-movement" class="level2">
+<h2 class="anchored" data-anchor-id="pawn-movement">Pawn Movement</h2>
+<p>Pawns are the most numerous pieces on the board. They have unique movement rules: - Move forward one square (or two squares from starting position) - Capture diagonally forward - Cannot move backward</p>
+<div id="51ddbd09-3c3d-4eba-ab40-2f776b808b3e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate pawn movement</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pawn_board <span class="op">=</span> chess.Board()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>CONFIDENCE_THRESHOLD <span class="op">=</span> <span class="fl">0.7</span> <span class="co">#@param {type:"slider", min:0.1, max:1.0, step:0.05}</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>camera <span class="op">=</span> cv.start_camera(canvas)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>detector <span class="op">=</span> cv.start_face_detector(camera)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    detections <span class="op">=</span> detector.get_detections()</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    filtered <span class="op">=</span> [d <span class="cf">for</span> d <span class="kw">in</span> detections <span class="cf">if</span> d[<span class="st">'confidence'</span>] <span class="op">&gt;=</span> CONFIDENCE_THRESHOLD]</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    canvas.draw_bounding_boxes(filtered)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  detector.stop()</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  camera.stop()</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Camera stopped."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Move a pawn forward two squares from starting position</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pawn_move1 <span class="op">=</span> chess.Move.from_uci(<span class="st">"e2e4"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pawn_board.push(pawn_move1)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"White pawn moves from e2 to e4 (two squares forward from starting position):"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pawn_board)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Black pawn moves one square</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>pawn_move2 <span class="op">=</span> chess.Move.from_uci(<span class="st">"d7d6"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>pawn_board.push(pawn_move2)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Black pawn moves from d7 to d6 (one square forward):"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>pawn_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>White pawn moves from e2 to e4 (two squares forward from starting position):
+
+r n b q k b n r
+p p p p p p p p
+. . . . . . . .
+. . . . . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R
+
+
+Black pawn moves from d7 to d6 (one square forward):
+</code></pre>
 </div>
-<p>Face detection is used in schools, airports, stadiums, and social media platforms. Where do you think it’s helpful? Are there places where you’d want limits on how it’s used — and why?</p>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-3-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="211d8032-2f49-4790-8275-c6794cc85abd" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate pawn capture</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>capture_board <span class="op">=</span> chess.Board(<span class="st">"rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq d6 0 2"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Position where white pawn can capture:"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(capture_board)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Pawn captures diagonally</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>capture_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"e4d5"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>capture_board.push(capture_move)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"White pawn captures black pawn diagonally (e4 takes d5):"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>capture_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Position where white pawn can capture:
+
+r n b q k b n r
+p p p . p p p p
+. . . . . . . .
+. . . p . . . .
+. . . . P . . .
+. . . . . . . .
+P P P P . P P P
+R N B Q K B N R
+
+
+White pawn captures black pawn diagonally (e4 takes d5):
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-4-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="check-for-understanding" class="level2">
-<h2 class="anchored" data-anchor-id="check-for-understanding">Check for Understanding</h2>
-<p>Answer the questions below to check what you’ve learned.</p>
+<section id="rook-movement" class="level2">
+<h2 class="anchored" data-anchor-id="rook-movement">Rook Movement</h2>
+<p>Rooks move in straight lines: - Any number of squares horizontally or vertically - Cannot jump over other pieces - Can capture enemy pieces by moving to their square</p>
+<div id="35848000-9ae7-4fdc-afc4-27b593a33dbe" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate rook movement</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rook_board <span class="op">=</span> chess.Board(<span class="st">"8/8/8/8/3R4/8/8/8 w - - 0 1"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rook on d4 - can move horizontally or vertically:"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rook_board)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show possible rook moves</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>rook_square <span class="op">=</span> chess.D4</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>legal_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> rook_board.legal_moves <span class="cf">if</span> move.from_square <span class="op">==</span> rook_square]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Legal moves for rook on d4: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> legal_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Move rook vertically</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>rook_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"d4d8"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>rook_board.push(rook_move)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rook moves from d4 to d8 (vertical movement):"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>rook_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rook on d4 - can move horizontally or vertically:
+
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . R . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+
+Legal moves for rook on d4: ['d4d8', 'd4d7', 'd4d6', 'd4d5', 'd4h4', 'd4g4', 'd4f4', 'd4e4', 'd4c4', 'd4b4', 'd4a4', 'd4d3', 'd4d2', 'd4d1']
+
+
+Rook moves from d4 to d8 (vertical movement):
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-5-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="knight-movement" class="level2">
+<h2 class="anchored" data-anchor-id="knight-movement">Knight Movement</h2>
+<p>Knights have a unique L-shaped movement pattern: - Move in an “L” shape: 2 squares in one direction, then 1 square perpendicular - Can jump over other pieces - Always lands on a square of opposite color</p>
+<div id="3b7ce975-5a6e-4db8-a53b-609b8050b9a7" class="cell" data-tags="[]">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate knight movement</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>knight_board <span class="op">=</span> chess.Board(<span class="st">"8/8/8/8/3N4/8/8/8 w - - 0 1"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Knight on d4 - moves in L-shaped patterns:"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(knight_board)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show all possible knight moves</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>knight_square <span class="op">=</span> chess.D4</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>legal_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> knight_board.legal_moves <span class="cf">if</span> move.from_square <span class="op">==</span> knight_square]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Legal moves for knight on d4: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> legal_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Move knight in L-shape</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>knight_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"d4f5"</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>knight_board.push(knight_move)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Knight moves from d4 to f5 (L-shaped move):"</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>knight_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="21293dbe-6e4b-4398-b32a-20c4d11063ee" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate knight jumping over pieces</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>jump_board <span class="op">=</span> chess.Board(<span class="st">"8/8/8/2ppp3/2pNp3/2ppp3/8/8 w - - 0 1"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Knight surrounded by pawns - can still jump over them:"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(jump_board)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Knight can still move despite being surrounded</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>knight_square <span class="op">=</span> chess.D4</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>legal_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> jump_board.legal_moves <span class="cf">if</span> move.from_square <span class="op">==</span> knight_square]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Knight can still move to: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> legal_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Jump over pieces</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>jump_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"d4f3"</span>)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>jump_board.push(jump_move)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Knight jumps from d4 to f3, over the surrounding pawns:"</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>jump_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Knight surrounded by pawns - can still jump over them:
+
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . p p p . . .
+. . p N p . . .
+. . p p p . . .
+. . . . . . . .
+. . . . . . . .
+
+
+Knight can still move to: ['d4e6', 'd4c6', 'd4f5', 'd4b5', 'd4f3', 'd4b3', 'd4e2', 'd4c2']
+
+
+Knight jumps from d4 to f3, over the surrounding pawns:
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-7-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bishop-movement" class="level2">
+<h2 class="anchored" data-anchor-id="bishop-movement">Bishop Movement</h2>
+<p>Bishops move diagonally: - Any number of squares diagonally - Cannot jump over other pieces - Always stay on squares of the same color</p>
+<div id="c1c4765b-6f65-4356-8535-8391da0c0106" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate bishop movement</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bishop_board <span class="op">=</span> chess.Board(<span class="st">"8/8/8/8/3B4/8/8/8 w - - 0 1"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bishop on d4 - moves diagonally:"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bishop_board)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show possible bishop moves</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>bishop_square <span class="op">=</span> chess.D4</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>legal_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> bishop_board.legal_moves <span class="cf">if</span> move.from_square <span class="op">==</span> bishop_square]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Legal moves for bishop on d4: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> legal_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Move bishop diagonally</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>bishop_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"d4h8"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>bishop_board.push(bishop_move)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Bishop moves from d4 to h8 (diagonal movement):"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>bishop_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Bishop on d4 - moves diagonally:
+
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . B . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+
+Legal moves for bishop on d4: ['d4h8', 'd4g7', 'd4a7', 'd4f6', 'd4b6', 'd4e5', 'd4c5', 'd4e3', 'd4c3', 'd4f2', 'd4b2', 'd4g1', 'd4a1']
+
+
+Bishop moves from d4 to h8 (diagonal movement):
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-8-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="queen-movement" class="level2">
+<h2 class="anchored" data-anchor-id="queen-movement">Queen Movement</h2>
+<p>The queen is the most powerful piece: - Combines rook and bishop movement - Can move any number of squares horizontally, vertically, or diagonally - Cannot jump over other pieces</p>
+<div id="db0e5c8d-2895-4eb8-a9d8-3597562406d8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate queen movement</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>queen_board <span class="op">=</span> chess.Board(<span class="st">"8/8/8/8/3Q4/8/8/8 w - - 0 1"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Queen on d4 - most powerful piece, combines rook and bishop moves:"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(queen_board)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show possible queen moves</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>queen_square <span class="op">=</span> chess.D4</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>legal_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> queen_board.legal_moves <span class="cf">if</span> move.from_square <span class="op">==</span> queen_square]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Legal moves for queen on d4: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> legal_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total possible moves: </span><span class="sc">{</span><span class="bu">len</span>(legal_moves)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Move queen diagonally</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>queen_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"d4a7"</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>queen_board.push(queen_move)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Queen moves from d4 to a7 (diagonal movement):"</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>queen_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Queen on d4 - most powerful piece, combines rook and bishop moves:
+
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . Q . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+
+Legal moves for queen on d4: ['d4h8', 'd4d8', 'd4g7', 'd4d7', 'd4a7', 'd4f6', 'd4d6', 'd4b6', 'd4e5', 'd4d5', 'd4c5', 'd4h4', 'd4g4', 'd4f4', 'd4e4', 'd4c4', 'd4b4', 'd4a4', 'd4e3', 'd4d3', 'd4c3', 'd4f2', 'd4d2', 'd4b2', 'd4g1', 'd4d1', 'd4a1']
+
+Total possible moves: 27
+
+
+Queen moves from d4 to a7 (diagonal movement):
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-9-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="king-movement" class="level2">
+<h2 class="anchored" data-anchor-id="king-movement">King Movement</h2>
+<p>The king is the most important piece: - Moves one square in any direction (horizontal, vertical, or diagonal) - Cannot move into check (attacked by enemy pieces) - Can castle under certain conditions</p>
+<div id="782d3f68-65f5-4c02-ad51-04e9135193bf" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate king movement</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>king_board <span class="op">=</span> chess.Board(<span class="st">"8/8/8/8/3K4/8/8/8 w - - 0 1"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"King on d4 - moves one square in any direction:"</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(king_board)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show possible king moves</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>king_square <span class="op">=</span> chess.D4</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>legal_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> king_board.legal_moves <span class="cf">if</span> move.from_square <span class="op">==</span> king_square]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Legal moves for king on d4: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> legal_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Move king one square</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>king_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"d4e5"</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>king_board.push(king_move)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"King moves from d4 to e5 (one square diagonally):"</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>king_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>King on d4 - moves one square in any direction:
+
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+. . . K . . . .
+. . . . . . . .
+. . . . . . . .
+. . . . . . . .
+
+
+Legal moves for king on d4: ['d4e5', 'd4d5', 'd4c5', 'd4e4', 'd4c4', 'd4e3', 'd4d3', 'd4c3']
+
+
+King moves from d4 to e5 (one square diagonally):
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="chess_files/figure-html/cell-10-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="78e2e6fe-7589-4f04-b396-96f696bbd59d" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate castling</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>castle_board <span class="op">=</span> chess.Board(<span class="st">"r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Position where both sides can castle:"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(castle_board)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Show castling moves</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>castling_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> castle_board.legal_moves <span class="cf">if</span> castle_board.is_castling(move)]</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Available castling moves: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> castling_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform kingside castling</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>castle_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"e1g1"</span>)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>castle_board.push(castle_move)</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"White castles kingside (O-O):"</span>)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>castle_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="special-moves" class="level2">
+<h2 class="anchored" data-anchor-id="special-moves">Special Moves</h2>
+<p>Chess has several special moves beyond basic piece movement:</p>
+<div id="f385a232-1033-4895-ad6a-3c19c6ea5ef7" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate en passant</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>en_passant_board <span class="op">=</span> chess.Board(<span class="st">"rnbqkbnr/ppp1p1pp/8/3pPp2/8/8/PPPP1PPP/RNBQKBNR w KQkq f6 0 3"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Position where en passant is possible:"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(en_passant_board)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for en passant moves</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>en_passant_moves <span class="op">=</span> [move <span class="cf">for</span> move <span class="kw">in</span> en_passant_board.legal_moves <span class="cf">if</span> en_passant_board.is_en_passant(move)]</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"En passant moves available: </span><span class="sc">{</span>[move.uci() <span class="cf">for</span> move <span class="kw">in</span> en_passant_moves]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform en passant</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> en_passant_moves:</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    en_passant_board.push(en_passant_moves[<span class="dv">0</span>])</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"After en passant capture:"</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(en_passant_board)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c5c8f0f1-5c83-4d43-8e49-1a0d02b39a93" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate pawn promotion</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>promotion_board <span class="op">=</span> chess.Board(<span class="st">"8/P7/8/8/8/8/8/8 w - - 0 1"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"White pawn ready for promotion:"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(promotion_board)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Promote pawn to queen</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>promotion_move <span class="op">=</span> chess.Move.from_uci(<span class="st">"a7a8q"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>promotion_board.push(promotion_move)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Pawn promotes to queen:"</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>promotion_board</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This notebook demonstrated the movement patterns of all chess pieces:</p>
+<ol type="1">
+<li><strong>Pawn</strong>: Forward one square (two from start), captures diagonally</li>
+<li><strong>Rook</strong>: Horizontal and vertical lines</li>
+<li><strong>Knight</strong>: L-shaped moves, can jump over pieces</li>
+<li><strong>Bishop</strong>: Diagonal lines</li>
+<li><strong>Queen</strong>: Combines rook and bishop movement</li>
+<li><strong>King</strong>: One square in any direction</li>
+</ol>
+<p>Special moves include castling, en passant, and pawn promotion. Understanding these movement patterns is fundamental to playing chess effectively!</p>
+<div id="3259b31c-e627-4419-8b7d-e62020d27efb" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Final demonstration: A complete game position</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>game_board <span class="op">=</span> chess.Board()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Play a few moves to show a realistic position</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>moves <span class="op">=</span> [<span class="st">"e2e4"</span>, <span class="st">"e7e5"</span>, <span class="st">"g1f3"</span>, <span class="st">"b8c6"</span>, <span class="st">"f1b5"</span>, <span class="st">"a7a6"</span>]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> move <span class="kw">in</span> moves:</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    game_board.push(chess.Move.from_uci(move))</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A typical chess position after a few moves:"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(game_board)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Legal moves available: </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(game_board.legal_moves))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Turn: </span><span class="sc">{</span><span class="st">'White'</span> <span class="cf">if</span> game_board<span class="sc">.</span>turn <span class="cf">else</span> <span class="st">'Black'</span><span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 
 
 </section>
@@ -1403,14 +1715,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../labs/06/slides.html#/will-i-do-well-on-my-test" class="pagination-link" aria-label="Neural Network Demo">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Neural Network Demo</span>
+      <a href="../../../labs/10/slides.html" class="pagination-link" aria-label="Slides">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../labs/06/notebooks/object_detection.html" class="pagination-link" aria-label="Object Detection">
-        <span class="nav-page-text">Object Detection</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
