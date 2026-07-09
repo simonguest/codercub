@@ -175,6 +175,10 @@ website:
             - text: "Slides"
               href: labs/10/slides.qmd
               target: blank 
+            - section: "Notebooks"
+              contents:
+                - text: "Chess Example"
+                  href: labs/10/notebooks/chess.ipynb
     - id: cmu
       style: "docked"
       collapse-level: 99
