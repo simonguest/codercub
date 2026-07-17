@@ -11,7 +11,9 @@ A K-12 notebook is a standard `.ipynb` JSON file (`nbformat: 4`). Always write t
   "nbformat": 4,
   "nbformat_minor": 5,
   "metadata": {
-    "title": "Lesson 1: Hello World",
+    "codetto": {
+      "title": "Lesson 1: Hello World"
+    },
     "kernelspec": {
       "display_name": "Python 3",
       "language": "python",
@@ -26,11 +28,32 @@ A K-12 notebook is a standard `.ipynb` JSON file (`nbformat: 4`). Always write t
 
 ## Notebook metadata extensions
 
+All Codetto-specific metadata lives under a single `metadata.codetto` object, namespaced to avoid clashing with other tools that might read the same `.ipynb` file (this mirrors how Colab uses `metadata.colab`, Papermill uses `metadata.papermill`, etc.). **Always nest these fields under `metadata.codetto`** — do not write them as flat top-level keys directly under `metadata`. (The app still reads old flat keys from notebooks authored before this convention, but every notebook you write from now on should use the nested form.)
+
+```json
+"metadata": {
+  "codetto": {
+    "title": "...",
+    "folder": "...",
+    "globals": { "...": "..." },
+    "description": "...",
+    "color": "...",
+    "progress": 0,
+    "image": "...",
+    "course": "...",
+    "module": "...",
+    "files": [ ]
+  }
+}
+```
+
 ### Title
 
 ```json
 "metadata": {
-  "title": "Lesson 4: Variables and Data Flow"
+  "codetto": {
+    "title": "Lesson 4: Variables and Data Flow"
+  }
 }
 ```
 
@@ -42,7 +65,9 @@ Places the notebook in a pseudo-folder hierarchy shown in the app index:
 
 ```json
 "metadata": {
-  "folder": "/unit1/lessons"
+  "codetto": {
+    "folder": "/unit1/lessons"
+  }
 }
 ```
 
@@ -54,15 +79,17 @@ Named values substituted at runtime using `{{VARIABLE}}` syntax in markdown and 
 
 ```json
 "metadata": {
-  "globals": {
-    "STUDENT_NAME": {
-      "default": "Rylee",
-      "hi-IN": "Aditi",
-      "ja-JP": "Daichi"
-    },
-    "FAVORITE_FOOD": {
-      "default": "Pizza",
-      "hi-IN": "Puri"
+  "codetto": {
+    "globals": {
+      "STUDENT_NAME": {
+        "default": "Rylee",
+        "hi-IN": "Aditi",
+        "ja-JP": "Daichi"
+      },
+      "FAVORITE_FOOD": {
+        "default": "Pizza",
+        "hi-IN": "Puri"
+      }
     }
   }
 }
@@ -76,7 +103,9 @@ Short summary shown below the notebook title on the index card. Also searched by
 
 ```json
 "metadata": {
-  "description": "Learn to draw shapes and patterns with Python's turtle module."
+  "codetto": {
+    "description": "Learn to draw shapes and patterns with Python's turtle module."
+  }
 }
 ```
 
@@ -86,7 +115,9 @@ Hex color string for the left accent border on the index card. Defaults to `#42a
 
 ```json
 "metadata": {
-  "color": "#e53935"
+  "codetto": {
+    "color": "#e53935"
+  }
 }
 ```
 
@@ -98,7 +129,9 @@ Integer `0–100` shown as a circular progress indicator on the index card. Hidd
 
 ```json
 "metadata": {
-  "progress": 0
+  "codetto": {
+    "progress": 0
+  }
 }
 ```
 
@@ -108,7 +141,9 @@ Base64 data URL used as the background image on the index card. Overrides the de
 
 ```json
 "metadata": {
-  "image": "data:image/jpeg;base64,/9j/4AAQ…"
+  "codetto": {
+    "image": "data:image/jpeg;base64,/9j/4AAQ…"
+  }
 }
 ```
 
@@ -126,7 +161,9 @@ Assigns the notebook to a named course. When any notebooks in the index have a `
 
 ```json
 "metadata": {
-  "course": "Python Basics"
+  "codetto": {
+    "course": "Python Basics"
+  }
 }
 ```
 
@@ -136,8 +173,10 @@ Assigns the notebook to a module within a course. The Module dropdown appears on
 
 ```json
 "metadata": {
-  "course": "Python Basics",
-  "module": "Unit 3: Loops"
+  "codetto": {
+    "course": "Python Basics",
+    "module": "Unit 3: Loops"
+  }
 }
 ```
 
@@ -145,7 +184,7 @@ Both fields are optional. Neither has any independent existence — the index de
 
 ### Embedded files (pre-attaching files to a notebook)
 
-Files can be pre-embedded in a notebook by populating `notebook.metadata.files`. Each entry is a base64-encoded file object. When the notebook loads, all attached files are automatically mounted in the Pyodide filesystem at `/notebook_files/<name>` and are immediately available to Python code.
+Files can be pre-embedded in a notebook by populating `notebook.metadata.codetto.files`. Each entry is a base64-encoded file object. When the notebook loads, all attached files are automatically mounted in the Pyodide filesystem at `/notebook_files/<name>` and are immediately available to Python code.
 
 Students and teachers can also add and remove files themselves via the **Resources panel** (bookshelf icon in the notebook header) — they do not need to edit the JSON.
 
@@ -153,14 +192,16 @@ Students and teachers can also add and remove files themselves via the **Resourc
 
 ```json
 "metadata": {
-  "files": [
-    {
-      "name": "temperatures.csv",
-      "mimeType": "text/csv",
-      "size": 1024,
-      "data": "<base64-encoded content>"
-    }
-  ]
+  "codetto": {
+    "files": [
+      {
+        "name": "temperatures.csv",
+        "mimeType": "text/csv",
+        "size": 1024,
+        "data": "<base64-encoded content>"
+      }
+    ]
+  }
 }
 ```
 
@@ -402,7 +443,7 @@ These modules are always available without `pip install`.
 
 ### `audio` — play sound files
 
-Files in `/sample_files/` are pre-loaded at startup. Files attached to the notebook (via the Resources panel or embedded in `metadata.files`) are available at `/notebook_files/` — use them the same way.
+Files in `/sample_files/` are pre-loaded at startup. Files attached to the notebook (via the Resources panel or embedded in `metadata.codetto.files`) are available at `/notebook_files/` — use them the same way.
 
 - **Images:** `abstract.jpg`, `cat.jpg`, `city.jpg`, `codercub.jpg`, `dog.jpg`, `earth.jpg`, `fabric.jpg`, `forest.jpg`, `undersea.jpg`
 - **Sounds:** `clang.wav`, `coin_pickup.wav`, `correct.wav`, `door.wav`, `gameover.wav`, `incorrect.wav`, `laser.wav`, `pop.wav`, `thud.wav`, `wood.wav`, `zap.wav`
@@ -808,7 +849,7 @@ This is an example of the Jupyter .ipynb document format
 - `source` must be an **array of strings**, each line ending with `\n` except the last
 - `submitted_answer` in CFU cells must be `""` (never omit it)
 - Set `cell.id` on every cell — use descriptive kebab-case names
-- Set `metadata.title` in the notebook metadata
+- Set `metadata.codetto.title` in the notebook metadata (all Codetto-specific metadata fields go under `metadata.codetto`, never as flat top-level keys)
 - `outputs` must be `[]` and `execution_count` must be `null` in all code cells
 - Do not include a `language_info` key; the platform doesn't use it
 - Use `{{VARIABLE}}` globals for any content that varies by locale or student context
