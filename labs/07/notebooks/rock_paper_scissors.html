@@ -898,8 +898,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Run the cell below to see what the detector recognizes for each gesture. Try all three moves and check the output to confirm they’re being picked up correctly.</p>
 <p>Click <strong>Stop</strong> (■) when you’re ready to play.</p>
 <div id="cell-practice" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> cv</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> graphics</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>canvas <span class="op">=</span> graphics.canvas()</span>
@@ -930,8 +930,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Run the cell below and hold any of the three gestures steady for about 1 second. The charge bar fills as you hold — when it’s full, the computer makes its move and the result appears. There’s a short pause between rounds so you can read the result before the next round starts.</p>
 <p>Your score carries across rounds until you click <strong>Stop</strong> (■).</p>
 <div id="cell-game" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> graphics</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> cv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> graphics</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -1002,7 +1002,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ideas-to-extend-this-app" class="level2">
 <h2 class="anchored" data-anchor-id="ideas-to-extend-this-app">Ideas to Extend This App</h2>
 <ul>
-<li><strong>Sound effects</strong> — play a chime on a win using <code>import audio; audio.play('/sample_files/chime.wav')</code></li>
+<li><strong>Sound effects</strong> — play a chime on a win using <code>from codetto import audio; audio.play('/sample_files/chime.wav')</code></li>
 <li><strong>Countdown</strong> — show “3… 2… 1… Show!” on the canvas before reading the gesture</li>
 <li><strong>Best of 3</strong> — track rounds and announce an overall winner after 3 games</li>
 <li><strong>Two-player mode</strong> — use both hands (<code>num_hands=2</code>) and compare them directly</li>
