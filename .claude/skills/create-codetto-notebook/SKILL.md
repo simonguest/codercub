@@ -450,7 +450,7 @@ Files in `/sample_files/` are pre-loaded at startup. Files attached to the noteb
 - **Music:** `music_ambience.wav`, `music_bach.wav`, `music_sibelius.wav`
 
 ```python
-import audio
+from codetto import audio
 
 audio.play('/sample_files/correct.wav')           # blocks until done
 await audio.play_async('/sample_files/correct.wav')  # returns immediately (must use await)
@@ -481,7 +481,7 @@ Supported formats: WAV, MP3, OGG, M4A, FLAC.
 ### `graphics` — canvas drawing
 
 ```python
-import graphics
+from codetto import graphics
 
 c = graphics.canvas()               # auto-size (full cell width, 4:3)
 c = graphics.canvas(640, 480)       # explicit pixels
@@ -502,8 +502,8 @@ All detectors accept an optional `delegate="GPU"` argument (default). Falls back
 **Setup:**
 
 ```python
-import cv
-import graphics
+from codetto import cv
+from codetto import graphics
 
 canvas = graphics.canvas()           # auto-sized (full cell width, 4:3)
 canvas = graphics.canvas(640, 480)   # explicit pixels
@@ -598,7 +598,8 @@ camera.stop()
 ### `scene3d` — interactive 3D scenes (BabylonJS)
 
 ```python
-import scene3d, math
+from codetto import scene3d
+import math
 
 scene = scene3d.Scene()          # creates canvas + BabylonJS engine, shows output immediately
 scene.set_sky("#87CEEB")         # background colour
