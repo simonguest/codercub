@@ -441,19 +441,35 @@ IS_ENABLED = True #@param {type:"boolean"}
 
 These modules are always available without `pip install`.
 
+### `samples` — named constants for sample files
+
+Files in `/sample_files/` are pre-loaded at startup (see the `audio` section below for the full list, grouped by category). Rather than typing raw path strings, use `codetto.samples` — it gives students editor autocomplete (`samples.Sounds.` → tab-completes every sound file) so they can discover what's available instead of needing to know filenames in advance or run `os.listdir`.
+
+```python
+from codetto import audio, samples
+
+audio.play(samples.Sounds.Laser)          # -> "/sample_files/laser.wav"
+audio.play(samples.Music.Bach)            # -> "/sample_files/bach.wav"
+box.set_texture(samples.Images.Cat)       # -> "/sample_files/cat.jpg"
+```
+
+- `samples.Images`, `samples.Sounds`, `samples.Music` are namespace classes; their attributes are plain path strings, so they drop into any API that takes a file path (`audio.play()`, `graphics.draw_image()`, `set_texture()`, `open()`, …) exactly like a raw string would.
+- Constant names are a PascalCase conversion of the filename stem, e.g. `coin_pickup.wav` → `samples.Sounds.CoinPickup`, `space_ambience.wav` → `samples.Sounds.SpaceAmbience`.
+- Prefer `samples.*` constants over raw `/sample_files/...` strings in new lesson notebooks — raw strings still work, but the constants are what students see autocomplete for.
+
 ### `audio` — play sound files
 
 Files in `/sample_files/` are pre-loaded at startup. Files attached to the notebook (via the Resources panel or embedded in `metadata.codetto.files`) are available at `/notebook_files/` — use them the same way.
 
 - **Images:** `abstract.jpg`, `cat.jpg`, `city.jpg`, `codercub.jpg`, `dog.jpg`, `earth.jpg`, `fabric.jpg`, `forest.jpg`, `undersea.jpg`
-- **Sounds:** `clang.wav`, `coin_pickup.wav`, `correct.wav`, `door.wav`, `gameover.wav`, `incorrect.wav`, `laser.wav`, `pop.wav`, `thud.wav`, `wood.wav`, `zap.wav`
-- **Music:** `music_ambience.wav`, `music_bach.wav`, `music_sibelius.wav`
+- **Sounds:** `clang.wav`, `coin_pickup.wav`, `correct.wav`, `door.wav`, `gameover.wav`, `incorrect.wav`, `laser.wav`, `pop.wav`, `space_ambience.wav`, `thud.wav`, `wood.wav`, `zap.wav`
+- **Music:** `ambience.wav`, `bach.wav`, `sibelius.wav`
 
 ```python
-from codetto import audio
+from codetto import audio, samples
 
-audio.play('/sample_files/correct.wav')           # blocks until done
-await audio.play_async('/sample_files/correct.wav')  # returns immediately (must use await)
+audio.play(samples.Sounds.Correct)              # blocks until done — preferred over raw path strings
+await audio.play_async('/sample_files/correct.wav')  # returns immediately (must use await); raw strings still work
 
 # Note names: letter + optional accidental (# or b) + octave, e.g. "C4", "F#3", "Bb5"
 audio.play_note('C4', 0.5)                   # single note, blocks until done
