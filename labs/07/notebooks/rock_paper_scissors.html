@@ -1002,7 +1002,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ideas-to-extend-this-app" class="level2">
 <h2 class="anchored" data-anchor-id="ideas-to-extend-this-app">Ideas to Extend This App</h2>
 <ul>
-<li><strong>Sound effects</strong> — play a chime on a win using <code>from codetto import audio; audio.play('/sample_files/chime.wav')</code></li>
+<li><strong>Sound effects</strong> — play a chime on a win using <code>from codetto import audio, samples; audio.play(samples.Sounds.Correct)</code></li>
 <li><strong>Countdown</strong> — show “3… 2… 1… Show!” on the canvas before reading the gesture</li>
 <li><strong>Best of 3</strong> — track rounds and announce an overall winner after 3 games</li>
 <li><strong>Two-player mode</strong> — use both hands (<code>num_hands=2</code>) and compare them directly</li>

@@ -926,13 +926,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p><code>set_texture</code> is the right choice when you want to wrap a shape in a custom image — a logo, a photograph, a hand-drawn pattern — instead of one of the built-in materials.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">3</span>, height<span class="op">=</span><span class="dv">3</span>, depth<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>box.set_texture(<span class="st">'/sample_files/codercub.jpg'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>box.set_texture(samples.Images.Codercub)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The path points to an image file. Any <code>.jpg</code> or <code>.png</code> works.</p>
 <blockquote class="blockquote">
 <p><strong><code>set_material</code> vs <code>set_texture</code></strong> — use <code>set_material</code> when you want a realistic surface from the library (bricks, marble, planets). Use <code>set_texture</code> when you have a specific image you want to display on the shape.</p>
 </blockquote>
 <div id="ec2f69aa" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> scene3d</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> scene3d, samples</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>scene.set_sky(scene3d.Sky.PURE_SKY)</span>
@@ -942,11 +942,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>ground.set_tiling(<span class="dv">8</span>)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> scene3d.Shapes.Box(width<span class="op">=</span><span class="dv">3</span>, height<span class="op">=</span><span class="dv">3</span>, depth<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>box.set_texture(<span class="st">'/sample_files/codercub.jpg'</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>box.set_texture(samples.Images.Codercub)</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>box.set_position(<span class="dv">0</span>, <span class="fl">1.5</span>, <span class="dv">0</span>)</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>scene.add(box)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>Try it:</strong> swap <code>'/sample_files/codercub.jpg'</code> for a different image path, or try <code>set_texture</code> on a sphere instead of a box.</p>
+<p><strong>Try it:</strong> swap <code>samples.Images.Codercub</code> for a different image path, or try <code>set_texture</code> on a sphere instead of a box.</p>
 <p>{ “question_type”: “multiple_choice”, “question”: “You have a photo of your dog and want to wrap it around a box. Which method should you use?”, “options”: [ { “key”: “a”, “text”: “set_color — pass the image path as the color” }, { “key”: “b”, “text”: “set_material — choose the closest built-in material” }, { “key”: “c”, “text”: “set_texture — pass the path to your image file” }, { “key”: “d”, “text”: “set_glossiness — controls the image brightness” } ], “answer”: “c”, “submitted_answer”: “” }</p>
 <p>Think of a scene you’d like to build — a beach, a space station, a snowy forest, or anything you like.</p>
 <p>Describe what the finished scene would look like.</p>

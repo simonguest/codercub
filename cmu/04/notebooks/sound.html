@@ -728,7 +728,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="play-is-blocking" class="level2">
 <h2 class="anchored" data-anchor-id="play-is-blocking"><code>play()</code> Is Blocking</h2>
 <p><code>audio.play()</code> is <strong>blocking</strong> — your code pauses and waits for the sound to finish before moving to the next line. That’s why the print only appeared <em>after</em> you heard the sound.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>audio.play(<span class="st">'/sample_files/laser.wav'</span>)  <span class="co"># ← code stops here until done</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>audio.play(samples.Sounds.Laser)  <span class="co"># ← code stops here until done</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Done!'</span>)                          <span class="co"># ← only runs after the sound ends</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is useful for short effects you want to hear before continuing. Later you’ll see how to play sounds <em>in the background</em> so the scene keeps running at the same time.</p>
 </section>
@@ -808,7 +808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> scene3d</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codetto <span class="im">import</span> audio</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>TRACK <span class="op">=</span> <span class="st">'music_ambience.wav'</span> <span class="co">#@param ["music_ambience.wav", "music_bach.wav", "music_sibelius.wav"]</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>TRACK <span class="op">=</span> <span class="st">'ambience.wav'</span> <span class="co">#@param ["ambience.wav", "bach.wav", "sibelius.wav"]</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>scene <span class="op">=</span> scene3d.Scene()</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>scene.set_sky(<span class="st">'#0f3460'</span>)</span>
