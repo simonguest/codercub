@@ -502,13 +502,59 @@ from codetto import graphics
 c = graphics.canvas()               # auto-size (full cell width, 4:3)
 c = graphics.canvas(640, 480)       # explicit pixels
 
-# Draw an image file
+# Draw an image file (scaled to fill the whole canvas)
 graphics.draw_image(c, '/sample_files/cat.jpg')
 
 # Access HTML Canvas 2D context methods via DOMProxy (snake_case → camelCase)
 ctx = c.get_context('2d')
 ctx.fill_style = 'red'
 ctx.fill_rect(10, 10, 100, 50)
+ctx.move_to(0, 0)
+ctx.line_to(100, 100)
+ctx.stroke()
+```
+
+Most standard Canvas2D methods work through the same generic proxy — `move_to`, `line_to`, `quadratic_curve_to`, `bezier_curve_to`, `arc`, `ellipse`, `save`/`restore`, `translate`/`rotate`/`scale`, `set_line_dash`, `close_path`, etc. — call them exactly as documented for HTML Canvas, just in snake_case. **These only accept positional arguments** (e.g. `ctx.fill_rect(10, 10, 100, 50)`, not `ctx.fill_rect(x=10, y=10, ...)`).
+
+**Gradients and patterns:**
+
+```python
+gradient = ctx.create_linear_gradient(0, 0, 200, 0)   # also: create_radial_gradient, create_conic_gradient
+gradient.add_color_stop(0, '#ff0000')
+gradient.add_color_stop(1, '#0000ff')
+ctx.fill_style = gradient
+ctx.fill_rect(0, 0, 200, 100)
+
+img = graphics.load_image('/sample_files/cat.jpg')    # file path, /notebook_files/, or a data: URL
+pattern = ctx.create_pattern(img, 'repeat')
+ctx.fill_style = pattern
+ctx.fill_rect(0, 100, 200, 100)
+```
+
+**Exporting and displaying the canvas:**
+
+```python
+data_url = c.to_data_url()                                          # PNG; default composites drawing + camera feed
+data_url = c.to_data_url(include_camera=False)                       # student's drawing only, no camera layer
+data_url = c.to_data_url('image/jpeg', 0.85, include_camera=False)   # smaller payload for photo-like content
+
+graphics.display_image(data_url)   # shows a data: URL in the cell output (click-to-zoom/save, like a displayed PIL image)
+```
+
+`to_data_url()` is the one method on `canvas` that accepts keyword arguments (`mime_type`, `quality`, `include_camera`) — everything else on `canvas`/`ctx` is positional-only. Prefer `mime_type="image/jpeg"` with a `quality` (e.g. `0.85`) for camera-derived or photographic content — PNG compresses it poorly and large canvases can hit the bridge's payload size limit.
+
+**Click and key events:**
+
+```python
+def on_click(x, y):
+    print(f'Clicked at {x}, {y}')
+
+def on_space():
+    ctx.clear_rect(0, 0, c.get_width(), c.get_height())
+
+c.on_click(on_click)
+c.on_key(' ', on_space)     # plain string, e.g. ' ', 'a', 'ArrowLeft'
+c.run()                     # blocks in an event loop; Stop button works within ~250ms, same as scene3d.run()
 ```
 
 ### `cv` — webcam and computer vision
